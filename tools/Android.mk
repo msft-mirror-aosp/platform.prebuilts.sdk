@@ -19,7 +19,6 @@ LOCAL_PATH:= $(call my-dir)
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
 
 ##################################
-ifneq ($(TARGET_BUILD_PDK),true)
 include $(CLEAR_VARS)
 
 # We can't simple call $(BUILD_PREBUILT) here, because $(ACP) is not
@@ -34,7 +33,6 @@ $(ACP): $(LOCAL_PATH)/$(HOST_OS)/acp$(HOST_EXECUTABLE_SUFFIX)
 	@echo "Copy: acp ($@)"
 	$(copy-file-to-target-with-cp)
 	$(hide) chmod 755 $@
-endif
 
 ##################################
 include $(CLEAR_VARS)
@@ -76,7 +74,6 @@ LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)
 
 ##################################
-ifneq ($(TARGET_BUILD_PDK),true)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := zipalign
@@ -101,7 +98,6 @@ LOCAL_BUILT_MODULE_STEM := signapk$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
-endif  # TARGET_BUILD_PDK not true
 
 ##################################
 include $(CLEAR_VARS)
@@ -136,4 +132,4 @@ $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/dx | $(ACP)
 	$(hide) chmod 755 $@
 
 ##################################
-endif # TARGET_BUILD_APPS
+endif # TARGET_BUILD_APPS or TARGET_BUILD_PDK
