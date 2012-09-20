@@ -88,7 +88,20 @@ LOCAL_BUILT_MODULE_STEM := zipalign$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
-endif
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := signapk
+LOCAL_SRC_FILES := lib/signapk.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := signapk$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+endif  # TARGET_BUILD_PDK not true
 
 ##################################
 include $(CLEAR_VARS)
