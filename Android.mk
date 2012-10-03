@@ -26,9 +26,18 @@ $$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
 
 $$(_cpsttrp_sdk_intermediates)/javalib.jar : $$(_cpsttrp_sdk_intermediates)/classes.jar | $(ACP)
 	$$(call copy-file-to-target)
+
+# The uiautomator.jar
+_cpsttrp_src_jar := $(LOCAL_PATH)/$(1)/uiautomator.jar
+# The uiautomator library should be referenced as "LOCAL_JAVA_LIBRARIES += uiautomator_sdk_v<version>".
+_cpsttrp_sdk_intermediates := $(call intermediates-dir-for,JAVA_LIBRARIES,uiautomator_sdk_v$(1),,COMMON)
+$$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
+	$$(call copy-file-to-target)
+
+$$(_cpsttrp_sdk_intermediates)/javalib.jar : $$(_cpsttrp_sdk_intermediates)/classes.jar | $(ACP)
+	$$(call copy-file-to-target)
 endef
 
-_historic_sdk_versions := $(TARGET_AVAILABLE_SDK_VERSIONS)
-$(foreach s,$(_historic_sdk_versions),$(eval $(call _copy_prebuilt_sdk_to_the_right_place,$(s))))
+$(foreach s,$(TARGET_AVAILABLE_SDK_VERSIONS),$(eval $(call _copy_prebuilt_sdk_to_the_right_place,$(s))))
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
