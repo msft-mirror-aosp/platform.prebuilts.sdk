@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 The Android Open Source Project
+ * Copyright (C) 2011-2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+ /*! \mainpage notitle
+  *
+  * Renderscript is a high-performance runtime that provides graphics rendering and
+  * compute operations at the native level. Renderscript code is compiled on devices
+  * at runtime to allow platform-independence as well.
+  * This reference documentation describes the Renderscript runtime APIs, which you
+  * can utilize to write Renderscript code in C99. The Renderscript header
+  * files are automatically included for you, except for the rs_graphics.rsh header. If
+  * you are doing graphics rendering, include the graphics header file like this:
+  *
+  * <code>#include "rs_graphics.rsh"</code>
+  *
+  * To use Renderscript, you need to utilize the Renderscript runtime APIs documented here
+  * as well as the Android framework APIs for Renderscript.
+  * For documentation on the Android framework APIs, see the <a target="_parent" href=
+  * "http://developer.android.com/reference/android/renderscript/package-summary.html">
+  * android.renderscript</a> package reference.
+  * For more information on how to develop with Renderscript and how the runtime and
+  * Android framework APIs interact, see the <a target="_parent" href=
+  * "http://developer.android.com/guide/topics/renderscript/index.html">Renderscript
+  * developer guide</a> and the <a target="_parent" href=
+  * "http://developer.android.com/resources/samples/RenderScript/index.html">
+  * Renderscript samples</a>.
+  */
 
 /** @file rs_core.rsh
  *  \brief todo-jsams
@@ -31,13 +56,13 @@
 #include "rs_atomic.rsh"
 #include "rs_cl.rsh"
 #include "rs_debug.rsh"
+#include "rs_element.rsh"
 #include "rs_math.rsh"
 #include "rs_matrix.rsh"
 #include "rs_object.rsh"
 #include "rs_quaternion.rsh"
+#include "rs_sampler.rsh"
 #include "rs_time.rsh"
-
-
 
 /**
  * Send a message back to the client.  Will not block and returns true
@@ -72,12 +97,12 @@ extern void __attribute__((overloadable))
  * This is a hint and implementations may not obey the order.
  */
 enum rs_for_each_strategy {
-    RS_FOR_EACH_STRATEGY_SERIAL,
-    RS_FOR_EACH_STRATEGY_DONT_CARE,
-    RS_FOR_EACH_STRATEGY_DST_LINEAR,
-    RS_FOR_EACH_STRATEGY_TILE_SMALL,
-    RS_FOR_EACH_STRATEGY_TILE_MEDIUM,
-    RS_FOR_EACH_STRATEGY_TILE_LARGE
+    RS_FOR_EACH_STRATEGY_SERIAL = 0,
+    RS_FOR_EACH_STRATEGY_DONT_CARE = 1,
+    RS_FOR_EACH_STRATEGY_DST_LINEAR = 2,
+    RS_FOR_EACH_STRATEGY_TILE_SMALL= 3,
+    RS_FOR_EACH_STRATEGY_TILE_MEDIUM = 4,
+    RS_FOR_EACH_STRATEGY_TILE_LARGE = 5
 };
 
 

@@ -27,6 +27,9 @@
  * Returns the Allocation for a given pointer.  The pointer should point within
  * a valid allocation.  The results are undefined if the pointer is not from a
  * valid allocation.
+ *
+ * This function is deprecated and will be removed in the SDK from a future
+ * release.
  */
 extern rs_allocation __attribute__((overloadable))
     rsGetAllocation(const void *);
@@ -142,6 +145,208 @@ extern const void * __attribute__((overloadable))
  */
 extern const void * __attribute__((overloadable))
     rsGetElementAt(rs_allocation, uint32_t x, uint32_t y, uint32_t z);
+
+
+#define GET_ELEMENT_AT(T) \
+static inline T __attribute__((overloadable)) \
+        rsGetElementAt_##T(rs_allocation a, uint32_t x) {  \
+    return ((T *)rsGetElementAt(a, x))[0]; \
+} \
+static inline T __attribute__((overloadable)) \
+        rsGetElementAt_##T(rs_allocation a, uint32_t x, uint32_t y) {  \
+    return ((T *)rsGetElementAt(a, x, y))[0]; \
+} \
+static inline T __attribute__((overloadable)) \
+        rsGetElementAt_##T(rs_allocation a, uint32_t x, uint32_t y, uint32_t z) {  \
+    return ((T *)rsGetElementAt(a, x, y, z))[0]; \
+}
+
+GET_ELEMENT_AT(char)
+GET_ELEMENT_AT(char2)
+GET_ELEMENT_AT(char3)
+GET_ELEMENT_AT(char4)
+GET_ELEMENT_AT(uchar)
+GET_ELEMENT_AT(uchar2)
+GET_ELEMENT_AT(uchar3)
+GET_ELEMENT_AT(uchar4)
+GET_ELEMENT_AT(short)
+GET_ELEMENT_AT(short2)
+GET_ELEMENT_AT(short3)
+GET_ELEMENT_AT(short4)
+GET_ELEMENT_AT(ushort)
+GET_ELEMENT_AT(ushort2)
+GET_ELEMENT_AT(ushort3)
+GET_ELEMENT_AT(ushort4)
+GET_ELEMENT_AT(int)
+GET_ELEMENT_AT(int2)
+GET_ELEMENT_AT(int3)
+GET_ELEMENT_AT(int4)
+GET_ELEMENT_AT(uint)
+GET_ELEMENT_AT(uint2)
+GET_ELEMENT_AT(uint3)
+GET_ELEMENT_AT(uint4)
+GET_ELEMENT_AT(long)
+GET_ELEMENT_AT(long2)
+GET_ELEMENT_AT(long3)
+GET_ELEMENT_AT(long4)
+GET_ELEMENT_AT(ulong)
+GET_ELEMENT_AT(ulong2)
+GET_ELEMENT_AT(ulong3)
+GET_ELEMENT_AT(ulong4)
+GET_ELEMENT_AT(float)
+GET_ELEMENT_AT(float2)
+GET_ELEMENT_AT(float3)
+GET_ELEMENT_AT(float4)
+GET_ELEMENT_AT(double)
+GET_ELEMENT_AT(double2)
+GET_ELEMENT_AT(double3)
+GET_ELEMENT_AT(double4)
+
+#undef GET_ELEMENT_AT
+
+// Jelly Bean
+#if (defined(RS_VERSION) && (RS_VERSION >= 16))
+
+/**
+ * Send the contents of the Allocation to the queue.
+ * @param a allocation to work on
+ */
+extern const void __attribute__((overloadable))
+    rsAllocationIoSend(rs_allocation a);
+
+/**
+ * Receive a new set of contents from the queue.
+ * @param a allocation to work on
+ */
+extern const void __attribute__((overloadable))
+    rsAllocationIoReceive(rs_allocation a);
+
+
+/**
+ * Get the element object describing the allocation's layout
+ * @param a allocation to get data from
+ * @return element describing allocation layout
+ */
+extern rs_element __attribute__((overloadable))
+    rsAllocationGetElement(rs_allocation a);
+
+/**
+ * Fetch allocation in a way described by the sampler
+ * @param a 1D allocation to sample from
+ * @param s sampler state
+ * @param location to sample from
+ */
+extern const float4 __attribute__((overloadable))
+    rsSample(rs_allocation a, rs_sampler s, float location);
+/**
+ * Fetch allocation in a way described by the sampler
+ * @param a 1D allocation to sample from
+ * @param s sampler state
+ * @param location to sample from
+ * @param lod mip level to sample from, for fractional values
+ *            mip levels will be interpolated if
+ *            RS_SAMPLER_LINEAR_MIP_LINEAR is used
+ */
+extern const float4 __attribute__((overloadable))
+    rsSample(rs_allocation a, rs_sampler s, float location, float lod);
+
+/**
+ * Fetch allocation in a way described by the sampler
+ * @param a 2D allocation to sample from
+ * @param s sampler state
+ * @param location to sample from
+ */
+extern const float4 __attribute__((overloadable))
+    rsSample(rs_allocation a, rs_sampler s, float2 location);
+
+/**
+ * Fetch allocation in a way described by the sampler
+ * @param a 2D allocation to sample from
+ * @param s sampler state
+ * @param location to sample from
+ * @param lod mip level to sample from, for fractional values
+ *            mip levels will be interpolated if
+ *            RS_SAMPLER_LINEAR_MIP_LINEAR is used
+ */
+extern const float4 __attribute__((overloadable))
+    rsSample(rs_allocation a, rs_sampler s, float2 location, float lod);
+
+#endif // (defined(RS_VERSION) && (RS_VERSION >= 16))
+
+#if (defined(RS_VERSION) && (RS_VERSION >= 18))
+
+/**
+ * Set single element of an allocation.
+ */
+extern void __attribute__((overloadable))
+    rsSetElementAt(rs_allocation a, void* ptr, uint32_t x);
+
+/**
+ * \overload
+ */
+extern void __attribute__((overloadable))
+    rsSetElementAt(rs_allocation a, void* ptr, uint32_t x, uint32_t y);
+
+#define SET_ELEMENT_AT(T)                                               \
+    extern void __attribute__((overloadable))                           \
+    __rsSetElementAt_##T(rs_allocation a, T val, uint32_t x);           \
+    extern void __attribute__((overloadable))                           \
+    __rsSetElementAt_##T(rs_allocation a, T val, uint32_t x, uint32_t y); \
+                                                                        \
+    static inline void __attribute__((overloadable))                    \
+    rsSetElementAt_##T(rs_allocation a, T val, uint32_t x) {            \
+        __rsSetElementAt_##T(a, val, x);                                \
+    }                                                                   \
+    static inline void __attribute__((overloadable))                    \
+    rsSetElementAt_##T(rs_allocation a, T val, uint32_t x, uint32_t y) { \
+        __rsSetElementAt_##T(a, val, x, y);                     \
+    }                                                           \
+
+SET_ELEMENT_AT(char)
+SET_ELEMENT_AT(char2)
+SET_ELEMENT_AT(char3)
+SET_ELEMENT_AT(char4)
+SET_ELEMENT_AT(uchar)
+SET_ELEMENT_AT(uchar2)
+SET_ELEMENT_AT(uchar3)
+SET_ELEMENT_AT(uchar4)
+SET_ELEMENT_AT(short)
+SET_ELEMENT_AT(short2)
+SET_ELEMENT_AT(short3)
+SET_ELEMENT_AT(short4)
+SET_ELEMENT_AT(ushort)
+SET_ELEMENT_AT(ushort2)
+SET_ELEMENT_AT(ushort3)
+SET_ELEMENT_AT(ushort4)
+SET_ELEMENT_AT(int)
+SET_ELEMENT_AT(int2)
+SET_ELEMENT_AT(int3)
+SET_ELEMENT_AT(int4)
+SET_ELEMENT_AT(uint)
+SET_ELEMENT_AT(uint2)
+SET_ELEMENT_AT(uint3)
+SET_ELEMENT_AT(uint4)
+SET_ELEMENT_AT(long)
+SET_ELEMENT_AT(long2)
+SET_ELEMENT_AT(long3)
+SET_ELEMENT_AT(long4)
+SET_ELEMENT_AT(ulong)
+SET_ELEMENT_AT(ulong2)
+SET_ELEMENT_AT(ulong3)
+SET_ELEMENT_AT(ulong4)
+SET_ELEMENT_AT(float)
+SET_ELEMENT_AT(float2)
+SET_ELEMENT_AT(float3)
+SET_ELEMENT_AT(float4)
+SET_ELEMENT_AT(double)
+SET_ELEMENT_AT(double2)
+SET_ELEMENT_AT(double3)
+SET_ELEMENT_AT(double4)
+
+#undef SET_ELEMENT_AT
+
+
+#endif // (defined(RS_VERSION) && (RS_VERSION >= 18))
 
 #endif
 
