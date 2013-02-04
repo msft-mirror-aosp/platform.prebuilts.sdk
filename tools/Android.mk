@@ -61,57 +61,7 @@ LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)
 
 ##################################
-include $(CLEAR_VARS)
 
-LOCAL_MODULE := bcc_compat
-LOCAL_SRC_FILES := $(HOST_OS)/$(LOCAL_MODULE)$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_TAGS := optional
-LOCAL_REQUIRED_MODULES := libbcc_compat libbcinfo_compat
-LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := $(LOCAL_MODULE)$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := libbcc_compat
-LOCAL_SRC_FILES := $(HOST_OS)/libbcc.so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := libbcinfo_compat
-LOCAL_SRC_FILES := $(HOST_OS)/libbcinfo.so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := llvm-rs-cc
-LOCAL_SRC_FILES := $(HOST_OS)/llvm-rs-cc$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := llvm-rs-cc$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := zipalign
@@ -170,4 +120,65 @@ $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/dx | $(ACP)
 	$(hide) chmod 755 $@
 
 ##################################
+
 endif # TARGET_BUILD_APPS or TARGET_BUILD_PDK
+
+# Only use these prebuilts in unbundled branches
+# Don't use prebuilts in PDK
+
+ifneq (,$(TARGET_BUILD_APPS))
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := bcc_compat
+LOCAL_SRC_FILES := $(HOST_OS)/$(LOCAL_MODULE)$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_REQUIRED_MODULES := libbcc libbcinfo
+LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := $(LOCAL_MODULE)$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libbcc
+LOCAL_SRC_FILES := $(HOST_OS)/$(LOCAL_MODULE).so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libbcinfo
+LOCAL_SRC_FILES := $(HOST_OS)/$(LOCAL_MODULE).so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := llvm-rs-cc
+LOCAL_SRC_FILES := $(HOST_OS)/llvm-rs-cc$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := llvm-rs-cc$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+
+endif # TARGET_BUILD_APPS only
