@@ -21,6 +21,17 @@ ifneq (,$(TARGET_BUILD_APPS))
 ##################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := libcompiler_rt
+LOCAL_SRC_FILES := lib/$(LOCAL_MODULE).so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := librsjni
 LOCAL_SRC_FILES := lib/$(LOCAL_MODULE).so
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
