@@ -120,6 +120,15 @@ $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/dx | $(ACP)
 	$(hide) chmod 755 $@
 
 ##################################
+
+endif # TARGET_BUILD_APPS or TARGET_BUILD_PDK
+
+# Only use these prebuilts in unbundled branches
+# Don't use prebuilts in PDK
+
+ifneq (,$(TARGET_BUILD_APPS))
+
+##################################
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := llvm-rs-cc
@@ -132,15 +141,6 @@ LOCAL_BUILT_MODULE_STEM := llvm-rs-cc$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
-
-##################################
-
-endif # TARGET_BUILD_APPS or TARGET_BUILD_PDK
-
-# Only use these prebuilts in unbundled branches
-# Don't use prebuilts in PDK
-
-ifneq (,$(TARGET_BUILD_APPS))
 
 ##################################
 include $(CLEAR_VARS)
