@@ -33,7 +33,6 @@ interface com.android.internal.textservice.ITextServicesManager;
 interface com.android.internal.textservice.ITextServicesSessionListener;
 interface com.android.internal.view.IInputContext;
 interface com.android.internal.view.IInputMethod;
-interface com.android.internal.view.IInputMethodCallback;
 interface com.android.internal.view.IInputMethodClient;
 interface com.android.internal.view.IInputMethodManager;
 interface com.android.internal.view.IInputMethodSession;
