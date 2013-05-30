@@ -43,7 +43,7 @@ include $(BUILD_PREBUILT)
 ##################################
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := android.support.v8.renderscript
+LOCAL_MODULE := android-support-v8-renderscript
 LOCAL_SRC_FILES := lib/javalib.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
