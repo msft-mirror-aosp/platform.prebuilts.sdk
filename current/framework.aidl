@@ -12,6 +12,7 @@ parcelable android.content.ContentValues;
 parcelable android.content.Intent;
 parcelable android.content.IntentSender;
 parcelable android.content.PeriodicSync;
+parcelable android.content.SyncRequest;
 parcelable android.content.SyncStats;
 parcelable android.content.res.Configuration;
 parcelable android.database.CursorWindow;
