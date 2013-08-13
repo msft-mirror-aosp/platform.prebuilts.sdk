@@ -46,6 +46,7 @@ parcelable android.location.Criteria;
 parcelable android.location.Geofence;
 parcelable android.location.Location;
 parcelable android.location.LocationRequest;
+parcelable android.location.FusedBatchOptions;
 parcelable com.android.internal.location.ProviderProperties;
 parcelable com.android.internal.location.ProviderRequest;
 parcelable android.telephony.ServiceState;
