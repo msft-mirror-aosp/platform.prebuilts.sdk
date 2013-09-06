@@ -231,6 +231,12 @@ include $(BUILD_PREBUILT)
 
 ##################################
 
+endif # TARGET_BUILD_APPS only
+
+# Only build Clang/LLVM components when forced to.
+ifneq (true,$(FORCE_BUILD_LLVM_COMPONENTS))
+
+##################################
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libLLVM
@@ -254,6 +260,4 @@ LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
 
-##################################
-
-endif # TARGET_BUILD_APPS only
+endif #!FORCE_BUILD_LLVM_COMPONENTS
