@@ -120,6 +120,55 @@ $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/dx | $(ACP)
 	$(hide) chmod 755 $@
 
 ##################################
+include $(CLEAR_VARS)
+
+# We have to call copy-file-to-new-target instead of simply including
+# $(BUILD_PREBUILT) here, because we must put dx.jar, shrinkedAndroid.jar and mainDexClasses.rules
+# as dependecy of mainDexClasses.
+
+LOCAL_MODULE := mainDexClasses
+LOCAL_IS_HOST_MODULE := true
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_SYSTEM)/base_rules.mk
+
+$(LOCAL_BUILT_MODULE): $(HOST_OUT_JAVA_LIBRARIES)/dx$(COMMON_JAVA_PACKAGE_SUFFIX)
+$(LOCAL_BUILT_MODULE): $(HOST_OUT_JAVA_LIBRARIES)/shrinkedAndroid$(COMMON_JAVA_PACKAGE_SUFFIX)
+$(LOCAL_BUILT_MODULE): $(HOST_OUT_EXECUTABLES)/mainDexClasses.rules
+$(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/mainDexClasses | $(ACP)
+	@echo "Copy: $(PRIVATE_MODULE) ($@)"
+	$(copy-file-to-new-target)
+	$(hide) chmod 755 $@
+
+##################################
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := mainDexClasses.rules
+LOCAL_SRC_FILES := mainDexClasses.rules
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX :=
+LOCAL_BUILT_MODULE_STEM := mainDexClasses.rules
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := shrinkedAndroid
+LOCAL_SRC_FILES := lib/shrinkedAndroid.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := dx$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
 
 endif # TARGET_BUILD_APPS or TARGET_BUILD_PDK
 
