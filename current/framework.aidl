@@ -35,6 +35,7 @@ parcelable android.print.PrintJobInfo;
 parcelable android.view.accessibility.AccessibilityEvent;
 parcelable android.view.accessibility.AccessibilityNodeInfo;
 parcelable android.view.accessibility.AccessibilityRecord;
+parcelable android.view.accessibility.AccessibilityWindowInfo;
 parcelable android.view.KeyEvent;
 parcelable android.view.MotionEvent;
 parcelable android.view.Surface;
