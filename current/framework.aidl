@@ -40,6 +40,8 @@ parcelable android.view.KeyEvent;
 parcelable android.view.MotionEvent;
 parcelable android.view.Surface;
 parcelable android.view.WindowManager.LayoutParams;
+parcelable android.view.WindowAnimationFrameStats;
+parcelable android.view.WindowContentFrameStats;
 parcelable android.widget.RemoteViews;
 interface com.android.internal.textservice.ISpellCheckerService;
 interface com.android.internal.textservice.ISpellCheckerSession;
