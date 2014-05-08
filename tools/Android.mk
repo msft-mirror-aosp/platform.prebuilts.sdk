@@ -252,6 +252,19 @@ LOCAL_MODULE_SUFFIX := $(HOST_SHLIB_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libcompiler_rt
+LOCAL_SRC_FILES := $(HOST_OS)/$(LOCAL_MODULE)$(HOST_SHLIB_SUFFIX)
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_SHLIB_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
 ##################################
 
 endif # TARGET_BUILD_APPS only
