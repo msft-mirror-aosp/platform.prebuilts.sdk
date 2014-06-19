@@ -32,6 +32,7 @@ package android {
     field public static final java.lang.String BLUETOOTH = "android.permission.BLUETOOTH";
     field public static final java.lang.String BLUETOOTH_ADMIN = "android.permission.BLUETOOTH_ADMIN";
     field public static final java.lang.String BLUETOOTH_PRIVILEGED = "android.permission.BLUETOOTH_PRIVILEGED";
+    field public static final java.lang.String BODY_SENSORS = "android.permission.BODY_SENSORS";
     field public static final java.lang.String BRICK = "android.permission.BRICK";
     field public static final java.lang.String BROADCAST_PACKAGE_REMOVED = "android.permission.BROADCAST_PACKAGE_REMOVED";
     field public static final java.lang.String BROADCAST_SMS = "android.permission.BROADCAST_SMS";
@@ -276,6 +277,7 @@ package android {
     field public static final int allContactsName = 16843468; // 0x10102cc
     field public static final int allowBackup = 16843392; // 0x1010280
     field public static final int allowClearUserData = 16842757; // 0x1010005
+    field public static final int allowEmbedded = 16843765; // 0x10103f5
     field public static final int allowParallelSyncs = 16843570; // 0x1010332
     field public static final int allowSingleTap = 16843353; // 0x1010259
     field public static final int allowTaskReparenting = 16843268; // 0x1010204
@@ -1221,6 +1223,7 @@ package android {
     field public static final int windowShowAnimation = 16842934; // 0x10100b6
     field public static final int windowShowWallpaper = 16843410; // 0x1010292
     field public static final int windowSoftInputMode = 16843307; // 0x101022b
+    field public static final int windowSwipeToDismiss = 16843763; // 0x10103f3
     field public static final int windowTitleBackgroundStyle = 16842844; // 0x101005c
     field public static final int windowTitleSize = 16842842; // 0x101005a
     field public static final int windowTitleStyle = 16842843; // 0x101005b
@@ -3913,6 +3916,8 @@ package android.app {
     ctor public Notification(android.os.Parcel);
     method public android.app.Notification clone();
     method public int describeContents();
+    method public java.lang.String getGroup();
+    method public java.lang.String getSortKey();
     method public deprecated void setLatestEventInfo(android.content.Context, java.lang.CharSequence, java.lang.CharSequence, android.app.PendingIntent);
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator CREATOR;
@@ -3939,8 +3944,10 @@ package android.app {
     field public static final java.lang.String EXTRA_TITLE_BIG = "android.title.big";
     field public static final int FLAG_AUTO_CANCEL = 16; // 0x10
     field public static final int FLAG_FOREGROUND_SERVICE = 64; // 0x40
+    field public static final int FLAG_GROUP_SUMMARY = 512; // 0x200
     field public static final deprecated int FLAG_HIGH_PRIORITY = 128; // 0x80
     field public static final int FLAG_INSISTENT = 4; // 0x4
+    field public static final int FLAG_LOCAL_ONLY = 256; // 0x100
     field public static final int FLAG_NO_CLEAR = 32; // 0x20
     field public static final int FLAG_ONGOING_EVENT = 2; // 0x2
     field public static final int FLAG_ONLY_ALERT_ONCE = 8; // 0x8
@@ -3980,11 +3987,36 @@ package android.app {
     ctor public Notification.Action(int, java.lang.CharSequence, android.app.PendingIntent);
     method public android.app.Notification.Action clone();
     method public int describeContents();
+    method public android.os.Bundle getExtras();
+    method public android.app.RemoteInput[] getRemoteInputs();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator CREATOR;
     field public android.app.PendingIntent actionIntent;
     field public int icon;
     field public java.lang.CharSequence title;
+  }
+
+  public static final class Notification.Action.Builder {
+    ctor public Notification.Action.Builder(int, java.lang.CharSequence, android.app.PendingIntent);
+    ctor public Notification.Action.Builder(android.app.Notification.Action);
+    method public android.app.Notification.Action.Builder addExtras(android.os.Bundle);
+    method public android.app.Notification.Action.Builder addRemoteInput(android.app.RemoteInput);
+    method public android.app.Notification.Action build();
+    method public android.app.Notification.Action.Builder extend(android.app.Notification.Action.Extender);
+    method public android.os.Bundle getExtras();
+  }
+
+  public static abstract interface Notification.Action.Extender {
+    method public abstract android.app.Notification.Action.Builder extend(android.app.Notification.Action.Builder);
+  }
+
+  public static final class Notification.Action.WearableExtender implements android.app.Notification.Action.Extender {
+    ctor public Notification.Action.WearableExtender();
+    ctor public Notification.Action.WearableExtender(android.app.Notification.Action);
+    method public android.app.Notification.Action.WearableExtender clone();
+    method public android.app.Notification.Action.Builder extend(android.app.Notification.Action.Builder);
+    method public boolean isAvailableOffline();
+    method public android.app.Notification.Action.WearableExtender setAvailableOffline(boolean);
   }
 
   public static class Notification.BigPictureStyle extends android.app.Notification.Style {
@@ -4007,7 +4039,11 @@ package android.app {
   public static class Notification.Builder {
     ctor public Notification.Builder(android.content.Context);
     method public android.app.Notification.Builder addAction(int, java.lang.CharSequence, android.app.PendingIntent);
+    method public android.app.Notification.Builder addAction(android.app.Notification.Action);
+    method public android.app.Notification.Builder addExtras(android.os.Bundle);
     method public android.app.Notification build();
+    method public android.app.Notification.Builder extend(android.app.Notification.Extender);
+    method public android.os.Bundle getExtras();
     method public deprecated android.app.Notification getNotification();
     method public android.app.Notification.Builder setAutoCancel(boolean);
     method public android.app.Notification.Builder setContent(android.widget.RemoteViews);
@@ -4019,8 +4055,11 @@ package android.app {
     method public android.app.Notification.Builder setDeleteIntent(android.app.PendingIntent);
     method public android.app.Notification.Builder setExtras(android.os.Bundle);
     method public android.app.Notification.Builder setFullScreenIntent(android.app.PendingIntent, boolean);
+    method public android.app.Notification.Builder setGroup(java.lang.String);
+    method public android.app.Notification.Builder setGroupSummary(boolean);
     method public android.app.Notification.Builder setLargeIcon(android.graphics.Bitmap);
     method public android.app.Notification.Builder setLights(int, int, int);
+    method public android.app.Notification.Builder setLocalOnly(boolean);
     method public android.app.Notification.Builder setNumber(int);
     method public android.app.Notification.Builder setOngoing(boolean);
     method public android.app.Notification.Builder setOnlyAlertOnce(boolean);
@@ -4029,6 +4068,7 @@ package android.app {
     method public android.app.Notification.Builder setShowWhen(boolean);
     method public android.app.Notification.Builder setSmallIcon(int);
     method public android.app.Notification.Builder setSmallIcon(int, int);
+    method public android.app.Notification.Builder setSortKey(java.lang.String);
     method public android.app.Notification.Builder setSound(android.net.Uri);
     method public android.app.Notification.Builder setSound(android.net.Uri, int);
     method public android.app.Notification.Builder setStyle(android.app.Notification.Style);
@@ -4038,6 +4078,10 @@ package android.app {
     method public android.app.Notification.Builder setUsesChronometer(boolean);
     method public android.app.Notification.Builder setVibrate(long[]);
     method public android.app.Notification.Builder setWhen(long);
+  }
+
+  public static abstract interface Notification.Extender {
+    method public abstract android.app.Notification.Builder extend(android.app.Notification.Builder);
   }
 
   public static class Notification.InboxStyle extends android.app.Notification.Style {
@@ -4057,6 +4101,52 @@ package android.app {
     method protected void internalSetSummaryText(java.lang.CharSequence);
     method public void setBuilder(android.app.Notification.Builder);
     field protected android.app.Notification.Builder mBuilder;
+  }
+
+  public static final class Notification.WearableExtender implements android.app.Notification.Extender {
+    ctor public Notification.WearableExtender();
+    ctor public Notification.WearableExtender(android.app.Notification);
+    method public android.app.Notification.WearableExtender addAction(android.app.Notification.Action);
+    method public android.app.Notification.WearableExtender addActions(java.util.List<android.app.Notification.Action>);
+    method public android.app.Notification.WearableExtender addPage(android.app.Notification);
+    method public android.app.Notification.WearableExtender addPages(java.util.List<android.app.Notification>);
+    method public android.app.Notification.WearableExtender clearActions();
+    method public android.app.Notification.WearableExtender clearPages();
+    method public android.app.Notification.WearableExtender clone();
+    method public android.app.Notification.Builder extend(android.app.Notification.Builder);
+    method public java.util.List<android.app.Notification.Action> getActions();
+    method public android.graphics.Bitmap getBackground();
+    method public int getContentAction();
+    method public int getContentIcon();
+    method public int getContentIconGravity();
+    method public boolean getContentIntentAvailableOffline();
+    method public int getCustomContentHeight();
+    method public int getCustomSizePreset();
+    method public android.app.PendingIntent getDisplayIntent();
+    method public int getGravity();
+    method public boolean getHintHideIcon();
+    method public boolean getHintShowBackgroundOnly();
+    method public java.util.List<android.app.Notification> getPages();
+    method public boolean getStartScrollBottom();
+    method public android.app.Notification.WearableExtender setBackground(android.graphics.Bitmap);
+    method public android.app.Notification.WearableExtender setContentAction(int);
+    method public android.app.Notification.WearableExtender setContentIcon(int);
+    method public android.app.Notification.WearableExtender setContentIconGravity(int);
+    method public android.app.Notification.WearableExtender setContentIntentAvailableOffline(boolean);
+    method public android.app.Notification.WearableExtender setCustomContentHeight(int);
+    method public android.app.Notification.WearableExtender setCustomSizePreset(int);
+    method public android.app.Notification.WearableExtender setDisplayIntent(android.app.PendingIntent);
+    method public android.app.Notification.WearableExtender setGravity(int);
+    method public android.app.Notification.WearableExtender setHintHideIcon(boolean);
+    method public android.app.Notification.WearableExtender setHintShowBackgroundOnly(boolean);
+    method public android.app.Notification.WearableExtender setStartScrollBottom(boolean);
+    field public static final int SIZE_DEFAULT = 0; // 0x0
+    field public static final int SIZE_FULL_SCREEN = 5; // 0x5
+    field public static final int SIZE_LARGE = 4; // 0x4
+    field public static final int SIZE_MEDIUM = 3; // 0x3
+    field public static final int SIZE_SMALL = 2; // 0x2
+    field public static final int SIZE_XSMALL = 1; // 0x1
+    field public static final int UNSET_ACTION_INDEX = -1; // 0xffffffff
   }
 
   public class NotificationManager {
@@ -4141,6 +4231,31 @@ package android.app {
     method public static android.app.ProgressDialog show(android.content.Context, java.lang.CharSequence, java.lang.CharSequence, boolean, boolean, android.content.DialogInterface.OnCancelListener);
     field public static final int STYLE_HORIZONTAL = 1; // 0x1
     field public static final int STYLE_SPINNER = 0; // 0x0
+  }
+
+  public final class RemoteInput implements android.os.Parcelable {
+    method public static void addResultsToIntent(android.app.RemoteInput[], android.content.Intent, android.os.Bundle);
+    method public int describeContents();
+    method public boolean getAllowFreeFormInput();
+    method public java.lang.CharSequence[] getChoices();
+    method public android.os.Bundle getExtras();
+    method public java.lang.CharSequence getLabel();
+    method public java.lang.String getResultKey();
+    method public static android.os.Bundle getResultsFromIntent(android.content.Intent);
+    method public void writeToParcel(android.os.Parcel, int);
+    field public static final android.os.Parcelable.Creator CREATOR;
+    field public static final java.lang.String EXTRA_RESULTS_DATA = "android.remoteinput.resultsData";
+    field public static final java.lang.String RESULTS_CLIP_LABEL = "android.remoteinput.results";
+  }
+
+  public static final class RemoteInput.Builder {
+    ctor public RemoteInput.Builder(java.lang.String);
+    method public android.app.RemoteInput.Builder addExtras(android.os.Bundle);
+    method public android.app.RemoteInput build();
+    method public android.os.Bundle getExtras();
+    method public android.app.RemoteInput.Builder setAllowFreeFormInput(boolean);
+    method public android.app.RemoteInput.Builder setChoices(java.lang.CharSequence[]);
+    method public android.app.RemoteInput.Builder setLabel(java.lang.CharSequence);
   }
 
   public class SearchManager implements android.content.DialogInterface.OnCancelListener android.content.DialogInterface.OnDismissListener {
@@ -7072,6 +7187,7 @@ package android.content.pm {
     ctor public ComponentInfo();
     ctor public ComponentInfo(android.content.pm.ComponentInfo);
     ctor protected ComponentInfo(android.os.Parcel);
+    method public final int getBannerResource();
     method public final int getIconResource();
     method public final int getLogoResource();
     method public boolean isEnabled();
@@ -7175,11 +7291,13 @@ package android.content.pm {
     ctor protected PackageItemInfo(android.os.Parcel);
     method protected void dumpBack(android.util.Printer, java.lang.String);
     method protected void dumpFront(android.util.Printer, java.lang.String);
+    method public android.graphics.drawable.Drawable loadBanner(android.content.pm.PackageManager);
     method public android.graphics.drawable.Drawable loadIcon(android.content.pm.PackageManager);
     method public java.lang.CharSequence loadLabel(android.content.pm.PackageManager);
     method public android.graphics.drawable.Drawable loadLogo(android.content.pm.PackageManager);
     method public android.content.res.XmlResourceParser loadXmlMetaData(android.content.pm.PackageManager, java.lang.String);
     method public void writeToParcel(android.os.Parcel, int);
+    field public int banner;
     field public int icon;
     field public int labelRes;
     field public int logo;
@@ -7207,12 +7325,16 @@ package android.content.pm {
     method public abstract void clearPackagePreferredActivities(java.lang.String);
     method public abstract java.lang.String[] currentToCanonicalPackageNames(java.lang.String[]);
     method public abstract void extendVerificationTimeout(int, int, long);
+    method public abstract android.graphics.drawable.Drawable getActivityBanner(android.content.ComponentName) throws android.content.pm.PackageManager.NameNotFoundException;
+    method public abstract android.graphics.drawable.Drawable getActivityBanner(android.content.Intent) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract android.graphics.drawable.Drawable getActivityIcon(android.content.ComponentName) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract android.graphics.drawable.Drawable getActivityIcon(android.content.Intent) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract android.content.pm.ActivityInfo getActivityInfo(android.content.ComponentName, int) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract android.graphics.drawable.Drawable getActivityLogo(android.content.ComponentName) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract android.graphics.drawable.Drawable getActivityLogo(android.content.Intent) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract java.util.List<android.content.pm.PermissionGroupInfo> getAllPermissionGroups(int);
+    method public abstract android.graphics.drawable.Drawable getApplicationBanner(android.content.pm.ApplicationInfo);
+    method public abstract android.graphics.drawable.Drawable getApplicationBanner(java.lang.String) throws android.content.pm.PackageManager.NameNotFoundException;
     method public abstract int getApplicationEnabledSetting(java.lang.String);
     method public abstract android.graphics.drawable.Drawable getApplicationIcon(android.content.pm.ApplicationInfo);
     method public abstract android.graphics.drawable.Drawable getApplicationIcon(java.lang.String) throws android.content.pm.PackageManager.NameNotFoundException;
@@ -7277,11 +7399,13 @@ package android.content.pm {
     field public static final java.lang.String EXTRA_VERIFICATION_RESULT = "android.content.pm.extra.VERIFICATION_RESULT";
     field public static final java.lang.String FEATURE_APP_WIDGETS = "android.software.app_widgets";
     field public static final java.lang.String FEATURE_AUDIO_LOW_LATENCY = "android.hardware.audio.low_latency";
+    field public static final java.lang.String FEATURE_BACKUP = "android.software.backup";
     field public static final java.lang.String FEATURE_BLUETOOTH = "android.hardware.bluetooth";
     field public static final java.lang.String FEATURE_BLUETOOTH_LE = "android.hardware.bluetooth_le";
     field public static final java.lang.String FEATURE_CAMERA = "android.hardware.camera";
     field public static final java.lang.String FEATURE_CAMERA_ANY = "android.hardware.camera.any";
     field public static final java.lang.String FEATURE_CAMERA_AUTOFOCUS = "android.hardware.camera.autofocus";
+    field public static final java.lang.String FEATURE_CAMERA_EXTERNAL = "android.hardware.camera.external";
     field public static final java.lang.String FEATURE_CAMERA_FLASH = "android.hardware.camera.flash";
     field public static final java.lang.String FEATURE_CAMERA_FRONT = "android.hardware.camera.front";
     field public static final java.lang.String FEATURE_CONSUMER_IR = "android.hardware.consumerir";
@@ -7298,12 +7422,14 @@ package android.content.pm {
     field public static final java.lang.String FEATURE_MICROPHONE = "android.hardware.microphone";
     field public static final java.lang.String FEATURE_NFC = "android.hardware.nfc";
     field public static final java.lang.String FEATURE_NFC_HOST_CARD_EMULATION = "android.hardware.nfc.hce";
+    field public static final java.lang.String FEATURE_PRINTING = "android.software.print";
     field public static final java.lang.String FEATURE_SCREEN_LANDSCAPE = "android.hardware.screen.landscape";
     field public static final java.lang.String FEATURE_SCREEN_PORTRAIT = "android.hardware.screen.portrait";
     field public static final java.lang.String FEATURE_SENSOR_ACCELEROMETER = "android.hardware.sensor.accelerometer";
     field public static final java.lang.String FEATURE_SENSOR_BAROMETER = "android.hardware.sensor.barometer";
     field public static final java.lang.String FEATURE_SENSOR_COMPASS = "android.hardware.sensor.compass";
     field public static final java.lang.String FEATURE_SENSOR_GYROSCOPE = "android.hardware.sensor.gyroscope";
+    field public static final java.lang.String FEATURE_SENSOR_HEART_RATE = "android.hardware.sensor.heartrate";
     field public static final java.lang.String FEATURE_SENSOR_LIGHT = "android.hardware.sensor.light";
     field public static final java.lang.String FEATURE_SENSOR_PROXIMITY = "android.hardware.sensor.proximity";
     field public static final java.lang.String FEATURE_SENSOR_STEP_COUNTER = "android.hardware.sensor.stepcounter";
@@ -7320,6 +7446,8 @@ package android.content.pm {
     field public static final java.lang.String FEATURE_TOUCHSCREEN_MULTITOUCH_JAZZHAND = "android.hardware.touchscreen.multitouch.jazzhand";
     field public static final java.lang.String FEATURE_USB_ACCESSORY = "android.hardware.usb.accessory";
     field public static final java.lang.String FEATURE_USB_HOST = "android.hardware.usb.host";
+    field public static final java.lang.String FEATURE_WATCH = "android.hardware.type.watch";
+    field public static final java.lang.String FEATURE_WEBVIEW = "android.software.webview";
     field public static final java.lang.String FEATURE_WIFI = "android.hardware.wifi";
     field public static final java.lang.String FEATURE_WIFI_DIRECT = "android.hardware.wifi.direct";
     field public static final int GET_ACTIVITIES = 1; // 0x1
@@ -7543,6 +7671,7 @@ package android.content.res {
   public final class AssetManager.AssetInputStream extends java.io.InputStream {
     method public final int available() throws java.io.IOException;
     method public final void close() throws java.io.IOException;
+    method public final int getAssetInt();
     method public final void mark(int);
     method public final boolean markSupported();
     method public final int read() throws java.io.IOException;
@@ -7641,6 +7770,7 @@ package android.content.res {
     field public static final int UI_MODE_TYPE_NORMAL = 1; // 0x1
     field public static final int UI_MODE_TYPE_TELEVISION = 4; // 0x4
     field public static final int UI_MODE_TYPE_UNDEFINED = 0; // 0x0
+    field public static final int UI_MODE_TYPE_WATCH = 6; // 0x6
     field public int densityDpi;
     field public float fontScale;
     field public int hardKeyboardHidden;
@@ -10715,9 +10845,31 @@ package android.hardware {
     method public java.lang.String getName();
     method public float getPower();
     method public float getResolution();
+    method public java.lang.String getStringType();
     method public int getType();
     method public java.lang.String getVendor();
     method public int getVersion();
+    field public static final java.lang.String STRING_TYPE_ACCELEROMETER = "android.sensor.accelerometer";
+    field public static final java.lang.String STRING_TYPE_AMBIENT_TEMPERATURE = "android.sensor.ambient_temperature";
+    field public static final java.lang.String STRING_TYPE_GAME_ROTATION_VECTOR = "android.sensor.game_rotation_vector";
+    field public static final java.lang.String STRING_TYPE_GEOMAGNETIC_ROTATION_VECTOR = "android.sensor.geomagnetic_rotation_vector";
+    field public static final java.lang.String STRING_TYPE_GRAVITY = "android.sensor.gravity";
+    field public static final java.lang.String STRING_TYPE_GYROSCOPE = "android.sensor.gyroscope";
+    field public static final java.lang.String STRING_TYPE_GYROSCOPE_UNCALIBRATED = "android.sensor.gyroscope_uncalibrated";
+    field public static final java.lang.String STRING_TYPE_HEART_RATE = "android.sensor.heart_rate";
+    field public static final java.lang.String STRING_TYPE_LIGHT = "android.sensor.light";
+    field public static final java.lang.String STRING_TYPE_LINEAR_ACCELERATION = "android.sensor.linear_acceleration";
+    field public static final java.lang.String STRING_TYPE_MAGNETIC_FIELD = "android.sensor.magnetic_field";
+    field public static final java.lang.String STRING_TYPE_MAGNETIC_FIELD_UNCALIBRATED = "android.sensor.magnetic_field_uncalibrated";
+    field public static final deprecated java.lang.String STRING_TYPE_ORIENTATION = "android.sensor.orientation";
+    field public static final java.lang.String STRING_TYPE_PRESSURE = "android.sensor.pressure";
+    field public static final java.lang.String STRING_TYPE_PROXIMITY = "android.sensor.proximity";
+    field public static final java.lang.String STRING_TYPE_RELATIVE_HUMIDITY = "android.sensor.relative_humidity";
+    field public static final java.lang.String STRING_TYPE_ROTATION_VECTOR = "android.sensor.rotation_vector";
+    field public static final java.lang.String STRING_TYPE_SIGNIFICANT_MOTION = "android.sensor.significant_motion";
+    field public static final java.lang.String STRING_TYPE_STEP_COUNTER = "android.sensor.step_counter";
+    field public static final java.lang.String STRING_TYPE_STEP_DETECTOR = "android.sensor.step_detector";
+    field public static final deprecated java.lang.String STRING_TYPE_TEMPERATURE = "android.sensor.temperature";
     field public static final int TYPE_ACCELEROMETER = 1; // 0x1
     field public static final int TYPE_ALL = -1; // 0xffffffff
     field public static final int TYPE_AMBIENT_TEMPERATURE = 13; // 0xd
@@ -10726,6 +10878,7 @@ package android.hardware {
     field public static final int TYPE_GRAVITY = 9; // 0x9
     field public static final int TYPE_GYROSCOPE = 4; // 0x4
     field public static final int TYPE_GYROSCOPE_UNCALIBRATED = 16; // 0x10
+    field public static final int TYPE_HEART_RATE = 21; // 0x15
     field public static final int TYPE_LIGHT = 5; // 0x5
     field public static final int TYPE_LINEAR_ACCELERATION = 10; // 0xa
     field public static final int TYPE_MAGNETIC_FIELD = 2; // 0x2
@@ -10840,6 +10993,7 @@ package android.hardware {
     field public static final int SENSOR_STATUS_ACCURACY_HIGH = 3; // 0x3
     field public static final int SENSOR_STATUS_ACCURACY_LOW = 1; // 0x1
     field public static final int SENSOR_STATUS_ACCURACY_MEDIUM = 2; // 0x2
+    field public static final int SENSOR_STATUS_NO_CONTACT = -1; // 0xffffffff
     field public static final int SENSOR_STATUS_UNRELIABLE = 0; // 0x0
     field public static final deprecated int SENSOR_TEMPERATURE = 4; // 0x4
     field public static final deprecated int SENSOR_TRICORDER = 64; // 0x40
@@ -10869,6 +11023,7 @@ package android.hardware.display {
     method public void registerDisplayListener(android.hardware.display.DisplayManager.DisplayListener, android.os.Handler);
     method public void unregisterDisplayListener(android.hardware.display.DisplayManager.DisplayListener);
     field public static final java.lang.String DISPLAY_CATEGORY_PRESENTATION = "android.hardware.display.category.PRESENTATION";
+    field public static final int VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY = 8; // 0x8
     field public static final int VIRTUAL_DISPLAY_FLAG_PRESENTATION = 2; // 0x2
     field public static final int VIRTUAL_DISPLAY_FLAG_PUBLIC = 1; // 0x1
     field public static final int VIRTUAL_DISPLAY_FLAG_SECURE = 4; // 0x4
@@ -10882,7 +11037,9 @@ package android.hardware.display {
 
   public final class VirtualDisplay {
     method public android.view.Display getDisplay();
+    method public android.view.Surface getSurface();
     method public void release();
+    method public void setSurface(android.view.Surface);
   }
 
 }
@@ -17456,6 +17613,7 @@ package android.os {
     field public static final int JELLY_BEAN_MR1 = 17; // 0x11
     field public static final int JELLY_BEAN_MR2 = 18; // 0x12
     field public static final int KITKAT = 19; // 0x13
+    field public static final int KITKAT_WATCH = 20; // 0x14
   }
 
   public final class Bundle implements java.lang.Cloneable android.os.Parcelable {
@@ -18138,7 +18296,8 @@ package android.os {
 
   public final class PowerManager {
     method public void goToSleep(long);
-    method public boolean isScreenOn();
+    method public boolean isInteractive();
+    method public deprecated boolean isScreenOn();
     method public android.os.PowerManager.WakeLock newWakeLock(int, java.lang.String);
     method public void reboot(java.lang.String);
     method public void userActivity(long, boolean);
@@ -21784,7 +21943,7 @@ package android.renderscript {
   }
 
   public class BaseObj {
-    method public synchronized void destroy();
+    method public void destroy();
     method public java.lang.String getName();
     method public void setName(java.lang.String);
   }
@@ -22475,6 +22634,15 @@ package android.renderscript {
     method public void setRed(int, int);
   }
 
+  public final class ScriptIntrinsicResize extends android.renderscript.ScriptIntrinsic {
+    method public static android.renderscript.ScriptIntrinsicResize create(android.renderscript.RenderScript);
+    method public void forEach_bicubic(android.renderscript.Allocation);
+    method public void forEach_bicubic(android.renderscript.Allocation, android.renderscript.Script.LaunchOptions);
+    method public android.renderscript.Script.FieldID getFieldID_Input();
+    method public android.renderscript.Script.KernelID getKernelID_bicubic();
+    method public void setInput(android.renderscript.Allocation);
+  }
+
   public final class ScriptIntrinsicYuvToRGB extends android.renderscript.ScriptIntrinsic {
     method public static android.renderscript.ScriptIntrinsicYuvToRGB create(android.renderscript.RenderScript, android.renderscript.Element);
     method public void forEach(android.renderscript.Allocation);
@@ -22718,6 +22886,7 @@ package android.service.notification {
     method public android.service.notification.StatusBarNotification clone();
     method public int describeContents();
     method public int getId();
+    method public java.lang.String getKey();
     method public android.app.Notification getNotification();
     method public java.lang.String getPackageName();
     method public long getPostTime();
@@ -24047,12 +24216,16 @@ package android.test.mock {
     method public void clearPackagePreferredActivities(java.lang.String);
     method public java.lang.String[] currentToCanonicalPackageNames(java.lang.String[]);
     method public void extendVerificationTimeout(int, int, long);
+    method public android.graphics.drawable.Drawable getActivityBanner(android.content.ComponentName) throws android.content.pm.PackageManager.NameNotFoundException;
+    method public android.graphics.drawable.Drawable getActivityBanner(android.content.Intent) throws android.content.pm.PackageManager.NameNotFoundException;
     method public android.graphics.drawable.Drawable getActivityIcon(android.content.ComponentName) throws android.content.pm.PackageManager.NameNotFoundException;
     method public android.graphics.drawable.Drawable getActivityIcon(android.content.Intent) throws android.content.pm.PackageManager.NameNotFoundException;
     method public android.content.pm.ActivityInfo getActivityInfo(android.content.ComponentName, int) throws android.content.pm.PackageManager.NameNotFoundException;
     method public android.graphics.drawable.Drawable getActivityLogo(android.content.ComponentName) throws android.content.pm.PackageManager.NameNotFoundException;
     method public android.graphics.drawable.Drawable getActivityLogo(android.content.Intent) throws android.content.pm.PackageManager.NameNotFoundException;
     method public java.util.List<android.content.pm.PermissionGroupInfo> getAllPermissionGroups(int);
+    method public android.graphics.drawable.Drawable getApplicationBanner(android.content.pm.ApplicationInfo);
+    method public android.graphics.drawable.Drawable getApplicationBanner(java.lang.String) throws android.content.pm.PackageManager.NameNotFoundException;
     method public int getApplicationEnabledSetting(java.lang.String);
     method public android.graphics.drawable.Drawable getApplicationIcon(android.content.pm.ApplicationInfo);
     method public android.graphics.drawable.Drawable getApplicationIcon(java.lang.String) throws android.content.pm.PackageManager.NameNotFoundException;
@@ -26349,6 +26522,7 @@ package android.view {
     method public float getRefreshRate();
     method public int getRotation();
     method public void getSize(android.graphics.Point);
+    method public int getState();
     method public deprecated int getWidth();
     method public boolean isValid();
     field public static final int DEFAULT_DISPLAY = 0; // 0x0
@@ -26356,6 +26530,10 @@ package android.view {
     field public static final int FLAG_PRIVATE = 4; // 0x4
     field public static final int FLAG_SECURE = 2; // 0x2
     field public static final int FLAG_SUPPORTS_PROTECTED_BUFFERS = 1; // 0x1
+    field public static final int STATE_DOZING = 3; // 0x3
+    field public static final int STATE_OFF = 1; // 0x1
+    field public static final int STATE_ON = 2; // 0x2
+    field public static final int STATE_UNKNOWN = 0; // 0x0
   }
 
   public class DragEvent implements android.os.Parcelable {
@@ -26687,7 +26865,7 @@ package android.view {
     field public static final int FLAG_SOFT_KEYBOARD = 2; // 0x2
     field public static final int FLAG_TRACKING = 512; // 0x200
     field public static final int FLAG_VIRTUAL_HARD_KEY = 64; // 0x40
-    field public static final int FLAG_WOKE_HERE = 1; // 0x1
+    field public static final deprecated int FLAG_WOKE_HERE = 1; // 0x1
     field public static final int KEYCODE_0 = 7; // 0x7
     field public static final int KEYCODE_1 = 8; // 0x8
     field public static final int KEYCODE_2 = 9; // 0x9
@@ -26882,6 +27060,7 @@ package android.view {
     field public static final int KEYCODE_SHIFT_LEFT = 59; // 0x3b
     field public static final int KEYCODE_SHIFT_RIGHT = 60; // 0x3c
     field public static final int KEYCODE_SLASH = 76; // 0x4c
+    field public static final int KEYCODE_SLEEP = 223; // 0xdf
     field public static final int KEYCODE_SOFT_LEFT = 1; // 0x1
     field public static final int KEYCODE_SOFT_RIGHT = 2; // 0x2
     field public static final int KEYCODE_SPACE = 62; // 0x3e
@@ -26903,6 +27082,7 @@ package android.view {
     field public static final int KEYCODE_VOLUME_MUTE = 164; // 0xa4
     field public static final int KEYCODE_VOLUME_UP = 24; // 0x18
     field public static final int KEYCODE_W = 51; // 0x33
+    field public static final int KEYCODE_WAKEUP = 224; // 0xe0
     field public static final int KEYCODE_WINDOW = 171; // 0xab
     field public static final int KEYCODE_X = 52; // 0x34
     field public static final int KEYCODE_Y = 53; // 0x35
@@ -27514,6 +27694,7 @@ package android.view {
     method public android.view.accessibility.AccessibilityNodeInfo createAccessibilityNodeInfo();
     method public void createContextMenu(android.view.ContextMenu);
     method public void destroyDrawingCache();
+    method public android.view.WindowInsets dispatchApplyWindowInsets(android.view.WindowInsets);
     method public void dispatchConfigurationChanged(android.content.res.Configuration);
     method public void dispatchDisplayHint(int);
     method public boolean dispatchDragEvent(android.view.DragEvent);
@@ -27545,7 +27726,7 @@ package android.view {
     method public final android.view.View findViewById(int);
     method public final android.view.View findViewWithTag(java.lang.Object);
     method public void findViewsWithText(java.util.ArrayList<android.view.View>, java.lang.CharSequence, int);
-    method protected boolean fitSystemWindows(android.graphics.Rect);
+    method protected deprecated boolean fitSystemWindows(android.graphics.Rect);
     method public android.view.View focusSearch(int);
     method public void forceLayout();
     method public static int generateViewId();
@@ -27727,6 +27908,7 @@ package android.view {
     method public void offsetTopAndBottom(int);
     method protected void onAnimationEnd();
     method protected void onAnimationStart();
+    method public android.view.WindowInsets onApplyWindowInsets(android.view.WindowInsets);
     method protected void onAttachedToWindow();
     method public void onCancelPendingInputEvents();
     method public boolean onCheckIsTextEditor();
@@ -27793,7 +27975,8 @@ package android.view {
     method public boolean removeCallbacks(java.lang.Runnable);
     method public void removeOnAttachStateChangeListener(android.view.View.OnAttachStateChangeListener);
     method public void removeOnLayoutChangeListener(android.view.View.OnLayoutChangeListener);
-    method public void requestFitSystemWindows();
+    method public void requestApplyInsets();
+    method public deprecated void requestFitSystemWindows();
     method public final boolean requestFocus();
     method public final boolean requestFocus(int);
     method public boolean requestFocus(int, android.graphics.Rect);
@@ -27857,6 +28040,7 @@ package android.view {
     method public void setNextFocusLeftId(int);
     method public void setNextFocusRightId(int);
     method public void setNextFocusUpId(int);
+    method public void setOnApplyWindowInsetsListener(android.view.View.OnApplyWindowInsetsListener);
     method public void setOnClickListener(android.view.View.OnClickListener);
     method public void setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener);
     method public void setOnDragListener(android.view.View.OnDragListener);
@@ -28075,6 +28259,10 @@ package android.view {
     field public static final int UNSPECIFIED = 0; // 0x0
   }
 
+  public static abstract interface View.OnApplyWindowInsetsListener {
+    method public abstract android.view.WindowInsets onApplyWindowInsets(android.view.View, android.view.WindowInsets);
+  }
+
   public static abstract interface View.OnAttachStateChangeListener {
     method public abstract void onViewAttachedToWindow(android.view.View);
     method public abstract void onViewDetachedFromWindow(android.view.View);
@@ -28130,7 +28318,7 @@ package android.view {
     method public static int getDoubleTapTimeout();
     method public static deprecated int getEdgeSlop();
     method public static deprecated int getFadingEdgeLength();
-    method public static long getGlobalActionKeyTimeout();
+    method public static deprecated long getGlobalActionKeyTimeout();
     method public static int getJumpTapTimeout();
     method public static int getKeyRepeatDelay();
     method public static int getKeyRepeatTimeout();
@@ -28632,6 +28820,7 @@ package android.view {
     field public static final int FEATURE_OPTIONS_PANEL = 0; // 0x0
     field public static final int FEATURE_PROGRESS = 2; // 0x2
     field public static final int FEATURE_RIGHT_ICON = 4; // 0x4
+    field public static final int FEATURE_SWIPE_TO_DISMISS = 11; // 0xb
     field public static final int ID_ANDROID_CONTENT = 16908290; // 0x1020002
     field public static final int PROGRESS_END = 10000; // 0x2710
     field public static final int PROGRESS_INDETERMINATE_OFF = -4; // 0xfffffffc
@@ -28680,6 +28869,19 @@ package android.view {
     ctor public WindowId.FocusObserver();
     method public abstract void onFocusGained(android.view.WindowId);
     method public abstract void onFocusLost(android.view.WindowId);
+  }
+
+  public final class WindowInsets {
+    ctor public WindowInsets(android.view.WindowInsets);
+    method public android.view.WindowInsets consumeSystemWindowInsets();
+    method public int getSystemWindowInsetBottom();
+    method public int getSystemWindowInsetLeft();
+    method public int getSystemWindowInsetRight();
+    method public int getSystemWindowInsetTop();
+    method public boolean hasInsets();
+    method public boolean hasSystemWindowInsets();
+    method public boolean isRound();
+    method public android.view.WindowInsets replaceSystemWindowInsets(int, int, int, int);
   }
 
   public abstract interface WindowManager implements android.view.ViewManager {
@@ -28747,7 +28949,7 @@ package android.view {
     field public static final int FLAG_SHOW_WALLPAPER = 1048576; // 0x100000
     field public static final int FLAG_SHOW_WHEN_LOCKED = 524288; // 0x80000
     field public static final int FLAG_SPLIT_TOUCH = 8388608; // 0x800000
-    field public static final int FLAG_TOUCHABLE_WHEN_WAKING = 64; // 0x40
+    field public static final deprecated int FLAG_TOUCHABLE_WHEN_WAKING = 64; // 0x40
     field public static final int FLAG_TRANSLUCENT_NAVIGATION = 134217728; // 0x8000000
     field public static final int FLAG_TRANSLUCENT_STATUS = 67108864; // 0x4000000
     field public static final int FLAG_TURN_SCREEN_ON = 2097152; // 0x200000
@@ -42709,11 +42911,11 @@ package java.util.concurrent {
   }
 
   public class ConcurrentHashMap extends java.util.AbstractMap implements java.util.concurrent.ConcurrentMap java.io.Serializable {
-    ctor public ConcurrentHashMap(int, float, int);
-    ctor public ConcurrentHashMap(int, float);
-    ctor public ConcurrentHashMap(int);
     ctor public ConcurrentHashMap();
+    ctor public ConcurrentHashMap(int);
     ctor public ConcurrentHashMap(java.util.Map<? extends K, ? extends V>);
+    ctor public ConcurrentHashMap(int, float);
+    ctor public ConcurrentHashMap(int, float, int);
     method public boolean contains(java.lang.Object);
     method public java.util.Enumeration<V> elements();
     method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
@@ -44153,12 +44355,12 @@ package java.util.regex {
   public final class Matcher implements java.util.regex.MatchResult {
     method public java.util.regex.Matcher appendReplacement(java.lang.StringBuffer, java.lang.String);
     method public java.lang.StringBuffer appendTail(java.lang.StringBuffer);
-    method public int end(int);
     method public int end();
+    method public int end(int);
     method public boolean find(int);
     method public boolean find();
-    method public java.lang.String group(int);
     method public java.lang.String group();
+    method public java.lang.String group(int);
     method public int groupCount();
     method public boolean hasAnchoringBounds();
     method public boolean hasTransparentBounds();
@@ -44175,8 +44377,8 @@ package java.util.regex {
     method public boolean requireEnd();
     method public java.util.regex.Matcher reset();
     method public java.util.regex.Matcher reset(java.lang.CharSequence);
-    method public int start(int) throws java.lang.IllegalStateException;
     method public int start();
+    method public int start(int) throws java.lang.IllegalStateException;
     method public java.util.regex.MatchResult toMatchResult();
     method public java.util.regex.Matcher useAnchoringBounds(boolean);
     method public java.util.regex.Matcher usePattern(java.util.regex.Pattern);
@@ -50917,7 +51119,7 @@ package org.json {
     method public java.lang.String getString(java.lang.String) throws org.json.JSONException;
     method public boolean has(java.lang.String);
     method public boolean isNull(java.lang.String);
-    method public java.util.Iterator keys();
+    method public java.util.Iterator<java.lang.String> keys();
     method public int length();
     method public org.json.JSONArray names();
     method public static java.lang.String numberToString(java.lang.Number) throws org.json.JSONException;
