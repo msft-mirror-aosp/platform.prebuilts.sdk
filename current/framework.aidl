@@ -65,6 +65,7 @@ parcelable com.android.internal.location.ProviderProperties;
 parcelable com.android.internal.location.ProviderRequest;
 parcelable android.media.MediaMetadata;
 parcelable android.media.Rating;
+parcelable android.media.routing.MediaRouteSelector;
 parcelable android.media.session.MediaSession.Token;
 parcelable android.media.session.PlaybackState;
 parcelable android.telephony.ServiceState;
