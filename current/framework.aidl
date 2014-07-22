@@ -25,6 +25,7 @@ parcelable android.os.Bundle;
 parcelable android.os.DropBoxManager.Entry;
 parcelable android.os.ParcelFileDescriptor;
 parcelable android.os.ParcelUuid;
+parcelable android.os.PersistableBundle;
 parcelable android.print.PrinterInfo;
 parcelable android.print.PageRange;
 parcelable android.print.PrintAttributes;
