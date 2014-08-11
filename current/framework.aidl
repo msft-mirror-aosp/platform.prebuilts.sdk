@@ -33,6 +33,7 @@ parcelable android.print.PrinterCapabilitiesInfo;
 parcelable android.print.PrinterId;
 parcelable android.print.PrintJobId;
 parcelable android.print.PrintJobInfo;
+parcelable android.service.notification.StatusBarNotification;
 parcelable android.view.accessibility.AccessibilityEvent;
 parcelable android.view.accessibility.AccessibilityNodeInfo;
 parcelable android.view.accessibility.AccessibilityRecord;

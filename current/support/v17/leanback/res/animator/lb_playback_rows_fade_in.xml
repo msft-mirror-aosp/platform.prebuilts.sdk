@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2014 The Android Open Source Project
+<!--
+     Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,12 +15,9 @@
      limitations under the License.
 -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="rectangle">
-
-    <corners
-            android:radius="2dp" />
-    <solid
-            android:color="@color/background_material_dark" />
-
-</shape>
+<animator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@integer/lb_playback_rows_fade_in_ms"
+    android:startOffset="@integer/lb_playback_rows_fade_delay_ms"
+    android:valueFrom="0"
+    android:valueTo="1"
+    android:valueType="floatType" />
