@@ -6,10 +6,10 @@ exit 1
 fi
 
 # Make sure we are in prebuilts/sdk/current
-if [ $(realpath $(dirname $0)) != $(realpath $(pwd)) ]; then
-echo "The script must be run from $(dirname $0)."
-exit 1
-fi
+#if [ $(realpath $(dirname $0)) != $(realpath $(pwd)) ]; then
+#echo "The script must be run from $(dirname $0)."
+#exit 1
+#fi
 
 set -x -e
 
