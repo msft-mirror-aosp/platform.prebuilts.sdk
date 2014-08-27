@@ -25,7 +25,6 @@
         <item name="displayOptions">showTitle</item>
         <item name="divider">?attr/dividerVertical</item>
         <item name="height">?attr/actionBarSize</item>
-        <item name="homeLayout">@layout/abc_action_bar_home</item>
 
         <item name="titleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Title</item>
         <item name="subtitleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle</item>
@@ -147,11 +146,11 @@
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionMode.Title" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textSize">@dimen/abc_action_bar_title_text_size_material</item>
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionMode.Subtitle" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textSize">@dimen/abc_action_bar_subtitle_text_size_material</item>
+        <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="android:TextAppearance.Small">
@@ -161,20 +160,20 @@
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textSize">@dimen/abc_action_bar_title_text_size_material</item>
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textSize">@dimen/abc_action_bar_subtitle_text_size_material</item>
+        <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse" parent="TextAppearance.AppCompat.Medium.Inverse">
-        <item name="android:textSize">@dimen/abc_action_bar_title_text_size_material</item>
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse" parent="TextAppearance.AppCompat.Small.Inverse">
-        <item name="android:textSize">@dimen/abc_action_bar_subtitle_text_size_material</item>
+        <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
     </style>
 
     <style name="Base.Widget.AppCompat.ProgressBar.Horizontal" parent="android:Widget.ProgressBar.Horizontal">
@@ -223,11 +222,12 @@
 
     <style name="Base.Widget.AppCompat.ListView.DropDown" parent="android:Widget.ListView">
         <item name="android:listSelector">@drawable/abc_list_selector_holo_dark</item>
+        <item name="android:divider">@null</item>
     </style>
 
-    <style name="Base.Widget.AppCompat.Light.ListView.DropDown"
-           parent="android:Widget.ListView">
+    <style name="Base.Widget.AppCompat.Light.ListView.DropDown" parent="android:Widget.ListView">
         <item name="android:listSelector">@drawable/abc_list_selector_holo_light</item>
+        <item name="android:divider">@null</item>
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.DropDownItem"
@@ -303,7 +303,7 @@
     <style name="Base.Widget.AppCompat.AutoCompleteTextView" parent="android:Widget.AutoCompleteTextView">
         <item name="android:textColor">?attr/actionMenuTextColor</item>
         <item name="android:dropDownSelector">@drawable/abc_list_selector_holo_dark</item>
-        <item name="android:popupBackground">@drawable/abc_popup_background_material_light</item>
+        <item name="android:popupBackground">@drawable/abc_popup_background_material_dark</item>
     </style>
 
     <style name="Base.Widget.AppCompat.Light.AutoCompleteTextView" parent="android:Widget.AutoCompleteTextView">
