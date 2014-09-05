@@ -63,8 +63,8 @@
 
     <style name="Base.Widget.AppCompat.ActionButton" parent="">
         <item name="android:background">?attr/actionBarItemBackground</item>
-        <item name="android:paddingLeft">12dip</item>
-        <item name="android:paddingRight">12dip</item>
+        <item name="android:paddingLeft">0dip</item>
+        <item name="android:paddingRight">0dip</item>
         <item name="android:minWidth">@dimen/abc_action_button_min_width_material</item>
         <item name="android:minHeight">@dimen/abc_action_button_min_height_material</item>
         <item name="android:scaleType">center</item>
@@ -82,20 +82,12 @@
 
     <style name="Base.Widget.AppCompat.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton">
         <item name="android:src">@drawable/abc_ic_menu_moreoverflow_material_dark</item>
-        <item name="android:background">?attr/actionBarItemBackground</item>
         <item name="android:contentDescription">@string/abc_action_menu_overflow_description</item>
-        <item name="android:minWidth">@dimen/abc_action_overflow_min_width_material</item>
-        <item name="android:minHeight">@dimen/abc_action_button_min_height_material</item>
-        <item name="android:scaleType">center</item>
+        <item name="android:paddingRight">12dip</item>
     </style>
 
-    <style name="Base.Widget.AppCompat.Light.ActionButton.Overflow" parent="Base.Widget.AppCompat.Light.ActionButton">
+    <style name="Base.Widget.AppCompat.Light.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/abc_ic_menu_moreoverflow_material_light</item>
-        <item name="android:background">?attr/actionBarItemBackground</item>
-        <item name="android:contentDescription">@string/abc_action_menu_overflow_description</item>
-        <item name="android:minWidth">@dimen/abc_action_overflow_min_width_material</item>
-        <item name="android:minHeight">@dimen/abc_action_button_min_height_material</item>
-        <item name="android:scaleType">center</item>
     </style>
 
     <style name="Base.Widget.AppCompat.ActionBar.TabBar" parent="">
@@ -384,6 +376,17 @@
         <item name="android:background">?attr/editTextBackground</item>
         <item name="android:textColor">?attr/editTextColor</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+    </style>
+
+    <style name="Base.Widget.AppCompat.DrawerArrowToggle" parent="">
+        <item name="color">?android:attr/textColorPrimary</item>
+        <item name="thickness">2dp</item>
+        <item name="barSize">18dp</item>
+        <item name="gapBetweenBars">3dp</item>
+        <item name="topBottomBarArrowSize">11.31dp</item>
+        <item name="middleBarArrowSize">16dp</item>
+        <item name="drawableSize">24dp</item>
+        <item name="spinBars">true</item>
     </style>
 
 </resources>
