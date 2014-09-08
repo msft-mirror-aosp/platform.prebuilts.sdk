@@ -24,6 +24,10 @@ _cpsttrp_sdk_intermediates := $(call intermediates-dir-for,JAVA_LIBRARIES,sdk_v$
 $$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
 	$$(call copy-file-to-target)
 
+$$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR)
+		$(hide) mkdir -p $$(dir $$@)
+		$(hide) $(JILL) $$< --output $$@
+
 $$(_cpsttrp_sdk_intermediates)/javalib.jar : $$(_cpsttrp_sdk_intermediates)/classes.jar | $(ACP)
 	$$(call copy-file-to-target)
 
@@ -33,6 +37,10 @@ _cpsttrp_src_jar := $(LOCAL_PATH)/$(1)/uiautomator.jar
 _cpsttrp_sdk_intermediates := $(call intermediates-dir-for,JAVA_LIBRARIES,uiautomator_sdk_v$(1),,COMMON)
 $$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
 	$$(call copy-file-to-target)
+
+$$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR)
+		$(hide) mkdir -p $$(dir $$@)
+		$(hide) $(JILL) $$< --output $$@
 
 $$(_cpsttrp_sdk_intermediates)/javalib.jar : $$(_cpsttrp_sdk_intermediates)/classes.jar | $(ACP)
 	$$(call copy-file-to-target)
