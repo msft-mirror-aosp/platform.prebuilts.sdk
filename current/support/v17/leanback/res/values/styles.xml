@@ -33,7 +33,6 @@
     </style>
 
     <style name="TextAppearance.Leanback.Row.Header" parent="TextAppearance.Leanback.Header">
-        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="TextAppearance.Leanback.SearchTextEdit" parent="TextAppearance.Leanback">
@@ -43,7 +42,7 @@
     <style name="TextAppearance.Leanback.DetailsDescriptionTitle">
         <item name="android:textSize">@dimen/lb_details_description_title_text_size</item>
         <item name="android:textColor">@color/lb_details_description_color</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="TextAppearance.Leanback.DetailsDescriptionSubtitle">
@@ -54,7 +53,7 @@
 
     <style name="TextAppearance.Leanback.DetailsDescriptionBody">
         <item name="android:textSize">@dimen/lb_details_description_body_text_size</item>
-        <item name="android:textColor">@color/lb_details_description_color</item>
+        <item name="android:textColor">@color/lb_details_description_body_color</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -62,6 +61,12 @@
         <item name="android:textSize">@dimen/lb_action_text_size</item>
         <item name="android:textColor">@color/lb_action_text_color</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Leanback.PlaybackControlsTime">
+        <item name="android:textSize">@dimen/lb_playback_controls_time_text_size</item>
+        <item name="android:textColor">@color/lb_playback_controls_time_text_color</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="TextAppearance.Leanback.ErrorMessage">
@@ -72,12 +77,15 @@
 
     <style name="Widget.Leanback" parent="android:Widget.Holo" />
 
-    <style name="Widget.Leanback.BaseCardViewStyle" />
+    <style name="Widget.Leanback.BaseCardViewStyle">
+        <item name="android:foreground">@drawable/lb_card_foreground</item>
+    </style>
 
     <style name="Widget.Leanback.ImageCardViewStyle" parent="Widget.Leanback.BaseCardViewStyle">
         <item name="cardType">infoUnder</item>
         <item name="infoVisibility">activated</item>
         <item name="android:background">@color/lb_basic_card_bg_color</item>
+        <item name="infoAreaBackground">@color/lb_basic_card_info_bg_color</item>
     </style>
 
     <style name="Widget.Leanback.TitleView" >
@@ -123,9 +131,7 @@
         <item name="android:minHeight">@dimen/lb_browse_header_height</item>
         <item name="android:textAppearance">@style/TextAppearance.Leanback.Header</item>
         <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">marquee</item>
-        <item name="android:marqueeRepeatLimit">0</item>
-        <item name="android:paddingRight">@dimen/lb_browse_header_padding_right</item>
+        <item name="android:ellipsize">none</item>
     </style>
 
     <style name="Widget.Leanback.Rows.VerticalGridView" >
@@ -212,7 +218,10 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="Widget.Leanback.DetailsActionButtonStyle" parent="android:Widget.Holo.Button.Borderless">
+    <style name="Widget.Leanback.DetailsActionButtonStyleBase" parent="android:Widget.Holo.Button.Borderless">
+    </style>
+
+    <style name="Widget.Leanback.DetailsActionButtonStyle" parent="Widget.Leanback.DetailsActionButtonStyleBase">
         <item name="android:textAppearance">@style/TextAppearance.Leanback.DetailsActionButton</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:drawablePadding">@dimen/lb_action_icon_margin</item>
@@ -220,6 +229,15 @@
         <item name="android:focusableInTouchMode">true</item>
         <item name="android:paddingLeft">@dimen/lb_action_padding_horizontal</item>
         <item name="android:paddingRight">@dimen/lb_action_padding_horizontal</item>
+    </style>
+
+    <style name="Widget.Leanback.PlaybackControlsButtonStyle" >
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="Widget.Leanback.PlaybackControlsTimeStyle">
+        <item name="android:textAppearance">@style/TextAppearance.Leanback.PlaybackControlsTime</item>
     </style>
 
     <style name="Widget.Leanback.ErrorMessageStyle">
@@ -234,4 +252,23 @@
         <item name="searchOrbColor">?attr/defaultSearchColor</item>
         <item name="searchOrbBrightColor">?attr/defaultSearchBrightColor</item>
     </style>
+
+    <style name="Widget.Leanback.PlaybackControlsActionIconsStyle">
+        <item name="play">@drawable/lb_ic_play</item>
+        <item name="pause">@drawable/lb_ic_pause</item>
+        <item name="fast_forward">@drawable/lb_ic_fast_forward</item>
+        <item name="rewind">@drawable/lb_ic_fast_rewind</item>
+        <item name="skip_next">@drawable/lb_ic_skip_next</item>
+        <item name="skip_previous">@drawable/lb_ic_skip_previous</item>
+        <item name="thumb_up_outline">@drawable/lb_ic_thumb_up_outline</item>
+        <item name="thumb_up">@drawable/lb_ic_thumb_up</item>
+        <item name="thumb_down_outline">@drawable/lb_ic_thumb_down_outline</item>
+        <item name="thumb_down">@drawable/lb_ic_thumb_down</item>
+        <item name="repeat">@drawable/lb_ic_loop</item>
+        <item name="repeat_one">@drawable/lb_ic_loop_one</item>
+        <item name="shuffle">@drawable/lb_ic_shuffle</item>
+        <item name="high_quality">@drawable/lb_ic_hq</item>
+        <item name="closed_captioning">@drawable/lb_ic_cc</item>
+    </style>
+
 </resources>

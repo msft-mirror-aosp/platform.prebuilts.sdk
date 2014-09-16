@@ -115,6 +115,10 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="lbImageCardView">
+        <attr name="infoAreaBackground" format="reference|color"/>
+    </declare-styleable>
+
     <declare-styleable name="lbSearchOrbView">
         <!-- Defining icon of the search affordance -->
         <attr name="searchOrbIcon" format="reference"/>
@@ -124,6 +128,24 @@
         <attr name="searchOrbColor" format="reference|color" />
         <!-- Defining pulse color of the search affordance -->
         <attr name="searchOrbBrightColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="lbPlaybackControlsActionIcons">
+        <attr name="play" format="reference"/>
+        <attr name="pause" format="reference"/>
+        <attr name="fast_forward" format="reference"/>
+        <attr name="rewind" format="reference"/>
+        <attr name="skip_next" format="reference"/>
+        <attr name="skip_previous" format="reference"/>
+        <attr name="thumb_up_outline" format="reference"/>
+        <attr name="thumb_up" format="reference"/>
+        <attr name="thumb_down_outline" format="reference"/>
+        <attr name="thumb_down" format="reference"/>
+        <attr name="repeat" format="reference"/>
+        <attr name="repeat_one" format="reference"/>
+        <attr name="shuffle" format="reference"/>
+        <attr name="high_quality" format="reference"/>
+        <attr name="closed_captioning" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="LeanbackTheme">
@@ -180,14 +202,24 @@
         <attr name="detailsDescriptionBodyStyle" format="reference" />
         <attr name="detailsActionButtonStyle" format="reference" />
 
+        <!-- for playback controls -->
+        <attr name="playbackControlsButtonStyle" format="reference" />
+        <attr name="playbackControlsTimeStyle" format="reference" />
+
         <!-- style for a vertical grid of items -->
         <attr name="itemsVerticalGridStyle" format="reference" />
 
         <!-- for messages in the error fragment -->
         <attr name="errorMessageStyle" format="reference" />
 
-        <!-- Default colors -->
+        <!-- Default brand color used for the background of certain leanback visual elements
+             such as the headers fragment. If your app runs on:
+             a) SDK 21+: set colorPrimary, used by the leanback launcher and elsewhere, and defaultBrandColor will inherit it.
+             b) SDK < 21: set the brand color explicitly via defaultBrandColor, or programatically.
+         -->
         <attr name="defaultBrandColor" format="reference|color" />
+
+        <!-- Default colors -->
         <attr name="defaultSearchColor" format="reference|color" />
         <!-- Default color that search orb pulses to.  If not set, this color is determined programatically based on the defaultSearchColor -->
         <attr name="defaultSearchBrightColor" format="reference|color" />
@@ -195,6 +227,18 @@
         <!-- Style for searchOrb -->
         <attr name="searchOrbViewStyle" format="reference"/>
         <attr name="defaultSearchIcon" format="reference" />
+
+        <attr name="playbackProgressPrimaryColor" format="reference|color" />
+        <attr name="playbackControlsIconHighlightColor" format="reference|color" />
+        <attr name="playbackControlsActionIcons" format="reference" />
+
+        <!-- Default color for dimmed views. -->
+        <attr name="overlayDimMaskColor" format="color" />
+        <!-- Default level of dimming for active views. -->
+        <attr name="overlayDimActiveLevel" format="fraction" />
+        <!-- Default level of dimming for dimmed views. -->
+        <attr name="overlayDimDimmedLevel" format="fraction" />
+
     </declare-styleable>
 
 
