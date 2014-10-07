@@ -215,6 +215,9 @@
         <!-- EditText background drawable. -->
         <attr name="editTextBackground" format="reference" />
 
+        <!-- Default style for the Switch widget. -->
+        <attr name="switchStyle" format="reference" />
+
         <!-- ============================ -->
         <!-- SearchView styles and assets -->
         <!-- ============================ -->
@@ -260,12 +263,12 @@
         <!-- ============ -->
         <eat-comment />
 
+        <!-- The background of a panel when it is inset from the left and right edges of the screen. -->
+        <attr name="panelBackground" format="reference" />
         <!-- Default Panel Menu width. -->
         <attr name="panelMenuListWidth" format="dimension" />
-
         <!-- Default Panel Menu style. -->
         <attr name="panelMenuListTheme" format="reference" />
-
         <!-- Drawable used as a background for selected list items. -->
         <attr name="listChoiceBackgroundIndicator" format="reference" />
 
@@ -297,6 +300,9 @@
 
         <!-- The color applied to framework buttons in their normal state. -->
         <attr name="colorButtonNormal" format="color" />
+
+        <!-- The color applied to framework switch thumbs in their normal state. -->
+        <attr name="colorSwitchThumbNormal" format="color" />
 
     </declare-styleable>
 
@@ -443,7 +449,7 @@
         <!-- Default disabled icon alpha for each menu item that shows an icon. -->
         <attr name="android:itemIconDisabledAlpha"/>
         <!-- Whether space should be reserved in layout when an icon is missing. -->
-        <attr name="android:preserveIconSpacing"/>
+        <attr name="preserveIconSpacing" format="boolean" />
     </declare-styleable>
     <declare-styleable name="ActionMenuView">
         <!-- Size of padding on either end of a divider. -->
@@ -734,6 +740,9 @@
         <!-- Text to set as the content description for the navigation button
              located at the start of the toolbar. -->
         <attr name="navigationContentDescription" format="string" />
+
+        <!-- Allows us to read in the minHeight attr pre-v16 -->
+        <attr name="android:minHeight" />
     </declare-styleable>
 
     <declare-styleable name="PopupWindowBackgroundState">
@@ -774,5 +783,38 @@
     </declare-styleable>
 
     <attr name="drawerArrowStyle" format="reference" />
+
+    <declare-styleable name="ViewStubCompat">
+        <!-- Supply an identifier for the layout resource to inflate when the ViewStub
+             becomes visible or when forced to do so. The layout resource must be a
+             valid reference to a layout. -->
+        <attr name="android:layout" />
+        <!-- Overrides the id of the inflated View with this value. -->
+        <attr name="android:inflatedId" />
+        <attr name="android:id" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchCompat">
+        <!-- Drawable to use as the "thumb" that switches back and forth. -->
+        <attr name="android:thumb" />
+        <!-- Drawable to use as the "track" that the switch thumb slides within. -->
+        <attr name="track" format="reference" />
+        <!-- Text to use when the switch is in the checked/"on" state. -->
+        <attr name="android:textOn" />
+        <!-- Text to use when the switch is in the unchecked/"off" state. -->
+        <attr name="android:textOff" />
+        <!-- Amount of padding on either side of text within the switch thumb. -->
+        <attr name="thumbTextPadding" format="dimension" />
+        <!-- TextAppearance style for text displayed on the switch thumb. -->
+        <attr name="switchTextAppearance" format="reference" />
+        <!-- Minimum width for the switch component -->
+        <attr name="switchMinWidth" format="dimension" />
+        <!-- Minimum space between the switch and caption text -->
+        <attr name="switchPadding" format="dimension" />
+        <!-- Whether to split the track and leave a gap for the thumb drawable. -->
+        <attr name="splitTrack" format="boolean" />
+        <!-- Whether to draw on/off text. -->
+        <attr name="showText" format="boolean" />
+    </declare-styleable>
 
 </resources>
