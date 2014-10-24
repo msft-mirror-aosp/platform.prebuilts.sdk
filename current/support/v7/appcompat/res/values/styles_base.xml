@@ -36,9 +36,6 @@
         <item name="actionButtonStyle">@style/Widget.AppCompat.ActionButton</item>
         <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
 
-        <item name="progressBarStyle">@style/Widget.AppCompat.ProgressBar.Horizontal</item>
-        <item name="indeterminateProgressStyle">@style/Widget.AppCompat.ProgressBar</item>
-
         <item name="android:gravity">center_vertical</item>
         <item name="elevation">8dp</item>
         <item name="popupTheme">?attr/actionBarPopupTheme</item>
@@ -186,6 +183,10 @@
         <item name="android:dropDownVerticalOffset">0dip</item>
     </style>
 
+    <style name="Base.Widget.AppCompat.Spinner.Underlined">
+        <item name="android:background">@drawable/abc_spinner_textfield_background_material</item>
+    </style>
+
     <style name="Base.Widget.AppCompat.Spinner.DropDown.ActionBar" parent="android:Widget">
         <item name="spinnerMode">dropdown</item>
 
@@ -281,13 +282,11 @@
     </style>
 
     <style name="Base.Widget.AppCompat.AutoCompleteTextView" parent="android:Widget.AutoCompleteTextView">
-        <item name="android:dropDownSelector">@drawable/abc_list_selector_holo_dark</item>
+        <item name="android:dropDownSelector">?attr/listChoiceBackgroundIndicator</item>
         <item name="android:popupBackground">@drawable/abc_popup_background_mtrl_mult</item>
+        <item name="android:background">?attr/editTextBackground</item>
         <item name="android:textColor">?attr/editTextColor</item>
-    </style>
-
-    <style name="Base.Widget.AppCompat.Light.AutoCompleteTextView" parent="android:Widget.AutoCompleteTextView">
-        <item name="android:dropDownSelector">@drawable/abc_list_selector_holo_light</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
     </style>
 
     <style name="Base.Widget.AppCompat.ActivityChooserView" parent="">
@@ -312,7 +311,6 @@
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="titleMargins">4dp</item>
         <item name="maxButtonHeight">56dp</item>
-        <item name="buttonGravity">top</item>
         <item name="collapseIcon">?attr/homeAsUpIndicator</item>
         <item name="contentInsetStart">16dp</item>
     </style>
@@ -369,5 +367,27 @@
     </style>
 
     <style name="Base.TextAppearance.AppCompat.Widget.Switch" parent="TextAppearance.AppCompat.Button" />
+
+    <style name="Base.Widget.AppCompat.RatingBar" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/abc_ratingbar_full_material</item>
+        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_full_material</item>
+    </style>
+
+    <!-- Bordered ink button -->
+    <style name="Base.Widget.AppCompat.Button" parent="android:Widget">
+        <item name="android:background">@drawable/abc_btn_default_mtrl_shape</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceButton</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">88dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <!-- Small bordered ink button -->
+    <style name="Base.Widget.AppCompat.Button.Small">
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
+    </style>
 
 </resources>
