@@ -73,6 +73,7 @@
         <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="editTextBackground">?android:attr/editTextBackground</item>
         <item name="editTextColor">?android:attr/editTextColor</item>
+        <item name="listChoiceBackgroundIndicator">?android:attr/listChoiceBackgroundIndicator</item>
 
         <!-- Copy our color theme attributes to the framework -->
         <item name="android:colorPrimary">?attr/colorPrimary</item>
@@ -109,6 +110,7 @@
         <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="editTextBackground">?android:attr/editTextBackground</item>
         <item name="editTextColor">?android:attr/editTextColor</item>
+        <item name="listChoiceBackgroundIndicator">?android:attr/listChoiceBackgroundIndicator</item>
 
         <!-- Copy our color theme attributes to the framework -->
         <item name="android:colorPrimary">?attr/colorPrimary</item>
@@ -145,6 +147,7 @@
         <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="editTextBackground">?android:attr/editTextBackground</item>
         <item name="editTextColor">?android:attr/editTextColor</item>
+        <item name="listChoiceBackgroundIndicator">?android:attr/listChoiceBackgroundIndicator</item>
 
         <!-- Copy our color theme attributes to the framework -->
         <item name="android:colorPrimary">?attr/colorPrimary</item>
@@ -181,6 +184,7 @@
         <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="editTextBackground">?android:attr/editTextBackground</item>
         <item name="editTextColor">?android:attr/editTextColor</item>
+        <item name="listChoiceBackgroundIndicator">?android:attr/listChoiceBackgroundIndicator</item>
 
         <!-- Copy our color theme attributes to the framework -->
         <item name="android:colorPrimary">?attr/colorPrimary</item>
@@ -196,10 +200,15 @@
     <style name="Base.Theme.AppCompat.Light.Dialog" parent="Base.V21.Theme.AppCompat.Light.Dialog" />
 
     <style name="Base.ThemeOverlay.AppCompat" parent="android:ThemeOverlay.Material">
+        <item name="android:colorControlNormal">?attr/colorControlNormal</item>
+        <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
     </style>
 
     <style name="Base.ThemeOverlay.AppCompat.Dark" parent="android:ThemeOverlay.Material.Dark">
         <item name="colorControlHighlight">@color/ripple_material_dark</item>
+
+        <item name="android:colorControlNormal">?attr/colorControlNormal</item>
+        <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
 
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">false</item>
@@ -208,17 +217,26 @@
     <style name="Base.ThemeOverlay.AppCompat.Light" parent="android:ThemeOverlay.Material.Light">
         <item name="colorControlHighlight">@color/ripple_material_light</item>
 
+        <item name="android:colorControlNormal">?attr/colorControlNormal</item>
+        <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
+
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">true</item>
     </style>
 
     <style name="Base.ThemeOverlay.AppCompat.ActionBar" parent="android:ThemeOverlay.Material.ActionBar">
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
+
+        <item name="android:colorControlNormal">?attr/colorControlNormal</item>
+        <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
     </style>
 
     <style name="Base.ThemeOverlay.AppCompat.Dark.ActionBar" parent="android:ThemeOverlay.Material.Dark.ActionBar">
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
         <item name="colorControlHighlight">@color/ripple_material_dark</item>
+
+        <item name="android:colorControlNormal">?attr/colorControlNormal</item>
+        <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
 
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">false</item>
