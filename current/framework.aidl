@@ -135,6 +135,7 @@ parcelable android.content.pm.ResolveInfo;
 parcelable android.content.pm.ProviderInfo;
 parcelable android.content.pm.PackageStats;
 parcelable android.content.pm.PermissionGroupInfo;
+parcelable android.content.pm.LabeledIntent;
 parcelable android.content.ComponentName;
 parcelable android.content.SyncStats;
 parcelable android.content.ContentValues;
