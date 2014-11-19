@@ -98,6 +98,8 @@ parcelable android.view.textservice.TextInfo;
 parcelable android.view.textservice.SpellCheckerInfo;
 parcelable android.view.textservice.SentenceSuggestionsInfo;
 parcelable android.view.textservice.SuggestionsInfo;
+parcelable android.service.carriermessaging.MessagePdu;
+parcelable android.service.carriermessaging.CarrierMessagingService.SendSmsResponse;
 parcelable android.service.notification.StatusBarNotification;
 parcelable android.speech.tts.Voice;
 parcelable android.app.usage.UsageEvents;
