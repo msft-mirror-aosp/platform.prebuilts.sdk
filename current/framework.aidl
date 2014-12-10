@@ -10,6 +10,7 @@ parcelable android.media.MediaMetadata;
 parcelable android.media.MediaDescription;
 parcelable android.media.Rating;
 parcelable android.media.AudioAttributes;
+parcelable android.media.AudioFocusInfo;
 parcelable android.media.session.PlaybackState;
 parcelable android.media.session.MediaSession.Token;
 parcelable android.media.tv.TvInputInfo;
