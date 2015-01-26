@@ -24,9 +24,10 @@ _cpsttrp_sdk_intermediates := $(call intermediates-dir-for,JAVA_LIBRARIES,sdk_v$
 $$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
 	$$(call copy-file-to-target)
 
-$$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR)
-		$(hide) mkdir -p $$(dir $$@)
-		$(hide) $(JILL) $$< --output $$@
+$$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_VM_ARGS := $(DEFAULT_JACK_VM_ARGS)
+$$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_EXTRA_ARGS := $(DEFAULT_JACK_EXTRA_ARGS)
+$$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR) $(JACK_JAR)
+	$$(call transform-jar-to-jack)
 
 $$(_cpsttrp_sdk_intermediates)/javalib.jar : $$(_cpsttrp_sdk_intermediates)/classes.jar | $(ACP)
 	$$(call copy-file-to-target)
@@ -38,9 +39,10 @@ _cpsttrp_sdk_intermediates := $(call intermediates-dir-for,JAVA_LIBRARIES,uiauto
 $$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
 	$$(call copy-file-to-target)
 
-$$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR)
-		$(hide) mkdir -p $$(dir $$@)
-		$(hide) $(JILL) $$< --output $$@
+$$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_VM_ARGS := $(DEFAULT_JACK_VM_ARGS)
+$$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_EXTRA_ARGS := $(DEFAULT_JACK_EXTRA_ARGS)
+$$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR) $(JACK_JAR)
+	$$(call transform-jar-to-jack)
 
 $$(_cpsttrp_sdk_intermediates)/javalib.jar : $$(_cpsttrp_sdk_intermediates)/classes.jar | $(ACP)
 	$$(call copy-file-to-target)
