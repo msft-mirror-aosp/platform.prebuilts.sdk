@@ -5284,6 +5284,7 @@ package android.app {
 
   public static class VoiceInteractor.CommandRequest extends android.app.VoiceInteractor.Request {
     ctor public VoiceInteractor.CommandRequest(java.lang.String, android.os.Bundle);
+    method public void onCommandResult(android.os.Bundle);
   }
 
   public static class VoiceInteractor.CompleteVoiceRequest extends android.app.VoiceInteractor.Request {
@@ -19588,7 +19589,7 @@ package android.net.wifi {
   public class WifiScanner {
     method public void configureWifiChange(int, int, int, int, int, android.net.wifi.WifiScanner.BssidInfo[]);
     method public void configureWifiChange(android.net.wifi.WifiScanner.WifiChangeSettings);
-    method public boolean getScanResults();
+    method public android.net.wifi.ScanResult[] getScanResults();
     method public void startBackgroundScan(android.net.wifi.WifiScanner.ScanSettings, android.net.wifi.WifiScanner.ScanListener);
     method public void startTrackingBssids(android.net.wifi.WifiScanner.BssidInfo[], int, android.net.wifi.WifiScanner.BssidListener);
     method public void startTrackingWifiChange(android.net.wifi.WifiScanner.WifiChangeListener);
@@ -19647,6 +19648,7 @@ package android.net.wifi {
   public static abstract interface WifiScanner.ScanListener implements android.net.wifi.WifiScanner.ActionListener {
     method public abstract void onFullResult(android.net.wifi.ScanResult);
     method public abstract void onPeriodChanged(int);
+    method public abstract void onResults(android.net.wifi.ScanResult[]);
   }
 
   public static class WifiScanner.ScanSettings implements android.os.Parcelable {
