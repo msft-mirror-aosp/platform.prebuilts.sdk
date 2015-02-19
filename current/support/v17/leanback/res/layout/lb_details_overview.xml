@@ -25,20 +25,11 @@
     android:clipToPadding="false"
     >
 
-    <!--  Used for dimming -->
-    <FrameLayout
-        android:id="@+id/details_frame"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/lb_details_overview_height_large"
-        android:foreground="#ffffff"
-        android:elevation="@dimen/lb_details_overview_z"
-        >
-
     <!-- Background is applied to this inner layout -->
     <LinearLayout
         android:id="@+id/details_overview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/lb_details_overview_height_large"
         android:orientation="horizontal"
          >
 
@@ -55,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="@dimen/lb_details_overview_description_margin_bottom"
+            android:paddingTop="@dimen/lb_details_overview_description_margin_top"
             android:orientation="vertical" >
 
         <android.support.v17.leanback.widget.NonOverlappingFrameLayout
@@ -65,9 +57,6 @@
             android:gravity="top"
             android:layout_marginLeft="@dimen/lb_details_overview_description_margin_left"
             android:layout_marginRight="@dimen/lb_details_overview_description_margin_right"
-            android:paddingTop="@dimen/lb_details_overview_description_margin_top"
-            android:clipToPadding="false"
-            android:clipChildren="false"
             />
 
         <android.support.v17.leanback.widget.HorizontalGridView
@@ -86,5 +75,5 @@
 
         </LinearLayout>
     </LinearLayout>
-    </FrameLayout>
+
 </FrameLayout>
