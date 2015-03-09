@@ -42,6 +42,9 @@
              in place of the usual title bar. -->
         <attr name="windowActionBar" format="boolean" />
 
+        <!-- Flag indicating whether there should be no title on this window. -->
+        <attr name="windowNoTitle" format="boolean" />
+
         <!-- Flag indicating whether this window's Action Bar should overlay
              application content. Does nothing if the window would not
              have an Action Bar. -->
@@ -68,6 +71,17 @@
              that is, when in portrait. Can be either an absolute dimension
              or a fraction of the screen size in that dimension. -->
         <attr name="windowFixedHeightMajor" format="dimension|fraction" />
+
+        <!-- The minimum width the window is allowed to be, along the major
+             axis of the screen.  That is, when in landscape.  Can be either
+             an absolute dimension or a fraction of the screen size in that
+             dimension. -->
+        <attr name="windowMinWidthMajor" format="dimension|fraction" />
+        <!-- The minimum width the window is allowed to be, along the minor
+             axis of the screen.  That is, when in portrait.  Can be either
+             an absolute dimension or a fraction of the screen size in that
+             dimension. -->
+        <attr name="windowMinWidthMinor" format="dimension|fraction" />
 
         <attr name="android:windowIsFloating" />
         <attr name="android:windowAnimationStyle" />
@@ -171,7 +185,8 @@
         <attr name="dialogTheme" format="reference" />
         <!-- Preferred padding for dialog content. -->
         <attr name="dialogPreferredPadding" format="dimension" />
-
+        <!-- The list divider used in alert dialogs. -->
+        <attr name="listDividerAlertDialog" format="reference" />
 
         <!-- =================== -->
         <!-- Other widget styles -->
@@ -182,9 +197,6 @@
         <attr name="actionDropDownStyle" format="reference"/>
         <!-- The preferred item height for dropdown lists. -->
         <attr name="dropdownListPreferredItemHeight" format="dimension"/>
-
-        <!-- Default Spinner style. -->
-        <attr name="spinnerStyle" format="reference" />
         <!-- Default Spinner style. -->
         <attr name="spinnerDropDownItemStyle" format="reference" />
         <!-- Specifies a drawable to use for the 'home as up' indicator. -->
@@ -224,9 +236,6 @@
         <attr name="editTextColor" format="reference|color" />
         <!-- EditText background drawable. -->
         <attr name="editTextBackground" format="reference" />
-
-        <!-- Default style for the Switch widget. -->
-        <attr name="switchStyle" format="reference" />
 
         <!-- ============================ -->
         <!-- SearchView styles and assets -->
@@ -313,6 +322,54 @@
 
         <!-- The color applied to framework switch thumbs in their normal state. -->
         <attr name="colorSwitchThumbNormal" format="color" />
+
+        <!-- ============ -->
+        <!-- Alert Dialog styles -->
+        <!-- ============ -->
+        <eat-comment />
+        <attr name="alertDialogStyle" format="reference" />
+        <attr name="alertDialogButtonGroupStyle" format="reference" />
+        <attr name="alertDialogCenterButtons" format="boolean" />
+        <!-- Theme to use for alert dialogs spawned from this theme. -->
+        <attr name="alertDialogTheme" format="reference" />
+
+        <!-- Color of list item text in alert dialogs. -->
+        <attr name="textColorAlertDialogListItem" format="reference|color" />
+
+        <!-- Style for the "positive" buttons within button bars -->
+        <attr name="buttonBarPositiveButtonStyle" format="reference" />
+
+        <!-- Style for the "negative" buttons within button bars -->
+        <attr name="buttonBarNegativeButtonStyle" format="reference" />
+
+        <!-- Style for the "neutral" buttons within button bars -->
+        <attr name="buttonBarNeutralButtonStyle" format="reference" />
+
+        <!-- ===================== -->
+        <!-- Default widget styles -->
+        <!-- ===================== -->
+        <eat-comment />
+
+        <!-- Default AutoCompleteTextView style. -->
+        <attr name="autoCompleteTextViewStyle" format="reference" />
+        <!-- Normal Button style. -->
+        <attr name="buttonStyle" format="reference" />
+        <!-- Small Button style. -->
+        <attr name="buttonStyleSmall" format="reference" />
+        <!-- Default Checkbox style. -->
+        <attr name="checkboxStyle" format="reference" />
+        <!-- Default CheckedTextView style. -->
+        <attr name="checkedTextViewStyle" format="reference" />
+        <!-- Default EditText style. -->
+        <attr name="editTextStyle" format="reference" />
+        <!-- Default RadioButton style. -->
+        <attr name="radioButtonStyle" format="reference" />
+        <!-- Default RatingBar style. -->
+        <attr name="ratingBarStyle" format="reference" />
+        <!-- Default Spinner style. -->
+        <attr name="spinnerStyle" format="reference" />
+        <!-- Default style for the Switch widget. -->
+        <attr name="switchStyle" format="reference" />
 
     </declare-styleable>
 
@@ -693,9 +750,10 @@
         <attr name="expandActivityOverflowButtonDrawable" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="CompatTextView">
+    <declare-styleable name="AppCompatTextView">
         <!-- Present the text in ALL CAPS. This may use a small-caps form when available. -->
         <attr name="textAllCaps" format="reference|boolean" />
+        <attr name="android:textAppearance" />
     </declare-styleable>
 
     <declare-styleable name="LinearLayoutCompat">
@@ -848,12 +906,22 @@
         <attr name="showText" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="SwitchCompatTextAppearance">
+    <declare-styleable name="TextAppearance">
         <attr name="android:textSize" />
         <attr name="android:textColor" />
         <attr name="android:textStyle" />
         <attr name="android:typeface" />
         <attr name="textAllCaps" />
+    </declare-styleable>
+
+    <!-- The set of attributes that describe a AlertDialog's theme. -->
+    <declare-styleable name="AlertDialog">
+        <attr name="android:layout" />
+        <attr name="buttonPanelSideLayout" format="reference" />
+        <attr name="listLayout" format="reference" />
+        <attr name="multiChoiceItemLayout" format="reference" />
+        <attr name="singleChoiceItemLayout" format="reference" />
+        <attr name="listItemLayout" format="reference" />
     </declare-styleable>
 
 </resources>

@@ -74,6 +74,7 @@
 
     <style name="Base.Widget.AppCompat.ActionButton.CloseMode">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:minWidth">56dp</item>
     </style>
 
     <style name="Base.Widget.AppCompat.ActionButton.Overflow">
@@ -212,8 +213,12 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="Base.Widget.AppCompat.ListView.DropDown" parent="android:Widget.ListView">
+    <style name="Base.Widget.AppCompat.ListView" parent="android:Widget.ListView">
         <item name="android:listSelector">?attr/listChoiceBackgroundIndicator</item>
+        <item name="android:divider">?attr/dividerHorizontal</item>
+    </style>
+
+    <style name="Base.Widget.AppCompat.ListView.DropDown">
         <item name="android:divider">@null</item>
     </style>
 
@@ -368,6 +373,16 @@
         <item name="drawableSize">24dp</item>
     </style>
 
+    <style name="Base.Widget.AppCompat.CompoundButton.CheckBox" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:button">?android:attr/listChoiceIndicatorMultiple</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="Base.Widget.AppCompat.CompoundButton.RadioButton" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:button">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
     <style name="Base.Widget.AppCompat.CompoundButton.Switch" parent="android:Widget.CompoundButton">
         <item name="track">@drawable/abc_switch_track_mtrl_alpha</item>
         <item name="android:thumb">@drawable/abc_switch_thumb_material</item>
@@ -455,5 +470,15 @@
         <item name="android:windowEnterAnimation">@anim/abc_grow_fade_in_from_bottom</item>
         <item name="android:windowExitAnimation">@anim/abc_shrink_fade_out_from_bottom</item>
     </style>
+
+    <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
+        <item name="android:layout">@layout/abc_alert_dialog_material</item>
+        <item name="listLayout">@layout/abc_select_dialog_material</item>
+        <item name="listItemLayout">@layout/select_dialog_item_material</item>
+        <item name="multiChoiceItemLayout">@layout/select_dialog_multichoice_material</item>
+        <item name="singleChoiceItemLayout">@layout/select_dialog_singlechoice_material</item>
+    </style>
+
+    <style name="Base.AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat" />
 
 </resources>
