@@ -19,17 +19,26 @@
     xmlns:lb="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/lb_details_overview_margin_left"
-    android:paddingRight="@dimen/lb_details_overview_margin_right"
+    android:paddingStart="@dimen/lb_details_overview_margin_start"
+    android:paddingEnd="@dimen/lb_details_overview_margin_end"
     android:paddingBottom="@dimen/lb_details_overview_margin_bottom"
     android:clipToPadding="false"
     >
+
+    <!--  Used for dimming -->
+    <FrameLayout
+        android:id="@+id/details_frame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lb_details_overview_height_large"
+        android:foreground="#ffffff"
+        android:elevation="@dimen/lb_details_overview_z"
+        >
 
     <!-- Background is applied to this inner layout -->
     <LinearLayout
         android:id="@+id/details_overview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/lb_details_overview_height_large"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
          >
 
@@ -46,17 +55,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="@dimen/lb_details_overview_description_margin_bottom"
-            android:paddingTop="@dimen/lb_details_overview_description_margin_top"
             android:orientation="vertical" >
 
         <android.support.v17.leanback.widget.NonOverlappingFrameLayout
             android:id="@+id/details_overview_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="top"
-            android:layout_marginLeft="@dimen/lb_details_overview_description_margin_left"
-            android:layout_marginRight="@dimen/lb_details_overview_description_margin_right"
+            android:layout_marginStart="@dimen/lb_details_overview_description_margin_start"
+            android:layout_marginEnd="@dimen/lb_details_overview_description_margin_end"
+            android:paddingTop="@dimen/lb_details_overview_description_margin_top"
+            android:clipToPadding="false"
+            android:clipChildren="false"
             />
 
         <android.support.v17.leanback.widget.HorizontalGridView
@@ -68,12 +79,12 @@
             android:clipToPadding="false"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:paddingLeft="@dimen/lb_details_overview_description_margin_left"
-            android:paddingRight="@dimen/lb_details_overview_description_margin_right"
+            android:paddingStart="@dimen/lb_details_overview_description_margin_start"
+            android:paddingEnd="@dimen/lb_details_overview_description_margin_end"
             lb:horizontalMargin="@dimen/lb_details_overview_action_items_margin"
             lb:rowHeight="@dimen/lb_details_overview_actions_height" />
 
         </LinearLayout>
     </LinearLayout>
-
+    </FrameLayout>
 </FrameLayout>
