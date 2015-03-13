@@ -103,6 +103,7 @@ parcelable android.view.textservice.SentenceSuggestionsInfo;
 parcelable android.view.textservice.SuggestionsInfo;
 parcelable android.service.carrier.MessagePdu;
 parcelable android.service.notification.StatusBarNotification;
+parcelable android.service.chooser.ChooserTarget;
 parcelable android.speech.tts.Voice;
 parcelable android.app.usage.UsageEvents;
 parcelable android.app.Notification;
