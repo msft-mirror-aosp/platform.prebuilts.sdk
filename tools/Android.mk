@@ -20,6 +20,20 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := jack
+LOCAL_SRC_FILES := jack
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+jack_script := $(LOCAL_INSTALLED_MODULE)
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := jack
 LOCAL_SRC_FILES := jack.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
@@ -28,6 +42,8 @@ LOCAL_BUILT_MODULE_STEM := jack$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
+$(LOCAL_INSTALLED_MODULE) : $(jack_script)
+
 ##################################
 include $(CLEAR_VARS)
 
