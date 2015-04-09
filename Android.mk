@@ -25,7 +25,7 @@ $$(_cpsttrp_sdk_intermediates)/classes.jar : $$(_cpsttrp_src_jar) | $(ACP)
 	$$(call copy-file-to-target)
 
 $$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_VM_ARGS := $(DEFAULT_JACK_VM_ARGS)
-$$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_EXTRA_ARGS := $(DEFAULT_JACK_EXTRA_ARGS)
+$$(_cpsttrp_sdk_intermediates)/classes.jack: PRIVATE_JACK_EXTRA_ARGS := $(DEFAULT_JACK_EXTRA_ARGS) -D jack.classpath.default-libraries=false
 $$(_cpsttrp_sdk_intermediates)/classes.jack : $$(_cpsttrp_src_jar) $(JILL_JAR) $(JACK_JAR)
 	$$(call transform-jar-to-jack)
 
