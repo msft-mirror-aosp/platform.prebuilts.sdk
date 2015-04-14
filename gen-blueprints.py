@@ -31,7 +31,7 @@ def main():
         sdk_version = sdk_version_from_path(prebuilt)
         aidl = prebuilt[:-len('android.jar')] + 'framework.aidl'
         blueprints.append(
-            'prebuilt_java_library {{\n'
+            'prebuilt_sdk {{\n'
             '    name: "sdk_v{version}",\n'
             '    srcs: ["{prebuilt}"],\n'
             '    aidl_preprocessed: "{aidl}"\n'
