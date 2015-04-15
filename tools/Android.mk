@@ -33,6 +33,20 @@ jack_script := $(LOCAL_INSTALLED_MODULE)
 ##################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := jack-admin
+LOCAL_SRC_FILES := jack-admin
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack-admin$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+jack_admin_script := $(LOCAL_INSTALLED_MODULE)
+
+##################################
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := jack
 LOCAL_SRC_FILES := jack.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
@@ -42,7 +56,19 @@ LOCAL_BUILT_MODULE_STEM := jack$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
-$(LOCAL_INSTALLED_MODULE) : $(jack_script)
+$(LOCAL_INSTALLED_MODULE) : $(jack_script) $(jack_admin_script)
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := jack-launcher
+LOCAL_SRC_FILES := jack-launcher.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack-launcher$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
 
 ##################################
 include $(CLEAR_VARS)
