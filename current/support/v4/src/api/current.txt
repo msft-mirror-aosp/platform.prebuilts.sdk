@@ -114,10 +114,11 @@ package android.support.v4.app {
     method public boolean getAllowReturnTransitionOverlap();
     method public final android.os.Bundle getArguments();
     method public final android.support.v4.app.FragmentManager getChildFragmentManager();
-    method public final android.content.Context getContext();
+    method public android.content.Context getContext();
     method public java.lang.Object getEnterTransition();
     method public java.lang.Object getExitTransition();
     method public final android.support.v4.app.FragmentManager getFragmentManager();
+    method public final java.lang.Object getHost();
     method public final int getId();
     method public android.support.v4.app.LoaderManager getLoaderManager();
     method public final android.support.v4.app.Fragment getParentFragment();
@@ -233,7 +234,7 @@ package android.support.v4.app {
 
   public class FragmentController {
     method public void attachHost(android.support.v4.app.Fragment);
-    method public static final android.support.v4.app.FragmentController createController(android.support.v4.app.FragmentHostCallbacks);
+    method public static final android.support.v4.app.FragmentController createController(android.support.v4.app.FragmentHostCallbacks<?>);
     method public void dispatchActivityCreated();
     method public void dispatchConfigurationChanged(android.content.res.Configuration);
     method public boolean dispatchContextItemSelected(android.view.MenuItem);
@@ -250,6 +251,10 @@ package android.support.v4.app {
     method public void dispatchResume();
     method public void dispatchStart();
     method public void dispatchStop();
+    method public void doLoaderDestroy();
+    method public void doLoaderRetain();
+    method public void doLoaderStart();
+    method public void doLoaderStop(boolean);
     method public void dumpLoaders(java.lang.String, java.io.FileDescriptor, java.io.PrintWriter, java.lang.String[]);
     method public boolean execPendingActions();
     method public java.util.List<android.support.v4.app.Fragment> getActiveFragments(java.util.List<android.support.v4.app.Fragment>);
@@ -258,6 +263,7 @@ package android.support.v4.app {
     method public android.support.v4.app.LoaderManager getSupportLoaderManager();
     method public void noteStateNotSaved();
     method public android.view.View onCreateView(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet);
+    method public void reportLoaderStart();
     method public void restoreAllState(android.os.Parcelable, java.util.ArrayList<android.support.v4.app.Fragment>);
     method public void restoreLoaderNonConfig(android.support.v4.util.SimpleArrayMap<java.lang.String, android.support.v4.app.LoaderManager>);
     method public android.support.v4.util.SimpleArrayMap<java.lang.String, android.support.v4.app.LoaderManager> retainLoaderNonConfig();
@@ -269,6 +275,7 @@ package android.support.v4.app {
     ctor public FragmentHostCallbacks(android.content.Context, android.os.Handler, int);
     method public void dump(java.lang.String, java.io.FileDescriptor, java.io.PrintWriter, java.lang.String[]);
     method public android.view.View findViewById(int);
+    method public E getHost();
     method public android.view.LayoutInflater getLayoutInflater();
     method public int getWindowAnimations();
     method public boolean hasView();
@@ -491,11 +498,11 @@ package android.support.v4.app {
 
   public static class NotificationCompat.Action extends android.support.v4.app.NotificationCompatBase.Action {
     ctor public NotificationCompat.Action(int, java.lang.CharSequence, android.app.PendingIntent);
-    method protected android.app.PendingIntent getActionIntent();
+    method public android.app.PendingIntent getActionIntent();
     method public android.os.Bundle getExtras();
-    method protected int getIcon();
+    method public int getIcon();
     method public android.support.v4.app.RemoteInput[] getRemoteInputs();
-    method protected java.lang.CharSequence getTitle();
+    method public java.lang.CharSequence getTitle();
     field public android.app.PendingIntent actionIntent;
     field public int icon;
     field public java.lang.CharSequence title;
@@ -699,16 +706,17 @@ package android.support.v4.app {
     field public static final int UNSET_ACTION_INDEX = -1; // 0xffffffff
   }
 
-   class NotificationCompatBase {
+  public class NotificationCompatBase {
+    ctor public NotificationCompatBase();
   }
 
   public static abstract class NotificationCompatBase.Action {
     ctor public NotificationCompatBase.Action();
-    method protected abstract android.app.PendingIntent getActionIntent();
-    method protected abstract android.os.Bundle getExtras();
-    method protected abstract int getIcon();
-    method protected abstract android.support.v4.app.RemoteInputCompatBase.RemoteInput[] getRemoteInputs();
-    method protected abstract java.lang.CharSequence getTitle();
+    method public abstract android.app.PendingIntent getActionIntent();
+    method public abstract android.os.Bundle getExtras();
+    method public abstract int getIcon();
+    method public abstract android.support.v4.app.RemoteInputCompatBase.RemoteInput[] getRemoteInputs();
+    method public abstract java.lang.CharSequence getTitle();
   }
 
   public static abstract class NotificationCompatBase.UnreadConversation {
@@ -2446,6 +2454,8 @@ package android.support.v4.view {
     method public android.support.v4.view.ViewPropertyAnimatorCompat translationXBy(float);
     method public android.support.v4.view.ViewPropertyAnimatorCompat translationY(float);
     method public android.support.v4.view.ViewPropertyAnimatorCompat translationYBy(float);
+    method public android.support.v4.view.ViewPropertyAnimatorCompat translationZ(float);
+    method public android.support.v4.view.ViewPropertyAnimatorCompat translationZBy(float);
     method public android.support.v4.view.ViewPropertyAnimatorCompat withEndAction(java.lang.Runnable);
     method public android.support.v4.view.ViewPropertyAnimatorCompat withLayer();
     method public android.support.v4.view.ViewPropertyAnimatorCompat withStartAction(java.lang.Runnable);
@@ -2453,6 +2463,8 @@ package android.support.v4.view {
     method public android.support.v4.view.ViewPropertyAnimatorCompat xBy(float);
     method public android.support.v4.view.ViewPropertyAnimatorCompat y(float);
     method public android.support.v4.view.ViewPropertyAnimatorCompat yBy(float);
+    method public android.support.v4.view.ViewPropertyAnimatorCompat z(float);
+    method public android.support.v4.view.ViewPropertyAnimatorCompat zBy(float);
   }
 
   public abstract interface ViewPropertyAnimatorListener {
@@ -2984,7 +2996,9 @@ package android.support.v4.widget {
 
   public class PopupWindowCompat {
     method public static boolean getOverlapAnchor(android.widget.PopupWindow);
+    method public static int getWindowLayoutType(android.widget.PopupWindow);
     method public static void setOverlapAnchor(android.widget.PopupWindow, boolean);
+    method public static void setWindowLayoutType(android.widget.PopupWindow, int);
     method public static void showAsDropDown(android.widget.PopupWindow, android.view.View, int, int, int);
   }
 
