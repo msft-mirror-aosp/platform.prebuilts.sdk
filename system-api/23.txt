@@ -29816,9 +29816,6 @@ package android.telecom {
     field public static final int ROUTE_SPEAKER = 8; // 0x8
     field public static final int ROUTE_WIRED_HEADSET = 4; // 0x4
     field public static final int ROUTE_WIRED_OR_EARPIECE = 5; // 0x5
-    field public final boolean isMuted;
-    field public final int route;
-    field public final int supportedRouteMask;
   }
 
   public final class Call {
@@ -29913,7 +29910,7 @@ package android.telecom {
     method public final void destroy();
     method public final android.telecom.AudioState getAudioState();
     method public final java.util.List<android.telecom.Connection> getConferenceableConnections();
-    method public long getConnectTimeMillis();
+    method public final long getConnectTimeMillis();
     method public final int getConnectionCapabilities();
     method public final java.util.List<android.telecom.Connection> getConnections();
     method public final android.telecom.DisconnectCause getDisconnectCause();
@@ -29938,8 +29935,7 @@ package android.telecom {
     method public final void setConnectionCapabilities(int);
     method public final void setDisconnected(android.telecom.DisconnectCause);
     method public final void setOnHold();
-    field public static long CONNECT_TIME_NOT_SPECIFIED;
-    field protected android.telecom.PhoneAccountHandle mPhoneAccount;
+    field public static final long CONNECT_TIME_NOT_SPECIFIED = 0L; // 0x0L
   }
 
   public abstract class Connection implements android.telecom.IConferenceable {
@@ -29952,7 +29948,6 @@ package android.telecom {
     method public final int getAddressPresentation();
     method public final boolean getAudioModeIsVoip();
     method public final android.telecom.AudioState getAudioState();
-    method public final deprecated int getCallCapabilities();
     method public final java.lang.String getCallerDisplayName();
     method public final int getCallerDisplayNamePresentation();
     method public final android.telecom.Conference getConference();
@@ -29977,7 +29972,6 @@ package android.telecom {
     method public final void setActive();
     method public final void setAddress(android.net.Uri, int);
     method public final void setAudioModeIsVoip(boolean);
-    method public final deprecated void setCallCapabilities(int);
     method public final void setCallerDisplayName(java.lang.String, int);
     method public final void setConferenceableConnections(java.util.List<android.telecom.Connection>);
     method public final void setConferenceables(java.util.List<android.telecom.IConferenceable>);
@@ -30080,7 +30074,7 @@ package android.telecom {
 
   public abstract class InCallService extends android.app.Service {
     ctor public InCallService();
-    method public android.telecom.Phone getPhone();
+    method public final android.telecom.Phone getPhone();
     method public android.os.IBinder onBind(android.content.Intent);
     method public void onPhoneCreated(android.telecom.Phone);
     method public void onPhoneDestroyed(android.telecom.Phone);
