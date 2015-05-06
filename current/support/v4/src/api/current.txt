@@ -26,6 +26,35 @@ package android.support.v4.accessibilityservice {
 
 }
 
+package android.support.v4.animation {
+
+  public abstract class AnimatorCompatHelper {
+    method public static android.support.v4.animation.ValueAnimatorCompat emptyValueAnimator();
+  }
+
+  public abstract interface AnimatorListenerCompat {
+    method public abstract void onAnimationCancel(android.support.v4.animation.ValueAnimatorCompat);
+    method public abstract void onAnimationEnd(android.support.v4.animation.ValueAnimatorCompat);
+    method public abstract void onAnimationRepeat(android.support.v4.animation.ValueAnimatorCompat);
+    method public abstract void onAnimationStart(android.support.v4.animation.ValueAnimatorCompat);
+  }
+
+  public abstract interface AnimatorUpdateListenerCompat {
+    method public abstract void onAnimationUpdate(android.support.v4.animation.ValueAnimatorCompat);
+  }
+
+  public abstract interface ValueAnimatorCompat {
+    method public abstract void addListener(android.support.v4.animation.AnimatorListenerCompat);
+    method public abstract void addUpdateListener(android.support.v4.animation.AnimatorUpdateListenerCompat);
+    method public abstract void cancel();
+    method public abstract float getAnimatedFraction();
+    method public abstract void setDuration(long);
+    method public abstract void setTarget(android.view.View);
+    method public abstract void start();
+  }
+
+}
+
 package android.support.v4.app {
 
   public deprecated class ActionBarDrawerToggle implements android.support.v4.widget.DrawerLayout.DrawerListener {
@@ -900,6 +929,8 @@ package android.support.v4.content {
   public class ContextCompat {
     ctor public ContextCompat();
     method public final java.io.File getCodeCacheDir(android.content.Context);
+    method public static final int getColor(android.content.Context, int);
+    method public static final android.content.res.ColorStateList getColorStateList(android.content.Context, int);
     method public static final android.graphics.drawable.Drawable getDrawable(android.content.Context, int);
     method public static java.io.File[] getExternalCacheDirs(android.content.Context);
     method public static java.io.File[] getExternalFilesDirs(android.content.Context, java.lang.String);
@@ -1021,6 +1052,24 @@ package android.support.v4.content {
 
 }
 
+package android.support.v4.content.pm {
+
+  public class ActivityInfoCompat {
+    field public static final int CONFIG_UI_MODE = 512; // 0x200
+  }
+
+}
+
+package android.support.v4.content.res {
+
+  public class ResourcesCompat {
+    ctor public ResourcesCompat();
+    method public static android.graphics.drawable.Drawable getDrawable(android.content.res.Resources, int, android.content.res.Resources.Theme) throws android.content.res.Resources.NotFoundException;
+    method public static android.graphics.drawable.Drawable getDrawableForDensity(android.content.res.Resources, int, int, android.content.res.Resources.Theme) throws android.content.res.Resources.NotFoundException;
+  }
+
+}
+
 package android.support.v4.database {
 
   public class DatabaseUtilsCompat {
@@ -1105,6 +1154,37 @@ package android.support.v4.hardware.display {
     method public abstract android.view.Display[] getDisplays(java.lang.String);
     method public static android.support.v4.hardware.display.DisplayManagerCompat getInstance(android.content.Context);
     field public static final java.lang.String DISPLAY_CATEGORY_PRESENTATION = "android.hardware.display.category.PRESENTATION";
+  }
+
+}
+
+package android.support.v4.hardware.fingerprint {
+
+  public class FingerprintManagerCompat {
+    method public void authenticate(android.support.v4.hardware.fingerprint.FingerprintManagerCompat.CryptoObject, android.support.v4.os.CancellationSignal, android.support.v4.hardware.fingerprint.FingerprintManagerCompat.AuthenticationCallback, int);
+    method public static android.support.v4.hardware.fingerprint.FingerprintManagerCompat from(android.content.Context);
+    method public boolean hasEnrolledFingerprints();
+    method public boolean isHardwareDetected();
+  }
+
+  public static abstract class FingerprintManagerCompat.AuthenticationCallback {
+    ctor public FingerprintManagerCompat.AuthenticationCallback();
+    method public void onAuthenticationError(int, java.lang.CharSequence);
+    method public void onAuthenticationFailed();
+    method public void onAuthenticationHelp(int, java.lang.CharSequence);
+    method public void onAuthenticationSucceeded(android.support.v4.hardware.fingerprint.FingerprintManagerCompat.AuthenticationResult);
+  }
+
+  public static final class FingerprintManagerCompat.AuthenticationResult {
+    ctor public FingerprintManagerCompat.AuthenticationResult(android.support.v4.hardware.fingerprint.FingerprintManagerCompat.CryptoObject);
+    method public android.support.v4.hardware.fingerprint.FingerprintManagerCompat.CryptoObject getCryptoObject();
+  }
+
+  public static class FingerprintManagerCompat.CryptoObject {
+    ctor public FingerprintManagerCompat.CryptoObject(java.security.Signature);
+    ctor public FingerprintManagerCompat.CryptoObject(javax.crypto.Cipher);
+    method public javax.crypto.Cipher getCipher();
+    method public java.security.Signature getSignature();
   }
 
 }
@@ -1467,8 +1547,11 @@ package android.support.v4.media.session {
     method public int describeContents();
     method public static android.support.v4.media.session.PlaybackStateCompat fromPlaybackState(java.lang.Object);
     method public long getActions();
+    method public long getActiveQueueItemId();
     method public long getBufferedPosition();
+    method public java.util.List<android.support.v4.media.session.PlaybackStateCompat.CustomAction> getCustomActions();
     method public java.lang.CharSequence getErrorMessage();
+    method public android.os.Bundle getExtras();
     method public long getLastPositionUpdateTime();
     method public float getPlaybackSpeed();
     method public java.lang.Object getPlaybackState();
@@ -1491,6 +1574,7 @@ package android.support.v4.media.session {
     field public static final android.os.Parcelable.Creator<android.support.v4.media.session.PlaybackStateCompat> CREATOR;
     field public static final long PLAYBACK_POSITION_UNKNOWN = -1L; // 0xffffffffffffffffL
     field public static final int STATE_BUFFERING = 6; // 0x6
+    field public static final int STATE_CONNECTING = 8; // 0x8
     field public static final int STATE_ERROR = 7; // 0x7
     field public static final int STATE_FAST_FORWARDING = 4; // 0x4
     field public static final int STATE_NONE = 0; // 0x0
@@ -1499,23 +1583,30 @@ package android.support.v4.media.session {
     field public static final int STATE_REWINDING = 5; // 0x5
     field public static final int STATE_SKIPPING_TO_NEXT = 10; // 0xa
     field public static final int STATE_SKIPPING_TO_PREVIOUS = 9; // 0x9
+    field public static final int STATE_SKIPPING_TO_QUEUE_ITEM = 11; // 0xb
     field public static final int STATE_STOPPED = 1; // 0x1
   }
 
   public static final class PlaybackStateCompat.Builder {
     ctor public PlaybackStateCompat.Builder();
     ctor public PlaybackStateCompat.Builder(android.support.v4.media.session.PlaybackStateCompat);
+    method public android.support.v4.media.session.PlaybackStateCompat.Builder addCustomAction(java.lang.String, java.lang.String, int);
+    method public android.support.v4.media.session.PlaybackStateCompat.Builder addCustomAction(android.support.v4.media.session.PlaybackStateCompat.CustomAction);
     method public android.support.v4.media.session.PlaybackStateCompat build();
     method public android.support.v4.media.session.PlaybackStateCompat.Builder setActions(long);
+    method public android.support.v4.media.session.PlaybackStateCompat.Builder setActiveQueueItemId(long);
     method public android.support.v4.media.session.PlaybackStateCompat.Builder setBufferedPosition(long);
     method public android.support.v4.media.session.PlaybackStateCompat.Builder setErrorMessage(java.lang.CharSequence);
+    method public android.support.v4.media.session.PlaybackStateCompat.Builder setExtras(android.os.Bundle);
     method public android.support.v4.media.session.PlaybackStateCompat.Builder setState(int, long, float);
     method public android.support.v4.media.session.PlaybackStateCompat.Builder setState(int, long, float, long);
   }
 
   public static final class PlaybackStateCompat.CustomAction implements android.os.Parcelable {
     method public int describeContents();
+    method public static android.support.v4.media.session.PlaybackStateCompat.CustomAction fromCustomAction(java.lang.Object);
     method public java.lang.String getAction();
+    method public java.lang.Object getCustomAction();
     method public android.os.Bundle getExtras();
     method public int getIcon();
     method public java.lang.CharSequence getName();
@@ -2257,6 +2348,7 @@ package android.support.v4.view {
     method public static boolean hasAccessibilityDelegate(android.view.View);
     method public static boolean hasNestedScrollingParent(android.view.View);
     method public static boolean hasTransientState(android.view.View);
+    method public static boolean isAttachedToWindow(android.view.View);
     method public static boolean isLaidOut(android.view.View);
     method public static boolean isNestedScrollingEnabled(android.view.View);
     method public static boolean isOpaque(android.view.View);
