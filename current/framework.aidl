@@ -9,7 +9,6 @@ parcelable android.location.Address;
 parcelable android.location.Criteria;
 parcelable android.media.MediaMetadata;
 parcelable android.media.MediaDescription;
-parcelable android.media.routing.MediaRouteSelector;
 parcelable android.media.Rating;
 parcelable android.media.AudioAttributes;
 parcelable android.media.AudioFocusInfo;
