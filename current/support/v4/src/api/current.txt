@@ -29,6 +29,7 @@ package android.support.v4.accessibilityservice {
 package android.support.v4.animation {
 
   public abstract class AnimatorCompatHelper {
+    method public static void clearInterpolator(android.view.View);
     method public static android.support.v4.animation.ValueAnimatorCompat emptyValueAnimator();
   }
 
@@ -110,6 +111,12 @@ package android.support.v4.app {
     method public static android.support.v4.app.ActivityOptionsCompat makeThumbnailScaleUpAnimation(android.view.View, android.graphics.Bitmap, int, int);
     method public android.os.Bundle toBundle();
     method public void update(android.support.v4.app.ActivityOptionsCompat);
+  }
+
+   abstract class BaseFragmentActivityDonut extends android.app.Activity {
+  }
+
+   abstract class BaseFragmentActivityHoneycomb extends android.support.v4.app.BaseFragmentActivityDonut {
   }
 
   public class DialogFragment extends android.support.v4.app.Fragment implements android.content.DialogInterface.OnCancelListener android.content.DialogInterface.OnDismissListener {
@@ -237,7 +244,7 @@ package android.support.v4.app {
     field public static final android.os.Parcelable.Creator<android.support.v4.app.Fragment.SavedState> CREATOR;
   }
 
-  public class FragmentActivity extends android.app.Activity {
+  public class FragmentActivity extends android.support.v4.app.BaseFragmentActivityHoneycomb {
     ctor public FragmentActivity();
     method public java.lang.Object getLastCustomNonConfigurationInstance();
     method public android.support.v4.app.FragmentManager getSupportFragmentManager();
@@ -2314,6 +2321,7 @@ package android.support.v4.view {
     method public static float getAlpha(android.view.View);
     method public static android.content.res.ColorStateList getBackgroundTintList(android.view.View);
     method public static android.graphics.PorterDuff.Mode getBackgroundTintMode(android.view.View);
+    method public static android.graphics.Rect getClipBounds(android.view.View);
     method public static float getElevation(android.view.View);
     method public static boolean getFitsSystemWindows(android.view.View);
     method public static int getImportantForAccessibility(android.view.View);
@@ -2373,6 +2381,7 @@ package android.support.v4.view {
     method public static void setBackgroundTintList(android.view.View, android.content.res.ColorStateList);
     method public static void setBackgroundTintMode(android.view.View, android.graphics.PorterDuff.Mode);
     method public static void setChildrenDrawingOrderEnabled(android.view.ViewGroup, boolean);
+    method public static void setClipBounds(android.view.View, android.graphics.Rect);
     method public static void setElevation(android.view.View, float);
     method public static void setFitsSystemWindows(android.view.View, boolean);
     method public static void setHasTransientState(android.view.View, boolean);
@@ -3243,7 +3252,7 @@ package android.support.v4.widget {
     ctor public Space(android.content.Context);
   }
 
-  public class SwipeRefreshLayout extends android.view.ViewGroup implements android.support.v4.view.NestedScrollingParent {
+  public class SwipeRefreshLayout extends android.view.ViewGroup implements android.support.v4.view.NestedScrollingChild android.support.v4.view.NestedScrollingParent {
     ctor public SwipeRefreshLayout(android.content.Context);
     ctor public SwipeRefreshLayout(android.content.Context, android.util.AttributeSet);
     method public boolean canChildScrollUp();
