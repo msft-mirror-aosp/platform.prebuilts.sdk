@@ -28791,7 +28791,6 @@ package android.service.voice {
     method public void finish();
     method public android.view.LayoutInflater getLayoutInflater();
     method public android.app.Dialog getWindow();
-    method public void hideWindow();
     method public void onBackPressed();
     method public void onCloseSystemDialogs();
     method public void onComputeInsets(android.service.voice.VoiceInteractionSession.Insets);
@@ -28803,11 +28802,7 @@ package android.service.voice {
     method public boolean onKeyUp(int, android.view.KeyEvent);
     method public void setContentView(android.view.View);
     method public void setTheme(int);
-    method public void showWindow();
     method public void startVoiceActivity(android.content.Intent);
-  }
-
-  public static class VoiceInteractionSession.Caller {
   }
 
   public static final class VoiceInteractionSession.Insets {
@@ -28818,14 +28813,6 @@ package android.service.voice {
     field public final android.graphics.Rect contentInsets;
     field public int touchableInsets;
     field public final android.graphics.Region touchableRegion;
-  }
-
-  public static class VoiceInteractionSession.Request {
-    method public void sendAbortVoiceResult(android.os.Bundle);
-    method public void sendCancelResult();
-    method public void sendCommandResult(boolean, android.os.Bundle);
-    method public void sendCompleteVoiceResult(android.os.Bundle);
-    method public void sendConfirmResult(boolean, android.os.Bundle);
   }
 
   public abstract class VoiceInteractionSessionService extends android.app.Service {
