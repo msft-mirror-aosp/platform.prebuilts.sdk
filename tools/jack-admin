@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Version: 1.1-mr2
+# Version: 1.2-a5
 #
 set -o nounset
 umask 077
@@ -22,148 +22,450 @@ umask 077
 #
 # Settings
 #
-LOCAL_SETTING="$HOME/.jack"
+JACK_HOME="${JACK_HOME:=$HOME/.jack-home}"
+CLIENT_SETTING="${CLIENT_SETTING:=$HOME/.jack-client}"
 TMPDIR=${TMPDIR:=/tmp}
-SERVER_DIR=$TMPDIR/jack-$USER
+JACK_SERVER_VM_ARGUMENTS="${JACK_SERVER_VM_ARGUMENTS:=-Dfile.encoding=UTF-8 -XX:+TieredCompilation}"
+
+LAUNCHER_JAR="$JACK_HOME/launcher.jar"
+LAUNCHER_NAME=com.android.jack.launcher.ServerLauncher
+
 
 #
-# Load local settings
+# Load client settings
 #
-source "$LOCAL_SETTING" 2>/dev/null
+if [ -f "$CLIENT_SETTING" ]; then
+  source "$CLIENT_SETTING"
+fi
 
 #
-# Create or update local settings if needed
+# Create or update client settings if needed
 #
-if [[ ! -f "$LOCAL_SETTING" || $SETTING_VERSION -lt 2 ]]; then
-  echo "Writing local settings in" $LOCAL_SETTING
-  cat >"$LOCAL_SETTING.$$" <<-EOT
+if [[ ! -f "$CLIENT_SETTING" || $SETTING_VERSION -lt 4 ]]; then
+  echo "Writing client settings in" $CLIENT_SETTING
+  cat >"$CLIENT_SETTING.$$" <<-EOT
 	# Server settings
-	SERVER=${SERVER:=true}
-	SERVER_PORT_SERVICE=${SERVER_PORT_SERVICE:=8072}
-	SERVER_PORT_ADMIN=${SERVER_PORT_ADMIN:=8073}
-	SERVER_COUNT=${SERVER_COUNT:=1}
-	SERVER_NB_COMPILE=${SERVER_NB_COMPILE:=4}
-	SERVER_TIMEOUT=${SERVER_TIMEOUT:=60}
-	SERVER_LOG=\${SERVER_LOG:=\$SERVER_DIR/jack-\$SERVER_PORT_SERVICE.log}
-	JACK_VM_COMMAND=\${JACK_VM_COMMAND:=java}
+	SERVER_HOST=${SERVER_HOST:=127.0.0.1}
+	SERVER_PORT_SERVICE=${SERVER_PORT_SERVICE:=8074}
+	SERVER_PORT_ADMIN=${SERVER_PORT_ADMIN:=8075}
+
 	# Internal, do not touch
-	SETTING_VERSION=2
+	SETTING_VERSION=4
 EOT
-  ln -f "$LOCAL_SETTING.$$" "$LOCAL_SETTING"
-  rm "$LOCAL_SETTING.$$"
-  source "$LOCAL_SETTING"
+  ln -f "$CLIENT_SETTING.$$" "$CLIENT_SETTING"
+  rm "$CLIENT_SETTING.$$"
+  source "$CLIENT_SETTING"
 fi
 
-#
-# Static setting
-#
-mkdir "$SERVER_DIR" 2>/dev/null
+usage () {
+  echo "Usage : $0 [ install-server <launcher.jar> <server.jar> | uninstall-server | list <program> | update <program> <program.jar> | start-server | stop-server | kill-server | list-server | server-stat ]"
+}
+
+abort () { exit 255; }
 
 #
-# Decoding argument
+# $1: curl command status
+# $2: HTTP status
 #
-
-if [ $# -ne 1 ]
-then
-        echo "Usage : $0 [ start-server | stop-server | kill-server | list-server | server-log | server-stat ]"
-        exit 255
-fi
-
-case $1 in
-  stop-server)
-    echo "Stopping background server"
-    CMD="stop" ;;
-  server-stat)
-    echo "Getting statistic from background server"
-    CMD="stat" ;;
-  server-log)
-    echo "Log location of background server:"
-    echo $SERVER_LOG
-    exit 0 ;;
-  kill-server)
-    echo "Killing background server"
-    kill $(ps aux | grep JackSimpleServer | grep -v grep | awk '{print $2}') 2>/dev/null
-    if [ $? -ne 0 ]; then
-      echo "ERROR: No Jack server to kill" >&2
-      exit 2
-    else
-      exit 0 
-    fi ;;
-  list-server)
-    ps aux | grep JackSimpleServer | grep -v grep
-    exit $? ;;
-  start-server)
-    SERVER_PRG="$JACK_VM_COMMAND -cp $JACK_JAR com.android.jack.server.JackSimpleServer"
-    echo "Launching Jack server" $SERVER_PRG
-    $SERVER_PRG $SERVER_PORT_SERVICE $SERVER_PORT_ADMIN $SERVER_COUNT $SERVER_NB_COMPILE $SERVER_TIMEOUT >>$SERVER_LOG 2>&1 &
-    exit 0 ;;
-  *)
-    echo "Usage : $0 [ start-server | stop-server | kill-server | list-server | server-log | server-stat ]"
-    exit 255 ;;
-esac
-
-#
-# Send command
-#
-
-set +o errexit
-
-# Try to cleanup if interrupted
-# Cleanup
-JACK_EXIT="$SERVER_DIR/admin-$$"
-trap 'rm -f "$JACK_EXIT" 2>/dev/null;' EXIT
-
-RETRY_SESSION=3
-DELAY_CONNECT=3
-
-
-# Send command to Jack server
-DATE_CONNECT=$(date +%s)
-while true; do
-  HTTP_CODE=$(curl --fail --silent --output $JACK_EXIT --write-out %{http_code} --connect-timeout 5 --no-proxy 127.0.0.1:$SERVER_PORT_ADMIN http://127.0.0.1:$SERVER_PORT_ADMIN/$CMD)
-  CURL_CODE=$?
-  if [ $CURL_CODE -eq 0 ]; then
+handleHttpErrors() {
+  if [ $1 -eq 0 ]; then
     # No problem, let's go
-    break;
-  elif [ $CURL_CODE -eq 7 ]; then
-    # Failed to connect
-    if [ $(date +%s) -ge $DATE_CONNECT ]; then
-        echo "ERROR: No Jack server running"
-        exit 255
-    else
-      sleep 0.2 2>/dev/null
-    fi
-    # Trying with a new connection, let's retry session 3 times max
-    RETRY_SESSION=3
-  elif  [ $CURL_CODE -eq 22 ]; then
+    return 0;
+  elif [ $1 -eq 7 ]; then
+    echo "No Jack server running. Try 'jack-admin start-server'" >&2
+    abort
+  elif  [ $1 -eq 22 ]; then
     # Http code not OK, let's decode and abort
-    if [ $HTTP_CODE -eq 401 ]; then
+    if [ $2 -eq 401 ]; then
       # 401: Unauthorized
-      echo "ERROR: Security problem, see Jack server log" >&2
-      exit 255
-    elif [ $HTTP_CODE -eq 400 ]; then
+      echo "Security problem, see Jack server log" >&2
+      abort
+    elif [ $2 -eq 400 ]; then
       # 400: Bad request
-      echo "ERROR: Bad request, see Jack server log" >&2
-      exit 255
+      echo "Bad request, see Jack server log" >&2
+      abort
     else
       # Other
-      echo "ERROR: Internal unknown error ($HTTP_CODE), try other ports in ~/.jack, or see Jack server log" >&2
-      exit 255
+      echo "Internal unknown error ($2), try other ports or see Jack server log" >&2
+      abort
     fi
   else
     # In case of partial, timeout, empty respond, network error, let's retry
     if [ $RETRY_SESSION -eq 0 ]; then
-      echo "ERROR: Communication error with Jack server ($CURL_CODE)" >&2
-      exit 255
+      echo "Communication error with Jack server $1" >&2
+      abort
     else
       let RETRY_SESSION=RETRY_SESSION-1
+      return 1;
     fi
   fi
-done
+}
+
+#
+# $1: program name
+# $2: jar of the program
+#
+updateProgram () {
+  RETRY_SESSION=3
+  DONE=1
+  while [ "$DONE" -ne 0 ]; do
+    exec 3>&1
+    HTTP_CODE=$(curl -f \
+         --output >(cat >&3) \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+         -X PUT \
+         -F "jar=@$2;type=application/octet-stream" \
+         -F "force=$FORCE_INSTALLATION;type=text/plain" \
+         --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+         http://${SERVER_HOST}:$SERVER_PORT_ADMIN/$1 \
+         )
+    handleHttpErrors $? $HTTP_CODE
+    DONE=$?
+    exec 3>&-
+  done
+
+
+  if [ "$1" == server ]; then
+    echo "Server updated, waiting for restart"
+    waitServerStarted
+  fi
+}
+
+isServerRunning () {
+  RETRY_SESSION=3
+  DONE=1
+  while [ "$DONE" -ne 0 ]; do
+    HTTP_CODE=$(curl -f \
+         --output >(cat >/dev/null) \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+         -X GET \
+         -H "Accept: text/plain" \
+         --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+         http://${SERVER_HOST}:$SERVER_PORT_ADMIN/server \
+         )
+    CURL_CODE=$?
+    if [ $CURL_CODE -eq 0 ]; then
+      # No problem, let's go
+      return 0;
+    elif [ $CURL_CODE -eq 7 ]; then
+      return 1
+    elif  [ $CURL_CODE -eq 22 ]; then
+      # Http code not OK, let's decode and abort
+      if [ $HTTP_CODE -eq 401 ]; then
+        # 401: Unauthorized
+        echo "Security problem, see Jack server log" >&2
+        abort
+      elif [ $HTTP_CODE -eq 400 ]; then
+        # 400: Bad request
+        echo "Bad request, see Jack server log" >&2
+        abort
+      else
+        # Other
+        echo "Internal unknown error ($HTTP_CODE), try other ports or see Jack server log" >&2
+        abort
+      fi
+    else
+      # In case of partial, timeout, empty respond, network error, let's retry
+      if [ $RETRY_SESSION -eq 0 ]; then
+        echo "Communication error with Jack server $CURL_CODE" >&2
+        abort
+      else
+        let RETRY_SESSION=RETRY_SESSION-1
+      fi
+    fi
+  done
+}
+
+startServer () {
+  isServerRunning
+  RUNNING=$?
+  if [ "$RUNNING" = 0 ]; then
+    echo "Server is already running"
+  else
+    JACK_SERVER_COMMAND="java -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"
+    echo "Launching Jack server" $JACK_SERVER_COMMAND
+    (
+      trap "" SIGHUP
+      for i in $(seq 3 255); do
+        eval exec "$i"'>&-'
+      done
+      exec $JACK_SERVER_COMMAND
+      abort
+    ) >/dev/null 2>/dev/null &
+  fi
+}
+
+waitServerStarted () {
+  RETRY_CONNECT=30
+  DONE=1
+  while [ "$DONE" -ne 0 ]; do
+    HTTP_CODE=$(curl -f \
+         --output >(cat >/dev/null) \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+         -X GET \
+         -H "Accept: text/plain" \
+         --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+         http://${SERVER_HOST}:$SERVER_PORT_ADMIN/server \
+         )
+    CURL_CODE=$?
+    if [ $CURL_CODE -eq 7 ]; then
+      if [ $RETRY_CONNECT -eq 0 ]; then
+        echo "Jack server failed to (re)start, see Jack server log" >&2
+        abort
+      else
+        let RETRY_CONNECT=RETRY_CONNECT-1
+        sleep 1;
+      fi
+    else
+      # A connection was opened, no need to know if it went well
+      DONE=0;
+    fi
+  done
+}
+
+#
+# $1: program name
+#
+listProgramVersion () {
+  RETRY_SESSION=3
+  DONE=1
+  while [ "$DONE" -ne 0 ]; do
+    exec 3>&1
+    HTTP_CODE=$(curl -f \
+         --output >(cat >&3) \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+         -X GET \
+         -H "Accept: text/plain" \
+         --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+         http://${SERVER_HOST}:$SERVER_PORT_ADMIN/$1 \
+         )
+    handleHttpErrors $? $HTTP_CODE
+    DONE=$?
+    exec 3>&-
+  done
+}
+
+#
+# Decoding argument
+#
+if [ $# -eq 0 ]
+then
+  usage
+  abort
+fi
+
+set +o errexit
+
+FORCE_INSTALLATION=false
+case $1 in
+  force-update)
+    FORCE_INSTALLATION=true
+    COMMAND=update;;
+  *)
+    COMMAND=$1;;
+esac
+
+case $COMMAND in
+  install-server)
+    if [ $# -lt 3 ]; then
+      usage
+      abort
+    fi
+    if [ $# -gt 4 ]; then
+      usage
+      abort
+    fi
+    if [ ! -r "$2" ]; then
+      echo "Jack server launcher jar \"$2\" is not readable" >&2
+      abort
+    fi
+     if [ ! -r "$3" ]; then
+      echo "Jack server jar \"$3\" is not readable" >&2
+      abort
+    fi
+
+    if [ ! -d "$JACK_HOME" ]; then
+      echo Installing jack server in \"$JACK_HOME\"
+      mkdir -p "$JACK_HOME"
+      cp $2 "$LAUNCHER_JAR"
+      cp $3 "$JACK_HOME/server-1.jar"
+      mkdir "$JACK_HOME"/logs
+    else
+      echo "Jack server already installed in \"$JACK_HOME\"" >&2
+      abort
+    fi
+    exit 0 ;;
+
+
+  uninstall-server)
+    if [ ! -d "$JACK_HOME" ]; then
+      echo "Jack server in \"$JACK_HOME\" not found" >&2
+      abort
+    else
+      echo "Removing jack server from \"$JACK_HOME\""
+      rm -rf "$JACK_HOME"
+    fi
+    exit 0 ;;
+
+
+  list)
+    if [ $# -ne 2 ]
+    then
+      usage
+      abort
+    fi
+
+    listProgramVersion $2 ;;
+
+
+  update)
+    if [ $# -lt 3 ]; then
+      usage
+      abort
+    fi
+
+    if [ $# -gt 4 ]; then
+      usage
+      abort
+    fi
+
+    if [ ! -r "$3" ]; then
+      echo "Failed to update $2 of Jack server: \"$3\" is not readable" >&2
+      abort
+    fi
+
+    if [ $FORCE_INSTALLATION = true ]; then
+      updateProgram $2 $3
+    else
+      if [ $# -eq 4 ]; then
+        RETRY_SESSION=3
+        DONE=1
+        while [ "$DONE" -ne 0 ]; do
+          HTTP_CODE=$(curl -f \
+               --output >(cat >/dev/null) \
+               --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+               -X HEAD \
+               --data "$4" \
+               -H "Content-Type:application/vnd.jack.select-exact;version=1" \
+               --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+               http://${SERVER_HOST}:$SERVER_PORT_ADMIN/$2 \
+               )
+          CURL_CODE=$?
+          if [ $CURL_CODE -eq 0 ]; then
+            echo $2 version $4 is already installed
+            exit 0;
+          elif [ $CURL_CODE -eq 7 ]; then
+            echo "No Jack server running. Try 'jack-admin start-server'" &>2
+            abort
+          elif  [ $CURL_CODE -eq 22 ]; then
+            # Http code not OK, let's decode and abort
+            if [ $HTTP_CODE -eq 404 ]; then
+              # version not found, proceed to installation
+              updateProgram $2 $3
+            elif [ $HTTP_CODE -eq 401 ]; then
+              # 401: Unauthorized
+              echo "Security problem, see Jack server log" >&2
+              abort
+            elif [ $HTTP_CODE -eq 400 ]; then
+              # 400: Bad request
+              echo "Bad request, see Jack server log" >&2
+              abort
+            else
+              # Other
+              echo "Internal unknown error ($HTTP_CODE), try other ports or see Jack server log" >&2
+              abort
+            fi
+          else
+            # In case of partial, timeout, empty respond, network error, let's retry
+            if [ $RETRY_SESSION -eq 0 ]; then
+              echo "Communication error with Jack server $CURL_CODE" >&2
+              abort
+            else
+              let RETRY_SESSION=RETRY_SESSION-1
+            fi
+          fi
+        done
+      else
+        # No version provided, proceed directly without testing
+        updateProgram $2 $3
+      fi
+    fi
+    exit 0;;
+
+  stop-server)
+    echo "Stopping background server"
+
+    RETRY_SESSION=3
+    DONE=1
+    while [ "$DONE" -ne 0 ]; do
+      exec 3>&1
+      HTTP_CODE=$(curl -f \
+           --output >(cat >&3) \
+           --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+           -X POST \
+           --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+           http://${SERVER_HOST}:$SERVER_PORT_ADMIN/server/stop \
+           )
+      handleHttpErrors $? $HTTP_CODE
+      DONE=$?
+      exec 3>&-
+    done ;;
+
+
+  server-stat)
+    echo "Getting statistic from background server"
+
+    RETRY_SESSION=3
+    DONE=1
+    while [ "$DONE" -ne 0 ]; do
+      exec 3>&1
+      HTTP_CODE=$(curl -f \
+           --output >(cat >&3) \
+           --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+           -X GET \
+           -H "Accept: text/plain" \
+           --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+           http://${SERVER_HOST}:$SERVER_PORT_ADMIN/stat \
+           )
+      handleHttpErrors $? $HTTP_CODE
+      DONE=$?
+      exec 3>&-
+    done ;;
+
+
+  server-log)
+    echo "Command server-log is not supported any more" >&2
+    abort ;;
+
+
+  kill-server)
+    echo "Killing background server"
+    kill $(ps aux | grep $LAUNCHER_NAME | grep -v grep | awk '{print $2}') 2>/dev/null
+    if [ $? -ne 0 ]; then
+      echo "No Jack server to kill" >&2
+      exit 2
+    else
+      exit 0
+    fi ;;
+
+
+  list-server)
+    ps aux | grep $LAUNCHER_NAME | grep -v grep
+    exit $? ;;
+
+
+  start-server)
+    startServer
+    waitServerStarted
+    exit 0 ;;
+
+
+  *)
+    usage
+    abort ;;
+esac
+
 
 # Exit
-if [ -r $JACK_EXIT ]; then
-  cat <$JACK_EXIT 2>/dev/null
-fi
 
 exit 0
