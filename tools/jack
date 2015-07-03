@@ -112,7 +112,7 @@ while true; do
     break;
   elif [ $CURL_CODE -eq 7 ]; then
     # Failed to connect
-    echo "ERROR: Cannot connect to Jack server" >&2
+    echo "ERROR: Cannot connect to Jack server. Try \"jack-admin start-server\"" >&2
     abort
   elif  [ $CURL_CODE -eq 22 ]; then
     # Http code not OK, let's decode and abort
