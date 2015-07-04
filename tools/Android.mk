@@ -93,12 +93,9 @@ include $(BUILD_SYSTEM)/base_rules.mk
 $(info LOCAL_BUILT_MODULE=$(LOCAL_BUILT_MODULE))
 $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/jack $(JACK_LAUNCHER_JAR) $(JACK_SERVER_JAR) $(jack_admin_script) $(available_jack_jars) | $(ACP)
 	@echo "Build: $@"
-	$(hide) $(jack_admin_script) stop-server || exit 0
 	$(hide) JACK_SERVER_VM_ARGUMENTS="$(JACK_VM_ARGS)" $(jack_admin_script) install-server $(JACK_LAUNCHER_JAR) $(JACK_SERVER_JAR) || exit 0
 	$(hide) $(jack_admin_script) start-server || exit 0
-	$(hide) sleep 1
 	$(hide) $(jack_admin_script) update server $(JACK_SERVER_JAR) $(JACK_SERVER_VERSION)
-	$(hide) sleep 1
 	$(hide) $(foreach jack_jar,$(available_jack_jars),$(jack_admin_script) update jack $(jack_jar) $(patsubst $(PRIVATE_PATH)/jacks/jack-%.jar,%,$(jack_jar)) || exit 47;)
 	$(copy-file-to-target)
 
