@@ -43,6 +43,7 @@ update_support_lib() {
   then
     banner "support library"
     rm -rf $ROOT_DIR/current/support/
+    cd $ROOT_DIR/current
     unzip $SUPPORT >/dev/null
 
     # Remove duplicates
