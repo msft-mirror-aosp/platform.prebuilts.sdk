@@ -19,6 +19,20 @@ LOCAL_PATH:= $(call my-dir)
 ##################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := jack
+LOCAL_SRC_FILES := jack
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+jack_script := $(LOCAL_INSTALLED_MODULE)
+
+##################################
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := jack-admin
 LOCAL_SRC_FILES := jack-admin
 LOCAL_MODULE_CLASS := EXECUTABLES
@@ -33,6 +47,30 @@ jack_admin_script := $(LOCAL_INSTALLED_MODULE)
 ##################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := jack
+LOCAL_SRC_FILES := jack.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+LOCAL_ADDITIONAL_DEPENDENCIES := $(JACK_LAUNCHER_JAR)
+LOCAL_POST_INSTALL_CMD := $(hide) $(JACK_SERVER_LOG_COMMAND) JACK_VM_COMMAND="$(JACK_VM) $(JAVA_TMPDIR_ARG) $(DEFAULT_JACK_VM_ARGS) -jar $(JACK_LAUNCHER_JAR) " JACK_JAR="$(JACK_JAR)" $(jack_admin_script) start-server
+
+include $(BUILD_PREBUILT)
+$(LOCAL_INSTALLED_MODULE): $(jack_script)
+# kill if stop failed, but ignore kill errors since jack-admin is reporting "no server running" as
+# an error.
+kill_server := $(intermediates)/kill_server.stamp
+$(kill_server) : $(LOCAL_BUILT_MODULE) $(jack_admin_script)
+	$(hide) $(jack_admin_script) stop-server || $(jack_admin_script) kill-server || exit 0
+	touch $@
+
+$(LOCAL_INSTALLED_MODULE): $(kill_server)
+
+##################################
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := jack-launcher
 LOCAL_SRC_FILES := jack-launcher.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
@@ -42,81 +80,10 @@ LOCAL_BUILT_MODULE_STEM := jack-launcher$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
-jack_launcher_jar := $(LOCAL_INSTALLED_MODULE)
 
 ##################################
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := jack-server
-jack_server_version := 3.4.ALPHA
-LOCAL_SRC_FILES := jack-server-$(jack_server_version).jar
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack-launcher$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-jack_server_jar := $(LOCAL_INSTALLED_MODULE)
-
-##################################
-include $(CLEAR_VARS)
-
-#
-# This is only for jack used as a library, this is not involved in the normal
-# dex build targets.
-#
-LOCAL_MODULE := jack
-LOCAL_SRC_FILES := jacks/jack-2.21.RELEASE.jar
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := jack
-LOCAL_SRC_FILES := jack
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-available_jack_jars := $(wildcard $(LOCAL_PATH)/jacks/jack-*.jar)
-
-include $(BUILD_SYSTEM)/base_rules.mk
-
-ifneq ($(ANDROID_JACK_VM_ARGS),)
-jack_vm_args := $(ANDROID_JACK_VM_ARGS)
-else
-jack_vm_args := -Dfile.encoding=UTF-8 -XX:+TieredCompilation
-endif
-
-$(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/jack $(jack_launcher_jar) $(jack_server_jar) $(jack_admin_script) $(available_jack_jars) | $(ACP)
-	@echo "Build: $@"
-	$(hide) $(jack_admin_script) stop-server 2>&1 || (exit 0)
-	$(hide) sleep 10
-ifneq ($(dist_goal),)
-	$(hide) $(jack_admin_script) uninstall-server 2>&1 || (exit 0)
-endif
-	$(hide) $(jack_admin_script) install-server $(jack_launcher_jar) $(jack_server_jar)  2>&1 || (exit 0)
-ifneq ($(dist_goal),)
-	mkdir -p "$(DIST_DIR)/logs/jack/"
-	$(hide) JACK_SERVER_VM_ARGUMENTS="$(jack_vm_args) -Dcom.android.jack.server.log.file=$(DIST_DIR)/logs/jack/jack-server-%u-%g.log" $(jack_admin_script) start-server 2>&1 || exit 0
-else
-	$(hide) JACK_SERVER_VM_ARGUMENTS="$(jack_vm_args)" $(jack_admin_script) start-server 2>&1 || exit 0
-endif
-	$(hide) $(jack_admin_script) update server $(jack_server_jar) $(jack_server_version)
-	$(hide) $(foreach jack_jar,$(available_jack_jars),$(jack_admin_script) update jack $(jack_jar) $(patsubst $(PRIVATE_PATH)/jacks/jack-%.jar,%,$(jack_jar)) || exit 47;)
-	$(copy-file-to-target)
-
-##################################
-include $(CLEAR_VARS)
 LOCAL_MODULE := jill
 LOCAL_SRC_FILES := jill.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
