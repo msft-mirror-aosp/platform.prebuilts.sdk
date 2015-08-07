@@ -122,6 +122,7 @@ package android.support.v4.app {
   public class AppOpsManagerCompat {
     ctor public AppOpsManagerCompat();
     method public static int noteOp(android.content.Context, java.lang.String, int, java.lang.String);
+    method public static int noteProxyOp(android.content.Context, java.lang.String, java.lang.String);
     method public static java.lang.String permissionToOp(java.lang.String);
     field public static final int MODE_ALLOWED = 0; // 0x0
     field public static final int MODE_DEFAULT = 3; // 0x3
@@ -1170,8 +1171,10 @@ package android.support.v4.graphics.drawable {
     method public final android.graphics.Paint getPaint();
     method public boolean hasAntiAlias();
     method public boolean hasMipMap();
+    method public boolean isCircular();
     method public void setAlpha(int);
     method public void setAntiAlias(boolean);
+    method public void setCircular(boolean);
     method public void setColorFilter(android.graphics.ColorFilter);
     method public void setCornerRadius(float);
     method public void setGravity(int);
@@ -1227,7 +1230,9 @@ package android.support.v4.hardware.fingerprint {
   public static class FingerprintManagerCompat.CryptoObject {
     ctor public FingerprintManagerCompat.CryptoObject(java.security.Signature);
     ctor public FingerprintManagerCompat.CryptoObject(javax.crypto.Cipher);
+    ctor public FingerprintManagerCompat.CryptoObject(javax.crypto.Mac);
     method public javax.crypto.Cipher getCipher();
+    method public javax.crypto.Mac getMac();
     method public java.security.Signature getSignature();
   }
 
@@ -1244,6 +1249,7 @@ package android.support.v4.media {
     method public android.net.Uri getIconUri();
     method public java.lang.Object getMediaDescription();
     method public java.lang.String getMediaId();
+    method public android.net.Uri getMediaUri();
     method public java.lang.CharSequence getSubtitle();
     method public java.lang.CharSequence getTitle();
     method public void writeToParcel(android.os.Parcel, int);
@@ -1258,6 +1264,7 @@ package android.support.v4.media {
     method public android.support.v4.media.MediaDescriptionCompat.Builder setIconBitmap(android.graphics.Bitmap);
     method public android.support.v4.media.MediaDescriptionCompat.Builder setIconUri(android.net.Uri);
     method public android.support.v4.media.MediaDescriptionCompat.Builder setMediaId(java.lang.String);
+    method public android.support.v4.media.MediaDescriptionCompat.Builder setMediaUri(android.net.Uri);
     method public android.support.v4.media.MediaDescriptionCompat.Builder setSubtitle(java.lang.CharSequence);
     method public android.support.v4.media.MediaDescriptionCompat.Builder setTitle(java.lang.CharSequence);
   }
@@ -1490,6 +1497,7 @@ package android.support.v4.media.session {
     method public abstract void play();
     method public abstract void playFromMediaId(java.lang.String, android.os.Bundle);
     method public abstract void playFromSearch(java.lang.String, android.os.Bundle);
+    method public abstract void playFromUri(android.net.Uri, android.os.Bundle);
     method public abstract void rewind();
     method public abstract void seekTo(long);
     method public abstract void sendCustomAction(android.support.v4.media.session.PlaybackStateCompat.CustomAction, android.os.Bundle);
@@ -1541,6 +1549,7 @@ package android.support.v4.media.session {
     method public void onPlay();
     method public void onPlayFromMediaId(java.lang.String, android.os.Bundle);
     method public void onPlayFromSearch(java.lang.String, android.os.Bundle);
+    method public void onPlayFromUri(android.net.Uri, android.os.Bundle);
     method public void onRewind();
     method public void onSeekTo(long);
     method public void onSetRating(android.support.v4.media.RatingCompat);
@@ -1607,6 +1616,7 @@ package android.support.v4.media.session {
     field public static final long ACTION_PLAY = 4L; // 0x4L
     field public static final long ACTION_PLAY_FROM_MEDIA_ID = 1024L; // 0x400L
     field public static final long ACTION_PLAY_FROM_SEARCH = 2048L; // 0x800L
+    field public static final long ACTION_PLAY_FROM_URI = 8192L; // 0x2000L
     field public static final long ACTION_PLAY_PAUSE = 512L; // 0x200L
     field public static final long ACTION_REWIND = 8L; // 0x8L
     field public static final long ACTION_SEEK_TO = 256L; // 0x100L
@@ -2822,8 +2832,11 @@ package android.support.v4.view.accessibility {
     field public static final int ACTION_CLEAR_FOCUS = 2; // 0x2
     field public static final int ACTION_CLEAR_SELECTION = 8; // 0x8
     field public static final int ACTION_CLICK = 16; // 0x10
+    field public static final int ACTION_COLLAPSE = 524288; // 0x80000
     field public static final int ACTION_COPY = 16384; // 0x4000
     field public static final int ACTION_CUT = 65536; // 0x10000
+    field public static final int ACTION_DISMISS = 1048576; // 0x100000
+    field public static final int ACTION_EXPAND = 262144; // 0x40000
     field public static final int ACTION_FOCUS = 1; // 0x1
     field public static final int ACTION_LONG_CLICK = 32; // 0x20
     field public static final int ACTION_NEXT_AT_MOVEMENT_GRANULARITY = 256; // 0x100
@@ -2849,6 +2862,28 @@ package android.support.v4.view.accessibility {
     ctor public AccessibilityNodeInfoCompat.AccessibilityActionCompat(int, java.lang.CharSequence);
     method public int getId();
     method public java.lang.CharSequence getLabel();
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_ACCESSIBILITY_FOCUS;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_CLEAR_ACCESSIBILITY_FOCUS;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_CLEAR_FOCUS;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_CLEAR_SELECTION;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_CLICK;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_COLLAPSE;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_COPY;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_CUT;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_DISMISS;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_EXPAND;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_FOCUS;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_LONG_CLICK;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_NEXT_AT_MOVEMENT_GRANULARITY;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_NEXT_HTML_ELEMENT;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_PASTE;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_PREVIOUS_HTML_ELEMENT;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_SCROLL_BACKWARD;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_SCROLL_FORWARD;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_SELECT;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_SET_SELECTION;
+    field public static final android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat ACTION_SET_TEXT;
   }
 
   public static class AccessibilityNodeInfoCompat.CollectionInfoCompat {
