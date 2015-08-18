@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Version: 1.2-a5
+# Version: 1.2-a6
 #
 set -o nounset
 umask 077
@@ -29,7 +29,9 @@ JACK_SERVER_VM_ARGUMENTS="${JACK_SERVER_VM_ARGUMENTS:=-Dfile.encoding=UTF-8 -XX:
 
 LAUNCHER_JAR="$JACK_HOME/launcher.jar"
 LAUNCHER_NAME=com.android.jack.launcher.ServerLauncher
-
+CURRENT_CHARSET=$(locale charmap)
+JACK_LOGS_DIR="$JACK_HOME"/logs
+JACK_OUT_ERR="$JACK_LOGS_DIR"/outputs.txt
 
 #
 # Load client settings
@@ -90,7 +92,7 @@ handleHttpErrors() {
       abort
     fi
   else
-    # In case of partial, timeout, empty respond, network error, let's retry
+    # In case of partial, timeout, empty response, network error, let's retry
     if [ $RETRY_SESSION -eq 0 ]; then
       echo "Communication error with Jack server $1" >&2
       abort
@@ -115,7 +117,7 @@ updateProgram () {
          --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
          -X PUT \
          -F "jar=@$2;type=application/octet-stream" \
-         -F "force=$FORCE_INSTALLATION;type=text/plain" \
+         -F "force=$FORCE_INSTALLATION;type=text/plain;charset=$CURRENT_CHARSET" \
          --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
          http://${SERVER_HOST}:$SERVER_PORT_ADMIN/$1 \
          )
@@ -139,7 +141,7 @@ isServerRunning () {
          --output >(cat >/dev/null) \
          --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
          -X GET \
-         -H "Accept: text/plain" \
+         -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
          --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
          http://${SERVER_HOST}:$SERVER_PORT_ADMIN/server \
          )
@@ -165,7 +167,7 @@ isServerRunning () {
         abort
       fi
     else
-      # In case of partial, timeout, empty respond, network error, let's retry
+      # In case of partial, timeout, empty response, network error, let's retry
       if [ $RETRY_SESSION -eq 0 ]; then
         echo "Communication error with Jack server $CURL_CODE" >&2
         abort
@@ -191,7 +193,7 @@ startServer () {
       done
       exec $JACK_SERVER_COMMAND
       abort
-    ) >/dev/null 2>/dev/null &
+    ) >"$JACK_OUT_ERR" 2>&1 &
   fi
 }
 
@@ -203,7 +205,7 @@ waitServerStarted () {
          --output >(cat >/dev/null) \
          --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
          -X GET \
-         -H "Accept: text/plain" \
+         -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
          --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
          http://${SERVER_HOST}:$SERVER_PORT_ADMIN/server \
          )
@@ -235,7 +237,7 @@ listProgramVersion () {
          --output >(cat >&3) \
          --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
          -X GET \
-         -H "Accept: text/plain" \
+         -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
          --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
          http://${SERVER_HOST}:$SERVER_PORT_ADMIN/$1 \
          )
@@ -289,7 +291,7 @@ case $COMMAND in
       mkdir -p "$JACK_HOME"
       cp $2 "$LAUNCHER_JAR"
       cp $3 "$JACK_HOME/server-1.jar"
-      mkdir "$JACK_HOME"/logs
+      mkdir "$JACK_LOGS_DIR"
     else
       echo "Jack server already installed in \"$JACK_HOME\"" >&2
       abort
@@ -376,7 +378,7 @@ case $COMMAND in
               abort
             fi
           else
-            # In case of partial, timeout, empty respond, network error, let's retry
+            # In case of partial, timeout, empty response, network error, let's retry
             if [ $RETRY_SESSION -eq 0 ]; then
               echo "Communication error with Jack server $CURL_CODE" >&2
               abort
@@ -406,8 +408,39 @@ case $COMMAND in
            --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
            http://${SERVER_HOST}:$SERVER_PORT_ADMIN/server/stop \
            )
-      handleHttpErrors $? $HTTP_CODE
-      DONE=$?
+      CURL_CODE=$?
+
+      if [ $CURL_CODE -eq 0 ]; then
+        # No problem, let's go
+        DONE=0
+      elif [ $CURL_CODE -eq 7 ]; then
+        echo "No Jack server running" >&2
+        abort
+      elif  [ $CURL_CODE -eq 22 ]; then
+        # Http code not OK, let's decode and abort
+        if [ $2 -eq 401 ]; then
+          # 401: Unauthorized
+          echo "Security problem, see Jack server log" >&2
+          abort
+        elif [ $HTTP_CODE -eq 400 ]; then
+          # 400: Bad request
+          echo "Bad request, see Jack server log" >&2
+          abort
+        else
+          # Other
+          echo "Internal unknown error ($2), see Jack server log" >&2
+          abort
+        fi
+      else
+        # In case of partial, timeout, empty response, network error, let's retry
+        if [ $RETRY_SESSION -eq 0 ]; then
+          echo "Communication error with Jack server $CURL_CODE" >&2
+          abort
+        else
+          let RETRY_SESSION=RETRY_SESSION-1
+          DONE=1
+        fi
+      fi
       exec 3>&-
     done ;;
 
@@ -423,7 +456,7 @@ case $COMMAND in
            --output >(cat >&3) \
            --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
            -X GET \
-           -H "Accept: text/plain" \
+           -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
            --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
            http://${SERVER_HOST}:$SERVER_PORT_ADMIN/stat \
            )
@@ -458,6 +491,47 @@ case $COMMAND in
     startServer
     waitServerStarted
     exit 0 ;;
+
+
+  server-log-level)
+    if [ $# -eq 4 ]
+    then
+      LIMIT=$3
+      COUNT=$4
+    elif [ $# -eq 2 ]
+    then
+      COUNT=2
+      if [ \( "$2" = "ERROR" \) -o \( "$2" = "WARNING" \) ]
+      then
+        LIMIT=1048576
+      else
+        LIMIT=10485760
+      fi
+    else
+      usage
+      abort
+    fi
+
+    echo "Setting logging parameters of background server"
+
+    RETRY_SESSION=3
+    DONE=1
+    while [ "$DONE" -ne 0 ]; do
+      exec 3>&1
+      HTTP_CODE=$(curl --fail \
+           --output >(cat >&3) \
+           --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
+           --request PUT \
+           --form "level=$2;type=text/plain;charset=$CURRENT_CHARSET" \
+           --form "limit=$LIMIT;type=text/plain;charset=$CURRENT_CHARSET" \
+           --form "count=$COUNT;type=text/plain;charset=$CURRENT_CHARSET" \
+           --no-proxy ${SERVER_HOST}:$SERVER_PORT_ADMIN \
+           http://${SERVER_HOST}:$SERVER_PORT_ADMIN/launcher/log/level \
+           )
+      handleHttpErrors $? $HTTP_CODE
+      DONE=$?
+      exec 3>&-
+    done ;;
 
 
   *)

@@ -48,7 +48,7 @@ jack_launcher_jar := $(LOCAL_INSTALLED_MODULE)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := jack-server
-jack_server_version := 3.5.ALPHA
+jack_server_version := 3.6.ALPHA
 LOCAL_SRC_FILES := jack-server-$(jack_server_version).jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
