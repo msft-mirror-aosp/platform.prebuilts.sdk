@@ -1443,6 +1443,12 @@ package android.support.v4.media {
 
 package android.support.v4.media.session {
 
+  public class MediaButtonReceiver extends android.content.BroadcastReceiver {
+    ctor public MediaButtonReceiver();
+    method public static android.view.KeyEvent handleIntent(android.support.v4.media.session.MediaSessionCompat, android.content.Intent);
+    method public void onReceive(android.content.Context, android.content.Intent);
+  }
+
   public final class MediaControllerCompat {
     ctor public MediaControllerCompat(android.content.Context, android.support.v4.media.session.MediaSessionCompat);
     ctor public MediaControllerCompat(android.content.Context, android.support.v4.media.session.MediaSessionCompat.Token) throws android.os.RemoteException;
@@ -1510,6 +1516,7 @@ package android.support.v4.media.session {
   }
 
   public class MediaSessionCompat {
+    ctor public MediaSessionCompat(android.content.Context, java.lang.String);
     ctor public MediaSessionCompat(android.content.Context, java.lang.String, android.content.ComponentName, android.app.PendingIntent);
     method public void addOnActiveChangeListener(android.support.v4.media.session.MediaSessionCompat.OnActiveChangeListener);
     method public android.support.v4.media.session.MediaControllerCompat getController();
@@ -2400,6 +2407,7 @@ package android.support.v4.view {
     method public static float getZ(android.view.View);
     method public static boolean hasAccessibilityDelegate(android.view.View);
     method public static boolean hasNestedScrollingParent(android.view.View);
+    method public static boolean hasOnClickListeners(android.view.View);
     method public static boolean hasOverlappingRendering(android.view.View);
     method public static boolean hasTransientState(android.view.View);
     method public static boolean isAttachedToWindow(android.view.View);

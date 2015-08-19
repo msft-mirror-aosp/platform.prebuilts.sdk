@@ -49,6 +49,10 @@
     </declare-styleable>
 
     <declare-styleable name="lbBaseCardView">
+        <!-- Defines the background of card -->
+        <attr name="cardForeground" format="reference|color"/>
+        <!-- Defines the background of card -->
+        <attr name="cardBackground" format="reference|color"/>
         <!-- Defines the type of the card layout -->
         <attr name="cardType" format="enum">
             <!-- A simple card layout with a single layout region. -->
@@ -116,7 +120,23 @@
     </declare-styleable>
 
     <declare-styleable name="lbImageCardView">
+        <!-- Deprecated. Use 'lbImageCardViewInfoAreaStyle' instead. -->
         <attr name="infoAreaBackground" format="reference|color"/>
+        <!-- Use these attributes to override a ImageCardView's component style. -->
+        <attr name="lbImageCardViewImageStyle" format="reference" />
+        <attr name="lbImageCardViewTitleStyle" format="reference" />
+        <attr name="lbImageCardViewContentStyle" format="reference" />
+        <attr name="lbImageCardViewBadgeStyle" format="reference" />
+        <attr name="lbImageCardViewInfoAreaStyle" format="reference" />
+        <!-- Defines what components the ImageCardView will use. -->
+        <attr name="lbImageCardViewType">
+            <flag name="Title" value="1" />
+            <flag name="Content" value="2" />
+            <flag name="IconOnRight" value="4" />
+            <flag name="IconOnLeft" value="8" />
+            <!-- Only display the main image. -->
+            <flag name="ImageOnly" value="0" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="lbSearchOrbView">
@@ -308,6 +328,14 @@
              fragment stack pop. Default is {@link
              android.support.v17.leanback.R.animator#lb_guidedstep_slide_out_to_end}. -->
         <attr name="guidedStepReturnAnimation" format="reference" />
+        <!-- Theme attribute for the animation used when a guided step element is animated in
+             response to the IME appearing. Default is {@link
+             android.support.v17.leanback.R.animator#lb_guidedstep_slide_up}. -->
+        <attr name="guidedStepImeAppearingAnimation" format="reference" />
+        <!-- Theme attribute for the animation used when a guided step element is animated in
+             response to the IME disappearing. Default is {@link
+             android.support.v17.leanback.R.animator#lb_guidedstep_slide_down}. -->
+        <attr name="guidedStepImeDisappearingAnimation" format="reference" />
 
         <!-- Theme attribute for the animation used when the guidance is animated in at activity
              start. Default is {@link android.support.v17.leanback.R.animator#lb_guidance_entry}.
