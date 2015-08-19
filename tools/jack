@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Version: 1.2-a5
+# Version: 1.2-a6
 #
 set -o nounset
 umask 077
@@ -22,7 +22,7 @@ umask 077
 #
 # Settings
 #
-JACK_VERSION=${JACK_VERSION:=2.21.RELEASE}
+JACK_VERSION=${JACK_VERSION:=2.22.RELEASE}
 JACK_HOME="${JACK_HOME:=$HOME/.jack-home}"
 CLIENT_SETTING="${CLIENT_SETTING:=$HOME/.jack-client}"
 TMPDIR=${TMPDIR:=/tmp}
@@ -93,7 +93,7 @@ while true; do
   exec 4>&2
   HTTP_CODE=$(curl -f \
        --output >(tee >(sed -n -e 's/^E|\(.*\)$/\1/p' >&4 ) | tee >(sed -n -e 's/^X|\(.*\)$/\1/p' >$JACK_EXIT) | sed -n -e 's/^O|\(.*\)$/\1/p' >&3) \
-       --no-buffer --write-out '%{http_code}\n' --silent --connect-timeout 10 \
+       --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
        -X POST \
        -H "Accept: application/vnd.jack.command-out;version=1" \
        -F "cli=$ARGS;type=plain/text" \
@@ -130,7 +130,7 @@ while true; do
       abort
     fi
   else
-    # In case of partial, timeout, empty respond, network error, let's retry
+    # In case of partial, timeout, empty response, network error, let's retry
     if [ $RETRY_SESSION -eq 0 ]; then
       echo "Communication error with Jack server ($CURL_CODE)" >&2
       abort
