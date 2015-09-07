@@ -107,7 +107,7 @@ endif
 	$(hide) $(jack_admin_script) install-server $(jack_launcher_jar) $(jack_server_jar)  2>&1 || (exit 0)
 ifneq ($(dist_goal),)
 	mkdir -p "$(DIST_DIR)/logs/jack/"
-	$(hide) JACK_SERVER_VM_ARGUMENTS="$(jack_vm_args) -Dcom.android.jack.server.log.file=$(DIST_DIR)/logs/jack/jack-server-%u-%g.log" $(jack_admin_script) start-server 2>&1 || exit 0
+	$(hide) JACK_SERVER_VM_ARGUMENTS="$(jack_vm_args) -Dcom.android.jack.server.log.file=$(abspath $(DIST_DIR))/logs/jack/jack-server-%u-%g.log" $(jack_admin_script) start-server 2>&1 || exit 0
 else
 	$(hide) JACK_SERVER_VM_ARGUMENTS="$(jack_vm_args)" $(jack_admin_script) start-server 2>&1 || exit 0
 endif
