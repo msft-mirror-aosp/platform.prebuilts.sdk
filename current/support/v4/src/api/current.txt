@@ -274,12 +274,14 @@ package android.support.v4.app {
     method public java.lang.Object getLastCustomNonConfigurationInstance();
     method public android.support.v4.app.FragmentManager getSupportFragmentManager();
     method public android.support.v4.app.LoaderManager getSupportLoaderManager();
+    method public final android.support.v4.media.session.MediaControllerCompat getSupportMediaController();
     method public void onAttachFragment(android.support.v4.app.Fragment);
     method protected void onResumeFragments();
     method public java.lang.Object onRetainCustomNonConfigurationInstance();
     method public final java.lang.Object onRetainNonConfigurationInstance();
     method public void setEnterSharedElementCallback(android.support.v4.app.SharedElementCallback);
     method public void setExitSharedElementCallback(android.support.v4.app.SharedElementCallback);
+    method public final void setSupportMediaController(android.support.v4.media.session.MediaControllerCompat);
     method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
     method public void supportFinishAfterTransition();
     method public void supportInvalidateOptionsMenu();
@@ -1118,6 +1120,8 @@ package android.support.v4.content.res {
 
   public class ResourcesCompat {
     ctor public ResourcesCompat();
+    method public int getColor(android.content.res.Resources, int, android.content.res.Resources.Theme) throws android.content.res.Resources.NotFoundException;
+    method public android.content.res.ColorStateList getColorStateList(android.content.res.Resources, int, android.content.res.Resources.Theme) throws android.content.res.Resources.NotFoundException;
     method public static android.graphics.drawable.Drawable getDrawable(android.content.res.Resources, int, android.content.res.Resources.Theme) throws android.content.res.Resources.NotFoundException;
     method public static android.graphics.drawable.Drawable getDrawableForDensity(android.content.res.Resources, int, int, android.content.res.Resources.Theme) throws android.content.res.Resources.NotFoundException;
   }
