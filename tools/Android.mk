@@ -111,7 +111,7 @@ ifneq ($(dist_goal),)
 else
 	$(hide) JACK_SERVER_VM_ARGUMENTS="$(jack_vm_args)" $(jack_admin_script) start-server 2>&1 || exit 0
 endif
-	$(hide) $(jack_admin_script) update server $(jack_server_jar) $(jack_server_version)
+	$(hide) $(jack_admin_script) update server $(jack_server_jar) $(jack_server_version) 2>&1 || exit 0
 	$(hide) $(foreach jack_jar,$(available_jack_jars),$(jack_admin_script) update jack $(jack_jar) $(patsubst $(PRIVATE_PATH)/jacks/jack-%.jar,%,$(jack_jar)) || exit 47;)
 	$(copy-file-to-target)
 
