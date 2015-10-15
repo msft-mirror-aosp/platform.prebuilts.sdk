@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Version: 1.2-a9
+# Version: 1.3-a1
 #
 set -o nounset
 umask 077
@@ -23,8 +23,8 @@ umask 077
 # Settings
 #
 JACK_VERSION=${JACK_VERSION:=2.23.RELEASE}
-JACK_HOME="${JACK_HOME:=$HOME/.jack-home}"
-CLIENT_SETTING="${CLIENT_SETTING:=$HOME/.jack-client}"
+JACK_HOME="${JACK_HOME:=$HOME/.jack-server}"
+CLIENT_SETTING="${CLIENT_SETTING:=$HOME/.jack-settings}"
 TMPDIR=${TMPDIR:=/tmp}
 CLIENT_TMP_DIR=$TMPDIR/jack-$USER
 
@@ -43,8 +43,8 @@ if [[ ! -f "$CLIENT_SETTING" || $SETTING_VERSION -lt 4 ]]; then
   cat >"$CLIENT_SETTING.$$" <<-EOT
 	# Server settings
 	SERVER_HOST=${SERVER_HOST:=127.0.0.1}
-	SERVER_PORT_SERVICE=${SERVER_PORT_SERVICE:=8074}
-	SERVER_PORT_ADMIN=${SERVER_PORT_ADMIN:=8075}
+	SERVER_PORT_SERVICE=${SERVER_PORT_SERVICE:=8076}
+	SERVER_PORT_ADMIN=${SERVER_PORT_ADMIN:=8077}
 
 	# Internal, do not touch
 	SETTING_VERSION=4
@@ -86,21 +86,24 @@ done
 
 RETRY_LAUNCH=1
 RETRY_SESSION=3
+CURRENT_CHARSET=$(locale charmap)
 # Launch compilation
 while true; do
 
   exec 3>&1
   exec 4>&2
   HTTP_CODE=$(curl -f \
+       --cert "${JACK_HOME}/client.pem" \
+       --cacert "${JACK_HOME}/server.pem" \
        --output >(tee >(sed -n -e 's/^E|\(.*\)$/\1/p' >&4 ) | tee >(sed -n -e 's/^X|\(.*\)$/\1/p' >$JACK_EXIT) | sed -n -e 's/^O|\(.*\)$/\1/p' >&3) \
        --no-buffer --write-out '%{http_code}' --silent --connect-timeout 10 \
        -X POST \
-       -H "Accept: application/vnd.jack.command-out;version=1" \
-       -F "cli=$ARGS;type=plain/text" \
+       -H "Accept: application/vnd.jack.command-out;version=1;charset=$CURRENT_CHARSET" \
+       -F "cli=$ARGS;type=text/plain;charset=$CURRENT_CHARSET" \
        -F "version=$JACK_VERSION;type=application/vnd.jack.select-exact;version=1" \
-       -F "pwd=$JACK_PWD;type=plain/text" \
+       -F "pwd=$JACK_PWD;type=text/plain;charset=$CURRENT_CHARSET" \
        --noproxy ${SERVER_HOST} \
-       http://${SERVER_HOST}:$SERVER_PORT_SERVICE/jack \
+       https://${SERVER_HOST}:$SERVER_PORT_SERVICE/jack \
        )
 
   CURL_CODE=$?
@@ -114,13 +117,21 @@ while true; do
     # Failed to connect
     echo "No Jack server running. Try 'jack-admin start-server'" >&2
     abort
+  elif [ $CURL_CODE -eq 35 ]; then
+    echo "SSL error when connecting to the Jack server" >&2
+    abort
+  elif [ $CURL_CODE -eq 58 ]; then
+    echo "Failed to contact Jack server: Problem reading ${JACK_HOME}/client.pem" >&2
+    abort
+  elif [ $CURL_CODE -eq 60 ]; then
+    echo "Failed to authenticate Jack server certificate" >&2
+    abort
+   elif [ $CURL_CODE -eq 77 ]; then
+    echo "Failed to contact Jack server: Problem reading ${JACK_HOME}/server.pem" >&2
+    abort
   elif  [ $CURL_CODE -eq 22 ]; then
     # Http code not OK, let's decode and abort
-    if [ $HTTP_CODE -eq 401 ]; then
-      # 401: Unauthorized
-      echo "Security problem, see Jack server log" >&2
-      abort
-    elif [ $HTTP_CODE -eq 400 ]; then
+    if [ $HTTP_CODE -eq 400 ]; then
       # 400: Bad request
       echo "Bad request, see server log" >&2
       abort
