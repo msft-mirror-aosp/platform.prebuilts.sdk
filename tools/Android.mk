@@ -99,9 +99,9 @@ endif
 
 $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/jack $(jack_launcher_jar) $(jack_server_jar) $(jack_admin_script) $(available_jack_jars) | $(ACP)
 	@echo "Build: $@"
-	$(hide) $(jack_admin_script) stop-server 2>&1 || (exit 0)
-	$(hide) sleep 10
 ifneq ($(dist_goal),)
+	$(hide) $(jack_admin_script) stop-server 2>&1 || (exit 0)
+	$(hide) $(jack_admin_script) kill-server 2>&1 || (exit 0)
 	$(hide) $(jack_admin_script) uninstall-server 2>&1 || (exit 0)
 endif
 	$(hide) $(jack_admin_script) install-server $(jack_launcher_jar) $(jack_server_jar)  2>&1 || (exit 0)
