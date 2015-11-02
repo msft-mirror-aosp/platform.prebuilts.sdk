@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Version: 1.3-a4
+# Version: 1.3-a5
 #
 set -o nounset
 BASE_UMASK=$(umask)
@@ -33,6 +33,7 @@ LAUNCHER_NAME=com.android.jack.launcher.ServerLauncher
 CURRENT_CHARSET=$(locale charmap)
 JACK_LOGS_DIR="$JACK_HOME"/logs
 JACK_OUT_ERR="$JACK_LOGS_DIR"/outputs.txt
+JACK_CONNECTION_TIMEOUT=300
 
 #
 # Load client settings
@@ -123,7 +124,7 @@ updateProgram () {
        --cert "${JACK_HOME}/client.pem" \
        --cacert "${JACK_HOME}/server.pem" \
        --output >(cat >/dev/null) \
-       --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+       --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
        -X PUT \
        -F "jar=@$2;type=application/octet-stream" \
        -F "force=$FORCE_INSTALLATION;type=text/plain;charset=$CURRENT_CHARSET" \
@@ -141,12 +142,13 @@ updateProgram () {
 isServerRunning () {
   RETRY_SESSION=3
   DONE=1
+  let DATE_TIMEOUT=$(date +%s)+$JACK_CONNECTION_TIMEOUT
   while [ "$DONE" -ne 0 ]; do
     HTTP_CODE=$(curl -f \
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(cat >/dev/null) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          -X GET \
          -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
          --noproxy ${SERVER_HOST} \
@@ -161,24 +163,29 @@ isServerRunning () {
     else
       # In case of partial, timeout, empty response, network error, let's retry
       if [ $RETRY_SESSION -eq 0 ]; then
-        echo "Communication error with Jack server $CURL_CODE, try other ports or see Jack server log"  >&2
+        echo "Communication error with Jack server ($CURL_CODE), try other ports or see Jack server log"  >&2
         abort
       else
-        let RETRY_SESSION=RETRY_SESSION-1
+        if [ $(date +%s) -lt $DATE_TIMEOUT ]; then
+          let RETRY_SESSION=RETRY_SESSION-1
+        else
+          echo "Communication error with Jack server ($CURL_CODE), try other ports or see Jack server log"  >&2
+          abort
+        fi
       fi
     fi
   done
 }
 
 waitServerStarted () {
-  RETRY_CONNECT=30
   DONE=1
+  let DATE_TIMEOUT=$(date +%s)+$JACK_CONNECTION_TIMEOUT
   while [ "$DONE" -ne 0 ]; do
     HTTP_CODE=$(curl -f \
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(cat >/dev/null) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          -X GET \
          -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
          --noproxy ${SERVER_HOST} \
@@ -186,12 +193,11 @@ waitServerStarted () {
          )
     CURL_CODE=$?
     if [ $CURL_CODE -eq 7 ] || [ $CURL_CODE -eq 35 ] || [ $CURL_CODE -eq 58 ] || [ $CURL_CODE -eq 60 ] || [ $CURL_CODE -eq 77 ]; then
-      if [ $RETRY_CONNECT -eq 0 ]; then
+      if [ $(date +%s) -ge $DATE_TIMEOUT ]; then
         echo "Jack server failed to (re)start, see Jack server log" >&2
         abort
       else
-        let RETRY_CONNECT=RETRY_CONNECT-1
-        sleep 1;
+        sleep 1
       fi
     else
       # A connection was opened, no need to know if it went well
@@ -209,7 +215,7 @@ listProgramVersion () {
        --cert "${JACK_HOME}/client.pem" \
        --cacert "${JACK_HOME}/server.pem" \
        --output >(tr -d '\015' >&3) \
-       --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+       --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
        -X GET \
        -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
        --noproxy ${SERVER_HOST} \
@@ -318,7 +324,7 @@ case $COMMAND in
              --cert "${JACK_HOME}/client.pem" \
              --cacert "${JACK_HOME}/server.pem" \
              --output >(cat >/dev/null) \
-             --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+             --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
              -X HEAD \
              --data "$4" \
              -H "Content-Type:application/vnd.jack.select-exact;version=1" \
@@ -349,7 +355,7 @@ case $COMMAND in
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(cat >/dev/null) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          -X POST \
          --noproxy ${SERVER_HOST} \
          https://${SERVER_HOST}:$SERVER_PORT_ADMIN/server/stop \
@@ -365,7 +371,7 @@ case $COMMAND in
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(tr -d '\015' >&3) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          -X GET \
          -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
          --noproxy ${SERVER_HOST} \
@@ -381,7 +387,7 @@ case $COMMAND in
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(tr -d '\015' >&3) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          -X GET \
          -H "Accept: text/plain;charset=$CURRENT_CHARSET" \
         --noproxy ${SERVER_HOST} \
@@ -456,7 +462,7 @@ case $COMMAND in
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(cat >/dev/null) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          --request PUT \
          --form "level=$2;type=text/plain;charset=$CURRENT_CHARSET" \
          --form "limit=$LIMIT;type=text/plain;charset=$CURRENT_CHARSET" \
@@ -474,7 +480,7 @@ case $COMMAND in
          --cert "${JACK_HOME}/client.pem" \
          --cacert "${JACK_HOME}/server.pem" \
          --output >(cat >/dev/null) \
-         --no-buffer --write-out '%{http_code}' --silent --connect-timeout 30 \
+         --no-buffer --write-out '%{http_code}' --silent --connect-timeout $JACK_CONNECTION_TIMEOUT \
          -X POST \
          --noproxy ${SERVER_HOST} \
          https://${SERVER_HOST}:$SERVER_PORT_ADMIN/gc \
