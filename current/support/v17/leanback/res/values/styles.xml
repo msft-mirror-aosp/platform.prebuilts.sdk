@@ -195,6 +195,7 @@
     <style name="Widget.Leanback.GridItems" />
 
     <style name="Widget.Leanback.Headers.VerticalGridView" >
+        <item name="android:background">?attr/defaultBrandColor</item>
         <item name="android:paddingStart">?attr/browsePaddingStart</item>
         <item name="focusOutFront">true</item>
         <item name="focusOutEnd">true</item>
@@ -422,21 +423,11 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
-    <!-- Style for the container view in a GuidedActionsStylist's default layout. -->
-    <style name="Widget.Leanback.GuidedActionsContainerStyle">
-        <item name="android:layout_width">@dimen/lb_guidedactions_section_width</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:background">@color/lb_guidedactions_background</item>
-        <item name="android:elevation">@dimen/lb_guidedactions_elevation</item>
-    </style>
-
     <!-- Style for the selector view in a GuidedActionsStylist's default layout. -->
     <style name="Widget.Leanback.GuidedActionsSelectorStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/lb_guidedactions_selector_min_height</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:alpha">0</item>
         <item name="android:background">@color/lb_guidedactions_selector_color</item>
     </style>
 
@@ -445,8 +436,26 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:focusable">true</item>
+        <item name="focusOutEnd">true</item>
+        <item name="focusOutFront">false</item>
+        <item name="focusOutSideStart">false</item>
+        <item name="focusOutSideEnd">true</item>
     </style>
 
+    <!-- Style for the vertical grid of sub actions in a GuidedActionsStylist's default layout. -->
+    <style name="Widget.Leanback.GuidedSubActionsListStyle" parent="Widget.Leanback.GuidedActionsListStyle">
+        <item name="focusOutEnd">false</item>
+        <item name="focusOutFront">true</item>
+        <item name="focusOutSideStart">false</item>
+        <item name="focusOutSideEnd">false</item>
+        <item name="android:layout_marginBottom">@dimen/lb_guidedactions_sublist_bottom_margin</item>
+    </style>
+
+    <!-- Style for the vertical grid of button actions in a GuidedActionsStylist's default layout. -->
+    <style name="Widget.Leanback.GuidedButtonActionsListStyle" parent="Widget.Leanback.GuidedActionsListStyle">
+        <item name="focusOutSideStart">true</item>
+        <item name="focusOutSideEnd">false</item>
+    </style>
 
     <!-- Style for an action's container in a GuidedActionsStylist's default item layout. -->
     <style name="Widget.Leanback.GuidedActionItemContainerStyle">
@@ -466,9 +475,8 @@
         <item name="android:layout_height">@dimen/lb_guidedactions_item_checkmark_diameter</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginEnd">@dimen/lb_guidedactions_item_delimiter_padding</item>
-        <item name="android:scaleType">center</item>
-        <item name="android:src">@drawable/lb_guidedactions_item_checkmark</item>
-        <item name="android:visibility">invisible</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <!-- Style for an action's icon in a GuidedActionsStylist's default item layout. -->
@@ -483,7 +491,7 @@
 
     <!-- Style for an action's text content in a GuidedActionsStylist's default item layout. -->
     <style name="Widget.Leanback.GuidedActionItemContentStyle">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">start|center_vertical</item>
         <item name="android:layout_weight">1</item>
@@ -508,12 +516,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:alpha">@string/lb_guidedactions_item_unselected_description_text_alpha</item>
-        <item name="android:ellipsize">marquee</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:maxLines">@integer/lb_guidedactions_item_description_min_lines</item>
         <item name="android:textColor">@color/lb_guidedactions_item_unselected_text_color</item>
         <item name="android:textSize">@dimen/lb_guidedactions_item_description_font_size</item>
         <item name="android:visibility">gone</item>
+        <item name="android:background">@null</item>
     </style>
 
     <!-- Style for an action's chevron in a GuidedActionsStylist's default item layout. -->

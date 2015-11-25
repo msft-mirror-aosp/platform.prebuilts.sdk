@@ -167,3 +167,4 @@ parcelable android.bluetooth.le.ScanFilter;
 parcelable android.bluetooth.le.ScanResult;
 parcelable android.bluetooth.BluetoothDevice;
 parcelable android.database.CursorWindow;
+parcelable android.service.quicksettings.Tile;
