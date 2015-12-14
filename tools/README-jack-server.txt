@@ -19,7 +19,7 @@ Client info
 -----------
 
 The client is a bash script simply named "jack".
-It can be configured in $HOME/.jack-settings
+It can be configured in "$HOME/.jack-settings"
 
 
 
@@ -31,11 +31,11 @@ This file contains script shell variables:
 by default: "SERVER_HOST=127.0.0.1".
 
 "SERVER_PORT_SERVICE": Server service TCP port number. Needs to match the service port number
-defined in $HOME/.jack-server/config.properties on the server host (See "Server info" below)
+defined in "$HOME/.jack-server/config.properties" on the server host (See "Server info" below)
 by default: "SERVER_PORT_SERVICE=8076".
 
 "SERVER_PORT_ADMIN": Server admin TCP port number. Needs to match the admin port number defined in
-$HOME/.jack-server/config.properties on the server host (See "Server info" below)
+"$HOME/.jack-server/config.properties" on the server host (See "Server info" below)
 by default: "SERVER_PORT_ADMIN=8077".
 
 "SETTING_VERSION": Internal, do not modify.
@@ -71,11 +71,11 @@ jack.server.time-out=<time-in-seconds>
 
 jack.server.service.port=<port-number>
   Server service TCP port number. Default is 8076. Needs to match the service port defined in
-  $HOME/.jack-settings on the client host (See Client section).
+  "$HOME/.jack-settings" on the client host (See Client section).
 
 jack.server.admin.port=<port-number>
   Server admin TCP port number. Default is 8077. Needs to match the service port defined in
-  $HOME/.jack-settings on the client host (See Client section).
+  "$HOME/.jack-settings" on the client host (See Client section).
 
 jack.server.config.version=<version>
   Internal, do not modify.
@@ -143,23 +143,32 @@ If your computer becomes unresponsive during compilation or if you experience Ja
 failing on "Out of memory error.":
 
 You can improve the situation by reducing the number of jack simultaneous compilations by editing
-your $HOME/.jack-server/config.properties and changing jack.server.max-service to a lower value.
+your "$HOME/.jack-server/config.properties" and changing jack.server.max-service to a lower value.
 
 
 If you have trouble starting the server:
 
 This may mean that TCP ports are already in use on your computer. You can try modifying the ports
 both in your client and server configurations. See the "Server info" and "Client info" sections.
-If it doesn't solve the problem, please report and attach your compilation log and the jack server
-log (see the "Server logs" section).
+If it doesn't solve the problem, please report and give us additional information by:
+  - Attaching your compilation log.
+  - Attaching a zip of "$HOME/.jack-server/".
+  - Attaching "$HOME/.jack-settings".
+  - Executing "lsof -i TCP:8076", "lsof -i TCP:8077" and attaching the outputs.
+
+
+If your commands fails on
+"Failed to contact Jack server: Problem reading <your home>/.jack-server/client.pem":
+
+This may mean that your server never managed to start, see
+"If you have trouble starting the server" above.
 
 
 If your compilation gets stuck without any progress:
 
 Please report and give us additional information by:
-Running "jack-admin list-server | awk '{print $2}' | xargs kill -3".
-Attaching the server log to the bug (see the "Server logs" section).
-Attaching "$HOME/.jack-server/logs/outputs.txt".
-Executing a "jack-admin server-stat" and attaching the output.
-Executing "lsof -i TCP:8076", "lsof -i TCP:8077" and attaching the outputs.
-
+  - Running "jack-admin list-server | awk '{print $2}' | xargs kill -3".
+  - Attaching the server log to the bug (see the "Server logs" section).
+  - Executing a "jack-admin server-stat" and attaching the output.
+  - Attaching "$HOME/.jack-server/logs/outputs.txt".
+  - Executing "lsof -i TCP:8076", "lsof -i TCP:8077" and attaching the outputs.
