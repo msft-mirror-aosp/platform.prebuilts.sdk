@@ -103,13 +103,11 @@
         <item name="infoVisibility">activated</item>
         <!-- In order to keep backward compatibility we have to create an icon on right. -->
         <item name="lbImageCardViewType">Title|Content|IconOnRight</item>
-        <item name="lbImageCardViewImageStyle">@style/Widget.Leanback.ImageCardView.ImageStyle</item>
-        <item name="lbImageCardViewTitleStyle">@style/Widget.Leanback.ImageCardView.TitleStyle</item>
-        <item name="lbImageCardViewContentStyle">@style/Widget.Leanback.ImageCardView.ContentStyle</item>
-        <item name="lbImageCardViewBadgeStyle">@style/Widget.Leanback.ImageCardView.BadgeStyle</item>
-        <item name="lbImageCardViewInfoAreaStyle">@style/Widget.Leanback.ImageCardView.InfoAreaStyle</item>
         <!-- Deprecated. Use 'Widget.Leanback.ImageCardView.InfoAreaStyle' instead. -->
         <item name="infoAreaBackground">@null</item>
+    </style>
+
+    <style name="TextAppearance.Leanback.ImageCardView">
     </style>
 
     <style name="Widget.Leanback.ImageCardView" />
@@ -134,18 +132,26 @@
         <item name="android:paddingTop">@dimen/lb_basic_card_info_padding_top</item>
         <item name="android:background">@color/lb_basic_card_info_bg_color</item>
     </style>
-	
+
+    <style name="TextAppearance.Leanback.ImageCardView.Title">
+        <item name="android:textColor">@color/lb_basic_card_title_text_color</item>
+        <item name="android:textSize">@dimen/lb_basic_card_title_text_size</item>
+    </style>
+
     <style name="Widget.Leanback.ImageCardView.TitleStyle">
         <item name="android:id">@id/title_text</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">1</item>
         <item name="android:layout_marginBottom">@dimen/lb_basic_card_info_text_margin</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textColor">@color/lb_basic_card_title_text_color</item>
-        <item name="android:textSize">@dimen/lb_basic_card_title_text_size</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:textAppearance">@style/TextAppearance.Leanback.ImageCardView.Title</item>
+    </style>
+
+    <style name="TextAppearance.Leanback.ImageCardView.Content">
+        <item name="android:textColor">@color/lb_basic_card_content_text_color</item>
+        <item name="android:textSize">@dimen/lb_basic_card_content_text_size</item>
     </style>
 
     <style name="Widget.Leanback.ImageCardView.ContentStyle">
@@ -156,11 +162,9 @@
         <item name="android:layout_below">@+id/title_text</item>
         <item name="android:layout_toStartOf">@+id/extra_badge</item>
         <item name="android:maxLines">1</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textColor">@color/lb_basic_card_content_text_color</item>
-        <item name="android:textSize">@dimen/lb_basic_card_content_text_size</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:ellipsize">none</item>
+        <item name="android:textAppearance">@style/TextAppearance.Leanback.ImageCardView.Content</item>
     </style>
 
     <style name="Widget.Leanback.ImageCardView.BadgeStyle">
@@ -444,18 +448,14 @@
     <style name="Widget.Leanback.GuidedActionsListStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:focusable">true</item>
-        <item name="android:focusableInTouchMode">true</item>
-        <item name="focusOutEnd">true</item>
+        <item name="focusOutEnd">false</item>
         <item name="focusOutFront">false</item>
-        <item name="focusOutSideStart">false</item>
-        <item name="focusOutSideEnd">true</item>
     </style>
 
     <!-- Style for the vertical grid of sub actions in a GuidedActionsStylist's default layout. -->
     <style name="Widget.Leanback.GuidedSubActionsListStyle" parent="Widget.Leanback.GuidedActionsListStyle">
         <item name="focusOutEnd">false</item>
-        <item name="focusOutFront">true</item>
+        <item name="focusOutFront">false</item>
         <item name="focusOutSideStart">false</item>
         <item name="focusOutSideEnd">false</item>
         <item name="android:layout_marginBottom">@dimen/lb_guidedactions_sublist_bottom_margin</item>
@@ -463,8 +463,6 @@
 
     <!-- Style for the vertical grid of button actions in a GuidedActionsStylist's default layout. -->
     <style name="Widget.Leanback.GuidedButtonActionsListStyle" parent="Widget.Leanback.GuidedActionsListStyle">
-        <item name="focusOutSideStart">true</item>
-        <item name="focusOutSideEnd">false</item>
     </style>
 
     <!-- Style for an action's container in a GuidedActionsStylist's default item layout. -->
