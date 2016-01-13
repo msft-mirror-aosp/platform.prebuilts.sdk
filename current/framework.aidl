@@ -39,6 +39,7 @@ parcelable android.graphics.Point;
 parcelable android.graphics.PointF;
 parcelable android.graphics.RectF;
 parcelable android.graphics.Rect;
+parcelable android.graphics.drawable.Icon;
 parcelable android.accounts.AuthenticatorDescription;
 parcelable android.accounts.Account;
 parcelable android.app.admin.SystemUpdatePolicy;
