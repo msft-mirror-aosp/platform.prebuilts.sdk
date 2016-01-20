@@ -146,10 +146,16 @@ Print various info about the server and the host.
 $ jack-admin server-log
 Print log pattern.
 
+$ jack-admin dump-report
+Produce a report file that can be used to file a bug.
 
 
 Troubleshooting
 ---------------
+
+Below you'll find some ways to solve some troubleshooting. If you don't find a solution, file a
+bug and attach the file produced by "jack-admin dump-report".
+
 
 If compilation fails on "No Jack server running":
 
@@ -169,9 +175,7 @@ This may mean that TCP ports are already in use on your computer. You can try mo
 both in your client and server configurations. See the "Server info" and "Client info" sections.
 If it doesn't solve the problem, please report and give us additional information by:
   - Attaching your compilation log.
-  - Attaching a zip of "$HOME/.jack-server/".
-  - Attaching "$HOME/.jack-settings".
-  - Executing "lsof -i TCP:8076", "lsof -i TCP:8077" and attaching the outputs.
+  - Attaching the file produced by "jack-admin dump-report"
 
 
 If your commands fails on
@@ -184,8 +188,7 @@ This may mean that your server never managed to start, see
 If your compilation gets stuck without any progress:
 
 Please report and give us additional information by:
-  - Running "jack-admin list-server | awk '{print $2}' | xargs kill -3".
-  - Attaching the server log to the bug (see the "Server logs" section).
-  - Executing a "jack-admin server-stat" and attaching the output.
-  - Attaching "$HOME/.jack-server/logs/outputs.txt".
-  - Executing "lsof -i TCP:8076", "lsof -i TCP:8077" and attaching the outputs.
+  - Attaching the file produced by "jack-admin dump-report"
+  - Restart the server by issuing commands "jack-admin kill-server; jack-admin start-server"
+
+ 
