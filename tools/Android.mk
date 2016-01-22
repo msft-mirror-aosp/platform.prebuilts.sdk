@@ -76,7 +76,7 @@ include $(BUILD_PREBUILT)
 # needing to install them, but some unbundled branches use a master version of
 # prebuilts/sdk/ with an old version of build/ and look for these tools in the
 # installed directories.
-ifeq ($(ACP),$(HOST_OUT_EXECUTABLES)/acp)
+ifeq ($(USE_PREBUILT_SDK_TOOLS_IN_PLACE),true)
 
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
 
