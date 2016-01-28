@@ -25,7 +25,7 @@ ifeq ($(JACK_DEFAULT_VERSION),)
 $(error "$(ANDROID_JACK_DEFAULT_VERSION)" is an invalid value for ANDROID_JACK_DEFAULT_VERSION)
 endif
 else
-ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
+ifneq (,$(TARGET_BUILD_APPS))
 # Unbundled branches
 JACK_DEFAULT_VERSION := $(JACK_STABLE_VERSION)
 else
