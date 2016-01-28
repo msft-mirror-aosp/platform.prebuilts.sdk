@@ -223,7 +223,9 @@ package android.support.v4.app {
     method public void setUserVisibleHint(boolean);
     method public boolean shouldShowRequestPermissionRationale(java.lang.String);
     method public void startActivity(android.content.Intent);
+    method public void startActivity(android.content.Intent, android.os.Bundle);
     method public void startActivityForResult(android.content.Intent, int);
+    method public void startActivityForResult(android.content.Intent, int, android.os.Bundle);
     method public void unregisterForContextMenu(android.view.View);
   }
 
@@ -251,6 +253,7 @@ package android.support.v4.app {
     method public void setExitSharedElementCallback(android.support.v4.app.SharedElementCallback);
     method public final void setSupportMediaController(android.support.v4.media.session.MediaControllerCompat);
     method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
+    method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int, android.os.Bundle);
     method public void supportFinishAfterTransition();
     method public void supportInvalidateOptionsMenu();
     method public void supportPostponeEnterTransition();
@@ -316,6 +319,7 @@ package android.support.v4.app {
     method public boolean onShouldSaveFragmentState(android.support.v4.app.Fragment);
     method public boolean onShouldShowRequestPermissionRationale(java.lang.String);
     method public void onStartActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
+    method public void onStartActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int, android.os.Bundle);
     method public void onSupportInvalidateOptionsMenu();
   }
 
@@ -930,7 +934,7 @@ package android.support.v4.content {
     method public static final android.graphics.drawable.Drawable getDrawable(android.content.Context, int);
     method public static java.io.File[] getExternalCacheDirs(android.content.Context);
     method public static java.io.File[] getExternalFilesDirs(android.content.Context, java.lang.String);
-    method public static java.io.File getNoBackupFilesDir(android.content.Context);
+    method public final java.io.File getNoBackupFilesDir(android.content.Context);
     method public static java.io.File[] getObbDirs(android.content.Context);
     method public static boolean isDeviceEncryptedStorage(android.content.Context);
     method public static boolean startActivities(android.content.Context, android.content.Intent[]);
@@ -1111,8 +1115,8 @@ package android.support.v4.graphics {
     method public static int XYZToColor(double, double, double);
     method public static void XYZToLAB(double, double, double, double[]);
     method public static int blendARGB(int, int, float);
-    method public static void blendHSL(float[], float[], float[], float);
-    method public static void blendLAB(double[], double[], double[], double);
+    method public static void blendHSL(float[], float[], float, float[]);
+    method public static void blendLAB(double[], double[], double, double[]);
     method public static double calculateContrast(int, int);
     method public static double calculateLuminance(int);
     method public static int calculateMinimumAlpha(int, int, float);
@@ -3292,6 +3296,10 @@ package android.support.v4.widget {
     method public boolean canTargetScrollHorizontally(int);
     method public boolean canTargetScrollVertically(int);
     method public void scrollTargetBy(int, int);
+  }
+
+  public final class ListViewCompat {
+    method public static void scrollListBy(android.widget.ListView, int);
   }
 
   public class NestedScrollView extends android.widget.FrameLayout implements android.support.v4.view.NestedScrollingChild android.support.v4.view.NestedScrollingParent android.support.v4.view.ScrollingView {
