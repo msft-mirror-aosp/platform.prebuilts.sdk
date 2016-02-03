@@ -15442,7 +15442,7 @@ package android.location {
     method public static boolean isPresent();
   }
 
-  public class GpsClock implements android.os.Parcelable {
+  public class GnssClock implements android.os.Parcelable {
     method public int describeContents();
     method public double getBiasInNs();
     method public double getBiasUncertaintyInNs();
@@ -15468,7 +15468,7 @@ package android.location {
     method public void resetFullBiasInNs();
     method public void resetLeapSecond();
     method public void resetTimeUncertaintyInNs();
-    method public void set(android.location.GpsClock);
+    method public void set(android.location.GnssClock);
     method public void setBiasInNs(double);
     method public void setBiasUncertaintyInNs(double);
     method public void setDriftInNsPerSec(double);
@@ -15479,13 +15479,13 @@ package android.location {
     method public void setTimeUncertaintyInNs(double);
     method public void setType(byte);
     method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.location.GpsClock> CREATOR;
+    field public static final android.os.Parcelable.Creator<android.location.GnssClock> CREATOR;
     field public static final byte CLOCK_TYPE_GPS_TIME = 2; // 0x2
     field public static final byte CLOCK_TYPE_LOCAL_HW_TIME = 1; // 0x1
     field public static final byte CLOCK_TYPE_UNKNOWN = 0; // 0x0
   }
 
-  public class GpsMeasurement implements android.os.Parcelable {
+  public class GnssMeasurement implements android.os.Parcelable {
     method public int describeContents();
     method public double getAccumulatedDeltaRangeInMeters();
     method public short getAccumulatedDeltaRangeState();
@@ -15554,7 +15554,7 @@ package android.location {
     method public void resetPseudorangeUncertaintyInMeters();
     method public void resetSnrInDb();
     method public void resetTimeFromLastBitInMs();
-    method public void set(android.location.GpsMeasurement);
+    method public void set(android.location.GnssMeasurement);
     method public void setAccumulatedDeltaRangeInMeters(double);
     method public void setAccumulatedDeltaRangeState(short);
     method public void setAccumulatedDeltaRangeUncertaintyInMeters(double);
@@ -15591,7 +15591,7 @@ package android.location {
     field public static final short ADR_STATE_RESET = 2; // 0x2
     field public static final short ADR_STATE_UNKNOWN = 0; // 0x0
     field public static final short ADR_STATE_VALID = 1; // 0x1
-    field public static final android.os.Parcelable.Creator<android.location.GpsMeasurement> CREATOR;
+    field public static final android.os.Parcelable.Creator<android.location.GnssMeasurement> CREATOR;
     field public static final byte LOSS_OF_LOCK_CYCLE_SLIP = 2; // 0x2
     field public static final byte LOSS_OF_LOCK_OK = 1; // 0x1
     field public static final byte LOSS_OF_LOCK_UNKNOWN = 0; // 0x0
@@ -15606,25 +15606,25 @@ package android.location {
     field public static final short STATE_UNKNOWN = 0; // 0x0
   }
 
-  public final class GpsMeasurementsEvent implements android.os.Parcelable {
-    ctor public GpsMeasurementsEvent(android.location.GpsClock, android.location.GpsMeasurement[]);
+  public final class GnssMeasurementsEvent implements android.os.Parcelable {
+    ctor public GnssMeasurementsEvent(android.location.GnssClock, android.location.GnssMeasurement[]);
     method public int describeContents();
-    method public android.location.GpsClock getClock();
-    method public java.util.Collection<android.location.GpsMeasurement> getMeasurements();
+    method public android.location.GnssClock getClock();
+    method public java.util.Collection<android.location.GnssMeasurement> getMeasurements();
     method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.location.GpsMeasurementsEvent> CREATOR;
+    field public static final android.os.Parcelable.Creator<android.location.GnssMeasurementsEvent> CREATOR;
     field public static final int STATUS_GPS_LOCATION_DISABLED = 2; // 0x2
     field public static final int STATUS_NOT_SUPPORTED = 0; // 0x0
     field public static final int STATUS_READY = 1; // 0x1
   }
 
-  public static abstract class GpsMeasurementsEvent.Callback {
-    ctor public GpsMeasurementsEvent.Callback();
-    method public void onGpsMeasurementsReceived(android.location.GpsMeasurementsEvent);
+  public static abstract class GnssMeasurementsEvent.Callback {
+    ctor public GnssMeasurementsEvent.Callback();
+    method public void onGnssMeasurementsReceived(android.location.GnssMeasurementsEvent);
     method public void onStatusChanged(int);
   }
 
-  public final class GpsNavigationMessage implements android.os.Parcelable {
+  public final class GnssNavigationMessage implements android.os.Parcelable {
     method public int describeContents();
     method public byte[] getData();
     method public short getMessageId();
@@ -15633,7 +15633,7 @@ package android.location {
     method public short getSubmessageId();
     method public byte getType();
     method public void reset();
-    method public void set(android.location.GpsNavigationMessage);
+    method public void set(android.location.GnssNavigationMessage);
     method public void setData(byte[]);
     method public void setMessageId(short);
     method public void setPrn(byte);
@@ -15641,7 +15641,8 @@ package android.location {
     method public void setSubmessageId(short);
     method public void setType(byte);
     method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.location.GpsNavigationMessage> CREATOR;
+    field public static final
+        android.os.Parcelable.Creator<android.location.GnssNavigationMessage> CREATOR;
     field public static final short STATUS_PARITY_PASSED = 1; // 0x1
     field public static final short STATUS_PARITY_REBUILT = 2; // 0x2
     field public static final short STATUS_UNKNOWN = 0; // 0x0
@@ -15652,20 +15653,20 @@ package android.location {
     field public static final byte MESSAGE_TYPE_UNKNOWN = 0; // 0x0
   }
 
-  public final class GpsNavigationMessageEvent implements android.os.Parcelable {
-    ctor public GpsNavigationMessageEvent(android.location.GpsNavigationMessage);
+  public final class GnssNavigationMessageEvent implements android.os.Parcelable {
+    ctor public GnssNavigationMessageEvent(android.location.GnssNavigationMessage);
     method public int describeContents();
-    method public android.location.GpsNavigationMessage getNavigationMessage();
+    method public android.location.GnssNavigationMessage getNavigationMessage();
     method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.location.GpsNavigationMessageEvent> CREATOR;
+    field public static final android.os.Parcelable.Creator<android.location.GnssNavigationMessageEvent> CREATOR;
     field public static final int STATUS_GPS_LOCATION_DISABLED = 2; // 0x2
     field public static final int STATUS_NOT_SUPPORTED = 0; // 0x0
     field public static final int STATUS_READY = 1; // 0x1
   }
 
-  public static abstract class GpsNavigationMessageEvent.Callback {
-    ctor public GpsNavigationMessageEvent.Callback();
-    method public void onGpsNavigationMessageReceived(android.location.GpsNavigationMessageEvent);
+  public static abstract class GnssNavigationMessageEvent.Callback {
+    ctor public GnssNavigationMessageEvent.Callback();
+    method public void onGnssNavigationMessageReceived(android.location.GnssNavigationMessageEvent);
     method public void onStatusChanged(int);
   }
 
@@ -15788,8 +15789,8 @@ package android.location {
     method public java.util.List<java.lang.String> getProviders(boolean);
     method public java.util.List<java.lang.String> getProviders(android.location.Criteria, boolean);
     method public boolean isProviderEnabled(java.lang.String);
-    method public boolean registerGpsMeasurementCallback(android.location.GpsMeasurementsEvent.Callback);
-    method public boolean registerGpsNavigationMessageCallback(android.location.GpsNavigationMessageEvent.Callback);
+    method public boolean registerGnssMeasurementCallback(android.location.GnssMeasurementsEvent.Callback);
+    method public boolean registerGnssNavigationMessageCallback(android.location.GnssNavigationMessageEvent.Callback);
     method public void removeGpsStatusListener(android.location.GpsStatus.Listener);
     method public void removeNmeaListener(android.location.GpsStatus.NmeaListener);
     method public void removeProximityAlert(android.app.PendingIntent);
@@ -15811,8 +15812,8 @@ package android.location {
     method public void setTestProviderEnabled(java.lang.String, boolean);
     method public void setTestProviderLocation(java.lang.String, android.location.Location);
     method public void setTestProviderStatus(java.lang.String, int, android.os.Bundle, long);
-    method public void unregisterGpsMeasurementCallback(android.location.GpsMeasurementsEvent.Callback);
-    method public void unregisterGpsNavigationMessageCallback(android.location.GpsNavigationMessageEvent.Callback);
+    method public void unregisterGnssMeasurementCallback(android.location.GnssMeasurementsEvent.Callback);
+    method public void unregisterGnssNavigationMessageCallback(android.location.GnssNavigationMessageEvent.Callback);
     field public static final java.lang.String GPS_PROVIDER = "gps";
     field public static final java.lang.String KEY_LOCATION_CHANGED = "location";
     field public static final java.lang.String KEY_PROVIDER_ENABLED = "providerEnabled";
