@@ -15511,8 +15511,8 @@ package android.location {
     method public double getPseudorangeRateInMetersPerSec();
     method public double getPseudorangeRateUncertaintyInMetersPerSec();
     method public double getPseudorangeUncertaintyInMeters();
-    method public long getReceivedGpsTowInNs();
-    method public long getReceivedGpsTowUncertaintyInNs();
+    method public long getReceivedSvTimeInNs();
+    method public long getReceivedSvTimeUncertaintyInNs();
     method public double getSnrInDb();
     method public short getState();
     method public short getTimeFromLastBitInMs();
@@ -15579,8 +15579,8 @@ package android.location {
     method public void setPseudorangeRateInMetersPerSec(double);
     method public void setPseudorangeRateUncertaintyInMetersPerSec(double);
     method public void setPseudorangeUncertaintyInMeters(double);
-    method public void setReceivedGpsTowInNs(long);
-    method public void setReceivedGpsTowUncertaintyInNs(long);
+    method public void setReceivedSvTimeInNs(long);
+    method public void setReceivedSvTimeUncertaintyInNs(long);
     method public void setSnrInDb(double);
     method public void setState(short);
     method public void setTimeFromLastBitInMs(short);
@@ -15631,7 +15631,7 @@ package android.location {
     method public short getSvid();
     method public short getStatus();
     method public short getSubmessageId();
-    method public byte getType();
+    method public short getType();
     method public void reset();
     method public void set(android.location.GnssNavigationMessage);
     method public void setData(byte[]);
@@ -15639,18 +15639,13 @@ package android.location {
     method public void setSvid(short);
     method public void setStatus(short);
     method public void setSubmessageId(short);
-    method public void setType(byte);
+    method public void setType(short);
     method public void writeToParcel(android.os.Parcel, int);
     field public static final
         android.os.Parcelable.Creator<android.location.GnssNavigationMessage> CREATOR;
     field public static final short STATUS_PARITY_PASSED = 1; // 0x1
     field public static final short STATUS_PARITY_REBUILT = 2; // 0x2
     field public static final short STATUS_UNKNOWN = 0; // 0x0
-    field public static final byte MESSAGE_TYPE_CNAV2 = 4; // 0x4
-    field public static final byte MESSAGE_TYPE_L1CA = 1; // 0x1
-    field public static final byte MESSAGE_TYPE_L2CNAV = 2; // 0x2
-    field public static final byte MESSAGE_TYPE_L5CNAV = 3; // 0x3
-    field public static final byte MESSAGE_TYPE_UNKNOWN = 0; // 0x0
   }
 
   public final class GnssNavigationMessageEvent implements android.os.Parcelable {
