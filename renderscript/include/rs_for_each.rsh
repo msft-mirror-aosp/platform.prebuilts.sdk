@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2016 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,26 +91,44 @@ typedef struct rs_script_call {
 } rs_script_call_t;
 
 /*
- * rsForEach: Invoke the root kernel of a script
+ * rs_kernel: Handle to a kernel function
  *
- * Invoke the kernel named "root" of the specified script.  Like other kernels, this root()
- * function will be invoked repeatedly over the cells of the specificed allocation, filling
- * the output allocation with the results.
+ *  An opaque type for a function that is defined with the kernel attribute.  A value
+ *  of this type can be used in a rsForEach call to launch a kernel.
+ */
+#if (defined(RS_VERSION) && (RS_VERSION >= 24))
+typedef void* rs_kernel;
+#endif
+
+/*
+ * rsForEach: Launches a kernel
  *
- * When rsForEach is called, the root script is launched immediately.  rsForEach returns
- * only when the script has completed and the output allocation is ready to use.
+ * Runs the kernel over zero or more input allocations. They are passed after the
+ * rs_kernel argument. If the specified kernel returns a value, an output allocation
+ * must be specified as the last argument. All input allocations,
+ * and the output allocation if it exists, must have the same dimensions.
  *
- * The rs_script argument is typically initialized using a global variable set from Java.
+ * This is a synchronous function. A call to this function only returns after all
+ * the work has completed for all cells of the input allocations. If the kernel
+ * function returns any value, the call waits until all results have been written
+ * to the output allocation.
  *
- * The kernel can be invoked with just an input allocation or just an output allocation.
- * This can be done by defining an rs_allocation variable and not initializing it.  E.g.
- * rs_script gCustomScript;
- * void specializedProcessing(rs_allocation in) {
- *   rs_allocation ignoredOut;
- *   rsForEach(gCustomScript, in, ignoredOut);
+ * Up to API level 23, the kernel is implicitly specified as the kernel named
+ * "root" in the specified script, and only a single input allocation can be used.
+ * Starting in API level 24, an arbitrary kernel function can be used,
+ * as specified by the kernel argument. The script argument is removed.
+ * The kernel must be defined in the current script. In addition, more than one
+ * input can be used.
+ *
+ * E.g.
+ * float __attribute__((kernel)) square(float a) {
+ *   return a * a;
  * }
  *
- * If both input and output allocations are specified, they must have the same dimensions.
+ * void compute(rs_allocation ain, rs_allocation aout) {
+ *   rsForEach(square, ain, aout);
+ * }
+ *
  *
  * Parameters:
  *   script: Script to call.
@@ -119,6 +137,8 @@ typedef struct rs_script_call {
  *   usrData: User defined data to pass to the script.  May be NULL.
  *   sc: Extra control information used to select a sub-region of the allocation to be processed or suggest a walking strategy.  May be NULL.
  *   usrDataLen: Size of the userData structure.  This will be used to perform a shallow copy of the data if necessary.
+ *   kernel: Function designator to a function that is defined with the kernel attribute.
+ *   ...: Input and output allocations
  */
 #if !defined(RS_VERSION) || (RS_VERSION <= 13)
 extern void __attribute__((overloadable))
@@ -143,9 +163,44 @@ extern void __attribute__((overloadable))
               size_t usrDataLen);
 #endif
 
-#if (defined(RS_VERSION) && (RS_VERSION >= 14))
+#if (defined(RS_VERSION) && (RS_VERSION >= 14) && (RS_VERSION <= 23))
 extern void __attribute__((overloadable))
     rsForEach(rs_script script, rs_allocation input, rs_allocation output);
+#endif
+
+#if (defined(RS_VERSION) && (RS_VERSION >= 24))
+extern void
+    rsForEach(rs_kernel kernel, ...);
+#endif
+
+/*
+ * rsForEachWithOptions: Launches a kernel with options
+ *
+ * Launches kernel in a way similar to rsForEach. However, instead of processing
+ * all cells in the input, this function only processes cells in the subspace of
+ * the index space specified in options. With the index space explicitly specified
+ * by options, no input or output allocation is required for a kernel launch using
+ * this API. If allocations are passed in, they must match the number of arguments
+ * and return value expected by the kernel function. The output allocation is
+ * present if and only if the kernel has a non-void return value.
+ *
+ * E.g.,
+ *    rs_script_call_t opts = {0};
+ *    opts.xStart = 0;
+ *    opts.xEnd = dimX;
+ *    opts.yStart = 0;
+ *    opts.yEnd = dimY / 2;
+ *    rsForEachWithOptions(foo, &opts, out, out);
+ *
+ *
+ * Parameters:
+ *   kernel: Function designator to a function that is defined with the kernel attribute.
+ *   options: Launch options
+ *   ...: Input and output allocations
+ */
+#if (defined(RS_VERSION) && (RS_VERSION >= 24))
+extern void
+    rsForEachWithOptions(rs_kernel kernel, rs_script_call_t* options, ...);
 #endif
 
 /*
