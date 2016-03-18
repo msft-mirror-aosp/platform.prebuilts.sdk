@@ -32,23 +32,6 @@ include $(BUILD_PREBUILT)
 ##################################
 include $(CLEAR_VARS)
 
-#
-# This is only for jack used as a library, this is not involved in the normal
-# dex build targets.
-#
-LOCAL_MODULE := jack
-LOCAL_SRC_FILES := jacks/jack-$(JACK_DEFAULT_VERSION).jar
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
 LOCAL_MODULE := jack
 LOCAL_SRC_FILES := jack
 LOCAL_MODULE_CLASS := EXECUTABLES
@@ -57,18 +40,6 @@ LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
 LOCAL_BUILT_MODULE_STEM := jack$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 LOCAL_REQUIRED_MODULES := jack-admin
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-LOCAL_MODULE := jill
-LOCAL_SRC_FILES := jill.jar
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jill$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
 
