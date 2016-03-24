@@ -15,7 +15,7 @@
 #
 LOCAL_PATH:= $(call my-dir)
 
-jack_server_version := 4.7.ALPHA
+jack_server_version := 4.8.ALPHA
 jack_server_jar := $(LOCAL_PATH)/jack-server-$(jack_server_version).jar
 
 

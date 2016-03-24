@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Version: 1.3-a7
+# Version: 1.3-a8
 #
 set -o nounset
 BASE_UMASK=$(umask)
@@ -86,16 +86,16 @@ handleHttpErrors() {
     echo "No Jack server running. Try 'jack-admin start-server'" >&2
     abort
   elif [ $1 -eq 35 ]; then
-    echo "SSL error when connecting to the Jack server" >&2
+    echo "SSL error when connecting to the Jack server. Try 'jack-diagnose'" >&2
     abort
   elif [ $1 -eq 58 ]; then
-    echo "Failed to contact Jack server: Problem reading ${JACK_HOME}/client.pem" >&2
+    echo "Failed to contact Jack server: Problem reading ${JACK_HOME}/client.pem. Try 'jack-diagnose'" >&2
     abort
   elif [ $1 -eq 60 ]; then
-    echo "Failed to authenticate Jack server certificate" >&2
+    echo "Failed to authenticate Jack server certificate. Try 'jack-diagnose'" >&2
     abort
    elif [ $1 -eq 77 ]; then
-    echo "Failed to contact Jack server: Problem reading ${JACK_HOME}/server.pem" >&2
+    echo "Failed to contact Jack server: Problem reading ${JACK_HOME}/server.pem. Try 'jack-diagnose'" >&2
     abort
   elif  [ $1 -eq 22 ]; then
     # Http code not OK, let's decode and abort
@@ -105,11 +105,11 @@ handleHttpErrors() {
       abort
     else
       # Other
-      echo "Internal unknown error ($2), try other ports or see Jack server log" >&2
+      echo "Internal unknown error ($2), try 'jack-diagnose' or see Jack server log" >&2
       abort
     fi
   else
-    echo "Communication error with Jack server $1" >&2
+    echo "Communication error with Jack server $1. Try 'jack-diagnose'" >&2
     abort
   fi
 }
@@ -170,13 +170,13 @@ isServerRunning () {
     else
       # In case of partial, timeout, empty response, network error, let's retry
       if [ $RETRY_SESSION -eq 0 ]; then
-        echo "Communication error with Jack server ($CURL_CODE), try other ports or see Jack server log"  >&2
+        echo "Communication error with Jack server ($CURL_CODE), try 'jack-diagnose' or see Jack server log"  >&2
         abort
       else
         if [ $(date +%s) -lt $DATE_TIMEOUT ]; then
           let RETRY_SESSION=RETRY_SESSION-1
         else
-          echo "Communication error with Jack server ($CURL_CODE), try other ports or see Jack server log"  >&2
+          echo "Communication error with Jack server ($CURL_CODE), try 'jack-diagnose' or see Jack server log"  >&2
           abort
         fi
       fi
@@ -201,7 +201,7 @@ waitServerStarted () {
     CURL_CODE=$?
     if [ $CURL_CODE -eq 7 ] || [ $CURL_CODE -eq 35 ] || [ $CURL_CODE -eq 58 ] || [ $CURL_CODE -eq 60 ] || [ $CURL_CODE -eq 77 ]; then
       if [ $(date +%s) -ge $DATE_TIMEOUT ]; then
-        echo "Jack server failed to (re)start, see Jack server log" >&2
+        echo "Jack server failed to (re)start, try 'jack-diagnose' or see Jack server log" >&2
         abort
       else
         sleep 1
@@ -441,12 +441,17 @@ case $COMMAND in
 
 
   start-server)
+    if [ ! -d "$JACK_HOME" ]; then
+      echo "Jack server installation not found" >&2
+      abort
+    fi
+
     isServerRunning
     RUNNING=$?
     if [ "$RUNNING" = 0 ]; then
       echo "Server is already running"
     else
-      JACK_SERVER_COMMAND="java -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"
+      JACK_SERVER_COMMAND="java -XX:MaxJavaStackTraceDepth=-1 -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"
       echo "Launching Jack server" $JACK_SERVER_COMMAND
       (
         trap "" SIGHUP
@@ -471,7 +476,7 @@ case $COMMAND in
       COUNT=$4
     elif [ $# -eq 2 ]
     then
-      COUNT=2
+      COUNT=5
       if [ \( "$2" = "ERROR" \) -o \( "$2" = "WARNING" \) ]
       then
         LIMIT=1048576
@@ -534,7 +539,7 @@ case $COMMAND in
       abort
     fi
 
-    echo "Creating report"
+    echo "Creating report..."
     REPORT="jack-report.$$.zip"
     REPORT_PATH="$(pwd)/$REPORT"
     REPORT_INFO="$JACK_HOME/report.$$.txt"
@@ -546,52 +551,61 @@ case $COMMAND in
 
     trap 'rm -f "$REPORT_INFO" 2>/dev/null;' EXIT
 
-    echo "Dumping Jack server stacks"
+    date >>"$REPORT_INFO" 2>&1
+
+    echo "Dumping Jack server stacks..."
     echo >>"$REPORT_INFO"
     echo "\$ ps -A -o \"pid args\" | grep $LAUNCHER_NAME | grep -v grep | awk '{print $1}' |  xargs kill -3" >>"$REPORT_INFO"
             (ps -A -o  "pid args"  | grep $LAUNCHER_NAME | grep -v grep | awk '{print $1}' |  xargs kill -3) >>"$REPORT_INFO" 2>&1
 
-    echo "Collecting info to '$REPORT_INFO'"
-    date >>"$REPORT_INFO" 2>&1
-
-    echo "Getting current user id"
+    echo "Getting current user id..."
     echo >>"$REPORT_INFO"
     echo "\$ id -u" >>"$REPORT_INFO"
              id -u  >>"$REPORT_INFO"
 
-    echo "Listing Jack server process"
+    echo "Listing Jack server process..."
     echo >>"$REPORT_INFO"
     echo "\$ ps -A -o \"uid pid args\" | grep $LAUNCHER_NAME | grep -v grep" >>"$REPORT_INFO"
             (ps -A -o  "uid pid args"  | grep $LAUNCHER_NAME | grep -v grep) >>"$REPORT_INFO" 2>&1
 
-    echo "Listing process using Jack server service port $SERVER_PORT_SERVICE"
+    echo "Listing process using Jack server service port $SERVER_PORT_SERVICE..."
     echo >>"$REPORT_INFO"
     echo "\$ lsof -i TCP:$SERVER_PORT_SERVICE -l" >>"$REPORT_INFO"
              lsof -i TCP:$SERVER_PORT_SERVICE -l  >>"$REPORT_INFO" 2>&1
 
-    echo "Listing process using Jack server admin port $SERVER_PORT_ADMIN"
+    echo "Listing process using Jack server admin port $SERVER_PORT_ADMIN..."
     echo >>"$REPORT_INFO"
     echo "\$ lsof -i TCP:$SERVER_PORT_ADMIN -l" >>"$REPORT_INFO"
              lsof -i TCP:$SERVER_PORT_ADMIN -l  >>"$REPORT_INFO" 2>&1
 
-    echo "Collecting Jack client configuration '$CLIENT_SETTING'"
+    echo "Collecting Jack client configuration..."
     echo >>"$REPORT_INFO"
     echo "\$ cat \"\$CLIENT_SETTING\"" >>"$REPORT_INFO"
              cat   "$CLIENT_SETTING"   >>"$REPORT_INFO" 2>&1
 
-    echo "Listing Jack server installation dir '$JACK_HOME'"
+    echo "Listing Jack server installation dir..."
     echo >>"$REPORT_INFO"
     echo "\$ cd \"\$JACK_HOME\"; ls -l -R -n ." >>"$REPORT_INFO"
             (cd   "$JACK_HOME" ; ls -l -R -n .  >>"$REPORT_INFO" 2>&1)
 
-    echo "Collecting Jack server stats"
+    echo "Collecting curl version..."
+    echo >>"$REPORT_INFO"
+    echo "\$ curl --version" >>"$REPORT_INFO"
+             curl --version  >>"$REPORT_INFO" 2>&1
+
+    echo "Collecting curl connection info..."
+    echo >>"$REPORT_INFO"
+    echo "\$ JACK_EXTRA_CURL_OPTIONS=-v jack-admin list server" >>"$REPORT_INFO"
+             JACK_EXTRA_CURL_OPTIONS=-v "$0"       list server  >>"$REPORT_INFO" 2>&1
+
+    echo "Collecting Jack server stats..."
     echo >>"$REPORT_INFO"
     echo "\$ jack-admin server-stat" >>"$REPORT_INFO"
              "$0"       server-stat  >>"$REPORT_INFO" 2>&1
 
-    echo "Zipping Jack server installation dir '$JACK_HOME' except keys and certificates"
+    echo "Zipping Jack server installation dir except keys and certificates..."
     (cd "$JACK_HOME"; zip --exclude \*.pem \*.jks --recurse-paths "$REPORT_PATH" .) >/dev/null
-    echo "Jack server report saved in '$REPORT'. Consider reviewing content before publication"
+    echo "Jack server report saved in '$REPORT'. Consider reviewing content before publishing."
     exit 0 ;;
 
 
