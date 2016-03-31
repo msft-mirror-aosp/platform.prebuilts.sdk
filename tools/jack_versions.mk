@@ -13,11 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+LOCAL_PATH:= $(call my-dir)
+
+jack_jar_tools := $(LOCAL_PATH)/jack-jar-tools.jar
+jack_eng_jar := $(LOCAL_PATH)/jacks/jack.jar
 
 JACK_STABLE_VERSION := 3.26.ALPHA
 JACK_DOGFOOD_VERSION := 4.1.PRE_ALPHA
 JACK_SDKTOOL_VERSION := 3.26.ALPHA
 JACK_LANG_DEV_VERSION := 3.26.ALPHA
+ifneq ("$(wildcard $(jack_eng_jar))","")
+JACK_ENGINEERING_VERSION := $(shell java -jar $(jack_jar_tools) --version-code jack $(jack_eng_jar))
+endif
 
 ifneq ($(ANDROID_JACK_DEFAULT_VERSION),)
 JACK_DEFAULT_VERSION := $(JACK_$(ANDROID_JACK_DEFAULT_VERSION)_VERSION)
