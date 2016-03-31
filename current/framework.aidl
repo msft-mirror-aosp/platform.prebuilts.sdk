@@ -54,6 +54,7 @@ parcelable android.print.PrinterId;
 parcelable android.print.PrintJobInfo;
 parcelable android.print.PrinterInfo;
 parcelable android.print.PrintJobId;
+parcelable android.printservice.recommendation.RecommendationInfo;
 parcelable android.hardware.usb.UsbDevice;
 parcelable android.hardware.usb.UsbInterface;
 parcelable android.hardware.usb.UsbEndpoint;
