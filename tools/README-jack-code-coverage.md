@@ -26,8 +26,12 @@ The medatafile is located in `$ANDROID_BUILD_TOP/out/target/common/obj/APPS/Sett
 Once the application is instrumented, you can install it and execute it to produce code coverage
 execution file.
 
-You can define class name filters (see below) by passing extra Jack properties through the
-`LOCAL_JACK_FLAGS` variable of your module in an Android.mk file.
+You can define class name filters to select which classes will be instrumented (all classes are
+instrumented by default) by defining the following build variables:
+* `LOCAL_JACK_COVERAGE_INCLUDE_FILTER`: a comma-separated list of class names to include
+* `LOCAL_JACK_COVERAGE_EXCLUDE_FILTER`: a comma-separated list of class names to exclude
+These filters will be passed on the Jack command-line (see below) only when code coverage is
+enabled.
 
 ### Using Jack command-line
 
