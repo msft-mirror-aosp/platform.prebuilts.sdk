@@ -19,7 +19,7 @@
 /*
  * rs_convert.rsh: Conversion Functions
  *
- * The functions below convert from a numerical vector type to another, of from one color
+ * The functions below convert from a numerical vector type to another, or from one color
  * representation to another.
  */
 
@@ -1244,6 +1244,21 @@ extern ulong3 __attribute__((const, overloadable))
 #if (defined(RS_VERSION) && (RS_VERSION >= 21))
 extern ulong4 __attribute__((const, overloadable))
     convert_ulong4(uint4 v);
+#endif
+
+#if (defined(RS_VERSION) && (RS_VERSION >= 24))
+extern half2 __attribute__((const, overloadable))
+    convert_half2(half2 v);
+#endif
+
+#if (defined(RS_VERSION) && (RS_VERSION >= 24))
+extern half3 __attribute__((const, overloadable))
+    convert_half3(half3 v);
+#endif
+
+#if (defined(RS_VERSION) && (RS_VERSION >= 24))
+extern half4 __attribute__((const, overloadable))
+    convert_half4(half4 v);
 #endif
 
 #if (defined(RS_VERSION) && (RS_VERSION >= 24))
