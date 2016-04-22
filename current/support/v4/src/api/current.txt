@@ -67,6 +67,7 @@ package android.support.v4.app {
     method public static boolean shouldShowRequestPermissionRationale(android.app.Activity, java.lang.String);
     method public static void startActivity(android.app.Activity, android.content.Intent, android.os.Bundle);
     method public static void startActivityForResult(android.app.Activity, android.content.Intent, int, android.os.Bundle);
+    method public static void startIntentSenderForResult(android.app.Activity, android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public static void startPostponedEnterTransition(android.app.Activity);
   }
 
@@ -104,13 +105,19 @@ package android.support.v4.app {
     field public static final int MODE_IGNORED = 1; // 0x1
   }
 
-   abstract class BaseFragmentActivityApi24 extends android.support.v4.app.BaseFragmentActivityHoneycomb {
+   abstract class BaseFragmentActivityApi24 extends android.support.v4.app.BaseFragmentActivityJB {
   }
 
    abstract class BaseFragmentActivityDonut extends android.app.Activity {
   }
 
-   abstract class BaseFragmentActivityHoneycomb extends android.support.v4.app.BaseFragmentActivityDonut {
+   abstract class BaseFragmentActivityEclair extends android.support.v4.app.BaseFragmentActivityDonut {
+  }
+
+   abstract class BaseFragmentActivityHoneycomb extends android.support.v4.app.BaseFragmentActivityEclair {
+  }
+
+   abstract class BaseFragmentActivityJB extends android.support.v4.app.BaseFragmentActivityHoneycomb {
   }
 
   public final class BundleCompat {
@@ -237,6 +244,7 @@ package android.support.v4.app {
     method public void startActivity(android.content.Intent, android.os.Bundle);
     method public void startActivityForResult(android.content.Intent, int);
     method public void startActivityForResult(android.content.Intent, int, android.os.Bundle);
+    method public void startIntentSenderForResult(android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public void unregisterForContextMenu(android.view.View);
   }
 
@@ -265,6 +273,7 @@ package android.support.v4.app {
     method public final void setSupportMediaController(android.support.v4.media.session.MediaControllerCompat);
     method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
     method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int, android.os.Bundle);
+    method public void startIntentSenderFromFragment(android.support.v4.app.Fragment, android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public void supportFinishAfterTransition();
     method public void supportInvalidateOptionsMenu();
     method public void supportPostponeEnterTransition();
@@ -335,6 +344,7 @@ package android.support.v4.app {
     method public boolean onShouldShowRequestPermissionRationale(java.lang.String);
     method public void onStartActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
     method public void onStartActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int, android.os.Bundle);
+    method public void onStartIntentSenderFromFragment(android.support.v4.app.Fragment, android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public void onSupportInvalidateOptionsMenu();
   }
 
@@ -501,6 +511,7 @@ package android.support.v4.app {
     field public static final java.lang.String CATEGORY_PROGRESS = "progress";
     field public static final java.lang.String CATEGORY_PROMO = "promo";
     field public static final java.lang.String CATEGORY_RECOMMENDATION = "recommendation";
+    field public static final java.lang.String CATEGORY_REMINDER = "reminder";
     field public static final java.lang.String CATEGORY_SERVICE = "service";
     field public static final java.lang.String CATEGORY_SOCIAL = "social";
     field public static final java.lang.String CATEGORY_STATUS = "status";
@@ -1312,7 +1323,11 @@ package android.support.v4.media {
     method public android.support.v4.media.session.MediaSessionCompat.Token getSessionToken();
     method public boolean isConnected();
     method public void subscribe(java.lang.String, android.support.v4.media.MediaBrowserCompat.SubscriptionCallback);
+    method public void subscribe(java.lang.String, android.os.Bundle, android.support.v4.media.MediaBrowserCompat.SubscriptionCallback);
     method public void unsubscribe(java.lang.String);
+    method public void unsubscribe(java.lang.String, android.support.v4.media.MediaBrowserCompat.SubscriptionCallback);
+    field public static final java.lang.String EXTRA_PAGE = "android.media.browse.extra.PAGE";
+    field public static final java.lang.String EXTRA_PAGE_SIZE = "android.media.browse.extra.PAGE_SIZE";
   }
 
   public static class MediaBrowserCompat.ConnectionCallback {
@@ -1345,7 +1360,9 @@ package android.support.v4.media {
   public static abstract class MediaBrowserCompat.SubscriptionCallback {
     ctor public MediaBrowserCompat.SubscriptionCallback();
     method public void onChildrenLoaded(java.lang.String, java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>);
+    method public void onChildrenLoaded(java.lang.String, java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>, android.os.Bundle);
     method public void onError(java.lang.String);
+    method public void onError(java.lang.String, android.os.Bundle);
   }
 
   public abstract class MediaBrowserServiceCompat extends android.app.Service {
@@ -1353,9 +1370,11 @@ package android.support.v4.media {
     method public void dump(java.io.FileDescriptor, java.io.PrintWriter, java.lang.String[]);
     method public android.support.v4.media.session.MediaSessionCompat.Token getSessionToken();
     method public void notifyChildrenChanged(java.lang.String);
+    method public void notifyChildrenChanged(java.lang.String, android.os.Bundle);
     method public android.os.IBinder onBind(android.content.Intent);
     method public abstract android.support.v4.media.MediaBrowserServiceCompat.BrowserRoot onGetRoot(java.lang.String, int, android.os.Bundle);
     method public abstract void onLoadChildren(java.lang.String, android.support.v4.media.MediaBrowserServiceCompat.Result<java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>>);
+    method public void onLoadChildren(java.lang.String, android.support.v4.media.MediaBrowserServiceCompat.Result<java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>>, android.os.Bundle);
     method public void onLoadItem(java.lang.String, android.support.v4.media.MediaBrowserServiceCompat.Result<android.support.v4.media.MediaBrowserCompat.MediaItem>);
     method public void setSessionToken(android.support.v4.media.session.MediaSessionCompat.Token);
     field public static final java.lang.String SERVICE_INTERFACE = "android.media.browse.MediaBrowserService";
@@ -2606,7 +2625,9 @@ package android.support.v4.view {
     method public static boolean hasPointerCapture(android.view.View);
     method public static boolean hasTransientState(android.view.View);
     method public static boolean isAttachedToWindow(android.view.View);
+    method public static boolean isInLayout(android.view.View);
     method public static boolean isLaidOut(android.view.View);
+    method public static boolean isLayoutDirectionResolved(android.view.View);
     method public static boolean isNestedScrollingEnabled(android.view.View);
     method public static boolean isOpaque(android.view.View);
     method public static boolean isPaddingRelative(android.view.View);
@@ -2663,6 +2684,7 @@ package android.support.v4.view {
     method public static void setTranslationZ(android.view.View, float);
     method public static void setX(android.view.View, float);
     method public static void setY(android.view.View, float);
+    method public static void setZ(android.view.View, float);
     method public static boolean startNestedScroll(android.view.View, int);
     method public static void stopNestedScroll(android.view.View);
     field public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE = 2; // 0x2

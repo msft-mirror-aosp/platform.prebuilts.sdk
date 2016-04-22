@@ -181,3 +181,4 @@ parcelable android.bluetooth.BluetoothDevice;
 parcelable android.database.CursorWindow;
 parcelable android.service.quicksettings.Tile;
 parcelable android.os.PersistableBundle;
+parcelable android.net.UidRange;
