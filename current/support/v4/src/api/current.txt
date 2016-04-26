@@ -781,6 +781,7 @@ package android.support.v4.app {
     method public int getCustomSizePreset();
     method public android.app.PendingIntent getDisplayIntent();
     method public int getGravity();
+    method public boolean getHintAmbientBigPicture();
     method public boolean getHintAvoidBackgroundClipping();
     method public boolean getHintContentIntentLaunchesActivity();
     method public boolean getHintHideIcon();
@@ -797,6 +798,7 @@ package android.support.v4.app {
     method public android.support.v4.app.NotificationCompat.WearableExtender setCustomSizePreset(int);
     method public android.support.v4.app.NotificationCompat.WearableExtender setDisplayIntent(android.app.PendingIntent);
     method public android.support.v4.app.NotificationCompat.WearableExtender setGravity(int);
+    method public android.support.v4.app.NotificationCompat.WearableExtender setHintAmbientBigPicture(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setHintAvoidBackgroundClipping(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setHintContentIntentLaunchesActivity(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setHintHideIcon(boolean);
@@ -1368,6 +1370,7 @@ package android.support.v4.media {
   public abstract class MediaBrowserServiceCompat extends android.app.Service {
     ctor public MediaBrowserServiceCompat();
     method public void dump(java.io.FileDescriptor, java.io.PrintWriter, java.lang.String[]);
+    method public final android.os.Bundle getBrowserRootHints();
     method public android.support.v4.media.session.MediaSessionCompat.Token getSessionToken();
     method public void notifyChildrenChanged(java.lang.String);
     method public void notifyChildrenChanged(java.lang.String, android.os.Bundle);
@@ -3503,7 +3506,7 @@ package android.support.v4.widget {
 
   public abstract class ResourceCursorAdapter extends android.support.v4.widget.CursorAdapter {
     ctor public deprecated ResourceCursorAdapter(android.content.Context, int, android.database.Cursor);
-    ctor public ResourceCursorAdapter(android.content.Context, int, android.database.Cursor, boolean);
+    ctor public deprecated ResourceCursorAdapter(android.content.Context, int, android.database.Cursor, boolean);
     ctor public ResourceCursorAdapter(android.content.Context, int, android.database.Cursor, int);
     method public android.view.View newView(android.content.Context, android.database.Cursor, android.view.ViewGroup);
     method public void setDropDownViewResource(int);
