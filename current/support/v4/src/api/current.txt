@@ -728,6 +728,7 @@ package android.support.v4.app {
     method public void addCompatExtras(android.os.Bundle);
     method public android.support.v4.app.NotificationCompat.MessagingStyle addMessage(java.lang.CharSequence, long, java.lang.CharSequence);
     method public android.support.v4.app.NotificationCompat.MessagingStyle addMessage(android.support.v4.app.NotificationCompat.MessagingStyle.Message);
+    method public static android.support.v4.app.NotificationCompat.MessagingStyle extractMessagingStyleFromNotification(android.app.Notification);
     method public boolean getAllowGeneratedReplies();
     method public java.lang.CharSequence getConversationTitle();
     method public java.util.List<android.support.v4.app.NotificationCompat.MessagingStyle.Message> getMessages();
@@ -739,19 +740,12 @@ package android.support.v4.app {
 
   public static final class NotificationCompat.MessagingStyle.Message {
     ctor public NotificationCompat.MessagingStyle.Message(java.lang.CharSequence, long, java.lang.CharSequence);
-    ctor public NotificationCompat.MessagingStyle.Message(android.os.Bundle);
     method public java.lang.String getDataMimeType();
     method public android.net.Uri getDataUri();
     method public java.lang.CharSequence getSender();
     method public java.lang.CharSequence getText();
     method public long getTimestamp();
     method public android.support.v4.app.NotificationCompat.MessagingStyle.Message setData(java.lang.String, android.net.Uri);
-    method public android.os.Bundle toBundle();
-    field public static final java.lang.String KEY_DATA_MIME_TYPE = "type";
-    field public static final java.lang.String KEY_DATA_URI = "uri";
-    field public static final java.lang.String KEY_SENDER = "sender";
-    field public static final java.lang.String KEY_TEXT = "text";
-    field public static final java.lang.String KEY_TIMESTAMP = "time";
   }
 
   public static abstract class NotificationCompat.Style {
@@ -2206,6 +2200,17 @@ package android.support.v4.util {
 
 package android.support.v4.view {
 
+  public abstract class AbsSavedState implements android.os.Parcelable {
+    ctor protected AbsSavedState(android.os.Parcelable);
+    ctor protected AbsSavedState(android.os.Parcel);
+    ctor protected AbsSavedState(android.os.Parcel, java.lang.ClassLoader);
+    method public int describeContents();
+    method public final android.os.Parcelable getSuperState();
+    method public void writeToParcel(android.os.Parcel, int);
+    field public static final android.os.Parcelable.Creator<android.support.v4.view.AbsSavedState> CREATOR;
+    field public static final android.support.v4.view.AbsSavedState EMPTY_STATE;
+  }
+
   public class AccessibilityDelegateCompat {
     ctor public AccessibilityDelegateCompat();
     method public boolean dispatchPopulateAccessibilityEvent(android.view.View, android.view.accessibility.AccessibilityEvent);
@@ -2742,6 +2747,7 @@ package android.support.v4.view {
   public class ViewPager extends android.view.ViewGroup {
     ctor public ViewPager(android.content.Context);
     ctor public ViewPager(android.content.Context, android.util.AttributeSet);
+    method public void addOnAdapterChangeListener(android.support.v4.view.ViewPager.OnAdapterChangeListener);
     method public void addOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener);
     method public boolean arrowScroll(int);
     method public boolean beginFakeDrag();
@@ -2759,6 +2765,7 @@ package android.support.v4.view {
     method protected void onPageScrolled(int, float, int);
     method public void onRestoreInstanceState(android.os.Parcelable);
     method public android.os.Parcelable onSaveInstanceState();
+    method public void removeOnAdapterChangeListener(android.support.v4.view.ViewPager.OnAdapterChangeListener);
     method public void removeOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener);
     method public void setAdapter(android.support.v4.view.PagerAdapter);
     method public void setCurrentItem(int);
@@ -2774,11 +2781,18 @@ package android.support.v4.view {
     field public static final int SCROLL_STATE_SETTLING = 2; // 0x2
   }
 
+  public static abstract class ViewPager.DecorView implements java.lang.annotation.Annotation {
+  }
+
   public static class ViewPager.LayoutParams extends android.view.ViewGroup.LayoutParams {
     ctor public ViewPager.LayoutParams();
     ctor public ViewPager.LayoutParams(android.content.Context, android.util.AttributeSet);
     field public int gravity;
     field public boolean isDecor;
+  }
+
+  public static abstract interface ViewPager.OnAdapterChangeListener {
+    method public abstract void onAdapterChanged(android.support.v4.view.ViewPager, android.support.v4.view.PagerAdapter, android.support.v4.view.PagerAdapter);
   }
 
   public static abstract interface ViewPager.OnPageChangeListener {
@@ -2791,7 +2805,7 @@ package android.support.v4.view {
     method public abstract void transformPage(android.view.View, float);
   }
 
-  public static class ViewPager.SavedState extends android.view.View.BaseSavedState {
+  public static class ViewPager.SavedState extends android.support.v4.view.AbsSavedState {
     ctor public ViewPager.SavedState(android.os.Parcelable);
     field public static final android.os.Parcelable.Creator<android.support.v4.view.ViewPager.SavedState> CREATOR;
   }
@@ -3400,8 +3414,8 @@ package android.support.v4.widget {
     field public int gravity;
   }
 
-  protected static class DrawerLayout.SavedState extends android.view.View.BaseSavedState {
-    ctor public DrawerLayout.SavedState(android.os.Parcel);
+  protected static class DrawerLayout.SavedState extends android.support.v4.view.AbsSavedState {
+    ctor public DrawerLayout.SavedState(android.os.Parcel, java.lang.ClassLoader);
     ctor public DrawerLayout.SavedState(android.os.Parcelable);
     field public static final android.os.Parcelable.Creator<android.support.v4.widget.DrawerLayout.SavedState> CREATOR;
   }
