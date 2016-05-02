@@ -81,6 +81,7 @@ parcelable android.net.LinkProperties;
 parcelable android.net.Uri;
 parcelable android.net.NetworkRequest;
 parcelable android.net.LinkAddress;
+parcelable android.util.MemoryIntArray;
 parcelable android.view.Display.Mode;
 parcelable android.view.InputDevice;
 parcelable android.view.InputEvent;
