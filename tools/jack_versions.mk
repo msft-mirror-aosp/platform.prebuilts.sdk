@@ -18,10 +18,10 @@ LOCAL_PATH:= $(call my-dir)
 jack_jar_tools := $(LOCAL_PATH)/jack-jar-tools.jar
 jack_eng_jar := $(LOCAL_PATH)/jacks/jack.jar
 
-JACK_STABLE_VERSION := 3.33.CANDIDATE
+JACK_STABLE_VERSION := 3.34.CANDIDATE
 JACK_DOGFOOD_VERSION := 4.1.PRE_ALPHA
-JACK_SDKTOOL_VERSION := 3.33.CANDIDATE
-JACK_LANG_DEV_VERSION := 3.33.CANDIDATE
+JACK_SDKTOOL_VERSION := 3.34.CANDIDATE
+JACK_LANG_DEV_VERSION := 3.34.CANDIDATE
 ifneq ("$(wildcard $(jack_eng_jar))","")
 JACK_ENGINEERING_VERSION := $(shell java -jar $(jack_jar_tools) --version-code jack $(jack_eng_jar))
 endif
