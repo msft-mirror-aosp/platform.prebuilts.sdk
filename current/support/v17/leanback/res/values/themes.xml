@@ -48,11 +48,13 @@
 
         <item name="headersVerticalGridStyle">@style/Widget.Leanback.Headers.VerticalGridView</item>
         <item name="headerStyle">@style/Widget.Leanback.Header</item>
+        <item name="sectionHeaderStyle">@style/Widget.Leanback.Header.Section</item>
 
         <item name="rowsVerticalGridStyle">@style/Widget.Leanback.Rows.VerticalGridView</item>
         <item name="rowHorizontalGridStyle">@style/Widget.Leanback.Row.HorizontalGridView</item>
         <item name="itemsVerticalGridStyle">@style/Widget.Leanback.GridItems.VerticalGridView</item>
 
+        <item name="browseTitleViewLayout">@layout/lb_browse_title</item>
         <item name="browseTitleTextStyle">@style/Widget.Leanback.Title.Text</item>
         <item name="browseTitleIconStyle">@style/Widget.Leanback.Title.Icon</item>
         <item name="browseTitleViewStyle">@style/Widget.Leanback.TitleView</item>
@@ -72,13 +74,16 @@
         <!-- Attributes used for styling of a playback -->
         <item name="playbackPaddingStart">@dimen/lb_playback_controls_margin_start</item>
         <item name="playbackPaddingEnd">@dimen/lb_playback_controls_margin_end</item>
+        <item name="playbackMediaItemPaddingStart">@dimen/lb_playback_media_row_horizontal_padding</item>
 
         <item name="playbackMediaListHeaderStyle">@style/Widget.Leanback.PlaybackMediaListHeaderStyle</item>
-        <item name="playbackMediaItemStyle">@style/Widget.Leanback.PlaybackMediaItemStyle</item>
+        <item name="playbackMediaItemRowStyle">@style/Widget.Leanback.PlaybackMediaItemRowStyle</item>
+        <item name="playbackMediaItemSeparatorStyle">@style/Widget.Leanback.PlaybackMediaItemSeparatorStyle</item>
         <item name="playbackMediaListHeaderTitleStyle">@style/Widget.Leanback.PlaybackMediaListHeaderTitleStyle</item>
-        <item name="playbackMediaItemTrackNumberStyle">@style/Widget.Leanback.PlaybackMediaItemTrackNumberStyle</item>
-        <item name="playbackMediaItemTrackNameStyle">@style/Widget.Leanback.PlaybackMediaItemTrackNameStyle</item>
-        <item name="playbackMediaItemTrackDurationStyle">@style/Widget.Leanback.PlaybackMediaItemTrackDurationStyle</item>
+        <item name="playbackMediaItemDetailsStyle">@style/Widget.Leanback.PlaybackMediaItemDetailsStyle</item>
+        <item name="playbackMediaItemNumberStyle">@style/Widget.Leanback.PlaybackMediaItemNumberStyle</item>
+        <item name="playbackMediaItemNameStyle">@style/Widget.Leanback.PlaybackMediaItemNameStyle</item>
+        <item name="playbackMediaItemDurationStyle">@style/Widget.Leanback.PlaybackMediaItemDurationStyle</item>
 
         <item name="playbackControlsButtonStyle">@style/Widget.Leanback.PlaybackControlsButtonStyle</item>
         <item name="playbackControlButtonLabelStyle">@style/Widget.Leanback.PlaybackControlLabelStyle</item>
@@ -88,10 +93,12 @@
 
         <item name="errorMessageStyle">@style/Widget.Leanback.ErrorMessageStyle</item>
 
-        <!-- TODO should be null, and set programatically to avoid dependence on leanback theme -->
-        <item name="defaultSearchColor">@null</item>
-        <item name="defaultSearchBrightColor">@null</item>
-        <item name="defaultSearchIcon">@null</item>
+        <item name="defaultSearchColor">@color/lb_default_search_color</item>
+        <item name="defaultSearchIconColor">@color/lb_default_search_icon_color</item>
+        <item name="defaultSearchBrightColor">?attr/defaultSearchColor</item>
+        <item name="defaultSearchIcon">@drawable/lb_ic_in_app_search</item>
+
+        <item name="defaultSectionHeaderColor">?attr/defaultSearchColor</item>
 
         <!-- android:windowSharedElementEnterTransition is kept for backward compatibility for apps still refer
         to Theme.Leanback, app should use Theme.Leanback.Details instead -->
@@ -181,6 +188,7 @@
         <item name="guidedActionTitleMaxLines">@integer/lb_guidedactions_item_title_max_lines</item>
         <item name="guidedActionDescriptionMinLines">@integer/lb_guidedactions_item_description_min_lines</item>
         <item name="guidedActionVerticalPadding">@dimen/lb_guidedactions_vertical_padding</item>
+        <item name="guidedStepKeyline">@string/lb_guidedstep_keyline</item>
     </style>
 
     <style name="Theme.Leanback.GuidedStep.Half" parent="Theme.Leanback.GuidedStep">
