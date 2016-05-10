@@ -67,6 +67,7 @@ package android.support.v4.app {
     method public static boolean shouldShowRequestPermissionRationale(android.app.Activity, java.lang.String);
     method public static void startActivity(android.app.Activity, android.content.Intent, android.os.Bundle);
     method public static void startActivityForResult(android.app.Activity, android.content.Intent, int, android.os.Bundle);
+    method public static void startIntentSenderForResult(android.app.Activity, android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public static void startPostponedEnterTransition(android.app.Activity);
   }
 
@@ -104,13 +105,19 @@ package android.support.v4.app {
     field public static final int MODE_IGNORED = 1; // 0x1
   }
 
-   abstract class BaseFragmentActivityApi24 extends android.support.v4.app.BaseFragmentActivityHoneycomb {
+   abstract class BaseFragmentActivityApi24 extends android.support.v4.app.BaseFragmentActivityJB {
   }
 
    abstract class BaseFragmentActivityDonut extends android.app.Activity {
   }
 
-   abstract class BaseFragmentActivityHoneycomb extends android.support.v4.app.BaseFragmentActivityDonut {
+   abstract class BaseFragmentActivityEclair extends android.support.v4.app.BaseFragmentActivityDonut {
+  }
+
+   abstract class BaseFragmentActivityHoneycomb extends android.support.v4.app.BaseFragmentActivityEclair {
+  }
+
+   abstract class BaseFragmentActivityJB extends android.support.v4.app.BaseFragmentActivityHoneycomb {
   }
 
   public final class BundleCompat {
@@ -237,6 +244,7 @@ package android.support.v4.app {
     method public void startActivity(android.content.Intent, android.os.Bundle);
     method public void startActivityForResult(android.content.Intent, int);
     method public void startActivityForResult(android.content.Intent, int, android.os.Bundle);
+    method public void startIntentSenderForResult(android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public void unregisterForContextMenu(android.view.View);
   }
 
@@ -265,6 +273,7 @@ package android.support.v4.app {
     method public final void setSupportMediaController(android.support.v4.media.session.MediaControllerCompat);
     method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
     method public void startActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int, android.os.Bundle);
+    method public void startIntentSenderFromFragment(android.support.v4.app.Fragment, android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public void supportFinishAfterTransition();
     method public void supportInvalidateOptionsMenu();
     method public void supportPostponeEnterTransition();
@@ -335,6 +344,7 @@ package android.support.v4.app {
     method public boolean onShouldShowRequestPermissionRationale(java.lang.String);
     method public void onStartActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int);
     method public void onStartActivityFromFragment(android.support.v4.app.Fragment, android.content.Intent, int, android.os.Bundle);
+    method public void onStartIntentSenderFromFragment(android.support.v4.app.Fragment, android.content.IntentSender, int, android.content.Intent, int, int, int, android.os.Bundle) throws android.content.IntentSender.SendIntentException;
     method public void onSupportInvalidateOptionsMenu();
   }
 
@@ -501,6 +511,7 @@ package android.support.v4.app {
     field public static final java.lang.String CATEGORY_PROGRESS = "progress";
     field public static final java.lang.String CATEGORY_PROMO = "promo";
     field public static final java.lang.String CATEGORY_RECOMMENDATION = "recommendation";
+    field public static final java.lang.String CATEGORY_REMINDER = "reminder";
     field public static final java.lang.String CATEGORY_SERVICE = "service";
     field public static final java.lang.String CATEGORY_SOCIAL = "social";
     field public static final java.lang.String CATEGORY_STATUS = "status";
@@ -514,15 +525,19 @@ package android.support.v4.app {
     field public static final java.lang.String EXTRA_BACKGROUND_IMAGE_URI = "android.backgroundImageUri";
     field public static final java.lang.String EXTRA_BIG_TEXT = "android.bigText";
     field public static final java.lang.String EXTRA_COMPACT_ACTIONS = "android.compactActions";
+    field public static final java.lang.String EXTRA_CONVERSATION_TITLE = "android.conversationTitle";
     field public static final java.lang.String EXTRA_INFO_TEXT = "android.infoText";
     field public static final java.lang.String EXTRA_LARGE_ICON = "android.largeIcon";
     field public static final java.lang.String EXTRA_LARGE_ICON_BIG = "android.largeIcon.big";
     field public static final java.lang.String EXTRA_MEDIA_SESSION = "android.mediaSession";
+    field public static final java.lang.String EXTRA_MESSAGES = "android.messages";
     field public static final java.lang.String EXTRA_PEOPLE = "android.people";
     field public static final java.lang.String EXTRA_PICTURE = "android.picture";
     field public static final java.lang.String EXTRA_PROGRESS = "android.progress";
     field public static final java.lang.String EXTRA_PROGRESS_INDETERMINATE = "android.progressIndeterminate";
     field public static final java.lang.String EXTRA_PROGRESS_MAX = "android.progressMax";
+    field public static final java.lang.String EXTRA_REMOTE_INPUT_HISTORY = "android.remoteInputHistory";
+    field public static final java.lang.String EXTRA_SELF_DISPLAY_NAME = "android.selfDisplayName";
     field public static final java.lang.String EXTRA_SHOW_CHRONOMETER = "android.showChronometer";
     field public static final java.lang.String EXTRA_SHOW_WHEN = "android.showWhen";
     field public static final java.lang.String EXTRA_SMALL_ICON = "android.icon";
@@ -557,6 +572,7 @@ package android.support.v4.app {
   public static class NotificationCompat.Action {
     ctor public NotificationCompat.Action(int, java.lang.CharSequence, android.app.PendingIntent);
     method public android.app.PendingIntent getActionIntent();
+    method public boolean getAllowGeneratedReplies();
     method public android.os.Bundle getExtras();
     method public int getIcon();
     method public android.support.v4.app.RemoteInput[] getRemoteInputs();
@@ -574,6 +590,7 @@ package android.support.v4.app {
     method public android.support.v4.app.NotificationCompat.Action build();
     method public android.support.v4.app.NotificationCompat.Action.Builder extend(android.support.v4.app.NotificationCompat.Action.Extender);
     method public android.os.Bundle getExtras();
+    method public android.support.v4.app.NotificationCompat.Action.Builder setAllowGeneratedReplies(boolean);
   }
 
   public static abstract interface NotificationCompat.Action.Extender {
@@ -648,6 +665,7 @@ package android.support.v4.app {
     method public android.support.v4.app.NotificationCompat.Builder setPriority(int);
     method public android.support.v4.app.NotificationCompat.Builder setProgress(int, int, boolean);
     method public android.support.v4.app.NotificationCompat.Builder setPublicVersion(android.app.Notification);
+    method public android.support.v4.app.NotificationCompat.Builder setRemoteInputHistory(java.lang.CharSequence[]);
     method public android.support.v4.app.NotificationCompat.Builder setShowWhen(boolean);
     method public android.support.v4.app.NotificationCompat.Builder setSmallIcon(int);
     method public android.support.v4.app.NotificationCompat.Builder setSmallIcon(int, int);
@@ -708,6 +726,29 @@ package android.support.v4.app {
     method public android.support.v4.app.NotificationCompat.InboxStyle setSummaryText(java.lang.CharSequence);
   }
 
+  public static class NotificationCompat.MessagingStyle extends android.support.v4.app.NotificationCompat.Style {
+    ctor public NotificationCompat.MessagingStyle(java.lang.CharSequence);
+    method public void addCompatExtras(android.os.Bundle);
+    method public android.support.v4.app.NotificationCompat.MessagingStyle addMessage(java.lang.CharSequence, long, java.lang.CharSequence);
+    method public android.support.v4.app.NotificationCompat.MessagingStyle addMessage(android.support.v4.app.NotificationCompat.MessagingStyle.Message);
+    method public static android.support.v4.app.NotificationCompat.MessagingStyle extractMessagingStyleFromNotification(android.app.Notification);
+    method public java.lang.CharSequence getConversationTitle();
+    method public java.util.List<android.support.v4.app.NotificationCompat.MessagingStyle.Message> getMessages();
+    method public java.lang.CharSequence getUserDisplayName();
+    method public android.support.v4.app.NotificationCompat.MessagingStyle setConversationTitle(java.lang.CharSequence);
+    field public static final int MAXIMUM_RETAINED_MESSAGES = 25; // 0x19
+  }
+
+  public static final class NotificationCompat.MessagingStyle.Message {
+    ctor public NotificationCompat.MessagingStyle.Message(java.lang.CharSequence, long, java.lang.CharSequence);
+    method public java.lang.String getDataMimeType();
+    method public android.net.Uri getDataUri();
+    method public java.lang.CharSequence getSender();
+    method public java.lang.CharSequence getText();
+    method public long getTimestamp();
+    method public android.support.v4.app.NotificationCompat.MessagingStyle.Message setData(java.lang.String, android.net.Uri);
+  }
+
   public static abstract class NotificationCompat.Style {
     ctor public NotificationCompat.Style();
     method public android.app.Notification build();
@@ -733,8 +774,10 @@ package android.support.v4.app {
     method public boolean getContentIntentAvailableOffline();
     method public int getCustomContentHeight();
     method public int getCustomSizePreset();
+    method public java.lang.String getDismissalId();
     method public android.app.PendingIntent getDisplayIntent();
     method public int getGravity();
+    method public boolean getHintAmbientBigPicture();
     method public boolean getHintAvoidBackgroundClipping();
     method public boolean getHintContentIntentLaunchesActivity();
     method public boolean getHintHideIcon();
@@ -749,8 +792,10 @@ package android.support.v4.app {
     method public android.support.v4.app.NotificationCompat.WearableExtender setContentIntentAvailableOffline(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setCustomContentHeight(int);
     method public android.support.v4.app.NotificationCompat.WearableExtender setCustomSizePreset(int);
+    method public android.support.v4.app.NotificationCompat.WearableExtender setDismissalId(java.lang.String);
     method public android.support.v4.app.NotificationCompat.WearableExtender setDisplayIntent(android.app.PendingIntent);
     method public android.support.v4.app.NotificationCompat.WearableExtender setGravity(int);
+    method public android.support.v4.app.NotificationCompat.WearableExtender setHintAmbientBigPicture(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setHintAvoidBackgroundClipping(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setHintContentIntentLaunchesActivity(boolean);
     method public android.support.v4.app.NotificationCompat.WearableExtender setHintHideIcon(boolean);
@@ -792,20 +837,11 @@ package android.support.v4.app {
     method public void cancelAll();
     method public static android.support.v4.app.NotificationManagerCompat from(android.content.Context);
     method public static java.util.Set<java.lang.String> getEnabledListenerPackages(android.content.Context);
+    method public int getImportance();
     method public void notify(int, android.app.Notification);
     method public void notify(java.lang.String, int, android.app.Notification);
     field public static final java.lang.String ACTION_BIND_SIDE_CHANNEL = "android.support.BIND_NOTIFICATION_SIDE_CHANNEL";
     field public static final java.lang.String EXTRA_USE_SIDE_CHANNEL = "android.support.useSideChannel";
-  }
-
-  public class NotificationManagerCompatApi24 {
-    ctor public NotificationManagerCompatApi24();
-    method public static boolean areNotificationsEnabled(android.app.NotificationManager);
-  }
-
-  public class NotificationManagerCompatKitKat {
-    ctor public NotificationManagerCompatKitKat();
-    method public static boolean areNotificationsEnabled(android.content.Context);
   }
 
   public final class RemoteInput extends android.support.v4.app.RemoteInputCompatBase.RemoteInput {
@@ -963,7 +999,7 @@ package android.support.v4.content {
     method public static final android.graphics.drawable.Drawable getDrawable(android.content.Context, int);
     method public static java.io.File[] getExternalCacheDirs(android.content.Context);
     method public static java.io.File[] getExternalFilesDirs(android.content.Context, java.lang.String);
-    method public final java.io.File getNoBackupFilesDir(android.content.Context);
+    method public static final java.io.File getNoBackupFilesDir(android.content.Context);
     method public static java.io.File[] getObbDirs(android.content.Context);
     method public static boolean isDeviceProtectedStorage(android.content.Context);
     method public static boolean startActivities(android.content.Context, android.content.Intent[]);
@@ -1277,7 +1313,11 @@ package android.support.v4.media {
     method public android.support.v4.media.session.MediaSessionCompat.Token getSessionToken();
     method public boolean isConnected();
     method public void subscribe(java.lang.String, android.support.v4.media.MediaBrowserCompat.SubscriptionCallback);
+    method public void subscribe(java.lang.String, android.os.Bundle, android.support.v4.media.MediaBrowserCompat.SubscriptionCallback);
     method public void unsubscribe(java.lang.String);
+    method public void unsubscribe(java.lang.String, android.support.v4.media.MediaBrowserCompat.SubscriptionCallback);
+    field public static final java.lang.String EXTRA_PAGE = "android.media.browse.extra.PAGE";
+    field public static final java.lang.String EXTRA_PAGE_SIZE = "android.media.browse.extra.PAGE_SIZE";
   }
 
   public static class MediaBrowserCompat.ConnectionCallback {
@@ -1310,17 +1350,22 @@ package android.support.v4.media {
   public static abstract class MediaBrowserCompat.SubscriptionCallback {
     ctor public MediaBrowserCompat.SubscriptionCallback();
     method public void onChildrenLoaded(java.lang.String, java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>);
+    method public void onChildrenLoaded(java.lang.String, java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>, android.os.Bundle);
     method public void onError(java.lang.String);
+    method public void onError(java.lang.String, android.os.Bundle);
   }
 
   public abstract class MediaBrowserServiceCompat extends android.app.Service {
     ctor public MediaBrowserServiceCompat();
     method public void dump(java.io.FileDescriptor, java.io.PrintWriter, java.lang.String[]);
+    method public final android.os.Bundle getBrowserRootHints();
     method public android.support.v4.media.session.MediaSessionCompat.Token getSessionToken();
     method public void notifyChildrenChanged(java.lang.String);
+    method public void notifyChildrenChanged(java.lang.String, android.os.Bundle);
     method public android.os.IBinder onBind(android.content.Intent);
     method public abstract android.support.v4.media.MediaBrowserServiceCompat.BrowserRoot onGetRoot(java.lang.String, int, android.os.Bundle);
     method public abstract void onLoadChildren(java.lang.String, android.support.v4.media.MediaBrowserServiceCompat.Result<java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>>);
+    method public void onLoadChildren(java.lang.String, android.support.v4.media.MediaBrowserServiceCompat.Result<java.util.List<android.support.v4.media.MediaBrowserCompat.MediaItem>>, android.os.Bundle);
     method public void onLoadItem(java.lang.String, android.support.v4.media.MediaBrowserServiceCompat.Result<android.support.v4.media.MediaBrowserCompat.MediaItem>);
     method public void setSessionToken(android.support.v4.media.session.MediaSessionCompat.Token);
     field public static final java.lang.String SERVICE_INTERFACE = "android.media.browse.MediaBrowserService";
@@ -2149,6 +2194,17 @@ package android.support.v4.util {
 
 package android.support.v4.view {
 
+  public abstract class AbsSavedState implements android.os.Parcelable {
+    ctor protected AbsSavedState(android.os.Parcelable);
+    ctor protected AbsSavedState(android.os.Parcel);
+    ctor protected AbsSavedState(android.os.Parcel, java.lang.ClassLoader);
+    method public int describeContents();
+    method public final android.os.Parcelable getSuperState();
+    method public void writeToParcel(android.os.Parcel, int);
+    field public static final android.os.Parcelable.Creator<android.support.v4.view.AbsSavedState> CREATOR;
+    field public static final android.support.v4.view.AbsSavedState EMPTY_STATE;
+  }
+
   public class AccessibilityDelegateCompat {
     ctor public AccessibilityDelegateCompat();
     method public boolean dispatchPopulateAccessibilityEvent(android.view.View, android.view.accessibility.AccessibilityEvent);
@@ -2571,7 +2627,9 @@ package android.support.v4.view {
     method public static boolean hasPointerCapture(android.view.View);
     method public static boolean hasTransientState(android.view.View);
     method public static boolean isAttachedToWindow(android.view.View);
+    method public static boolean isInLayout(android.view.View);
     method public static boolean isLaidOut(android.view.View);
+    method public static boolean isLayoutDirectionResolved(android.view.View);
     method public static boolean isNestedScrollingEnabled(android.view.View);
     method public static boolean isOpaque(android.view.View);
     method public static boolean isPaddingRelative(android.view.View);
@@ -2628,6 +2686,7 @@ package android.support.v4.view {
     method public static void setTranslationZ(android.view.View, float);
     method public static void setX(android.view.View, float);
     method public static void setY(android.view.View, float);
+    method public static void setZ(android.view.View, float);
     method public static boolean startNestedScroll(android.view.View, int);
     method public static void stopNestedScroll(android.view.View);
     field public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE = 2; // 0x2
@@ -2682,6 +2741,7 @@ package android.support.v4.view {
   public class ViewPager extends android.view.ViewGroup {
     ctor public ViewPager(android.content.Context);
     ctor public ViewPager(android.content.Context, android.util.AttributeSet);
+    method public void addOnAdapterChangeListener(android.support.v4.view.ViewPager.OnAdapterChangeListener);
     method public void addOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener);
     method public boolean arrowScroll(int);
     method public boolean beginFakeDrag();
@@ -2699,6 +2759,7 @@ package android.support.v4.view {
     method protected void onPageScrolled(int, float, int);
     method public void onRestoreInstanceState(android.os.Parcelable);
     method public android.os.Parcelable onSaveInstanceState();
+    method public void removeOnAdapterChangeListener(android.support.v4.view.ViewPager.OnAdapterChangeListener);
     method public void removeOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener);
     method public void setAdapter(android.support.v4.view.PagerAdapter);
     method public void setCurrentItem(int);
@@ -2714,11 +2775,18 @@ package android.support.v4.view {
     field public static final int SCROLL_STATE_SETTLING = 2; // 0x2
   }
 
+  public static abstract class ViewPager.DecorView implements java.lang.annotation.Annotation {
+  }
+
   public static class ViewPager.LayoutParams extends android.view.ViewGroup.LayoutParams {
     ctor public ViewPager.LayoutParams();
     ctor public ViewPager.LayoutParams(android.content.Context, android.util.AttributeSet);
     field public int gravity;
     field public boolean isDecor;
+  }
+
+  public static abstract interface ViewPager.OnAdapterChangeListener {
+    method public abstract void onAdapterChanged(android.support.v4.view.ViewPager, android.support.v4.view.PagerAdapter, android.support.v4.view.PagerAdapter);
   }
 
   public static abstract interface ViewPager.OnPageChangeListener {
@@ -2731,7 +2799,7 @@ package android.support.v4.view {
     method public abstract void transformPage(android.view.View, float);
   }
 
-  public static class ViewPager.SavedState extends android.view.View.BaseSavedState {
+  public static class ViewPager.SavedState extends android.support.v4.view.AbsSavedState {
     ctor public ViewPager.SavedState(android.os.Parcelable);
     field public static final android.os.Parcelable.Creator<android.support.v4.view.ViewPager.SavedState> CREATOR;
   }
@@ -3340,8 +3408,8 @@ package android.support.v4.widget {
     field public int gravity;
   }
 
-  protected static class DrawerLayout.SavedState extends android.view.View.BaseSavedState {
-    ctor public DrawerLayout.SavedState(android.os.Parcel);
+  protected static class DrawerLayout.SavedState extends android.support.v4.view.AbsSavedState {
+    ctor public DrawerLayout.SavedState(android.os.Parcel, java.lang.ClassLoader);
     ctor public DrawerLayout.SavedState(android.os.Parcelable);
     field public static final android.os.Parcelable.Creator<android.support.v4.widget.DrawerLayout.SavedState> CREATOR;
   }
@@ -3446,7 +3514,7 @@ package android.support.v4.widget {
 
   public abstract class ResourceCursorAdapter extends android.support.v4.widget.CursorAdapter {
     ctor public deprecated ResourceCursorAdapter(android.content.Context, int, android.database.Cursor);
-    ctor public ResourceCursorAdapter(android.content.Context, int, android.database.Cursor, boolean);
+    ctor public deprecated ResourceCursorAdapter(android.content.Context, int, android.database.Cursor, boolean);
     ctor public ResourceCursorAdapter(android.content.Context, int, android.database.Cursor, int);
     method public android.view.View newView(android.content.Context, android.database.Cursor, android.view.ViewGroup);
     method public void setDropDownViewResource(int);
