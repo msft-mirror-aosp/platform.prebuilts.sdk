@@ -105,9 +105,6 @@ package android.support.v4.app {
     field public static final int MODE_IGNORED = 1; // 0x1
   }
 
-   abstract class BaseFragmentActivityApi24 extends android.support.v4.app.BaseFragmentActivityJB {
-  }
-
    abstract class BaseFragmentActivityDonut extends android.app.Activity {
   }
 
@@ -192,6 +189,7 @@ package android.support.v4.app {
     method public void onActivityResult(int, int, android.content.Intent);
     method public void onAttach(android.content.Context);
     method public deprecated void onAttach(android.app.Activity);
+    method public void onAttachFragment(android.support.v4.app.Fragment);
     method public void onConfigurationChanged(android.content.res.Configuration);
     method public boolean onContextItemSelected(android.view.MenuItem);
     method public void onCreate(android.os.Bundle);
@@ -258,7 +256,7 @@ package android.support.v4.app {
     field public static final android.os.Parcelable.Creator<android.support.v4.app.Fragment.SavedState> CREATOR;
   }
 
-  public class FragmentActivity extends android.support.v4.app.BaseFragmentActivityApi24 implements android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback {
+  public class FragmentActivity extends android.support.v4.app.BaseFragmentActivityJB implements android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback {
     ctor public FragmentActivity();
     method public java.lang.Object getLastCustomNonConfigurationInstance();
     method public android.support.v4.app.FragmentManager getSupportFragmentManager();
@@ -842,6 +840,13 @@ package android.support.v4.app {
     method public void notify(java.lang.String, int, android.app.Notification);
     field public static final java.lang.String ACTION_BIND_SIDE_CHANNEL = "android.support.BIND_NOTIFICATION_SIDE_CHANNEL";
     field public static final java.lang.String EXTRA_USE_SIDE_CHANNEL = "android.support.useSideChannel";
+    field public static final int IMPORTANCE_DEFAULT = 3; // 0x3
+    field public static final int IMPORTANCE_HIGH = 4; // 0x4
+    field public static final int IMPORTANCE_LOW = 2; // 0x2
+    field public static final int IMPORTANCE_MAX = 5; // 0x5
+    field public static final int IMPORTANCE_MIN = 1; // 0x1
+    field public static final int IMPORTANCE_NONE = 0; // 0x0
+    field public static final int IMPORTANCE_UNSPECIFIED = -1000; // 0xfffffc18
   }
 
   public final class RemoteInput extends android.support.v4.app.RemoteInputCompatBase.RemoteInput {
