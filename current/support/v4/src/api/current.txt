@@ -105,18 +105,6 @@ package android.support.v4.app {
     field public static final int MODE_IGNORED = 1; // 0x1
   }
 
-   abstract class BaseFragmentActivityDonut extends android.app.Activity {
-  }
-
-   abstract class BaseFragmentActivityEclair extends android.support.v4.app.BaseFragmentActivityDonut {
-  }
-
-   abstract class BaseFragmentActivityHoneycomb extends android.support.v4.app.BaseFragmentActivityEclair {
-  }
-
-   abstract class BaseFragmentActivityJB extends android.support.v4.app.BaseFragmentActivityHoneycomb {
-  }
-
   public final class BundleCompat {
     method public static android.os.IBinder getBinder(android.os.Bundle, java.lang.String);
     method public static void putBinder(android.os.Bundle, java.lang.String, android.os.IBinder);
@@ -256,7 +244,7 @@ package android.support.v4.app {
     field public static final android.os.Parcelable.Creator<android.support.v4.app.Fragment.SavedState> CREATOR;
   }
 
-  public class FragmentActivity extends android.support.v4.app.BaseFragmentActivityJB implements android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback {
+  public class FragmentActivity extends android.app.Activity implements android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback {
     ctor public FragmentActivity();
     method public java.lang.Object getLastCustomNonConfigurationInstance();
     method public android.support.v4.app.FragmentManager getSupportFragmentManager();
@@ -2632,7 +2620,6 @@ package android.support.v4.view {
     method public static boolean hasNestedScrollingParent(android.view.View);
     method public static boolean hasOnClickListeners(android.view.View);
     method public static boolean hasOverlappingRendering(android.view.View);
-    method public static boolean hasPointerCapture(android.view.View);
     method public static boolean hasTransientState(android.view.View);
     method public static boolean isAttachedToWindow(android.view.View);
     method public static boolean isInLayout(android.view.View);
@@ -2653,9 +2640,7 @@ package android.support.v4.view {
     method public static void postInvalidateOnAnimation(android.view.View, int, int, int, int);
     method public static void postOnAnimation(android.view.View, java.lang.Runnable);
     method public static void postOnAnimationDelayed(android.view.View, java.lang.Runnable, long);
-    method public static void releasePointerCapture(android.view.View);
     method public static void requestApplyInsets(android.view.View);
-    method public static void requestPointerCapture(android.view.View);
     method public static int resolveSizeAndState(int, int, int);
     method public static void setAccessibilityDelegate(android.view.View, android.support.v4.view.AccessibilityDelegateCompat);
     method public static void setAccessibilityLiveRegion(android.view.View, int);
@@ -2981,6 +2966,7 @@ package android.support.v4.view.accessibility {
     method public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.CollectionInfoCompat getCollectionInfo();
     method public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.CollectionItemInfoCompat getCollectionItemInfo();
     method public java.lang.CharSequence getContentDescription();
+    method public int getDrawingOrder();
     method public java.lang.CharSequence getError();
     method public android.os.Bundle getExtras();
     method public java.lang.Object getInfo();
@@ -3012,6 +2998,7 @@ package android.support.v4.view.accessibility {
     method public boolean isEnabled();
     method public boolean isFocusable();
     method public boolean isFocused();
+    method public boolean isImportantForAccessibility();
     method public boolean isLongClickable();
     method public boolean isMultiLine();
     method public boolean isPassword();
@@ -3042,11 +3029,13 @@ package android.support.v4.view.accessibility {
     method public void setContentDescription(java.lang.CharSequence);
     method public void setContentInvalid(boolean);
     method public void setDismissable(boolean);
+    method public void setDrawingOrder(int);
     method public void setEditable(boolean);
     method public void setEnabled(boolean);
     method public void setError(java.lang.CharSequence);
     method public void setFocusable(boolean);
     method public void setFocused(boolean);
+    method public void setImportantForAccessibility(boolean);
     method public void setInputType(int);
     method public void setLabelFor(android.view.View);
     method public void setLabelFor(android.view.View, int);
@@ -3232,6 +3221,7 @@ package android.support.v4.view.accessibility {
   }
 
   public class AccessibilityWindowInfoCompat {
+    method public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getAnchor();
     method public void getBoundsInScreen(android.graphics.Rect);
     method public android.support.v4.view.accessibility.AccessibilityWindowInfoCompat getChild(int);
     method public int getChildCount();
@@ -3239,6 +3229,7 @@ package android.support.v4.view.accessibility {
     method public int getLayer();
     method public android.support.v4.view.accessibility.AccessibilityWindowInfoCompat getParent();
     method public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getRoot();
+    method public java.lang.CharSequence getTitle();
     method public int getType();
     method public boolean isAccessibilityFocused();
     method public boolean isActive();
