@@ -215,8 +215,6 @@
         <attr name="selectableItemBackground" format="reference"/>
         <!-- Background drawable for borderless standalone items that need focus/pressed states. -->
         <attr name="selectableItemBackgroundBorderless" format="reference" />
-        <!-- Style for buttons without an explicit border, often used in groups. -->
-        <attr name="borderlessButtonStyle" format="reference" />
         <!-- A drawable that may be used as a vertical divider between visual elements. -->
         <attr name="dividerVertical" format="reference"/>
         <!-- A drawable that may be used as a horizontal divider between visual elements. -->
@@ -238,9 +236,6 @@
         <attr name="editTextColor" format="reference|color" />
         <!-- EditText background drawable. -->
         <attr name="editTextBackground" format="reference" />
-
-        <!-- ImageButton background drawable. -->
-        <attr name="imageButtonStyle" format="reference" />
 
         <!-- ============================ -->
         <!-- SearchView styles and assets -->
@@ -328,9 +323,6 @@
         <!-- The color applied to framework switch thumbs in their normal state. -->
         <attr name="colorSwitchThumbNormal" format="color" />
 
-        <!-- The background used by framework controls. -->
-        <attr name="controlBackground" format="reference" />
-
         <!-- ============ -->
         <!-- Alert Dialog styles -->
         <!-- ============ -->
@@ -374,12 +366,6 @@
         <attr name="radioButtonStyle" format="reference" />
         <!-- Default RatingBar style. -->
         <attr name="ratingBarStyle" format="reference" />
-        <!-- Indicator RatingBar style. -->
-        <attr name="ratingBarStyleIndicator" format="reference" />
-        <!-- Small indicator RatingBar style. -->
-        <attr name="ratingBarStyleSmall" format="reference" />
-        <!-- Default SeekBar style. -->
-        <attr name="seekBarStyle" format="reference" />
         <!-- Default Spinner style. -->
         <attr name="spinnerStyle" format="reference" />
         <!-- Default style for the Switch widget. -->
@@ -504,6 +490,7 @@
         <attr name="paddingStart" format="dimension"/>
         <!-- Sets the padding, in pixels, of the end edge; see {@link android.R.attr#padding}. -->
         <attr name="paddingEnd" format="dimension"/>
+
         <!-- Boolean that controls whether a view can take focus.  By default the user can not
              move focus to a view; by setting this attribute to true the view is
              allowed to take focus.  This value does not impact the behavior of
@@ -511,16 +498,15 @@
              always request focus regardless of this view.  It only impacts where
              focus navigation will try to move focus. -->
         <attr name="android:focusable" />
+
         <!-- Deprecated. -->
         <attr name="theme" format="reference" />
+
         <!-- Specifies a theme override for a view. When a theme override is set, the
              view will be inflated using a {@link android.content.Context} themed with
              the specified resource. -->
         <attr name="android:theme" />
-    </declare-styleable>
 
-    <declare-styleable name="ViewBackgroundHelper">
-        <attr name="android:background" />
         <!-- Tint to apply to the background. -->
         <attr name="backgroundTint" format="color" />
 
@@ -679,19 +665,64 @@
              for more info. -->
         <attr name="actionProviderClass" format="string" />
 
+        <!-- An optional tint for the item's icon -->
+        <attr name="iconTint" format="color" />
+
+        <!-- The blending mode used for tinting the item's icon -->
+        <attr name="iconTintMode">
+            <!-- The tint is drawn on top of the drawable.
+                 [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
+            <enum name="src_over" value="3" />
+            <!-- The tint is masked by the alpha channel of the drawable. The drawable’s
+                 color channels are thrown out. [Sa * Da, Sc * Da] -->
+            <enum name="src_in" value="5" />
+            <!-- The tint is drawn above the drawable, but with the drawable’s alpha
+                 channel masking the result. [Da, Sc * Da + (1 - Sa) * Dc] -->
+            <enum name="src_atop" value="9" />
+            <!-- Multiplies the color and alpha channels of the drawable with those of
+                 the tint. [Sa * Da, Sc * Dc] -->
+            <enum name="multiply" value="14" />
+            <!-- [Sa + Da - Sa * Da, Sc + Dc - Sc * Dc] -->
+            <enum name="screen" value="15" />
+            <!-- Combines the tint and drawable color and alpha channels, clamping the
+                 result to valid color values. Saturate(S + D). Only works on APIv 11+ -->
+            <enum name="add" value="16" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="Spinner">
         <!-- The prompt to display when the spinner's dialog is shown. -->
-        <attr name="android:prompt" />
-        <!-- Theme to use for the drop-down or dialog popup window. -->
-        <attr name="popupTheme" />
+        <attr name="prompt" format="reference" />
+        <!-- Display mode for spinner options. -->
+        <attr name="spinnerMode" format="enum">
+            <!-- Spinner options will be presented to the user as a dialog window. -->
+            <enum name="dialog" value="0" />
+            <!-- Spinner options will be presented to the user as an inline dropdown
+                 anchored to the spinner widget itself. -->
+            <enum name="dropdown" value="1" />
+        </attr>
+        <!-- List selector to use for spinnerMode="dropdown" display. -->
+        <attr name="android:dropDownSelector" />
         <!-- Background drawable to use for the dropdown in spinnerMode="dropdown". -->
         <attr name="android:popupBackground" />
+        <!-- Vertical offset from the spinner widget for positioning the dropdown in
+             spinnerMode="dropdown". -->
+        <attr name="android:dropDownVerticalOffset" />
+        <!-- Horizontal offset from the spinner widget for positioning the dropdown
+             in spinnerMode="dropdown". -->
+        <attr name="android:dropDownHorizontalOffset" />
         <!-- Width of the dropdown in spinnerMode="dropdown". -->
         <attr name="android:dropDownWidth" />
-        <!-- Reference to an array resource that will populate the Spinner. -->
-        <attr name="android:entries" />
+        <!-- Reference to a layout to use for displaying a prompt in the dropdown for
+             spinnerMode="dropdown". This layout must contain a TextView with the id
+             {@code @android:id/text1} to be populated with the prompt text. -->
+        <attr name="popupPromptView" format="reference" />
+        <!-- Gravity setting for positioning the currently selected item. -->
+        <attr name="android:gravity" />
+        <!-- Whether this spinner should mark child views as enabled/disabled when
+             the spinner itself is enabled/disabled. -->
+        <attr name="disableChildrenWhenDisabled" format="boolean" />
+        <attr name="android:background" />
     </declare-styleable>
 
     <declare-styleable name="SearchView">
@@ -801,39 +832,17 @@
         <attr name="title" />
         <attr name="subtitle" />
         <attr name="android:gravity" />
-        <!--  Specifies extra space on the left, start, right and end sides
-              of the toolbar's title. Margin values should be positive. -->
-        <attr name="titleMargin" format="dimension" />
-        <!--  Specifies extra space on the start side of the toolbar's title.
-              If both this attribute and titleMargin are specified, then this
-              attribute takes precedence. Margin values should be positive. -->
-        <attr name="titleMarginStart" format="dimension" />
-        <!--  Specifies extra space on the end side of the toolbar's title.
-              If both this attribute and titleMargin are specified, then this
-              attribute takes precedence. Margin values should be positive. -->
-        <attr name="titleMarginEnd" format="dimension" />
-        <!--  Specifies extra space on the top side of the toolbar's title.
-              If both this attribute and titleMargin are specified, then this
-              attribute takes precedence. Margin values should be positive. -->
-        <attr name="titleMarginTop" format="dimension" />
-        <!--  Specifies extra space on the bottom side of the toolbar's title.
-              If both this attribute and titleMargin are specified, then this
-              attribute takes precedence. Margin values should be positive. -->
-        <attr name="titleMarginBottom" format="dimension" />
-        <!-- {@deprecated Use titleMargin} -->
         <attr name="titleMargins" format="dimension" />
+        <attr name="titleMarginStart" format="dimension" />
+        <attr name="titleMarginEnd" format="dimension" />
+        <attr name="titleMarginTop" format="dimension" />
+        <attr name="titleMarginBottom" format="dimension" />
         <attr name="contentInsetStart" />
         <attr name="contentInsetEnd" />
         <attr name="contentInsetLeft" />
         <attr name="contentInsetRight" />
         <attr name="maxButtonHeight" format="dimension" />
-        <attr name="buttonGravity">
-            <!-- Push object to the top of its container, not changing its size. -->
-            <flag name="top" value="0x30" />
-            <!-- Push object to the bottom of its container, not changing its size. -->
-            <flag name="bottom" value="0x50" />
-        </attr>
-        <!-- Icon drawable to use for the collapse button. -->
+
         <attr name="collapseIcon" format="reference" />
         <!-- Text to set as the content description for the collapse button. -->
         <attr name="collapseContentDescription" format="string" />
@@ -846,17 +855,55 @@
         <!-- Text to set as the content description for the navigation button
              located at the start of the toolbar. -->
         <attr name="navigationContentDescription" format="string" />
-        <!-- Drawable to set as the logo that appears at the starting side of
-             the Toolbar, just after the navigation button. -->
-        <attr name="logo" />
-        <!-- A content description string to describe the appearance of the
-             associated logo image. -->
-        <attr name="logoDescription" format="string" />
-        <!-- A color to apply to the title string. -->
-        <attr name="titleTextColor" format="color" />
-        <!-- A color to apply to the subtitle string. -->
-        <attr name="subtitleTextColor" format="color" />
+
+        <!-- Allows us to read in the minHeight attr pre-v16 -->
         <attr name="android:minHeight" />
+
+        <!-- Tint used for the overflow button -->
+        <attr name="overflowTint" format="color" />
+        <!-- The blending mode used for tinting the overflow button -->
+        <attr name="overflowTintMode">
+            <!-- The tint is drawn on top of the drawable.
+                 [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
+            <enum name="src_over" value="3" />
+            <!-- The tint is masked by the alpha channel of the drawable. The drawable’s
+                 color channels are thrown out. [Sa * Da, Sc * Da] -->
+            <enum name="src_in" value="5" />
+            <!-- The tint is drawn above the drawable, but with the drawable’s alpha
+                 channel masking the result. [Da, Sc * Da + (1 - Sa) * Dc] -->
+            <enum name="src_atop" value="9" />
+            <!-- Multiplies the color and alpha channels of the drawable with those of
+                 the tint. [Sa * Da, Sc * Dc] -->
+            <enum name="multiply" value="14" />
+            <!-- [Sa + Da - Sa * Da, Sc + Dc - Sc * Dc] -->
+            <enum name="screen" value="15" />
+            <!-- Combines the tint and drawable color and alpha channels, clamping the
+                 result to valid color values. Saturate(S + D). Only works on APIv 11+ -->
+            <enum name="add" value="16" />
+        </attr>
+
+        <!-- Tint used for the navigation button -->
+        <attr name="navigationTint" format="color" />
+        <!-- The blending mode used for tinting the navigation button -->
+        <attr name="navigationTintMode">
+            <!-- The tint is drawn on top of the drawable.
+                 [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
+            <enum name="src_over" value="3" />
+            <!-- The tint is masked by the alpha channel of the drawable. The drawable’s
+                 color channels are thrown out. [Sa * Da, Sc * Da] -->
+            <enum name="src_in" value="5" />
+            <!-- The tint is drawn above the drawable, but with the drawable’s alpha
+                 channel masking the result. [Da, Sc * Da + (1 - Sa) * Dc] -->
+            <enum name="src_atop" value="9" />
+            <!-- Multiplies the color and alpha channels of the drawable with those of
+                 the tint. [Sa * Da, Sc * Dc] -->
+            <enum name="multiply" value="14" />
+            <!-- [Sa + Da - Sa * Da, Sc + Dc - Sc * Dc] -->
+            <enum name="screen" value="15" />
+            <!-- Combines the tint and drawable color and alpha channels, clamping the
+                 result to valid color values. Saturate(S + D). Only works on APIv 11+ -->
+            <enum name="add" value="16" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="PopupWindowBackgroundState">
@@ -908,30 +955,6 @@
         <attr name="android:id" />
     </declare-styleable>
 
-    <declare-styleable name="CompoundButton">
-        <attr name="android:button"/>
-        <!-- Tint to apply to the button drawable. -->
-        <attr name="buttonTint" format="color" />
-
-        <!-- Blending mode used to apply the button tint. -->
-        <attr name="buttonTintMode">
-            <!-- The tint is drawn on top of the drawable.
-                 [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
-            <enum name="src_over" value="3" />
-            <!-- The tint is masked by the alpha channel of the drawable. The drawable’s
-                 color channels are thrown out. [Sa * Da, Sc * Da] -->
-            <enum name="src_in" value="5" />
-            <!-- The tint is drawn above the drawable, but with the drawable’s alpha
-                 channel masking the result. [Da, Sc * Da + (1 - Sa) * Dc] -->
-            <enum name="src_atop" value="9" />
-            <!-- Multiplies the color and alpha channels of the drawable with those of
-                 the tint. [Sa * Da, Sc * Dc] -->
-            <enum name="multiply" value="14" />
-            <!-- [Sa + Da - Sa * Da, Sc + Dc - Sc * Dc] -->
-            <enum name="screen" value="15" />
-        </attr>
-    </declare-styleable>
-
     <declare-styleable name="SwitchCompat">
         <!-- Drawable to use as the "thumb" that switches back and forth. -->
         <attr name="android:thumb" />
@@ -961,10 +984,6 @@
         <attr name="android:textStyle" />
         <attr name="android:typeface" />
         <attr name="textAllCaps" />
-        <attr name="android:shadowColor"/>
-        <attr name="android:shadowDy"/>
-        <attr name="android:shadowDx"/>
-        <attr name="android:shadowRadius"/>
     </declare-styleable>
 
     <!-- The set of attributes that describe a AlertDialog's theme. -->
@@ -975,28 +994,6 @@
         <attr name="multiChoiceItemLayout" format="reference" />
         <attr name="singleChoiceItemLayout" format="reference" />
         <attr name="listItemLayout" format="reference" />
-    </declare-styleable>
-
-    <!-- @hide -->
-    <declare-styleable name="ButtonBarLayout">
-        <!-- Whether to automatically stack the buttons when there is not
-             enough space to lay them out side-by-side. -->
-        <attr name="allowStacking" format="boolean" />
-    </declare-styleable>
-
-    <!-- Attributes that can be assigned to a ColorStateList item. -->
-    <declare-styleable name="ColorStateListItem">
-        <!-- Base color for this state. -->
-        <attr name="android:color" />
-        <!-- Alpha multiplier applied to the base color. -->
-        <attr name="alpha" format="float" />
-        <attr name="android:alpha"/>
-    </declare-styleable>
-
-    <declare-styleable name="AppCompatImageView">
-        <attr name="android:src"/>
-        <!-- TODO -->
-        <attr name="srcCompat" format="reference" />
     </declare-styleable>
 
 </resources>
