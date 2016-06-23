@@ -32,6 +32,19 @@ include $(BUILD_PREBUILT)
 ##################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := jack-diagnose
+LOCAL_SRC_FILES := jack-diagnose
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack-diagnose$(HOST_EXECUTABLE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := jack
 LOCAL_SRC_FILES := jack
 LOCAL_MODULE_CLASS := EXECUTABLES
@@ -39,7 +52,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
 LOCAL_BUILT_MODULE_STEM := jack$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
-LOCAL_REQUIRED_MODULES := jack-admin
+LOCAL_REQUIRED_MODULES := jack-admin jack-diagnose
 
 include $(BUILD_PREBUILT)
 
