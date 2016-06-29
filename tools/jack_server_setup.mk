@@ -54,4 +54,7 @@ else
 endif
 	$(hide) $(PRIVATE_JACK_ADMIN) update server $(PRIVATE_SERVER_JAR) $(PRIVATE_SERVER_VERSION) 2>&1 || exit 0
 	$(hide) $(foreach jack_jar,$(available_jack_jars),$(PRIVATE_JACK_ADMIN) update jack $(jack_jar) $(patsubst $(PRIVATE_PATH)/jacks/jack-%.jar,%,$(jack_jar)) || exit 47;)
+ifdef JACK_ENGINEERING_VERSION
+	$(hide) $(PRIVATE_JACK_ADMIN) update jack $(jack_eng_jar)
+endif
 endif
