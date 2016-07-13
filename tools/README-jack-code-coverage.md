@@ -1,4 +1,4 @@
-# Code codeverage with Jack
+# Code coverage with Jack
 
 Jack supports code coverage with `JaCoCo` (http://eclemma.org/jacoco). During the compilation,
 it will instrument code using JaCoCo API. Therefore, it requires a dependency to a jacoco-agent.jar
