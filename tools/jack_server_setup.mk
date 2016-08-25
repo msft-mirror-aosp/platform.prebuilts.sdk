@@ -39,7 +39,7 @@ setup-jack-server : PRIVATE_SERVER_VERSION := $(jack_server_version)
 setup-jack-server : PRIVATE_SERVER_JAR := $(jack_server_jar)
 setup-jack-server: $(JACK) $(LOCAL_PATH)/jack-launcher.jar $(jack_server_jar) $(available_jack_jars)
 ifndef jack_server_disabled
-	@echo Ensure Jack server is installed and started
+	@echo Ensuring Jack server is installed and started
 ifneq ($(dist_goal),)
 	$(hide) $(PRIVATE_JACK_ADMIN) stop-server 2>&1 || (exit 0)
 	$(hide) $(PRIVATE_JACK_ADMIN) kill-server 2>&1 || (exit 0)
