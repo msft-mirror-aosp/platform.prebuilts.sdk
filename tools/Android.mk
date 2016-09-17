@@ -56,6 +56,19 @@ LOCAL_REQUIRED_MODULES := jack-admin jack-diagnose
 
 include $(BUILD_PREBUILT)
 
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := jack-jacoco-reporter
+LOCAL_SRC_FILES := jack-jacoco-reporter.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+MOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack-jacoco-reporter$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
 # New versions of the build/ project reference these tools directly without
 # needing to install them, but some unbundled branches use a master version of
 # prebuilts/sdk/ with an old version of build/ and look for these tools in the
