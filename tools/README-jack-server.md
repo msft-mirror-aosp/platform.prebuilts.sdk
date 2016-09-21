@@ -1,4 +1,4 @@
-This documentation describes usage of Jack server 1.3-a8.
+This documentation describes usage of Jack server 1.3-a9.
 
 # Jack server
 
@@ -9,21 +9,29 @@ and benefit from already warm instances.
 
 ## Setup for Mac OS
 
-Jack server is automatically installed and started by android build but requires initial setup on
-Mac OS:
+Jack server requires initial setup on Mac OS:
 
   - Install MacPorts from [macports.org](http://www.macports.org/install.php)  
     Make sure that `/opt/local/bin appears` in your path before `/usr/bin`. If not, please
     add the following to your `~/.bash_profile` file (If you do not have a `.bash_profile`
     file in your home directory, create one):
-```  
-    export PATH=/opt/local/bin:$PATH`
+```
+    $ export PATH=/opt/local/bin:$PATH`
 ```
 
   - Get curl package from MacPorts:
 ```
     $ POSIXLY_CORRECT=1 sudo port install curl +ssl
 ```
+
+## Installing the server
+
+Jack server is automatically installed and started by Android build. If you need to do the
+installation manually use:
+```
+    $ jack-admin install-server <launcher.jar> <server.jar>
+```
+
 
 ## Starting the server
 
@@ -116,7 +124,8 @@ Print help.
 Install the Jack server.
 
 `$ jack-admin uninstall-server`  
-Uninstall the Jack server and all components.
+Uninstall the Jack server and all components. You should ensure that the Jack server
+is not running before uninstalling.
 
 `$ jack-admin list jack`  
 List installed versions for Jack.
