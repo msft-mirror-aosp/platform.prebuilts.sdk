@@ -59,6 +59,19 @@ include $(BUILD_PREBUILT)
 ##################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := jack-coverage-plugin
+LOCAL_SRC_FILES := jack-coverage-plugin-STABLE.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+MOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := jack-coverage-plugin$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+##################################
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := jack-jacoco-reporter
 LOCAL_SRC_FILES := jack-jacoco-reporter.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
