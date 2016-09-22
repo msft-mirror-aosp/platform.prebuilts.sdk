@@ -1,4 +1,4 @@
-This documentation describes usage of Jack server 1.3-a9.
+This documentation describes usage of Jack server 1.3-a10.
 
 # Jack server
 
