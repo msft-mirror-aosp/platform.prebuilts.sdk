@@ -16,11 +16,6 @@
 
 LOCAL_PATH:= $(call my-dir)
 
-# $(1): tested value
-define is_number
-$(shell if [[ $(1) =~ ^[0-9]+$$ ]] ; then echo true ; fi)
-endef
-
 # $(1): sdk version
 define declare_sdk_prebuilts
 
@@ -30,7 +25,7 @@ LOCAL_SRC_FILES := $(1)/android.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_BUILT_MODULE_STEM := sdk_v$(1)$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MIN_SDK_VERSION := $(if $(call is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
+LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
 LOCAL_UNINSTALLABLE_MODULE := true
 include $(BUILD_PREBUILT)
 
@@ -40,7 +35,7 @@ LOCAL_SRC_FILES := $(1)/uiautomator.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_BUILT_MODULE_STEM := uiautomator_sdk_v$(1)$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MIN_SDK_VERSION := $(if $(call is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
+LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
 LOCAL_UNINSTALLABLE_MODULE := true
 include $(BUILD_PREBUILT)
 
