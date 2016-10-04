@@ -117,7 +117,6 @@ parcelable android.service.chooser.ChooserTarget;
 parcelable android.speech.tts.Voice;
 parcelable android.app.usage.UsageEvents;
 parcelable android.app.Notification;
-parcelable android.app.Notification.Topic;
 parcelable android.app.NotificationManager.Policy;
 parcelable android.app.WallpaperInfo;
 parcelable android.app.AppOpsManager.PackageOps;
