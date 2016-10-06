@@ -19,7 +19,7 @@ jack_jar_tools := $(LOCAL_PATH)/jack-jar-tools.jar
 jack_eng_jar := $(LOCAL_PATH)/jacks/jack.jar
 
 JACK_STABLE_VERSION := 4.10.BETA
-JACK_DOGFOOD_VERSION := 4.10.BETA
+JACK_DOGFOOD_VERSION := 4.11.BETA
 JACK_SDKTOOL_VERSION := 4.10.BETA
 JACK_LANG_DEV_VERSION := 4.10.BETA
 ifneq ("$(wildcard $(jack_eng_jar))","")
