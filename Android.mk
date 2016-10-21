@@ -29,6 +29,7 @@ LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFO
 LOCAL_UNINSTALLABLE_MODULE := true
 include $(BUILD_PREBUILT)
 
+ifneq (,$(wildcard $(LOCAL_PATH)/$(1)/uiautomator.jar))
 include $(CLEAR_VARS)
 LOCAL_MODULE := uiautomator_sdk_v$(1)
 LOCAL_SRC_FILES := $(1)/uiautomator.jar
@@ -38,10 +39,11 @@ LOCAL_BUILT_MODULE_STEM := uiautomator_sdk_v$(1)$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
 LOCAL_UNINSTALLABLE_MODULE := true
 include $(BUILD_PREBUILT)
+endif
 
 endef
 
-$(foreach s,$(TARGET_AVAILABLE_SDK_VERSIONS),\
+$(foreach s,$(filter-out test_current,$(TARGET_AVAILABLE_SDK_VERSIONS)),\
   $(eval $(call declare_sdk_prebuilts,$(s))))
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
