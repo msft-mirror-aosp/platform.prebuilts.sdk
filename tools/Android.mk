@@ -331,4 +331,22 @@ endif # TARGET_BUILD_APPS only
 
 endif # old version of build/ project.
 
-# libLLVM and libclang are defined in Android.bp
+# Only build Clang/LLVM components when forced to.
+ifneq (true,$(FORCE_BUILD_LLVM_COMPONENTS))
+
+# libLLVM is defined in Android.bp
+
+##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libclang
+LOCAL_SRC_FILES := $(HOST_OS)/lib64/$(LOCAL_MODULE)$(HOST_SHLIB_SUFFIX)
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := $(HOST_SHLIB_SUFFIX)
+LOCAL_IS_HOST_MODULE := true
+LOCAL_MULTILIB := 64
+
+include $(BUILD_PREBUILT)
+
+endif #!FORCE_BUILD_LLVM_COMPONENTS
