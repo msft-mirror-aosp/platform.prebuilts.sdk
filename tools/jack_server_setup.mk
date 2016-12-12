@@ -33,7 +33,12 @@ endif
 endif
 
 .PHONY: setup-jack-server
+ALARM := $(shell which alarm)
+ifneq (,$(ALARM))
+setup-jack-server : PRIVATE_JACK_ADMIN := $(ALARM) -l 300 $(LOCAL_PATH)/jack-admin
+else
 setup-jack-server : PRIVATE_JACK_ADMIN := $(LOCAL_PATH)/jack-admin
+endif
 setup-jack-server : PRIVATE_PATH := $(LOCAL_PATH)
 setup-jack-server : PRIVATE_SERVER_VERSION := $(jack_server_version)
 setup-jack-server : PRIVATE_SERVER_JAR := $(jack_server_jar)
