@@ -60,7 +60,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := jack-coverage-plugin
-LOCAL_SRC_FILES := jack-coverage-plugin.jar
+LOCAL_SRC_FILES := jack-coverage-plugin-STABLE.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 MOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
