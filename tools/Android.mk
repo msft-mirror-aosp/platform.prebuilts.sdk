@@ -82,6 +82,11 @@ LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
 
+# Distribute the reporter tool for coverage builds
+ifeq (true,$(EMMA_INSTRUMENT))
+$(call dist-for-goals, dist_files, $(LOCAL_BUILT_MODULE))
+endif # EMMA_INSTRUMENT
+
 # New versions of the build/ project reference these tools directly without
 # needing to install them, but some unbundled branches use a master version of
 # prebuilts/sdk/ with an old version of build/ and look for these tools in the
