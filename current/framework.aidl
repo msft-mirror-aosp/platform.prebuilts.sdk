@@ -124,6 +124,7 @@ parcelable android.service.notification.Condition;
 parcelable android.service.notification.SnoozeCriterion;
 parcelable android.service.notification.StatusBarNotification;
 parcelable android.service.chooser.ChooserTarget;
+parcelable android.service.resolver.ResolverTarget;
 parcelable android.speech.tts.Voice;
 parcelable android.app.usage.CacheQuotaHint;
 parcelable android.app.usage.ExternalStorageStats;
