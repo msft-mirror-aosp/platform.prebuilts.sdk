@@ -27,6 +27,10 @@ LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
   $(patsubst $(LOCAL_PATH)/%,%,\
     $(shell find $(LOCAL_PATH)/support -name "*.jar"))
 include $(BUILD_MULTI_PREBUILT)
+
+# Generates the v4 and v13 libraries with static dependencies.
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
 endif  # TARGET_BUILD_APPS not empty
 
 # Also set up explicit prebuilts for use in apps.
