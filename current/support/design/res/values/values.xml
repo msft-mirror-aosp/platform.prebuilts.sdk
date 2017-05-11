@@ -9,6 +9,8 @@
     <color name="design_fab_stroke_top_inner_color">#1AFFFFFF</color>
     <color name="design_fab_stroke_top_outer_color">#2EFFFFFF</color>
     <color name="design_snackbar_background_color">#323232</color>
+    <color name="design_textinput_error_color_dark">#FFFF6E6E</color>
+    <color name="design_textinput_error_color_light">#FFD50000</color>
     <declare-styleable name="AppBarLayout"><attr name="elevation"/><attr name="android:background"/><attr format="boolean" name="expanded"/><attr name="android:keyboardNavigationCluster"/><attr name="android:touchscreenBlocksFocus"/></declare-styleable>
     <declare-styleable name="AppBarLayoutStates"><attr format="boolean" name="state_collapsed"/><attr format="boolean" name="state_collapsible"/></declare-styleable>
     <declare-styleable name="AppBarLayout_Layout"><attr name="layout_scrollFlags">
@@ -146,7 +148,7 @@
             
             <flag name="all" value="0x77"/>
         </attr></declare-styleable>
-    <declare-styleable name="DesignTheme"><attr format="reference" name="bottomSheetDialogTheme"/><attr format="reference" name="bottomSheetStyle"/><attr format="reference|color" name="textColorError"/></declare-styleable>
+    <declare-styleable name="DesignTheme"><attr format="reference" name="bottomSheetDialogTheme"/><attr format="reference" name="bottomSheetStyle"/></declare-styleable>
     <declare-styleable name="FloatingActionButton"><attr name="backgroundTint"/><attr name="backgroundTintMode"/><attr format="color" name="rippleColor"/><attr name="fabSize">
             
             <enum name="auto" value="-1"/>
@@ -275,17 +277,13 @@
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
     </style>
-    <style name="Theme.Design" parent="Theme.AppCompat">
-        <item name="textColorError">?attr/colorError</item>
-    </style>
+    <style name="Theme.Design" parent="Theme.AppCompat"/>
     <style name="Theme.Design.BottomSheetDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
         <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal</item>
     </style>
-    <style name="Theme.Design.Light" parent="Theme.AppCompat.Light">
-        <item name="textColorError">?attr/colorError</item>
-    </style>
+    <style name="Theme.Design.Light" parent="Theme.AppCompat.Light"/>
     <style name="Theme.Design.Light.BottomSheetDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
