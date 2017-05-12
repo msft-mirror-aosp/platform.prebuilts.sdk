@@ -17,7 +17,7 @@ LOCAL_PATH := $(call my-dir)
 # Statically include transitive dependencies.
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-v13
-LOCAL_SDK_VERSION := $(SUPPORT_CURRENT_SDK_VERSION)
+LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES := \
         android-support-v4 \
         android-support-v13-nodeps
