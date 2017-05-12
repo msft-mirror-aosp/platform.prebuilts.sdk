@@ -1,9 +1,15 @@
 #!/usr/bin/python
 
 import os, sys, getopt, zipfile, re
+import argparse
+import subprocess
 from shutil import copyfile, rmtree
+from distutils.version import LooseVersion
 
 output_path = 'current/support'
+
+# See go/fetch_artifact
+FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
 # Does not import support-v4, which is handled as a separate Android.mk (../support-v4) to
 # statically include dependencies. Similarly, the support-v13 module is imported as
@@ -53,24 +59,7 @@ blacklist_files = [
     'AndroidManifest.xml'
 ]
 
-artifact_pattern = re.compile(r"^(.+?)-\d+\.\d+\.\d+(?:-\w+\d*)?\.(jar|aar)$")
-
-def main(argv):
-    try:
-        opts, args = getopt.getopt(argv, "hs:", ["support="])
-    except getopt.GetoptError:
-        print 'usage'
-        sys.exit(2)
-
-    for opt, arg in opts:
-        if opt == '-h':
-            print 'usage'
-            sys.exit()
-        elif opt in ("-s", "--support"):
-            support_file = arg
-
-    if support_file:
-        extract_support(support_file)
+artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d*)?)\.(jar|aar)$")
 
 
 def touch(fname, times=None):
@@ -78,15 +67,8 @@ def touch(fname, times=None):
         os.utime(fname, times)
 
 
-def extract_support(file):
+def transform_support(repoDir):
     cwd = os.getcwd()
-
-    # Extract local Maven repo to temporary directory.
-    temp_dir = os.path.join(cwd, 'tmp')
-    if os.path.exists(temp_dir):
-        rmtree(temp_dir)
-    with zipfile.ZipFile(file) as zip:
-        zip.extractall(temp_dir)
 
     # Use a temporary working directory.
     working_dir = os.path.join(cwd, 'support_tmp')
@@ -94,30 +76,22 @@ def extract_support(file):
         rmtree(working_dir)
     os.mkdir(working_dir)
 
-    for root, dirs, files in os.walk(temp_dir):
+    maven_lib_info = {}
+
+    for root, dirs, files in os.walk(repoDir):
         for file in files:
             matcher = artifact_pattern.match(file)
             if matcher:
                 maven_lib_name = matcher.group(1)
-                maven_lib_type = matcher.group(2)
+                maven_lib_vers = LooseVersion(matcher.group(2))
 
                 if maven_lib_name in maven_to_make:
-                    make_lib_name = maven_to_make[maven_lib_name][0]
-                    make_dir_name = maven_to_make[maven_lib_name][1]
-                    artifact_file = os.path.join(root, file)
-                    target_dir = os.path.join(working_dir, make_dir_name)
-                    if not os.path.exists(target_dir):
-                        os.makedirs(target_dir)
+                    if maven_lib_name not in maven_lib_info \
+                            or maven_lib_vers > maven_lib_info[maven_lib_name][0]:
+                        maven_lib_info[maven_lib_name] = [maven_lib_vers, root, file]
 
-                    if maven_lib_type == "aar":
-                        process_aar(artifact_file, target_dir, make_lib_name)
-                    else:
-                        target_file = os.path.join(target_dir, make_lib_name + ".jar")
-                        os.rename(artifact_file, target_file)
-
-                    print maven_lib_name, "->", make_lib_name
-                else:
-                    print maven_lib_name, "unknown artifact, skipping..."
+    for info in maven_lib_info.values():
+        transform_maven_lib(working_dir, info[1], info[2])
 
     # Replace the old directory.
     output_dir = os.path.join(cwd, output_path)
@@ -125,8 +99,28 @@ def extract_support(file):
         rmtree(output_dir)
     os.rename(working_dir, output_dir)
 
-    # Clean up.
-    rmtree(temp_dir)
+
+def transform_maven_lib(working_dir, root, file):
+    matcher = artifact_pattern.match(file)
+    maven_lib_name = matcher.group(1)
+    maven_lib_vers = matcher.group(2)
+    maven_lib_type = matcher.group(3)
+
+    make_lib_name = maven_to_make[maven_lib_name][0]
+    make_dir_name = maven_to_make[maven_lib_name][1]
+    artifact_file = os.path.join(root, file)
+    target_dir = os.path.join(working_dir, make_dir_name)
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    if maven_lib_type == "aar":
+        process_aar(artifact_file, target_dir, make_lib_name)
+    else:
+        target_file = os.path.join(target_dir, make_lib_name + ".jar")
+        os.rename(artifact_file, target_file)
+
+    print maven_lib_vers, ":", maven_lib_name, "->", make_lib_name
+
 
 def process_aar(artifact_file, target_dir, make_lib_name):
     # Extract AAR file to target_dir.
@@ -161,5 +155,62 @@ def process_aar(artifact_file, target_dir, make_lib_name):
             os.remove(file_path)
 
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
+parser = argparse.ArgumentParser(
+    description=('Update prebuilt android extras'))
+parser.add_argument(
+    'buildId',
+    type=int,
+    nargs='?',
+    help='Build server build ID')
+parser.add_argument(
+    '--target',
+    default='support_library',
+    help='Download m2repository from the specified build server target')
+args = parser.parse_args()
+if not args.buildId:
+    parser.error("You must specify a build ID")
+    sys.exit(1)
+
+try:
+    # Make sure we don't overwrite any pending changes.
+    subprocess.check_call(['git', 'diff', '--quiet', '--', '**'])
+    subprocess.check_call(['git', 'diff', '--quiet', '--cached', '--', '**'])
+except subprocess.CalledProcessError:
+    print >> sys.stderr, "FAIL: There are uncommitted changes here; please revert or stash"
+    sys.exit(1)
+
+try:
+    repoArtifact = 'sdk-repo-linux-m2repository-' + str(args.buildId) + '.zip'
+
+    # Download the repo zip archive.
+    fetchCmd = [FETCH_ARTIFACT, '--bid', str(args.buildId), '--target', args.target, repoArtifact]
+    try:
+        subprocess.check_output(fetchCmd, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError:
+        print >> sys.stderr, "FAIL: Unable to retrieve artifact for build ID %d" % args.buildId
+        sys.exit(1)
+
+    # Unzip the repo archive into a separate directory.
+    repoDir = os.path.basename(repoArtifact)[:-4]
+    with zipfile.ZipFile(repoArtifact) as zipFile:
+        zipFile.extractall(repoDir)
+
+    # Transform the repo archive into a Makefile-compatible format.
+    transform_support(repoDir)
+
+    # Commit all changes.
+    subprocess.check_call(['git', 'add', output_path])
+    msg = ("Import support libs from build %s\n\n%s\n" % (args.buildId, " ".join(fetchCmd)))
+    subprocess.check_call(['git', 'commit', '-m', msg])
+    print 'Be sure to upload this manually to gerrit.'
+
+finally:
+    # Revert all stray files, including the downloaded zip.
+    try:
+        with open(os.devnull, 'w') as bitbucket:
+            subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
+            subprocess.check_call(
+                ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!'], stdout=bitbucket)
+            subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
+    except subprocess.CalledProcessError:
+        print >> sys.stderr, "ERROR: Failed cleaning up, manual cleanup required!!!"
