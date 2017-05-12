@@ -17,7 +17,7 @@ FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 # include dependencies.
 maven_to_make = {
     'animated-vector-drawable':     ['android-support-animatedvectordrawable',      'graphics/drawable'],
-    'appcompat-v7':                 ['android-support-v7-appcompat',                'v7/appcompat'],
+    'appcompat-v7':                 ['android-support-v7-appcompat-nodeps',         'v7/appcompat'],
     'cardview-v7':                  ['android-support-v7-cardview',                 'v7/cardview'],
     'customtabs':                   ['android-support-customtabs',                  'customtabs'],
     'design':                       ['android-support-design',                      'design'],
@@ -45,7 +45,7 @@ maven_to_make = {
     'support-fragment':             ['android-support-fragment',                    'fragment'],
     'support-media-compat':         ['android-support-media-compat',                'media-compat'],
     'support-tv-provider':          ['android-support-tv-provider',                 'tv-provider'],
-    'support-v13':                  ['android-support-v13-nodeps',                  'v13-nodeps'],
+    'support-v13':                  ['android-support-v13-nodeps',                  'v13'],
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
     'wear':                         ['android-support-wear',                        'wear']

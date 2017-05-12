@@ -16,13 +16,12 @@ LOCAL_PATH := $(call my-dir)
 
 # Statically include transitive dependencies.
 include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-v13
+LOCAL_MODULE := android-support-v7-appcompat
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES := \
-        android-support-v4 \
-        android-support-v13-nodeps
-LOCAL_JAVA_LIBRARIES := \
-        android-support-annotations
+    android-support-v7-appcompat-nodeps \
+    android-support-vectordrawable \
+    android-support-animatedvectordrawable
+LOCAL_JAR_EXCLUDE_FILES := none
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 include $(BUILD_STATIC_JAVA_LIBRARY)
-
