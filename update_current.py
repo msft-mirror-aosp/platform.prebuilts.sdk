@@ -6,7 +6,9 @@ import subprocess
 from shutil import copyfile, rmtree
 from distutils.version import LooseVersion
 
-output_path = 'current/support'
+current_path = 'current'
+system_path = 'system_current'
+support_path = os.path.join(current_path, 'support')
 
 # See go/fetch_artifact
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
@@ -67,6 +69,22 @@ def touch(fname, times=None):
         os.utime(fname, times)
 
 
+def path(*path_parts):
+    return reduce((lambda x, y: os.path.join(x, y)), path_parts)
+
+
+def rm(path):
+    if os.path.isdir(path):
+        rmtree(path)
+    elif os.path.exists(path):
+        os.remove(path)
+
+
+def mv(src_path, dst_path):
+    rm(dst_path)
+    os.rename(src_path, dst_path)
+
+
 def transform_support(repoDir):
     cwd = os.getcwd()
 
@@ -94,7 +112,7 @@ def transform_support(repoDir):
         transform_maven_lib(working_dir, info[1], info[2])
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, output_path)
+    output_dir = os.path.join(cwd, support_path)
     if os.path.exists(output_dir):
         rmtree(output_dir)
     os.rename(working_dir, output_dir)
@@ -154,18 +172,83 @@ def process_aar(artifact_file, target_dir, make_lib_name):
         if os.path.exists(file_path):
             os.remove(file_path)
 
+def fetch_artifact(target, buildId, artifact_path):
+    print 'Fetching %s from %s...' % (artifact_path, target)
+    fetchCmd = [FETCH_ARTIFACT, '--bid', str(buildId), '--target', target, artifact_path]
+    try:
+        subprocess.check_output(fetchCmd, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError:
+        print >> sys.stderr, 'FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, buildId)
+        return None
+    return artifact_path
+
+
+def update_support(target, buildId):
+    platform = 'darwin' if 'mac' in target else 'linux'
+    artifact_path = fetch_artifact(target, buildId, 'sdk-repo-%s-m2repository-%s.zip' % (platform, buildId))
+    if not artifact_path:
+        return
+
+    # Unzip the repo archive into a separate directory.
+    repoDir = os.path.basename(artifact_path)[:-4]
+    with zipfile.ZipFile(artifact_path) as zipFile:
+        zipFile.extractall(repoDir)
+
+    # Transform the repo archive into a Makefile-compatible format.
+    transform_support(repoDir)
+
+
+def extract_to(zip_file, paths, filename, parent_path):
+    zip_path = filter(lambda path: filename in path, paths)[0]
+    src_path = zip_file.extract(zip_path)
+    dst_path = path(parent_path, filename)
+    mv(src_path, dst_path)
+
+
+def update_sdk_repo(target, buildId):
+    platform = 'darwin' if 'mac' in target else 'linux'
+    artifact_path = fetch_artifact(target, buildId, 'sdk-repo-%s-platforms-%s.zip' % (platform, buildId))
+    if not artifact_path:
+        return
+
+    with zipfile.ZipFile(artifact_path) as zipFile:
+        paths = zipFile.namelist()
+
+        extract_to(zipFile, paths, 'android.jar', current_path)
+        extract_to(zipFile, paths, 'uiautomator.jar', current_path)
+        extract_to(zipFile, paths, 'framework.aidl', current_path)
+
+        # Unclear if this is actually necessary.
+        extract_to(zipFile, paths, 'framework.aidl', system_path)
+
+
+def update_system(target, buildId):
+    artifact_path = fetch_artifact(target, buildId, 'android_system.jar')
+    if not artifact_path:
+        return
+
+    mv(artifact_path, path(system_path, 'android.jar'))
+
 
 parser = argparse.ArgumentParser(
-    description=('Update prebuilt android extras'))
+    description=('Update current prebuilts'))
 parser.add_argument(
     'buildId',
     type=int,
     nargs='?',
     help='Build server build ID')
 parser.add_argument(
-    '--target',
+    '--support',
     default='support_library',
-    help='Download m2repository from the specified build server target')
+    help='Specifies the build server target from which the m2repository ZIP is obtained')
+parser.add_argument(
+    '--sdk_repo',
+    default='sdk_phone_armv7-sdk_mac',
+    help='Specifies the build server target from which the platforms ZIP is obtained')
+parser.add_argument(
+    '--system',
+    default='sdk_phone_armv7-sdk_mac',
+    help='Specifies the build server target from which the android_system JAR is obtained')
 args = parser.parse_args()
 if not args.buildId:
     parser.error("You must specify a build ID")
@@ -180,27 +263,14 @@ except subprocess.CalledProcessError:
     sys.exit(1)
 
 try:
-    repoArtifact = 'sdk-repo-linux-m2repository-' + str(args.buildId) + '.zip'
-
-    # Download the repo zip archive.
-    fetchCmd = [FETCH_ARTIFACT, '--bid', str(args.buildId), '--target', args.target, repoArtifact]
-    try:
-        subprocess.check_output(fetchCmd, stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError:
-        print >> sys.stderr, "FAIL: Unable to retrieve artifact for build ID %d" % args.buildId
-        sys.exit(1)
-
-    # Unzip the repo archive into a separate directory.
-    repoDir = os.path.basename(repoArtifact)[:-4]
-    with zipfile.ZipFile(repoArtifact) as zipFile:
-        zipFile.extractall(repoDir)
-
-    # Transform the repo archive into a Makefile-compatible format.
-    transform_support(repoDir)
+    update_support(args.support, args.buildId)
+    update_sdk_repo(args.sdk_repo, args.buildId)
+    update_system(args.system, args.buildId)
 
     # Commit all changes.
-    subprocess.check_call(['git', 'add', output_path])
-    msg = ("Import support libs from build %s\n\n%s\n" % (args.buildId, " ".join(fetchCmd)))
+    subprocess.check_call(['git', 'add', current_path])
+    subprocess.check_call(['git', 'add', system_path])
+    msg = "Import support libs from build %s" % args.buildId
     subprocess.check_call(['git', 'commit', '-m', msg])
     print 'Be sure to upload this manually to gerrit.'
 
