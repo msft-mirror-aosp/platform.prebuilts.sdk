@@ -12,7 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Prevent Parcelable objects from being removed or renamed.
--keep class * implements android.os.Parcelable {
-    public static final android.os.Parcelable$Creator *;
-}
+LOCAL_PATH := $(call my-dir)
+
+# Statically include transitive dependencies.
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-v7-appcompat
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+    android-support-v7-appcompat-nodeps \
+    android-support-vectordrawable \
+    android-support-animatedvectordrawable
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+include $(BUILD_STATIC_JAVA_LIBRARY)
