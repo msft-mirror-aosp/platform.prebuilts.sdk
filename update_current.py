@@ -96,6 +96,7 @@ def transform_support(repoDir):
 
     maven_lib_info = {}
 
+    # Find the latest revision for each artifact.
     for root, dirs, files in os.walk(repoDir):
         for file in files:
             matcher = artifact_pattern.match(file)
@@ -185,7 +186,7 @@ def fetch_artifact(target, buildId, artifact_path):
 
 def update_support(target, buildId):
     platform = 'darwin' if 'mac' in target else 'linux'
-    artifact_path = fetch_artifact(target, buildId, 'sdk-repo-%s-m2repository-%s.zip' % (platform, buildId))
+    artifact_path = fetch_artifact(target, buildId, 'top-of-tree-m2repository-%s.zip' % (buildId))
     if not artifact_path:
         return
 
@@ -235,20 +236,13 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     'buildId',
     type=int,
-    nargs='?',
     help='Build server build ID')
 parser.add_argument(
-    '--support',
-    default='support_library',
-    help='Specifies the build server target from which the m2repository ZIP is obtained')
+    '-s', '--support', action="store_true",
+    help='If specified, updates only the Support Library')
 parser.add_argument(
-    '--sdk_repo',
-    default='sdk_phone_armv7-sdk_mac',
-    help='Specifies the build server target from which the platforms ZIP is obtained')
-parser.add_argument(
-    '--system',
-    default='sdk_phone_armv7-sdk_mac',
-    help='Specifies the build server target from which the android_system JAR is obtained')
+    '-p', '--platform', action="store_true",
+    help='If specified, updates only the Android Platform')
 args = parser.parse_args()
 if not args.buildId:
     parser.error("You must specify a build ID")
@@ -263,9 +257,13 @@ except subprocess.CalledProcessError:
     sys.exit(1)
 
 try:
-    update_support(args.support, args.buildId)
-    update_sdk_repo(args.sdk_repo, args.buildId)
-    update_system(args.system, args.buildId)
+    has_args = args.support or args.platform
+
+    if has_args and args.support:
+        update_support('support_library', args.buildId)
+    if has_args and args.platform:
+        update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId)
+        update_system('sdk_phone_armv7-sdk_mac', args.buildId)
 
     # Commit all changes.
     subprocess.check_call(['git', 'add', current_path])
