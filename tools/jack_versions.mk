@@ -23,7 +23,7 @@ JACK_DOGFOOD_VERSION := 4.31.CANDIDATE
 JACK_SDKTOOL_VERSION := 4.31.CANDIDATE
 JACK_LANG_DEV_VERSION := 4.31.CANDIDATE
 ifneq ("$(wildcard $(jack_eng_jar))","")
-JACK_ENGINEERING_VERSION := $(shell java -jar $(jack_jar_tools) --version-code jack $(jack_eng_jar))
+JACK_ENGINEERING_VERSION := $(shell $(JAVA) -jar $(jack_jar_tools) --version-code jack $(jack_eng_jar))
 endif
 
 ifneq ($(ANDROID_JACK_DEFAULT_VERSION),)
