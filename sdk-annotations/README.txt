@@ -1,5 +1,5 @@
 Generated from tools/adt/idea CL
-234839667c6912ff7eaccd9102525d0ba495c886
+Id8df826530d9a201987de9701dba53307c5d5c6f
 
 (by building the Android Studio tree by running ./build_studio.sh
 in tools/idea, then copying the resulting androidAnnotations.jar
