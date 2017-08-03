@@ -61,7 +61,7 @@ blacklist_files = [
     'AndroidManifest.xml'
 ]
 
-artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d*)?)\.(jar|aar)$")
+artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?)\.(jar|aar)$")
 
 
 def touch(fname, times=None):
@@ -173,6 +173,7 @@ def process_aar(artifact_file, target_dir, make_lib_name):
         if os.path.exists(file_path):
             os.remove(file_path)
 
+
 def fetch_artifact(target, buildId, artifact_path):
     print 'Fetching %s from %s...' % (artifact_path, target)
     fetchCmd = [FETCH_ARTIFACT, '--bid', str(buildId), '--target', target, artifact_path]
@@ -185,7 +186,6 @@ def fetch_artifact(target, buildId, artifact_path):
 
 
 def update_support(target, buildId):
-    platform = 'darwin' if 'mac' in target else 'linux'
     artifact_path = fetch_artifact(target, buildId, 'top-of-tree-m2repository-%s.zip' % (buildId))
     if not artifact_path:
         return
