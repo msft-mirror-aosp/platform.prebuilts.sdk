@@ -1,12 +1,12 @@
 cc_prebuilt_library_shared {
-    name: "libLLVM",
+    name: "libLLVM_android",
     host_supported: true,
     target: {
         linux_glibc_x86_64: {
-            srcs: ["linux/lib64/libLLVM.so"],
+            srcs: ["linux/lib64/libLLVM_android.so"],
         },
         darwin_x86_64: {
-            srcs: ["darwin/lib64/libLLVM.dylib"],
+            srcs: ["darwin/lib64/libLLVM_android.dylib"],
         },
         // TODO(ccross): this is necessary because the prebuilt module must have
         // all the variants that are in the source module.  Ideally Soong's
@@ -18,14 +18,14 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libclang",
+    name: "libclang_android",
     host_supported: true,
     target: {
         linux_glibc_x86_64: {
-            srcs: ["linux/lib64/libclang.so"],
+            srcs: ["linux/lib64/libclang_android.so"],
         },
         darwin_x86_64: {
-            srcs: ["darwin/lib64/libclang.dylib"],
+            srcs: ["darwin/lib64/libclang_android.dylib"],
         },
         // TODO(ccross): this is necessary because the prebuilt module must have
         // all the variants that are in the source module.  Ideally Soong's
