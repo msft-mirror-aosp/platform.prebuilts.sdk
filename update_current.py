@@ -58,10 +58,11 @@ blacklist_files = [
     'annotations.zip',
     'public.txt',
     'R.txt',
-    'AndroidManifest.xml'
+    'AndroidManifest.xml',
+    'noto-emoji-compat-java.jar'
 ]
 
-artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?)\.(jar|aar)$")
+artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$")
 
 
 def touch(fname, times=None):
@@ -259,9 +260,9 @@ except subprocess.CalledProcessError:
 try:
     has_args = args.support or args.platform
 
-    if has_args and args.support:
+    if (has_args and args.support) or not has_args:
         update_support('support_library', args.buildId)
-    if has_args and args.platform:
+    if (has_args and args.platform) or not has_args:
         update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId)
         update_system('sdk_phone_armv7-sdk_mac', args.buildId)
 
