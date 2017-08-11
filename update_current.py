@@ -8,7 +8,8 @@ from distutils.version import LooseVersion
 
 current_path = 'current'
 system_path = 'system_current'
-support_path = os.path.join(current_path, 'support')
+support_dir = os.path.join(current_path, 'support')
+extras_dir = os.path.join(current_path, 'extras')
 
 # See go/fetch_artifact
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
@@ -50,7 +51,9 @@ maven_to_make = {
     'support-v13':                  ['android-support-v13-nodeps',                  'v13'],
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
-    'wear':                         ['android-support-wear',                        'wear']
+    'wear':                         ['android-support-wear',                        'wear'],
+    'constraint-layout':            ['android-support-constraint-layout',           'constraint-layout'],
+    'constraint-layout-solver':     ['android-support-constraint-layout-solver',    'constraint-layout-solver']
 }
 
 # Always remove these files.
@@ -82,23 +85,18 @@ def rm(path):
 
 
 def mv(src_path, dst_path):
-    rm(dst_path)
+    if os.path.exists(dst_path):
+        rmtree(dst_path)
+    if not os.path.exists(os.path.dirname(dst_path)):
+        os.makedirs(os.path.dirname(dst_path))
     os.rename(src_path, dst_path)
 
 
-def transform_support(repoDir):
-    cwd = os.getcwd()
-
-    # Use a temporary working directory.
-    working_dir = os.path.join(cwd, 'support_tmp')
-    if os.path.exists(working_dir):
-        rmtree(working_dir)
-    os.mkdir(working_dir)
-
+def detect_artifacts(repo_dir):
     maven_lib_info = {}
 
     # Find the latest revision for each artifact.
-    for root, dirs, files in os.walk(repoDir):
+    for root, dirs, files in os.walk(repo_dir):
         for file in files:
             matcher = artifact_pattern.match(file)
             if matcher:
@@ -110,17 +108,29 @@ def transform_support(repoDir):
                             or maven_lib_vers > maven_lib_info[maven_lib_name][0]:
                         maven_lib_info[maven_lib_name] = [maven_lib_vers, root, file]
 
+    return maven_lib_info
+
+
+def transform_maven_repo(repo_dir, update_dir, use_make_dir=True):
+    maven_lib_info = detect_artifacts(repo_dir)
+
+    cwd = os.getcwd()
+
+    # Use a temporary working directory.
+    working_dir = os.path.join(cwd, 'support_tmp')
+    if os.path.exists(working_dir):
+        rmtree(working_dir)
+    os.mkdir(working_dir)
+
     for info in maven_lib_info.values():
-        transform_maven_lib(working_dir, info[1], info[2])
+        transform_maven_lib(working_dir, info[1], info[2], use_make_dir)
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, support_path)
-    if os.path.exists(output_dir):
-        rmtree(output_dir)
-    os.rename(working_dir, output_dir)
+    output_dir = os.path.join(cwd, update_dir)
+    mv(working_dir, output_dir)
 
 
-def transform_maven_lib(working_dir, root, file):
+def transform_maven_lib(working_dir, root, file, use_make_dir):
     matcher = artifact_pattern.match(file)
     maven_lib_name = matcher.group(1)
     maven_lib_vers = matcher.group(2)
@@ -129,7 +139,7 @@ def transform_maven_lib(working_dir, root, file):
     make_lib_name = maven_to_make[maven_lib_name][0]
     make_dir_name = maven_to_make[maven_lib_name][1]
     artifact_file = os.path.join(root, file)
-    target_dir = os.path.join(working_dir, make_dir_name)
+    target_dir = os.path.join(working_dir, make_dir_name) if use_make_dir else working_dir
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
 
@@ -186,18 +196,40 @@ def fetch_artifact(target, buildId, artifact_path):
     return artifact_path
 
 
-def update_support(target, buildId):
-    artifact_path = fetch_artifact(target, buildId, 'top-of-tree-m2repository-%s.zip' % (buildId))
+def fetch_and_extract(target, build_id, file):
+    artifact_path = fetch_artifact(target, build_id, file)
     if not artifact_path:
-        return
+        return None
 
     # Unzip the repo archive into a separate directory.
-    repoDir = os.path.basename(artifact_path)[:-4]
+    repo_dir = os.path.basename(artifact_path)[:-4]
     with zipfile.ZipFile(artifact_path) as zipFile:
-        zipFile.extractall(repoDir)
+        zipFile.extractall(repo_dir)
+
+    return repo_dir
+
+
+def update_support(target, build_id):
+    repo_dir = fetch_and_extract(target, build_id, 'top-of-tree-m2repository-%s.zip' % build_id)
+    if not repo_dir:
+        print >> sys.stderr, 'Failed to extract Support Library repository'
+        return
 
     # Transform the repo archive into a Makefile-compatible format.
-    transform_support(repoDir)
+    transform_maven_repo(repo_dir, support_dir)
+
+
+def update_constraint(target, build_id):
+    layout_dir = fetch_and_extract(target, build_id, 'com.android.support.constraint-constraint-layout-%s.zip' % build_id)
+    solver_dir = fetch_and_extract(target, build_id, 'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id)
+    if not layout_dir or not solver_dir:
+        print >> sys.stderr, 'Failed to extract Constraint Layout repositories'
+        return
+
+    # Passing False here is an inelegant solution, but it means we can replace
+    # the top-level directory without worrying about other child directories.
+    transform_maven_repo(layout_dir, os.path.join(extras_dir, 'constraint-layout'), False)
+    transform_maven_repo(solver_dir, os.path.join(extras_dir, 'constraint-layout-solver'), False)
 
 
 def extract_to(zip_file, paths, filename, parent_path):
@@ -239,6 +271,9 @@ parser.add_argument(
     type=int,
     help='Build server build ID')
 parser.add_argument(
+    '-c', '--constraint', action="store_true",
+    help='If specified, updates only Constraint Layout')
+parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
@@ -258,11 +293,13 @@ except subprocess.CalledProcessError:
     sys.exit(1)
 
 try:
-    has_args = args.support or args.platform
+    has_args = args.support or args.platform or args.constraint
 
-    if (has_args and args.support) or not has_args:
+    if has_args and args.constraint:
+        update_constraint('studio', args.buildId)
+    if not has_args or args.support:
         update_support('support_library', args.buildId)
-    if (has_args and args.platform) or not has_args:
+    if not has_args or args.platform:
         update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId)
         update_system('sdk_phone_armv7-sdk_mac', args.buildId)
 
