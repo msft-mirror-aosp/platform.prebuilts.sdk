@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# This script is used to update platform SDK prebuilts, Support Library, and a variety of other
+# prebuilt libraries used by Android's Makefile builds. For details on how to use this script,
+# visit go/update-prebuilts.
 import os, sys, getopt, zipfile, re
 import argparse
 import subprocess
@@ -8,9 +11,10 @@ from distutils.version import LooseVersion
 
 current_path = 'current'
 system_path = 'system_current'
-support_path = os.path.join(current_path, 'support')
+support_dir = os.path.join(current_path, 'support')
+extras_dir = os.path.join(current_path, 'extras')
 
-# See go/fetch_artifact
+# See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
 # Does not import support-v4, which is handled as a separate Android.mk (../support-v4) to
@@ -50,7 +54,9 @@ maven_to_make = {
     'support-v13':                  ['android-support-v13-nodeps',                  'v13'],
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
-    'wear':                         ['android-support-wear',                        'wear']
+    'wear':                         ['android-support-wear',                        'wear'],
+    'constraint-layout':            ['android-support-constraint-layout',           'constraint-layout'],
+    'constraint-layout-solver':     ['android-support-constraint-layout-solver',    'constraint-layout-solver']
 }
 
 # Always remove these files.
@@ -74,6 +80,10 @@ def path(*path_parts):
     return reduce((lambda x, y: os.path.join(x, y)), path_parts)
 
 
+def flatten(list):
+    return reduce((lambda x, y: "%s %s" % (x, y)), list)
+
+
 def rm(path):
     if os.path.isdir(path):
         rmtree(path)
@@ -82,23 +92,18 @@ def rm(path):
 
 
 def mv(src_path, dst_path):
-    rm(dst_path)
+    if os.path.exists(dst_path):
+        rm(dst_path)
+    if not os.path.exists(os.path.dirname(dst_path)):
+        os.makedirs(os.path.dirname(dst_path))
     os.rename(src_path, dst_path)
 
 
-def transform_support(repoDir):
-    cwd = os.getcwd()
-
-    # Use a temporary working directory.
-    working_dir = os.path.join(cwd, 'support_tmp')
-    if os.path.exists(working_dir):
-        rmtree(working_dir)
-    os.mkdir(working_dir)
-
+def detect_artifacts(repo_dir):
     maven_lib_info = {}
 
     # Find the latest revision for each artifact.
-    for root, dirs, files in os.walk(repoDir):
+    for root, dirs, files in os.walk(repo_dir):
         for file in files:
             matcher = artifact_pattern.match(file)
             if matcher:
@@ -110,17 +115,29 @@ def transform_support(repoDir):
                             or maven_lib_vers > maven_lib_info[maven_lib_name][0]:
                         maven_lib_info[maven_lib_name] = [maven_lib_vers, root, file]
 
+    return maven_lib_info
+
+
+def transform_maven_repo(repo_dir, update_dir, use_make_dir=True):
+    maven_lib_info = detect_artifacts(repo_dir)
+
+    cwd = os.getcwd()
+
+    # Use a temporary working directory.
+    working_dir = os.path.join(cwd, 'support_tmp')
+    if os.path.exists(working_dir):
+        rmtree(working_dir)
+    os.mkdir(working_dir)
+
     for info in maven_lib_info.values():
-        transform_maven_lib(working_dir, info[1], info[2])
+        transform_maven_lib(working_dir, info[1], info[2], use_make_dir)
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, support_path)
-    if os.path.exists(output_dir):
-        rmtree(output_dir)
-    os.rename(working_dir, output_dir)
+    output_dir = os.path.join(cwd, update_dir)
+    mv(working_dir, output_dir)
 
 
-def transform_maven_lib(working_dir, root, file):
+def transform_maven_lib(working_dir, root, file, use_make_dir):
     matcher = artifact_pattern.match(file)
     maven_lib_name = matcher.group(1)
     maven_lib_vers = matcher.group(2)
@@ -129,7 +146,7 @@ def transform_maven_lib(working_dir, root, file):
     make_lib_name = maven_to_make[maven_lib_name][0]
     make_dir_name = maven_to_make[maven_lib_name][1]
     artifact_file = os.path.join(root, file)
-    target_dir = os.path.join(working_dir, make_dir_name)
+    target_dir = os.path.join(working_dir, make_dir_name) if use_make_dir else working_dir
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
 
@@ -175,29 +192,52 @@ def process_aar(artifact_file, target_dir, make_lib_name):
             os.remove(file_path)
 
 
-def fetch_artifact(target, buildId, artifact_path):
+def fetch_artifact(target, build_id, artifact_path):
     print 'Fetching %s from %s...' % (artifact_path, target)
-    fetchCmd = [FETCH_ARTIFACT, '--bid', str(buildId), '--target', target, artifact_path]
+    fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path]
     try:
-        subprocess.check_output(fetchCmd, stderr=subprocess.STDOUT)
+        subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
-        print >> sys.stderr, 'FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, buildId)
+        print >> sys.stderr, 'FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, build_id)
         return None
     return artifact_path
 
 
-def update_support(target, buildId):
-    artifact_path = fetch_artifact(target, buildId, 'top-of-tree-m2repository-%s.zip' % (buildId))
+def fetch_and_extract(target, build_id, file):
+    artifact_path = fetch_artifact(target, build_id, file)
     if not artifact_path:
-        return
+        return None
 
     # Unzip the repo archive into a separate directory.
-    repoDir = os.path.basename(artifact_path)[:-4]
+    repo_dir = os.path.basename(artifact_path)[:-4]
     with zipfile.ZipFile(artifact_path) as zipFile:
-        zipFile.extractall(repoDir)
+        zipFile.extractall(repo_dir)
+
+    return repo_dir
+
+
+def update_support(target, build_id):
+    repo_file = 'top-of-tree-m2repository-%s.zip' % build_id
+    repo_dir = fetch_and_extract(target, build_id, repo_file)
+    if not repo_dir:
+        print >> sys.stderr, 'Failed to extract Support Library repository'
+        return
 
     # Transform the repo archive into a Makefile-compatible format.
-    transform_support(repoDir)
+    transform_maven_repo(repo_dir, support_dir)
+
+
+def update_constraint(target, build_id):
+    layout_dir = fetch_and_extract(target, build_id, 'com.android.support.constraint-constraint-layout-%s.zip' % build_id)
+    solver_dir = fetch_and_extract(target, build_id, 'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id)
+    if not layout_dir or not solver_dir:
+        return False
+
+    # Passing False here is an inelegant solution, but it means we can replace
+    # the top-level directory without worrying about other child directories.
+    transform_maven_repo(layout_dir, os.path.join(extras_dir, 'constraint-layout'), False)
+    transform_maven_repo(solver_dir, os.path.join(extras_dir, 'constraint-layout-solver'), False)
+    return True
 
 
 def extract_to(zip_file, paths, filename, parent_path):
@@ -207,11 +247,12 @@ def extract_to(zip_file, paths, filename, parent_path):
     mv(src_path, dst_path)
 
 
-def update_sdk_repo(target, buildId):
+def update_sdk_repo(target, build_id):
     platform = 'darwin' if 'mac' in target else 'linux'
-    artifact_path = fetch_artifact(target, buildId, 'sdk-repo-%s-platforms-%s.zip' % (platform, buildId))
+    artifact_path = fetch_artifact(
+        target, build_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id))
     if not artifact_path:
-        return
+        return False
 
     with zipfile.ZipFile(artifact_path) as zipFile:
         paths = zipFile.namelist()
@@ -222,14 +263,22 @@ def update_sdk_repo(target, buildId):
 
         # Unclear if this is actually necessary.
         extract_to(zipFile, paths, 'framework.aidl', system_path)
+    return True
 
 
-def update_system(target, buildId):
-    artifact_path = fetch_artifact(target, buildId, 'android_system.jar')
+def update_system(target, build_id):
+    artifact_path = fetch_artifact(target, build_id, 'android_system.jar')
     if not artifact_path:
-        return
+        return False
 
     mv(artifact_path, path(system_path, 'android.jar'))
+    return True
+
+
+def append(text, more_text):
+    if text:
+        return "%s, %s" % (text, more_text)
+    return more_text
 
 
 parser = argparse.ArgumentParser(
@@ -239,6 +288,9 @@ parser.add_argument(
     type=int,
     help='Build server build ID')
 parser.add_argument(
+    '-c', '--constraint', action="store_true",
+    help='If specified, updates only Constraint Layout')
+parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
@@ -247,6 +299,9 @@ parser.add_argument(
 args = parser.parse_args()
 if not args.buildId:
     parser.error("You must specify a build ID")
+    sys.exit(1)
+if not (args.support or args.platform or args.constraint):
+    parser.error("You must specify at least one of --constraint, --support, or --platform")
     sys.exit(1)
 
 try:
@@ -258,20 +313,30 @@ except subprocess.CalledProcessError:
     sys.exit(1)
 
 try:
-    has_args = args.support or args.platform
-
-    if (has_args and args.support) or not has_args:
-        update_support('support_library', args.buildId)
-    if (has_args and args.platform) or not has_args:
-        update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId)
-        update_system('sdk_phone_armv7-sdk_mac', args.buildId)
+    components = None
+    if args.constraint:
+        if update_constraint('studio', args.buildId):
+            components = append(components, 'Constraint Layout')
+        else:
+            sys.exit(1)
+    if args.support:
+        if update_support('support_library', args.buildId):
+            components = append(components, 'Support Library')
+        else:
+            sys.exit(1)
+    if args.platform:
+        if update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId) \
+                and update_system('sdk_phone_armv7-sdk_mac', args.buildId):
+            components = append(components, 'platform SDK')
+        else:
+            sys.exit(1)
 
     # Commit all changes.
     subprocess.check_call(['git', 'add', current_path])
     subprocess.check_call(['git', 'add', system_path])
-    msg = "Import support libs from build %s" % args.buildId
+    msg = "Import %s from build %s\n\n%s" % (components, args.buildId, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
-    print 'Be sure to upload this manually to gerrit.'
+    print 'Remember to test this change before uploading it to Gerrit!'
 
 finally:
     # Revert all stray files, including the downloaded zip.
