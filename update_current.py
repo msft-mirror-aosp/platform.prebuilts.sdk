@@ -65,7 +65,7 @@ blacklist_files = [
     'public.txt',
     'R.txt',
     'AndroidManifest.xml',
-    'noto-emoji-compat-java.jar'
+    os.path.join('libs','noto-emoji-compat-java.jar')
 ]
 
 artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$")
@@ -221,10 +221,11 @@ def update_support(target, build_id):
     repo_dir = fetch_and_extract(target, build_id, repo_file)
     if not repo_dir:
         print >> sys.stderr, 'Failed to extract Support Library repository'
-        return
+        return False
 
     # Transform the repo archive into a Makefile-compatible format.
     transform_maven_repo(repo_dir, support_dir)
+    return True
 
 
 def update_constraint(target, build_id):
@@ -317,18 +318,21 @@ try:
     if args.constraint:
         if update_constraint('studio', args.buildId):
             components = append(components, 'Constraint Layout')
+            print >> sys.stderr, 'Failed to update Constraint Layout, aborting...'
         else:
             sys.exit(1)
     if args.support:
         if update_support('support_library', args.buildId):
             components = append(components, 'Support Library')
         else:
+            print >> sys.stderr, 'Failed to update Support Library, aborting...'
             sys.exit(1)
     if args.platform:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId) \
                 and update_system('sdk_phone_armv7-sdk_mac', args.buildId):
             components = append(components, 'platform SDK')
         else:
+            print >> sys.stderr, 'Failed to update platform SDK, aborting...'
             sys.exit(1)
 
     # Commit all changes.
