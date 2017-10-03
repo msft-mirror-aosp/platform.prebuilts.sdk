@@ -2,7 +2,7 @@ cc_prebuilt_library_shared {
     name: "libLLVM",
     host_supported: true,
     target: {
-        linux_x86_64: {
+        linux_glibc_x86_64: {
             srcs: ["linux/lib64/libLLVM.so"],
         },
         darwin_x86_64: {
@@ -21,7 +21,7 @@ cc_prebuilt_library_shared {
     name: "libclang",
     host_supported: true,
     target: {
-        linux_x86_64: {
+        linux_glibc_x86_64: {
             srcs: ["linux/lib64/libclang.so"],
         },
         darwin_x86_64: {
