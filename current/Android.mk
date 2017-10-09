@@ -21,7 +21,7 @@ LOCAL_PATH := $(call my-dir)
 
 # For apps (unbundled) build, replace the typical
 # make target artifacts with prebuilts.
-ifneq ($(TARGET_BUILD_APPS),)
+ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
 include $(CLEAR_VARS)
 
 # Set up prebuilts for the core Support Library artifacts.
@@ -44,4 +44,4 @@ include $(BUILD_MULTI_PREBUILT)
 # Generates the v4, v13, and appcompat libraries with static dependencies.
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-endif  # TARGET_BUILD_APPS not empty
+endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
