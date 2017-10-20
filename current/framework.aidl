@@ -38,6 +38,8 @@ parcelable android.net.wifi.p2p.WifiP2pDevice;
 parcelable android.net.wifi.p2p.WifiP2pGroup;
 parcelable android.net.wifi.p2p.servicediscovery.WifiP2pServiceRequest;
 parcelable android.net.wifi.p2p.servicediscovery.WifiP2pServiceInfo;
+parcelable android.net.wifi.rtt.RangingRequest;
+parcelable android.net.wifi.rtt.RangingResult;
 parcelable android.net.wifi.WpsInfo;
 parcelable android.net.wifi.ScanResult;
 parcelable android.net.wifi.PasspointManagementObjectDefinition;
