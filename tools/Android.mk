@@ -60,7 +60,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := jack-coverage-plugin
-LOCAL_SRC_FILES := jack-coverage-plugin-STABLE.jar
+LOCAL_SRC_FILES := jack-coverage-plugin.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 MOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
@@ -81,6 +81,11 @@ LOCAL_BUILT_MODULE_STEM := jack-jacoco-reporter$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_IS_HOST_MODULE := true
 
 include $(BUILD_PREBUILT)
+
+# Distribute the reporter tool for coverage builds
+ifeq (true,$(EMMA_INSTRUMENT))
+$(call dist-for-goals, dist_files, $(LOCAL_BUILT_MODULE))
+endif # EMMA_INSTRUMENT
 
 # New versions of the build/ project reference these tools directly without
 # needing to install them, but some unbundled branches use a master version of
