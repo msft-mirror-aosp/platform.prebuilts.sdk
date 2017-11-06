@@ -99,45 +99,57 @@ def mv(src_path, dst_path):
     os.rename(src_path, dst_path)
 
 
-def detect_artifacts(repo_dir):
+def detect_artifacts(repo_dirs):
     maven_lib_info = {}
 
-    # Find the latest revision for each artifact.
-    for root, dirs, files in os.walk(repo_dir):
-        for file in files:
-            matcher = artifact_pattern.match(file)
-            if matcher:
-                maven_lib_name = matcher.group(1)
-                maven_lib_vers = LooseVersion(matcher.group(2))
+    # Find the latest revision for each artifact, remove others
+    for repo_dir in repo_dirs:
+        for root, dirs, files in os.walk(repo_dir):
+            for file in files:
+                matcher = artifact_pattern.match(file)
+                if matcher:
+                    maven_lib_name = matcher.group(1)
+                    maven_lib_vers = LooseVersion(matcher.group(2))
 
-                if maven_lib_name in maven_to_make:
-                    if maven_lib_name not in maven_lib_info \
-                            or maven_lib_vers > maven_lib_info[maven_lib_name][0]:
-                        maven_lib_info[maven_lib_name] = [maven_lib_vers, root, file]
+                    if maven_lib_name in maven_to_make:
+                        if maven_lib_name not in maven_lib_info \
+                                or maven_lib_vers > maven_lib_info[maven_lib_name][0]:
+                            maven_lib_info[maven_lib_name] = [maven_lib_vers, repo_dir, root, file]
 
     return maven_lib_info
 
 
-def transform_maven_repo(repo_dir, update_dir, use_make_dir=True):
-    maven_lib_info = detect_artifacts(repo_dir)
-
+def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
     working_dir = os.path.join(cwd, 'support_tmp')
-    if os.path.exists(working_dir):
-        rmtree(working_dir)
-    os.mkdir(working_dir)
+    maven_lib_info = detect_artifacts(repo_dirs)
 
     for info in maven_lib_info.values():
-        transform_maven_lib(working_dir, info[1], info[2], use_make_dir)
+        transform_maven_lib(working_dir, info[1], info[2], info[3], extract_res)
+
+    with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
+        args = ["pom2mk"]
+        args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
+        args.extend(["."])
+        subprocess.check_call(args, stdout=f, cwd=working_dir)
 
     # Replace the old directory.
     output_dir = os.path.join(cwd, update_dir)
     mv(working_dir, output_dir)
 
 
-def transform_maven_lib(working_dir, root, file, use_make_dir):
+def transform_maven_lib(working_dir, repo_dir, root, file, extract_res):
+    # Move library into working dir
+    new_dir = os.path.join(working_dir, os.path.relpath(root, repo_dir))
+    mv(root, new_dir)
+
+    for dirpath, dirs, files in os.walk(new_dir):
+        for f in files:
+            if '-sources.jar' in f:
+                os.remove(os.path.join(dirpath, f))
+
     matcher = artifact_pattern.match(file)
     maven_lib_name = matcher.group(1)
     maven_lib_vers = matcher.group(2)
@@ -145,16 +157,15 @@ def transform_maven_lib(working_dir, root, file, use_make_dir):
 
     make_lib_name = maven_to_make[maven_lib_name][0]
     make_dir_name = maven_to_make[maven_lib_name][1]
-    artifact_file = os.path.join(root, file)
-    target_dir = os.path.join(working_dir, make_dir_name) if use_make_dir else working_dir
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
 
-    if maven_lib_type == "aar":
-        process_aar(artifact_file, target_dir, make_lib_name)
-    else:
-        target_file = os.path.join(target_dir, make_lib_name + ".jar")
-        os.rename(artifact_file, target_file)
+    if extract_res:
+        artifact_file = os.path.join(new_dir, file)
+        target_dir = os.path.join(working_dir, make_dir_name)
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
+
+        if maven_lib_type == "aar":
+            process_aar(artifact_file, target_dir, make_lib_name)
 
     print maven_lib_vers, ":", maven_lib_name, "->", make_lib_name
 
@@ -164,19 +175,10 @@ def process_aar(artifact_file, target_dir, make_lib_name):
     with zipfile.ZipFile(artifact_file) as zip:
         zip.extractall(target_dir)
 
-    # Rename classes.jar to match the make artifact
+    # Remove classes.jar
     classes_jar = os.path.join(target_dir, "classes.jar")
     if os.path.exists(classes_jar):
-        # If it has resources, it needs a libs dir.
-        res_dir = os.path.join(target_dir, "res")
-        if os.path.exists(res_dir) and os.listdir(res_dir):
-            libs_dir = os.path.join(target_dir, "libs")
-            if not os.path.exists(libs_dir):
-                os.mkdir(libs_dir)
-        else:
-            libs_dir = target_dir
-        target_jar = os.path.join(libs_dir, make_lib_name + ".jar")
-        os.rename(classes_jar, target_jar)
+        os.remove(classes_jar)
 
     # Remove or preserve empty dirs.
     for root, dirs, files in os.walk(target_dir):
@@ -224,7 +226,7 @@ def update_support(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    transform_maven_repo(repo_dir, support_dir)
+    transform_maven_repo([repo_dir], support_dir)
     return True
 
 
@@ -236,8 +238,7 @@ def update_constraint(target, build_id):
 
     # Passing False here is an inelegant solution, but it means we can replace
     # the top-level directory without worrying about other child directories.
-    transform_maven_repo(layout_dir, os.path.join(extras_dir, 'constraint-layout'), False)
-    transform_maven_repo(solver_dir, os.path.join(extras_dir, 'constraint-layout-solver'), False)
+    transform_maven_repo([layout_dir, solver_dir], os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
     return True
 
 
