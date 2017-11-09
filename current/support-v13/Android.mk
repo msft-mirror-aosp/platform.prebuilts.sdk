@@ -18,7 +18,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-v13
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES := \
+LOCAL_STATIC_ANDROID_LIBRARIES := \
         android-support-v4 \
         android-support-v13-nodeps
 LOCAL_JAVA_LIBRARIES := \
