@@ -24,16 +24,6 @@ LOCAL_PATH := $(call my-dir)
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
 include $(CLEAR_VARS)
 
-# Set up prebuilts for the core Support Library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/support -name "*.jar"))
-
-# Set up prebuilts for additional non-core library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/extras -name "*.jar"))
-
 # Set up prebuilts for Multidex library artifacts.
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
   $(patsubst $(LOCAL_PATH)/%,%,\
