@@ -24,20 +24,16 @@ LOCAL_PATH := $(call my-dir)
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
 include $(CLEAR_VARS)
 
-# Set up prebuilts for the core Support Library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/support -name "*.jar"))
-
-# Set up prebuilts for additional non-core library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/extras -name "*.jar"))
-
 # Set up prebuilts for Multidex library artifacts.
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
   $(patsubst $(LOCAL_PATH)/%,%,\
     $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
+
+# Set up prebuilts for optional libraries. Need to specify them explicitly
+# as the target name does not match the JAR name.
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+    android.test.mock.stubs:android.test.mock.jar \
+    android.test.runner.stubs:android.test.runner.jar \
 
 include $(BUILD_MULTI_PREBUILT)
 
