@@ -51,6 +51,7 @@ maven_to_make = {
     'support-fragment':             ['android-support-fragment',                    'fragment'],
     'support-media-compat':         ['android-support-media-compat',                'media-compat'],
     'support-tv-provider':          ['android-support-tv-provider',                 'tv-provider'],
+    'support-v4':                   ['android-support-v4-nodeps',                   'v4'],
     'support-v13':                  ['android-support-v13-nodeps',                  'v13'],
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
@@ -119,7 +120,7 @@ def detect_artifacts(repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
+def transform_maven_repo(repo_dirs, update_dir, extract_res=True, extract_manifests=[]):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
@@ -127,10 +128,10 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
     maven_lib_info = detect_artifacts(repo_dirs)
 
     for info in maven_lib_info.values():
-        transform_maven_lib(working_dir, info[1], info[2], info[3], extract_res)
+        transform_maven_lib(working_dir, info[1], info[2], info[3], extract_res, extract_manifests)
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
-        args = ["pom2mk"]
+        args = ["pom2mk", "-sdk-version", "current"]
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
@@ -140,7 +141,7 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
     mv(working_dir, output_dir)
 
 
-def transform_maven_lib(working_dir, repo_dir, root, file, extract_res):
+def transform_maven_lib(working_dir, repo_dir, root, file, extract_res, extract_manifests):
     # Move library into working dir
     new_dir = os.path.join(working_dir, os.path.relpath(root, repo_dir))
     mv(root, new_dir)
@@ -166,6 +167,10 @@ def transform_maven_lib(working_dir, repo_dir, root, file, extract_res):
 
         if maven_lib_type == "aar":
             process_aar(artifact_file, target_dir, make_lib_name)
+
+    if maven_lib_name in extract_manifests:
+        with zipfile.ZipFile(artifact_file) as zip:
+            zip.extract("AndroidManifest.xml", os.path.join(working_dir, maven_lib_name))
 
     print maven_lib_vers, ":", maven_lib_name, "->", make_lib_name
 
@@ -226,7 +231,7 @@ def update_support(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    transform_maven_repo([repo_dir], support_dir)
+    transform_maven_repo([repo_dir], support_dir, extract_manifests=['support-v4', 'support-v13'])
     return True
 
 
