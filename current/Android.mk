@@ -32,11 +32,6 @@ LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
 # Set up prebuilts for additional non-core library artifacts.
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
   $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/extras -name "*.jar"))
-
-# Set up prebuilts for Multidex library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-  $(patsubst $(LOCAL_PATH)/%,%,\
     $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
 
 include $(BUILD_MULTI_PREBUILT)
