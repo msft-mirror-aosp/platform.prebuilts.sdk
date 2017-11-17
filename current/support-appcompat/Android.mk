@@ -18,10 +18,11 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-v7-appcompat
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES := \
+LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-v7-appcompat-nodeps \
     android-support-vectordrawable \
     android-support-animatedvectordrawable
 LOCAL_JAR_EXCLUDE_FILES := none
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
 include $(BUILD_STATIC_JAVA_LIBRARY)
