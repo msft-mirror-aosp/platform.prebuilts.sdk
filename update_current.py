@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # This script is used to update platform SDK prebuilts, Support Library, and a variety of other
 # prebuilt libraries used by Android's Makefile builds. For details on how to use this script,
@@ -6,8 +6,9 @@
 import os, sys, getopt, zipfile, re
 import argparse
 import subprocess
-from shutil import copyfile, rmtree
+from shutil import copyfile, rmtree, which
 from distutils.version import LooseVersion
+from functools import reduce
 
 current_path = 'current'
 system_path = 'system_current'
@@ -70,6 +71,9 @@ blacklist_files = [
 ]
 
 artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$")
+
+def print_e(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def touch(fname, times=None):
@@ -172,7 +176,7 @@ def transform_maven_lib(working_dir, repo_dir, root, file, extract_res, extract_
         with zipfile.ZipFile(artifact_file) as zip:
             zip.extract("AndroidManifest.xml", os.path.join(working_dir, maven_lib_name))
 
-    print maven_lib_vers, ":", maven_lib_name, "->", make_lib_name
+    print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
 
 def process_aar(artifact_file, target_dir, make_lib_name):
@@ -200,12 +204,12 @@ def process_aar(artifact_file, target_dir, make_lib_name):
 
 
 def fetch_artifact(target, build_id, artifact_path):
-    print 'Fetching %s from %s...' % (artifact_path, target)
+    print('Fetching %s from %s...' % (artifact_path, target))
     fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path]
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
-        print >> sys.stderr, 'FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, build_id)
+        print_e('FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, build_id))
         return None
     return artifact_path
 
@@ -227,7 +231,7 @@ def update_support(target, build_id):
     repo_file = 'top-of-tree-m2repository-%s.zip' % build_id
     repo_dir = fetch_and_extract(target, build_id, repo_file)
     if not repo_dir:
-        print >> sys.stderr, 'Failed to extract Support Library repository'
+        print_e('Failed to extract Support Library repository')
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
@@ -312,13 +316,16 @@ if not args.buildId:
 if not (args.support or args.platform or args.constraint):
     parser.error("You must specify at least one of --constraint, --support, or --platform")
     sys.exit(1)
+if which('pom2mk') is None:
+    parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
+    sys.exit(1)
 
 try:
     # Make sure we don't overwrite any pending changes.
     subprocess.check_call(['git', 'diff', '--quiet', '--', '**'])
     subprocess.check_call(['git', 'diff', '--quiet', '--cached', '--', '**'])
 except subprocess.CalledProcessError:
-    print >> sys.stderr, "FAIL: There are uncommitted changes here; please revert or stash"
+    print_e('FAIL: There are uncommitted changes here; please revert or stash')
     sys.exit(1)
 
 try:
@@ -326,21 +333,21 @@ try:
     if args.constraint:
         if update_constraint('studio', args.buildId):
             components = append(components, 'Constraint Layout')
-            print >> sys.stderr, 'Failed to update Constraint Layout, aborting...'
+            print_e('Failed to update Constraint Layout, aborting...')
         else:
             sys.exit(1)
     if args.support:
         if update_support('support_library', args.buildId):
             components = append(components, 'Support Library')
         else:
-            print >> sys.stderr, 'Failed to update Support Library, aborting...'
+            print_e('Failed to update Support Library, aborting...')
             sys.exit(1)
     if args.platform:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId) \
                 and update_system('sdk_phone_armv7-sdk_mac', args.buildId):
             components = append(components, 'platform SDK')
         else:
-            print >> sys.stderr, 'Failed to update platform SDK, aborting...'
+            print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
 
     # Commit all changes.
@@ -348,7 +355,7 @@ try:
     subprocess.check_call(['git', 'add', system_path])
     msg = "Import %s from build %s\n\n%s" % (components, args.buildId, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
-    print 'Remember to test this change before uploading it to Gerrit!'
+    print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
     # Revert all stray files, including the downloaded zip.
@@ -359,4 +366,4 @@ finally:
                 ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!'], stdout=bitbucket)
             subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
     except subprocess.CalledProcessError:
-        print >> sys.stderr, "ERROR: Failed cleaning up, manual cleanup required!!!"
+        print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
