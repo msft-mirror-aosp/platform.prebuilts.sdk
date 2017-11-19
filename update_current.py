@@ -231,7 +231,7 @@ def update_support(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    transform_maven_repo([repo_dir], support_dir, extract_manifests=['support-v4', 'support-v13'])
+    transform_maven_repo([repo_dir], support_dir, extract_manifests=['appcompat-v7', 'support-v4', 'support-v13'])
     return True
 
 
