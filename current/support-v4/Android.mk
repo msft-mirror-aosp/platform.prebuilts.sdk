@@ -18,12 +18,13 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-v4
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES := \
+LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-compat \
     android-support-media-compat \
     android-support-core-utils \
     android-support-core-ui \
-    android-support-fragment \
+    android-support-fragment
+LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-annotations
 LOCAL_JAR_EXCLUDE_FILES := none
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
