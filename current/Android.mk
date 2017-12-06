@@ -32,6 +32,7 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     # Set up prebuilts for optional libraries. Need to specify them explicitly
     # as the target name does not match the JAR name.
     LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+        android.test.base.stubs:optional/android.test.base.jar \
         android.test.mock.stubs:optional/android.test.mock.jar \
         android.test.runner.stubs:optional/android.test.runner.jar \
 
