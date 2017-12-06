@@ -271,6 +271,7 @@ def update_sdk_repo(target, build_id):
         extract_to(zipFile, paths, 'android.jar', current_path)
         extract_to(zipFile, paths, 'uiautomator.jar', current_path)
         extract_to(zipFile, paths, 'framework.aidl', current_path)
+        extract_to(zipFile, paths, 'optional/android.test.base.jar', current_path)
         extract_to(zipFile, paths, 'optional/android.test.mock.jar', current_path)
         extract_to(zipFile, paths, 'optional/android.test.runner.jar', current_path)
 
