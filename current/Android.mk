@@ -19,25 +19,29 @@ LOCAL_PATH := $(call my-dir)
 #########################################
 # The prebuilt support libraries.
 
+include $(CLEAR_VARS)
+
 # For apps (unbundled) build, replace the typical
 # make target artifacts with prebuilts.
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
-include $(CLEAR_VARS)
+    # Set up prebuilts for Multidex library artifacts.
+    LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+      $(patsubst $(LOCAL_PATH)/%,%,\
+        $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
 
-# Set up prebuilts for Multidex library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
+    # Set up prebuilts for optional libraries. Need to specify them explicitly
+    # as the target name does not match the JAR name.
+    LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+        android.test.base.stubs:optional/android.test.base.jar \
+        android.test.mock.stubs:optional/android.test.mock.jar \
+        android.test.runner.stubs:optional/android.test.runner.jar \
 
-# Set up prebuilts for optional libraries. Need to specify them explicitly
-# as the target name does not match the JAR name.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
-    android.test.mock.stubs:optional/android.test.mock.jar \
-    android.test.runner.stubs:optional/android.test.runner.jar \
+    include $(BUILD_MULTI_PREBUILT)
 
-include $(BUILD_MULTI_PREBUILT)
-
-# Generates the v4, v13, and appcompat libraries with static dependencies.
-include $(call all-makefiles-under,$(LOCAL_PATH))
-
+    # Include all prebuilt libraries and generate the v4, v13, and appcompat
+    # libraries with static dependencies.
+    include $(call all-makefiles-under,$(LOCAL_PATH))
+else
+    # Include constraint-layout prebuilts.
+    include $(call all-makefiles-under,$(LOCAL_PATH)/extras)
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
