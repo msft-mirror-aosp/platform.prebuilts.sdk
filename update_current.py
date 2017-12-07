@@ -58,7 +58,11 @@ maven_to_make = {
     'transition':                   ['android-support-transition',                  'transition'],
     'wear':                         ['android-support-wear',                        'wear'],
     'constraint-layout':            ['android-support-constraint-layout',           'constraint-layout'],
-    'constraint-layout-solver':     ['android-support-constraint-layout-solver',    'constraint-layout-solver']
+    'constraint-layout-solver':     ['android-support-constraint-layout-solver',    'constraint-layout-solver'],
+    'android.arch.core:runtime':       ['android-arch-core-runtime',                'arch-core/runtime'],
+    'android.arch.core:common':        ['android-arch-core-common',                 'arch-core/common'],
+    'android.arch.lifecycle:runtime':  ['android-arch-lifecycle-runtime',           'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:common':   ['android-arch-lifecycle-common',            'arch-lifecycle/common']
 }
 
 # Always remove these files.
@@ -71,6 +75,18 @@ blacklist_files = [
 ]
 
 artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$")
+
+
+class MavenLibraryInfo:
+    def __init__(self, key, group_id, artifact_id, version, root, repo_dir, file):
+        self.key = key
+        self.group_id = group_id
+        self.artifact_id = artifact_id
+        self.version = version
+        self.root = root
+        self.repo_dir = repo_dir
+        self.file = file
+
 
 def print_e(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
@@ -111,15 +127,53 @@ def detect_artifacts(repo_dirs):
     for repo_dir in repo_dirs:
         for root, dirs, files in os.walk(repo_dir):
             for file in files:
-                matcher = artifact_pattern.match(file)
-                if matcher:
-                    maven_lib_name = matcher.group(1)
-                    maven_lib_vers = LooseVersion(matcher.group(2))
+                if file[-4:] == ".pom":
+                    # Read the POM (hack hack hack).
+                    group_id = ''
+                    artifact_id = ''
+                    version = ''
+                    file = os.path.join(root, file)
+                    with open(file) as pom_file:
+                        for line in pom_file:
+                            if line[:11] == '  <groupId>':
+                                group_id = line[11:-11]
+                            elif line[:14] == '  <artifactId>':
+                                artifact_id = line[14:-14]
+                            elif line[:11] == '  <version>':
+                                version = line[11:-11]
+                    if group_id == '' or artifact_id == '' or version == '':
+                        print_e('Failed to find Maven artifact data in ' + file)
+                        continue
 
-                    if maven_lib_name in maven_to_make:
-                        if maven_lib_name not in maven_lib_info \
-                                or maven_lib_vers > maven_lib_info[maven_lib_name][0]:
-                            maven_lib_info[maven_lib_name] = [maven_lib_vers, repo_dir, root, file]
+                    # Locate the artifact.
+                    artifact_file = file[:-4]
+                    if os.path.exists(artifact_file + '.jar'):
+                        artifact_file = artifact_file + '.jar'
+                    elif os.path.exists(artifact_file + '.aar'):
+                        artifact_file = artifact_file + '.aar'
+                    else:
+                        print_e('Failed to find artifact for ' + artifact_file)
+                        continue
+
+                    # Make relative to root.
+                    artifact_file = artifact_file[len(root) + 1:]
+
+                    # Find the mapping.
+                    group_artifact = group_id + ':' + artifact_id
+                    if artifact_id in maven_to_make:
+                        key = artifact_id
+                    elif group_artifact in maven_to_make:
+                        key = group_artifact
+                    else:
+                        print_e('Failed to find artifact mapping for ' + group_artifact)
+                        continue
+
+                    # Store the latest version.
+                    version = LooseVersion(version)
+                    if key not in maven_lib_info \
+                            or version > maven_lib_info[key].version:
+                        maven_lib_info[key] = MavenLibraryInfo(key, group_id, artifact_id, version,
+                                                               root, repo_dir, artifact_file)
 
     return maven_lib_info
 
@@ -131,8 +185,12 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True, extract_manife
     working_dir = os.path.join(cwd, 'support_tmp')
     maven_lib_info = detect_artifacts(repo_dirs)
 
+    if not maven_lib_info:
+        print_e('Failed to detect artifacts')
+        return False
+
     for info in maven_lib_info.values():
-        transform_maven_lib(working_dir, info[1], info[2], info[3], extract_res, extract_manifests)
+        transform_maven_lib(working_dir, info, extract_res, extract_manifests)
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
         args = ["pom2mk", "-sdk-version", "current"]
@@ -143,34 +201,35 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True, extract_manife
     # Replace the old directory.
     output_dir = os.path.join(cwd, update_dir)
     mv(working_dir, output_dir)
+    return True
 
 
-def transform_maven_lib(working_dir, repo_dir, root, file, extract_res, extract_manifests):
+def transform_maven_lib(working_dir, artifact_info, extract_res, extract_manifests):
     # Move library into working dir
-    new_dir = os.path.join(working_dir, os.path.relpath(root, repo_dir))
-    mv(root, new_dir)
+    new_dir = os.path.join(working_dir, os.path.relpath(artifact_info.root, artifact_info.repo_dir))
+    mv(artifact_info.root, new_dir)
 
     for dirpath, dirs, files in os.walk(new_dir):
         for f in files:
             if '-sources.jar' in f:
                 os.remove(os.path.join(dirpath, f))
 
-    matcher = artifact_pattern.match(file)
-    maven_lib_name = matcher.group(1)
+    matcher = artifact_pattern.match(artifact_info.file)
+    maven_lib_name = artifact_info.key
     maven_lib_vers = matcher.group(2)
-    maven_lib_type = matcher.group(3)
+    maven_lib_type = artifact_info.file[-3:]
 
-    make_lib_name = maven_to_make[maven_lib_name][0]
-    make_dir_name = maven_to_make[maven_lib_name][1]
+    make_lib_name = maven_to_make[artifact_info.key][0]
+    make_dir_name = maven_to_make[artifact_info.key][1]
 
     if extract_res:
-        artifact_file = os.path.join(new_dir, file)
+        artifact_file = os.path.join(new_dir, artifact_info.file)
         target_dir = os.path.join(working_dir, make_dir_name)
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
         if maven_lib_type == "aar":
-            process_aar(artifact_file, target_dir, make_lib_name)
+            process_aar(artifact_file, target_dir)
 
     if maven_lib_name in extract_manifests:
         with zipfile.ZipFile(artifact_file) as zip:
@@ -179,7 +238,7 @@ def transform_maven_lib(working_dir, repo_dir, root, file, extract_res, extract_
     print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
 
-def process_aar(artifact_file, target_dir, make_lib_name):
+def process_aar(artifact_file, target_dir):
     # Extract AAR file to target_dir.
     with zipfile.ZipFile(artifact_file) as zip:
         zip.extractall(target_dir)
@@ -235,20 +294,33 @@ def update_support(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    transform_maven_repo([repo_dir], support_dir, extract_manifests=['appcompat-v7', 'support-v4', 'support-v13'])
-    return True
+    return transform_maven_repo([repo_dir], support_dir,
+                                extract_manifests=['appcompat-v7', 'support-v4', 'support-v13'])
+
+
+def update_toolkit(target, build_id):
+    repo_dir = fetch_and_extract(target, build_id, 'top-of-tree-m2repository-%s.zip' % build_id)
+    if not repo_dir:
+        print_e('Failed to extract App Toolkit repository')
+        return False
+
+    # Transform the repo archive into a Makefile-compatible format.
+    return transform_maven_repo([repo_dir], os.path.join(extras_dir, 'app-toolkit'))
 
 
 def update_constraint(target, build_id):
-    layout_dir = fetch_and_extract(target, build_id, 'com.android.support.constraint-constraint-layout-%s.zip' % build_id)
-    solver_dir = fetch_and_extract(target, build_id, 'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id)
+    layout_dir = fetch_and_extract(target, build_id,
+                                   'com.android.support.constraint-constraint-layout-%s.zip' % build_id)
+    solver_dir = fetch_and_extract(target, build_id,
+                                   'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id)
     if not layout_dir or not solver_dir:
+        print_e('Failed to extract Constraint Layout repositories')
         return False
 
     # Passing False here is an inelegant solution, but it means we can replace
     # the top-level directory without worrying about other child directories.
-    transform_maven_repo([layout_dir, solver_dir], os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
-    return True
+    return transform_maven_repo([layout_dir, solver_dir],
+                                os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
 
 
 def extract_to(zip_file, paths, filename, parent_path):
@@ -271,6 +343,7 @@ def update_sdk_repo(target, build_id):
         extract_to(zipFile, paths, 'android.jar', current_path)
         extract_to(zipFile, paths, 'uiautomator.jar', current_path)
         extract_to(zipFile, paths, 'framework.aidl', current_path)
+        extract_to(zipFile, paths, 'optional/android.test.base.jar', current_path)
         extract_to(zipFile, paths, 'optional/android.test.mock.jar', current_path)
         extract_to(zipFile, paths, 'optional/android.test.runner.jar', current_path)
 
@@ -307,6 +380,9 @@ parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
+    '-t', '--toolkit', action="store_true",
+    help='If specified, updates only the App Toolkit')
+parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
 args = parser.parse_args()
@@ -314,7 +390,7 @@ if not args.buildId:
     parser.error("You must specify a build ID")
     sys.exit(1)
 if not (args.support or args.platform or args.constraint):
-    parser.error("You must specify at least one of --constraint, --support, or --platform")
+    parser.error("You must specify at least one of --constraint, --support, --toolkit, or --platform")
     sys.exit(1)
 if which('pom2mk') is None:
     parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
@@ -341,6 +417,12 @@ try:
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
+            sys.exit(1)
+    if args.toolkit:
+        if update_toolkit('support_library_app_toolkit', args.buildId):
+            components = append(components, 'App Toolkit')
+        else:
+            print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
     if args.platform:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId) \
