@@ -24,7 +24,7 @@ FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 # include dependencies.
 maven_to_make = {
     'animated-vector-drawable':     ['android-support-animatedvectordrawable',      'graphics/drawable'],
-    'appcompat-v7':                 ['android-support-v7-appcompat-nodeps',         'v7/appcompat'],
+    'appcompat-v7':                 ['android-support-v7-appcompat',                'v7/appcompat'],
     'cardview-v7':                  ['android-support-v7-cardview',                 'v7/cardview'],
     'customtabs':                   ['android-support-customtabs',                  'customtabs'],
     'design':                       ['android-support-design',                      'design'],
@@ -52,8 +52,8 @@ maven_to_make = {
     'support-fragment':             ['android-support-fragment',                    'fragment'],
     'support-media-compat':         ['android-support-media-compat',                'media-compat'],
     'support-tv-provider':          ['android-support-tv-provider',                 'tv-provider'],
-    'support-v4':                   ['android-support-v4-nodeps',                   'v4'],
-    'support-v13':                  ['android-support-v13-nodeps',                  'v13'],
+    'support-v4':                   ['android-support-v4',                          'v4'],
+    'support-v13':                  ['android-support-v13',                         'v13'],
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
     'wear':                         ['android-support-wear',                        'wear'],
@@ -178,7 +178,7 @@ def detect_artifacts(repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repo(repo_dirs, update_dir, extract_res=True, extract_manifests=[]):
+def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
@@ -190,10 +190,10 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True, extract_manife
         return False
 
     for info in maven_lib_info.values():
-        transform_maven_lib(working_dir, info, extract_res, extract_manifests)
+        transform_maven_lib(working_dir, info, extract_res)
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
-        args = ["pom2mk", "-sdk-version", "current"]
+        args = ["pom2mk", "-transitive", "-sdk-version", "current"]
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
@@ -204,7 +204,7 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True, extract_manife
     return True
 
 
-def transform_maven_lib(working_dir, artifact_info, extract_res, extract_manifests):
+def transform_maven_lib(working_dir, artifact_info, extract_res):
     # Move library into working dir
     new_dir = os.path.join(working_dir, os.path.relpath(artifact_info.root, artifact_info.repo_dir))
     mv(artifact_info.root, new_dir)
@@ -231,9 +231,10 @@ def transform_maven_lib(working_dir, artifact_info, extract_res, extract_manifes
         if maven_lib_type == "aar":
             process_aar(artifact_file, target_dir)
 
-    if maven_lib_name in extract_manifests:
+    if maven_lib_type == "aar":
         with zipfile.ZipFile(artifact_file) as zip:
-            zip.extract("AndroidManifest.xml", os.path.join(working_dir, maven_lib_name))
+            manifests_dir = os.path.join(working_dir, "manifests")
+            zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
 
     print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
@@ -294,8 +295,7 @@ def update_support(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repo([repo_dir], support_dir,
-                                extract_manifests=['appcompat-v7', 'support-v4', 'support-v13'])
+    return transform_maven_repo([repo_dir], support_dir)
 
 
 def update_toolkit(target, build_id):
