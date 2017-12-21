@@ -358,6 +358,13 @@ def update_system(target, build_id):
         return False
 
     mv(artifact_path, path(system_path, 'android.jar'))
+
+    artifact_path = fetch_artifact(target, build_id, 'android.test.mock.stubs_system.jar')
+    if not artifact_path:
+        return False
+
+    mv(artifact_path, path(system_path, 'optional/android.test.mock.jar'))
+
     return True
 
 
