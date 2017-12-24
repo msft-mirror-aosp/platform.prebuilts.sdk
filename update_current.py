@@ -14,6 +14,7 @@ current_path = 'current'
 system_path = 'system_current'
 support_dir = os.path.join(current_path, 'support')
 extras_dir = os.path.join(current_path, 'extras')
+buildtools_dir = 'tools'
 
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
@@ -270,6 +271,7 @@ def fetch_artifact(target, build_id, artifact_path):
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
         print_e('FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, build_id))
+        print_e('Please make sure you are authenticated for build server access!')
         return None
     return artifact_path
 
@@ -324,7 +326,7 @@ def update_constraint(target, build_id):
 
 
 def extract_to(zip_file, paths, filename, parent_path):
-    zip_path = filter(lambda path: filename in path, paths)[0]
+    zip_path = next(filter(lambda path: filename in path, paths))
     src_path = zip_file.extract(zip_path)
     dst_path = path(parent_path, filename)
     mv(src_path, dst_path)
@@ -358,6 +360,39 @@ def update_system(target, build_id):
         return False
 
     mv(artifact_path, path(system_path, 'android.jar'))
+
+    artifact_path = fetch_artifact(target, build_id, 'android.test.mock.stubs_system.jar')
+    if not artifact_path:
+        return False
+
+    mv(artifact_path, path(system_path, 'optional/android.test.mock.jar'))
+
+    return True
+
+
+def update_buildtools(target, arch, build_id):
+    artifact_path = fetch_and_extract(target, build_id,
+                                   "sdk-repo-%s-build-tools-%s.zip" % (arch, build_id))
+    if not artifact_path:
+        return False
+
+    top_level_dir = os.listdir(artifact_path)[0]
+    src_path = os.path.join(artifact_path, top_level_dir)
+    dst_path = path(buildtools_dir, arch)
+    mv(src_path, dst_path)
+
+    # Move all top-level files to /bin and make them executable
+    bin_path = path(dst_path, 'bin')
+    top_level_files = filter(lambda e: os.path.isfile(path(dst_path, e)), os.listdir(dst_path))
+    for file in top_level_files:
+        src_file = path(dst_path, file)
+        dst_file = path(bin_path, file)
+        mv(src_file, dst_file)
+        os.chmod(dst_file, 0o755)
+
+    # Remove renderscript
+    rm(path(dst_path, 'renderscript'))
+
     return True
 
 
@@ -385,14 +420,17 @@ parser.add_argument(
 parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
+parser.add_argument(
+    '-b', '--buildtools', action="store_true",
+    help='If specified, updates only the Build Tools')
 args = parser.parse_args()
 if not args.buildId:
     parser.error("You must specify a build ID")
     sys.exit(1)
-if not (args.support or args.platform or args.constraint):
-    parser.error("You must specify at least one of --constraint, --support, --toolkit, or --platform")
+if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools):
+    parser.error("You must specify at least one target to update")
     sys.exit(1)
-if which('pom2mk') is None:
+if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None:
     parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
     sys.exit(1)
 
@@ -431,10 +469,19 @@ try:
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
+    if args.buildtools:
+        if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', args.buildId) \
+                and update_buildtools('sdk_phone_x86_64-sdk', 'linux', args.buildId) \
+                and update_buildtools('sdk_phone_armv7-win_sdk', 'windows', args.buildId):
+            components = append(components, 'build tools')
+        else:
+            print_e('Failed to update build tools, aborting...')
+            sys.exit(1)
 
     # Commit all changes.
     subprocess.check_call(['git', 'add', current_path])
     subprocess.check_call(['git', 'add', system_path])
+    subprocess.check_call(['git', 'add', buildtools_dir])
     msg = "Import %s from build %s\n\n%s" % (components, args.buildId, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
     print('Remember to test this change before uploading it to Gerrit!')
