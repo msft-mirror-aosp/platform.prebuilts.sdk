@@ -28,7 +28,8 @@ maven_to_make = {
     'appcompat-v7':                 ['android-support-v7-appcompat',                'v7/appcompat'],
     'cardview-v7':                  ['android-support-v7-cardview',                 'v7/cardview'],
     'customtabs':                   ['android-support-customtabs',                  'customtabs'],
-    'design':                       ['android-support-design',                      'design'],
+    # Design Library is temporarily removed until prebuilt ownership has changed hands.
+    # 'design':                       ['android-support-design',                      'design'],
     'exifinterface':                ['android-support-exifinterface',               'exifinterface'],
     'gridlayout-v7':                ['android-support-v7-gridlayout',               'v7/gridlayout'],
     'leanback-v17':                 ['android-support-v17-leanback',                'v17/leanback'],
