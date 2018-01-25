@@ -195,37 +195,6 @@ LOCAL_USE_AAPT2 := true
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-design-nodeps
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_UNINSTALLABLE_MODULE := true
-LOCAL_SRC_FILES := m2repository/com/android/support/design/28.0.0-SNAPSHOT/design-28.0.0-20180105.182510-1.aar
-LOCAL_BUILT_MODULE_STEM := javalib.jar
-LOCAL_MODULE_SUFFIX := .aar
-LOCAL_USE_AAPT2 := true
-LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-v4 \
-  android-support-v7-appcompat \
-  android-support-v7-recyclerview \
-  android-support-transition
-include $(BUILD_PREBUILT)
-include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-design
-LOCAL_SDK_VERSION := current
-LOCAL_MANIFEST_FILE := manifests/android-support-design/AndroidManifest.xml
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-design-nodeps  \
-  android-support-v4  \
-  android-support-v7-appcompat  \
-  android-support-v7-recyclerview  \
-  android-support-transition
-LOCAL_JAR_EXCLUDE_FILES := none
-LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-LOCAL_USE_AAPT2 := true
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-exifinterface-nodeps
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_UNINSTALLABLE_MODULE := true
