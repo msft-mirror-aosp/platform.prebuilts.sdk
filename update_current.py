@@ -28,13 +28,12 @@ maven_to_make = {
     'appcompat-v7':                 ['android-support-v7-appcompat',                'v7/appcompat'],
     'cardview-v7':                  ['android-support-v7-cardview',                 'v7/cardview'],
     'customtabs':                   ['android-support-customtabs',                  'customtabs'],
-    'design':                       ['android-support-design',                      'design'],
+    # Design Library is temporarily removed until prebuilt ownership has changed hands.
+    # 'design':                       ['android-support-design',                      'design'],
     'exifinterface':                ['android-support-exifinterface',               'exifinterface'],
     'gridlayout-v7':                ['android-support-v7-gridlayout',               'v7/gridlayout'],
     'leanback-v17':                 ['android-support-v17-leanback',                'v17/leanback'],
     'mediarouter-v7':               ['android-support-v7-mediarouter',              'v7/mediarouter'],
-    'multidex':                     ['android-support-multidex',                    'multidex/library'],
-    'multidex-instrumentation':     ['android-support-multidex-instrumentation',    'multidex/instrumentation'],
     'palette-v7':                   ['android-support-v7-palette',                  'v7/palette'],
     'percent':                      ['android-support-percent',                     'percent'],
     'preference-leanback-v17':      ['android-support-v17-preference-leanback',     'v17/preference-leanback'],
@@ -58,12 +57,40 @@ maven_to_make = {
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
     'wear':                         ['android-support-wear',                        'wear'],
-    'constraint-layout':            ['android-support-constraint-layout',           'constraint-layout'],
-    'constraint-layout-solver':     ['android-support-constraint-layout-solver',    'constraint-layout-solver'],
-    'android.arch.core:runtime':       ['android-arch-core-runtime',                'arch-core/runtime'],
-    'android.arch.core:common':        ['android-arch-core-common',                 'arch-core/common'],
-    'android.arch.lifecycle:runtime':  ['android-arch-lifecycle-runtime',           'arch-lifecycle/runtime'],
-    'android.arch.lifecycle:common':   ['android-arch-lifecycle-common',            'arch-lifecycle/common']
+    # Slices
+    'slices-core':                  ['android-slices-core',                         'slices-core'],
+    'slices-view':                  ['android-slices-view',                         'slices-view'],
+    'slices-builders':              ['android-slices-builders',                     'slices-builders'],
+
+    # Multidex
+    'multidex':                 ['android-support-multidex',                 'multidex/library'],
+    'multidex-instrumentation': ['android-support-multidex-instrumentation', 'multidex/instrumentation'],
+
+    # Constraint Layout
+    'constraint-layout':        ['android-support-constraint-layout',        'constraint-layout'],
+    'constraint-layout-solver': ['android-support-constraint-layout-solver', 'constraint-layout-solver'],
+
+    # App Arch Core
+    'android.arch.core:runtime': ['android-arch-core-runtime', 'arch-core/runtime'],
+    'android.arch.core:common':  ['android-arch-core-common',  'arch-core/common'],
+    # Paging
+    'android.arch.paging:common':  ['android-arch-paging-common',  'arch-paging/common'],
+    'android.arch.paging:runtime': ['android-arch-paging-runtime', 'arch-paging/runtime'],
+    # Lifecycle
+    'android.arch.lifecycle:livedata':     ['android-arch-lifecycle-livedata',     'arch-lifecycle/livedata'],
+    'android.arch.lifecycle:viewmodel':    ['android-arch-lifecycle-viewmodel',    'arch-lifecycle/viewmodel'],
+    'android.arch.lifecycle:extensions':   ['android-arch-lifecycle-extensions',   'arch-lifecycle/extensions'],
+    'android.arch.lifecycle:runtime':      ['android-arch-lifecycle-runtime',      'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:common':       ['android-arch-lifecycle-common',       'arch-lifecycle/common'],
+    'android.arch.lifecycle:common-java8': ['android-arch-lifecycle-common-java8', 'arch-lifecycle/common-java8'],
+    # Persistence
+    'android.arch.persistence:db':           ['android-arch-persistence-db',           'arch-persistence/db'],
+    'android.arch.persistence:db-framework': ['android-arch-persistence-db-framework', 'arch-persistence/db-framework'],
+    # Room
+    'android.arch.persistence.room:common':    ['android-arch-room-common',    'arch-room/common'],
+    'android.arch.persistence.room:runtime':   ['android-arch-room-runtime',   'arch-room/runtime'],
+    'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
+    'android.arch.persistence.room:testing':   ['android-arch-room-testing',   'arch-room/testing'],
 }
 
 # Always remove these files.
@@ -194,7 +221,7 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
         transform_maven_lib(working_dir, info, extract_res)
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
-        args = ["pom2mk", "-transitive", "-sdk-version", "current"]
+        args = ["pom2mk", "-static-deps", "-sdk-version", "current"]
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)

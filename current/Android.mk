@@ -42,6 +42,6 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     # libraries with static dependencies.
     include $(call all-makefiles-under,$(LOCAL_PATH))
 else
-    # Include constraint-layout prebuilts.
+    # Always include Design Library and Constraint Layout prebuilts.
     include $(call all-makefiles-under,$(LOCAL_PATH)/extras)
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
