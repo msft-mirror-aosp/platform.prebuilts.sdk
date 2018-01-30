@@ -72,25 +72,35 @@ maven_to_make = {
     # App Arch Core
     'android.arch.core:runtime': ['android-arch-core-runtime', 'arch-core/runtime'],
     'android.arch.core:common':  ['android-arch-core-common',  'arch-core/common'],
+    'android.arch.core:testing': ['android-arch-core-testing', 'arch-core/testing'],
+
     # Paging
     'android.arch.paging:common':  ['android-arch-paging-common',  'arch-paging/common'],
     'android.arch.paging:runtime': ['android-arch-paging-runtime', 'arch-paging/runtime'],
+
     # Lifecycle
-    'android.arch.lifecycle:livedata-core': ['android-arch-lifecycle-livedata-core', 'arch-lifecycle/livedata-core'],
-    'android.arch.lifecycle:livedata':      ['android-arch-lifecycle-livedata',      'arch-lifecycle/livedata'],
-    'android.arch.lifecycle:viewmodel':     ['android-arch-lifecycle-viewmodel',     'arch-lifecycle/viewmodel'],
-    'android.arch.lifecycle:extensions':    ['android-arch-lifecycle-extensions',    'arch-lifecycle/extensions'],
-    'android.arch.lifecycle:runtime':       ['android-arch-lifecycle-runtime',       'arch-lifecycle/runtime'],
-    'android.arch.lifecycle:common':        ['android-arch-lifecycle-common',        'arch-lifecycle/common'],
-    'android.arch.lifecycle:common-java8':  ['android-arch-lifecycle-common-java8',  'arch-lifecycle/common-java8'],
+    'android.arch.lifecycle:livedata-core':   ['android-arch-lifecycle-livedata-core',  'arch-lifecycle/livedata-core'],
+    'android.arch.lifecycle:livedata':        ['android-arch-lifecycle-livedata',       'arch-lifecycle/livedata'],
+    'android.arch.lifecycle:viewmodel':       ['android-arch-lifecycle-viewmodel',      'arch-lifecycle/viewmodel'],
+    'android.arch.lifecycle:extensions':      ['android-arch-lifecycle-extensions',     'arch-lifecycle/extensions'],
+    'android.arch.lifecycle:runtime':         ['android-arch-lifecycle-runtime',        'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:common':          ['android-arch-lifecycle-common',         'arch-lifecycle/common'],
+    'android.arch.lifecycle:common-java8':    ['android-arch-lifecycle-common-java8',   'arch-lifecycle/common-java8'],
+    'android.arch.lifecycle:compiler':        ['android-arch-lifecycle-compiler',       'arch-lifecycle/compiler'],
+    'android.arch.lifecycle:reactivestreams': ['android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams'],
+
     # Persistence
     'android.arch.persistence:db':           ['android-arch-persistence-db',           'arch-persistence/db'],
     'android.arch.persistence:db-framework': ['android-arch-persistence-db-framework', 'arch-persistence/db-framework'],
+
     # Room
     'android.arch.persistence.room:common':    ['android-arch-room-common',    'arch-room/common'],
+    'android.arch.persistence.room:compiler':  ['android-arch-room-compiler',  'arch-room/compiler'],
     'android.arch.persistence.room:runtime':   ['android-arch-room-runtime',   'arch-room/runtime'],
     'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
+    'android.arch.persistence.room:rxjava2':   ['android-arch-room-rxjava2',   'arch-room/rxjava2'],
     'android.arch.persistence.room:testing':   ['android-arch-room-testing',   'arch-room/testing'],
+
     # Material Design Components
     'com.google.android:flexbox': ['flexbox', 'flexbox'],
     'design': ['android-support-design', 'design'],
