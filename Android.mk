@@ -44,7 +44,7 @@ endif
 
 endef
 
-$(foreach s,$(filter-out test_current,$(TARGET_AVAILABLE_SDK_VERSIONS)),\
+$(foreach s,$(filter-out test_current core_current,$(TARGET_AVAILABLE_SDK_VERSIONS)),\
   $(eval $(call declare_sdk_prebuilts,$(s))))
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
