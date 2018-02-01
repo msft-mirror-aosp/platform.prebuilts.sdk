@@ -28,13 +28,10 @@ maven_to_make = {
     'appcompat-v7':                 ['android-support-v7-appcompat',                'v7/appcompat'],
     'cardview-v7':                  ['android-support-v7-cardview',                 'v7/cardview'],
     'customtabs':                   ['android-support-customtabs',                  'customtabs'],
-    'design':                       ['android-support-design',                      'design'],
     'exifinterface':                ['android-support-exifinterface',               'exifinterface'],
     'gridlayout-v7':                ['android-support-v7-gridlayout',               'v7/gridlayout'],
     'leanback-v17':                 ['android-support-v17-leanback',                'v17/leanback'],
     'mediarouter-v7':               ['android-support-v7-mediarouter',              'v7/mediarouter'],
-    'multidex':                     ['android-support-multidex',                    'multidex/library'],
-    'multidex-instrumentation':     ['android-support-multidex-instrumentation',    'multidex/instrumentation'],
     'palette-v7':                   ['android-support-v7-palette',                  'v7/palette'],
     'percent':                      ['android-support-percent',                     'percent'],
     'preference-leanback-v17':      ['android-support-v17-preference-leanback',     'v17/preference-leanback'],
@@ -42,7 +39,7 @@ maven_to_make = {
     'preference-v7':                ['android-support-v7-preference',               'v7/preference'],
     'recommendation':               ['android-support-recommendation',              'recommendation'],
     'recyclerview-v7':              ['android-support-v7-recyclerview',             'v7/recyclerview'],
-    'support-annotations':          ['android-support-annotations',                 'annotations'],
+    'support-annotations':          ['android-support-annotations',                 'annotations',              'jar'],
     'support-compat':               ['android-support-compat',                      'compat'],
     'support-core-ui':              ['android-support-core-ui',                     'core-ui'],
     'support-core-utils':           ['android-support-core-utils',                  'core-utils'],
@@ -58,12 +55,70 @@ maven_to_make = {
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
     'wear':                         ['android-support-wear',                        'wear'],
-    'constraint-layout':            ['android-support-constraint-layout',           'constraint-layout'],
-    'constraint-layout-solver':     ['android-support-constraint-layout-solver',    'constraint-layout-solver'],
-    'android.arch.core:runtime':       ['android-arch-core-runtime',                'arch-core/runtime'],
-    'android.arch.core:common':        ['android-arch-core-common',                 'arch-core/common'],
-    'android.arch.lifecycle:runtime':  ['android-arch-lifecycle-runtime',           'arch-lifecycle/runtime'],
-    'android.arch.lifecycle:common':   ['android-arch-lifecycle-common',            'arch-lifecycle/common']
+    # Slices
+    'slices-core':                  ['android-slices-core',                         'slices-core'],
+    'slices-view':                  ['android-slices-view',                         'slices-view'],
+    'slices-builders':              ['android-slices-builders',                     'slices-builders'],
+
+    # Multidex
+    'multidex':                 ['android-support-multidex',                 'multidex/library'],
+    'multidex-instrumentation': ['android-support-multidex-instrumentation', 'multidex/instrumentation'],
+
+    # Constraint Layout
+    'constraint-layout':        ['android-support-constraint-layout',        'constraint-layout'],
+    'constraint-layout-solver': ['android-support-constraint-layout-solver', 'constraint-layout-solver'],
+
+    # App Arch Core
+    'android.arch.core:runtime': ['android-arch-core-runtime', 'arch-core/runtime'],
+    'android.arch.core:common':  ['android-arch-core-common',  'arch-core/common'],
+    # Paging
+    'android.arch.paging:common':  ['android-arch-paging-common',  'arch-paging/common'],
+    'android.arch.paging:runtime': ['android-arch-paging-runtime', 'arch-paging/runtime'],
+    # Lifecycle
+    'android.arch.lifecycle:livedata-core': ['android-arch-lifecycle-livedata-core', 'arch-lifecycle/livedata-core'],
+    'android.arch.lifecycle:livedata':      ['android-arch-lifecycle-livedata',      'arch-lifecycle/livedata'],
+    'android.arch.lifecycle:viewmodel':     ['android-arch-lifecycle-viewmodel',     'arch-lifecycle/viewmodel'],
+    'android.arch.lifecycle:extensions':    ['android-arch-lifecycle-extensions',    'arch-lifecycle/extensions'],
+    'android.arch.lifecycle:runtime':       ['android-arch-lifecycle-runtime',       'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:common':        ['android-arch-lifecycle-common',        'arch-lifecycle/common'],
+    'android.arch.lifecycle:common-java8':  ['android-arch-lifecycle-common-java8',  'arch-lifecycle/common-java8'],
+    # Persistence
+    'android.arch.persistence:db':           ['android-arch-persistence-db',           'arch-persistence/db'],
+    'android.arch.persistence:db-framework': ['android-arch-persistence-db-framework', 'arch-persistence/db-framework'],
+    # Room
+    'android.arch.persistence.room:common':    ['android-arch-room-common',    'arch-room/common'],
+    'android.arch.persistence.room:runtime':   ['android-arch-room-runtime',   'arch-room/runtime'],
+    'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
+    'android.arch.persistence.room:testing':   ['android-arch-room-testing',   'arch-room/testing'],
+    # Material Design Components
+    'com.google.android:flexbox': ['flexbox', 'flexbox'],
+    'design': ['android-support-design', 'design'],
+    'design-animation': ['android-support-design-animation', 'design-animation'],
+    'design-bottomnavigation': ['android-support-design-bottomnavigation', 'design-bottomnavigation'],
+    'design-bottomsheet': ['android-support-design-bottomsheet', 'design-bottomsheet'],
+    'design-button': ['android-support-design-button', 'design-button'],
+    'design-canvas': ['android-support-design-canvas', 'design-canvas'],
+    'design-card': ['android-support-design-card', 'design-card'],
+    'design-chip': ['android-support-design-chip', 'design-chip'],
+    'design-circularreveal': ['android-support-design-circularreveal', 'design-circularreveal'],
+    'design-circularreveal-cardview': ['android-support-design-circularreveal-cardview', 'design-circularreveal-cardview'],
+    'design-circularreveal-coordinatorlayout': ['android-support-design-circularreveal-coordinatorlayout', 'design-circularreveal-coordinatorlayout'],
+    'design-color': ['android-support-design-color', 'design-color'],
+    'design-dialog': ['android-support-design-dialog', 'design-dialog'],
+    'design-drawable': ['android-support-design-drawable', 'design-drawable'],
+    'design-expandable': ['android-support-design-expandable', 'design-expandable'],
+    'design-floatingactionbutton': ['android-support-design-floatingactionbutton', 'design-floatingactionbutton'],
+    'design-internal': ['android-support-design-internal', 'design-internal'],
+    'design-math': ['android-support-design-math', 'design-math'],
+    'design-resources': ['android-support-design-resources', 'design-resources'],
+    'design-ripple': ['android-support-design-ripple', 'design-ripple'],
+    'design-snackbar': ['android-support-design-snackbar', 'design-snackbar'],
+    'design-stateful': ['android-support-design-stateful', 'design-stateful'],
+    'design-textfield': ['android-support-design-textfield', 'design-textfield'],
+    'design-theme': ['android-support-design-theme', 'design-theme'],
+    'design-transformation': ['android-support-design-transformation', 'design-transformation'],
+    'design-typography': ['android-support-design-typography', 'design-typography'],
+    'design-widget': ['android-support-design-widget', 'design-widget'],
 }
 
 # Always remove these files.
@@ -194,7 +249,10 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
         transform_maven_lib(working_dir, info, extract_res)
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
-        args = ["pom2mk", "-transitive", "-sdk-version", "current"]
+        args = ["pom2mk", "-static-deps", "-allow-missing", "-sdk-version", "current"]
+        for name in maven_to_make:
+            if len(maven_to_make[name]) == 3:
+                args.extend(["-type=" + maven_to_make[name][0] + "=" + maven_to_make[name][2]])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
@@ -223,8 +281,9 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
     make_lib_name = maven_to_make[artifact_info.key][0]
     make_dir_name = maven_to_make[artifact_info.key][1]
 
+    artifact_file = os.path.join(new_dir, artifact_info.file)
+
     if extract_res:
-        artifact_file = os.path.join(new_dir, artifact_info.file)
         target_dir = os.path.join(working_dir, make_dir_name)
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
@@ -276,17 +335,19 @@ def fetch_artifact(target, build_id, artifact_path):
     return artifact_path
 
 
-def fetch_and_extract(target, build_id, file):
-    artifact_path = fetch_artifact(target, build_id, file)
-    if not artifact_path:
-        return None
-
+def extract_artifact(artifact_path):
     # Unzip the repo archive into a separate directory.
     repo_dir = os.path.basename(artifact_path)[:-4]
     with zipfile.ZipFile(artifact_path) as zipFile:
         zipFile.extractall(repo_dir)
-
     return repo_dir
+
+
+def fetch_and_extract(target, build_id, file):
+    artifact_path = fetch_artifact(target, build_id, file)
+    if not artifact_path:
+        return None
+    return extract_artifact(artifact_path)
 
 
 def update_support(target, build_id):
@@ -323,6 +384,17 @@ def update_constraint(target, build_id):
     # the top-level directory without worrying about other child directories.
     return transform_maven_repo([layout_dir, solver_dir],
                                 os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
+
+
+def update_design(file):
+    design_dir = extract_artifact(file)
+    if not design_dir:
+        print_e('Failed to extract Design Library repositories')
+        return False
+
+    # Don't bother extracting resources -- this should only be used with AAPT2.
+    return transform_maven_repo([design_dir],
+                                os.path.join(extras_dir, 'material-design'), extract_res=False)
 
 
 def extract_to(zip_file, paths, filename, parent_path):
@@ -405,9 +477,11 @@ def append(text, more_text):
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
-    'buildId',
-    type=int,
-    help='Build server build ID')
+    'source',
+    help='Build server build ID or local Maven ZIP file')
+parser.add_argument(
+    '-d', '--design', action="store_true",
+    help='If specified, updates only the Design Library')
 parser.add_argument(
     '-c', '--constraint', action="store_true",
     help='If specified, updates only Constraint Layout')
@@ -424,10 +498,11 @@ parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 args = parser.parse_args()
-if not args.buildId:
-    parser.error("You must specify a build ID")
+if not args.source:
+    parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
-if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools):
+if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
+                or args.design):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None:
@@ -441,6 +516,11 @@ try:
 except subprocess.CalledProcessError:
     print_e('FAIL: There are uncommitted changes here; please revert or stash')
     sys.exit(1)
+
+if args.source.isnumeric():
+    args.buildId = int(args.source)
+else:
+    args.file = args.source
 
 try:
     components = None
@@ -469,6 +549,15 @@ try:
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
+    if args.design:
+        if not args.file:
+            print_e('Design Library must have --file specified')
+            sys.exit(1)
+        elif update_design(args.file):
+            components = append(components, 'Design Library')
+        else:
+            print_e('Failed to update platform SDK, aborting...')
+            sys.exit(1)
     if args.buildtools:
         if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', args.buildId) \
                 and update_buildtools('sdk_phone_x86_64-sdk', 'linux', args.buildId) \
@@ -482,7 +571,11 @@ try:
     subprocess.check_call(['git', 'add', current_path])
     subprocess.check_call(['git', 'add', system_path])
     subprocess.check_call(['git', 'add', buildtools_dir])
-    msg = "Import %s from build %s\n\n%s" % (components, args.buildId, flatten(sys.argv))
+    if args.file:
+        src_msg = "local Maven ZIP"
+    else:
+        src_msg = "build %s" % (args.buildId)
+    msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
     print('Remember to test this change before uploading it to Gerrit!')
 
