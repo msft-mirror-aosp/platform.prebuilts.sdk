@@ -3,10 +3,739 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-design-nodeps
+LOCAL_MODULE := android-support-design-animation-nodeps
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_UNINSTALLABLE_MODULE := true
-LOCAL_SRC_FILES := repository/com/android/support/design/27.1.0-SNAPSHOT/design-27.1.0-20180201.191803-1.aar
+LOCAL_SRC_FILES := repository/com/android/support/design-animation/27.1.0-SNAPSHOT/design-animation-27.1.0-20180125.224740-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-compat \
+  android-support-core-ui
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-animation
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-animation/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-animation-nodeps \
+  android-support-compat \
+  android-support-core-ui
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-bottomnavigation-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-bottomnavigation/27.1.0-SNAPSHOT/design-bottomnavigation-27.1.0-20180125.224740-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-bottomnavigation
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-bottomnavigation/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-bottomnavigation-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-bottomsheet-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-bottomsheet/27.1.0-SNAPSHOT/design-bottomsheet-27.1.0-20180125.224746-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
+  android-support-design-dialog
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-bottomsheet
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-bottomsheet/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-bottomsheet-nodeps \
+  android-support-v7-appcompat \
+  android-support-design-dialog
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-button-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-button/27.1.0-SNAPSHOT/design-button-27.1.0-20180125.224747-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-core-utils \
+  android-support-v7-appcompat \
+  android-support-design-internal \
+  android-support-design-resources \
+  android-support-design-widget
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-button
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-button/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-button-nodeps \
+  android-support-core-utils \
+  android-support-v7-appcompat \
+  android-support-design-internal \
+  android-support-design-resources \
+  android-support-design-widget
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-canvas-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-canvas/27.1.0-SNAPSHOT/design-canvas-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-canvas
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-canvas/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-canvas-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-card-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-card/27.1.0-SNAPSHOT/design-card-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-core-utils \
+  android-support-v7-appcompat \
+  android-support-v7-cardview \
+  android-support-design-resources \
+  android-support-design-internal
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-card
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-card/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-card-nodeps \
+  android-support-core-utils \
+  android-support-v7-appcompat \
+  android-support-v7-cardview \
+  android-support-design-resources \
+  android-support-design-internal
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-chip-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-chip/27.1.0-SNAPSHOT/design-chip-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-compat \
+  android-support-v7-appcompat \
+  flexbox \
+  android-support-design-animation \
+  android-support-design-canvas \
+  android-support-design-color \
+  android-support-design-drawable \
+  android-support-design-internal \
+  android-support-design-resources \
+  android-support-design-ripple
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-chip
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-chip/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-chip-nodeps \
+  android-support-compat \
+  android-support-v7-appcompat \
+  flexbox \
+  android-support-design-animation \
+  android-support-design-canvas \
+  android-support-design-color \
+  android-support-design-drawable \
+  android-support-design-internal \
+  android-support-design-resources \
+  android-support-design-ripple
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-circularreveal-cardview-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-circularreveal-cardview/27.1.0-SNAPSHOT/design-circularreveal-cardview-27.1.0-20180125.224744-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-cardview \
+  android-support-design-circularreveal
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-circularreveal-cardview
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-circularreveal-cardview/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-circularreveal-cardview-nodeps \
+  android-support-v7-cardview \
+  android-support-design-circularreveal
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-circularreveal-coordinatorlayout-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-circularreveal-coordinatorlayout/27.1.0-SNAPSHOT/design-circularreveal-coordinatorlayout-27.1.0-20180125.224751-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-core-ui \
+  android-support-design-circularreveal
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-circularreveal-coordinatorlayout
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-circularreveal-coordinatorlayout/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-circularreveal-coordinatorlayout-nodeps \
+  android-support-core-ui \
+  android-support-design-circularreveal
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-circularreveal-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-circularreveal/27.1.0-SNAPSHOT/design-circularreveal-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-math
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-circularreveal
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-circularreveal/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-circularreveal-nodeps \
+  android-support-design-math
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-color-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-color/27.1.0-SNAPSHOT/design-color-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-color
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-color/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-color-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-dialog-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-dialog/27.1.0-SNAPSHOT/design-dialog-27.1.0-20180125.224747-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-color \
+  android-support-design-floatingactionbutton \
+  android-support-design-textfield \
+  android-support-design-typography
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-dialog
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-dialog/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-dialog-nodeps \
+  android-support-v7-appcompat \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-color \
+  android-support-design-floatingactionbutton \
+  android-support-design-textfield \
+  android-support-design-typography
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-drawable-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-drawable/27.1.0-SNAPSHOT/design-drawable-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-drawable
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-drawable/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-drawable-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-expandable-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-expandable/27.1.0-SNAPSHOT/design-expandable-27.1.0-20180125.224741-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-core-ui
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-expandable
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-expandable/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-expandable-nodeps \
+  android-support-core-ui
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-floatingactionbutton-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-floatingactionbutton/27.1.0-SNAPSHOT/design-floatingactionbutton-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
+  android-support-design-animation \
+  android-support-design-color
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-floatingactionbutton
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-floatingactionbutton/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-floatingactionbutton-nodeps \
+  android-support-v7-appcompat \
+  android-support-design-animation \
+  android-support-design-color
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-internal-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-internal/27.1.0-SNAPSHOT/design-internal-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-transition \
+  android-support-v7-appcompat \
+  android-support-v7-recyclerview \
+  android-support-design-bottomnavigation \
+  android-support-design-snackbar
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-internal
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-internal/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-internal-nodeps \
+  android-support-transition \
+  android-support-v7-appcompat \
+  android-support-v7-recyclerview \
+  android-support-design-bottomnavigation \
+  android-support-design-snackbar
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-math-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-math/27.1.0-SNAPSHOT/design-math-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-math
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-math/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-math-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-resources-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-resources/27.1.0-SNAPSHOT/design-resources-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-compat \
+  android-support-v7-appcompat
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-resources
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-resources/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-resources-nodeps \
+  android-support-compat \
+  android-support-v7-appcompat
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-ripple-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-ripple/27.1.0-SNAPSHOT/design-ripple-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-core-utils
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-ripple
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-ripple/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-ripple-nodeps \
+  android-support-core-utils
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-snackbar-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-snackbar/27.1.0-SNAPSHOT/design-snackbar-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-snackbar
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-snackbar/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-snackbar-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-stateful-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-stateful/27.1.0-SNAPSHOT/design-stateful-27.1.0-20180125.224743-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-compat \
+  android-support-core-ui
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-stateful
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-stateful/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-stateful-nodeps \
+  android-support-compat \
+  android-support-core-ui
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-textfield-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-textfield/27.1.0-SNAPSHOT/design-textfield-27.1.0-20180125.224742-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-textfield
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-textfield/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-textfield-nodeps \
+  android-support-v7-appcompat
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-theme-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-theme/27.1.0-SNAPSHOT/design-theme-27.1.0-20180125.224747-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
+  android-support-design-bottomsheet \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-floatingactionbutton \
+  android-support-design-typography \
+  android-support-design-widget
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-theme
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-theme/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-theme-nodeps \
+  android-support-v7-appcompat \
+  android-support-design-bottomsheet \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-floatingactionbutton \
+  android-support-design-typography \
+  android-support-design-widget
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-transformation-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-transformation/27.1.0-SNAPSHOT/design-transformation-27.1.0-20180125.224747-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-compat \
+  android-support-core-ui \
+  android-support-design-animation \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-expandable \
+  android-support-design-math \
+  android-support-design-widget
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-transformation
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-transformation/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-transformation-nodeps \
+  android-support-compat \
+  android-support-core-ui \
+  android-support-design-animation \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-expandable \
+  android-support-design-math \
+  android-support-design-widget
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-typography-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-typography/27.1.0-SNAPSHOT/design-typography-27.1.0-20180125.224747-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-typography
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-typography/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-typography-nodeps \
+  android-support-v7-appcompat
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-widget-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design-widget/27.1.0-SNAPSHOT/design-widget-27.1.0-20180125.224748-1.aar
 LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
@@ -18,7 +747,103 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-fragment \
   android-support-transition \
   android-support-v7-appcompat \
-  android-support-v7-recyclerview
+  android-support-v7-recyclerview \
+  android-support-design-animation \
+  android-support-design-bottomnavigation \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-math \
+  android-support-design-resources \
+  android-support-design-ripple \
+  android-support-design-snackbar \
+  android-support-design-stateful \
+  android-support-design-bottomsheet \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-expandable \
+  android-support-design-floatingactionbutton \
+  android-support-design-internal \
+  android-support-design-textfield
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-widget
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-design-widget/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-widget-nodeps \
+  android-support-compat \
+  android-support-core-ui \
+  android-support-core-utils \
+  android-support-fragment \
+  android-support-transition \
+  android-support-v7-appcompat \
+  android-support-v7-recyclerview \
+  android-support-design-animation \
+  android-support-design-bottomnavigation \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-math \
+  android-support-design-resources \
+  android-support-design-ripple \
+  android-support-design-snackbar \
+  android-support-design-stateful \
+  android-support-design-bottomsheet \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-expandable \
+  android-support-design-floatingactionbutton \
+  android-support-design-internal \
+  android-support-design-textfield
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-design-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/android/support/design/27.1.0-SNAPSHOT/design-27.1.0-20180125.224749-1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-compat \
+  android-support-core-ui \
+  android-support-core-utils \
+  android-support-fragment \
+  android-support-transition \
+  android-support-v7-appcompat \
+  android-support-v7-recyclerview \
+  android-support-design-animation \
+  android-support-design-bottomnavigation \
+  android-support-design-bottomsheet \
+  android-support-design-button \
+  android-support-design-canvas \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-circularreveal-coordinatorlayout \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-drawable \
+  android-support-design-expandable \
+  android-support-design-floatingactionbutton \
+  android-support-design-math \
+  android-support-design-resources \
+  android-support-design-ripple \
+  android-support-design-snackbar \
+  android-support-design-stateful \
+  android-support-design-textfield \
+  android-support-design-theme \
+  android-support-design-transformation \
+  android-support-design-typography \
+  android-support-design-widget \
+  android-support-design-internal
 include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-design
@@ -34,9 +859,57 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-fragment \
   android-support-transition \
   android-support-v7-appcompat \
-  android-support-v7-recyclerview
+  android-support-v7-recyclerview \
+  android-support-design-animation \
+  android-support-design-bottomnavigation \
+  android-support-design-bottomsheet \
+  android-support-design-button \
+  android-support-design-canvas \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-circularreveal-coordinatorlayout \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-drawable \
+  android-support-design-expandable \
+  android-support-design-floatingactionbutton \
+  android-support-design-math \
+  android-support-design-resources \
+  android-support-design-ripple \
+  android-support-design-snackbar \
+  android-support-design-stateful \
+  android-support-design-textfield \
+  android-support-design-theme \
+  android-support-design-transformation \
+  android-support-design-typography \
+  android-support-design-widget \
+  android-support-design-internal
 LOCAL_JAR_EXCLUDE_FILES := none
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 LOCAL_USE_AAPT2 := true
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
+include $(CLEAR_VARS)
+LOCAL_MODULE := flexbox-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/google/android/flexbox/0.3.2/flexbox-0.3.2.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES :=
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := flexbox
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/flexbox/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  flexbox-nodeps
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
