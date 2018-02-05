@@ -474,6 +474,13 @@ def append(text, more_text):
     return more_text
 
 
+def getBuildId(args):
+  source = args.source
+  if source.isnumeric():
+    return int(args.source)
+  else:
+    raise Exception('Updating this set of prebuilts requires <source> to be a numeric build id, not "' + source + '"')
+
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
@@ -517,34 +524,29 @@ except subprocess.CalledProcessError:
     print_e('FAIL: There are uncommitted changes here; please revert or stash')
     sys.exit(1)
 
-if args.source.isnumeric():
-    args.buildId = int(args.source)
-else:
-    args.file = args.source
-
 try:
     components = None
     if args.constraint:
-        if update_constraint('studio', args.buildId):
+        if update_constraint('studio', getBuildId(args)):
             components = append(components, 'Constraint Layout')
             print_e('Failed to update Constraint Layout, aborting...')
         else:
             sys.exit(1)
     if args.support:
-        if update_support('support_library', args.buildId):
+        if update_support('support_library', getBuildId(args)):
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
             sys.exit(1)
     if args.toolkit:
-        if update_toolkit('support_library_app_toolkit', args.buildId):
+        if update_toolkit('support_library_app_toolkit', getBuildId(args)):
             components = append(components, 'App Toolkit')
         else:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
     if args.platform:
-        if update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId) \
-                and update_system('sdk_phone_armv7-sdk_mac', args.buildId):
+        if update_sdk_repo('sdk_phone_armv7-sdk_mac', getBuildId(args)) \
+                and update_system('sdk_phone_armv7-sdk_mac', getBuildId(args)):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
@@ -559,9 +561,9 @@ try:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.buildtools:
-        if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', args.buildId) \
-                and update_buildtools('sdk_phone_x86_64-sdk', 'linux', args.buildId) \
-                and update_buildtools('sdk_phone_armv7-win_sdk', 'windows', args.buildId):
+        if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', getBuildId(args)) \
+                and update_buildtools('sdk_phone_x86_64-sdk', 'linux', getBuildId(args)) \
+                and update_buildtools('sdk_phone_armv7-win_sdk', 'windows', getBuildId(args)):
             components = append(components, 'build tools')
         else:
             print_e('Failed to update build tools, aborting...')
@@ -574,7 +576,7 @@ try:
     if args.file:
         src_msg = "local Maven ZIP"
     else:
-        src_msg = "build %s" % (args.buildId)
+        src_msg = "build %s" % (getBuildId(args))
     msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
     print('Remember to test this change before uploading it to Gerrit!')
