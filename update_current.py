@@ -477,6 +477,7 @@ def append(text, more_text):
 def getBuildId(args):
   source = args.source
   if source.isnumeric():
+    args.file = False
     return int(args.source)
   else:
     raise Exception('Updating this set of prebuilts requires <source> to be a numeric build id, not "' + source + '"')
@@ -505,6 +506,7 @@ parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 args = parser.parse_args()
+args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
