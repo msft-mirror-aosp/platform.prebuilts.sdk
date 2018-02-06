@@ -361,6 +361,17 @@ def update_support(target, build_id):
     # Transform the repo archive into a Makefile-compatible format.
     return transform_maven_repo([repo_dir], support_dir)
 
+def update_jetifier(target, build_id):
+    repo_file = 'jetifier-standalone.zip'
+    repo_dir = fetch_and_extract(target, build_id.url_id, repo_file)
+    if not repo_dir:
+        print_e('Failed to extract Jetifier')
+        return False
+
+    rm(jetifier_dir)
+    mv(repo_dir, jetifier_dir)
+    return True
+
 def update_toolkit(target, build_id):
     repo_dir = fetch_and_extract(target, build_id.url_id, 'top-of-tree-m2repository-%s.zip' % build_id.fs_id)
     if not repo_dir:
@@ -513,6 +524,9 @@ parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
+    '-j', '--jetifier', action="store_true",
+    help='If specified, updates only Jetifier')
+parser.add_argument(
     '-t', '--toolkit', action="store_true",
     help='If specified, updates only the App Toolkit')
 parser.add_argument(
@@ -527,7 +541,7 @@ if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
 if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
-                or args.design):
+                or args.design or args.jetifier):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None:
@@ -555,6 +569,12 @@ try:
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
+            sys.exit(1)
+    if args.jetifier:
+        if update_jetifier('support_library', getBuildId(args)):
+            components = append(components, 'Jetifier')
+        else:
+            print_e('Failed to update Jetifier, aborting...')
             sys.exit(1)
     if args.toolkit:
         if update_toolkit('support_library_app_toolkit', getBuildId(args)):
