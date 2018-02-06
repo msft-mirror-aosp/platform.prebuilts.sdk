@@ -57,9 +57,33 @@
     <dimen name="ws_action_drawer_peek_top_padding">2dp</dimen>
     <dimen name="ws_action_drawer_peek_view_height">43dp</dimen>
     <dimen name="ws_drawer_view_edge_size">38dp</dimen>
+    <item format="float" name="ws_nav_drawer_margin_2_items_end" type="dimen">.8</item>
+    <item format="float" name="ws_nav_drawer_margin_2_items_start" type="dimen">.2</item>
+    <item format="float" name="ws_nav_drawer_margin_3_items_end" type="dimen">.84</item>
+    <item format="float" name="ws_nav_drawer_margin_3_items_start" type="dimen">.16</item>
+    <item format="float" name="ws_nav_drawer_margin_4_items_end" type="dimen">.87</item>
+    <item format="float" name="ws_nav_drawer_margin_4_items_start" type="dimen">.13</item>
+    <item format="float" name="ws_nav_drawer_margin_4_items_top" type="dimen">.169</item>
+    <item format="float" name="ws_nav_drawer_margin_5_items_middle_row_end" type="dimen">.87</item>
+    <item format="float" name="ws_nav_drawer_margin_5_items_middle_row_start" type="dimen">.13</item>
+    <item format="float" name="ws_nav_drawer_margin_5_items_top" type="dimen">.169</item>
+    <item format="float" name="ws_nav_drawer_margin_5_items_top_row_end" type="dimen">.726</item>
+    <item format="float" name="ws_nav_drawer_margin_5_items_top_row_start" type="dimen">.274</item>
+    <item format="float" name="ws_nav_drawer_margin_6_items_bottom" type="dimen">.732</item>
+    <item format="float" name="ws_nav_drawer_margin_6_items_end" type="dimen">.84</item>
+    <item format="float" name="ws_nav_drawer_margin_6_items_start" type="dimen">.16</item>
+    <item format="float" name="ws_nav_drawer_margin_6_items_top" type="dimen">.268</item>
+    <item format="float" name="ws_nav_drawer_margin_7_items_bottom" type="dimen">.831</item>
+    <item format="float" name="ws_nav_drawer_margin_7_items_middle_row_end" type="dimen">.87</item>
+    <item format="float" name="ws_nav_drawer_margin_7_items_middle_row_start" type="dimen">.13</item>
+    <item format="float" name="ws_nav_drawer_margin_7_items_top" type="dimen">.169</item>
+    <item format="float" name="ws_nav_drawer_margin_7_items_top_bottom_row_end" type="dimen">.726</item>
+    <item format="float" name="ws_nav_drawer_margin_7_items_top_bottom_row_start" type="dimen">.274</item>
     <dimen name="ws_nav_drawer_single_page_circle_radius">24dp</dimen>
+    <dimen name="ws_nav_drawer_single_page_half_icon_size">14dp</dimen>
     <dimen name="ws_nav_drawer_single_page_icon_padding">6dp</dimen>
     <dimen name="ws_nav_drawer_single_page_icon_size">28dp</dimen>
+    <item format="float" name="ws_nav_drawer_text_guide" type="dimen">0.63</item>
     <dimen name="ws_nav_drawer_text_size">12sp</dimen>
     <dimen name="ws_peek_view_bottom_padding">8dp</dimen>
     <dimen name="ws_peek_view_icon_size">22dp</dimen>
@@ -71,25 +95,17 @@
     <item name="ws_action_drawer_item_last_item_bottom_padding" type="fraction">15%</item>
     <item name="ws_action_drawer_item_left_padding" type="fraction">15%</item>
     <item name="ws_action_drawer_item_right_padding" type="fraction">10%</item>
-    <fraction name="ws_nav_drawer_margin_2_items">20%</fraction>
-    <fraction name="ws_nav_drawer_margin_3_items">16%</fraction>
-    <fraction name="ws_nav_drawer_margin_4_items_horizontal">13%</fraction>
-    <fraction name="ws_nav_drawer_margin_4_items_vertical">16.9%</fraction>
-    <fraction name="ws_nav_drawer_margin_5_items_horizontal_middle_row">13%</fraction>
-    <fraction name="ws_nav_drawer_margin_5_items_horizontal_outer_rows">27.4%</fraction>
-    <fraction name="ws_nav_drawer_margin_5_items_vertical">16.9%</fraction>
-    <fraction name="ws_nav_drawer_margin_6_items_horizontal">16%</fraction>
-    <fraction name="ws_nav_drawer_margin_6_items_vertical">26.8%</fraction>
-    <fraction name="ws_nav_drawer_margin_7_items_horizontal_middle_row">13%</fraction>
-    <fraction name="ws_nav_drawer_margin_7_items_horizontal_outer_rows">27.4%</fraction>
-    <fraction name="ws_nav_drawer_margin_7_items_vertical">16.9%</fraction>
-    <fraction name="ws_nav_drawer_text_margin">13%</fraction>
     <item name="ws_navigation_drawer_view_pager" type="id"/>
     <string name="ws_action_drawer_content_description">Action drawer</string>
     <string name="ws_navigation_drawer_content_description">Navigation drawer</string>
     <style name="Widget.Wear.WearableDrawerView" parent="">
         <item name="android:elevation">@dimen/ws_wearable_drawer_view_elevation</item>
         <item name="android:background">?android:attr/colorBackgroundFloating</item>
+    </style>
+    <style name="WsHorizontalGuideStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
     </style>
     <style name="WsSinglePageNavDrawerIconStyle">
         <item name="android:layout_height">@dimen/ws_nav_drawer_single_page_icon_size</item>
@@ -99,16 +115,9 @@
         <item name="background_radius">@dimen/ws_nav_drawer_single_page_circle_radius</item>
         <item name="background_color">#33ffffff</item>
     </style>
-    <style name="WsSinglePageNavDrawerTextStyle">
+    <style name="WsVerticalGuideStyle">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textSize">@dimen/ws_nav_drawer_text_size</item>
-        <item name="android:gravity">center</item>
-        <item name="android:maxLines">2</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="layout_marginTopPercent">@fraction/ws_nav_drawer_text_margin</item>
-        <item name="layout_marginStartPercent">@fraction/ws_nav_drawer_text_margin</item>
-        <item name="layout_marginEndPercent">@fraction/ws_nav_drawer_text_margin</item>
+        <item name="android:orientation">vertical</item>
     </style>
 </resources>
