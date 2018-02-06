@@ -250,7 +250,7 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
         transform_maven_lib(working_dir, info, extract_res)
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
-        args = ["pom2mk", "-static-deps", "-allow-missing", "-sdk-version", "current"]
+        args = ["pom2mk", "-static-deps", "-sdk-version", "current"]
         for name in maven_to_make:
             if len(maven_to_make[name]) == 3:
                 args.extend(["-type=" + maven_to_make[name][0] + "=" + maven_to_make[name][2]])
