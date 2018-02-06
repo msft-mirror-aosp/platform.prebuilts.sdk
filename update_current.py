@@ -15,6 +15,7 @@ system_path = 'system_current'
 support_dir = os.path.join(current_path, 'support')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
+jetifier_dir = os.path.join(buildtools_dir, 'jetifier')
 
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
@@ -329,7 +330,7 @@ def fetch_artifact(target, build_id, artifact_path):
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
-        print_e('FAIL: Unable to retrieve %s artifact for build ID %d' % (artifact_path, build_id))
+        print_e('FAIL: Unable to retrieve %s artifact for build ID %s' % (artifact_path, build_id))
         print_e('Please make sure you are authenticated for build server access!')
         return None
     return artifact_path
@@ -351,8 +352,8 @@ def fetch_and_extract(target, build_id, file):
 
 
 def update_support(target, build_id):
-    repo_file = 'top-of-tree-m2repository-%s.zip' % build_id
-    repo_dir = fetch_and_extract(target, build_id, repo_file)
+    repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+    repo_dir = fetch_and_extract(target, build_id.url_id, repo_file)
     if not repo_dir:
         print_e('Failed to extract Support Library repository')
         return False
@@ -360,9 +361,19 @@ def update_support(target, build_id):
     # Transform the repo archive into a Makefile-compatible format.
     return transform_maven_repo([repo_dir], support_dir)
 
+def update_jetifier(target, build_id):
+    repo_file = 'jetifier-standalone.zip'
+    repo_dir = fetch_and_extract(target, build_id.url_id, repo_file)
+    if not repo_dir:
+        print_e('Failed to extract Jetifier')
+        return False
+
+    rm(jetifier_dir)
+    mv(repo_dir, jetifier_dir)
+    return True
 
 def update_toolkit(target, build_id):
-    repo_dir = fetch_and_extract(target, build_id, 'top-of-tree-m2repository-%s.zip' % build_id)
+    repo_dir = fetch_and_extract(target, build_id.url_id, 'top-of-tree-m2repository-%s.zip' % build_id.fs_id)
     if not repo_dir:
         print_e('Failed to extract App Toolkit repository')
         return False
@@ -372,10 +383,10 @@ def update_toolkit(target, build_id):
 
 
 def update_constraint(target, build_id):
-    layout_dir = fetch_and_extract(target, build_id,
-                                   'com.android.support.constraint-constraint-layout-%s.zip' % build_id)
-    solver_dir = fetch_and_extract(target, build_id,
-                                   'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id)
+    layout_dir = fetch_and_extract(target, build_id.url_id,
+                                   'com.android.support.constraint-constraint-layout-%s.zip' % build_id.fs_id)
+    solver_dir = fetch_and_extract(target, build_id.url_id,
+                                   'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id.fs_id)
     if not layout_dir or not solver_dir:
         print_e('Failed to extract Constraint Layout repositories')
         return False
@@ -407,7 +418,7 @@ def extract_to(zip_file, paths, filename, parent_path):
 def update_sdk_repo(target, build_id):
     platform = 'darwin' if 'mac' in target else 'linux'
     artifact_path = fetch_artifact(
-        target, build_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id))
+        target, build_id.url_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id.fs_id))
     if not artifact_path:
         return False
 
@@ -427,13 +438,13 @@ def update_sdk_repo(target, build_id):
 
 
 def update_system(target, build_id):
-    artifact_path = fetch_artifact(target, build_id, 'android_system.jar')
+    artifact_path = fetch_artifact(target, build_id.url_id, 'android_system.jar')
     if not artifact_path:
         return False
 
     mv(artifact_path, path(system_path, 'android.jar'))
 
-    artifact_path = fetch_artifact(target, build_id, 'android.test.mock.stubs_system.jar')
+    artifact_path = fetch_artifact(target, build_id.url_id, 'android.test.mock.stubs_system.jar')
     if not artifact_path:
         return False
 
@@ -443,8 +454,8 @@ def update_system(target, build_id):
 
 
 def update_buildtools(target, arch, build_id):
-    artifact_path = fetch_and_extract(target, build_id,
-                                   "sdk-repo-%s-build-tools-%s.zip" % (arch, build_id))
+    artifact_path = fetch_and_extract(target, build_id.url_id,
+                                   "sdk-repo-%s-build-tools-%s.zip" % (arch, build_id.fs_id))
     if not artifact_path:
         return False
 
@@ -474,12 +485,29 @@ def append(text, more_text):
     return more_text
 
 
+class buildId(object):
+  def __init__(self, url_id, fs_id):
+    # id when used in build server urls
+    self.url_id = url_id
+    # id when used in build commands
+    self.fs_id = fs_id
+
 def getBuildId(args):
+  # must be in the format 12345 or P12345
   source = args.source
-  if source.isnumeric():
-    return int(args.source)
-  else:
-    raise Exception('Updating this set of prebuilts requires <source> to be a numeric build id, not "' + source + '"')
+  number_text = source[:]
+  presubmit = False
+  if number_text.startswith("P"):
+    presubmit = True
+    number_text = number_text[1:]
+  if not number_text.isnumeric():
+    raise Exception('Updating this set of prebuilts requires <source> to be a build id, not "' + source + '"')
+  url_id = source
+  fs_id = url_id
+  if presubmit:
+    fs_id = "0"
+  args.file = False
+  return buildId(url_id, fs_id)
 
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
@@ -496,6 +524,9 @@ parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
+    '-j', '--jetifier', action="store_true",
+    help='If specified, updates only Jetifier')
+parser.add_argument(
     '-t', '--toolkit', action="store_true",
     help='If specified, updates only the App Toolkit')
 parser.add_argument(
@@ -505,11 +536,12 @@ parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 args = parser.parse_args()
+args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
 if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
-                or args.design):
+                or args.design or args.jetifier):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None:
@@ -537,6 +569,12 @@ try:
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
+            sys.exit(1)
+    if args.jetifier:
+        if update_jetifier('support_library', getBuildId(args)):
+            components = append(components, 'Jetifier')
+        else:
+            print_e('Failed to update Jetifier, aborting...')
             sys.exit(1)
     if args.toolkit:
         if update_toolkit('support_library_app_toolkit', getBuildId(args)):
@@ -576,7 +614,7 @@ try:
     if args.file:
         src_msg = "local Maven ZIP"
     else:
-        src_msg = "build %s" % (getBuildId(args))
+        src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
     print('Remember to test this change before uploading it to Gerrit!')
