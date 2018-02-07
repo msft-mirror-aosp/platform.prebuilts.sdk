@@ -434,6 +434,12 @@ def update_sdk_repo(target, build_id):
 
         # Unclear if this is actually necessary.
         extract_to(zipFile, paths, 'framework.aidl', system_path)
+
+    artifact_path = fetch_artifact(target, build_id, 'core.current.stubs.jar')
+    if not artifact_path:
+        return False
+
+    mv(artifact_path, path(current_path, 'core.jar'))
     return True
 
 
