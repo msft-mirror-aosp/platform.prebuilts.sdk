@@ -367,6 +367,7 @@ def update_jetifier(target, build_id):
 
     rm(jetifier_dir)
     mv(repo_dir, jetifier_dir)
+    os.chmod(os.path.join(jetifier_dir, 'jetifier-standalone', 'bin', 'jetifier-standalone'), 0o755)
     return True
 
 def update_toolkit(target, build_id):
