@@ -37,11 +37,7 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
         android.test.runner.stubs:optional/android.test.runner.jar \
 
     include $(BUILD_MULTI_PREBUILT)
-
-    # Include all prebuilt libraries and generate the v4, v13, and appcompat
-    # libraries with static dependencies.
-    include $(call all-makefiles-under,$(LOCAL_PATH))
-else
-    # Always include Design Library and Constraint Layout prebuilts.
-    include $(call all-makefiles-under,$(LOCAL_PATH)/extras)
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
+
+# Include all Support Library modules as prebuilts.
+include $(call all-makefiles-under,$(LOCAL_PATH))
