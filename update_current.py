@@ -251,9 +251,6 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
 
     with open(os.path.join(working_dir, 'Android.mk'), 'w') as f:
         args = ["pom2mk", "-static-deps", "-sdk-version", "current"]
-        for name in maven_to_make:
-            if len(maven_to_make[name]) == 3:
-                args.extend(["-type=" + maven_to_make[name][0] + "=" + maven_to_make[name][2]])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
