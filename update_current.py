@@ -523,6 +523,13 @@ def getBuildId(args):
   args.file = False
   return buildId(url_id, fs_id)
 
+def getFile(args):
+  source = args.source
+  if not source.isnumeric():
+    return args.source
+  else:
+    raise Exception('Updating this set of prebuilts requires <source> to be file, not a numeric build id')
+
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
@@ -604,10 +611,7 @@ try:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.design:
-        if not args.file:
-            print_e('Design Library must have --file specified')
-            sys.exit(1)
-        elif update_design(args.file):
+        if update_design(getFile(args)):
             components = append(components, 'Design Library')
         else:
             print_e('Failed to update platform SDK, aborting...')
@@ -625,7 +629,7 @@ try:
     subprocess.check_call(['git', 'add', current_path])
     subprocess.check_call(['git', 'add', system_path])
     subprocess.check_call(['git', 'add', buildtools_dir])
-    if args.file:
+    if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
