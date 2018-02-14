@@ -86,8 +86,13 @@ maven_to_make = {
     'android.arch.lifecycle:runtime':         ['android-arch-lifecycle-runtime',        'arch-lifecycle/runtime'],
     'android.arch.lifecycle:common':          ['android-arch-lifecycle-common',         'arch-lifecycle/common'],
     'android.arch.lifecycle:common-java8':    ['android-arch-lifecycle-common-java8',   'arch-lifecycle/common-java8'],
-    'android.arch.lifecycle:compiler':        ['android-arch-lifecycle-compiler',       'arch-lifecycle/compiler'],
-    'android.arch.lifecycle:reactivestreams': ['android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams'],
+    # Missing dependencies:
+    # - auto-common
+    # - javapoet
+    #'android.arch.lifecycle:compiler':        ['android-arch-lifecycle-compiler',       'arch-lifecycle/compiler'],
+    # Missing dependencies:
+    # - reactive-streams
+    #'android.arch.lifecycle:reactivestreams': ['android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams'],
 
     # Persistence
     'android.arch.persistence:db':           ['android-arch-persistence-db',           'arch-persistence/db'],
@@ -95,10 +100,18 @@ maven_to_make = {
 
     # Room
     'android.arch.persistence.room:common':    ['android-arch-room-common',    'arch-room/common'],
-    'android.arch.persistence.room:compiler':  ['android-arch-room-compiler',  'arch-room/compiler'],
+    # Missing dependencies:
+    # - auto-common
+    # - javapoet
+    # - antlr4
+    # - kotlin-metadata
+    # - commons-codec
+    #'android.arch.persistence.room:compiler':  ['android-arch-room-compiler',  'arch-room/compiler'],
     'android.arch.persistence.room:runtime':   ['android-arch-room-runtime',   'arch-room/runtime'],
     'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
-    'android.arch.persistence.room:rxjava2':   ['android-arch-room-rxjava2',   'arch-room/rxjava2'],
+    # Missing dependencies:
+    # - rxjava
+    #'android.arch.persistence.room:rxjava2':   ['android-arch-room-rxjava2',   'arch-room/rxjava2'],
     'android.arch.persistence.room:testing':   ['android-arch-room-testing',   'arch-room/testing'],
 
     # Material Design Components
