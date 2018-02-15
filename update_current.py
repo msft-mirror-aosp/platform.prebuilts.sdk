@@ -72,25 +72,48 @@ maven_to_make = {
     # App Arch Core
     'android.arch.core:runtime': ['android-arch-core-runtime', 'arch-core/runtime'],
     'android.arch.core:common':  ['android-arch-core-common',  'arch-core/common'],
+    'android.arch.core:testing': ['android-arch-core-testing', 'arch-core/testing'],
+
     # Paging
     'android.arch.paging:common':  ['android-arch-paging-common',  'arch-paging/common'],
     'android.arch.paging:runtime': ['android-arch-paging-runtime', 'arch-paging/runtime'],
+
     # Lifecycle
-    'android.arch.lifecycle:livedata-core': ['android-arch-lifecycle-livedata-core', 'arch-lifecycle/livedata-core'],
-    'android.arch.lifecycle:livedata':      ['android-arch-lifecycle-livedata',      'arch-lifecycle/livedata'],
-    'android.arch.lifecycle:viewmodel':     ['android-arch-lifecycle-viewmodel',     'arch-lifecycle/viewmodel'],
-    'android.arch.lifecycle:extensions':    ['android-arch-lifecycle-extensions',    'arch-lifecycle/extensions'],
-    'android.arch.lifecycle:runtime':       ['android-arch-lifecycle-runtime',       'arch-lifecycle/runtime'],
-    'android.arch.lifecycle:common':        ['android-arch-lifecycle-common',        'arch-lifecycle/common'],
-    'android.arch.lifecycle:common-java8':  ['android-arch-lifecycle-common-java8',  'arch-lifecycle/common-java8'],
+    'android.arch.lifecycle:livedata-core':   ['android-arch-lifecycle-livedata-core',  'arch-lifecycle/livedata-core'],
+    'android.arch.lifecycle:livedata':        ['android-arch-lifecycle-livedata',       'arch-lifecycle/livedata'],
+    'android.arch.lifecycle:viewmodel':       ['android-arch-lifecycle-viewmodel',      'arch-lifecycle/viewmodel'],
+    'android.arch.lifecycle:extensions':      ['android-arch-lifecycle-extensions',     'arch-lifecycle/extensions'],
+    'android.arch.lifecycle:runtime':         ['android-arch-lifecycle-runtime',        'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:common':          ['android-arch-lifecycle-common',         'arch-lifecycle/common'],
+    'android.arch.lifecycle:common-java8':    ['android-arch-lifecycle-common-java8',   'arch-lifecycle/common-java8'],
+    # Missing dependencies:
+    # - auto-common
+    # - javapoet
+    #'android.arch.lifecycle:compiler':        ['android-arch-lifecycle-compiler',       'arch-lifecycle/compiler'],
+    # Missing dependencies:
+    # - reactive-streams
+    #'android.arch.lifecycle:reactivestreams': ['android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams'],
+
     # Persistence
     'android.arch.persistence:db':           ['android-arch-persistence-db',           'arch-persistence/db'],
     'android.arch.persistence:db-framework': ['android-arch-persistence-db-framework', 'arch-persistence/db-framework'],
+
     # Room
     'android.arch.persistence.room:common':    ['android-arch-room-common',    'arch-room/common'],
+    # Missing dependencies:
+    # - auto-common
+    # - javapoet
+    # - antlr4
+    # - kotlin-metadata
+    # - commons-codec
+    #'android.arch.persistence.room:compiler':  ['android-arch-room-compiler',  'arch-room/compiler'],
     'android.arch.persistence.room:runtime':   ['android-arch-room-runtime',   'arch-room/runtime'],
     'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
+    # Missing dependencies:
+    # - rxjava
+    #'android.arch.persistence.room:rxjava2':   ['android-arch-room-rxjava2',   'arch-room/rxjava2'],
     'android.arch.persistence.room:testing':   ['android-arch-room-testing',   'arch-room/testing'],
+
     # Material Design Components
     'com.google.android:flexbox': ['flexbox', 'flexbox'],
     'design': ['android-support-design', 'design'],
@@ -367,6 +390,7 @@ def update_jetifier(target, build_id):
 
     rm(jetifier_dir)
     mv(repo_dir, jetifier_dir)
+    os.chmod(os.path.join(jetifier_dir, 'jetifier-standalone', 'bin', 'jetifier-standalone'), 0o755)
     return True
 
 def update_toolkit(target, build_id):
@@ -432,7 +456,7 @@ def update_sdk_repo(target, build_id):
         # Unclear if this is actually necessary.
         extract_to(zipFile, paths, 'framework.aidl', system_path)
 
-    artifact_path = fetch_artifact(target, build_id, 'core.current.stubs.jar')
+    artifact_path = fetch_artifact(target, build_id.fs_id, 'core.current.stubs.jar')
     if not artifact_path:
         return False
 
@@ -511,6 +535,13 @@ def getBuildId(args):
     fs_id = "0"
   args.file = False
   return buildId(url_id, fs_id)
+
+def getFile(args):
+  source = args.source
+  if not source.isnumeric():
+    return args.source
+  else:
+    raise Exception('Updating this set of prebuilts requires <source> to be file, not a numeric build id')
 
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
@@ -593,10 +624,7 @@ try:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.design:
-        if not args.file:
-            print_e('Design Library must have --file specified')
-            sys.exit(1)
-        elif update_design(args.file):
+        if update_design(getFile(args)):
             components = append(components, 'Design Library')
         else:
             print_e('Failed to update platform SDK, aborting...')
@@ -614,7 +642,7 @@ try:
     subprocess.check_call(['git', 'add', current_path])
     subprocess.check_call(['git', 'add', system_path])
     subprocess.check_call(['git', 'add', buildtools_dir])
-    if args.file:
+    if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
