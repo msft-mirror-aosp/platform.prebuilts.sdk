@@ -56,6 +56,27 @@ maven_to_make = {
     'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
     'transition':                   ['android-support-transition',                  'transition'],
     'wear':                         ['android-support-wear',                        'wear'],
+
+    # AndroidX splits
+    'collections':           ['android-support-collections',           'collections'],
+    'heifwriter':            ['android-support-heifwriter',            'heifwriter'],
+    'webkit':                ['android-support-webkit',                'webkit'],
+    'customview':            ['android-support-customview',            'customview'],
+    'textclassifier':        ['android-support-textclassifier',        'textclassifier'],
+    'swiperefreshlayout':    ['android-support-swiperefreshlayout',    'swiperefreshlayout'],
+    'viewpager':             ['android-support-viewpager',             'viewpager'],
+    'coordinatorlayout':     ['android-support-coordinatorlayout',     'coordinatorlayout'],
+    'asynclayoutinflater':   ['android-support-asynclayoutinflater',   'asynclayoutinflater'],
+    'support-content':       ['android-support-support-content',       'support-content'],
+    'documentfile':          ['android-support-documentfile',          'documentfile'],
+    'drawerlayout':          ['android-support-drawerlayout',          'drawerlayout'],
+    'localbroadcastmanager': ['android-support-localbroadcastmanager', 'localbroadcastmanager'],
+    'print':                 ['android-support-print',                 'print'],
+    'slidingpanelayout':     ['android-support-slidingpanelayout',     'slidingpanelayout'],
+    'interpolator':          ['android-support-interpolator',          'interpolator'],
+    'cursoradapter':         ['android-support-cursoradapter',         'cursoradapter'],
+    'loader':                ['android-support-loader',                'loader'],
+
     # Slices
     'slices-core':                  ['android-slices-core',                         'slices-core'],
     'slices-view':                  ['android-slices-view',                         'slices-view'],
