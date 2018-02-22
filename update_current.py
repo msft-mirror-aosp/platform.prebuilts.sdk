@@ -164,6 +164,11 @@ maven_to_make = {
     'design-transformation': ['android-support-design-transformation', 'design-transformation'],
     'design-typography': ['android-support-design-typography', 'design-typography'],
     'design-widget': ['android-support-design-widget', 'design-widget'],
+    'design-navigation': ['android-support-design-navigation', 'design-navigation'],
+    'design-tabs': ['android-support-design-tabs', 'design-tabs'],
+    'design-bottomappbar': ['android-support-design-bottomappbar', 'design-bottomappbar'],
+    'design-shape': ['android-support-design-shape', 'design-shape'],
+
 }
 
 # Always remove these files.
