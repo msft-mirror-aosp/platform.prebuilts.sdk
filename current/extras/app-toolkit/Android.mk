@@ -381,7 +381,6 @@ LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES := \
   android-arch-room-migration-nodeps \
   kotlin-stdlib \
-  gson \
   android-arch-room-common
 LOCAL_STATIC_ANDROID_LIBRARIES :=
 LOCAL_JAR_EXCLUDE_FILES := none
