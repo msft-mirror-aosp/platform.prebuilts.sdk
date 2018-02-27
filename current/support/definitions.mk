@@ -118,6 +118,8 @@ ANDROID_SUPPORT_DESIGN_TARGETS := \
 ANDROID_SUPPORT_CAR_TARGETS := \
     android-support-car \
     $(ANDROID_SUPPORT_DESIGN_TARGETS) \
-    $(ANDROID_SUPPORT_MEDIA_COMPAT_TARGETS)
+    $(ANDROID_SUPPORT_MEDIA_COMPAT_TARGETS) \
+    android-support-v7-gridlayout
 
 RESOLVE_SUPPORT_LIBRARIES := prebuilts/sdk/current/support/fix_dependencies.mk
+
