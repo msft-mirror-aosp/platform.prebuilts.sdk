@@ -82,6 +82,7 @@ ANDROID_SUPPORT_DESIGN_TARGETS := \
     android-support-v7-cardview \
     android-support-v7-recyclerview \
     android-support-design-animation \
+    android-support-design-bottomappbar \
     android-support-design-bottomnavigation \
     android-support-design-bottomsheet \
     android-support-design-button \
@@ -97,10 +98,13 @@ ANDROID_SUPPORT_DESIGN_TARGETS := \
     android-support-design-expandable \
     android-support-design-floatingactionbutton \
     android-support-design-math \
+    android-support-design-navigation \
     android-support-design-resources \
     android-support-design-ripple \
+    android-support-design-shape \
     android-support-design-snackbar \
     android-support-design-stateful \
+    android-support-design-tabs \
     android-support-design-textfield \
     android-support-design-theme \
     android-support-design-transformation \
@@ -115,3 +119,5 @@ ANDROID_SUPPORT_CAR_TARGETS := \
     android-support-car \
     $(ANDROID_SUPPORT_DESIGN_TARGETS) \
     $(ANDROID_SUPPORT_MEDIA_COMPAT_TARGETS)
+
+RESOLVE_SUPPORT_LIBRARIES := prebuilts/sdk/current/support/fix_dependencies.mk
