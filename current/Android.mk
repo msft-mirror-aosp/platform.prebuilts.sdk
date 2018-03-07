@@ -22,19 +22,35 @@ LOCAL_PATH := $(call my-dir)
 # For apps (unbundled) build, replace the typical
 # make target artifacts with prebuilts.
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
-include $(CLEAR_VARS)
-
 # Set up prebuilts for the core Support Library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+support_jars := \
   $(patsubst $(LOCAL_PATH)/%,%,\
     $(shell find $(LOCAL_PATH)/support -name "*.jar"))
 
 # Set up prebuilts for Multidex library artifacts.
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+multidex_jars := \
   $(patsubst $(LOCAL_PATH)/%,%,\
     $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
 
-include $(BUILD_MULTI_PREBUILT)
+prebuilts := $(foreach jar,$(support_jars) $(multidex_jars),\
+    $(basename $(notdir $(jar))):$(jar))
+
+define define-prebuilt
+    $(eval tw := $(subst :, ,$(strip $(1)))) \
+    $(eval include $(CLEAR_VARS)) \
+    $(eval LOCAL_MODULE := $(word 1,$(tw))) \
+    $(eval LOCAL_MODULE_TAGS := optional) \
+    $(eval LOCAL_MODULE_CLASS := JAVA_LIBRARIES) \
+    $(eval LOCAL_SRC_FILES := $(word 2,$(tw))) \
+    $(eval LOCAL_UNINSTALLABLE_MODULE := true) \
+    $(eval LOCAL_SDK_VERSION := current) \
+    $(eval include $(BUILD_PREBUILT))
+endef
+
+$(foreach p,$(prebuilts),\
+    $(call define-prebuilt,$(p)))
+
+prebuilts :=
 
 # Generates the v4, v13, and appcompat libraries with static dependencies.
 include $(call all-makefiles-under,$(LOCAL_PATH))
