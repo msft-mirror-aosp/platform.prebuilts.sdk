@@ -25,18 +25,35 @@ include $(CLEAR_VARS)
 # make target artifacts with prebuilts.
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     # Set up prebuilts for Multidex library artifacts.
-    LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+    multidex_jars := \
       $(patsubst $(LOCAL_PATH)/%,%,\
         $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
+    prebuilts := $(foreach jar,$(multidex_jars),\
+        $(basename $(notdir $(jar))):$(jar))
 
     # Set up prebuilts for optional libraries. Need to specify them explicitly
     # as the target name does not match the JAR name.
-    LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES += \
+    prebuilts += \
         android.test.base.stubs:optional/android.test.base.jar \
         android.test.mock.stubs:optional/android.test.mock.jar \
         android.test.runner.stubs:optional/android.test.runner.jar \
 
-    include $(BUILD_MULTI_PREBUILT)
+    define define-prebuilt
+        $(eval tw := $(subst :, ,$(strip $(1)))) \
+        $(eval include $(CLEAR_VARS)) \
+        $(eval LOCAL_MODULE := $(word 1,$(tw))) \
+        $(eval LOCAL_MODULE_TAGS := optional) \
+        $(eval LOCAL_MODULE_CLASS := JAVA_LIBRARIES) \
+        $(eval LOCAL_SRC_FILES := $(word 2,$(tw))) \
+        $(eval LOCAL_UNINSTALLABLE_MODULE := true) \
+        $(eval LOCAL_SDK_VERSION := current) \
+        $(eval include $(BUILD_PREBUILT))
+    endef
+
+    $(foreach p,$(prebuilts),\
+        $(call define-prebuilt,$(p)))
+
+    prebuilts :=
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
 
 # Include all Support Library modules as prebuilts.
