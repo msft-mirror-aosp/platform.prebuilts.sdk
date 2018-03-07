@@ -32,6 +32,7 @@ known_support_libs := \
     android-support-animatedvectordrawable \
     android-support-annotations \
     android-support-asynclayoutinflater \
+    android-support-car \
     android-support-collections \
     android-support-compat \
     android-support-coordinatorlayout \
@@ -102,6 +103,73 @@ LOCAL_STATIC_ANDROID_LIBRARIES := $(filter-out $(requested_support_libs), \
 
 support_android_deps :=
 support_java_deps :=
+
+# Manually added.
+ifneq (,$(filter android-support-car,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-animatedvectordrawable-nodeps \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-car \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-transition-nodeps \
+        android-support-v7-appcompat-nodeps \
+        android-support-v7-cardview-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-vectordrawable-nodeps \
+        android-support-viewpager-nodeps \
+        android-support-design \
+        android-support-design-animation \
+        android-support-design-bottomappbar \
+        android-support-design-bottomnavigation \
+        android-support-design-bottomsheet \
+        android-support-design-button \
+        android-support-design-canvas \
+        android-support-design-card \
+        android-support-design-chip \
+        android-support-design-circularreveal \
+        android-support-design-circularreveal-cardview \
+        android-support-design-circularreveal-coordinatorlayout \
+        android-support-design-color \
+        android-support-design-dialog \
+        android-support-design-drawable \
+        android-support-design-expandable \
+        android-support-design-floatingactionbutton \
+        android-support-design-math \
+        android-support-design-navigation \
+        android-support-design-resources \
+        android-support-design-ripple \
+        android-support-design-shape \
+        android-support-design-snackbar \
+        android-support-design-stateful \
+        android-support-design-tabs \
+        android-support-design-textfield \
+        android-support-design-theme \
+        android-support-design-transformation \
+        android-support-design-typography \
+        android-support-design-widget \
+        android-support-design-internal \
+        flexbox
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
 
 # Manually added.
 ifneq (,$(filter android-support-design,$(requested_support_libs)))
