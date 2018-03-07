@@ -173,9 +173,13 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 # Create a prebuilt library for android.car stubs. Implementation will be available as part of
 # system on automotive devices.
 include $(CLEAR_VARS)
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
-        prebuilt-android.car-stubs:m2repository/com/android/support/car/28.0.0-alpha1/android.car.jar
-include $(BUILD_MULTI_PREBUILT)
+LOCAL_MODULE := prebuilt-android.car-stubs
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_SRC_FILES := m2repository/com/android/support/car/28.0.0-alpha1/android.car.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-car-nodeps
