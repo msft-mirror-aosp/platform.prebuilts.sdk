@@ -27,6 +27,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_BUILT_MODULE_STEM := sdk_v$(1)$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
 LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
 include $(BUILD_PREBUILT)
 
 ifneq (,$(wildcard $(LOCAL_PATH)/$(1)/uiautomator.jar))
