@@ -170,6 +170,114 @@ LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 LOCAL_USE_AAPT2 := true
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
+# Create a prebuilt library for android.car stubs. Implementation will be available as part of
+# system on automotive devices.
+include $(CLEAR_VARS)
+LOCAL_MODULE := prebuilt-android.car-stubs
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_SRC_FILES := m2repository/com/android/support/car/28.0.0-alpha1/android.car.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-car-nodeps
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := m2repository/com/android/support/car/28.0.0-alpha1/car-28.0.0-alpha1.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
+  android-support-v7-cardview \
+  android-support-v7-appcompat \
+  android-support-v7-cardview \
+  android-support-design-animation \
+  android-support-design-bottomappbar \
+  android-support-design-bottomnavigation \
+  android-support-design-bottomsheet \
+  android-support-design-button \
+  android-support-design-canvas \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-circularreveal-coordinatorlayout \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-drawable \
+  android-support-design-expandable \
+  android-support-design-floatingactionbutton \
+  android-support-design-math \
+  android-support-design-navigation \
+  android-support-design-resources \
+  android-support-design-ripple \
+  android-support-design-shape \
+  android-support-design-snackbar \
+  android-support-design-stateful \
+  android-support-design-tabs \
+  android-support-design-textfield \
+  android-support-design-theme \
+  android-support-design-transformation \
+  android-support-design-typography \
+  android-support-design-widget \
+  android-support-design-internal \
+  flexbox \
+  android-support-v4 \
+  android-support-v7-recyclerview
+include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := android-support-car
+LOCAL_SDK_VERSION := current
+LOCAL_MANIFEST_FILE := manifests/android-support-car/AndroidManifest.xml
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  prebuilt-android.car-stubs
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-car-nodeps \
+  android-support-v7-appcompat \
+  android-support-v7-cardview \
+  android-support-design-animation \
+  android-support-design-bottomappbar \
+  android-support-design-bottomnavigation \
+  android-support-design-bottomsheet \
+  android-support-design-button \
+  android-support-design-canvas \
+  android-support-design-card \
+  android-support-design-chip \
+  android-support-design-circularreveal \
+  android-support-design-circularreveal-cardview \
+  android-support-design-circularreveal-coordinatorlayout \
+  android-support-design-color \
+  android-support-design-dialog \
+  android-support-design-drawable \
+  android-support-design-expandable \
+  android-support-design-floatingactionbutton \
+  android-support-design-math \
+  android-support-design-navigation \
+  android-support-design-resources \
+  android-support-design-ripple \
+  android-support-design-shape \
+  android-support-design-snackbar \
+  android-support-design-stateful \
+  android-support-design-tabs \
+  android-support-design-textfield \
+  android-support-design-theme \
+  android-support-design-transformation \
+  android-support-design-typography \
+  android-support-design-widget \
+  android-support-design-internal \
+  flexbox \
+  android-support-v4 \
+  android-support-v7-recyclerview
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+LOCAL_USE_AAPT2 := true
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-v7-cardview-nodeps
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
