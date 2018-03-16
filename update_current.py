@@ -20,62 +20,91 @@ jetifier_dir = os.path.join(buildtools_dir, 'jetifier')
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
-# Does not import support-v4, which is handled as a separate Android.mk (../support-v4) to
-# statically include dependencies. Similarly, the support-v13 module is imported as
-# support-v13-nodeps and then handled as a separate Android.mk (../support-v13) to statically
-# include dependencies.
 maven_to_make = {
-    'animated-vector-drawable':     ['android-support-animatedvectordrawable',      'graphics/drawable'],
-    'appcompat-v7':                 ['android-support-v7-appcompat',                'v7/appcompat'],
-    'cardview-v7':                  ['android-support-v7-cardview',                 'v7/cardview'],
-    'customtabs':                   ['android-support-customtabs',                  'customtabs'],
-    'exifinterface':                ['android-support-exifinterface',               'exifinterface'],
-    'gridlayout-v7':                ['android-support-v7-gridlayout',               'v7/gridlayout'],
-    'leanback-v17':                 ['android-support-v17-leanback',                'v17/leanback'],
-    'mediarouter-v7':               ['android-support-v7-mediarouter',              'v7/mediarouter'],
-    'palette-v7':                   ['android-support-v7-palette',                  'v7/palette'],
-    'percent':                      ['android-support-percent',                     'percent'],
-    'preference-leanback-v17':      ['android-support-v17-preference-leanback',     'v17/preference-leanback'],
-    'preference-v14':               ['android-support-v14-preference',              'v14/preference'],
-    'preference-v7':                ['android-support-v7-preference',               'v7/preference'],
-    'recommendation':               ['android-support-recommendation',              'recommendation'],
-    'recyclerview-v7':              ['android-support-v7-recyclerview',             'v7/recyclerview'],
-    'support-annotations':          ['android-support-annotations',                 'annotations',              'jar'],
-    'support-compat':               ['android-support-compat',                      'compat'],
-    'support-core-ui':              ['android-support-core-ui',                     'core-ui'],
-    'support-core-utils':           ['android-support-core-utils',                  'core-utils'],
-    'support-dynamic-animation':    ['android-support-dynamic-animation',           'dynamic-animation'],
-    'support-emoji':                ['android-support-emoji',                       'emoji'],
-    'support-emoji-appcompat':      ['android-support-emoji-appcompat',             'emoji-appcompat'],
-    'support-emoji-bundled':        ['android-support-emoji-bundled',               'emoji-bundled'],
-    'support-fragment':             ['android-support-fragment',                    'fragment'],
-    'support-media-compat':         ['android-support-media-compat',                'media-compat'],
-    'support-tv-provider':          ['android-support-tv-provider',                 'tv-provider'],
-    'support-v4':                   ['android-support-v4',                          'v4'],
-    'support-v13':                  ['android-support-v13',                         'v13'],
-    'support-vector-drawable':      ['android-support-vectordrawable',              'graphics/drawable'],
-    'transition':                   ['android-support-transition',                  'transition'],
-    'wear':                         ['android-support-wear',                        'wear'],
+    'animated-vector-drawable': ['android-support-animatedvectordrawable', 'graphics/drawable'],
+    'appcompat-v7': ['android-support-v7-appcompat', 'v7/appcompat'],
+    'cardview-v7': ['android-support-v7-cardview', 'v7/cardview'],
+    'collections': ['android-support-collections', 'collections'],
+    'customtabs': ['android-support-customtabs', 'customtabs'],
+    'exifinterface': ['android-support-exifinterface', 'exifinterface'],
+    'gridlayout-v7': ['android-support-v7-gridlayout', 'v7/gridlayout'],
+    'leanback-v17': ['android-support-v17-leanback', 'v17/leanback'],
+    'mediarouter-v7': ['android-support-v7-mediarouter', 'v7/mediarouter'],
+    'palette-v7': ['android-support-v7-palette', 'v7/palette'],
+    'percent': ['android-support-percent', 'percent'],
+    'preference-leanback-v17': ['android-support-v17-preference-leanback', 'v17/preference-leanback'],
+    'preference-v14': ['android-support-v14-preference', 'v14/preference'],
+    'preference-v7': ['android-support-v7-preference', 'v7/preference'],
+    'recommendation': ['android-support-recommendation', 'recommendation'],
+    'recyclerview-v7': ['android-support-v7-recyclerview', 'v7/recyclerview'],
+    'support-annotations': ['android-support-annotations', 'annotations', 'jar'],
+    'support-compat': ['android-support-compat', 'compat'],
+    'support-core-ui': ['android-support-core-ui', 'core-ui'],
+    'support-core-utils': ['android-support-core-utils', 'core-utils'],
+    'support-dynamic-animation': ['android-support-dynamic-animation', 'dynamic-animation'],
+    'support-emoji-appcompat': ['android-support-emoji-appcompat', 'emoji-appcompat'],
+    'support-emoji-bundled': ['android-support-emoji-bundled', 'emoji-bundled'],
+    'support-emoji': ['android-support-emoji', 'emoji'],
+    'support-fragment': ['android-support-fragment', 'fragment'],
+    'support-media-compat': ['android-support-media-compat', 'media-compat'],
+    'support-tv-provider': ['android-support-tv-provider', 'tv-provider'],
+    'support-v13': ['android-support-v13', 'v13'],
+    'support-v4': ['android-support-v4', 'v4'],
+    'support-vector-drawable': ['android-support-vectordrawable', 'graphics/drawable'],
+    'transition': ['android-support-transition', 'transition'],
+    'wear': ['android-support-wear', 'wear'],
 
-    # AndroidX splits
-    'collections':           ['android-support-collections',           'collections'],
-    'heifwriter':            ['android-support-heifwriter',            'heifwriter'],
-    'webkit':                ['android-support-webkit',                'webkit'],
-    'customview':            ['android-support-customview',            'customview'],
-    'textclassifier':        ['android-support-textclassifier',        'textclassifier'],
-    'swiperefreshlayout':    ['android-support-swiperefreshlayout',    'swiperefreshlayout'],
-    'viewpager':             ['android-support-viewpager',             'viewpager'],
-    'coordinatorlayout':     ['android-support-coordinatorlayout',     'coordinatorlayout'],
-    'asynclayoutinflater':   ['android-support-asynclayoutinflater',   'asynclayoutinflater'],
-    'support-content':       ['android-support-support-content',       'support-content'],
-    'documentfile':          ['android-support-documentfile',          'documentfile'],
-    'drawerlayout':          ['android-support-drawerlayout',          'drawerlayout'],
-    'localbroadcastmanager': ['android-support-localbroadcastmanager', 'localbroadcastmanager'],
-    'print':                 ['android-support-print',                 'print'],
-    'slidingpanelayout':     ['android-support-slidingpanelayout',     'slidingpanelayout'],
-    'interpolator':          ['android-support-interpolator',          'interpolator'],
-    'cursoradapter':         ['android-support-cursoradapter',         'cursoradapter'],
-    'loader':                ['android-support-loader',                'loader'],
+    # AndroidX renamed modules
+    'androidx.annotation:annotation': ['android-support-annotations', 'annotations', 'jar'],
+    'androidx.appcompat:appcompat': ['android-support-v7-appcompat', 'v7/appcompat'],
+    'androidx.browser:browser': ['android-support-customtabs', 'customtabs'],
+    'androidx.cardview:cardview': ['android-support-v7-cardview', 'v7/cardview'],
+    'androidx.collection:collection': ['android-support-collections', 'collections'],
+    'androidx.core:core': ['android-support-compat', 'compat'],
+    'androidx.dynamicanimation:dynamicanimation': ['android-support-dynamic-animation', 'dynamic-animation'],
+    'androidx.emoji:emoji-appcompat': ['android-support-emoji-appcompat', 'emoji-appcompat'],
+    'androidx.emoji:emoji-bundled': ['android-support-emoji-bundled', 'emoji-bundled'],
+    'androidx.emoji:emoji': ['android-support-emoji', 'emoji'],
+    'androidx.fragment:fragment': ['android-support-fragment', 'fragment'],
+    'androidx.gridlayout:gridlayout': ['android-support-v7-gridlayout', 'v7/gridlayout'],
+    'androidx.leanback:leanback-preference': ['android-support-v17-preference-leanback', 'v17/preference-leanback'],
+    'androidx.leanback:leanback': ['android-support-v17-leanback', 'v17/leanback'],
+    'androidx.legacy:legacy-preference-v14': ['android-support-v14-preference', 'v14/preference'],
+    'androidx.legacy:legacy-support-core-ui': ['android-support-core-ui', 'core-ui'],
+    'androidx.legacy:legacy-support-core-utils': ['android-support-core-utils', 'core-utils'],
+    'androidx.legacy:legacy-support-v13': ['android-support-v13', 'v13'],
+    'androidx.legacy:legacy-support-v4': ['android-support-v4', 'v4'],
+    'androidx.media:media': ['android-support-media-compat', 'media-compat'],
+    'androidx.mediarouter:mediarouter': ['android-support-v7-mediarouter', 'v7/mediarouter'],
+    'androidx.palette:palette': ['android-support-v7-palette', 'v7/palette'],
+    'androidx.percentlayout:percentlayout': ['android-support-percent', 'percent'],
+    'androidx.preference:preference': ['android-support-v7-preference', 'v7/preference'],
+    'androidx.recyclerview:recyclerview': ['android-support-v7-recyclerview', 'v7/recyclerview'],
+    'androidx.tvprovider:tvprovider': ['android-support-tv-provider', 'tv-provider'],
+    'androidx.vectordrawable:vectordrawable-animated': ['android-support-animatedvectordrawable', 'graphics/drawable'],
+    'androidx.vectordrawable:vectordrawable': ['android-support-vectordrawable', 'graphics/drawable'],
+
+    # AndroidX new modules
+    'heifwriter':             ['android-support-heifwriter',             'heifwriter'],
+    'webkit':                 ['android-support-webkit',                 'webkit'],
+    'customview':             ['android-support-customview',             'customview'],
+    'textclassifier':         ['android-support-textclassifier',         'textclassifier'],
+    'swiperefreshlayout':     ['android-support-swiperefreshlayout',     'swiperefreshlayout'],
+    'viewpager':              ['android-support-viewpager',              'viewpager'],
+    'coordinatorlayout':      ['android-support-coordinatorlayout',      'coordinatorlayout'],
+    'asynclayoutinflater':    ['android-support-asynclayoutinflater',    'asynclayoutinflater'],
+    'support-content':        ['android-support-support-content',        'support-content'],
+    'documentfile':           ['android-support-documentfile',           'documentfile'],
+    'drawerlayout':           ['android-support-drawerlayout',           'drawerlayout'],
+    'localbroadcastmanager':  ['android-support-localbroadcastmanager',  'localbroadcastmanager'],
+    'print':                  ['android-support-print',                  'print'],
+    'slidingpanelayout':      ['android-support-slidingpanelayout',      'slidingpanelayout'],
+    'interpolator':           ['android-support-interpolator',           'interpolator'],
+    'cursoradapter':          ['android-support-cursoradapter',          'cursoradapter'],
+    'loader':                 ['android-support-loader',                 'loader'],
+    'contentpaging':          ['android-support-contentpaging',          'contentpaging'],
+    'recyclerview-selection': ['android-support-recyclerview-selection', 'recyclerview-selection'],
+    'car':                    ['android-support-car',                    'car-nostubs'],
 
     # Slices
     'slices-core':                  ['android-slices-core',                         'slices-core'],
@@ -390,22 +419,27 @@ def extract_artifact(artifact_path):
     return repo_dir
 
 
-def fetch_and_extract(target, build_id, file):
-    artifact_path = fetch_artifact(target, build_id, file)
+def fetch_and_extract(target, build_id, file, artifact_path=None):
+    if not artifact_path:
+        artifact_path = fetch_artifact(target, build_id, file)
     if not artifact_path:
         return None
     return extract_artifact(artifact_path)
 
 
-def update_support(target, build_id):
-    repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
-    repo_dir = fetch_and_extract(target, build_id.url_id, repo_file)
+def update_support(target, build_id, local_file):
+    if build_id:
+        repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+        repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
+    else:
+        repo_dir = fetch_and_extract(target, None, None, local_file)
     if not repo_dir:
         print_e('Failed to extract Support Library repository')
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
     return transform_maven_repo([repo_dir], support_dir)
+
 
 def update_jetifier(target, build_id):
     repo_file = 'jetifier-standalone.zip'
@@ -418,6 +452,7 @@ def update_jetifier(target, build_id):
     mv(repo_dir, jetifier_dir)
     os.chmod(os.path.join(jetifier_dir, 'jetifier-standalone', 'bin', 'jetifier-standalone'), 0o755)
     return True
+
 
 def update_toolkit(target, build_id):
     repo_dir = fetch_and_extract(target, build_id.url_id, 'top-of-tree-m2repository-%s.zip' % build_id.fs_id)
@@ -554,7 +589,7 @@ def getBuildId(args):
     presubmit = True
     number_text = number_text[1:]
   if not number_text.isnumeric():
-    raise Exception('Updating this set of prebuilts requires <source> to be a build id, not "' + source + '"')
+    return None
   url_id = source
   fs_id = url_id
   if presubmit:
@@ -566,8 +601,7 @@ def getFile(args):
   source = args.source
   if not source.isnumeric():
     return args.source
-  else:
-    raise Exception('Updating this set of prebuilts requires <source> to be file, not a numeric build id')
+  return None
 
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
@@ -625,7 +659,7 @@ try:
         else:
             sys.exit(1)
     if args.support:
-        if update_support('support_library', getBuildId(args)):
+        if update_support('support_library', getBuildId(args), getFile(args)):
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')

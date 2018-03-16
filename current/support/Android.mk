@@ -170,19 +170,8 @@ LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 LOCAL_USE_AAPT2 := true
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
-# Create a prebuilt library for android.car stubs. Implementation will be available as part of
-# system on automotive devices.
 include $(CLEAR_VARS)
-LOCAL_MODULE := prebuilt-android.car-stubs
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_SRC_FILES := m2repository/com/android/support/car/28.0.0-alpha1/android.car.jar
-LOCAL_UNINSTALLABLE_MODULE := true
-LOCAL_SDK_VERSION := current
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-car-nodeps
+LOCAL_MODULE := android-support-car-nostubs-nodeps
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_UNINSTALLABLE_MODULE := true
 LOCAL_SRC_FILES := m2repository/com/android/support/car/28.0.0-alpha1/car-28.0.0-alpha1.aar
@@ -230,14 +219,13 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-recyclerview
 include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-car
+LOCAL_MODULE := android-support-car-nostubs
 LOCAL_SDK_VERSION := current
 LOCAL_MANIFEST_FILE := manifests/android-support-car/AndroidManifest.xml
 LOCAL_STATIC_JAVA_LIBRARIES := \
-  android-support-annotations \
-  prebuilt-android.car-stubs
+  android-support-annotations
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-car-nodeps \
+  android-support-car-nostubs-nodeps \
   android-support-v7-appcompat \
   android-support-v7-cardview \
   android-support-design-animation \
