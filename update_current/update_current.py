@@ -619,6 +619,17 @@ def script_relative(rel_path):
     return os.path.join(script_dir, rel_path)
 
 
+def uncommittedChangesExist():
+    try:
+        # Make sure we don't overwrite any pending changes.
+        diffCommand = "cd " + git_dir + " && git diff --quiet"
+        subprocess.check_call(diffCommand, shell=True)
+        subprocess.check_call(diffCommand + " --cached", shell=True)
+        return False
+    except subprocess.CalledProcessError:
+        return True
+
+
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
@@ -645,6 +656,9 @@ parser.add_argument(
 parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
+parser.add_argument(
+    '--commit-first', action="store_true",
+    help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
 args.file = True
 if not args.source:
@@ -658,13 +672,13 @@ if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None
     parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
     sys.exit(1)
 
-try:
-    # Make sure we don't overwrite any pending changes.
-    diffCommand = "cd " + git_dir + " && git diff --quiet"
-    subprocess.check_call(diffCommand, shell=True)
-    subprocess.check_call(diffCommand + " --cached", shell=True)
-except subprocess.CalledProcessError:
-    print_e('FAIL: There are uncommitted changes here. Please revert or stash before continuing, because update_current.py will run "git reset --hard" if execution fails')
+if uncommittedChangesExist():
+    if args.commit_first:
+        subprocess.check_call("cd " + git_dir + " && git add -u", shell=True)
+        subprocess.check_call("cd " + git_dir + " && git commit -m 'save working state'", shell=True)
+
+if uncommittedChangesExist():
+    print_e('FAIL: There are uncommitted changes here. Please commit or stash before continuing, because update_current.py will run "git reset --hard" if execution fails')
     sys.exit(1)
 
 try:
