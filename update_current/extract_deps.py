@@ -33,7 +33,7 @@ def parse_tokens(remaining, source):
 def parse_deps(sources):
     deps = {}
 
-    for source in sources.split(','):
+    for source in sources:
         parse_deps_from_makefile(deps, source)
 
     return deps
@@ -164,18 +164,19 @@ def script_relative(rel_path):
 parser = argparse.ArgumentParser(
     description='Generate include for adding explicit dependencies')
 parser.add_argument(
-    'source',
+    'sources',
+    nargs='+',
     help='Path to Makefile defining top-level targets')
 parser.add_argument(
     '-o', '--output',
     help='Path to output Makefile for use as include')
 args = parser.parse_args()
 
-if not args.source:
+if not args.sources:
     parser.error("You must specify the path to Makefile defining top-level targets")
     sys.exit(1)
 
-deps_map = parse_deps(args.source)
+deps_map = parse_deps(args.sources)
 expand_deps(deps_map)
 output = write_deps(deps_map)
 
