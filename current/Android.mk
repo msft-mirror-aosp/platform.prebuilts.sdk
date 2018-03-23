@@ -58,20 +58,5 @@ endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
 # Car API stubs
 $(call define-prebuilt, prebuilt-android.car-stubs:optional/android.car.jar)
 
-# Artifact for car that includes API stubs. Workaround for lack of "provided"
-# dependencies.
-include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-car
-LOCAL_SDK_VERSION := current
-LOCAL_MANIFEST_FILE := support/manifests/android-support-car/AndroidManifest.xml
-LOCAL_STATIC_JAVA_LIBRARIES := \
-  prebuilt-android.car-stubs
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-car-nostubs
-LOCAL_JAR_EXCLUDE_FILES := none
-LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-LOCAL_USE_AAPT2 := true
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
 # Include all Support Library modules as prebuilts.
 include $(call all-makefiles-under,$(LOCAL_PATH))

@@ -17,8 +17,12 @@
 ###########################################################################
 # Inspects Support Library dependencies and adds transitive dependencies.
 #
+# Exports the following variables:
+# support_android_deps
+# support_java_deps
+#
 # This file was automatically generated with:
-# ./mk2dep.py current/support/Android.mk -o current/support/fix_dependencies.mk
+# ./update_current/extract_deps.py current/support/Android.mk -o current/support/fix_dependencies.mk
 ###########################################################################
 
 # Only AAPT2 clients get transitive dependency resolution. This may be removed
@@ -35,19 +39,19 @@ known_support_libs := \
     android-support-car \
     android-support-collections \
     android-support-compat \
+    android-support-contentpaging \
     android-support-coordinatorlayout \
     android-support-core-ui \
     android-support-core-utils \
     android-support-cursoradapter \
     android-support-customtabs \
     android-support-customview \
-    android-support-design \
     android-support-documentfile \
     android-support-drawerlayout \
     android-support-dynamic-animation \
+    android-support-emoji \
     android-support-emoji-appcompat \
     android-support-emoji-bundled \
-    android-support-emoji \
     android-support-exifinterface \
     android-support-fragment \
     android-support-heifwriter \
@@ -58,8 +62,8 @@ known_support_libs := \
     android-support-percent \
     android-support-print \
     android-support-recommendation \
+    android-support-recyclerview-selection \
     android-support-slidingpanelayout \
-    android-support-support-content \
     android-support-swiperefreshlayout \
     android-support-textclassifier \
     android-support-transition \
@@ -104,79 +108,13 @@ LOCAL_STATIC_ANDROID_LIBRARIES := $(filter-out $(requested_support_libs), \
 support_android_deps :=
 support_java_deps :=
 
-# Manually added.
-ifneq (,$(filter android-support-car,$(requested_support_libs)))
+ifneq (,$(filter android-slices-builders,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
         android-arch-lifecycle-viewmodel \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-car \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-transition-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-v7-cardview-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps \
-        android-support-design \
-        android-support-design-animation \
-        android-support-design-bottomappbar \
-        android-support-design-bottomnavigation \
-        android-support-design-bottomsheet \
-        android-support-design-button \
-        android-support-design-canvas \
-        android-support-design-card \
-        android-support-design-chip \
-        android-support-design-circularreveal \
-        android-support-design-circularreveal-cardview \
-        android-support-design-circularreveal-coordinatorlayout \
-        android-support-design-color \
-        android-support-design-dialog \
-        android-support-design-drawable \
-        android-support-design-expandable \
-        android-support-design-floatingactionbutton \
-        android-support-design-math \
-        android-support-design-navigation \
-        android-support-design-resources \
-        android-support-design-ripple \
-        android-support-design-shape \
-        android-support-design-snackbar \
-        android-support-design-stateful \
-        android-support-design-tabs \
-        android-support-design-textfield \
-        android-support-design-theme \
-        android-support-design-transformation \
-        android-support-design-typography \
-        android-support-design-widget \
-        android-support-design-internal \
-        flexbox
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-# Manually added.
-ifneq (,$(filter android-support-design,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
+        android-slices-builders-nodeps \
+        android-slices-core-nodeps \
         android-support-animatedvectordrawable-nodeps \
         android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
@@ -194,79 +132,7 @@ ifneq (,$(filter android-support-design,$(requested_support_libs)))
         android-support-print-nodeps \
         android-support-slidingpanelayout-nodeps \
         android-support-swiperefreshlayout-nodeps \
-        android-support-transition-nodeps \
         android-support-v7-appcompat-nodeps \
-        android-support-v7-cardview-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps \
-        android-support-design \
-        android-support-design-animation \
-        android-support-design-bottomappbar \
-        android-support-design-bottomnavigation \
-        android-support-design-bottomsheet \
-        android-support-design-button \
-        android-support-design-canvas \
-        android-support-design-card \
-        android-support-design-chip \
-        android-support-design-circularreveal \
-        android-support-design-circularreveal-cardview \
-        android-support-design-circularreveal-coordinatorlayout \
-        android-support-design-color \
-        android-support-design-dialog \
-        android-support-design-drawable \
-        android-support-design-expandable \
-        android-support-design-floatingactionbutton \
-        android-support-design-math \
-        android-support-design-navigation \
-        android-support-design-resources \
-        android-support-design-ripple \
-        android-support-design-shape \
-        android-support-design-snackbar \
-        android-support-design-stateful \
-        android-support-design-tabs \
-        android-support-design-textfield \
-        android-support-design-theme \
-        android-support-design-transformation \
-        android-support-design-typography \
-        android-support-design-widget \
-        android-support-design-internal \
-        flexbox
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v17-preference-leanback,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-media-compat-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v14-preference-nodeps \
-        android-support-v17-leanback-nodeps \
-        android-support-v17-preference-leanback-nodeps \
-        android-support-v4-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-v7-preference-nodeps \
-        android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
         android-support-viewpager-nodeps
     support_java_deps += \
@@ -274,29 +140,66 @@ ifneq (,$(filter android-support-v17-preference-leanback,$(requested_support_lib
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-viewpager,$(requested_support_libs)))
+ifneq (,$(filter android-slices-core,$(requested_support_libs)))
     support_android_deps += \
+        android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-slices-core-nodeps \
+        android-support-animatedvectordrawable-nodeps \
+        android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
         android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v7-appcompat-nodeps \
+        android-support-vectordrawable-nodeps \
         android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-recommendation,$(requested_support_libs)))
+ifneq (,$(filter android-slices-view,$(requested_support_libs)))
     support_android_deps += \
-        android-support-recommendation-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps
-endif
-
-ifneq (,$(filter android-support-emoji,$(requested_support_libs)))
-    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-slices-builders-nodeps \
+        android-slices-core-nodeps \
+        android-slices-view-nodeps \
+        android-support-animatedvectordrawable-nodeps \
+        android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
-        android-support-emoji-nodeps
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v7-appcompat-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-vectordrawable-nodeps \
+        android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
@@ -330,6 +233,126 @@ ifneq (,$(filter android-support-animatedvectordrawable,$(requested_support_libs
         android-support-collections-nodeps
 endif
 
+ifneq (,$(filter android-support-annotations,$(requested_support_libs)))
+    support_android_deps +=
+    support_java_deps += \
+        android-support-annotations-nodeps
+endif
+
+ifneq (,$(filter android-support-asynclayoutinflater,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-car,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-animatedvectordrawable-nodeps \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-car-nodeps \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-design-animation \
+        android-support-design-bottomappbar \
+        android-support-design-bottomnavigation \
+        android-support-design-bottomsheet \
+        android-support-design-button \
+        android-support-design-canvas \
+        android-support-design-card \
+        android-support-design-chip \
+        android-support-design-circularreveal \
+        android-support-design-circularreveal-cardview \
+        android-support-design-circularreveal-coordinatorlayout \
+        android-support-design-color \
+        android-support-design-dialog \
+        android-support-design-drawable \
+        android-support-design-expandable \
+        android-support-design-floatingactionbutton \
+        android-support-design-internal \
+        android-support-design-math \
+        android-support-design-navigation \
+        android-support-design-resources \
+        android-support-design-ripple \
+        android-support-design-shape \
+        android-support-design-snackbar \
+        android-support-design-stateful \
+        android-support-design-tabs \
+        android-support-design-textfield \
+        android-support-design-theme \
+        android-support-design-transformation \
+        android-support-design-typography \
+        android-support-design-widget \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-media-compat-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v4-nodeps \
+        android-support-v7-appcompat-nodeps \
+        android-support-v7-cardview-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-vectordrawable-nodeps \
+        android-support-viewpager-nodeps \
+        flexbox
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps \
+        prebuilt-android.car-stubs
+endif
+
+ifneq (,$(filter android-support-collections,$(requested_support_libs)))
+    support_android_deps +=
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-compat,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-contentpaging,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-contentpaging-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-coordinatorlayout,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-customview-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
 ifneq (,$(filter android-support-core-ui,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
@@ -356,88 +379,27 @@ ifneq (,$(filter android-support-core-ui,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-swiperefreshlayout,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-compat-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-swiperefreshlayout-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v7-appcompat,$(requested_support_libs)))
+ifneq (,$(filter android-support-core-utils,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
         android-arch-lifecycle-viewmodel \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
         android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
         android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
         android-support-loader-nodeps \
         android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-print-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-textclassifier,$(requested_support_libs)))
+ifneq (,$(filter android-support-cursoradapter,$(requested_support_libs)))
     support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-media-compat-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-textclassifier-nodeps \
-        android-support-v4-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-cursoradapter-nodeps
     support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-support-content,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-compat-nodeps \
-        android-support-support-content-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-annotations-nodeps
 endif
 
 ifneq (,$(filter android-support-customtabs,$(requested_support_libs)))
@@ -481,33 +443,6 @@ ifneq (,$(filter android-support-customview,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-media-compat,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-compat-nodeps \
-        android-support-media-compat-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v7-palette,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-compat-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-v7-palette-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
 ifneq (,$(filter android-support-documentfile,$(requested_support_libs)))
     support_android_deps += \
         android-support-documentfile-nodeps
@@ -515,212 +450,42 @@ ifneq (,$(filter android-support-documentfile,$(requested_support_libs)))
         android-support-annotations-nodeps
 endif
 
-ifneq (,$(filter android-support-collections,$(requested_support_libs)))
-    support_android_deps +=
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v7-cardview,$(requested_support_libs)))
-    support_android_deps += \
-        android-support-v7-cardview-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps
-endif
-
-ifneq (,$(filter android-support-slidingpanelayout,$(requested_support_libs)))
+ifneq (,$(filter android-support-drawerlayout,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-runtime \
         android-support-compat-nodeps \
         android-support-customview-nodeps \
-        android-support-slidingpanelayout-nodeps
+        android-support-drawerlayout-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-fragment,$(requested_support_libs)))
+ifneq (,$(filter android-support-dynamic-animation,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
         android-arch-lifecycle-viewmodel \
-        android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
         android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
         android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
+        android-support-dynamic-animation-nodeps \
         android-support-loader-nodeps \
         android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-viewpager-nodeps
+        android-support-print-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-v7-recyclerview,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-viewpager-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v7-gridlayout,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v7-gridlayout-nodeps \
-        android-support-viewpager-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-wear,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-constraint-layout \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-viewpager-nodeps \
-        android-support-wear-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v7-preference,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-media-compat-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v4-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-v7-preference-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-asynclayoutinflater,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-webkit,$(requested_support_libs)))
+ifneq (,$(filter android-support-emoji,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-runtime \
         android-support-compat-nodeps \
-        android-support-webkit-nodeps
+        android-support-emoji-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-loader,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-compat-nodeps \
-        android-support-loader-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-annotations,$(requested_support_libs)))
-    support_android_deps +=
-    support_java_deps += \
-        android-support-annotations-nodeps
 endif
 
 ifneq (,$(filter android-support-emoji-appcompat,$(requested_support_libs)))
@@ -755,6 +520,77 @@ ifneq (,$(filter android-support-emoji-appcompat,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
+ifneq (,$(filter android-support-emoji-bundled,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-emoji-bundled-nodeps \
+        android-support-emoji-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-exifinterface,$(requested_support_libs)))
+    support_android_deps += \
+        android-support-exifinterface-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps
+endif
+
+ifneq (,$(filter android-support-fragment,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-viewpager-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-heifwriter,$(requested_support_libs)))
+    support_android_deps += \
+        android-support-heifwriter-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps
+endif
+
+ifneq (,$(filter android-support-interpolator,$(requested_support_libs)))
+    support_android_deps += \
+        android-support-interpolator-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps
+endif
+
+ifneq (,$(filter android-support-loader,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-compat-nodeps \
+        android-support-loader-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
 ifneq (,$(filter android-support-localbroadcastmanager,$(requested_support_libs)))
     support_android_deps += \
         android-support-localbroadcastmanager-nodeps
@@ -762,40 +598,95 @@ ifneq (,$(filter android-support-localbroadcastmanager,$(requested_support_libs)
         android-support-annotations-nodeps
 endif
 
-ifneq (,$(filter android-support-vectordrawable,$(requested_support_libs)))
+ifneq (,$(filter android-support-media-compat,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-runtime \
         android-support-compat-nodeps \
-        android-support-vectordrawable-nodeps
+        android-support-media-compat-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-cursoradapter,$(requested_support_libs)))
+ifneq (,$(filter android-support-percent,$(requested_support_libs)))
     support_android_deps += \
-        android-support-cursoradapter-nodeps
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-percent-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-print,$(requested_support_libs)))
+    support_android_deps += \
+        android-support-print-nodeps
     support_java_deps += \
         android-support-annotations-nodeps
 endif
 
-ifneq (,$(filter android-support-transition,$(requested_support_libs)))
+ifneq (,$(filter android-support-recommendation,$(requested_support_libs)))
     support_android_deps += \
+        android-support-recommendation-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps
+endif
+
+ifneq (,$(filter android-support-recyclerview-selection,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
-        android-support-transition-nodeps
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-recyclerview-selection-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-slices-builders,$(requested_support_libs)))
+ifneq (,$(filter android-support-slidingpanelayout,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-customview-nodeps \
+        android-support-slidingpanelayout-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-swiperefreshlayout,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-swiperefreshlayout-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-textclassifier,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
         android-arch-lifecycle-viewmodel \
-        android-slices-builders-nodeps \
-        android-slices-core-nodeps \
         android-support-animatedvectordrawable-nodeps \
         android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
@@ -813,6 +704,7 @@ ifneq (,$(filter android-slices-builders,$(requested_support_libs)))
         android-support-print-nodeps \
         android-support-slidingpanelayout-nodeps \
         android-support-swiperefreshlayout-nodeps \
+        android-support-textclassifier-nodeps \
         android-support-v7-appcompat-nodeps \
         android-support-vectordrawable-nodeps \
         android-support-viewpager-nodeps
@@ -821,20 +713,84 @@ ifneq (,$(filter android-slices-builders,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-compat,$(requested_support_libs)))
+ifneq (,$(filter android-support-transition,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-runtime \
-        android-support-compat-nodeps
+        android-support-compat-nodeps \
+        android-support-transition-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-percent,$(requested_support_libs)))
+ifneq (,$(filter android-support-tv-provider,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-runtime \
         android-support-compat-nodeps \
-        android-support-percent-nodeps
+        android-support-tv-provider-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-v13,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-media-compat-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v13-nodeps \
+        android-support-v4-nodeps \
+        android-support-viewpager-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-v14-preference,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-animatedvectordrawable-nodeps \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v14-preference-nodeps \
+        android-support-v7-appcompat-nodeps \
+        android-support-v7-preference-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-vectordrawable-nodeps \
+        android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
@@ -870,69 +826,7 @@ ifneq (,$(filter android-support-v17-leanback,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-slices-view,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-extensions \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-slices-builders-nodeps \
-        android-slices-core-nodeps \
-        android-slices-view-nodeps \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-dynamic-animation,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-livedata-core \
-        android-arch-lifecycle-runtime \
-        android-arch-lifecycle-viewmodel \
-        android-support-compat-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-dynamic-animation-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-tv-provider,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-compat-nodeps \
-        android-support-tv-provider-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-v14-preference,$(requested_support_libs)))
+ifneq (,$(filter android-support-v17-preference-leanback,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
@@ -955,8 +849,9 @@ ifneq (,$(filter android-support-v14-preference,$(requested_support_libs)))
         android-support-print-nodeps \
         android-support-slidingpanelayout-nodeps \
         android-support-swiperefreshlayout-nodeps \
-        android-support-v14-preference \
-        android-support-v4-nodeps \
+        android-support-v14-preference-nodeps \
+        android-support-v17-leanback-nodeps \
+        android-support-v17-preference-leanback-nodeps \
         android-support-v7-appcompat-nodeps \
         android-support-v7-preference-nodeps \
         android-support-v7-recyclerview-nodeps \
@@ -967,19 +862,40 @@ ifneq (,$(filter android-support-v14-preference,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-print,$(requested_support_libs)))
-    support_android_deps += \
-        android-support-print-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps
-endif
-
-ifneq (,$(filter android-slices-core,$(requested_support_libs)))
+ifneq (,$(filter android-support-v4,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
         android-arch-lifecycle-viewmodel \
-        android-slices-core-nodeps \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-media-compat-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v4-nodeps \
+        android-support-viewpager-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-v7-appcompat,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
         android-support-animatedvectordrawable-nodeps \
         android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
@@ -1005,12 +921,35 @@ ifneq (,$(filter android-slices-core,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-coordinatorlayout,$(requested_support_libs)))
+ifneq (,$(filter android-support-v7-cardview,$(requested_support_libs)))
     support_android_deps += \
+        android-support-v7-cardview-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps
+endif
+
+ifneq (,$(filter android-support-v7-gridlayout,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
         android-support-coordinatorlayout-nodeps \
-        android-support-customview-nodeps
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v7-gridlayout-nodeps \
+        android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
@@ -1049,50 +988,7 @@ ifneq (,$(filter android-support-v7-mediarouter,$(requested_support_libs)))
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-emoji-bundled,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-compat-nodeps \
-        android-support-emoji-bundled-nodeps \
-        android-support-emoji-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-drawerlayout,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-lifecycle-runtime \
-        android-support-compat-nodeps \
-        android-support-customview-nodeps \
-        android-support-drawerlayout-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps
-endif
-
-ifneq (,$(filter android-support-heifwriter,$(requested_support_libs)))
-    support_android_deps += \
-        android-support-heifwriter-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps
-endif
-
-ifneq (,$(filter android-support-exifinterface,$(requested_support_libs)))
-    support_android_deps += \
-        android-support-exifinterface-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps
-endif
-
-ifneq (,$(filter android-support-interpolator,$(requested_support_libs)))
-    support_android_deps += \
-        android-support-interpolator-nodeps
-    support_java_deps += \
-        android-support-annotations-nodeps
-endif
-
-ifneq (,$(filter android-support-core-utils,$(requested_support_libs)))
+ifneq (,$(filter android-support-v7-palette,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
@@ -1102,17 +998,19 @@ ifneq (,$(filter android-support-core-utils,$(requested_support_libs)))
         android-support-documentfile-nodeps \
         android-support-loader-nodeps \
         android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps
+        android-support-print-nodeps \
+        android-support-v7-palette-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-v13,$(requested_support_libs)))
+ifneq (,$(filter android-support-v7-preference,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
         android-arch-lifecycle-viewmodel \
+        android-support-animatedvectordrawable-nodeps \
         android-support-asynclayoutinflater-nodeps \
         android-support-compat-nodeps \
         android-support-coordinatorlayout-nodeps \
@@ -1126,19 +1024,20 @@ ifneq (,$(filter android-support-v13,$(requested_support_libs)))
         android-support-interpolator-nodeps \
         android-support-loader-nodeps \
         android-support-localbroadcastmanager-nodeps \
-        android-support-media-compat-nodeps \
         android-support-print-nodeps \
         android-support-slidingpanelayout-nodeps \
         android-support-swiperefreshlayout-nodeps \
-        android-support-v13-nodeps \
-        android-support-v4-nodeps \
+        android-support-v7-appcompat-nodeps \
+        android-support-v7-preference-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-vectordrawable-nodeps \
         android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
 
-ifneq (,$(filter android-support-v4,$(requested_support_libs)))
+ifneq (,$(filter android-support-v7-recyclerview,$(requested_support_libs)))
     support_android_deps += \
         android-arch-lifecycle-livedata-core \
         android-arch-lifecycle-runtime \
@@ -1152,20 +1051,80 @@ ifneq (,$(filter android-support-v4,$(requested_support_libs)))
         android-support-customview-nodeps \
         android-support-documentfile-nodeps \
         android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
         android-support-interpolator-nodeps \
         android-support-loader-nodeps \
         android-support-localbroadcastmanager-nodeps \
-        android-support-media-compat-nodeps \
         android-support-print-nodeps \
         android-support-slidingpanelayout-nodeps \
         android-support-swiperefreshlayout-nodeps \
-        android-support-v4-nodeps \
+        android-support-v7-recyclerview-nodeps \
         android-support-viewpager-nodeps
     support_java_deps += \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
 endif
+
+ifneq (,$(filter android-support-vectordrawable,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-vectordrawable-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-viewpager,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-customview-nodeps \
+        android-support-viewpager-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-wear,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-livedata-core \
+        android-arch-lifecycle-runtime \
+        android-arch-lifecycle-viewmodel \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps \
+        android-support-constraint-layout \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-fragment-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-v7-recyclerview-nodeps \
+        android-support-viewpager-nodeps \
+        android-support-wear-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
+ifneq (,$(filter android-support-webkit,$(requested_support_libs)))
+    support_android_deps += \
+        android-arch-lifecycle-runtime \
+        android-support-compat-nodeps \
+        android-support-webkit-nodeps
+    support_java_deps += \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps
+endif
+
 
 requested_support_libs :=
 endif #IS_SUPPORT_LIBRARY
