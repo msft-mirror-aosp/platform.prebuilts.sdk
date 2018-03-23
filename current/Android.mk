@@ -47,7 +47,6 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     # as the target name does not match the JAR name.
     prebuilts += \
         android.test.base.stubs:optional/android.test.base.jar \
-        android.test.mock.stubs:optional/android.test.mock.jar \
         android.test.runner.stubs:optional/android.test.runner.jar
 
     $(foreach p,$(prebuilts),\
