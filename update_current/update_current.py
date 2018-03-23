@@ -21,6 +21,8 @@ temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
 
+rerun_extract_deps = False
+
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
@@ -341,10 +343,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True):
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
-    depsfile = os.path.join(working_dir, 'fix_dependencies.mk')
-    with open(depsfile, 'w') as f:
-        args = [script_relative("extract_deps.py"), makefile]
-        subprocess.check_call(args, stdout=f, cwd=cwd)
+    global rerun_extract_deps
+    rerun_extract_deps = True
 
     # Replace the old directory.
     output_dir = os.path.join(cwd, transformed_dir)
@@ -730,6 +730,13 @@ try:
         else:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
+    if rerun_extract_deps:
+        depsfile = 'fix_dependencies.mk'
+        cwd=os.getcwd()
+        with open(depsfile, 'w') as f:
+            print("running " + str(args) + " in " + cwd)
+            subprocess.check_call("./update_current/extract_deps.py current/support/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
+
 
     # Commit all changes.
     subprocess.check_call(['git', 'add', current_path])
