@@ -121,5 +121,5 @@ ANDROID_SUPPORT_CAR_TARGETS := \
     $(ANDROID_SUPPORT_MEDIA_COMPAT_TARGETS) \
     android-support-v7-gridlayout
 
-RESOLVE_SUPPORT_LIBRARIES := prebuilts/sdk/current/support/fix_dependencies.mk
+RESOLVE_SUPPORT_LIBRARIES := prebuilts/sdk/current/fix_dependencies.mk
 
