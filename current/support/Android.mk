@@ -121,7 +121,7 @@ LOCAL_USE_AAPT2 := true
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-car-nostubs-nodeps
+LOCAL_MODULE := android-support-car-nodeps
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_UNINSTALLABLE_MODULE := true
 LOCAL_SRC_FILES := m2repository/androidx/car/car/1.0.0-SNAPSHOT/car-1.0.0-20180312.215303-1.aar
@@ -169,13 +169,14 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-recyclerview
 include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
-LOCAL_MODULE := android-support-car-nostubs
+LOCAL_MODULE := android-support-car
 LOCAL_SDK_VERSION := current
 LOCAL_MANIFEST_FILE := manifests/android-support-car/AndroidManifest.xml
 LOCAL_STATIC_JAVA_LIBRARIES := \
-  android-support-annotations
+  android-support-annotations \
+  prebuilt-android.car-stubs
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-car-nostubs-nodeps \
+  android-support-car-nodeps \
   android-support-v7-appcompat \
   android-support-v7-cardview \
   android-support-design-animation \
