@@ -47,6 +47,8 @@
         </attr></declare-styleable>
     <declare-styleable name="WearableRecyclerView"><attr format="fraction" name="bezelWidth"/><attr format="boolean" name="circularScrollingGestureEnabled"/><attr format="float" name="scrollDegreesPerScreen"/></declare-styleable>
     <dimen name="circular_progress_layout_stroke_width">4dp</dimen>
+    <dimen name="confirmation_overlay_image_size">64dp</dimen>
+    <dimen name="confirmation_overlay_text_size">14sp</dimen>
     <dimen name="ws_action_drawer_expand_icon_top_margin">-3dp</dimen>
     <dimen name="ws_action_drawer_item_bottom_padding">8dp</dimen>
     <dimen name="ws_action_drawer_item_icon_padding">7dp</dimen>
@@ -93,6 +95,8 @@
     <dimen name="ws_switch_size">40dp</dimen>
     <dimen name="ws_wearable_drawer_view_elevation">12dp</dimen>
     <dimen name="ws_wrv_curve_default_x_offset">24dp</dimen>
+    <item name="confirmation_overlay_margin_above_text" type="fraction">5%</item>
+    <item name="confirmation_overlay_margin_side" type="fraction">4.167%</item>
     <item name="ws_action_drawer_item_first_item_top_padding" type="fraction">15%</item>
     <item name="ws_action_drawer_item_last_item_bottom_padding" type="fraction">15%</item>
     <item name="ws_action_drawer_item_left_padding" type="fraction">15%</item>
@@ -100,6 +104,11 @@
     <item name="ws_navigation_drawer_view_pager" type="id"/>
     <string name="ws_action_drawer_content_description">Action drawer</string>
     <string name="ws_navigation_drawer_content_description">Navigation drawer</string>
+    <style name="ConfirmationActivity" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
     <style name="Widget.Wear.WearableDrawerView" parent="">
         <item name="android:elevation">@dimen/ws_wearable_drawer_view_elevation</item>
         <item name="android:background">?android:attr/colorBackgroundFloating</item>
