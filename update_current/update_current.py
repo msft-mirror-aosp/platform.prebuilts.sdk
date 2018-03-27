@@ -13,6 +13,7 @@ from functools import reduce
 current_path = 'current'
 system_path = 'system_current'
 support_dir = os.path.join(current_path, 'support')
+androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier')
@@ -27,183 +28,231 @@ rerun_extract_deps = False
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
 maven_to_make = {
-    'animated-vector-drawable': ['android-support-animatedvectordrawable', 'graphics/drawable'],
-    'appcompat-v7': ['android-support-v7-appcompat', 'v7/appcompat'],
-    'cardview-v7': ['android-support-v7-cardview', 'v7/cardview'],
-    'collections': ['android-support-collections', 'collections'],
-    'customtabs': ['android-support-customtabs', 'customtabs'],
-    'exifinterface': ['android-support-exifinterface', 'exifinterface'],
-    'gridlayout-v7': ['android-support-v7-gridlayout', 'v7/gridlayout'],
-    'leanback-v17': ['android-support-v17-leanback', 'v17/leanback'],
-    'mediarouter-v7': ['android-support-v7-mediarouter', 'v7/mediarouter'],
-    'palette-v7': ['android-support-v7-palette', 'v7/palette'],
-    'percent': ['android-support-percent', 'percent'],
-    'preference-leanback-v17': ['android-support-v17-preference-leanback', 'v17/preference-leanback'],
-    'preference-v14': ['android-support-v14-preference', 'v14/preference'],
-    'preference-v7': ['android-support-v7-preference', 'v7/preference'],
-    'recommendation': ['android-support-recommendation', 'recommendation'],
-    'recyclerview-v7': ['android-support-v7-recyclerview', 'v7/recyclerview'],
-    'support-annotations': ['android-support-annotations', 'annotations', 'jar'],
-    'support-compat': ['android-support-compat', 'compat'],
-    'support-core-ui': ['android-support-core-ui', 'core-ui'],
-    'support-core-utils': ['android-support-core-utils', 'core-utils'],
-    'support-dynamic-animation': ['android-support-dynamic-animation', 'dynamic-animation'],
-    'support-emoji-appcompat': ['android-support-emoji-appcompat', 'emoji-appcompat'],
-    'support-emoji-bundled': ['android-support-emoji-bundled', 'emoji-bundled'],
-    'support-emoji': ['android-support-emoji', 'emoji'],
-    'support-fragment': ['android-support-fragment', 'fragment'],
-    'support-media-compat': ['android-support-media-compat', 'media-compat'],
-    'support-tv-provider': ['android-support-tv-provider', 'tv-provider'],
-    'support-v13': ['android-support-v13', 'v13'],
-    'support-v4': ['android-support-v4', 'v4'],
-    'support-vector-drawable': ['android-support-vectordrawable', 'graphics/drawable'],
-    'transition': ['android-support-transition', 'transition'],
-    'wear': ['android-support-wear', 'wear'],
+    # Support Library
+    'com.android.support:animated-vector-drawable': ['android-support-animatedvectordrawable', 'graphics/drawable'],
+    'com.android.support:appcompat-v7': ['android-support-v7-appcompat', 'v7/appcompat'],
+    'com.android.support:cardview-v7': ['android-support-v7-cardview', 'v7/cardview'],
+    'com.android.support:collections': ['android-support-collections', 'collections', 'jar'],
+    'com.android.support:customtabs': ['android-support-customtabs', 'customtabs'],
+    'com.android.support:exifinterface': ['android-support-exifinterface', 'exifinterface'],
+    'com.android.support:gridlayout-v7': ['android-support-v7-gridlayout', 'v7/gridlayout'],
+    'com.android.support:leanback-v17': ['android-support-v17-leanback', 'v17/leanback'],
+    'com.android.support:mediarouter-v7': ['android-support-v7-mediarouter', 'v7/mediarouter'],
+    'com.android.support:palette-v7': ['android-support-v7-palette', 'v7/palette'],
+    'com.android.support:percent': ['android-support-percent', 'percent'],
+    'com.android.support:preference-leanback-v17': ['android-support-v17-preference-leanback', 'v17/preference-leanback'],
+    'com.android.support:preference-v14': ['android-support-v14-preference', 'v14/preference'],
+    'com.android.support:preference-v7': ['android-support-v7-preference', 'v7/preference'],
+    'com.android.support:recommendation': ['android-support-recommendation', 'recommendation'],
+    'com.android.support:recyclerview-v7': ['android-support-v7-recyclerview', 'v7/recyclerview'],
+    'com.android.support:support-annotations': ['android-support-annotations', 'annotations', 'jar'],
+    'com.android.support:support-compat': ['android-support-compat', 'compat'],
+    'com.android.support:support-core-ui': ['android-support-core-ui', 'core-ui'],
+    'com.android.support:support-core-utils': ['android-support-core-utils', 'core-utils'],
+    'com.android.support:support-dynamic-animation': ['android-support-dynamic-animation', 'dynamic-animation'],
+    'com.android.support:support-emoji-appcompat': ['android-support-emoji-appcompat', 'emoji-appcompat'],
+    'com.android.support:support-emoji-bundled': ['android-support-emoji-bundled', 'emoji-bundled'],
+    'com.android.support:support-emoji': ['android-support-emoji', 'emoji'],
+    'com.android.support:support-fragment': ['android-support-fragment', 'fragment'],
+    'com.android.support:support-media-compat': ['android-support-media-compat', 'media-compat'],
+    'com.android.support:support-tv-provider': ['android-support-tv-provider', 'tv-provider'],
+    'com.android.support:support-v13': ['android-support-v13', 'v13'],
+    'com.android.support:support-v4': ['android-support-v4', 'v4'],
+    'com.android.support:support-vector-drawable': ['android-support-vectordrawable', 'graphics/drawable'],
+    'com.android.support:transition': ['android-support-transition', 'transition'],
+    'com.android.support:wear': ['android-support-wear', 'wear'],
 
-    # AndroidX renamed modules
-    'androidx.annotation:annotation': ['android-support-annotations', 'annotations', 'jar'],
-    'androidx.appcompat:appcompat': ['android-support-v7-appcompat', 'v7/appcompat'],
-    'androidx.browser:browser': ['android-support-customtabs', 'customtabs'],
-    'androidx.cardview:cardview': ['android-support-v7-cardview', 'v7/cardview'],
-    'androidx.collection:collection': ['android-support-collections', 'collections'],
-    'androidx.core:core': ['android-support-compat', 'compat'],
-    'androidx.dynamicanimation:dynamicanimation': ['android-support-dynamic-animation', 'dynamic-animation'],
-    'androidx.emoji:emoji-appcompat': ['android-support-emoji-appcompat', 'emoji-appcompat'],
-    'androidx.emoji:emoji-bundled': ['android-support-emoji-bundled', 'emoji-bundled'],
-    'androidx.emoji:emoji': ['android-support-emoji', 'emoji'],
-    'androidx.fragment:fragment': ['android-support-fragment', 'fragment'],
-    'androidx.gridlayout:gridlayout': ['android-support-v7-gridlayout', 'v7/gridlayout'],
-    'androidx.leanback:leanback-preference': ['android-support-v17-preference-leanback', 'v17/preference-leanback'],
-    'androidx.leanback:leanback': ['android-support-v17-leanback', 'v17/leanback'],
-    'androidx.legacy:legacy-preference-v14': ['android-support-v14-preference', 'v14/preference'],
-    'androidx.legacy:legacy-support-core-ui': ['android-support-core-ui', 'core-ui'],
-    'androidx.legacy:legacy-support-core-utils': ['android-support-core-utils', 'core-utils'],
-    'androidx.legacy:legacy-support-v13': ['android-support-v13', 'v13'],
-    'androidx.legacy:legacy-support-v4': ['android-support-v4', 'v4'],
-    'androidx.media:media': ['android-support-media-compat', 'media-compat'],
-    'androidx.mediarouter:mediarouter': ['android-support-v7-mediarouter', 'v7/mediarouter'],
-    'androidx.palette:palette': ['android-support-v7-palette', 'v7/palette'],
-    'androidx.percentlayout:percentlayout': ['androidx.percentlayout_percentlayout', 'androidx/percentlayout/percentlayout'],
-    'androidx.preference:preference': ['androidx.preference_preference', 'androidx/preference/preference'],
-    'androidx.recyclerview:recyclerview': ['android-support-v7-recyclerview', 'v7/recyclerview'],
-    'androidx.tvprovider:tvprovider': ['android-support-tv-provider', 'tv-provider'],
-    'androidx.vectordrawable:vectordrawable-animated': ['android-support-animatedvectordrawable', 'graphics/drawable'],
-    'androidx.vectordrawable:vectordrawable': ['android-support-vectordrawable', 'graphics/drawable'],
-
-    # AndroidX new modules
-    'heifwriter':             ['android-support-heifwriter',             'heifwriter'],
-    'webkit':                 ['android-support-webkit',                 'webkit'],
-    'customview':             ['android-support-customview',             'customview'],
-    'textclassifier':         ['android-support-textclassifier',         'textclassifier'],
-    'swiperefreshlayout':     ['android-support-swiperefreshlayout',     'swiperefreshlayout'],
-    'viewpager':              ['android-support-viewpager',              'viewpager'],
-    'coordinatorlayout':      ['android-support-coordinatorlayout',      'coordinatorlayout'],
-    'asynclayoutinflater':    ['android-support-asynclayoutinflater',    'asynclayoutinflater'],
-    'support-content':        ['android-support-support-content',        'support-content'],
-    'documentfile':           ['android-support-documentfile',           'documentfile'],
-    'drawerlayout':           ['android-support-drawerlayout',           'drawerlayout'],
-    'localbroadcastmanager':  ['android-support-localbroadcastmanager',  'localbroadcastmanager'],
-    'print':                  ['android-support-print',                  'print'],
-    'slidingpanelayout':      ['android-support-slidingpanelayout',      'slidingpanelayout'],
-    'interpolator':           ['android-support-interpolator',           'interpolator'],
-    'cursoradapter':          ['android-support-cursoradapter',          'cursoradapter'],
-    'loader':                 ['android-support-loader',                 'loader'],
-    'contentpaging':          ['android-support-contentpaging',          'contentpaging'],
-    'recyclerview-selection': ['android-support-recyclerview-selection', 'recyclerview-selection'],
-    'car':                    ['android-support-car',                    'car'],
-
-    # Slices
-    'slices-core':                  ['android-slices-core',                         'slices-core'],
-    'slices-view':                  ['android-slices-view',                         'slices-view'],
-    'slices-builders':              ['android-slices-builders',                     'slices-builders'],
+    # Support Library (28.0.0 splits + new modules)
+    'com.android.support:heifwriter': ['android-support-heifwriter', 'heifwriter'],
+    'com.android.support:webkit': ['android-support-webkit', 'webkit'],
+    'com.android.support:customview': ['android-support-customview', 'customview'],
+    'com.android.support:textclassifier': ['android-support-textclassifier', 'textclassifier'],
+    'com.android.support:swiperefreshlayout': ['android-support-swiperefreshlayout', 'swiperefreshlayout'],
+    'com.android.support:viewpager': ['android-support-viewpager', 'viewpager'],
+    'com.android.support:coordinatorlayout': ['android-support-coordinatorlayout', 'coordinatorlayout'],
+    'com.android.support:asynclayoutinflater': ['android-support-asynclayoutinflater', 'asynclayoutinflater'],
+    'com.android.support:support-content': ['android-support-support-content', 'support-content'],
+    'com.android.support:documentfile': ['android-support-documentfile', 'documentfile'],
+    'com.android.support:drawerlayout': ['android-support-drawerlayout', 'drawerlayout'],
+    'com.android.support:localbroadcastmanager': ['android-support-localbroadcastmanager', 'localbroadcastmanager'],
+    'com.android.support:print': ['android-support-print', 'print'],
+    'com.android.support:slidingpanelayout': ['android-support-slidingpanelayout', 'slidingpanelayout'],
+    'com.android.support:interpolator': ['android-support-interpolator', 'interpolator'],
+    'com.android.support:cursoradapter': ['android-support-cursoradapter', 'cursoradapter'],
+    'com.android.support:loader': ['android-support-loader', 'loader'],
+    'com.android.support:contentpaging': ['android-support-contentpaging', 'contentpaging'],
+    'com.android.support:recyclerview-selection': ['android-support-recyclerview-selection', 'recyclerview-selection'],
+    'com.android.support:car': ['android-support-car', 'car'],
+    'com.android.support:slices-core': ['android-slices-core', 'slices-core'],
+    'com.android.support:slices-view': ['android-slices-view', 'slices-view'],
+    'com.android.support:slices-builders': ['android-slices-builders', 'slices-builders'],
 
     # Multidex
-    'multidex':                 ['android-support-multidex',                 'multidex/library'],
-    'multidex-instrumentation': ['android-support-multidex-instrumentation', 'multidex/instrumentation'],
+    'com.android.support:multidex': ['android-support-multidex', 'multidex/library'],
+    'com.android.support:multidex-instrumentation': ['android-support-multidex-instrumentation', 'multidex/instrumentation'],
 
     # Constraint Layout
-    'constraint-layout':        ['android-support-constraint-layout',        'constraint-layout'],
-    'constraint-layout-solver': ['android-support-constraint-layout-solver', 'constraint-layout-solver'],
+    'com.android.support.constraint:constraint-layout': ['android-support-constraint-layout', 'constraint-layout'],
+    'com.android.support.constraint:constraint-layout-solver': ['android-support-constraint-layout-solver', 'constraint-layout-solver'],
 
-    # App Arch Core
+    # Architecture Components
     'android.arch.core:runtime': ['android-arch-core-runtime', 'arch-core/runtime'],
-    'android.arch.core:common':  ['android-arch-core-common',  'arch-core/common'],
-    'android.arch.core:testing': ['android-arch-core-testing', 'arch-core/testing'],
-
-    # Paging
-    'android.arch.paging:common':  ['android-arch-paging-common',  'arch-paging/common'],
+    'android.arch.core:common': ['android-arch-core-common', 'arch-core/common'],
+    'android.arch.lifecycle:common': ['android-arch-lifecycle-common', 'arch-lifecycle/common'],
+    'android.arch.lifecycle:common-java8': ['android-arch-lifecycle-common-java8', 'arch-lifecycle/common-java8'],
+    'android.arch.lifecycle:extensions': ['android-arch-lifecycle-extensions', 'arch-lifecycle/extensions'],
+    'android.arch.lifecycle:livedata': ['android-arch-lifecycle-livedata', 'arch-lifecycle/livedata'],
+    'android.arch.lifecycle:livedata-core': ['android-arch-lifecycle-livedata-core', 'arch-lifecycle/livedata-core'],
+    'android.arch.lifecycle:runtime': ['android-arch-lifecycle-runtime', 'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:viewmodel': ['android-arch-lifecycle-viewmodel', 'arch-lifecycle/viewmodel'],
+    'android.arch.paging:common': ['android-arch-paging-common', 'arch-paging/common'],
     'android.arch.paging:runtime': ['android-arch-paging-runtime', 'arch-paging/runtime'],
+    'android.arch.persistence:db': ['android-arch-persistence-db', 'arch-persistence/db'],
+    'android.arch.persistence:db-framework': ['android-arch-persistence-db-framework', 'arch-persistence/db-framework'],
+    'android.arch.persistence.room:common': ['android-arch-room-common', 'arch-room/common'],
+    'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
+    'android.arch.persistence.room:runtime': ['android-arch-room-runtime', 'arch-room/runtime'],
+    'android.arch.persistence.room:testing': ['android-arch-room-testing', 'arch-room/testing'],
+
+    # AndroidX
+    'androidx.slice:slice-builders': ['androidx.slice_slice-builders', 'androidx/slice/slice-builders'],
+    'androidx.slice:slice-core': ['androidx.slice_slice-core', 'androidx/slice/slice-core'],
+    'androidx.slice:slice-view': ['androidx.slice_slice-view', 'androidx/slice/slice-view'],
+    'androidx.vectordrawable:vectordrawable-animated': ['androidx.vectordrawable_vectordrawable-animated', 'androidx/vectordrawable/vectordrawable-animated'],
+    'androidx.annotation:annotation': ['androidx.annotation_annotation', 'androidx/annotation/annotation', 'jar'],
+    'androidx.asynclayoutinflater:asynclayoutinflater': ['androidx.asynclayoutinflater_asynclayoutinflater', 'androidx/asynclayoutinflater/asynclayoutinflater'],
+    'androidx.car:car': ['androidx.car_car', 'androidx/car/car'],
+    'androidx.collection:collection': ['androidx.collection_collection', 'androidx/collection/collection', 'jar'],
+    'androidx.core:core': ['androidx.core_core', 'androidx/core/core'],
+    'androidx.contentpaging:contentpaging': ['androidx.contentpaging_contentpaging', 'androidx/contentpaging/contentpaging'],
+    'androidx.coordinatorlayout:coordinatorlayout': ['androidx.coordinatorlayout_coordinatorlayout', 'androidx/coordinatorlayout/coordinatorlayout'],
+    'androidx.legacy:legacy-support-core-ui': ['androidx.legacy_legacy-support-core-ui', 'androidx/legacy/legacy-support-core-ui'],
+    'androidx.legacy:legacy-support-core-utils': ['androidx.legacy_legacy-support-core-utils', 'androidx/legacy/legacy-support-core-utils'],
+    'androidx.cursoradapter:cursoradapter': ['androidx.cursoradapter_cursoradapter', 'androidx/cursoradapter/cursoradapter'],
+    'androidx.browser:browser': ['androidx.browser_browser', 'androidx/browser/browser'],
+    'androidx.customview:customview': ['androidx.customview_customview', 'androidx/customview/customview'],
+    'androidx.documentfile:documentfile': ['androidx.documentfile_documentfile', 'androidx/documentfile/documentfile'],
+    'androidx.drawerlayout:drawerlayout': ['androidx.drawerlayout_drawerlayout', 'androidx/drawerlayout/drawerlayout'],
+    'androidx.dynamicanimation:dynamicanimation': ['androidx.dynamicanimation_dynamicanimation', 'androidx/dynamicanimation/dynamicanimation'],
+    'androidx.emoji:emoji': ['androidx.emoji_emoji', 'androidx/emoji/emoji'],
+    'androidx.emoji:emoji-appcompat': ['androidx.emoji_emoji-appcompat', 'androidx/emoji/emoji-appcompat'],
+    'androidx.emoji:emoji-bundled': ['androidx.emoji_emoji-bundled', 'androidx/emoji/emoji-bundled'],
+    'androidx.exifinterface:exifinterface': ['androidx.exifinterface_exifinterface', 'androidx/exifinterface/exifinterface'],
+    'androidx.fragment:fragment': ['androidx.fragment_fragment', 'androidx/fragment/fragment'],
+    'androidx.heifwriter:heifwriter': ['androidx.heifwriter_heifwriter', 'androidx/heifwriter/heifwriter'],
+    'androidx.interpolator:interpolator': ['androidx.interpolator_interpolator', 'androidx/interpolator/interpolator'],
+    'androidx.loader:loader': ['androidx.loader_loader', 'androidx/loader/loader'],
+    'androidx.localbroadcastmanager:localbroadcastmanager': ['androidx.localbroadcastmanager_localbroadcastmanager', 'androidx/localbroadcastmanager/localbroadcastmanager'],
+    'androidx.media:media': ['androidx.media_media', 'androidx/media/media'],
+    'androidx.percentlayout:percentlayout': ['androidx.percentlayout_percentlayout', 'androidx/percentlayout/percentlayout'],
+    'androidx.print:print': ['androidx.print_print', 'androidx/print/print'],
+    'androidx.recommendation:recommendation': ['androidx.recommendation_recommendation', 'androidx/recommendation/recommendation'],
+    'androidx.recyclerview:recyclerview-selection': ['androidx.recyclerview_recyclerview-selection', 'androidx/recyclerview/recyclerview-selection'],
+    'androidx.slidingpanelayout:slidingpanelayout': ['androidx.slidingpanelayout_slidingpanelayout', 'androidx/slidingpanelayout/slidingpanelayout'],
+    'androidx.swiperefreshlayout:swiperefreshlayout': ['androidx.swiperefreshlayout_swiperefreshlayout', 'androidx/swiperefreshlayout/swiperefreshlayout'],
+    'androidx.textclassifier:textclassifier': ['androidx.textclassifier_textclassifier', 'androidx/textclassifier/textclassifier'],
+    'androidx.transition:transition': ['androidx.transition_transition', 'androidx/transition/transition'],
+    'androidx.tvprovider:tvprovider': ['androidx.tvprovider_tvprovider', 'androidx/tvprovider/tvprovider'],
+    'androidx.legacy:legacy-support-v13': ['androidx.legacy_legacy-support-v13', 'androidx/legacy/legacy-support-v13'],
+    'androidx.legacy:legacy-preference-v14': ['androidx.legacy_legacy-preference-v14', 'androidx/legacy/legacy-preference-v14'],
+    'androidx.leanback:leanback': ['androidx.leanback_leanback', 'androidx/leanback/leanback'],
+    'androidx.leanback:leanback-preference': ['androidx.leanback_leanback-preference', 'androidx/leanback/leanback-preference'],
+    'androidx.legacy:legacy-support-v4': ['androidx.legacy_legacy-support-v4', 'androidx/legacy/legacy-support-v4'],
+    'androidx.appcompat:appcompat': ['androidx.appcompat_appcompat', 'androidx/appcompat/appcompat'],
+    'androidx.cardview:cardview': ['androidx.cardview_cardview', 'androidx/cardview/cardview'],
+    'androidx.gridlayout:gridlayout': ['androidx.gridlayout_gridlayout', 'androidx/gridlayout/gridlayout'],
+    'androidx.mediarouter:mediarouter': ['androidx.mediarouter_mediarouter', 'androidx/mediarouter/mediarouter'],
+    'androidx.palette:palette': ['androidx.palette_palette', 'androidx/palette/palette'],
+    'androidx.preference:preference': ['androidx.preference_preference', 'androidx/preference/preference'],
+    'androidx.recyclerview:recyclerview': ['androidx.recyclerview_recyclerview', 'androidx/recyclerview/recyclerview'],
+    'androidx.vectordrawable:vectordrawable': ['androidx.vectordrawable_vectordrawable', 'androidx/vectordrawable/vectordrawable'],
+    'androidx.viewpager:viewpager': ['androidx.viewpager_viewpager', 'androidx/viewpager/viewpager'],
+    'androidx.wear:wear': ['androidx.wear_wear', 'androidx/wear/wear'],
+    'androidx.webkit:webkit': ['androidx.webkit_webkit', 'androidx/webkit/webkit'],
+
+    # AndroidX for Multidex
+    'androidx.multidex:multidex': ['androidx-multidex_multidex', 'androidx/multidex/multidex'],
+    'androidx.multidex:multidex-instrumentation': ['androidx-multidex_multidex-instrumentation', 'androidx/multidex/multidex-instrumentation'],
+
+    # AndroidX for Constraint Layout
+    'androidx.constraintlayout:constraintlayout': ['androidx-constraintlayout_constraintlayout', 'androidx/constraintlayout/constraintlayout'],
+    'androidx.constraintlayout:constraintlayout-solver': ['androidx-constraintlayout_constraintlayout-solver', 'androidx/constraintlayout/constraintlayout-solver'],
+
+    # AndroidX for Architecture Components
+    'androidx.arch.core:core-common': ['androidx.arch.core_core-common', 'androidx/arch/core/core-common'],
+    'androidx.arch.core:core-runtime': ['androidx.arch.core_core-runtime', 'androidx/arch/core/core-runtime'],
+    'androidx.lifecycle:lifecycle-common': ['androidx.lifecycle_lifecycle-common', 'androidx/lifecycle/lifecycle-common'],
+    'androidx.lifecycle:lifecycle-common-java8': ['androidx.lifecycle_lifecycle-common-java8', 'androidx/lifecycle/lifecycle-common-java8'],
+    'androidx.lifecycle:lifecycle-extensions': ['androidx.lifecycle_lifecycle-extensions', 'androidx/lifecycle/lifecycle-extensions'],
+    'androidx.lifecycle:lifecycle-livedata': ['androidx.lifecycle_lifecycle-livedata', 'androidx/lifecycle/lifecycle-livedata'],
+    'androidx.lifecycle:lifecycle-livedata-core': ['androidx.lifecycle_lifecycle-livedata-core', 'androidx/lifecycle/lifecycle-livedata-core'],
+    'androidx.lifecycle:lifecycle-runtime': ['androidx.lifecycle_lifecycle-runtime', 'androidx/lifecycle/lifecycle-runtime'],
+    'androidx.lifecycle:lifecycle-viewmodel': ['androidx.lifecycle_lifecycle-viewmodel', 'androidx/lifecycle/lifecycle-viewmodel'],
+    'androidx.paging:paging-common': ['androidx.paging_paging-common', 'androidx/paging/paging-common'],
+    'androidx.paging:paging-runtime': ['androidx.paging_paging-runtime', 'androidx/paging/paging-runtime'],
+    'androidx.sqlite:sqlite': ['androidx.sqlite_sqlite', 'androidx/sqlite/sqlite'],
+    'androidx.sqlite:sqlite-framework': ['androidx.sqlite_sqlite-framework', 'androidx/sqlite/sqlite-framework'],
+    'androidx.room:room-common': ['androidx.room_room-common', 'androidx/room/room-common'],
+    'androidx.room:room-migration': ['androidx.room_room-migration', 'androidx/room/room-migration'],
+    'androidx.room:room-runtime': ['androidx.room_room-runtime', 'androidx/room/room-runtime'],
+    'androidx.room:room-testing': ['androidx.room_room-testing', 'androidx/room/room-testing'],
 
     # Lifecycle
-    'android.arch.lifecycle:livedata-core':   ['android-arch-lifecycle-livedata-core',  'arch-lifecycle/livedata-core'],
-    'android.arch.lifecycle:livedata':        ['android-arch-lifecycle-livedata',       'arch-lifecycle/livedata'],
-    'android.arch.lifecycle:viewmodel':       ['android-arch-lifecycle-viewmodel',      'arch-lifecycle/viewmodel'],
-    'android.arch.lifecycle:extensions':      ['android-arch-lifecycle-extensions',     'arch-lifecycle/extensions'],
-    'android.arch.lifecycle:runtime':         ['android-arch-lifecycle-runtime',        'arch-lifecycle/runtime'],
-    'android.arch.lifecycle:common':          ['android-arch-lifecycle-common',         'arch-lifecycle/common'],
-    'android.arch.lifecycle:common-java8':    ['android-arch-lifecycle-common-java8',   'arch-lifecycle/common-java8'],
     # Missing dependencies:
     # - auto-common
     # - javapoet
-    #'android.arch.lifecycle:compiler':        ['android-arch-lifecycle-compiler',       'arch-lifecycle/compiler'],
+    #'android.arch.lifecycle:compiler': ['android-arch-lifecycle-compiler', 'arch-lifecycle/compiler'],
     # Missing dependencies:
     # - reactive-streams
     #'android.arch.lifecycle:reactivestreams': ['android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams'],
 
-    # Persistence
-    'android.arch.persistence:db':           ['android-arch-persistence-db',           'arch-persistence/db'],
-    'android.arch.persistence:db-framework': ['android-arch-persistence-db-framework', 'arch-persistence/db-framework'],
-
     # Room
-    'android.arch.persistence.room:common':    ['android-arch-room-common',    'arch-room/common'],
     # Missing dependencies:
     # - auto-common
     # - javapoet
     # - antlr4
     # - kotlin-metadata
     # - commons-codec
-    #'android.arch.persistence.room:compiler':  ['android-arch-room-compiler',  'arch-room/compiler'],
-    'android.arch.persistence.room:runtime':   ['android-arch-room-runtime',   'arch-room/runtime'],
-    'android.arch.persistence.room:migration': ['android-arch-room-migration', 'arch-room/migration'],
+    #'android.arch.persistence.room:compiler': ['android-arch-room-compiler', 'arch-room/compiler'],
     # Missing dependencies:
     # - rxjava
-    #'android.arch.persistence.room:rxjava2':   ['android-arch-room-rxjava2',   'arch-room/rxjava2'],
-    'android.arch.persistence.room:testing':   ['android-arch-room-testing',   'arch-room/testing'],
+    #'android.arch.persistence.room:rxjava2': ['android-arch-room-rxjava2', 'arch-room/rxjava2'],
 
     # Material Design Components
-    'com.google.android:flexbox': ['flexbox', 'flexbox'],
-    'design': ['android-support-design', 'design'],
-    'design-animation': ['android-support-design-animation', 'design-animation'],
-    'design-bottomnavigation': ['android-support-design-bottomnavigation', 'design-bottomnavigation'],
-    'design-bottomsheet': ['android-support-design-bottomsheet', 'design-bottomsheet'],
-    'design-button': ['android-support-design-button', 'design-button'],
-    'design-canvas': ['android-support-design-canvas', 'design-canvas'],
-    'design-card': ['android-support-design-card', 'design-card'],
-    'design-chip': ['android-support-design-chip', 'design-chip'],
-    'design-circularreveal': ['android-support-design-circularreveal', 'design-circularreveal'],
-    'design-circularreveal-cardview': ['android-support-design-circularreveal-cardview', 'design-circularreveal-cardview'],
-    'design-circularreveal-coordinatorlayout': ['android-support-design-circularreveal-coordinatorlayout', 'design-circularreveal-coordinatorlayout'],
-    'design-color': ['android-support-design-color', 'design-color'],
-    'design-dialog': ['android-support-design-dialog', 'design-dialog'],
-    'design-drawable': ['android-support-design-drawable', 'design-drawable'],
-    'design-expandable': ['android-support-design-expandable', 'design-expandable'],
-    'design-floatingactionbutton': ['android-support-design-floatingactionbutton', 'design-floatingactionbutton'],
-    'design-internal': ['android-support-design-internal', 'design-internal'],
-    'design-math': ['android-support-design-math', 'design-math'],
-    'design-resources': ['android-support-design-resources', 'design-resources'],
-    'design-ripple': ['android-support-design-ripple', 'design-ripple'],
-    'design-snackbar': ['android-support-design-snackbar', 'design-snackbar'],
-    'design-stateful': ['android-support-design-stateful', 'design-stateful'],
-    'design-textfield': ['android-support-design-textfield', 'design-textfield'],
-    'design-theme': ['android-support-design-theme', 'design-theme'],
-    'design-transformation': ['android-support-design-transformation', 'design-transformation'],
-    'design-typography': ['android-support-design-typography', 'design-typography'],
-    'design-widget': ['android-support-design-widget', 'design-widget'],
-    'design-navigation': ['android-support-design-navigation', 'design-navigation'],
-    'design-tabs': ['android-support-design-tabs', 'design-tabs'],
-    'design-bottomappbar': ['android-support-design-bottomappbar', 'design-bottomappbar'],
-    'design-shape': ['android-support-design-shape', 'design-shape'],
+    'com.android.support:design': ['android-support-design', 'design'],
+    'com.android.support:design-animation': ['android-support-design-animation', 'design-animation'],
+    'com.android.support:design-bottomnavigation': ['android-support-design-bottomnavigation', 'design-bottomnavigation'],
+    'com.android.support:design-bottomsheet': ['android-support-design-bottomsheet', 'design-bottomsheet'],
+    'com.android.support:design-button': ['android-support-design-button', 'design-button'],
+    'com.android.support:design-canvas': ['android-support-design-canvas', 'design-canvas'],
+    'com.android.support:design-card': ['android-support-design-card', 'design-card'],
+    'com.android.support:design-chip': ['android-support-design-chip', 'design-chip'],
+    'com.android.support:design-circularreveal': ['android-support-design-circularreveal', 'design-circularreveal'],
+    'com.android.support:design-circularreveal-cardview': ['android-support-design-circularreveal-cardview', 'design-circularreveal-cardview'],
+    'com.android.support:design-circularreveal-coordinatorlayout': ['android-support-design-circularreveal-coordinatorlayout', 'design-circularreveal-coordinatorlayout'],
+    'com.android.support:design-color': ['android-support-design-color', 'design-color'],
+    'com.android.support:design-dialog': ['android-support-design-dialog', 'design-dialog'],
+    'com.android.support:design-drawable': ['android-support-design-drawable', 'design-drawable'],
+    'com.android.support:design-expandable': ['android-support-design-expandable', 'design-expandable'],
+    'com.android.support:design-floatingactionbutton': ['android-support-design-floatingactionbutton', 'design-floatingactionbutton'],
+    'com.android.support:design-internal': ['android-support-design-internal', 'design-internal'],
+    'com.android.support:design-math': ['android-support-design-math', 'design-math'],
+    'com.android.support:design-resources': ['android-support-design-resources', 'design-resources'],
+    'com.android.support:design-ripple': ['android-support-design-ripple', 'design-ripple'],
+    'com.android.support:design-snackbar': ['android-support-design-snackbar', 'design-snackbar'],
+    'com.android.support:design-stateful': ['android-support-design-stateful', 'design-stateful'],
+    'com.android.support:design-textfield': ['android-support-design-textfield', 'design-textfield'],
+    'com.android.support:design-theme': ['android-support-design-theme', 'design-theme'],
+    'com.android.support:design-transformation': ['android-support-design-transformation', 'design-transformation'],
+    'com.android.support:design-typography': ['android-support-design-typography', 'design-typography'],
+    'com.android.support:design-widget': ['android-support-design-widget', 'design-widget'],
+    'com.android.support:design-navigation': ['android-support-design-navigation', 'design-navigation'],
+    'com.android.support:design-tabs': ['android-support-design-tabs', 'design-tabs'],
+    'com.android.support:design-bottomappbar': ['android-support-design-bottomappbar', 'design-bottomappbar'],
+    'com.android.support:design-shape': ['android-support-design-shape', 'design-shape'],
 
+    # Third-party dependencies
+    'com.google.android:flexbox': ['flexbox', 'flexbox'],
 }
 
 # Always remove these files.
@@ -337,7 +386,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True):
     # generate a single Android.mk that specifies to use all of the above artifacts
     makefile = os.path.join(working_dir, 'Android.mk')
     with open(makefile, 'w') as f:
-        args = ["pom2mk", "-static-deps", "-sdk-version", "current"]
+        args = ["pom2mk", "-sdk-version", "current"]
         rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
@@ -381,10 +430,9 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
         if maven_lib_type == "aar":
             process_aar(artifact_file, target_dir)
 
-    if maven_lib_type == "aar":
-        with zipfile.ZipFile(artifact_file) as zip:
-            manifests_dir = os.path.join(working_dir, "manifests")
-            zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
+            with zipfile.ZipFile(artifact_file) as zip:
+                manifests_dir = os.path.join(working_dir, "manifests")
+                zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
 
     print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
@@ -443,7 +491,7 @@ def fetch_and_extract(target, build_id, file, artifact_path=None):
 
 def update_support(target, build_id, local_file):
     if build_id:
-        repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+        repo_file = 'top-of-tree-m2repository-dejetified-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
     else:
         repo_dir = fetch_and_extract(target, None, None, local_file)
@@ -453,6 +501,29 @@ def update_support(target, build_id, local_file):
 
     # Transform the repo archive into a Makefile-compatible format.
     return transform_maven_repos([repo_dir], support_dir)
+
+
+def update_androidx(target, target_toolkit, build_id, local_file):
+    if build_id:
+        repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+        repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
+    else:
+        repo_dir = fetch_and_extract(target, None, None, local_file)
+    if not repo_dir:
+        print_e('Failed to extract AndroidX repository')
+        return False
+
+    if build_id:
+        repo_file2 = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+        repo_dir2 = fetch_and_extract(target_toolkit, build_id.url_id, repo_file2, None)
+    else:
+        repo_dir2 = fetch_and_extract(target_toolkit, None, None, local_file)
+    if not repo_dir2:
+        print_e('Failed to extract AndroidX app-toolkit repository')
+        return False
+
+    # Transform the repo archive into a Makefile-compatible format.
+    return transform_maven_repos([repo_dir, repo_dir2], androidx_dir, extract_res=False)
 
 
 def update_jetifier(target, build_id):
@@ -469,7 +540,8 @@ def update_jetifier(target, build_id):
 
 
 def update_toolkit(target, build_id):
-    repo_dir = fetch_and_extract(target, build_id.url_id, 'top-of-tree-m2repository-%s.zip' % build_id.fs_id)
+    repo_dir = fetch_and_extract(target, build_id.url_id, \
+                                 'top-of-tree-m2repository-dejetified-%s.zip' % build_id.fs_id)
     if not repo_dir:
         print_e('Failed to extract App Toolkit repository')
         return False
@@ -649,6 +721,9 @@ parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
+    '-x', '--androidx', action="store_true",
+    help='If specified, updates only AndroidX')
+parser.add_argument(
     '-j', '--jetifier', action="store_true",
     help='If specified, updates only Jetifier')
 parser.add_argument(
@@ -669,7 +744,7 @@ if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
 if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
-                or args.design or args.jetifier):
+                or args.design or args.jetifier or args.androidx):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None:
@@ -698,6 +773,13 @@ try:
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
+            sys.exit(1)
+    if args.androidx:
+        if update_androidx('support_library', 'support_library_app_toolkit', \
+                           getBuildId(args), getFile(args)):
+            components = append(components, 'AndroidX')
+        else:
+            print_e('Failed to update AndroidX, aborting...')
             sys.exit(1)
     if args.jetifier:
         if update_jetifier('support_library', getBuildId(args)):
