@@ -632,6 +632,7 @@ def uncommittedChangesExist():
         return True
 
 
+rm(temp_dir)
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
