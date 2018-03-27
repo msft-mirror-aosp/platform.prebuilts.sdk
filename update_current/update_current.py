@@ -301,10 +301,10 @@ def detect_artifacts(maven_repo_dirs):
 
                     # Find the mapping.
                     group_artifact = group_id + ':' + artifact_id
-                    if artifact_id in maven_to_make:
-                        key = artifact_id
-                    elif group_artifact in maven_to_make:
+                    if group_artifact in maven_to_make:
                         key = group_artifact
+                    elif artifact_id in maven_to_make:
+                        key = artifact_id
                     else:
                         print_e('Failed to find artifact mapping for ' + group_artifact)
                         continue
