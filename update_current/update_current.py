@@ -17,6 +17,10 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier')
 
+temp_dir = os.path.join(os.getcwd(), "support_tmp")
+os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
+git_dir = os.getcwd()
+
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
@@ -317,8 +321,8 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
-    working_dir = os.path.join(cwd, 'support_tmp')
     maven_lib_info = detect_artifacts(repo_dirs)
+    working_dir = temp_dir
 
     if not maven_lib_info:
         print_e('Failed to detect artifacts')
@@ -612,7 +616,7 @@ def getFile(args):
 
 
 def script_relative(rel_path):
-    return os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), rel_path)
+    return os.path.join(script_dir, rel_path)
 
 
 parser = argparse.ArgumentParser(
@@ -656,10 +660,11 @@ if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None
 
 try:
     # Make sure we don't overwrite any pending changes.
-    subprocess.check_call(['git', 'diff', '--quiet', '--', '**'])
-    subprocess.check_call(['git', 'diff', '--quiet', '--cached', '--', '**'])
+    diffCommand = "cd " + git_dir + " && git diff --quiet"
+    subprocess.check_call(diffCommand, shell=True)
+    subprocess.check_call(diffCommand + " --cached", shell=True)
 except subprocess.CalledProcessError:
-    print_e('FAIL: There are uncommitted changes here; please revert or stash')
+    print_e('FAIL: There are uncommitted changes here. Please revert or stash before continuing, because update_current.py will run "git reset --hard" if execution fails')
     sys.exit(1)
 
 try:
