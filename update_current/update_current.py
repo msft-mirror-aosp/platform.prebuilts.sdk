@@ -21,6 +21,8 @@ temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
 
+rerun_extract_deps = False
+
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
@@ -81,8 +83,8 @@ maven_to_make = {
     'androidx.media:media': ['android-support-media-compat', 'media-compat'],
     'androidx.mediarouter:mediarouter': ['android-support-v7-mediarouter', 'v7/mediarouter'],
     'androidx.palette:palette': ['android-support-v7-palette', 'v7/palette'],
-    'androidx.percentlayout:percentlayout': ['android-support-percent', 'percent'],
-    'androidx.preference:preference': ['android-support-v7-preference', 'v7/preference'],
+    'androidx.percentlayout:percentlayout': ['androidx.percentlayout_percentlayout', 'androidx/percentlayout/percentlayout'],
+    'androidx.preference:preference': ['androidx.preference_preference', 'androidx/preference/preference'],
     'androidx.recyclerview:recyclerview': ['android-support-v7-recyclerview', 'v7/recyclerview'],
     'androidx.tvprovider:tvprovider': ['android-support-tv-provider', 'tv-provider'],
     'androidx.vectordrawable:vectordrawable-animated': ['android-support-animatedvectordrawable', 'graphics/drawable'],
@@ -217,12 +219,12 @@ artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.
 
 
 class MavenLibraryInfo:
-    def __init__(self, key, group_id, artifact_id, version, root, repo_dir, file):
+    def __init__(self, key, group_id, artifact_id, version, dir, repo_dir, file):
         self.key = key
         self.group_id = group_id
         self.artifact_id = artifact_id
         self.version = version
-        self.root = root
+        self.dir = dir
         self.repo_dir = repo_dir
         self.file = file
 
@@ -259,11 +261,11 @@ def mv(src_path, dst_path):
     os.rename(src_path, dst_path)
 
 
-def detect_artifacts(repo_dirs):
+def detect_artifacts(maven_repo_dirs):
     maven_lib_info = {}
 
     # Find the latest revision for each artifact, remove others
-    for repo_dir in repo_dirs:
+    for repo_dir in maven_repo_dirs:
         for root, dirs, files in os.walk(repo_dir):
             for file in files:
                 if file[-4:] == ".pom":
@@ -317,20 +319,22 @@ def detect_artifacts(repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
-    maven_lib_info = detect_artifacts(repo_dirs)
+    maven_lib_info = detect_artifacts(maven_repo_dirs)
     working_dir = temp_dir
 
     if not maven_lib_info:
         print_e('Failed to detect artifacts')
         return False
 
+    # extract some files (for example, AndroidManifest.xml) from any relevant artifacts
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
+    # generate a single Android.mk that specifies to use all of the above artifacts
     makefile = os.path.join(working_dir, 'Android.mk')
     with open(makefile, 'w') as f:
         args = ["pom2mk", "-static-deps", "-sdk-version", "current"]
@@ -339,21 +343,19 @@ def transform_maven_repo(repo_dirs, update_dir, extract_res=True):
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
-    depsfile = os.path.join(working_dir, 'fix_dependencies.mk')
-    with open(depsfile, 'w') as f:
-        args = [script_relative("extract_deps.py"), makefile]
-        subprocess.check_call(args, stdout=f, cwd=cwd)
+    global rerun_extract_deps
+    rerun_extract_deps = True
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, update_dir)
+    output_dir = os.path.join(cwd, transformed_dir)
     mv(working_dir, output_dir)
     return True
 
-
+# moves <artifact_info> (of type MavenLibraryInfo) into the appropriate part of <working_dir> , and possibly unpacks any necessary included files
 def transform_maven_lib(working_dir, artifact_info, extract_res):
     # Move library into working dir
-    new_dir = os.path.join(working_dir, os.path.relpath(artifact_info.root, artifact_info.repo_dir))
-    mv(artifact_info.root, new_dir)
+    new_dir = os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir))
+    mv(artifact_info.dir, new_dir)
 
     for dirpath, dirs, files in os.walk(new_dir):
         for f in files:
@@ -449,7 +451,7 @@ def update_support(target, build_id, local_file):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repo([repo_dir], support_dir)
+    return transform_maven_repos([repo_dir], support_dir)
 
 
 def update_jetifier(target, build_id):
@@ -472,7 +474,7 @@ def update_toolkit(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repo([repo_dir], os.path.join(extras_dir, 'app-toolkit'))
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'))
 
 
 def update_constraint(target, build_id):
@@ -486,7 +488,7 @@ def update_constraint(target, build_id):
 
     # Passing False here is an inelegant solution, but it means we can replace
     # the top-level directory without worrying about other child directories.
-    return transform_maven_repo([layout_dir, solver_dir],
+    return transform_maven_repos([layout_dir, solver_dir],
                                 os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
 
 
@@ -497,7 +499,7 @@ def update_design(file):
         return False
 
     # Don't bother extracting resources -- this should only be used with AAPT2.
-    return transform_maven_repo([design_dir],
+    return transform_maven_repos([design_dir],
                                 os.path.join(extras_dir, 'material-design'), extract_res=False)
 
 
@@ -728,6 +730,13 @@ try:
         else:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
+    if rerun_extract_deps:
+        depsfile = 'fix_dependencies.mk'
+        cwd=os.getcwd()
+        with open(depsfile, 'w') as f:
+            print("running " + str(args) + " in " + cwd)
+            subprocess.check_call("./update_current/extract_deps.py current/support/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
+
 
     # Commit all changes.
     subprocess.check_call(['git', 'add', current_path])
