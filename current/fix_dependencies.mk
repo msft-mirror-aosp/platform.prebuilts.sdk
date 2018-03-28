@@ -22,7 +22,7 @@
 # support_java_deps
 #
 # This file was automatically generated with:
-# ./update_current/extract_deps.py current/support/Android.mk,current/extras/app-toolkit/Android.mk,current/extras/material-design/Android.mk,current/androidx/Android.mk -o current/fix_dependencies.mk
+# ./update_current/extract_deps.py current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/material-design/Android.mk current/androidx/Android.mk current/extras/material-design-x/Android.mk -o current/fix_dependencies.mk
 ###########################################################################
 
 # Only AAPT2 clients get transitive dependency resolution. This may be removed
@@ -145,6 +145,37 @@ known_support_libs := \
     androidx.core_core \
     androidx.cursoradapter_cursoradapter \
     androidx.customview_customview \
+    androidx.design_design \
+    androidx.design_design-animation \
+    androidx.design_design-bottomappbar \
+    androidx.design_design-bottomnavigation \
+    androidx.design_design-bottomsheet \
+    androidx.design_design-button \
+    androidx.design_design-canvas \
+    androidx.design_design-card \
+    androidx.design_design-chip \
+    androidx.design_design-circularreveal \
+    androidx.design_design-circularreveal-cardview \
+    androidx.design_design-circularreveal-coordinatorlayout \
+    androidx.design_design-color \
+    androidx.design_design-dialog \
+    androidx.design_design-drawable \
+    androidx.design_design-expandable \
+    androidx.design_design-floatingactionbutton \
+    androidx.design_design-internal \
+    androidx.design_design-math \
+    androidx.design_design-navigation \
+    androidx.design_design-resources \
+    androidx.design_design-ripple \
+    androidx.design_design-shape \
+    androidx.design_design-snackbar \
+    androidx.design_design-stateful \
+    androidx.design_design-tabs \
+    androidx.design_design-textfield \
+    androidx.design_design-theme \
+    androidx.design_design-transformation \
+    androidx.design_design-typography \
+    androidx.design_design-widget \
     androidx.documentfile_documentfile \
     androidx.drawerlayout_drawerlayout \
     androidx.dynamicanimation_dynamicanimation \
@@ -2749,6 +2780,497 @@ ifneq (,$(filter androidx.customview_customview,$(requested_support_libs)))
         androidx.core_core \
         androidx.customview_customview \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design \
+        androidx.design_design-animation \
+        androidx.design_design-bottomappbar \
+        androidx.design_design-bottomnavigation \
+        androidx.design_design-bottomsheet \
+        androidx.design_design-button \
+        androidx.design_design-canvas \
+        androidx.design_design-card \
+        androidx.design_design-chip \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-circularreveal-coordinatorlayout \
+        androidx.design_design-color \
+        androidx.design_design-dialog \
+        androidx.design_design-drawable \
+        androidx.design_design-expandable \
+        androidx.design_design-floatingactionbutton \
+        androidx.design_design-math \
+        androidx.design_design-navigation \
+        androidx.design_design-resources \
+        androidx.design_design-ripple \
+        androidx.design_design-snackbar \
+        androidx.design_design-stateful \
+        androidx.design_design-tabs \
+        androidx.design_design-textfield \
+        androidx.design_design-theme \
+        androidx.design_design-transformation \
+        androidx.design_design-typography \
+        androidx.design_design-widget \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.transition_transition \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-animation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-animation \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-bottomappbar,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-animation \
+        androidx.design_design-bottomappbar \
+        androidx.design_design-bottomnavigation \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-math \
+        androidx.design_design-resources \
+        androidx.design_design-ripple \
+        androidx.design_design-snackbar \
+        androidx.design_design-stateful \
+        androidx.design_design-widget \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.transition_transition \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-bottomnavigation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-bottomnavigation
+endif
+
+ifneq (,$(filter androidx.design_design-bottomsheet,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-bottomsheet
+endif
+
+ifneq (,$(filter androidx.design_design-button,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-button
+endif
+
+ifneq (,$(filter androidx.design_design-canvas,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-canvas
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-card,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-card \
+        androidx.design_design-resources \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-chip,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-chip
+endif
+
+ifneq (,$(filter androidx.design_design-circularreveal,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-circularreveal \
+        androidx.design_design-math
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-circularreveal-cardview,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.cardview_cardview \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-math
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-circularreveal-coordinatorlayout,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-coordinatorlayout \
+        androidx.design_design-math \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-color,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-color
+endif
+
+ifneq (,$(filter androidx.design_design-dialog,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-dialog
+endif
+
+ifneq (,$(filter androidx.design_design-drawable,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-drawable
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-expandable,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-expandable
+endif
+
+ifneq (,$(filter androidx.design_design-floatingactionbutton,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-floatingactionbutton
+endif
+
+ifneq (,$(filter androidx.design_design-internal,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-internal
+endif
+
+ifneq (,$(filter androidx.design_design-math,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-math
+endif
+
+ifneq (,$(filter androidx.design_design-navigation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-navigation
+endif
+
+ifneq (,$(filter androidx.design_design-resources,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-resources \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-ripple,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.core_core \
+        androidx.design_design-ripple \
+        androidx.documentfile_documentfile \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-shape,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-shape \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-snackbar,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-snackbar
+endif
+
+ifneq (,$(filter androidx.design_design-stateful,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-stateful \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-tabs,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-tabs
+endif
+
+ifneq (,$(filter androidx.design_design-textfield,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-textfield
+endif
+
+ifneq (,$(filter androidx.design_design-theme,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-theme
+endif
+
+ifneq (,$(filter androidx.design_design-transformation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-transformation
+endif
+
+ifneq (,$(filter androidx.design_design-typography,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-typography
+endif
+
+ifneq (,$(filter androidx.design_design-widget,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-animation \
+        androidx.design_design-bottomnavigation \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-math \
+        androidx.design_design-resources \
+        androidx.design_design-ripple \
+        androidx.design_design-snackbar \
+        androidx.design_design-stateful \
+        androidx.design_design-widget \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.transition_transition \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
     support_java_deps += \
         androidx.annotation_annotation \
         androidx.arch.core_core-common \
