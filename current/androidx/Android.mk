@@ -1,5 +1,5 @@
 # Automatically generated with:
-# pom2mk -sdk-version current '-rewrite=^android.arch.core:common$=android-arch-core-common' '-rewrite=^com.android.support:webkit$=android-support-webkit' '-rewrite=^android.arch.persistence.room:common$=android-arch-room-common' '-rewrite=^com.android.support:mediarouter-v7$=android-support-v7-mediarouter' '-rewrite=^com.android.support:support-vector-drawable$=android-support-vectordrawable' '-rewrite=^com.android.support:support-tv-provider$=android-support-tv-provider' '-rewrite=^androidx.vectordrawable:vectordrawable$=androidx.vectordrawable_vectordrawable' '-rewrite=^com.android.support:print$=android-support-print' '-rewrite=^com.android.support:preference-leanback-v17$=android-support-v17-preference-leanback' '-rewrite=^com.android.support:transition$=android-support-transition' '-rewrite=^com.android.support:customview$=android-support-customview' '-rewrite=^androidx.vectordrawable:vectordrawable-animated$=androidx.vectordrawable_vectordrawable-animated' '-rewrite=^androidx.emoji:emoji-appcompat$=androidx.emoji_emoji-appcompat' '-rewrite=^androidx.dynamicanimation:dynamicanimation$=androidx.dynamicanimation_dynamicanimation' '-rewrite=^com.android.support:design-chip$=android-support-design-chip' '-rewrite=^androidx.sqlite:sqlite-framework$=androidx.sqlite_sqlite-framework' '-rewrite=^com.android.support:support-emoji-bundled$=android-support-emoji-bundled' '-rewrite=^com.android.support:design-theme$=android-support-design-theme' '-rewrite=^androidx.lifecycle:lifecycle-livedata-core$=androidx.lifecycle_lifecycle-livedata-core' '-rewrite=^com.android.support:support-media-compat$=android-support-media-compat' '-rewrite=^android.arch.persistence:db-framework$=android-arch-persistence-db-framework' '-rewrite=^androidx.emoji:emoji$=androidx.emoji_emoji' '-rewrite=^androidx.print:print$=androidx.print_print' '-rewrite=^com.android.support:support-core-utils$=android-support-core-utils' '-rewrite=^com.android.support:cardview-v7$=android-support-v7-cardview' '-rewrite=^android.arch.paging:common$=android-arch-paging-common' '-rewrite=^androidx.constraintlayout:constraintlayout-solver$=androidx-constraintlayout_constraintlayout-solver' '-rewrite=^com.android.support:gridlayout-v7$=android-support-v7-gridlayout' '-rewrite=^com.android.support:design-bottomappbar$=android-support-design-bottomappbar' '-rewrite=^com.android.support:design-drawable$=android-support-design-drawable' '-rewrite=^com.android.support:car$=android-support-car' '-rewrite=^com.android.support:asynclayoutinflater$=android-support-asynclayoutinflater' '-rewrite=^com.android.support:coordinatorlayout$=android-support-coordinatorlayout' '-rewrite=^com.android.support:constraint-layout-solver$=android-support-constraint-layout-solver' '-rewrite=^androidx.lifecycle:lifecycle-runtime$=androidx.lifecycle_lifecycle-runtime' '-rewrite=^com.android.support:slidingpanelayout$=android-support-slidingpanelayout' '-rewrite=^androidx.arch.core:core-common$=androidx.arch.core_core-common' '-rewrite=^com.android.support:documentfile$=android-support-documentfile' '-rewrite=^androidx.slice:slice-core$=androidx.slice_slice-core' '-rewrite=^androidx.room:room-runtime$=androidx.room_room-runtime' '-rewrite=^com.android.support:leanback-v17$=android-support-v17-leanback' '-rewrite=^androidx.recyclerview:recyclerview$=androidx.recyclerview_recyclerview' '-rewrite=^com.android.support:palette-v7$=android-support-v7-palette' '-rewrite=^androidx.legacy:legacy-support-core-utils$=androidx.legacy_legacy-support-core-utils' '-rewrite=^androidx.textclassifier:textclassifier$=androidx.textclassifier_textclassifier' '-rewrite=^androidx.webkit:webkit$=androidx.webkit_webkit' '-rewrite=^androidx.lifecycle:lifecycle-extensions$=androidx.lifecycle_lifecycle-extensions' '-rewrite=^com.android.support:design-tabs$=android-support-design-tabs' '-rewrite=^com.android.support:swiperefreshlayout$=android-support-swiperefreshlayout' '-rewrite=^com.android.support:design-internal$=android-support-design-internal' '-rewrite=^com.android.support:design-typography$=android-support-design-typography' '-rewrite=^androidx.lifecycle:lifecycle-common-java8$=androidx.lifecycle_lifecycle-common-java8' '-rewrite=^androidx.room:room-testing$=androidx.room_room-testing' '-rewrite=^com.android.support:design-shape$=android-support-design-shape' '-rewrite=^androidx.slice:slice-view$=androidx.slice_slice-view' '-rewrite=^androidx.slidingpanelayout:slidingpanelayout$=androidx.slidingpanelayout_slidingpanelayout' '-rewrite=^android.arch.lifecycle:livedata$=android-arch-lifecycle-livedata' '-rewrite=^androidx.customview:customview$=androidx.customview_customview' '-rewrite=^com.android.support:support-v13$=android-support-v13' '-rewrite=^com.android.support:design-snackbar$=android-support-design-snackbar' '-rewrite=^androidx.contentpaging:contentpaging$=androidx.contentpaging_contentpaging' '-rewrite=^com.android.support:design-textfield$=android-support-design-textfield' '-rewrite=^com.android.support:design-navigation$=android-support-design-navigation' '-rewrite=^com.android.support:design-circularreveal$=android-support-design-circularreveal' '-rewrite=^androidx.documentfile:documentfile$=androidx.documentfile_documentfile' '-rewrite=^com.android.support:support-core-ui$=android-support-core-ui' '-rewrite=^com.android.support:drawerlayout$=android-support-drawerlayout' '-rewrite=^androidx.leanback:leanback$=androidx.leanback_leanback' '-rewrite=^com.android.support:support-fragment$=android-support-fragment' '-rewrite=^com.google.android:flexbox$=flexbox' '-rewrite=^com.android.support:slices-builders$=android-slices-builders' '-rewrite=^android.arch.persistence.room:runtime$=android-arch-room-runtime' '-rewrite=^androidx.interpolator:interpolator$=androidx.interpolator_interpolator' '-rewrite=^androidx.exifinterface:exifinterface$=androidx.exifinterface_exifinterface' '-rewrite=^androidx.tvprovider:tvprovider$=androidx.tvprovider_tvprovider' '-rewrite=^androidx.paging:paging-runtime$=androidx.paging_paging-runtime' '-rewrite=^com.android.support:design-math$=android-support-design-math' '-rewrite=^androidx.collection:collection$=androidx.collection_collection' '-rewrite=^com.android.support:heifwriter$=android-support-heifwriter' '-rewrite=^com.android.support:design$=android-support-design' '-rewrite=^android.arch.persistence:db$=android-arch-persistence-db' '-rewrite=^androidx.emoji:emoji-bundled$=androidx.emoji_emoji-bundled' '-rewrite=^com.android.support:support-emoji$=android-support-emoji' '-rewrite=^androidx.drawerlayout:drawerlayout$=androidx.drawerlayout_drawerlayout' '-rewrite=^com.android.support:design-ripple$=android-support-design-ripple' '-rewrite=^android.arch.paging:runtime$=android-arch-paging-runtime' '-rewrite=^androidx.recommendation:recommendation$=androidx.recommendation_recommendation' '-rewrite=^android.arch.persistence.room:testing$=android-arch-room-testing' '-rewrite=^com.android.support:design-stateful$=android-support-design-stateful' '-rewrite=^androidx.multidex:multidex-instrumentation$=androidx-multidex_multidex-instrumentation' '-rewrite=^androidx.lifecycle:lifecycle-viewmodel$=androidx.lifecycle_lifecycle-viewmodel' '-rewrite=^com.android.support:design-button$=android-support-design-button' '-rewrite=^androidx.legacy:legacy-support-core-ui$=androidx.legacy_legacy-support-core-ui' '-rewrite=^android.arch.lifecycle:extensions$=android-arch-lifecycle-extensions' '-rewrite=^androidx.arch.core:core-runtime$=androidx.arch.core_core-runtime' '-rewrite=^androidx.car:car$=androidx.car_car' '-rewrite=^com.android.support:design-widget$=android-support-design-widget' '-rewrite=^androidx.media:media$=androidx.media_media' '-rewrite=^androidx.legacy:legacy-support-v13$=androidx.legacy_legacy-support-v13' '-rewrite=^androidx.cursoradapter:cursoradapter$=androidx.cursoradapter_cursoradapter' '-rewrite=^com.android.support:design-floatingactionbutton$=android-support-design-floatingactionbutton' '-rewrite=^com.android.support:viewpager$=android-support-viewpager' '-rewrite=^androidx.preference:preference$=androidx.preference_preference' '-rewrite=^com.android.support:design-dialog$=android-support-design-dialog' '-rewrite=^androidx.coordinatorlayout:coordinatorlayout$=androidx.coordinatorlayout_coordinatorlayout' '-rewrite=^android.arch.persistence.room:migration$=android-arch-room-migration' '-rewrite=^com.android.support:interpolator$=android-support-interpolator' '-rewrite=^com.android.support:exifinterface$=android-support-exifinterface' '-rewrite=^com.android.support:customtabs$=android-support-customtabs' '-rewrite=^androidx.lifecycle:lifecycle-livedata$=androidx.lifecycle_lifecycle-livedata' '-rewrite=^com.android.support:design-circularreveal-coordinatorlayout$=android-support-design-circularreveal-coordinatorlayout' '-rewrite=^androidx.annotation:annotation$=androidx.annotation_annotation' '-rewrite=^com.android.support:design-circularreveal-cardview$=android-support-design-circularreveal-cardview' '-rewrite=^com.android.support:design-resources$=android-support-design-resources' '-rewrite=^com.android.support:multidex$=android-support-multidex' '-rewrite=^com.android.support:constraint-layout$=android-support-constraint-layout' '-rewrite=^androidx.constraintlayout:constraintlayout$=androidx-constraintlayout_constraintlayout' '-rewrite=^com.android.support:support-content$=android-support-support-content' '-rewrite=^androidx.percentlayout:percentlayout$=androidx.percentlayout_percentlayout' '-rewrite=^com.android.support:animated-vector-drawable$=android-support-animatedvectordrawable' '-rewrite=^com.android.support:appcompat-v7$=android-support-v7-appcompat' '-rewrite=^androidx.swiperefreshlayout:swiperefreshlayout$=androidx.swiperefreshlayout_swiperefreshlayout' '-rewrite=^com.android.support:recommendation$=android-support-recommendation' '-rewrite=^androidx.mediarouter:mediarouter$=androidx.mediarouter_mediarouter' '-rewrite=^androidx.slice:slice-builders$=androidx.slice_slice-builders' '-rewrite=^androidx.fragment:fragment$=androidx.fragment_fragment' '-rewrite=^com.android.support:slices-view$=android-slices-view' '-rewrite=^androidx.legacy:legacy-preference-v14$=androidx.legacy_legacy-preference-v14' '-rewrite=^com.android.support:design-transformation$=android-support-design-transformation' '-rewrite=^com.android.support:support-v4$=android-support-v4' '-rewrite=^android.arch.core:runtime$=android-arch-core-runtime' '-rewrite=^androidx.recyclerview:recyclerview-selection$=androidx.recyclerview_recyclerview-selection' '-rewrite=^android.arch.lifecycle:viewmodel$=android-arch-lifecycle-viewmodel' '-rewrite=^com.android.support:collections$=android-support-collections' '-rewrite=^androidx.multidex:multidex$=androidx-multidex_multidex' '-rewrite=^androidx.room:room-common$=androidx.room_room-common' '-rewrite=^androidx.asynclayoutinflater:asynclayoutinflater$=androidx.asynclayoutinflater_asynclayoutinflater' '-rewrite=^androidx.leanback:leanback-preference$=androidx.leanback_leanback-preference' '-rewrite=^androidx.heifwriter:heifwriter$=androidx.heifwriter_heifwriter' '-rewrite=^com.android.support:design-expandable$=android-support-design-expandable' '-rewrite=^com.android.support:localbroadcastmanager$=android-support-localbroadcastmanager' '-rewrite=^android.arch.lifecycle:livedata-core$=android-arch-lifecycle-livedata-core' '-rewrite=^androidx.paging:paging-common$=androidx.paging_paging-common' '-rewrite=^com.android.support:multidex-instrumentation$=android-support-multidex-instrumentation' '-rewrite=^androidx.room:room-migration$=androidx.room_room-migration' '-rewrite=^com.android.support:recyclerview-selection$=android-support-recyclerview-selection' '-rewrite=^com.android.support:design-card$=android-support-design-card' '-rewrite=^androidx.palette:palette$=androidx.palette_palette' '-rewrite=^com.android.support:design-animation$=android-support-design-animation' '-rewrite=^com.android.support:support-dynamic-animation$=android-support-dynamic-animation' '-rewrite=^com.android.support:support-annotations$=android-support-annotations' '-rewrite=^androidx.transition:transition$=androidx.transition_transition' '-rewrite=^androidx.gridlayout:gridlayout$=androidx.gridlayout_gridlayout' '-rewrite=^com.android.support:slices-core$=android-slices-core' '-rewrite=^com.android.support:preference-v7$=android-support-v7-preference' '-rewrite=^androidx.browser:browser$=androidx.browser_browser' '-rewrite=^android.arch.lifecycle:common$=android-arch-lifecycle-common' '-rewrite=^androidx.wear:wear$=androidx.wear_wear' '-rewrite=^androidx.appcompat:appcompat$=androidx.appcompat_appcompat' '-rewrite=^androidx.legacy:legacy-support-v4$=androidx.legacy_legacy-support-v4' '-rewrite=^com.android.support:design-bottomsheet$=android-support-design-bottomsheet' '-rewrite=^com.android.support:wear$=android-support-wear' '-rewrite=^androidx.localbroadcastmanager:localbroadcastmanager$=androidx.localbroadcastmanager_localbroadcastmanager' '-rewrite=^androidx.lifecycle:lifecycle-common$=androidx.lifecycle_lifecycle-common' '-rewrite=^com.android.support:preference-v14$=android-support-v14-preference' '-rewrite=^androidx.core:core$=androidx.core_core' '-rewrite=^com.android.support:percent$=android-support-percent' '-rewrite=^com.android.support:contentpaging$=android-support-contentpaging' '-rewrite=^com.android.support:cursoradapter$=android-support-cursoradapter' '-rewrite=^android.arch.lifecycle:common-java8$=android-arch-lifecycle-common-java8' '-rewrite=^com.android.support:support-emoji-appcompat$=android-support-emoji-appcompat' '-rewrite=^android.arch.lifecycle:runtime$=android-arch-lifecycle-runtime' '-rewrite=^androidx.cardview:cardview$=androidx.cardview_cardview' '-rewrite=^com.android.support:loader$=android-support-loader' '-rewrite=^androidx.viewpager:viewpager$=androidx.viewpager_viewpager' '-rewrite=^com.android.support:recyclerview-v7$=android-support-v7-recyclerview' '-rewrite=^com.android.support:design-bottomnavigation$=android-support-design-bottomnavigation' '-rewrite=^androidx.sqlite:sqlite$=androidx.sqlite_sqlite' '-rewrite=^com.android.support:textclassifier$=android-support-textclassifier' '-rewrite=^com.android.support:support-compat$=android-support-compat' '-rewrite=^androidx.loader:loader$=androidx.loader_loader' '-rewrite=^com.android.support:design-canvas$=android-support-design-canvas' '-rewrite=^com.android.support:design-color$=android-support-design-color' -extra-deps=android-support-car=prebuilt-android.car-stubs .
+# pom2mk -sdk-version current '-rewrite=^androidx.core:core$=androidx.core_core' '-rewrite=^androidx.asynclayoutinflater:asynclayoutinflater$=androidx.asynclayoutinflater_asynclayoutinflater' '-rewrite=^androidx.gridlayout:gridlayout$=androidx.gridlayout_gridlayout' '-rewrite=^com.android.support.constraint:constraint-layout-solver$=android-support-constraint-layout-solver' '-rewrite=^androidx.percentlayout:percentlayout$=androidx.percentlayout_percentlayout' '-rewrite=^com.android.support:print$=android-support-print' '-rewrite=^com.android.support:design-floatingactionbutton$=android-support-design-floatingactionbutton' '-rewrite=^com.android.support:design-bottomsheet$=android-support-design-bottomsheet' '-rewrite=^com.android.support:support-v4$=android-support-v4' '-rewrite=^com.android.support:design-resources$=android-support-design-resources' '-rewrite=^com.android.support:slices-builders$=android-slices-builders' '-rewrite=^androidx.vectordrawable:vectordrawable$=androidx.vectordrawable_vectordrawable' '-rewrite=^com.android.support:design-snackbar$=android-support-design-snackbar' '-rewrite=^androidx.legacy:legacy-support-core-utils$=androidx.legacy_legacy-support-core-utils' '-rewrite=^com.android.support:loader$=android-support-loader' '-rewrite=^androidx.car:car$=androidx.car_car' '-rewrite=^com.android.support:support-media-compat$=android-support-media-compat' '-rewrite=^android.arch.persistence.room:common$=android-arch-room-common' '-rewrite=^com.android.support:cardview-v7$=android-support-v7-cardview' '-rewrite=^com.android.support:support-emoji-appcompat$=android-support-emoji-appcompat' '-rewrite=^com.android.support:support-content$=android-support-support-content' '-rewrite=^androidx.media:media$=androidx.media_media' '-rewrite=^androidx.vectordrawable:vectordrawable-animated$=androidx.vectordrawable_vectordrawable-animated' '-rewrite=^androidx.recyclerview:recyclerview$=androidx.recyclerview_recyclerview' '-rewrite=^androidx.swiperefreshlayout:swiperefreshlayout$=androidx.swiperefreshlayout_swiperefreshlayout' '-rewrite=^com.android.support:percent$=android-support-percent' '-rewrite=^androidx.lifecycle:lifecycle-livedata-core$=androidx.lifecycle_lifecycle-livedata-core' '-rewrite=^com.android.support:animated-vector-drawable$=android-support-animatedvectordrawable' '-rewrite=^androidx.transition:transition$=androidx.transition_transition' '-rewrite=^com.android.support:design-typography$=android-support-design-typography' '-rewrite=^com.android.support:swiperefreshlayout$=android-support-swiperefreshlayout' '-rewrite=^com.android.support:transition$=android-support-transition' '-rewrite=^com.android.support:design-button$=android-support-design-button' '-rewrite=^androidx.room:room-runtime$=androidx.room_room-runtime' '-rewrite=^androidx.browser:browser$=androidx.browser_browser' '-rewrite=^androidx.loader:loader$=androidx.loader_loader' '-rewrite=^com.android.support:design-navigation$=android-support-design-navigation' '-rewrite=^androidx.localbroadcastmanager:localbroadcastmanager$=androidx.localbroadcastmanager_localbroadcastmanager' '-rewrite=^com.android.support:palette-v7$=android-support-v7-palette' '-rewrite=^android.arch.core:runtime$=android-arch-core-runtime' '-rewrite=^com.android.support:support-emoji-bundled$=android-support-emoji-bundled' '-rewrite=^androidx.sqlite:sqlite$=androidx.sqlite_sqlite' '-rewrite=^com.android.support:leanback-v17$=android-support-v17-leanback' '-rewrite=^com.android.support:appcompat-v7$=android-support-v7-appcompat' '-rewrite=^com.android.support:mediarouter-v7$=android-support-v7-mediarouter' '-rewrite=^android.arch.core:common$=android-arch-core-common' '-rewrite=^androidx.lifecycle:lifecycle-runtime$=androidx.lifecycle_lifecycle-runtime' '-rewrite=^com.google.android:flexbox$=flexbox' '-rewrite=^com.android.support:design-expandable$=android-support-design-expandable' '-rewrite=^com.android.support:design-dialog$=android-support-design-dialog' '-rewrite=^com.android.support:textclassifier$=android-support-textclassifier' '-rewrite=^androidx.customview:customview$=androidx.customview_customview' '-rewrite=^androidx.slice:slice-view$=androidx.slice_slice-view' '-rewrite=^androidx.cardview:cardview$=androidx.cardview_cardview' '-rewrite=^com.android.support:design$=android-support-design' '-rewrite=^androidx.emoji:emoji$=androidx.emoji_emoji' '-rewrite=^androidx.emoji:emoji-appcompat$=androidx.emoji_emoji-appcompat' '-rewrite=^com.android.support:design-tabs$=android-support-design-tabs' '-rewrite=^com.android.support:gridlayout-v7$=android-support-v7-gridlayout' '-rewrite=^androidx.contentpaging:contentpaging$=androidx.contentpaging_contentpaging' '-rewrite=^com.android.support:contentpaging$=android-support-contentpaging' '-rewrite=^com.android.support:support-emoji$=android-support-emoji' '-rewrite=^com.android.support:design-ripple$=android-support-design-ripple' '-rewrite=^androidx.emoji:emoji-bundled$=androidx.emoji_emoji-bundled' '-rewrite=^com.android.support:design-circularreveal-cardview$=android-support-design-circularreveal-cardview' '-rewrite=^com.android.support:design-bottomnavigation$=android-support-design-bottomnavigation' '-rewrite=^androidx.palette:palette$=androidx.palette_palette' '-rewrite=^androidx.interpolator:interpolator$=androidx.interpolator_interpolator' '-rewrite=^android.arch.lifecycle:viewmodel$=android-arch-lifecycle-viewmodel' '-rewrite=^androidx.appcompat:appcompat$=androidx.appcompat_appcompat' '-rewrite=^androidx.preference:preference$=androidx.preference_preference' '-rewrite=^androidx.webkit:webkit$=androidx.webkit_webkit' '-rewrite=^androidx.leanback:leanback-preference$=androidx.leanback_leanback-preference' '-rewrite=^com.android.support:design-stateful$=android-support-design-stateful' '-rewrite=^com.android.support:car$=android-support-car' '-rewrite=^com.android.support:interpolator$=android-support-interpolator' '-rewrite=^androidx.cursoradapter:cursoradapter$=androidx.cursoradapter_cursoradapter' '-rewrite=^com.android.support:recommendation$=android-support-recommendation' '-rewrite=^androidx.arch.core:core-common$=androidx.arch.core_core-common' '-rewrite=^com.android.support:multidex-instrumentation$=android-support-multidex-instrumentation' '-rewrite=^com.android.support:heifwriter$=android-support-heifwriter' '-rewrite=^com.android.support:design-transformation$=android-support-design-transformation' '-rewrite=^com.android.support:support-annotations$=android-support-annotations' '-rewrite=^android.arch.lifecycle:runtime$=android-arch-lifecycle-runtime' '-rewrite=^com.android.support:support-dynamic-animation$=android-support-dynamic-animation' '-rewrite=^androidx.drawerlayout:drawerlayout$=androidx.drawerlayout_drawerlayout' '-rewrite=^android.arch.lifecycle:livedata$=android-arch-lifecycle-livedata' '-rewrite=^androidx.slice:slice-core$=androidx.slice_slice-core' '-rewrite=^androidx.recommendation:recommendation$=androidx.recommendation_recommendation' '-rewrite=^com.android.support:support-fragment$=android-support-fragment' '-rewrite=^androidx.recyclerview:recyclerview-selection$=androidx.recyclerview_recyclerview-selection' '-rewrite=^android.arch.paging:runtime$=android-arch-paging-runtime' '-rewrite=^android.arch.persistence.room:testing$=android-arch-room-testing' '-rewrite=^android.arch.lifecycle:extensions$=android-arch-lifecycle-extensions' '-rewrite=^com.android.support:design-color$=android-support-design-color' '-rewrite=^androidx.multidex:multidex-instrumentation$=androidx-multidex_multidex-instrumentation' '-rewrite=^com.android.support:slidingpanelayout$=android-support-slidingpanelayout' '-rewrite=^com.android.support:documentfile$=android-support-documentfile' '-rewrite=^com.android.support:preference-v14$=android-support-v14-preference' '-rewrite=^com.android.support:design-circularreveal-coordinatorlayout$=android-support-design-circularreveal-coordinatorlayout' '-rewrite=^android.arch.lifecycle:livedata-core$=android-arch-lifecycle-livedata-core' '-rewrite=^com.android.support:coordinatorlayout$=android-support-coordinatorlayout' '-rewrite=^com.android.support:support-core-utils$=android-support-core-utils' '-rewrite=^androidx.fragment:fragment$=androidx.fragment_fragment' '-rewrite=^com.android.support:wear$=android-support-wear' '-rewrite=^com.android.support:design-shape$=android-support-design-shape' '-rewrite=^androidx.legacy:legacy-preference-v14$=androidx.legacy_legacy-preference-v14' '-rewrite=^com.android.support:localbroadcastmanager$=android-support-localbroadcastmanager' '-rewrite=^android.arch.persistence:db-framework$=android-arch-persistence-db-framework' '-rewrite=^com.android.support:exifinterface$=android-support-exifinterface' '-rewrite=^com.android.support:slices-core$=android-slices-core' '-rewrite=^androidx.lifecycle:lifecycle-common-java8$=androidx.lifecycle_lifecycle-common-java8' '-rewrite=^com.android.support:support-core-ui$=android-support-core-ui' '-rewrite=^com.android.support:slices-view$=android-slices-view' '-rewrite=^androidx.slice:slice-builders$=androidx.slice_slice-builders' '-rewrite=^com.android.support:support-compat$=android-support-compat' '-rewrite=^android.arch.persistence:db$=android-arch-persistence-db' '-rewrite=^androidx.mediarouter:mediarouter$=androidx.mediarouter_mediarouter' '-rewrite=^com.android.support:drawerlayout$=android-support-drawerlayout' '-rewrite=^com.android.support:customview$=android-support-customview' '-rewrite=^com.android.support:design-internal$=android-support-design-internal' '-rewrite=^androidx.legacy:legacy-support-v4$=androidx.legacy_legacy-support-v4' '-rewrite=^androidx.lifecycle:lifecycle-extensions$=androidx.lifecycle_lifecycle-extensions' '-rewrite=^androidx.constraintlayout:constraintlayout$=androidx-constraintlayout_constraintlayout' '-rewrite=^com.android.support:design-textfield$=android-support-design-textfield' '-rewrite=^androidx.viewpager:viewpager$=androidx.viewpager_viewpager' '-rewrite=^androidx.documentfile:documentfile$=androidx.documentfile_documentfile' '-rewrite=^androidx.room:room-migration$=androidx.room_room-migration' '-rewrite=^androidx.legacy:legacy-support-core-ui$=androidx.legacy_legacy-support-core-ui' '-rewrite=^com.android.support:support-tv-provider$=android-support-tv-provider' '-rewrite=^androidx.multidex:multidex$=androidx-multidex_multidex' '-rewrite=^com.android.support:asynclayoutinflater$=android-support-asynclayoutinflater' '-rewrite=^com.android.support:preference-v7$=android-support-v7-preference' '-rewrite=^com.android.support:design-theme$=android-support-design-theme' '-rewrite=^com.android.support:design-math$=android-support-design-math' '-rewrite=^androidx.wear:wear$=androidx.wear_wear' '-rewrite=^androidx.slidingpanelayout:slidingpanelayout$=androidx.slidingpanelayout_slidingpanelayout' '-rewrite=^android.arch.lifecycle:common$=android-arch-lifecycle-common' '-rewrite=^android.arch.paging:common$=android-arch-paging-common' '-rewrite=^androidx.exifinterface:exifinterface$=androidx.exifinterface_exifinterface' '-rewrite=^androidx.lifecycle:lifecycle-livedata$=androidx.lifecycle_lifecycle-livedata' '-rewrite=^com.android.support:design-animation$=android-support-design-animation' '-rewrite=^com.android.support:multidex$=android-support-multidex' '-rewrite=^androidx.constraintlayout:constraintlayout-solver$=androidx-constraintlayout_constraintlayout-solver' '-rewrite=^androidx.textclassifier:textclassifier$=androidx.textclassifier_textclassifier' '-rewrite=^android.arch.lifecycle:common-java8$=android-arch-lifecycle-common-java8' '-rewrite=^androidx.annotation:annotation$=androidx.annotation_annotation' '-rewrite=^androidx.room:room-testing$=androidx.room_room-testing' '-rewrite=^androidx.sqlite:sqlite-framework$=androidx.sqlite_sqlite-framework' '-rewrite=^com.android.support:recyclerview-v7$=android-support-v7-recyclerview' '-rewrite=^androidx.lifecycle:lifecycle-viewmodel$=androidx.lifecycle_lifecycle-viewmodel' '-rewrite=^com.android.support:webkit$=android-support-webkit' '-rewrite=^androidx.arch.core:core-runtime$=androidx.arch.core_core-runtime' '-rewrite=^com.android.support:viewpager$=android-support-viewpager' '-rewrite=^androidx.tvprovider:tvprovider$=androidx.tvprovider_tvprovider' '-rewrite=^com.android.support:design-chip$=android-support-design-chip' '-rewrite=^android.arch.persistence.room:migration$=android-arch-room-migration' '-rewrite=^com.android.support:design-widget$=android-support-design-widget' '-rewrite=^com.android.support:preference-leanback-v17$=android-support-v17-preference-leanback' '-rewrite=^com.android.support:design-bottomappbar$=android-support-design-bottomappbar' '-rewrite=^androidx.leanback:leanback$=androidx.leanback_leanback' '-rewrite=^com.android.support:customtabs$=android-support-customtabs' '-rewrite=^com.android.support:design-canvas$=android-support-design-canvas' '-rewrite=^com.android.support:recyclerview-selection$=android-support-recyclerview-selection' '-rewrite=^androidx.room:room-common$=androidx.room_room-common' '-rewrite=^androidx.heifwriter:heifwriter$=androidx.heifwriter_heifwriter' '-rewrite=^androidx.dynamicanimation:dynamicanimation$=androidx.dynamicanimation_dynamicanimation' '-rewrite=^androidx.collection:collection$=androidx.collection_collection' '-rewrite=^com.android.support:support-v13$=android-support-v13' '-rewrite=^androidx.lifecycle:lifecycle-common$=androidx.lifecycle_lifecycle-common' '-rewrite=^com.android.support:design-card$=android-support-design-card' '-rewrite=^com.android.support.constraint:constraint-layout$=android-support-constraint-layout' '-rewrite=^androidx.legacy:legacy-support-v13$=androidx.legacy_legacy-support-v13' '-rewrite=^com.android.support:design-drawable$=android-support-design-drawable' '-rewrite=^androidx.print:print$=androidx.print_print' '-rewrite=^androidx.coordinatorlayout:coordinatorlayout$=androidx.coordinatorlayout_coordinatorlayout' '-rewrite=^com.android.support:support-vector-drawable$=android-support-vectordrawable' '-rewrite=^com.android.support:design-circularreveal$=android-support-design-circularreveal' '-rewrite=^android.arch.persistence.room:runtime$=android-arch-room-runtime' '-rewrite=^androidx.paging:paging-common$=androidx.paging_paging-common' '-rewrite=^com.android.support:cursoradapter$=android-support-cursoradapter' '-rewrite=^androidx.paging:paging-runtime$=androidx.paging_paging-runtime' '-rewrite=^com.android.support:collections$=android-support-collections' -extra-deps=android-support-car=prebuilt-android.car-stubs .
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -11,8 +11,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -24,14 +24,16 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation \
+  androidx.collection_collection
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.cursoradapter_cursoradapter \
   androidx.legacy_legacy-support-core-utils \
   androidx.fragment_fragment \
   androidx.vectordrawable_vectordrawable \
-  androidx.vectordrawable_vectordrawable-animated \
-
+  androidx.vectordrawable_vectordrawable-animated
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -43,8 +45,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -56,8 +59,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation \
+  androidx.arch.core_core-common
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -69,9 +74,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -83,11 +89,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation \
+  androidx.collection_collection
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.interpolator_interpolator \
-  androidx.legacy_legacy-support-core-ui \
-
+  androidx.legacy_legacy-support-core-ui
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -99,8 +107,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -112,8 +121,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -125,9 +135,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -139,10 +150,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.customview_customview \
-
+  androidx.customview_customview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -154,9 +166,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation \
+  androidx.collection_collection
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.lifecycle_lifecycle-runtime \
-
+  androidx.lifecycle_lifecycle-runtime
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -168,8 +182,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -181,9 +196,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -195,8 +211,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -208,10 +225,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.customview_customview \
-
+  androidx.customview_customview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -223,10 +241,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.collection_collection
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.legacy_legacy-support-core-utils \
-
+  androidx.legacy_legacy-support-core-utils
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -238,10 +257,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.emoji_emoji \
-  androidx.appcompat_appcompat \
-
+  androidx.appcompat_appcompat
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -253,9 +272,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.emoji_emoji \
-
+  androidx.emoji_emoji
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -267,9 +286,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -281,8 +300,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -294,13 +314,14 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.legacy_legacy-support-core-ui \
   androidx.legacy_legacy-support-core-utils \
   androidx.loader_loader \
-  androidx.lifecycle_lifecycle-viewmodel \
-
+  androidx.lifecycle_lifecycle-viewmodel
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -312,10 +333,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.legacy_legacy-support-core-ui \
-
+  androidx.legacy_legacy-support-core-ui
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -327,8 +348,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -340,8 +362,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -353,13 +376,14 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.collection_collection
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.appcompat_appcompat \
   androidx.recyclerview_recyclerview \
   androidx.preference_preference \
   androidx.legacy_legacy-preference-v14 \
-  androidx.leanback_leanback \
-
+  androidx.leanback_leanback
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -371,13 +395,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.legacy_legacy-support-core-ui \
   androidx.media_media \
   androidx.fragment_fragment \
-  androidx.recyclerview_recyclerview \
-
+  androidx.recyclerview_recyclerview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -389,9 +413,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.preference_preference \
-
+  androidx.preference_preference
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -403,6 +427,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.legacy_legacy-support-core-utils \
@@ -414,8 +440,7 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.interpolator_interpolator \
   androidx.swiperefreshlayout_swiperefreshlayout \
   androidx.asynclayoutinflater_asynclayoutinflater \
-  androidx.cursoradapter_cursoradapter \
-
+  androidx.cursoradapter_cursoradapter
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -427,13 +452,14 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.documentfile_documentfile \
   androidx.loader_loader \
   androidx.localbroadcastmanager_localbroadcastmanager \
-  androidx.print_print \
-
+  androidx.print_print
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -445,9 +471,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.legacy_legacy-support-v4 \
-
+  androidx.legacy_legacy-support-v4
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -459,13 +485,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.media_media \
   androidx.legacy_legacy-support-core-utils \
   androidx.legacy_legacy-support-core-ui \
-  androidx.fragment_fragment \
-
+  androidx.fragment_fragment
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -477,8 +503,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.lifecycle_lifecycle-common \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -490,8 +518,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -503,13 +532,15 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.arch.core_core-common \
+  androidx.lifecycle_lifecycle-common
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.lifecycle_lifecycle-runtime \
   androidx.arch.core_core-runtime \
   androidx.fragment_fragment \
   androidx.lifecycle_lifecycle-livedata \
-  androidx.lifecycle_lifecycle-viewmodel \
-
+  androidx.lifecycle_lifecycle-viewmodel
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -521,9 +552,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.lifecycle_lifecycle-common \
+  androidx.arch.core_core-common
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.arch.core_core-runtime \
-
+  androidx.arch.core_core-runtime
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -535,10 +568,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.arch.core_core-common
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.arch.core_core-runtime \
-  androidx.lifecycle_lifecycle-livedata-core \
-
+  androidx.lifecycle_lifecycle-livedata-core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -550,8 +584,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.lifecycle_lifecycle-common \
+  androidx.arch.core_core-common \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -563,8 +600,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -576,11 +614,12 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.lifecycle_lifecycle-livedata-core \
-  androidx.lifecycle_lifecycle-viewmodel \
-
+  androidx.lifecycle_lifecycle-viewmodel
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -592,8 +631,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -605,9 +645,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -619,11 +660,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.media_media \
   androidx.appcompat_appcompat \
-  androidx.palette_palette \
-
+  androidx.palette_palette
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -635,8 +676,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation \
+  androidx.arch.core_core-common
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -648,12 +691,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.paging_paging-common
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.arch.core_core-runtime \
   androidx.lifecycle_lifecycle-runtime \
   androidx.lifecycle_lifecycle-livedata \
-  androidx.recyclerview_recyclerview \
-
+  androidx.recyclerview_recyclerview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -665,10 +709,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.legacy_legacy-support-core-utils \
-
+  androidx.legacy_legacy-support-core-utils
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -680,9 +724,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -694,12 +738,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.collection_collection
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
   androidx.fragment_fragment \
   androidx.appcompat_appcompat \
-  androidx.recyclerview_recyclerview \
-
+  androidx.recyclerview_recyclerview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -711,8 +756,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -724,8 +770,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -737,10 +784,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.recyclerview_recyclerview \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -752,10 +800,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.legacy_legacy-support-core-ui \
-
+  androidx.legacy_legacy-support-core-ui
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -767,8 +816,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -780,8 +830,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  kotlin-stdlib \
+  gson \
+  androidx.room_room-common
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -793,12 +846,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.room_room-common
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.sqlite_sqlite-framework \
   androidx.sqlite_sqlite \
   androidx.arch.core_core-runtime \
-  androidx.legacy_legacy-support-core-utils \
-
+  androidx.legacy_legacy-support-core-utils
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -810,13 +864,16 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  junit \
+  androidx.room_room-common \
+  androidx.room_room-migration
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.room_room-runtime \
   androidx.sqlite_sqlite \
   androidx.sqlite_sqlite-framework \
   androidx.arch.core_core-runtime \
-  androidx.legacy_legacy-support-core-utils \
-
+  androidx.legacy_legacy-support-core-utils
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -828,10 +885,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.customview_customview \
-
+  androidx.customview_customview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -843,9 +901,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.sqlite_sqlite \
-
+  androidx.sqlite_sqlite
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -857,8 +916,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -870,10 +930,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.interpolator_interpolator \
-
+  androidx.interpolator_interpolator
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -885,9 +946,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -899,9 +961,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -913,10 +976,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.vectordrawable_vectordrawable \
-  androidx.legacy_legacy-support-core-ui \
-
+  androidx.legacy_legacy-support-core-ui
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -928,9 +991,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -942,10 +1006,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.core_core \
-  androidx.customview_customview \
-
+  androidx.customview_customview
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -957,12 +1022,13 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.legacy_legacy-support-core-ui \
   androidx.fragment_fragment \
   androidx.recyclerview_recyclerview \
-  android-support-constraint-layout \
-
+  android-support-constraint-layout
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -974,7 +1040,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  androidx.core_core \
-
+  androidx.core_core
 include $(BUILD_PREBUILT)
