@@ -301,10 +301,10 @@ def detect_artifacts(maven_repo_dirs):
 
                     # Find the mapping.
                     group_artifact = group_id + ':' + artifact_id
-                    if artifact_id in maven_to_make:
-                        key = artifact_id
-                    elif group_artifact in maven_to_make:
+                    if group_artifact in maven_to_make:
                         key = group_artifact
+                    elif artifact_id in maven_to_make:
+                        key = artifact_id
                     else:
                         print_e('Failed to find artifact mapping for ' + group_artifact)
                         continue
@@ -338,9 +338,10 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True):
     makefile = os.path.join(working_dir, 'Android.mk')
     with open(makefile, 'w') as f:
         args = ["pom2mk", "-static-deps", "-sdk-version", "current"]
-        args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in maven_to_make])
-        args.extend(["."])
+        rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
+        args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
+        args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
     global rerun_extract_deps
@@ -632,6 +633,7 @@ def uncommittedChangesExist():
         return True
 
 
+rm(temp_dir)
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
