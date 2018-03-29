@@ -22,7 +22,7 @@
 # support_java_deps
 #
 # This file was automatically generated with:
-# ./update_current/extract_deps.py current/androidx/Android.mk,current/extras/app-toolkit/Android.mk,current/support/Android.mk,current/extras/material-design/Android.mk -o current/fix_dependencies.mk
+# ./update_current/extract_deps.py current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/material-design/Android.mk current/androidx/Android.mk current/extras/material-design-x/Android.mk -o current/fix_dependencies.mk
 ###########################################################################
 
 # Only AAPT2 clients get transitive dependency resolution. This may be removed
@@ -145,6 +145,37 @@ known_support_libs := \
     androidx.core_core \
     androidx.cursoradapter_cursoradapter \
     androidx.customview_customview \
+    androidx.design_design \
+    androidx.design_design-animation \
+    androidx.design_design-bottomappbar \
+    androidx.design_design-bottomnavigation \
+    androidx.design_design-bottomsheet \
+    androidx.design_design-button \
+    androidx.design_design-canvas \
+    androidx.design_design-card \
+    androidx.design_design-chip \
+    androidx.design_design-circularreveal \
+    androidx.design_design-circularreveal-cardview \
+    androidx.design_design-circularreveal-coordinatorlayout \
+    androidx.design_design-color \
+    androidx.design_design-dialog \
+    androidx.design_design-drawable \
+    androidx.design_design-expandable \
+    androidx.design_design-floatingactionbutton \
+    androidx.design_design-internal \
+    androidx.design_design-math \
+    androidx.design_design-navigation \
+    androidx.design_design-resources \
+    androidx.design_design-ripple \
+    androidx.design_design-shape \
+    androidx.design_design-snackbar \
+    androidx.design_design-stateful \
+    androidx.design_design-tabs \
+    androidx.design_design-textfield \
+    androidx.design_design-theme \
+    androidx.design_design-transformation \
+    androidx.design_design-typography \
+    androidx.design_design-widget \
     androidx.documentfile_documentfile \
     androidx.drawerlayout_drawerlayout \
     androidx.dynamicanimation_dynamicanimation \
@@ -2625,16 +2656,25 @@ ifneq (,$(filter androidx.appcompat_appcompat,$(requested_support_libs)))
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.arch.core_core-common,$(requested_support_libs)))
     support_java_deps += \
+        androidx.annotation_annotation \
         androidx.arch.core_core-common
 endif
 
 ifneq (,$(filter androidx.arch.core_core-runtime,$(requested_support_libs)))
     support_android_deps += \
         androidx.arch.core_core-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common
 endif
 
 ifneq (,$(filter androidx.asynclayoutinflater_asynclayoutinflater,$(requested_support_libs)))
@@ -2642,6 +2682,11 @@ ifneq (,$(filter androidx.asynclayoutinflater_asynclayoutinflater,$(requested_su
         androidx.asynclayoutinflater_asynclayoutinflater \
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.browser_browser,$(requested_support_libs)))
@@ -2667,15 +2712,23 @@ ifneq (,$(filter androidx.browser_browser,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.cardview_cardview,$(requested_support_libs)))
     support_android_deps += \
         androidx.cardview_cardview
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.collection_collection,$(requested_support_libs)))
     support_java_deps += \
+        androidx.annotation_annotation \
         androidx.collection_collection
 endif
 
@@ -2684,6 +2737,11 @@ ifneq (,$(filter androidx.contentpaging_contentpaging,$(requested_support_libs))
         androidx.contentpaging_contentpaging \
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.coordinatorlayout_coordinatorlayout,$(requested_support_libs)))
@@ -2692,17 +2750,29 @@ ifneq (,$(filter androidx.coordinatorlayout_coordinatorlayout,$(requested_suppor
         androidx.core_core \
         androidx.customview_customview \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.core_core,$(requested_support_libs)))
     support_android_deps += \
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.cursoradapter_cursoradapter,$(requested_support_libs)))
     support_android_deps += \
         androidx.cursoradapter_cursoradapter
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.customview_customview,$(requested_support_libs)))
@@ -2710,11 +2780,509 @@ ifneq (,$(filter androidx.customview_customview,$(requested_support_libs)))
         androidx.core_core \
         androidx.customview_customview \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design \
+        androidx.design_design-animation \
+        androidx.design_design-bottomappbar \
+        androidx.design_design-bottomnavigation \
+        androidx.design_design-bottomsheet \
+        androidx.design_design-button \
+        androidx.design_design-canvas \
+        androidx.design_design-card \
+        androidx.design_design-chip \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-circularreveal-coordinatorlayout \
+        androidx.design_design-color \
+        androidx.design_design-dialog \
+        androidx.design_design-drawable \
+        androidx.design_design-expandable \
+        androidx.design_design-floatingactionbutton \
+        androidx.design_design-math \
+        androidx.design_design-navigation \
+        androidx.design_design-resources \
+        androidx.design_design-ripple \
+        androidx.design_design-snackbar \
+        androidx.design_design-stateful \
+        androidx.design_design-tabs \
+        androidx.design_design-textfield \
+        androidx.design_design-theme \
+        androidx.design_design-transformation \
+        androidx.design_design-typography \
+        androidx.design_design-widget \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.transition_transition \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-animation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-animation \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-bottomappbar,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-animation \
+        androidx.design_design-bottomappbar \
+        androidx.design_design-bottomnavigation \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-math \
+        androidx.design_design-resources \
+        androidx.design_design-ripple \
+        androidx.design_design-snackbar \
+        androidx.design_design-stateful \
+        androidx.design_design-widget \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.transition_transition \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-bottomnavigation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-bottomnavigation
+endif
+
+ifneq (,$(filter androidx.design_design-bottomsheet,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-bottomsheet
+endif
+
+ifneq (,$(filter androidx.design_design-button,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-button
+endif
+
+ifneq (,$(filter androidx.design_design-canvas,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-canvas
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-card,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-card \
+        androidx.design_design-resources \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-chip,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-chip
+endif
+
+ifneq (,$(filter androidx.design_design-circularreveal,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-circularreveal \
+        androidx.design_design-math
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-circularreveal-cardview,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.cardview_cardview \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-math
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-circularreveal-coordinatorlayout,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-coordinatorlayout \
+        androidx.design_design-math \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-color,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-color
+endif
+
+ifneq (,$(filter androidx.design_design-dialog,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-dialog
+endif
+
+ifneq (,$(filter androidx.design_design-drawable,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-drawable
+    support_java_deps += \
+        androidx.annotation_annotation
+endif
+
+ifneq (,$(filter androidx.design_design-expandable,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-expandable
+endif
+
+ifneq (,$(filter androidx.design_design-floatingactionbutton,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-floatingactionbutton
+endif
+
+ifneq (,$(filter androidx.design_design-internal,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-internal
+endif
+
+ifneq (,$(filter androidx.design_design-math,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-math
+endif
+
+ifneq (,$(filter androidx.design_design-navigation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-navigation
+endif
+
+ifneq (,$(filter androidx.design_design-resources,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-resources \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-ripple,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.core_core \
+        androidx.design_design-ripple \
+        androidx.documentfile_documentfile \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-shape,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-shape \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-snackbar,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-snackbar
+endif
+
+ifneq (,$(filter androidx.design_design-stateful,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-stateful \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.design_design-tabs,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-tabs
+endif
+
+ifneq (,$(filter androidx.design_design-textfield,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-textfield
+endif
+
+ifneq (,$(filter androidx.design_design-theme,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-theme
+endif
+
+ifneq (,$(filter androidx.design_design-transformation,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-transformation
+endif
+
+ifneq (,$(filter androidx.design_design-typography,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.design_design-typography
+endif
+
+ifneq (,$(filter androidx.design_design-widget,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.cardview_cardview \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.design_design-animation \
+        androidx.design_design-bottomnavigation \
+        androidx.design_design-circularreveal \
+        androidx.design_design-circularreveal-cardview \
+        androidx.design_design-math \
+        androidx.design_design-resources \
+        androidx.design_design-ripple \
+        androidx.design_design-snackbar \
+        androidx.design_design-stateful \
+        androidx.design_design-widget \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.transition_transition \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.documentfile_documentfile,$(requested_support_libs)))
     support_android_deps += \
         androidx.documentfile_documentfile
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.drawerlayout_drawerlayout,$(requested_support_libs)))
@@ -2723,6 +3291,11 @@ ifneq (,$(filter androidx.drawerlayout_drawerlayout,$(requested_support_libs)))
         androidx.customview_customview \
         androidx.drawerlayout_drawerlayout \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.dynamicanimation_dynamicanimation,$(requested_support_libs)))
@@ -2738,6 +3311,11 @@ ifneq (,$(filter androidx.dynamicanimation_dynamicanimation,$(requested_support_
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.print_print
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.emoji_emoji,$(requested_support_libs)))
@@ -2745,6 +3323,11 @@ ifneq (,$(filter androidx.emoji_emoji,$(requested_support_libs)))
         androidx.core_core \
         androidx.emoji_emoji \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.emoji_emoji-appcompat,$(requested_support_libs)))
@@ -2775,6 +3358,11 @@ ifneq (,$(filter androidx.emoji_emoji-appcompat,$(requested_support_libs)))
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.emoji_emoji-bundled,$(requested_support_libs)))
@@ -2783,11 +3371,18 @@ ifneq (,$(filter androidx.emoji_emoji-bundled,$(requested_support_libs)))
         androidx.emoji_emoji \
         androidx.emoji_emoji-bundled \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.exifinterface_exifinterface,$(requested_support_libs)))
     support_android_deps += \
         androidx.exifinterface_exifinterface
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.fragment_fragment,$(requested_support_libs)))
@@ -2813,6 +3408,11 @@ ifneq (,$(filter androidx.fragment_fragment,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.gridlayout_gridlayout,$(requested_support_libs)))
@@ -2838,16 +3438,25 @@ ifneq (,$(filter androidx.gridlayout_gridlayout,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.heifwriter_heifwriter,$(requested_support_libs)))
     support_android_deps += \
         androidx.heifwriter_heifwriter
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.interpolator_interpolator,$(requested_support_libs)))
     support_android_deps += \
         androidx.interpolator_interpolator
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.leanback_leanback,$(requested_support_libs)))
@@ -2876,6 +3485,11 @@ ifneq (,$(filter androidx.leanback_leanback,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.leanback_leanback-preference,$(requested_support_libs)))
@@ -2910,6 +3524,11 @@ ifneq (,$(filter androidx.leanback_leanback-preference,$(requested_support_libs)
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.legacy_legacy-preference-v14,$(requested_support_libs)))
@@ -2941,6 +3560,11 @@ ifneq (,$(filter androidx.legacy_legacy-preference-v14,$(requested_support_libs)
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.legacy_legacy-support-core-ui,$(requested_support_libs)))
@@ -2965,6 +3589,11 @@ ifneq (,$(filter androidx.legacy_legacy-support-core-ui,$(requested_support_libs
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.legacy_legacy-support-core-utils,$(requested_support_libs)))
@@ -2979,6 +3608,11 @@ ifneq (,$(filter androidx.legacy_legacy-support-core-utils,$(requested_support_l
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.print_print
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.legacy_legacy-support-v13,$(requested_support_libs)))
@@ -3007,6 +3641,11 @@ ifneq (,$(filter androidx.legacy_legacy-support-v13,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.legacy_legacy-support-v4,$(requested_support_libs)))
@@ -3034,15 +3673,23 @@ ifneq (,$(filter androidx.legacy_legacy-support-v4,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.lifecycle_lifecycle-common,$(requested_support_libs)))
     support_java_deps += \
+        androidx.annotation_annotation \
         androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.lifecycle_lifecycle-common-java8,$(requested_support_libs)))
     support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.lifecycle_lifecycle-common \
         androidx.lifecycle_lifecycle-common-java8
 endif
 
@@ -3071,6 +3718,11 @@ ifneq (,$(filter androidx.lifecycle_lifecycle-extensions,$(requested_support_lib
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.lifecycle_lifecycle-livedata,$(requested_support_libs)))
@@ -3078,22 +3730,36 @@ ifneq (,$(filter androidx.lifecycle_lifecycle-livedata,$(requested_support_libs)
         androidx.arch.core_core-runtime \
         androidx.lifecycle_lifecycle-livedata \
         androidx.lifecycle_lifecycle-livedata-core
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.lifecycle_lifecycle-livedata-core,$(requested_support_libs)))
     support_android_deps += \
         androidx.arch.core_core-runtime \
         androidx.lifecycle_lifecycle-livedata-core
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.lifecycle_lifecycle-runtime,$(requested_support_libs)))
     support_android_deps += \
         androidx.lifecycle_lifecycle-runtime
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.lifecycle_lifecycle-viewmodel,$(requested_support_libs)))
     support_android_deps += \
         androidx.lifecycle_lifecycle-viewmodel
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.loader_loader,$(requested_support_libs)))
@@ -3104,11 +3770,18 @@ ifneq (,$(filter androidx.loader_loader,$(requested_support_libs)))
         androidx.lifecycle_lifecycle-runtime \
         androidx.lifecycle_lifecycle-viewmodel \
         androidx.loader_loader
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.localbroadcastmanager_localbroadcastmanager,$(requested_support_libs)))
     support_android_deps += \
         androidx.localbroadcastmanager_localbroadcastmanager
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.media_media,$(requested_support_libs)))
@@ -3116,6 +3789,11 @@ ifneq (,$(filter androidx.media_media,$(requested_support_libs)))
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.media_media
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.mediarouter_mediarouter,$(requested_support_libs)))
@@ -3147,10 +3825,17 @@ ifneq (,$(filter androidx.mediarouter_mediarouter,$(requested_support_libs)))
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.paging_paging-common,$(requested_support_libs)))
     support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
         androidx.paging_paging-common
 endif
 
@@ -3179,6 +3864,12 @@ ifneq (,$(filter androidx.paging_paging-runtime,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common \
+        androidx.paging_paging-common
 endif
 
 ifneq (,$(filter androidx.palette_palette,$(requested_support_libs)))
@@ -3194,6 +3885,11 @@ ifneq (,$(filter androidx.palette_palette,$(requested_support_libs)))
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.palette_palette \
         androidx.print_print
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.percentlayout_percentlayout,$(requested_support_libs)))
@@ -3201,6 +3897,11 @@ ifneq (,$(filter androidx.percentlayout_percentlayout,$(requested_support_libs))
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.percentlayout_percentlayout
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.preference_preference,$(requested_support_libs)))
@@ -3231,16 +3932,25 @@ ifneq (,$(filter androidx.preference_preference,$(requested_support_libs)))
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.print_print,$(requested_support_libs)))
     support_android_deps += \
         androidx.print_print
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.recommendation_recommendation,$(requested_support_libs)))
     support_android_deps += \
         androidx.recommendation_recommendation
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.recyclerview_recyclerview,$(requested_support_libs)))
@@ -3266,6 +3976,11 @@ ifneq (,$(filter androidx.recyclerview_recyclerview,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.recyclerview_recyclerview-selection,$(requested_support_libs)))
@@ -3292,16 +4007,26 @@ ifneq (,$(filter androidx.recyclerview_recyclerview-selection,$(requested_suppor
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.room_room-common,$(requested_support_libs)))
     support_java_deps += \
+        androidx.annotation_annotation \
         androidx.room_room-common
 endif
 
 ifneq (,$(filter androidx.room_room-migration,$(requested_support_libs)))
     support_java_deps += \
-        androidx.room_room-migration
+        androidx.annotation_annotation \
+        androidx.room_room-common \
+        androidx.room_room-migration \
+        gson \
+        kotlin-stdlib
 endif
 
 ifneq (,$(filter androidx.room_room-runtime,$(requested_support_libs)))
@@ -3319,6 +4044,12 @@ ifneq (,$(filter androidx.room_room-runtime,$(requested_support_libs)))
         androidx.room_room-runtime \
         androidx.sqlite_sqlite \
         androidx.sqlite_sqlite-framework
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common \
+        androidx.room_room-common
 endif
 
 ifneq (,$(filter androidx.room_room-testing,$(requested_support_libs)))
@@ -3337,6 +4068,16 @@ ifneq (,$(filter androidx.room_room-testing,$(requested_support_libs)))
         androidx.room_room-testing \
         androidx.sqlite_sqlite \
         androidx.sqlite_sqlite-framework
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common \
+        androidx.room_room-common \
+        androidx.room_room-migration \
+        gson \
+        junit \
+        kotlin-stdlib
 endif
 
 ifneq (,$(filter androidx.slidingpanelayout_slidingpanelayout,$(requested_support_libs)))
@@ -3345,17 +4086,26 @@ ifneq (,$(filter androidx.slidingpanelayout_slidingpanelayout,$(requested_suppor
         androidx.customview_customview \
         androidx.lifecycle_lifecycle-runtime \
         androidx.slidingpanelayout_slidingpanelayout
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.sqlite_sqlite,$(requested_support_libs)))
     support_android_deps += \
         androidx.sqlite_sqlite
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.sqlite_sqlite-framework,$(requested_support_libs)))
     support_android_deps += \
         androidx.sqlite_sqlite \
         androidx.sqlite_sqlite-framework
+    support_java_deps += \
+        androidx.annotation_annotation
 endif
 
 ifneq (,$(filter androidx.swiperefreshlayout_swiperefreshlayout,$(requested_support_libs)))
@@ -3364,6 +4114,11 @@ ifneq (,$(filter androidx.swiperefreshlayout_swiperefreshlayout,$(requested_supp
         androidx.interpolator_interpolator \
         androidx.lifecycle_lifecycle-runtime \
         androidx.swiperefreshlayout_swiperefreshlayout
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.transition_transition,$(requested_support_libs)))
@@ -3371,6 +4126,11 @@ ifneq (,$(filter androidx.transition_transition,$(requested_support_libs)))
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.transition_transition
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.tvprovider_tvprovider,$(requested_support_libs)))
@@ -3378,6 +4138,11 @@ ifneq (,$(filter androidx.tvprovider_tvprovider,$(requested_support_libs)))
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.tvprovider_tvprovider
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.vectordrawable_vectordrawable,$(requested_support_libs)))
@@ -3385,6 +4150,11 @@ ifneq (,$(filter androidx.vectordrawable_vectordrawable,$(requested_support_libs
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.vectordrawable_vectordrawable
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.vectordrawable_vectordrawable-animated,$(requested_support_libs)))
@@ -3411,6 +4181,11 @@ ifneq (,$(filter androidx.vectordrawable_vectordrawable-animated,$(requested_sup
         androidx.vectordrawable_vectordrawable \
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.viewpager_viewpager,$(requested_support_libs)))
@@ -3419,10 +4194,16 @@ ifneq (,$(filter androidx.viewpager_viewpager,$(requested_support_libs)))
         androidx.customview_customview \
         androidx.lifecycle_lifecycle-runtime \
         androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.wear_wear,$(requested_support_libs)))
     support_android_deps += \
+        android-support-constraint-layout \
         androidx.arch.core_core-runtime \
         androidx.asynclayoutinflater_asynclayoutinflater \
         androidx.coordinatorlayout_coordinatorlayout \
@@ -3445,8 +4226,12 @@ ifneq (,$(filter androidx.wear_wear,$(requested_support_libs)))
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
         androidx.viewpager_viewpager \
-        androidx.wear_wear \
-        constraint-layout
+        androidx.wear_wear
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.webkit_webkit,$(requested_support_libs)))
@@ -3454,6 +4239,11 @@ ifneq (,$(filter androidx.webkit_webkit,$(requested_support_libs)))
         androidx.core_core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.webkit_webkit
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter flexbox,$(requested_support_libs)))
