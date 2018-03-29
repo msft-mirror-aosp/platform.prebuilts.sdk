@@ -34,7 +34,10 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.legacy_legacy-support-core-ui \
   androidx.appcompat_appcompat \
   androidx.design_design-resources \
-  androidx.design_design-widget
+  androidx.design_design-widget \
+  androidx.design_design-expandable \
+  androidx.design_design-internal \
+  androidx.design_design-shape
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -46,8 +49,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -60,7 +65,9 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat \
+  androidx.design_design-dialog
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -72,8 +79,15 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.core_core \
+  androidx.legacy_legacy-support-core-utils \
+  androidx.appcompat_appcompat \
+  androidx.design_design-internal \
+  androidx.design_design-resources \
+  androidx.design_design-ripple
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -105,7 +119,8 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.legacy_legacy-support-core-utils \
   androidx.appcompat_appcompat \
   androidx.cardview_cardview \
-  androidx.design_design-resources
+  androidx.design_design-resources \
+  androidx.design_design-internal
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -117,8 +132,18 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.core_core \
+  androidx.appcompat_appcompat \
+  androidx.design_design-animation \
+  androidx.design_design-canvas \
+  androidx.design_design-color \
+  androidx.design_design-drawable \
+  androidx.design_design-internal \
+  androidx.design_design-resources \
+  androidx.design_design-ripple
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -191,7 +216,18 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat \
+  androidx.design_design-bottomnavigation \
+  androidx.design_design-button \
+  androidx.design_design-card \
+  androidx.design_design-chip \
+  androidx.design_design-color \
+  androidx.design_design-floatingactionbutton \
+  androidx.design_design-navigation \
+  androidx.design_design-tabs \
+  androidx.design_design-textfield \
+  androidx.design_design-typography
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -217,8 +253,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.legacy_legacy-support-core-ui
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -231,7 +269,10 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat \
+  androidx.design_design-animation \
+  androidx.design_design-color
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -243,8 +284,15 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.transition_transition \
+  androidx.appcompat_appcompat \
+  androidx.recyclerview_recyclerview \
+  androidx.design_design-bottomnavigation \
+  androidx.design_design-color \
+  androidx.design_design-snackbar
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -270,7 +318,8 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -359,7 +408,8 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -372,7 +422,8 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -384,8 +435,21 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat \
+  androidx.design_design-bottomnavigation \
+  androidx.design_design-bottomsheet \
+  androidx.design_design-button \
+  androidx.design_design-card \
+  androidx.design_design-chip \
+  androidx.design_design-color \
+  androidx.design_design-dialog \
+  androidx.design_design-floatingactionbutton \
+  androidx.design_design-navigation \
+  androidx.design_design-typography \
+  androidx.design_design-widget
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -397,8 +461,17 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  androidx.annotation_annotation
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.core_core \
+  androidx.legacy_legacy-support-core-ui \
+  androidx.design_design-animation \
+  androidx.design_design-circularreveal \
+  androidx.design_design-circularreveal-cardview \
+  androidx.design_design-expandable \
+  androidx.design_design-math \
+  androidx.design_design-widget
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -411,7 +484,8 @@ LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
 LOCAL_STATIC_JAVA_LIBRARIES :=
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  androidx.appcompat_appcompat
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -441,7 +515,16 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.design_design-resources \
   androidx.design_design-ripple \
   androidx.design_design-snackbar \
-  androidx.design_design-stateful
+  androidx.design_design-stateful \
+  androidx.design_design-bottomsheet \
+  androidx.design_design-color \
+  androidx.design_design-dialog \
+  androidx.design_design-expandable \
+  androidx.design_design-floatingactionbutton \
+  androidx.design_design-internal \
+  androidx.design_design-navigation \
+  androidx.design_design-tabs \
+  androidx.design_design-textfield
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -490,5 +573,7 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   androidx.design_design-theme \
   androidx.design_design-transformation \
   androidx.design_design-typography \
-  androidx.design_design-widget
+  androidx.design_design-widget \
+  androidx.design_design-internal \
+  androidx.design_design-shape
 include $(BUILD_PREBUILT)
