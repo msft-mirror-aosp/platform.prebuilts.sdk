@@ -817,11 +817,12 @@ try:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
     if rerun_extract_deps:
-        depsfile = 'fix_dependencies.mk'
-        cwd=os.getcwd()
+        depsfile = os.path.join(current_path, 'fix_dependencies.mk')
         with open(depsfile, 'w') as f:
-            print("running " + str(args) + " in " + cwd)
+            cwd=os.getcwd()
             subprocess.check_call("./update_current/extract_deps.py current/support/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
+            subprocess.check_call(['git', 'add', depsfile])
+
 
 
     # Commit all changes.
