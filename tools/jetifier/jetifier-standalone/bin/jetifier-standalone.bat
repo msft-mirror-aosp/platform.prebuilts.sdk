@@ -63,10 +63,10 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\jetifier-standalone.jar;%APP_HOME%\lib\jetifier-core-0.2.0.jar;%APP_HOME%\lib\commons-cli-1.3.1.jar;%APP_HOME%\lib\asm-commons-5.2.jar;%APP_HOME%\lib\asm-tree-5.2.jar;%APP_HOME%\lib\asm-5.2.jar;%APP_HOME%\lib\gson-2.8.0.jar;%APP_HOME%\lib\jdom2-2.0.6.jar;%APP_HOME%\lib\kotlin-stdlib-1.2.20.jar;%APP_HOME%\lib\annotations-13.0.jar
+set CLASSPATH=%APP_HOME%\lib\jetifier-standalone.jar;%APP_HOME%\lib\jetifier-processor-0.0.1.jar;%APP_HOME%\lib\commons-cli-1.3.1.jar;%APP_HOME%\lib\jetifier-core-0.0.1.jar;%APP_HOME%\lib\asm-commons-5.2.jar;%APP_HOME%\lib\asm-tree-5.2.jar;%APP_HOME%\lib\asm-5.2.jar;%APP_HOME%\lib\jdom2-2.0.6.jar;%APP_HOME%\lib\kotlin-stdlib-1.2.20.jar;%APP_HOME%\lib\gson-2.8.0.jar;%APP_HOME%\lib\annotations-13.0.jar
 
 @rem Execute jetifier-standalone
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %JETIFIER_STANDALONE_OPTS%  -classpath "%CLASSPATH%" android.support.tools.jetifier.standalone.MainKt %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %JETIFIER_STANDALONE_OPTS%  -classpath "%CLASSPATH%" com.android.tools.build.jetifier.standalone.Main %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell

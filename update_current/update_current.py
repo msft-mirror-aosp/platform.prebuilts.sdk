@@ -16,7 +16,7 @@ support_dir = os.path.join(current_path, 'support')
 androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
-jetifier_dir = os.path.join(buildtools_dir, 'jetifier')
+jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 
 temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
@@ -536,8 +536,8 @@ def update_jetifier(target, build_id):
         return False
 
     rm(jetifier_dir)
-    mv(repo_dir, jetifier_dir)
-    os.chmod(os.path.join(jetifier_dir, 'jetifier-standalone', 'bin', 'jetifier-standalone'), 0o755)
+    mv(os.path.join(repo_dir, 'jetifier-standalone'), jetifier_dir)
+    os.chmod(os.path.join(jetifier_dir, 'bin', 'jetifier-standalone'), 0o755)
     return True
 
 
