@@ -300,10 +300,8 @@ package android.app {
   }
 
   public class WallpaperManager {
-    method public void clearWallpaper();
     method public void clearWallpaper(int, int);
     method public void setDisplayOffset(android.os.IBinder, int, int);
-    method public void setDisplayPadding(android.graphics.Rect);
     method public boolean setWallpaperComponent(android.content.ComponentName);
   }
 
@@ -3065,7 +3063,6 @@ package android.os {
 
   public class IncidentManager {
     method public void reportIncident(android.os.IncidentReportArgs);
-    method public void reportIncident(java.lang.String, byte[]);
   }
 
   public final class IncidentReportArgs implements android.os.Parcelable {
@@ -3076,7 +3073,6 @@ package android.os {
     method public boolean containsSection(int);
     method public int describeContents();
     method public boolean isAll();
-    method public static android.os.IncidentReportArgs parseSetting(java.lang.String) throws java.lang.IllegalArgumentException;
     method public void readFromParcel(android.os.Parcel);
     method public int sectionCount();
     method public void setAll(boolean);
