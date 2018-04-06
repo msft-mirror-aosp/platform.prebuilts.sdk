@@ -16,7 +16,8 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-cardview \
   android-support-design-widget \
   android-support-v4 \
-  android-support-v7-recyclerview
+  android-support-v7-recyclerview \
+  flexbox
 include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-car
@@ -30,7 +31,8 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-cardview  \
   android-support-design-widget  \
   android-support-v4  \
-  android-support-v7-recyclerview
+  android-support-v7-recyclerview \
+  flexbox
 LOCAL_JAR_EXCLUDE_FILES := none
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 LOCAL_USE_AAPT2 := true
