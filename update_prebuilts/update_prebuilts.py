@@ -841,7 +841,7 @@ if uncommittedChangesExist():
         subprocess.check_call("cd " + git_dir + " && git commit -m 'save working state'", shell=True)
 
 if uncommittedChangesExist():
-    print_e('FAIL: There are uncommitted changes here. Please commit or stash before continuing, because update_current.py will run "git reset --hard" if execution fails')
+    print_e('FAIL: There are uncommitted changes here. Please commit or stash before continuing, because %s will run "git reset --hard" if execution fails' % os.path.basename(__file__))
     sys.exit(1)
 
 try:
@@ -916,7 +916,7 @@ try:
         with open(depsfile, 'w') as f:
             cwd=os.getcwd()
             subprocess.check_call(
-                './update_current/extract_deps.py current/*/Android.mk current/extras/*/Android.mk',
+                './update_prebuilts/extract_deps.py current/*/Android.mk current/extras/*/Android.mk',
                 stdout=f, cwd=cwd, shell=True)
             subprocess.check_call(['git', 'add', depsfile])
 
