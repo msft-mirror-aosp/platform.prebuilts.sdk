@@ -425,7 +425,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
-        args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
@@ -875,7 +874,7 @@ try:
         depsfile = os.path.join(current_path, 'fix_dependencies.mk')
         with open(depsfile, 'w') as f:
             cwd=os.getcwd()
-            subprocess.check_call("./update_current/extract_deps.py current/support/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
+            subprocess.check_call("./update_current/extract_deps.py current/*/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
             subprocess.check_call(['git', 'add', depsfile])
 
 

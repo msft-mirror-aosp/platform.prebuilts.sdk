@@ -55,8 +55,6 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     prebuilts :=
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
 
-# Car API stubs
-$(call define-prebuilt, prebuilt-android.car-stubs:optional/android.car.jar)
 
 # Include all Support Library modules as prebuilts.
 include $(call all-makefiles-under,$(LOCAL_PATH))

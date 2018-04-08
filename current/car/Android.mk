@@ -11,26 +11,32 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  prebuilt-android.car-stubs
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-appcompat \
   android-support-v7-cardview \
   android-support-design-widget \
   android-support-v4 \
-  android-support-v7-recyclerview
+  android-support-v7-recyclerview \
+  flexbox
 include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := android-support-car
 LOCAL_SDK_VERSION := current
 LOCAL_MANIFEST_FILE := manifests/android-support-car/AndroidManifest.xml
 LOCAL_STATIC_JAVA_LIBRARIES := \
-  android-support-annotations
+  android-support-annotations \
+  prebuilt-android.car-stubs
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-car-nodeps  \
   android-support-v7-appcompat  \
   android-support-v7-cardview  \
   android-support-design-widget  \
+  android-support-design-theme \
   android-support-v4  \
-  android-support-v7-recyclerview
+  android-support-v7-recyclerview \
+  flexbox
 LOCAL_JAR_EXCLUDE_FILES := none
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 LOCAL_USE_AAPT2 := true
