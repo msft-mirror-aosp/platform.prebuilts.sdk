@@ -218,7 +218,10 @@ maven_to_make = {
     # - rxjava
     #'android.arch.persistence.room:rxjava2': ['android-arch-room-rxjava2', 'arch-room/rxjava2'],
 
-    # Material Design Components
+    # Third-party dependencies
+    'com.google.android:flexbox': ['flexbox', 'flexbox'],
+
+    # Support Library Material Design Components
     'com.android.support:design': ['android-support-design', 'design'],
     'com.android.support:design-animation': ['android-support-design-animation', 'design-animation'],
     'com.android.support:design-bottomnavigation': ['android-support-design-bottomnavigation', 'design-bottomnavigation'],
@@ -251,8 +254,39 @@ maven_to_make = {
     'com.android.support:design-bottomappbar': ['android-support-design-bottomappbar', 'design-bottomappbar'],
     'com.android.support:design-shape': ['android-support-design-shape', 'design-shape'],
 
-    # Third-party dependencies
-    'com.google.android:flexbox': ['flexbox', 'flexbox'],
+    # Intermediate-AndroidX Material Design Components
+    'com.android.temp.support:design': ['androidx.design_design', 'com/android/temp/support/design/design'],
+    'com.android.temp.support:design-animation': ['androidx.design_design-animation', 'com/android/temp/support/design/design-animation'],
+    'com.android.temp.support:design-bottomnavigation': ['androidx.design_design-bottomnavigation', 'com/android/temp/support/design/design-bottomnavigation'],
+    'com.android.temp.support:design-bottomsheet': ['androidx.design_design-bottomsheet', 'com/android/temp/support/design/design-bottomsheet'],
+    'com.android.temp.support:design-button': ['androidx.design_design-button', 'com/android/temp/support/design/design-button'],
+    'com.android.temp.support:design-canvas': ['androidx.design_design-canvas', 'com/android/temp/support/design/design-canvas'],
+    'com.android.temp.support:design-card': ['androidx.design_design-card', 'com/android/temp/support/design/design-card'],
+    'com.android.temp.support:design-chip': ['androidx.design_design-chip', 'com/android/temp/support/design/design-chip'],
+    'com.android.temp.support:design-circularreveal': ['androidx.design_design-circularreveal', 'com/android/temp/support/design/design-circularreveal'],
+    'com.android.temp.support:design-circularreveal-cardview': ['androidx.design_design-circularreveal-cardview', 'com/android/temp/support/design/design-circularreveal-cardview'],
+    'com.android.temp.support:design-circularreveal-coordinatorlayout': ['androidx.design_design-circularreveal-coordinatorlayout', 'com/android/temp/support/design/design-circularreveal-coordinatorlayout'],
+    'com.android.temp.support:design-color': ['androidx.design_design-color', 'com/android/temp/support/design/design-color'],
+    'com.android.temp.support:design-dialog': ['androidx.design_design-dialog', 'com/android/temp/support/design/design-dialog'],
+    'com.android.temp.support:design-drawable': ['androidx.design_design-drawable', 'com/android/temp/support/design/design-drawable'],
+    'com.android.temp.support:design-expandable': ['androidx.design_design-expandable', 'com/android/temp/support/design/design-expandable'],
+    'com.android.temp.support:design-floatingactionbutton': ['androidx.design_design-floatingactionbutton', 'com/android/temp/support/design/design-floatingactionbutton'],
+    'com.android.temp.support:design-internal': ['androidx.design_design-internal', 'com/android/temp/support/design/design-internal'],
+    'com.android.temp.support:design-math': ['androidx.design_design-math', 'com/android/temp/support/design/design-math'],
+    'com.android.temp.support:design-resources': ['androidx.design_design-resources', 'com/android/temp/support/design/design-resources'],
+    'com.android.temp.support:design-ripple': ['androidx.design_design-ripple', 'com/android/temp/support/design/design-ripple'],
+    'com.android.temp.support:design-snackbar': ['androidx.design_design-snackbar', 'com/android/temp/support/design/design-snackbar'],
+    'com.android.temp.support:design-stateful': ['androidx.design_design-stateful', 'com/android/temp/support/design/design-stateful'],
+    'com.android.temp.support:design-textfield': ['androidx.design_design-textfield', 'com/android/temp/support/design/design-textfield'],
+    'com.android.temp.support:design-theme': ['androidx.design_design-theme', 'com/android/temp/support/design/design-theme'],
+    'com.android.temp.support:design-transformation': ['androidx.design_design-transformation', 'com/android/temp/support/design/design-transformation'],
+    'com.android.temp.support:design-typography': ['androidx.design_design-typography', 'com/android/temp/support/design/design-typography'],
+    'com.android.temp.support:design-widget': ['androidx.design_design-widget', 'com/android/temp/support/design/design-widget'],
+    'com.android.temp.support:design-navigation': ['androidx.design_design-navigation', 'com/android/temp/support/design/design-navigation'],
+    'com.android.temp.support:design-tabs': ['androidx.design_design-tabs', 'com/android/temp/support/design/design-tabs'],
+    'com.android.temp.support:design-bottomappbar': ['androidx.design_design-bottomappbar', 'com/android/temp/support/design/design-bottomappbar'],
+    'com.android.temp.support:design-shape': ['androidx.design_design-shape', 'com/android/temp/support/design/design-shape'],
+
 }
 
 # Always remove these files.
@@ -391,7 +425,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
-        args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
@@ -578,6 +611,17 @@ def update_design(file):
                                 os.path.join(extras_dir, 'material-design'), extract_res=False)
 
 
+def update_material(file):
+    design_dir = extract_artifact(file)
+    if not design_dir:
+        print_e('Failed to extract intermediate-AndroidX Design Library repositories')
+        return False
+
+    # Don't bother extracting resources -- this should only be used with AAPT2.
+    return transform_maven_repos([design_dir],
+                                 os.path.join(extras_dir, 'material-design-x'), extract_res=False)
+
+
 def extract_to(zip_file, paths, filename, parent_path):
     zip_path = next(filter(lambda path: filename in path, paths))
     src_path = zip_file.extract(zip_path)
@@ -717,6 +761,9 @@ parser.add_argument(
     '-d', '--design', action="store_true",
     help='If specified, updates only the Design Library')
 parser.add_argument(
+    '-m', '--material', action="store_true",
+    help='If specified, updates only the intermediate-AndroidX Design Library')
+parser.add_argument(
     '-c', '--constraint', action="store_true",
     help='If specified, updates only Constraint Layout')
 parser.add_argument(
@@ -746,10 +793,11 @@ if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
 if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
-                or args.design or args.jetifier or args.androidx):
+                or args.design or args.jetifier or args.androidx or args.material):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.support or args.constraint or args.toolkit) and which('pom2mk') is None:
+if (args.support or args.constraint or args.toolkit or args.design or args.material) \
+        and which('pom2mk') is None:
     parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
     sys.exit(1)
 
@@ -806,7 +854,13 @@ try:
         if update_design(getFile(args)):
             components = append(components, 'Design Library')
         else:
-            print_e('Failed to update platform SDK, aborting...')
+            print_e('Failed to update Design Library, aborting...')
+            sys.exit(1)
+    if args.material:
+        if update_material(getFile(args)):
+            components = append(components, 'intermediate-AndroidX Design Library')
+        else:
+            print_e('Failed to update intermediate-AndroidX Design Library, aborting...')
             sys.exit(1)
     if args.buildtools:
         if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', getBuildId(args)) \
@@ -820,7 +874,7 @@ try:
         depsfile = os.path.join(current_path, 'fix_dependencies.mk')
         with open(depsfile, 'w') as f:
             cwd=os.getcwd()
-            subprocess.check_call("./update_current/extract_deps.py current/support/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
+            subprocess.check_call("./update_current/extract_deps.py current/*/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
             subprocess.check_call(['git', 'add', depsfile])
 
 
