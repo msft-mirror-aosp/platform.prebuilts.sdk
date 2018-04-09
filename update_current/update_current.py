@@ -256,6 +256,9 @@ maven_to_make = {
     'com.android.support:design-bottomappbar': ['android-support-design-bottomappbar', 'design-bottomappbar'],
     'com.android.support:design-shape': ['android-support-design-shape', 'design-shape'],
 
+    # Androidx Material Design Components
+    'com.google.android.material:material': ['androidx.material_material', 'com/google/android/material/material'],
+
     # Intermediate-AndroidX Material Design Components
     'com.android.temp.support:design': ['androidx.design_design', 'com/android/temp/support/design/design'],
     'com.android.temp.support:design-animation': ['androidx.design_design-animation', 'com/android/temp/support/design/design-animation'],
