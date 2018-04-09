@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
     <attr format="reference" name="sliceViewStyle"/>
-    <declare-styleable name="SliceView"><attr format="color" name="titleColor"/><attr format="color" name="subtitleColor"/><attr format="color" name="tintColor"/><attr format="dimension" name="headerTitleSize"/><attr format="dimension" name="headerSubtitleSize"/><attr format="dimension" name="titleSize"/><attr format="dimension" name="subtitleSize"/><attr format="dimension" name="gridTitleSize"/><attr format="dimension" name="gridSubtitleSize"/></declare-styleable>
+    <declare-styleable name="SliceView">
+        <!-- Color to use for any title text within the slice. -->
+        <attr format="color" name="titleColor"/>
+        <!-- Color to use for any other text within the slice. -->
+        <attr format="color" name="subtitleColor"/>
+        <!-- Color to use for tinting elements within the slice. Normally an app
+         providing a slice is able to specify a color to use for tinting, specifying
+         a tint color here will override the app supplied color. -->
+        <attr format="color" name="tintColor"/>
+
+        <!-- Text size to use for title text in the header of the slice. -->
+        <attr format="dimension" name="headerTitleSize"/>
+        <!-- Text size to use for subtitle text in the header of the slice. -->
+        <attr format="dimension" name="headerSubtitleSize"/>
+        <!-- Text size to use for title text in a non-header row of the slice. -->
+        <attr format="dimension" name="titleSize"/>
+        <!-- Text size to use for subtitle text in a non-header row of the slice. -->
+        <attr format="dimension" name="subtitleSize"/>
+        <!-- Text size to use for title text in a grid row of the slice. -->
+        <attr format="dimension" name="gridTitleSize"/>
+        <!-- Text size to use for the subtitle text in a grid row of the slice. -->
+        <attr format="dimension" name="gridSubtitleSize"/>
+    </declare-styleable>
     <dimen name="abc_slice_action_row_height">48dp</dimen>
     <dimen name="abc_slice_big_pic_max_height">140dp</dimen>
     <dimen name="abc_slice_big_pic_min_height">120dp</dimen>
@@ -18,12 +40,27 @@
     <dimen name="abc_slice_row_active_input_height">120dp</dimen>
     <dimen name="abc_slice_row_max_height">60dp</dimen>
     <dimen name="abc_slice_row_min_height">48dp</dimen>
+    <dimen name="abc_slice_row_range_max_height">86dp</dimen>
     <dimen name="abc_slice_shortcut_size">56dp</dimen>
     <dimen name="abc_slice_small_height">48dp</dimen>
     <dimen name="abc_slice_small_image_size">48dp</dimen>
+    <plurals name="abc_slice_duration_days">
+        <item quantity="one"><ns1:g example="1">%d</ns1:g> day ago</item>
+        <item quantity="other"><ns1:g example="2">%d</ns1:g> days ago</item>
+    </plurals>
+    <plurals name="abc_slice_duration_min">
+        <item quantity="one"><ns1:g example="1">%d</ns1:g> min ago</item>
+        <item quantity="other"><ns1:g example="2">%d</ns1:g> min ago</item>
+    </plurals>
+    <plurals name="abc_slice_duration_years">
+        <item quantity="one"><ns1:g example="1">%d</ns1:g> yr ago</item>
+        <item quantity="other"><ns1:g example="2">%d</ns1:g> yr ago</item>
+    </plurals>
+    <string name="abc_slice_error">Couldn\'t connect</string>
     <string name="abc_slice_more">More</string>
     <string name="abc_slice_more_content">+ <ns1:g example="5" id="number">%1$d</ns1:g></string>
     <string name="abc_slice_show_more">Show more</string>
+    <string name="abc_slice_updated">Updated <ns1:g example="5 min ago" id="time">%1$s</ns1:g></string>
     <style name="Widget.SliceView" parent="">
         <item name="tintColor">@null</item>
         <!-- Colors -->
