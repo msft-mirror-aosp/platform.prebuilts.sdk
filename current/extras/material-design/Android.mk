@@ -11,9 +11,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
   android-support-compat \
   android-support-core-ui
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -25,15 +27,17 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat \
+  android-support-core-ui
 LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
   android-support-design-resources \
   android-support-design-widget \
   android-support-design-expandable \
   android-support-design-internal \
-  android-support-design-shape \
-  android-support-compat \
-  android-support-core-ui \
-  android-support-v7-appcompat
+  android-support-design-shape
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -45,6 +49,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-appcompat
 include $(BUILD_PREBUILT)
@@ -58,9 +64,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-design-dialog \
-  android-support-v7-appcompat
+  android-support-v7-appcompat \
+  android-support-design-dialog
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -72,13 +79,15 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat \
+  android-support-core-utils
 LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
   android-support-design-internal \
   android-support-design-resources \
-  android-support-design-ripple \
-  android-support-compat \
-  android-support-core-utils \
-  android-support-v7-appcompat
+  android-support-design-ripple
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -90,6 +99,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
 LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
@@ -102,12 +113,14 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-core-utils
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-design-resources \
-  android-support-design-internal \
-  android-support-core-utils \
   android-support-v7-appcompat \
-  android-support-v7-cardview
+  android-support-v7-cardview \
+  android-support-design-resources \
+  android-support-design-internal
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -119,16 +132,19 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat
 LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
+  flexbox \
   android-support-design-animation \
   android-support-design-canvas \
   android-support-design-color \
   android-support-design-drawable \
   android-support-design-internal \
   android-support-design-resources \
-  android-support-design-ripple \
-  android-support-compat \
-  android-support-v7-appcompat
+  android-support-design-ripple
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -140,9 +156,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-design-circularreveal \
-  android-support-v7-cardview
+  android-support-v7-cardview \
+  android-support-design-circularreveal
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -154,6 +172,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-core-ui
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-circularreveal
 include $(BUILD_PREBUILT)
@@ -167,6 +188,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-math
 include $(BUILD_PREBUILT)
@@ -180,6 +203,7 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
@@ -192,6 +216,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-v7-appcompat
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-bottomnavigation \
   android-support-design-button \
@@ -202,8 +228,7 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-navigation \
   android-support-design-tabs \
   android-support-design-textfield \
-  android-support-design-typography \
-  android-support-v7-appcompat
+  android-support-design-typography
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -215,6 +240,8 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations
 LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
@@ -227,8 +254,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
   android-support-core-ui
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -240,10 +269,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
   android-support-design-animation \
-  android-support-design-color \
-  android-support-v7-appcompat
+  android-support-design-color
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -255,13 +285,15 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-design-bottomnavigation \
-  android-support-design-color \
-  android-support-design-snackbar \
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
   android-support-transition \
   android-support-v7-appcompat \
   android-support-v7-recyclerview
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-design-bottomnavigation \
+  android-support-design-color \
+  android-support-design-snackbar
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -273,6 +305,7 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
@@ -285,8 +318,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
+LOCAL_STATIC_JAVA_LIBRARIES := \
   android-support-v7-appcompat
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -298,8 +332,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-  android-support-compat \
   android-support-v7-appcompat
 include $(BUILD_PREBUILT)
 
@@ -312,8 +348,10 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
   android-support-core-utils
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -325,9 +363,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
   android-support-compat \
   android-support-v7-appcompat
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -339,6 +379,7 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
@@ -351,9 +392,11 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES := \
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
   android-support-compat \
   android-support-core-ui
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -365,6 +408,7 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-appcompat
 include $(BUILD_PREBUILT)
@@ -378,6 +422,7 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-appcompat
 include $(BUILD_PREBUILT)
@@ -391,6 +436,9 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-v7-appcompat
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-bottomnavigation \
   android-support-design-bottomsheet \
@@ -402,8 +450,7 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-floatingactionbutton \
   android-support-design-navigation \
   android-support-design-typography \
-  android-support-design-widget \
-  android-support-v7-appcompat
+  android-support-design-widget
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -415,15 +462,17 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat \
+  android-support-core-ui
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-animation \
   android-support-design-circularreveal \
   android-support-design-circularreveal-cardview \
   android-support-design-expandable \
   android-support-design-math \
-  android-support-design-widget \
-  android-support-compat \
-  android-support-core-ui
+  android-support-design-widget
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -435,6 +484,7 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
 LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-v7-appcompat
 include $(BUILD_PREBUILT)
@@ -448,7 +498,16 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat \
+  android-support-core-ui \
+  android-support-core-utils \
+  android-support-fragment \
+  android-support-transition \
+  android-support-v7-recyclerview
 LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
   android-support-design-animation \
   android-support-design-bottomnavigation \
   android-support-design-circularreveal \
@@ -466,26 +525,7 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-internal \
   android-support-design-navigation \
   android-support-design-tabs \
-  android-support-design-textfield \
-  android-support-compat \
-  android-support-core-ui \
-  android-support-core-utils \
-  android-support-fragment \
-  android-support-transition \
-  android-support-v7-appcompat \
-  android-support-v7-recyclerview
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := flexbox
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_UNINSTALLABLE_MODULE := true
-LOCAL_SRC_FILES := repository/com/google/android/flexbox/0.3.2/flexbox-0.3.2.aar
-LOCAL_BUILT_MODULE_STEM := javalib.jar
-LOCAL_MODULE_SUFFIX := .aar
-LOCAL_USE_AAPT2 := true
-LOCAL_SDK_VERSION := current
-LOCAL_STATIC_ANDROID_LIBRARIES :=
+  android-support-design-textfield
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -497,7 +537,16 @@ LOCAL_BUILT_MODULE_STEM := javalib.jar
 LOCAL_MODULE_SUFFIX := .aar
 LOCAL_USE_AAPT2 := true
 LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES := \
+  android-support-annotations \
+  android-support-compat \
+  android-support-core-ui \
+  android-support-core-utils \
+  android-support-fragment \
+  android-support-transition \
+  android-support-v7-recyclerview
 LOCAL_STATIC_ANDROID_LIBRARIES := \
+  android-support-v7-appcompat \
   android-support-design-animation \
   android-support-design-bottomappbar \
   android-support-design-bottomnavigation \
@@ -526,12 +575,18 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
   android-support-design-transformation \
   android-support-design-typography \
   android-support-design-widget \
-  android-support-design-internal \
-  android-support-compat \
-  android-support-core-ui \
-  android-support-core-utils \
-  android-support-fragment \
-  android-support-transition \
-  android-support-v7-appcompat \
-  android-support-v7-recyclerview
+  android-support-design-internal
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := flexbox
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := repository/com/google/android/flexbox/0.3.2/flexbox-0.3.2.aar
+LOCAL_BUILT_MODULE_STEM := javalib.jar
+LOCAL_MODULE_SUFFIX := .aar
+LOCAL_USE_AAPT2 := true
+LOCAL_SDK_VERSION := current
+LOCAL_STATIC_JAVA_LIBRARIES :=
+LOCAL_STATIC_ANDROID_LIBRARIES :=
 include $(BUILD_PREBUILT)
