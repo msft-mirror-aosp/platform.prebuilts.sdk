@@ -22,7 +22,7 @@
 # support_java_deps
 #
 # This file was automatically generated with:
-# ./update_current/extract_deps.py current/androidx/Android.mk current/car/Android.mk current/extras/Android.mk current/optional/Android.mk current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/constraint-layout/Android.mk current/extras/material-design/Android.mk current/extras/material-design-split-x/Android.mk
+# ./update_prebuilts/extract_deps.py current/androidx/Android.mk current/car/Android.mk current/extras/Android.mk current/optional/Android.mk current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/constraint-layout/Android.mk current/extras/material-design/Android.mk current/extras/material-design-split-x/Android.mk
 ###########################################################################
 
 # Only AAPT2 clients get transitive dependency resolution. This may be removed
