@@ -915,10 +915,9 @@ try:
         depsfile = os.path.join(current_path, 'fix_dependencies.mk')
         with open(depsfile, 'w') as f:
             cwd=os.getcwd()
-            subprocess.check_call(['./update_current/extract_deps.py',
-                                   'current/*/Android.mk',
-                                   'current/extras/*/Android.mk'],
-                                   stdout=f, cwd=cwd, shell=True)
+            subprocess.check_call(
+                './update_current/extract_deps.py current/*/Android.mk current/extras/*/Android.mk',
+                stdout=f, cwd=cwd, shell=True)
             subprocess.check_call(['git', 'add', depsfile])
 
 
