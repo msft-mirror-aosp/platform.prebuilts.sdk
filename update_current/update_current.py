@@ -12,6 +12,8 @@ from functools import reduce
 
 current_path = 'current'
 system_path = 'system_current'
+api_path = 'api'
+system_api_path = 'system-api'
 support_dir = os.path.join(current_path, 'support')
 androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
@@ -253,6 +255,9 @@ maven_to_make = {
     'com.android.support:design-tabs': ['android-support-design-tabs', 'design-tabs'],
     'com.android.support:design-bottomappbar': ['android-support-design-bottomappbar', 'design-bottomappbar'],
     'com.android.support:design-shape': ['android-support-design-shape', 'design-shape'],
+
+    # Androidx Material Design Components
+    'com.google.android.material:material': ['androidx.material_material', 'com/google/android/material/material'],
 
     # Intermediate-AndroidX Material Design Components
     'com.android.temp.support:design': ['androidx.design_design', 'com/android/temp/support/design/design'],
@@ -629,7 +634,7 @@ def extract_to(zip_file, paths, filename, parent_path):
     mv(src_path, dst_path)
 
 
-def update_sdk_repo(target, build_id):
+def fetch_framework_artifacts(target, build_id, target_path, is_current_sdk):
     platform = 'darwin' if 'mac' in target else 'linux'
     artifact_path = fetch_artifact(
         target, build_id.url_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id.fs_id))
@@ -639,22 +644,28 @@ def update_sdk_repo(target, build_id):
     with zipfile.ZipFile(artifact_path) as zipFile:
         paths = zipFile.namelist()
 
-        extract_to(zipFile, paths, 'android.jar', current_path)
-        extract_to(zipFile, paths, 'uiautomator.jar', current_path)
-        extract_to(zipFile, paths, 'framework.aidl', current_path)
-        extract_to(zipFile, paths, 'optional/android.test.base.jar', current_path)
-        extract_to(zipFile, paths, 'optional/android.test.mock.jar', current_path)
-        extract_to(zipFile, paths, 'optional/android.test.runner.jar', current_path)
+        filenames = ['android.jar', 'uiautomator.jar',  'framework.aidl',
+            'optional/android.test.base.jar', 'optional/android.test.mock.jar',
+            'optional/android.test.runner.jar']
 
-        # Unclear if this is actually necessary.
-        extract_to(zipFile, paths, 'framework.aidl', system_path)
+        for filename in filenames:
+            extract_to(zipFile, paths, filename, target_path)
 
-    artifact_path = fetch_artifact(target, build_id.fs_id, 'core.current.stubs.jar')
-    if not artifact_path:
-        return False
+        if is_current_sdk:
+            # There's no system version of framework.aidl, so use the public one.
+            extract_to(zipFile, paths, 'framework.aidl', system_path)
 
-    mv(artifact_path, path(current_path, 'core.jar'))
+            # We don't keep historical artifacts for these.
+            artifact_path = fetch_artifact(target, build_id.fs_id, 'core.current.stubs.jar')
+            if not artifact_path:
+                return False
+            mv(artifact_path, path(current_path, 'core.jar'))
+
     return True
+
+
+def update_sdk_repo(target, build_id):
+    return fetch_framework_artifacts(target, build_id, current_path, is_current_sdk = True)
 
 
 def update_system(target, build_id):
@@ -671,6 +682,25 @@ def update_system(target, build_id):
     mv(artifact_path, path(system_path, 'optional/android.test.mock.jar'))
 
     return True
+
+
+
+def finalize_sdk(target, build_id, sdk_version):
+    target_finalize_dir = "%d" % sdk_version
+
+    artifact_to_path = {
+      'android_system.jar': path(target_finalize_dir, 'android_system.jar'),
+      'public_api.txt': path(api_path, "%d.txt" % sdk_version),
+      'system-api.txt': path(system_api_path, "%d.txt" % sdk_version),
+    }
+
+    for artifact, target_path in artifact_to_path.items():
+        artifact_path = fetch_artifact(target, build_id.url_id, artifact)
+        if not artifact_path:
+            return False
+        mv(artifact_path, target_path)
+
+    return fetch_framework_artifacts(target, build_id, target_finalize_dir, is_current_sdk = False)
 
 
 def update_buildtools(target, arch, build_id):
@@ -782,6 +812,9 @@ parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
 parser.add_argument(
+    '-f', '--finalize_sdk', type=int,
+    help='If specified, imports the source build as the specified finalized SDK version')
+parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 parser.add_argument(
@@ -793,7 +826,8 @@ if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
 if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
-                or args.design or args.jetifier or args.androidx or args.material):
+                or args.design or args.jetifier or args.androidx or args.material \
+                or args.finalize_sdk):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit or args.design or args.material) \
@@ -850,6 +884,13 @@ try:
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
+    if args.finalize_sdk:
+        if finalize_sdk('sdk_phone_armv7-sdk_mac', getBuildId(args), args.finalize_sdk):
+            subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
+            components = append(components, 'finalized SDK %d' % args.finalize_sdk)
+        else:
+            print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
+            sys.exit(1)
     if args.design:
         if update_design(getFile(args)):
             components = append(components, 'Design Library')
@@ -874,15 +915,16 @@ try:
         depsfile = os.path.join(current_path, 'fix_dependencies.mk')
         with open(depsfile, 'w') as f:
             cwd=os.getcwd()
-            subprocess.check_call("./update_current/extract_deps.py current/*/Android.mk current/extras/*/Android.mk", stdout=f, cwd=cwd, shell=True)
+            subprocess.check_call(['./update_current/extract_deps.py',
+                                   'current/*/Android.mk',
+                                   'current/extras/*/Android.mk'],
+                                   stdout=f, cwd=cwd, shell=True)
             subprocess.check_call(['git', 'add', depsfile])
 
 
 
-    # Commit all changes.
-    subprocess.check_call(['git', 'add', current_path])
-    subprocess.check_call(['git', 'add', system_path])
-    subprocess.check_call(['git', 'add', buildtools_dir])
+    subprocess.check_call(['git', 'add', current_path, system_path, api_path, system_api_path,
+                           buildtools_dir])
     if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
