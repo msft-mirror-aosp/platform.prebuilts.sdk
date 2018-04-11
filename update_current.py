@@ -11,6 +11,8 @@ from distutils.version import LooseVersion
 
 current_path = 'current'
 system_path = 'system_current'
+api_path = 'api'
+system_api_path = 'system-api'
 support_dir = os.path.join(current_path, 'support')
 extras_dir = os.path.join(current_path, 'extras')
 
@@ -248,7 +250,7 @@ def extract_to(zip_file, paths, filename, parent_path):
     mv(src_path, dst_path)
 
 
-def update_sdk_repo(target, build_id):
+def fetch_framework_artifacts(target, build_id, target_path, is_current_sdk):
     platform = 'darwin' if 'mac' in target else 'linux'
     artifact_path = fetch_artifact(
         target, build_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id))
@@ -258,19 +260,26 @@ def update_sdk_repo(target, build_id):
     with zipfile.ZipFile(artifact_path) as zipFile:
         paths = zipFile.namelist()
 
-        extract_to(zipFile, paths, 'android.jar', current_path)
-        extract_to(zipFile, paths, 'uiautomator.jar', current_path)
-        extract_to(zipFile, paths, 'framework.aidl', current_path)
+        filenames = ['android.jar', 'uiautomator.jar',  'framework.aidl']
 
-        # Unclear if this is actually necessary.
-        extract_to(zipFile, paths, 'framework.aidl', system_path)
+        for filename in filenames:
+            extract_to(zipFile, paths, filename, target_path)
 
-    artifact_path = fetch_artifact(target, build_id.fs_id, 'core.current.stubs.jar')
-    if not artifact_path:
-        return False
+        if is_current_sdk:
+            # There's no system version of framework.aidl, so use the public one.
+            extract_to(zipFile, paths, 'framework.aidl', system_path)
 
-    mv(artifact_path, path(current_path, 'core.jar'))
+            # We don't keep historical artifacts for these.
+            artifact_path = fetch_artifact(target, build_id, 'core.current.stubs.jar')
+            if not artifact_path:
+                return False
+            mv(artifact_path, path(current_path, 'core.jar'))
+
     return True
+
+
+def update_sdk_repo(target, build_id):
+    return fetch_framework_artifacts(target, build_id, current_path, is_current_sdk = True)
 
 
 def update_system(target, build_id):
@@ -280,6 +289,24 @@ def update_system(target, build_id):
 
     mv(artifact_path, path(system_path, 'android.jar'))
     return True
+
+
+def finalize_sdk(target, build_id, sdk_version):
+    target_finalize_dir = "%d" % sdk_version
+
+    artifact_to_path = {
+      'android_system.jar': path(target_finalize_dir, 'android_system.jar'),
+      'public_api.txt': path(api_path, "%d.txt" % sdk_version),
+      'system-api.txt': path(system_api_path, "%d.txt" % sdk_version),
+    }
+
+    for artifact, target_path in artifact_to_path.items():
+        artifact_path = fetch_artifact(target, build_id, artifact)
+        if not artifact_path:
+            return False
+        mv(artifact_path, target_path)
+
+    return fetch_framework_artifacts(target, build_id, target_finalize_dir, is_current_sdk = False)
 
 
 def append(text, more_text):
@@ -303,11 +330,14 @@ parser.add_argument(
 parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
+parser.add_argument(
+    '-f', '--finalize_sdk', type=int,
+    help='If specified, imports the source build as the specified finalized SDK version')
 args = parser.parse_args()
 if not args.buildId:
     parser.error("You must specify a build ID")
     sys.exit(1)
-if not (args.support or args.platform or args.constraint):
+if not (args.support or args.platform or args.constraint or args.finalize_sdk):
     parser.error("You must specify at least one of --constraint, --support, or --platform")
     sys.exit(1)
 
@@ -334,16 +364,22 @@ try:
             print >> sys.stderr, 'Failed to update Support Library, aborting...'
             sys.exit(1)
     if args.platform:
-        if update_sdk_repo('sdk_phone_armv7-sdk_mac', args.buildId) \
-                and update_system('sdk_phone_armv7-sdk_mac', args.buildId):
+        if update_sdk_repo('sdk_mac', args.buildId) \
+                and update_system('sdk_mac', args.buildId):
             components = append(components, 'platform SDK')
         else:
             print >> sys.stderr, 'Failed to update platform SDK, aborting...'
             sys.exit(1)
+    if args.finalize_sdk:
+        if finalize_sdk('sdk_mac', args.buildId, args.finalize_sdk):
+            subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
+            components = append(components, 'finalized SDK %d' % args.finalize_sdk)
+        else:
+            print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
+            sys.exit(1)
 
     # Commit all changes.
-    subprocess.check_call(['git', 'add', current_path])
-    subprocess.check_call(['git', 'add', system_path])
+    subprocess.check_call(['git', 'add', current_path, system_path, api_path, system_api_path])
     msg = "Import %s from build %s\n\n%s" % (components, args.buildId, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
     print 'Remember to test this change before uploading it to Gerrit!'
