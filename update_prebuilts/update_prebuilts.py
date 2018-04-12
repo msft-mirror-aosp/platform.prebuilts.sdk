@@ -25,8 +25,6 @@ temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
 
-rerun_extract_deps = False
-
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
@@ -423,10 +421,10 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
-    # generate a single Android.mk that specifies to use all of the above artifacts
-    makefile = os.path.join(working_dir, 'Android.mk')
+    # generate a single Android.bp that specifies to use all of the above artifacts
+    makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
-        args = ["pom2mk", "-sdk-version", "current"]
+        args = ["pom2bp", "-sdk-version", "current"]
         if include_static_deps:
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
@@ -439,9 +437,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
                      "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
-
-    global rerun_extract_deps
-    rerun_extract_deps = True
 
     # Replace the old directory.
     output_dir = os.path.join(cwd, transformed_dir)
@@ -831,8 +826,8 @@ if not (args.support or args.platform or args.constraint or args.toolkit or args
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit or args.design or args.material or args.androidx) \
-        and which('pom2mk') is None:
-    parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
+        and which('pom2bp') is None:
+    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
     sys.exit(1)
 
 if uncommittedChangesExist():
@@ -913,14 +908,6 @@ try:
         else:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
-    if rerun_extract_deps:
-        depsfile = os.path.join(current_path, 'fix_dependencies.mk')
-        with open(depsfile, 'w') as f:
-            cwd=os.getcwd()
-            subprocess.check_call(
-                './update_prebuilts/extract_deps.py current/*/Android.mk current/extras/*/Android.mk',
-                stdout=f, cwd=cwd, shell=True)
-            subprocess.check_call(['git', 'add', depsfile])
 
 
 
