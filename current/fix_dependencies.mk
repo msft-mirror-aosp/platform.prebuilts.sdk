@@ -22,7 +22,7 @@
 # support_java_deps
 #
 # This file was automatically generated with:
-# ./update_current/extract_deps.py current/androidx/Android.mk current/car/Android.mk current/extras/Android.mk current/optional/Android.mk current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/constraint-layout/Android.mk current/extras/material-design/Android.mk current/extras/material-design-x/Android.mk
+# ./update_prebuilts/extract_deps.py current/androidx/Android.mk current/car/Android.mk current/extras/Android.mk current/optional/Android.mk current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/constraint-layout/Android.mk current/extras/material-design/Android.mk current/extras/material-design-split-x/Android.mk
 ###########################################################################
 
 # Only AAPT2 clients get transitive dependency resolution. This may be removed
@@ -220,6 +220,9 @@ known_support_libs := \
     androidx.room_room-migration \
     androidx.room_room-runtime \
     androidx.room_room-testing \
+    androidx.slice_slice-builders \
+    androidx.slice_slice-core \
+    androidx.slice_slice-view \
     androidx.slidingpanelayout_slidingpanelayout \
     androidx.sqlite_sqlite \
     androidx.sqlite_sqlite-framework \
@@ -694,6 +697,13 @@ ifneq (,$(filter android-support-car,$(requested_support_libs)))
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
         android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-fragment \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview \
         prebuilt-android.car-stubs
 endif
 
@@ -893,12 +903,20 @@ ifneq (,$(filter android-support-design,$(requested_support_libs)))
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-fragment \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-animation,$(requested_support_libs)))
@@ -928,7 +946,9 @@ ifneq (,$(filter android-support-design-animation,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui
 endif
 
 ifneq (,$(filter android-support-design-bottomappbar,$(requested_support_libs)))
@@ -986,12 +1006,20 @@ ifneq (,$(filter android-support-design-bottomappbar,$(requested_support_libs)))
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-fragment \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-bottomnavigation,$(requested_support_libs)))
@@ -1075,12 +1103,19 @@ ifneq (,$(filter android-support-design-bottomsheet,$(requested_support_libs)))
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-button,$(requested_support_libs)))
@@ -1122,12 +1157,19 @@ ifneq (,$(filter android-support-design-button,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-utils \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-canvas,$(requested_support_libs)))
     support_android_deps += \
         android-support-design-canvas
+    support_java_deps += \
+        android-support-annotations-nodeps
 endif
 
 ifneq (,$(filter android-support-design-card,$(requested_support_libs)))
@@ -1169,7 +1211,12 @@ ifneq (,$(filter android-support-design-card,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-utils \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-chip,$(requested_support_libs)))
@@ -1209,18 +1256,27 @@ ifneq (,$(filter android-support-design-chip,$(requested_support_libs)))
         android-support-v7-appcompat-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-circularreveal,$(requested_support_libs)))
     support_android_deps += \
         android-support-design-circularreveal \
         android-support-design-math
+    support_java_deps += \
+        android-support-annotations-nodeps
 endif
 
 ifneq (,$(filter android-support-design-circularreveal-cardview,$(requested_support_libs)))
@@ -1235,9 +1291,35 @@ endif
 
 ifneq (,$(filter android-support-design-circularreveal-coordinatorlayout,$(requested_support_libs)))
     support_android_deps += \
+        android-arch-core-runtime-nodeps \
+        android-arch-lifecycle-livedata-core-nodeps \
+        android-arch-lifecycle-runtime-nodeps \
+        android-arch-lifecycle-viewmodel-nodeps \
+        android-support-asynclayoutinflater-nodeps \
+        android-support-compat-nodeps \
+        android-support-coordinatorlayout-nodeps \
+        android-support-core-ui-nodeps \
+        android-support-core-utils-nodeps \
+        android-support-cursoradapter-nodeps \
+        android-support-customview-nodeps \
         android-support-design-circularreveal \
         android-support-design-circularreveal-coordinatorlayout \
-        android-support-design-math
+        android-support-design-math \
+        android-support-documentfile-nodeps \
+        android-support-drawerlayout-nodeps \
+        android-support-interpolator-nodeps \
+        android-support-loader-nodeps \
+        android-support-localbroadcastmanager-nodeps \
+        android-support-print-nodeps \
+        android-support-slidingpanelayout-nodeps \
+        android-support-swiperefreshlayout-nodeps \
+        android-support-viewpager-nodeps
+    support_java_deps += \
+        android-arch-core-common-nodeps \
+        android-arch-lifecycle-common-nodeps \
+        android-support-annotations-nodeps \
+        android-support-collections-nodeps \
+        android-support-core-ui
 endif
 
 ifneq (,$(filter android-support-design-color,$(requested_support_libs)))
@@ -1291,17 +1373,26 @@ ifneq (,$(filter android-support-design-dialog,$(requested_support_libs)))
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-drawable,$(requested_support_libs)))
     support_android_deps += \
         android-support-design-drawable
+    support_java_deps += \
+        android-support-annotations-nodeps
 endif
 
 ifneq (,$(filter android-support-design-expandable,$(requested_support_libs)))
@@ -1331,7 +1422,8 @@ ifneq (,$(filter android-support-design-expandable,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-core-ui
 endif
 
 ifneq (,$(filter android-support-design-floatingactionbutton,$(requested_support_libs)))
@@ -1367,7 +1459,9 @@ ifneq (,$(filter android-support-design-floatingactionbutton,$(requested_support
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui
 endif
 
 ifneq (,$(filter android-support-design-internal,$(requested_support_libs)))
@@ -1406,7 +1500,10 @@ ifneq (,$(filter android-support-design-internal,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-math,$(requested_support_libs)))
@@ -1445,7 +1542,8 @@ ifneq (,$(filter android-support-design-navigation,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-v7-appcompat
 endif
 
 ifneq (,$(filter android-support-design-resources,$(requested_support_libs)))
@@ -1479,7 +1577,8 @@ ifneq (,$(filter android-support-design-resources,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat
 endif
 
 ifneq (,$(filter android-support-design-ripple,$(requested_support_libs)))
@@ -1499,7 +1598,8 @@ ifneq (,$(filter android-support-design-ripple,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-core-utils
 endif
 
 ifneq (,$(filter android-support-design-shape,$(requested_support_libs)))
@@ -1533,7 +1633,9 @@ ifneq (,$(filter android-support-design-shape,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-v7-appcompat
 endif
 
 ifneq (,$(filter android-support-design-snackbar,$(requested_support_libs)))
@@ -1568,7 +1670,9 @@ ifneq (,$(filter android-support-design-stateful,$(requested_support_libs)))
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui
 endif
 
 ifneq (,$(filter android-support-design-tabs,$(requested_support_libs)))
@@ -1693,12 +1797,20 @@ ifneq (,$(filter android-support-design-theme,$(requested_support_libs)))
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-fragment \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-transformation,$(requested_support_libs)))
@@ -1755,12 +1867,20 @@ ifneq (,$(filter android-support-design-transformation,$(requested_support_libs)
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-fragment \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-design-typography,$(requested_support_libs)))
@@ -1850,12 +1970,20 @@ ifneq (,$(filter android-support-design-widget,$(requested_support_libs)))
         android-support-v7-cardview-nodeps \
         android-support-v7-recyclerview-nodeps \
         android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps
+        android-support-viewpager-nodeps \
+        flexbox
     support_java_deps += \
         android-arch-core-common-nodeps \
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
-        android-support-collections-nodeps
+        android-support-collections-nodeps \
+        android-support-compat \
+        android-support-core-ui \
+        android-support-core-utils \
+        android-support-fragment \
+        android-support-transition \
+        android-support-v7-appcompat \
+        android-support-v7-recyclerview
 endif
 
 ifneq (,$(filter android-support-documentfile,$(requested_support_libs)))
@@ -2692,39 +2820,10 @@ endif
 
 ifneq (,$(filter androidx.car_car,$(requested_support_libs)))
     support_android_deps += \
-        android-arch-core-runtime-nodeps \
-        android-arch-lifecycle-livedata-core-nodeps \
-        android-arch-lifecycle-runtime-nodeps \
-        android-arch-lifecycle-viewmodel-nodeps \
-        android-support-animatedvectordrawable-nodeps \
-        android-support-asynclayoutinflater-nodeps \
-        android-support-compat-nodeps \
-        android-support-coordinatorlayout-nodeps \
-        android-support-core-ui-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-cursoradapter-nodeps \
-        android-support-customview-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-drawerlayout-nodeps \
-        android-support-fragment-nodeps \
-        android-support-interpolator-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-media-compat-nodeps \
-        android-support-print-nodeps \
-        android-support-slidingpanelayout-nodeps \
-        android-support-swiperefreshlayout-nodeps \
-        android-support-v4-nodeps \
-        android-support-v7-appcompat-nodeps \
-        android-support-v7-cardview-nodeps \
-        android-support-v7-gridlayout-nodeps \
-        android-support-v7-recyclerview-nodeps \
-        android-support-vectordrawable-nodeps \
-        android-support-viewpager-nodeps \
         androidx.appcompat_appcompat \
         androidx.arch.core_core-runtime \
         androidx.asynclayoutinflater_asynclayoutinflater \
-        androidx.car_car-nodeps \
+        androidx.car_car \
         androidx.cardview_cardview \
         androidx.coordinatorlayout_coordinatorlayout \
         androidx.core_core \
@@ -2758,14 +2857,18 @@ ifneq (,$(filter androidx.car_car,$(requested_support_libs)))
         androidx.documentfile_documentfile \
         androidx.drawerlayout_drawerlayout \
         androidx.fragment_fragment \
+        androidx.gridlayout_gridlayout \
         androidx.interpolator_interpolator \
         androidx.legacy_legacy-support-core-ui \
         androidx.legacy_legacy-support-core-utils \
+        androidx.legacy_legacy-support-v4 \
         androidx.lifecycle_lifecycle-livedata-core \
         androidx.lifecycle_lifecycle-runtime \
         androidx.lifecycle_lifecycle-viewmodel \
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.media_media \
+        androidx.palette_palette \
         androidx.print_print \
         androidx.recyclerview_recyclerview \
         androidx.slidingpanelayout_slidingpanelayout \
@@ -2775,14 +2878,9 @@ ifneq (,$(filter androidx.car_car,$(requested_support_libs)))
         androidx.vectordrawable_vectordrawable-animated \
         androidx.viewpager_viewpager
     support_java_deps += \
-        android-arch-core-common-nodeps \
-        android-arch-lifecycle-common-nodeps \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps \
         androidx.annotation_annotation \
         androidx.arch.core_core-common \
         androidx.collection_collection \
-        androidx.design_design-widget \
         androidx.lifecycle_lifecycle-common
 endif
 
@@ -4111,6 +4209,7 @@ ifneq (,$(filter androidx.leanback_leanback,$(requested_support_libs)))
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.media_media \
+        androidx.palette_palette \
         androidx.print_print \
         androidx.recyclerview_recyclerview \
         androidx.slidingpanelayout_slidingpanelayout \
@@ -4147,6 +4246,7 @@ ifneq (,$(filter androidx.leanback_leanback-preference,$(requested_support_libs)
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.media_media \
+        androidx.palette_palette \
         androidx.preference_preference \
         androidx.print_print \
         androidx.recyclerview_recyclerview \
@@ -4268,6 +4368,7 @@ ifneq (,$(filter androidx.legacy_legacy-support-v13,$(requested_support_libs)))
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.media_media \
+        androidx.palette_palette \
         androidx.print_print \
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
@@ -4300,6 +4401,7 @@ ifneq (,$(filter androidx.legacy_legacy-support-v4,$(requested_support_libs)))
         androidx.loader_loader \
         androidx.localbroadcastmanager_localbroadcastmanager \
         androidx.media_media \
+        androidx.palette_palette \
         androidx.print_print \
         androidx.slidingpanelayout_slidingpanelayout \
         androidx.swiperefreshlayout_swiperefreshlayout \
@@ -4417,9 +4519,18 @@ endif
 
 ifneq (,$(filter androidx.media_media,$(requested_support_libs)))
     support_android_deps += \
+        androidx.arch.core_core-runtime \
         androidx.core_core \
+        androidx.documentfile_documentfile \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
         androidx.lifecycle_lifecycle-runtime \
-        androidx.media_media
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.media_media \
+        androidx.palette_palette \
+        androidx.print_print
     support_java_deps += \
         androidx.annotation_annotation \
         androidx.arch.core_core-common \
@@ -4709,6 +4820,112 @@ ifneq (,$(filter androidx.room_room-testing,$(requested_support_libs)))
         gson \
         junit \
         kotlin-stdlib
+endif
+
+ifneq (,$(filter androidx.slice_slice-builders,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slice_slice-builders \
+        androidx.slice_slice-core \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.slice_slice-core,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.slice_slice-core \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
+endif
+
+ifneq (,$(filter androidx.slice_slice-view,$(requested_support_libs)))
+    support_android_deps += \
+        androidx.appcompat_appcompat \
+        androidx.arch.core_core-runtime \
+        androidx.asynclayoutinflater_asynclayoutinflater \
+        androidx.coordinatorlayout_coordinatorlayout \
+        androidx.core_core \
+        androidx.cursoradapter_cursoradapter \
+        androidx.customview_customview \
+        androidx.documentfile_documentfile \
+        androidx.drawerlayout_drawerlayout \
+        androidx.fragment_fragment \
+        androidx.interpolator_interpolator \
+        androidx.legacy_legacy-support-core-ui \
+        androidx.legacy_legacy-support-core-utils \
+        androidx.lifecycle_lifecycle-livedata-core \
+        androidx.lifecycle_lifecycle-runtime \
+        androidx.lifecycle_lifecycle-viewmodel \
+        androidx.loader_loader \
+        androidx.localbroadcastmanager_localbroadcastmanager \
+        androidx.print_print \
+        androidx.recyclerview_recyclerview \
+        androidx.slice_slice-builders \
+        androidx.slice_slice-core \
+        androidx.slice_slice-view \
+        androidx.slidingpanelayout_slidingpanelayout \
+        androidx.swiperefreshlayout_swiperefreshlayout \
+        androidx.vectordrawable_vectordrawable \
+        androidx.vectordrawable_vectordrawable-animated \
+        androidx.viewpager_viewpager
+    support_java_deps += \
+        androidx.annotation_annotation \
+        androidx.arch.core_core-common \
+        androidx.collection_collection \
+        androidx.lifecycle_lifecycle-common
 endif
 
 ifneq (,$(filter androidx.slidingpanelayout_slidingpanelayout,$(requested_support_libs)))
