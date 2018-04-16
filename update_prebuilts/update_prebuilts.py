@@ -836,7 +836,7 @@ if not (args.support or args.platform or args.constraint or args.toolkit or args
                 or args.finalize_sdk):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.support or args.constraint or args.toolkit or args.design or args.material) \
+if (args.support or args.constraint or args.toolkit or args.design or args.material or args.androidx) \
         and which('pom2mk') is None:
     parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
     sys.exit(1)
