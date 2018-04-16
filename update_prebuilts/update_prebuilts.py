@@ -687,9 +687,10 @@ def update_system(target, build_id):
 
 def finalize_sdk(target, build_id, sdk_version):
     target_finalize_dir = "%d" % sdk_version
+    target_finalize_system_dir = "system_%d" % sdk_version
 
     artifact_to_path = {
-      'android_system.jar': path(target_finalize_dir, 'android_system.jar'),
+      'android_system.jar': path(target_finalize_system_dir, 'android.jar'),
       'public_api.txt': path(api_path, "%d.txt" % sdk_version),
       'system-api.txt': path(system_api_path, "%d.txt" % sdk_version),
     }
@@ -700,7 +701,12 @@ def finalize_sdk(target, build_id, sdk_version):
             return False
         mv(artifact_path, target_path)
 
-    return fetch_framework_artifacts(target, build_id, target_finalize_dir, is_current_sdk = False)
+    if not fetch_framework_artifacts(target, build_id, target_finalize_dir, is_current_sdk = False):
+      return False
+
+    copyfile(path(target_finalize_dir, 'framework.aidl'),
+             path(target_finalize_system_dir, 'framework.aidl'))
+    return True
 
 
 def update_buildtools(target, arch, build_id):
@@ -885,8 +891,9 @@ try:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.finalize_sdk:
-        if finalize_sdk('sdk_phone_armv7-sdk_mac', getBuildId(args), args.finalize_sdk):
-            subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
+        n = args.finalize_sdk
+        if finalize_sdk('sdk_phone_armv7-sdk_mac', getBuildId(args), n):
+            subprocess.check_call(['git', 'add', "%d" % n, 'system_%d' % n])
             components = append(components, 'finalized SDK %d' % args.finalize_sdk)
         else:
             print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
