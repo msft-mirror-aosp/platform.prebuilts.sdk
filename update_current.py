@@ -13,6 +13,7 @@ current_path = 'current'
 system_path = 'system_current'
 api_path = 'api'
 system_api_path = 'system-api'
+framework_sdk_target = 'sdk_mac'
 support_dir = os.path.join(current_path, 'support')
 extras_dir = os.path.join(current_path, 'extras')
 
@@ -205,6 +206,15 @@ def fetch_artifact(target, build_id, artifact_path):
     return artifact_path
 
 
+def fetch_artifacts(target, build_id, artifact_dict):
+    for artifact, target_path in artifact_dict.items():
+        artifact_path = fetch_artifact(target, build_id, artifact)
+        if not artifact_path:
+            return False
+        mv(artifact_path, target_path)
+    return True
+
+
 def fetch_and_extract(target, build_id, file):
     artifact_path = fetch_artifact(target, build_id, file)
     if not artifact_path:
@@ -243,17 +253,33 @@ def update_constraint(target, build_id):
     return True
 
 
-def extract_to(zip_file, paths, filename, parent_path):
-    zip_path = filter(lambda path: filename in path, paths)[0]
+def extract_to(zip_file, filename, parent_path):
+    zip_path = filter(lambda path: filename in path, zip_file.namelist())[0]
     src_path = zip_file.extract(zip_path)
     dst_path = path(parent_path, filename)
     mv(src_path, dst_path)
 
 
-def fetch_framework_artifacts(target, build_id, target_path, is_current_sdk):
-    platform = 'darwin' if 'mac' in target else 'linux'
-    artifact_path = fetch_artifact(
-        target, build_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id))
+# This is a dict from an sdk level to an "artifact dict". The artifact dict
+# maps from artifact name to the respective package it stubs.
+# TODO(hansson): standardize the artifact names and remove this dict.
+sdk_artifacts_dict = {
+    'core': {
+        'core.current.stubs.jar': 'android.jar',
+    },
+    'public': {
+        'org.apache.http.legacy.jar': 'org.apache.http.legacy.jar',
+    },
+    'system': {
+        'android_system.jar': 'android.jar',
+    }
+}
+
+
+# TODO(hansson): Remove this method once the tools support the new structure.
+def update_framework_current_legacy(build_id):
+    sdk_artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id
+    artifact_path = fetch_artifact(framework_sdk_target, build_id, sdk_artifact)
     if not artifact_path:
         return False
 
@@ -263,50 +289,55 @@ def fetch_framework_artifacts(target, build_id, target_path, is_current_sdk):
         filenames = ['android.jar', 'uiautomator.jar',  'framework.aidl']
 
         for filename in filenames:
-            extract_to(zipFile, paths, filename, target_path)
+            extract_to(zipFile, filename, current_path)
 
-        if is_current_sdk:
-            # There's no system version of framework.aidl, so use the public one.
-            extract_to(zipFile, paths, 'framework.aidl', system_path)
+        # There's no system version of framework.aidl, so use the public one.
+        extract_to(zipFile, 'framework.aidl', system_path)
 
-            # We don't keep historical artifacts for these.
-            artifact_path = fetch_artifact(target, build_id, 'core.current.stubs.jar')
+    artifact_dict = {
+        'core.current.stubs.jar': path(current_path, 'core.jar'),
+        'android_system.jar':  path(system_path, 'android.jar'),
+    }
+    return fetch_artifacts(framework_sdk_target, build_id, artifact_dict)
+
+
+def update_framework(build_id, sdk_dir):
+    for api_level in ['core', 'public', 'system']:
+        target_dir = path(sdk_dir, api_level)
+        artifact_to_filename = sdk_artifacts_dict[api_level]
+        artifact_to_path = {artifact: path(target_dir, filename)
+                            for (artifact, filename) in artifact_to_filename.items()}
+
+        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+            return False
+
+        if api_level == 'public':
+            # Fetch a few artifacts from the public sdk.
+            artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id
+            artifact_path = fetch_artifact(framework_sdk_target, build_id, artifact)
             if not artifact_path:
                 return False
-            mv(artifact_path, path(current_path, 'core.jar'))
+
+            with zipfile.ZipFile(artifact_path) as zipFile:
+                for filename in ['android.jar', 'framework.aidl', 'uiautomator.jar']:
+                    extract_to(zipFile, filename, target_dir)
 
     return True
 
 
-def update_sdk_repo(target, build_id):
-    return fetch_framework_artifacts(target, build_id, current_path, is_current_sdk = True)
+def finalize_sdk(build_id, sdk_version):
+    target_finalize_dir = '%d' % sdk_version
 
-
-def update_system(target, build_id):
-    artifact_path = fetch_artifact(target, build_id, 'android_system.jar')
-    if not artifact_path:
-        return False
-
-    mv(artifact_path, path(system_path, 'android.jar'))
-    return True
-
-
-def finalize_sdk(target, build_id, sdk_version):
-    target_finalize_dir = "%d" % sdk_version
-
-    artifact_to_path = {
-      'android_system.jar': path(target_finalize_dir, 'android_system.jar'),
-      'public_api.txt': path(api_path, "%d.txt" % sdk_version),
-      'system-api.txt': path(system_api_path, "%d.txt" % sdk_version),
+    extra_finalize_artifacts = {
+      'public_api.txt': path(target_finalize_dir, 'public/api/android.txt'),
+      'system-api.txt': path(target_finalize_dir, 'system/api/android.txt'),
     }
+    return fetch_artifacts(framework_sdk_target, build_id, extra_finalize_artifacts) \
+            and update_framework(build_id, target_finalize_dir)
 
-    for artifact, target_path in artifact_to_path.items():
-        artifact_path = fetch_artifact(target, build_id, artifact)
-        if not artifact_path:
-            return False
-        mv(artifact_path, target_path)
 
-    return fetch_framework_artifacts(target, build_id, target_finalize_dir, is_current_sdk = False)
+def update_framework_current(build_id):
+    return update_framework(build_id, current_path)
 
 
 def append(text, more_text):
@@ -364,14 +395,13 @@ try:
             print >> sys.stderr, 'Failed to update Support Library, aborting...'
             sys.exit(1)
     if args.platform:
-        if update_sdk_repo('sdk_mac', args.buildId) \
-                and update_system('sdk_mac', args.buildId):
+        if update_framework_current_legacy(args.buildId) and update_framework_current(args.buildId):
             components = append(components, 'platform SDK')
         else:
             print >> sys.stderr, 'Failed to update platform SDK, aborting...'
             sys.exit(1)
     if args.finalize_sdk:
-        if finalize_sdk('sdk_mac', args.buildId, args.finalize_sdk):
+        if finalize_sdk(args.buildId, args.finalize_sdk):
             subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
             components = append(components, 'finalized SDK %d' % args.finalize_sdk)
         else:
