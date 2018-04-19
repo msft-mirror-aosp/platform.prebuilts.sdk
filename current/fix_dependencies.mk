@@ -22,7 +22,7 @@
 # support_java_deps
 #
 # This file was automatically generated with:
-# ./update_prebuilts/extract_deps.py current/androidx/Android.mk current/car/Android.mk current/extras/Android.mk current/optional/Android.mk current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/constraint-layout/Android.mk current/extras/material-design/Android.mk current/extras/material-design-split-x/Android.mk
+# ./update_prebuilts/extract_deps.py current/androidx/Android.mk current/car/Android.mk current/extras/Android.mk current/optional/Android.mk current/support/Android.mk current/extras/app-toolkit/Android.mk current/extras/constraint-layout/Android.mk current/extras/constraint-layout-x/Android.mk current/extras/material-design/Android.mk current/extras/material-design-split-x/Android.mk
 ###########################################################################
 
 # Only AAPT2 clients get transitive dependency resolution. This may be removed
@@ -133,6 +133,8 @@ known_support_libs := \
     android-support-viewpager \
     android-support-wear \
     android-support-webkit \
+    androidx-constraintlayout_constraintlayout \
+    androidx-constraintlayout_constraintlayout-solver \
     androidx.annotation_annotation \
     androidx.appcompat_appcompat \
     androidx.arch.core_core-common \
@@ -2722,6 +2724,18 @@ ifneq (,$(filter android-support-webkit,$(requested_support_libs)))
         android-arch-lifecycle-common-nodeps \
         android-support-annotations-nodeps \
         android-support-collections-nodeps
+endif
+
+ifneq (,$(filter androidx-constraintlayout_constraintlayout,$(requested_support_libs)))
+    support_android_deps += \
+        androidx-constraintlayout_constraintlayout
+    support_java_deps += \
+        androidx-constraintlayout_constraintlayout-solver
+endif
+
+ifneq (,$(filter androidx-constraintlayout_constraintlayout-solver,$(requested_support_libs)))
+    support_java_deps += \
+        androidx-constraintlayout_constraintlayout-solver
 endif
 
 ifneq (,$(filter androidx.annotation_annotation,$(requested_support_libs)))
