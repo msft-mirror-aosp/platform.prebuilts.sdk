@@ -14,6 +14,7 @@ current_path = 'current'
 system_path = 'system_current'
 api_path = 'api'
 system_api_path = 'system-api'
+framework_sdk_target = 'sdk_phone_armv7-sdk_mac'
 support_dir = os.path.join(current_path, 'support')
 androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
@@ -444,7 +445,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
 # moves <artifact_info> (of type MavenLibraryInfo) into the appropriate part of <working_dir> , and possibly unpacks any necessary included files
 def transform_maven_lib(working_dir, artifact_info, extract_res):
     # Move library into working dir
-    new_dir = os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir))
+    new_dir = os.path.normpath(os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
     mv(artifact_info.dir, new_dir)
 
     for dirpath, dirs, files in os.walk(new_dir):
@@ -511,6 +512,15 @@ def fetch_artifact(target, build_id, artifact_path):
         print_e('Please make sure you are authenticated for build server access!')
         return None
     return artifact_path
+
+
+def fetch_artifacts(target, build_id, artifact_dict):
+    for artifact, target_path in artifact_dict.items():
+        artifact_path = fetch_artifact(target, build_id.url_id, artifact)
+        if not artifact_path:
+            return False
+        mv(artifact_path, target_path)
+    return True
 
 
 def extract_artifact(artifact_path):
@@ -604,6 +614,13 @@ def update_constraint(target, build_id):
     return transform_maven_repos([layout_dir, solver_dir],
                                 os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
 
+def update_constraint_x(local_file):
+    repo_dir = extract_artifact(local_file)
+    if not repo_dir:
+        print_e('Failed to extract Constraint Layout X')
+        return False
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'constraint-layout-x'), extract_res=False)
+
 
 def update_design(file):
     design_dir = extract_artifact(file)
@@ -627,17 +644,37 @@ def update_material(file):
                                  os.path.join(extras_dir, 'material-design-x'), extract_res=False)
 
 
-def extract_to(zip_file, paths, filename, parent_path):
-    zip_path = next(filter(lambda path: filename in path, paths))
+def extract_to(zip_file, filename, parent_path):
+    zip_path = next(filter(lambda path: filename in path, zip_file.namelist()))
     src_path = zip_file.extract(zip_path)
     dst_path = path(parent_path, filename)
     mv(src_path, dst_path)
 
 
-def fetch_framework_artifacts(target, build_id, target_path, is_current_sdk):
-    platform = 'darwin' if 'mac' in target else 'linux'
-    artifact_path = fetch_artifact(
-        target, build_id.url_id, 'sdk-repo-%s-platforms-%s.zip' % (platform, build_id.fs_id))
+# This is a dict from an sdk level to an "artifact dict". The artifact dict
+# maps from artifact name to the respective package it stubs.
+# TODO(hansson): standardize the artifact names and remove this dict.
+sdk_artifacts_dict = {
+    'core': {
+        'core.current.stubs.jar': 'android.jar',
+    },
+    'public': {
+        'android.test.base.stubs.jar': 'android.test.base.jar',
+        'android.test.runner.stubs.jar': 'android.test.runner.jar',
+        'android.test.mock.stubs.jar': 'android.test.mock.jar',
+        'org.apache.http.legacy.jar': 'org.apache.http.legacy.jar',
+    },
+    'system': {
+        'android_system.jar': 'android.jar',
+        'android.test.mock.stubs_system.jar': 'android.test.mock.jar',
+    }
+}
+
+
+# TODO(hansson): Remove this method once the tools support the new structure.
+def update_framework_current_legacy(build_id):
+    sdk_artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id.fs_id
+    artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, sdk_artifact)
     if not artifact_path:
         return False
 
@@ -649,64 +686,56 @@ def fetch_framework_artifacts(target, build_id, target_path, is_current_sdk):
             'optional/android.test.runner.jar']
 
         for filename in filenames:
-            extract_to(zipFile, paths, filename, target_path)
+            extract_to(zipFile, filename, current_path)
 
-        if is_current_sdk:
-            # There's no system version of framework.aidl, so use the public one.
-            extract_to(zipFile, paths, 'framework.aidl', system_path)
+        # There's no system version of framework.aidl, so use the public one.
+        extract_to(zipFile, 'framework.aidl', system_path)
 
-            # We don't keep historical artifacts for these.
-            artifact_path = fetch_artifact(target, build_id.fs_id, 'core.current.stubs.jar')
+    artifact_dict = {
+        'core.current.stubs.jar': path(current_path, 'core.jar'),
+        'android_system.jar':  path(system_path, 'android.jar'),
+        'android.test.mock.stubs_system.jar': path(system_path, 'optional/android.test.mock.jar'),
+    }
+    return fetch_artifacts(framework_sdk_target, build_id, artifact_dict)
+
+
+def update_framework(build_id, sdk_dir):
+    for api_level in ['core', 'public', 'system']:
+        target_dir = path(sdk_dir, api_level)
+        artifact_to_filename = sdk_artifacts_dict[api_level]
+        artifact_to_path = {artifact: path(target_dir, filename)
+                            for (artifact, filename) in artifact_to_filename.items()}
+
+        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+            return False
+
+        if api_level == 'public':
+            # Fetch a few artifacts from the public sdk.
+            artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id.fs_id
+            artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, artifact)
             if not artifact_path:
                 return False
-            mv(artifact_path, path(current_path, 'core.jar'))
+
+            with zipfile.ZipFile(artifact_path) as zipFile:
+                for filename in ['android.jar', 'framework.aidl', 'uiautomator.jar']:
+                    extract_to(zipFile, filename, target_dir)
 
     return True
 
 
-def update_sdk_repo(target, build_id):
-    return fetch_framework_artifacts(target, build_id, current_path, is_current_sdk = True)
+def finalize_sdk(build_id, sdk_version):
+    target_finalize_dir = '%d' % sdk_version
 
-
-def update_system(target, build_id):
-    artifact_path = fetch_artifact(target, build_id.url_id, 'android_system.jar')
-    if not artifact_path:
-        return False
-
-    mv(artifact_path, path(system_path, 'android.jar'))
-
-    artifact_path = fetch_artifact(target, build_id.url_id, 'android.test.mock.stubs_system.jar')
-    if not artifact_path:
-        return False
-
-    mv(artifact_path, path(system_path, 'optional/android.test.mock.jar'))
-
-    return True
-
-
-
-def finalize_sdk(target, build_id, sdk_version):
-    target_finalize_dir = "%d" % sdk_version
-    target_finalize_system_dir = "system_%d" % sdk_version
-
-    artifact_to_path = {
-      'android_system.jar': path(target_finalize_system_dir, 'android.jar'),
-      'public_api.txt': path(api_path, "%d.txt" % sdk_version),
-      'system-api.txt': path(system_api_path, "%d.txt" % sdk_version),
+    extra_finalize_artifacts = {
+      'public_api.txt': path(target_finalize_dir, 'public/api/android.txt'),
+      'system-api.txt': path(target_finalize_dir, 'system/api/android.txt'),
     }
+    return fetch_artifacts(framework_sdk_target, build_id, extra_finalize_artifacts) \
+            and update_framework(build_id, target_finalize_dir)
 
-    for artifact, target_path in artifact_to_path.items():
-        artifact_path = fetch_artifact(target, build_id.url_id, artifact)
-        if not artifact_path:
-            return False
-        mv(artifact_path, target_path)
 
-    if not fetch_framework_artifacts(target, build_id, target_finalize_dir, is_current_sdk = False):
-      return False
-
-    copyfile(path(target_finalize_dir, 'framework.aidl'),
-             path(target_finalize_system_dir, 'framework.aidl'))
-    return True
+def update_framework_current(build_id):
+    return update_framework(build_id, current_path)
 
 
 def update_buildtools(target, arch, build_id):
@@ -803,6 +832,9 @@ parser.add_argument(
     '-c', '--constraint', action="store_true",
     help='If specified, updates only Constraint Layout')
 parser.add_argument(
+    '--constraint_x', action="store_true",
+    help='If specified, updates Constraint Layout X')
+parser.add_argument(
     '-s', '--support', action="store_true",
     help='If specified, updates only the Support Library')
 parser.add_argument(
@@ -833,10 +865,10 @@ if not args.source:
     sys.exit(1)
 if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
                 or args.design or args.jetifier or args.androidx or args.material \
-                or args.finalize_sdk):
+                or args.finalize_sdk or args.constraint_x):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.support or args.constraint or args.toolkit or args.design or args.material or args.androidx) \
+if (args.support or args.constraint or args.constraint_x or args.toolkit or args.design or args.material or args.androidx) \
         and which('pom2mk') is None:
     parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
     sys.exit(1)
@@ -855,8 +887,14 @@ try:
     if args.constraint:
         if update_constraint('studio', getBuildId(args)):
             components = append(components, 'Constraint Layout')
-            print_e('Failed to update Constraint Layout, aborting...')
         else:
+            print_e('Failed to update Constraint Layout, aborting...')
+            sys.exit(1)
+    if args.constraint_x:
+        if update_constraint_x(getFile(args)):
+            components = append(components, 'Constraint Layout X')
+        else:
+            print_e('Failed to update Constraint Layout X, aborting...')
             sys.exit(1)
     if args.support:
         if update_support('support_library', getBuildId(args), getFile(args)):
@@ -884,16 +922,15 @@ try:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
     if args.platform:
-        if update_sdk_repo('sdk_phone_armv7-sdk_mac', getBuildId(args)) \
-                and update_system('sdk_phone_armv7-sdk_mac', getBuildId(args)):
+        build_id = getBuildId(args)
+        if update_framework_current_legacy(build_id) and update_framework_current(build_id):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.finalize_sdk:
-        n = args.finalize_sdk
-        if finalize_sdk('sdk_phone_armv7-sdk_mac', getBuildId(args), n):
-            subprocess.check_call(['git', 'add', "%d" % n, 'system_%d' % n])
+        if finalize_sdk(getBuildId(args), args.finalize_sdk):
+            subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
             components = append(components, 'finalized SDK %d' % args.finalize_sdk)
         else:
             print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
@@ -945,7 +982,7 @@ finally:
         with open(os.devnull, 'w') as bitbucket:
             subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
             subprocess.check_call(
-                ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!'], stdout=bitbucket)
+                ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!', '--allow-empty'], stdout=bitbucket)
             subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
     except subprocess.CalledProcessError:
         print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
