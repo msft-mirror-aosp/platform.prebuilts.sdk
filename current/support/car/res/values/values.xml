@@ -86,11 +86,13 @@
     <color name="car_scrollbar_thumb_dark">#7f0b0f12</color>
     <color name="car_scrollbar_thumb_inverse">@color/car_scrollbar_thumb_light</color>
     <color name="car_scrollbar_thumb_light">#99ffffff</color>
-    <color name="car_seekbar_track_background">@color/car_seekbar_track_background_dark</color>
+    <color name="car_seekbar_track_background">@color/car_seekbar_track_background_light</color>
     <color name="car_seekbar_track_background_dark">@color/car_grey_700</color>
-    <color name="car_seekbar_track_background_inverse">@color/car_seekbar_track_background_light
-    </color>
     <color name="car_seekbar_track_background_light">@color/car_grey_400</color>
+    <color name="car_seekbar_track_secondary_progress">
+        @color/car_seekbar_track_secondary_progress_dark</color>
+    <color name="car_seekbar_track_secondary_progress_dark">@color/car_grey_700</color>
+    <color name="car_seekbar_track_secondary_progress_light">@color/car_grey_400</color>
     <color name="car_teal_200">#ff80cbc4</color>
     <color name="car_teal_700">#ff00796b</color>
     <color name="car_tint">@color/car_tint_dark</color>
@@ -534,6 +536,7 @@
     </style>
     <style name="Theme.Car.Dark.NoActionBar" parent="Theme.Car.NoActionBar">
         <item name="android:alertDialogTheme">@style/Theme.Car.Dark.Dialog.Alert</item>
+        <item name="android:seekBarStyle">@style/Widget.Car.SeekBar.Light</item>
         <item name="alertDialogTheme">@style/Theme.Car.Dark.Dialog.Alert</item>
         <item name="carDialogTheme">@style/Theme.Car.Dark.Dialog</item>
         <item name="pagedListViewStyle">@style/Widget.Car.Light.List.LightDivider</item>
@@ -603,6 +606,7 @@
         <item name="android:editTextStyle">@style/Widget.Car.EditText</item>
         <item name="android:editTextColor">@color/car_body1</item>
         <item name="android:colorControlNormal">@color/car_body2</item>
+        <item name="android:seekBarStyle">@style/Widget.Car.SeekBar</item>
         <item name="carDialogTheme">@style/Theme.Car.Dialog</item>
         <item name="pagedListViewStyle">@style/Widget.Car.List</item>
         <item name="listItemBackgroundColor">@color/car_card</item>
@@ -723,6 +727,14 @@
     <style name="Widget.Car.SeekBar" parent="Widget.AppCompat.SeekBar">
         <item name="android:progressDrawable">@drawable/car_seekbar_track</item>
         <item name="android:thumb">@drawable/car_seekbar_thumb</item>
+    </style>
+    <style name="Widget.Car.SeekBar.Dark">
+        <item name="android:progressDrawable">@drawable/car_seekbar_track_light</item>
+        <item name="android:thumb">@drawable/car_seekbar_thumb_dark</item>
+    </style>
+    <style name="Widget.Car.SeekBar.Light">
+        <item name="android:progressDrawable">@drawable/car_seekbar_track_dark</item>
+        <item name="android:thumb">@drawable/car_seekbar_thumb_light</item>
     </style>
     <style name="Widget.Car.Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="titleTextAppearance">@style/TextAppearance.Car.Title.Light</item>
