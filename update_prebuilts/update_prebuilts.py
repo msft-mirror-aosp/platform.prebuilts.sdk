@@ -431,6 +431,11 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
+        # these depend on GSON which is not in AOSP
+        args.extend(["-exclude=androidx.room_room-migration",
+                     "-exclude=androidx.room_room-testing",
+                     "-exclude=android-arch-room-migration",
+                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
