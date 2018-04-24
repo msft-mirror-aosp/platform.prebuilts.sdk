@@ -408,7 +408,7 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=False):
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
@@ -469,17 +469,17 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
     artifact_file = os.path.join(new_dir, artifact_info.file)
 
-    if extract_res:
-        target_dir = os.path.join(working_dir, make_dir_name)
-        if not os.path.exists(target_dir):
-            os.makedirs(target_dir)
+    if maven_lib_type == "aar":
+        if extract_res:
+            target_dir = os.path.join(working_dir, make_dir_name)
+            if not os.path.exists(target_dir):
+                os.makedirs(target_dir)
 
-        if maven_lib_type == "aar":
             process_aar(artifact_file, target_dir)
 
-            with zipfile.ZipFile(artifact_file) as zip:
-                manifests_dir = os.path.join(working_dir, "manifests")
-                zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
+        with zipfile.ZipFile(artifact_file) as zip:
+            manifests_dir = os.path.join(working_dir, "manifests")
+            zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
 
     print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
@@ -556,7 +556,7 @@ def update_support(target, build_id, local_file):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], support_dir, extract_res=True, include_static_deps=True)
+    return transform_maven_repos([repo_dir], support_dir, extract_res=True)
 
 
 def update_androidx(target, target_toolkit, build_id, local_file):
@@ -603,7 +603,7 @@ def update_toolkit(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True, include_static_deps=True)
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True)
 
 
 def update_constraint(target, build_id):
