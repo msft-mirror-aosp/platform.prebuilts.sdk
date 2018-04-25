@@ -428,7 +428,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args = ["pom2mk", "-sdk-version", "current"]
         if include_static_deps:
             args.append("-static-deps")
-        rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
+        rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["."])
