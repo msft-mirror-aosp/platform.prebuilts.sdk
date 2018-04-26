@@ -661,31 +661,6 @@ sdk_artifacts_dict = {
 }
 
 
-# TODO(hansson): Remove this method once the tools support the new structure.
-def update_framework_current_legacy(build_id):
-    sdk_artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id.fs_id
-    artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, sdk_artifact)
-    if not artifact_path:
-        return False
-
-    with zipfile.ZipFile(artifact_path) as zipFile:
-        paths = zipFile.namelist()
-
-        filenames = ['android.jar', 'uiautomator.jar',  'framework.aidl']
-
-        for filename in filenames:
-            extract_to(zipFile, filename, current_path)
-
-        # There's no system version of framework.aidl, so use the public one.
-        extract_to(zipFile, 'framework.aidl', system_path)
-
-    artifact_dict = {
-        'core.current.stubs.jar': path(current_path, 'core.jar'),
-        'android_system.jar':  path(system_path, 'android.jar'),
-    }
-    return fetch_artifacts(framework_sdk_target, build_id, artifact_dict)
-
-
 def update_framework(build_id, sdk_dir):
     for api_level in ['core', 'public', 'system']:
         target_dir = path(sdk_dir, api_level)
@@ -900,8 +875,7 @@ try:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
     if args.platform:
-        build_id = getBuildId(args)
-        if update_framework_current_legacy(build_id) and update_framework_current(build_id):
+        if update_framework_current(getBuildId(args)):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
