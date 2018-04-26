@@ -46,8 +46,9 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     # Set up prebuilts for optional libraries. Need to specify them explicitly
     # as the target name does not match the JAR name.
     prebuilts += \
-        android.test.base.stubs:optional/android.test.base.jar \
-        android.test.runner.stubs:optional/android.test.runner.jar
+        android.test.base.stubs:public/android.test.base.jar \
+        android.test.runner.stubs:public/android.test.runner.jar \
+        org.apache.http.legacy:public/org.apache.http.legacy.jar
 
     $(foreach p,$(prebuilts),\
         $(call define-prebuilt,$(p)))
