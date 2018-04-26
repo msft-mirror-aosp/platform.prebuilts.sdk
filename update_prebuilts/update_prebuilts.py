@@ -877,18 +877,21 @@ try:
         else:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
-    if args.platform:
+    if args.platform or args.finalize_sdk:
         if update_framework_current(getBuildId(args)):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.finalize_sdk:
-        if finalize_sdk(getBuildId(args), args.finalize_sdk):
-            subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
-            components = append(components, 'finalized SDK %d' % args.finalize_sdk)
+        n = args.finalize_sdk
+        if finalize_sdk(getBuildId(args), n):
+            # We commit the finalized dir separately from the current sdk update.
+            msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
+            subprocess.check_call(['git', 'add', '%d' % n])
+            subprocess.check_call(['git', 'commit', '-m', msg])
         else:
-            print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
+            print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
     if args.design:
         if update_design(getFile(args)):
@@ -921,14 +924,16 @@ try:
 
 
 
-    subprocess.check_call(['git', 'add', current_path, system_path, api_path, system_api_path,
-                           buildtools_dir])
+    subprocess.check_call(['git', 'add', current_path, system_path, buildtools_dir])
     if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
+    if args.finalize_sdk:
+        print('NOTE: Created two commits:')
+        subprocess.check_call(['git', 'log', '-2', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
