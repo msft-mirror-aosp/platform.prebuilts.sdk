@@ -887,7 +887,7 @@ try:
         else:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
-    if args.platform:
+    if args.platform  or args.finalize_sdk:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', getBuildId(args)) \
                 and update_system('sdk_phone_armv7-sdk_mac', getBuildId(args)):
             components = append(components, 'platform SDK')
@@ -897,10 +897,13 @@ try:
     if args.finalize_sdk:
         n = args.finalize_sdk
         if finalize_sdk('sdk_phone_armv7-sdk_mac', getBuildId(args), n):
-            subprocess.check_call(['git', 'add', "%d" % n, 'system_%d' % n])
-            components = append(components, 'finalized SDK %d' % args.finalize_sdk)
+            # We commit the finalized dir separately from the current sdk update.
+            msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
+            dirs = ["%d" % n, 'system_%d' % n, api_path, system_api_path]
+            subprocess.check_call(['git', 'add'] + dirs)
+            subprocess.check_call(['git', 'commit', '-m', msg])
         else:
-            print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
+            print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
     if args.design:
         if update_design(getFile(args)):
@@ -933,14 +936,16 @@ try:
 
 
 
-    subprocess.check_call(['git', 'add', current_path, system_path, api_path, system_api_path,
-                           buildtools_dir])
+    subprocess.check_call(['git', 'add', current_path, system_path, buildtools_dir])
     if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
+    if args.finalize_sdk:
+        print('NOTE: Created two commits:')
+        subprocess.check_call(['git', 'log', '-2', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
