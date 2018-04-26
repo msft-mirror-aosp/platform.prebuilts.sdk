@@ -426,6 +426,7 @@ ifneq (,$(filter android-arch-room-migration,$(requested_support_libs)))
         android-arch-room-common-nodeps \
         android-arch-room-migration-nodeps \
         android-support-annotations-nodeps \
+        gson \
         kotlin-stdlib
 endif
 
@@ -477,6 +478,7 @@ ifneq (,$(filter android-arch-room-testing,$(requested_support_libs)))
         android-support-annotations-nodeps \
         android-support-collections-nodeps \
         android-support-core-utils \
+        gson \
         junit \
         kotlin-stdlib
 endif
