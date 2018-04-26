@@ -35,6 +35,8 @@ multidex_jars := \
 prebuilts := $(foreach jar,$(support_jars) $(multidex_jars),\
     $(basename $(notdir $(jar))):$(jar))
 
+prebuilts += org.apache.http.legacy:public/org.apache.http.legacy.jar
+
 define define-prebuilt
     $(eval tw := $(subst :, ,$(strip $(1)))) \
     $(eval include $(CLEAR_VARS)) \
