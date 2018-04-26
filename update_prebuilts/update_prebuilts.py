@@ -429,7 +429,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args = ["pom2mk", "-sdk-version", "current"]
         if include_static_deps:
             args.append("-static-deps")
-        rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
+        rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["."])
@@ -808,17 +808,8 @@ parser.add_argument(
     '--constraint_x', action="store_true",
     help='If specified, updates Constraint Layout X')
 parser.add_argument(
-    '-s', '--support', action="store_true",
-    help='If specified, updates only the Support Library')
-parser.add_argument(
-    '-x', '--androidx', action="store_true",
-    help='If specified, updates only AndroidX')
-parser.add_argument(
     '-j', '--jetifier', action="store_true",
     help='If specified, updates only Jetifier')
-parser.add_argument(
-    '-t', '--toolkit', action="store_true",
-    help='If specified, updates only the App Toolkit')
 parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
@@ -829,9 +820,16 @@ parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 parser.add_argument(
+    '--stx', action="store_true",
+    help='If specified, updates Support Library, Androidx, and App Toolkit (that is, all artifacts built from frameworks/support)')
+parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
+if args.stx:
+    args.support = args.toolkit = args.androidx = True
+else:
+    args.support = args.toolkit = args.androidx = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
