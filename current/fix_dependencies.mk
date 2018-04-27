@@ -44,9 +44,7 @@ known_support_libs := \
     android-arch-persistence-db \
     android-arch-persistence-db-framework \
     android-arch-room-common \
-    android-arch-room-migration \
     android-arch-room-runtime \
-    android-arch-room-testing \
     android-slices-builders \
     android-slices-core \
     android-slices-view \
@@ -219,9 +217,7 @@ known_support_libs := \
     androidx.recyclerview_recyclerview \
     androidx.recyclerview_recyclerview-selection \
     androidx.room_room-common \
-    androidx.room_room-migration \
     androidx.room_room-runtime \
-    androidx.room_room-testing \
     androidx.slice_slice-builders \
     androidx.slice_slice-core \
     androidx.slice_slice-view \
@@ -421,14 +417,6 @@ ifneq (,$(filter android-arch-room-common,$(requested_support_libs)))
         android-support-annotations-nodeps
 endif
 
-ifneq (,$(filter android-arch-room-migration,$(requested_support_libs)))
-    support_java_deps += \
-        android-arch-room-common-nodeps \
-        android-arch-room-migration-nodeps \
-        android-support-annotations-nodeps \
-        kotlin-stdlib
-endif
-
 ifneq (,$(filter android-arch-room-runtime,$(requested_support_libs)))
     support_android_deps += \
         android-arch-core-runtime-nodeps \
@@ -451,34 +439,6 @@ ifneq (,$(filter android-arch-room-runtime,$(requested_support_libs)))
         android-support-annotations-nodeps \
         android-support-collections-nodeps \
         android-support-core-utils
-endif
-
-ifneq (,$(filter android-arch-room-testing,$(requested_support_libs)))
-    support_android_deps += \
-        android-arch-core-runtime-nodeps \
-        android-arch-lifecycle-livedata-core-nodeps \
-        android-arch-lifecycle-runtime-nodeps \
-        android-arch-lifecycle-viewmodel-nodeps \
-        android-arch-persistence-db-framework-nodeps \
-        android-arch-persistence-db-nodeps \
-        android-arch-room-runtime-nodeps \
-        android-arch-room-testing-nodeps \
-        android-support-compat-nodeps \
-        android-support-core-utils-nodeps \
-        android-support-documentfile-nodeps \
-        android-support-loader-nodeps \
-        android-support-localbroadcastmanager-nodeps \
-        android-support-print-nodeps
-    support_java_deps += \
-        android-arch-core-common-nodeps \
-        android-arch-lifecycle-common-nodeps \
-        android-arch-room-common-nodeps \
-        android-arch-room-migration-nodeps \
-        android-support-annotations-nodeps \
-        android-support-collections-nodeps \
-        android-support-core-utils \
-        junit \
-        kotlin-stdlib
 endif
 
 ifneq (,$(filter android-slices-builders,$(requested_support_libs)))
@@ -4784,15 +4744,6 @@ ifneq (,$(filter androidx.room_room-common,$(requested_support_libs)))
         androidx.room_room-common
 endif
 
-ifneq (,$(filter androidx.room_room-migration,$(requested_support_libs)))
-    support_java_deps += \
-        androidx.annotation_annotation \
-        androidx.room_room-common \
-        androidx.room_room-migration \
-        gson \
-        kotlin-stdlib
-endif
-
 ifneq (,$(filter androidx.room_room-runtime,$(requested_support_libs)))
     support_android_deps += \
         androidx.arch.core_core-runtime \
@@ -4814,34 +4765,6 @@ ifneq (,$(filter androidx.room_room-runtime,$(requested_support_libs)))
         androidx.collection_collection \
         androidx.lifecycle_lifecycle-common \
         androidx.room_room-common
-endif
-
-ifneq (,$(filter androidx.room_room-testing,$(requested_support_libs)))
-    support_android_deps += \
-        androidx.arch.core_core-runtime \
-        androidx.core_core \
-        androidx.documentfile_documentfile \
-        androidx.legacy_legacy-support-core-utils \
-        androidx.lifecycle_lifecycle-livedata-core \
-        androidx.lifecycle_lifecycle-runtime \
-        androidx.lifecycle_lifecycle-viewmodel \
-        androidx.loader_loader \
-        androidx.localbroadcastmanager_localbroadcastmanager \
-        androidx.print_print \
-        androidx.room_room-runtime \
-        androidx.room_room-testing \
-        androidx.sqlite_sqlite \
-        androidx.sqlite_sqlite-framework
-    support_java_deps += \
-        androidx.annotation_annotation \
-        androidx.arch.core_core-common \
-        androidx.collection_collection \
-        androidx.lifecycle_lifecycle-common \
-        androidx.room_room-common \
-        androidx.room_room-migration \
-        gson \
-        junit \
-        kotlin-stdlib
 endif
 
 ifneq (,$(filter androidx.slice_slice-builders,$(requested_support_libs)))
