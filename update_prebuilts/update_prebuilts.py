@@ -428,9 +428,14 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args = ["pom2mk", "-sdk-version", "current"]
         if include_static_deps:
             args.append("-static-deps")
-        rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
+        rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
+        # these depend on GSON which is not in AOSP
+        args.extend(["-exclude=androidx.room_room-migration",
+                     "-exclude=androidx.room_room-testing",
+                     "-exclude=android-arch-room-migration",
+                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
@@ -804,17 +809,8 @@ parser.add_argument(
     '-c', '--constraint', action="store_true",
     help='If specified, updates only Constraint Layout')
 parser.add_argument(
-    '-s', '--support', action="store_true",
-    help='If specified, updates only the Support Library')
-parser.add_argument(
-    '-x', '--androidx', action="store_true",
-    help='If specified, updates only AndroidX')
-parser.add_argument(
     '-j', '--jetifier', action="store_true",
     help='If specified, updates only Jetifier')
-parser.add_argument(
-    '-t', '--toolkit', action="store_true",
-    help='If specified, updates only the App Toolkit')
 parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
@@ -825,9 +821,16 @@ parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 parser.add_argument(
+    '--stx', action="store_true",
+    help='If specified, updates Support Library, Androidx, and App Toolkit (that is, all artifacts built from frameworks/support)')
+parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
+if args.stx:
+    args.support = args.toolkit = args.androidx = True
+else:
+    args.support = args.toolkit = args.androidx = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
@@ -884,7 +887,7 @@ try:
         else:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
-    if args.platform:
+    if args.platform  or args.finalize_sdk:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', getBuildId(args)) \
                 and update_system('sdk_phone_armv7-sdk_mac', getBuildId(args)):
             components = append(components, 'platform SDK')
@@ -894,10 +897,13 @@ try:
     if args.finalize_sdk:
         n = args.finalize_sdk
         if finalize_sdk('sdk_phone_armv7-sdk_mac', getBuildId(args), n):
-            subprocess.check_call(['git', 'add', "%d" % n, 'system_%d' % n])
-            components = append(components, 'finalized SDK %d' % args.finalize_sdk)
+            # We commit the finalized dir separately from the current sdk update.
+            msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
+            dirs = ["%d" % n, 'system_%d' % n, api_path, system_api_path]
+            subprocess.check_call(['git', 'add'] + dirs)
+            subprocess.check_call(['git', 'commit', '-m', msg])
         else:
-            print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
+            print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
     if args.design:
         if update_design(getFile(args)):
@@ -930,14 +936,16 @@ try:
 
 
 
-    subprocess.check_call(['git', 'add', current_path, system_path, api_path, system_api_path,
-                           buildtools_dir])
+    subprocess.check_call(['git', 'add', current_path, system_path, buildtools_dir])
     if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
+    if args.finalize_sdk:
+        print('NOTE: Created two commits:')
+        subprocess.check_call(['git', 'log', '-2', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
