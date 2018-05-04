@@ -11,7 +11,6 @@ from distutils.version import LooseVersion
 from functools import reduce
 
 current_path = 'current'
-system_path = 'system_current'
 api_path = 'api'
 system_api_path = 'system-api'
 framework_sdk_target = 'sdk_mac'
@@ -911,7 +910,7 @@ try:
 
 
 
-    subprocess.check_call(['git', 'add', current_path, system_path, buildtools_dir])
+    subprocess.check_call(['git', 'add', current_path, buildtools_dir])
     if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
