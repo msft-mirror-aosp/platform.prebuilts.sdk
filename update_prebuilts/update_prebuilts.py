@@ -24,8 +24,6 @@ temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
 
-rerun_extract_deps = False
-
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
@@ -407,7 +405,7 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=False):
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
@@ -422,10 +420,10 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
-    # generate a single Android.mk that specifies to use all of the above artifacts
-    makefile = os.path.join(working_dir, 'Android.mk')
+    # generate a single Android.bp that specifies to use all of the above artifacts
+    makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
-        args = ["pom2mk", "-sdk-version", "current"]
+        args = ["pom2bp", "-sdk-version", "current"]
         if include_static_deps:
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
@@ -438,9 +436,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
                      "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
-
-    global rerun_extract_deps
-    rerun_extract_deps = True
 
     # Replace the old directory.
     output_dir = os.path.join(cwd, transformed_dir)
@@ -468,17 +463,17 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
     artifact_file = os.path.join(new_dir, artifact_info.file)
 
-    if extract_res:
-        target_dir = os.path.join(working_dir, make_dir_name)
-        if not os.path.exists(target_dir):
-            os.makedirs(target_dir)
+    if maven_lib_type == "aar":
+        if extract_res:
+            target_dir = os.path.join(working_dir, make_dir_name)
+            if not os.path.exists(target_dir):
+                os.makedirs(target_dir)
 
-        if maven_lib_type == "aar":
             process_aar(artifact_file, target_dir)
 
-            with zipfile.ZipFile(artifact_file) as zip:
-                manifests_dir = os.path.join(working_dir, "manifests")
-                zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
+        with zipfile.ZipFile(artifact_file) as zip:
+            manifests_dir = os.path.join(working_dir, "manifests")
+            zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
 
     print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
@@ -546,7 +541,7 @@ def update_support(target, build_id, local_file):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], support_dir, extract_res=True, include_static_deps=True)
+    return transform_maven_repos([repo_dir], support_dir, extract_res=True)
 
 
 def update_androidx(target, target_toolkit, build_id, local_file):
@@ -593,7 +588,7 @@ def update_toolkit(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True, include_static_deps=True)
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True)
 
 
 def update_constraint(target, build_id):
@@ -841,8 +836,8 @@ if not (args.support or args.platform or args.constraint or args.toolkit or args
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.toolkit or args.design or args.material or args.androidx) \
-        and which('pom2mk') is None:
-    parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
+        and which('pom2bp') is None:
+    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
     sys.exit(1)
 
 if uncommittedChangesExist():
@@ -925,14 +920,6 @@ try:
         else:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
-    if rerun_extract_deps:
-        depsfile = os.path.join(current_path, 'fix_dependencies.mk')
-        with open(depsfile, 'w') as f:
-            cwd=os.getcwd()
-            subprocess.check_call(
-                './update_prebuilts/extract_deps.py current/*/Android.mk current/extras/*/Android.mk',
-                stdout=f, cwd=cwd, shell=True)
-            subprocess.check_call(['git', 'add', depsfile])
 
 
 
