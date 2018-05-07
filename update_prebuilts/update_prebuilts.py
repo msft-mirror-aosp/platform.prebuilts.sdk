@@ -544,7 +544,7 @@ def update_support(target, build_id, local_file):
     return transform_maven_repos([repo_dir], support_dir, extract_res=True)
 
 
-def update_androidx(target, target_toolkit, build_id, local_file):
+def update_androidx(target, build_id, local_file):
     if build_id:
         repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
@@ -554,17 +554,8 @@ def update_androidx(target, target_toolkit, build_id, local_file):
         print_e('Failed to extract AndroidX repository')
         return False
 
-    if build_id:
-        repo_file2 = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
-        repo_dir2 = fetch_and_extract(target_toolkit, build_id.url_id, repo_file2, None)
-    else:
-        repo_dir2 = fetch_and_extract(target_toolkit, None, None, local_file)
-    if not repo_dir2:
-        print_e('Failed to extract AndroidX app-toolkit repository')
-        return False
-
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir, repo_dir2], androidx_dir, extract_res=False)
+    return transform_maven_repos([repo_dir], androidx_dir, extract_res=False)
 
 
 def update_jetifier(target, build_id):
@@ -578,17 +569,6 @@ def update_jetifier(target, build_id):
     mv(os.path.join(repo_dir, 'jetifier-standalone'), jetifier_dir)
     os.chmod(os.path.join(jetifier_dir, 'bin', 'jetifier-standalone'), 0o755)
     return True
-
-
-def update_toolkit(target, build_id):
-    repo_dir = fetch_and_extract(target, build_id.url_id, \
-                                 'top-of-tree-m2repository-dejetified-%s.zip' % build_id.fs_id)
-    if not repo_dir:
-        print_e('Failed to extract App Toolkit repository')
-        return False
-
-    # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True)
 
 
 def update_constraint(target, build_id):
@@ -827,25 +807,25 @@ parser.add_argument(
     help='If specified, updates only the Build Tools')
 parser.add_argument(
     '--stx', action="store_true",
-    help='If specified, updates Support Library, Androidx, and App Toolkit (that is, all artifacts built from frameworks/support)')
+    help='If specified, updates Support Library and Androidx (that is, all artifacts built from frameworks/support)')
 parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
 if args.stx:
-    args.support = args.toolkit = args.androidx = True
+    args.support = args.androidx = True
 else:
-    args.support = args.toolkit = args.androidx = False
+    args.support = args.androidx = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
-if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
+if not (args.support or args.platform or args.constraint or args.buildtools \
                 or args.design or args.jetifier or args.androidx or args.material \
                 or args.finalize_sdk or args.constraint_x):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.support or args.constraint or args.constraint_x or args.toolkit or args.design or args.material or args.androidx) \
+if (args.support or args.constraint or args.constraint_x or args.design or args.material or args.androidx) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
     sys.exit(1)
@@ -880,7 +860,7 @@ try:
             print_e('Failed to update Support Library, aborting...')
             sys.exit(1)
     if args.androidx:
-        if update_androidx('support_library', 'support_library_app_toolkit', \
+        if update_androidx('support_library', \
                            getBuildId(args), getFile(args)):
             components = append(components, 'AndroidX')
         else:
@@ -891,12 +871,6 @@ try:
             components = append(components, 'Jetifier')
         else:
             print_e('Failed to update Jetifier, aborting...')
-            sys.exit(1)
-    if args.toolkit:
-        if update_toolkit('support_library_app_toolkit', getBuildId(args)):
-            components = append(components, 'App Toolkit')
-        else:
-            print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
     if args.platform  or args.finalize_sdk:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', getBuildId(args)) \
