@@ -22,17 +22,12 @@ LOCAL_PATH := $(call my-dir)
 # For apps (unbundled) build, replace the typical
 # make target artifacts with prebuilts.
 ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
-# Set up prebuilts for the core Support Library artifacts.
-support_jars := \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/support -name "*.jar"))
-
 # Set up prebuilts for Multidex library artifacts.
 multidex_jars := \
   $(patsubst $(LOCAL_PATH)/%,%,\
     $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
 
-prebuilts := $(foreach jar,$(support_jars) $(multidex_jars),\
+prebuilts := $(foreach jar,$(multidex_jars),\
     $(basename $(notdir $(jar))):$(jar))
 
 prebuilts += org.apache.http.legacy:public/org.apache.http.legacy.jar
@@ -53,8 +48,5 @@ $(foreach p,$(prebuilts),\
     $(call define-prebuilt,$(p)))
 
 prebuilts :=
-
-# Generates the v4, v13, and appcompat libraries with static dependencies.
-include $(call all-makefiles-under,$(LOCAL_PATH))
 
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
