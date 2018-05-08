@@ -255,7 +255,7 @@ maven_to_make = {
     'com.android.support:design-shape': ['android-support-design-shape', 'design-shape'],
 
     # Androidx Material Design Components
-    'com.google.android.material:material': ['androidx.material_material', 'com/google/android/material/material'],
+    'com.google.android.material:material': ['com.google.android.material_material', 'com/google/android/material/material'],
 
     # Intermediate-AndroidX Material Design Components
     'com.android.temp.support:design': ['androidx.design_design', 'com/android/temp/support/design/design'],
