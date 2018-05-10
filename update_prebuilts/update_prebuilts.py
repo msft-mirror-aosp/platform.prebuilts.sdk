@@ -11,7 +11,6 @@ from distutils.version import LooseVersion
 from functools import reduce
 
 current_path = 'current'
-system_path = 'system_current'
 api_path = 'api'
 system_api_path = 'system-api'
 framework_sdk_target = 'sdk_phone_armv7-sdk_mac'
@@ -24,8 +23,6 @@ jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
-
-rerun_extract_deps = False
 
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
@@ -258,7 +255,7 @@ maven_to_make = {
     'com.android.support:design-shape': ['android-support-design-shape', 'design-shape'],
 
     # Androidx Material Design Components
-    'com.google.android.material:material': ['androidx.material_material', 'com/google/android/material/material'],
+    'com.google.android.material:material': ['com.google.android.material_material', 'com/google/android/material/material'],
 
     # Intermediate-AndroidX Material Design Components
     'com.android.temp.support:design': ['androidx.design_design', 'com/android/temp/support/design/design'],
@@ -408,7 +405,7 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=False):
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
     cwd = os.getcwd()
 
     # Use a temporary working directory.
@@ -423,20 +420,22 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
-    # generate a single Android.mk that specifies to use all of the above artifacts
-    makefile = os.path.join(working_dir, 'Android.mk')
+    # generate a single Android.bp that specifies to use all of the above artifacts
+    makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
-        args = ["pom2mk", "-sdk-version", "current"]
+        args = ["pom2bp", "-sdk-version", "current"]
         if include_static_deps:
             args.append("-static-deps")
-        rewriteNames = [name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name]
+        rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name][0] for name in rewriteNames])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
+        # these depend on GSON which is not in AOSP
+        args.extend(["-exclude=androidx.room_room-migration",
+                     "-exclude=androidx.room_room-testing",
+                     "-exclude=android-arch-room-migration",
+                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
-
-    global rerun_extract_deps
-    rerun_extract_deps = True
 
     # Replace the old directory.
     output_dir = os.path.join(cwd, transformed_dir)
@@ -464,17 +463,17 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
     artifact_file = os.path.join(new_dir, artifact_info.file)
 
-    if extract_res:
-        target_dir = os.path.join(working_dir, make_dir_name)
-        if not os.path.exists(target_dir):
-            os.makedirs(target_dir)
+    if maven_lib_type == "aar":
+        if extract_res:
+            target_dir = os.path.join(working_dir, make_dir_name)
+            if not os.path.exists(target_dir):
+                os.makedirs(target_dir)
 
-        if maven_lib_type == "aar":
             process_aar(artifact_file, target_dir)
 
-            with zipfile.ZipFile(artifact_file) as zip:
-                manifests_dir = os.path.join(working_dir, "manifests")
-                zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
+        with zipfile.ZipFile(artifact_file) as zip:
+            manifests_dir = os.path.join(working_dir, "manifests")
+            zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
 
     print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
@@ -551,7 +550,7 @@ def update_support(target, build_id, local_file):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], support_dir, extract_res=True, include_static_deps=True)
+    return transform_maven_repos([repo_dir], support_dir, extract_res=True)
 
 
 def update_androidx(target, target_toolkit, build_id, local_file):
@@ -598,7 +597,7 @@ def update_toolkit(target, build_id):
         return False
 
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True, include_static_deps=True)
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True)
 
 
 def update_constraint(target, build_id):
@@ -670,34 +669,6 @@ sdk_artifacts_dict = {
         'android.test.mock.stubs_system.jar': 'android.test.mock.jar',
     }
 }
-
-
-# TODO(hansson): Remove this method once the tools support the new structure.
-def update_framework_current_legacy(build_id):
-    sdk_artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id.fs_id
-    artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, sdk_artifact)
-    if not artifact_path:
-        return False
-
-    with zipfile.ZipFile(artifact_path) as zipFile:
-        paths = zipFile.namelist()
-
-        filenames = ['android.jar', 'uiautomator.jar',  'framework.aidl',
-            'optional/android.test.base.jar', 'optional/android.test.mock.jar',
-            'optional/android.test.runner.jar']
-
-        for filename in filenames:
-            extract_to(zipFile, filename, current_path)
-
-        # There's no system version of framework.aidl, so use the public one.
-        extract_to(zipFile, 'framework.aidl', system_path)
-
-    artifact_dict = {
-        'core.current.stubs.jar': path(current_path, 'core.jar'),
-        'android_system.jar':  path(system_path, 'android.jar'),
-        'android.test.mock.stubs_system.jar': path(system_path, 'optional/android.test.mock.jar'),
-    }
-    return fetch_artifacts(framework_sdk_target, build_id, artifact_dict)
 
 
 def update_framework(build_id, sdk_dir):
@@ -836,17 +807,8 @@ parser.add_argument(
     '--constraint_x', action="store_true",
     help='If specified, updates Constraint Layout X')
 parser.add_argument(
-    '-s', '--support', action="store_true",
-    help='If specified, updates only the Support Library')
-parser.add_argument(
-    '-x', '--androidx', action="store_true",
-    help='If specified, updates only AndroidX')
-parser.add_argument(
     '-j', '--jetifier', action="store_true",
     help='If specified, updates only Jetifier')
-parser.add_argument(
-    '-t', '--toolkit', action="store_true",
-    help='If specified, updates only the App Toolkit')
 parser.add_argument(
     '-p', '--platform', action="store_true",
     help='If specified, updates only the Android Platform')
@@ -857,9 +819,16 @@ parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 parser.add_argument(
+    '--stx', action="store_true",
+    help='If specified, updates Support Library, Androidx, and App Toolkit (that is, all artifacts built from frameworks/support)')
+parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
+if args.stx:
+    args.support = args.toolkit = args.androidx = True
+else:
+    args.support = args.toolkit = args.androidx = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
@@ -870,8 +839,8 @@ if not (args.support or args.platform or args.constraint or args.toolkit or args
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.support or args.constraint or args.constraint_x or args.toolkit or args.design or args.material or args.androidx) \
-        and which('pom2mk') is None:
-    parser.error("Cannot find pom2mk in path; please run lunch to set up build environment")
+        and which('pom2bp') is None:
+    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
     sys.exit(1)
 
 if uncommittedChangesExist():
@@ -922,19 +891,21 @@ try:
         else:
             print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
-    if args.platform:
-        build_id = getBuildId(args)
-        if update_framework_current_legacy(build_id) and update_framework_current(build_id):
+    if args.platform or args.finalize_sdk:
+        if update_framework_current(getBuildId(args)):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.finalize_sdk:
-        if finalize_sdk(getBuildId(args), args.finalize_sdk):
-            subprocess.check_call(['git', 'add', "%d" % args.finalize_sdk])
-            components = append(components, 'finalized SDK %d' % args.finalize_sdk)
+        n = args.finalize_sdk
+        if finalize_sdk(getBuildId(args), n):
+            # We commit the finalized dir separately from the current sdk update.
+            msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
+            subprocess.check_call(['git', 'add', '%d' % n])
+            subprocess.check_call(['git', 'commit', '-m', msg])
         else:
-            print_e('Failed to finalize SDK %d, aborting...' % args.finalize_sdk)
+            print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
     if args.design:
         if update_design(getFile(args)):
@@ -956,25 +927,19 @@ try:
         else:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
-    if rerun_extract_deps:
-        depsfile = os.path.join(current_path, 'fix_dependencies.mk')
-        with open(depsfile, 'w') as f:
-            cwd=os.getcwd()
-            subprocess.check_call(
-                './update_prebuilts/extract_deps.py current/*/Android.mk current/extras/*/Android.mk',
-                stdout=f, cwd=cwd, shell=True)
-            subprocess.check_call(['git', 'add', depsfile])
 
 
 
-    subprocess.check_call(['git', 'add', current_path, system_path, api_path, system_api_path,
-                           buildtools_dir])
+    subprocess.check_call(['git', 'add', current_path, buildtools_dir])
     if not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
     subprocess.check_call(['git', 'commit', '-m', msg])
+    if args.finalize_sdk:
+        print('NOTE: Created two commits:')
+        subprocess.check_call(['git', 'log', '-2', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
