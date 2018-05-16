@@ -103,7 +103,9 @@ maven_to_make = {
     'android.arch.lifecycle:extensions': ['android-arch-lifecycle-extensions', 'arch-lifecycle/extensions'],
     'android.arch.lifecycle:livedata': ['android-arch-lifecycle-livedata', 'arch-lifecycle/livedata'],
     'android.arch.lifecycle:livedata-core': ['android-arch-lifecycle-livedata-core', 'arch-lifecycle/livedata-core'],
+    'android.arch.lifecycle:process': ['android-arch-lifecycle-process', 'arch-lifecycle/process'],
     'android.arch.lifecycle:runtime': ['android-arch-lifecycle-runtime', 'arch-lifecycle/runtime'],
+    'android.arch.lifecycle:service': ['android-arch-lifecycle-service', 'arch-lifecycle/service'],
     'android.arch.lifecycle:viewmodel': ['android-arch-lifecycle-viewmodel', 'arch-lifecycle/viewmodel'],
     'android.arch.paging:common': ['android-arch-paging-common', 'arch-paging/common'],
     'android.arch.paging:runtime': ['android-arch-paging-runtime', 'arch-paging/runtime'],
@@ -186,7 +188,9 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-extensions': ['androidx.lifecycle_lifecycle-extensions', 'androidx/lifecycle/lifecycle-extensions'],
     'androidx.lifecycle:lifecycle-livedata': ['androidx.lifecycle_lifecycle-livedata', 'androidx/lifecycle/lifecycle-livedata'],
     'androidx.lifecycle:lifecycle-livedata-core': ['androidx.lifecycle_lifecycle-livedata-core', 'androidx/lifecycle/lifecycle-livedata-core'],
+    'androidx.lifecycle:lifecycle-process': ['androidx.lifecycle_lifecycle-process', 'androidx/lifecycle/lifecycle-process'],
     'androidx.lifecycle:lifecycle-runtime': ['androidx.lifecycle_lifecycle-runtime', 'androidx/lifecycle/lifecycle-runtime'],
+    'androidx.lifecycle:lifecycle-service': ['androidx.lifecycle_lifecycle-service', 'androidx/lifecycle/lifecycle-service'],
     'androidx.lifecycle:lifecycle-viewmodel': ['androidx.lifecycle_lifecycle-viewmodel', 'androidx/lifecycle/lifecycle-viewmodel'],
     'androidx.paging:paging-common': ['androidx.paging_paging-common', 'androidx/paging/paging-common'],
     'androidx.paging:paging-runtime': ['androidx.paging_paging-runtime', 'androidx/paging/paging-runtime'],
@@ -445,7 +449,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
 # moves <artifact_info> (of type MavenLibraryInfo) into the appropriate part of <working_dir> , and possibly unpacks any necessary included files
 def transform_maven_lib(working_dir, artifact_info, extract_res):
     # Move library into working dir
-    new_dir = os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir))
+    new_dir = os.path.normpath(os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
     mv(artifact_info.dir, new_dir)
 
     for dirpath, dirs, files in os.walk(new_dir):
@@ -544,7 +548,7 @@ def update_support(target, build_id, local_file):
     return transform_maven_repos([repo_dir], support_dir, extract_res=True)
 
 
-def update_androidx(target, target_toolkit, build_id, local_file):
+def update_androidx(target, build_id, local_file):
     if build_id:
         repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
@@ -554,17 +558,8 @@ def update_androidx(target, target_toolkit, build_id, local_file):
         print_e('Failed to extract AndroidX repository')
         return False
 
-    if build_id:
-        repo_file2 = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
-        repo_dir2 = fetch_and_extract(target_toolkit, build_id.url_id, repo_file2, None)
-    else:
-        repo_dir2 = fetch_and_extract(target_toolkit, None, None, local_file)
-    if not repo_dir2:
-        print_e('Failed to extract AndroidX app-toolkit repository')
-        return False
-
     # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir, repo_dir2], androidx_dir, extract_res=False)
+    return transform_maven_repos([repo_dir], androidx_dir, extract_res=False)
 
 
 def update_jetifier(target, build_id):
@@ -580,17 +575,6 @@ def update_jetifier(target, build_id):
     return True
 
 
-def update_toolkit(target, build_id):
-    repo_dir = fetch_and_extract(target, build_id.url_id, \
-                                 'top-of-tree-m2repository-dejetified-%s.zip' % build_id.fs_id)
-    if not repo_dir:
-        print_e('Failed to extract App Toolkit repository')
-        return False
-
-    # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'app-toolkit'), extract_res=True)
-
-
 def update_constraint(target, build_id):
     layout_dir = fetch_and_extract(target, build_id.url_id,
                                    'com.android.support.constraint-constraint-layout-%s.zip' % build_id.fs_id)
@@ -604,6 +588,13 @@ def update_constraint(target, build_id):
     # the top-level directory without worrying about other child directories.
     return transform_maven_repos([layout_dir, solver_dir],
                                 os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
+
+def update_constraint_x(local_file):
+    repo_dir = extract_artifact(local_file)
+    if not repo_dir:
+        print_e('Failed to extract Constraint Layout X')
+        return False
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'constraint-layout-x'), extract_res=False)
 
 
 def update_design(file):
@@ -804,6 +795,9 @@ parser.add_argument(
     '-c', '--constraint', action="store_true",
     help='If specified, updates only Constraint Layout')
 parser.add_argument(
+    '--constraint_x', action="store_true",
+    help='If specified, updates Constraint Layout X')
+parser.add_argument(
     '-j', '--jetifier', action="store_true",
     help='If specified, updates only Jetifier')
 parser.add_argument(
@@ -817,25 +811,25 @@ parser.add_argument(
     help='If specified, updates only the Build Tools')
 parser.add_argument(
     '--stx', action="store_true",
-    help='If specified, updates Support Library, Androidx, and App Toolkit (that is, all artifacts built from frameworks/support)')
+    help='If specified, updates Support Library and Androidx (that is, all artifacts built from frameworks/support)')
 parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
 if args.stx:
-    args.support = args.toolkit = args.androidx = True
+    args.support = args.androidx = True
 else:
-    args.support = args.toolkit = args.androidx = False
+    args.support = args.androidx = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
-if not (args.support or args.platform or args.constraint or args.toolkit or args.buildtools \
+if not (args.support or args.platform or args.constraint or args.buildtools \
                 or args.design or args.jetifier or args.androidx or args.material \
-                or args.finalize_sdk):
+                or args.finalize_sdk or args.constraint_x):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.support or args.constraint or args.toolkit or args.design or args.material or args.androidx) \
+if (args.support or args.constraint or args.constraint_x or args.design or args.material or args.androidx) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
     sys.exit(1)
@@ -854,8 +848,14 @@ try:
     if args.constraint:
         if update_constraint('studio', getBuildId(args)):
             components = append(components, 'Constraint Layout')
-            print_e('Failed to update Constraint Layout, aborting...')
         else:
+            print_e('Failed to update Constraint Layout, aborting...')
+            sys.exit(1)
+    if args.constraint_x:
+        if update_constraint_x(getFile(args)):
+            components = append(components, 'Constraint Layout X')
+        else:
+            print_e('Failed to update Constraint Layout X, aborting...')
             sys.exit(1)
     if args.support:
         if update_support('support_library', getBuildId(args), getFile(args)):
@@ -864,7 +864,7 @@ try:
             print_e('Failed to update Support Library, aborting...')
             sys.exit(1)
     if args.androidx:
-        if update_androidx('support_library', 'support_library_app_toolkit', \
+        if update_androidx('support_library', \
                            getBuildId(args), getFile(args)):
             components = append(components, 'AndroidX')
         else:
@@ -875,12 +875,6 @@ try:
             components = append(components, 'Jetifier')
         else:
             print_e('Failed to update Jetifier, aborting...')
-            sys.exit(1)
-    if args.toolkit:
-        if update_toolkit('support_library_app_toolkit', getBuildId(args)):
-            components = append(components, 'App Toolkit')
-        else:
-            print_e('Failed to update App Toolkit, aborting...')
             sys.exit(1)
     if args.platform  or args.finalize_sdk:
         if update_sdk_repo('sdk_phone_armv7-sdk_mac', getBuildId(args)) \
@@ -941,7 +935,7 @@ finally:
         with open(os.devnull, 'w') as bitbucket:
             subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
             subprocess.check_call(
-                ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!'], stdout=bitbucket)
+                ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!', '--allow-empty'], stdout=bitbucket)
             subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
     except subprocess.CalledProcessError:
         print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
