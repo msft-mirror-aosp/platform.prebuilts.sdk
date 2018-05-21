@@ -1,0 +1,36 @@
+// Automatically generated with:
+// pom2bp -sdk-version current -static-deps '-rewrite=^com.android.support:support-dynamic-animation$=android-support-dynamic-animation' '-rewrite=^com.android.support:appcompat-v7$=android-support-v7-appcompat' '-rewrite=^com.android.support:palette-v7$=android-support-v7-palette' '-rewrite=^com.android.support:recommendation$=android-support-recommendation' '-rewrite=^com.android.support:support-tv-provider$=android-support-tv-provider' '-rewrite=^com.android.support:collections$=android-support-collections' '-rewrite=^com.android.support:preference-v14$=android-support-v14-preference' '-rewrite=^com.android.support:preference-v7$=android-support-v7-preference' '-rewrite=^com.android.support:preference-leanback-v17$=android-support-v17-preference-leanback' '-rewrite=^com.android.support:support-emoji-appcompat$=android-support-emoji-appcompat' '-rewrite=^com.android.support:support-v13$=android-support-v13' '-rewrite=^com.android.support:support-vector-drawable$=android-support-vectordrawable' '-rewrite=^com.android.support:support-core-utils$=android-support-core-utils' '-rewrite=^com.android.support:wear$=android-support-wear' '-rewrite=^com.android.support.constraint:constraint-layout-solver$=android-support-constraint-layout-solver' '-rewrite=^com.android.support:support-media-compat$=android-support-media-compat' '-rewrite=^com.android.support:gridlayout-v7$=android-support-v7-gridlayout' '-rewrite=^com.android.support:support-v4$=android-support-v4' '-rewrite=^com.android.support:support-emoji$=android-support-emoji' '-rewrite=^com.android.support:leanback-v17$=android-support-v17-leanback' '-rewrite=^com.android.support:animated-vector-drawable$=android-support-animatedvectordrawable' '-rewrite=^com.android.support.constraint:constraint-layout$=android-support-constraint-layout' '-rewrite=^com.android.support:design$=android-support-design' '-rewrite=^com.android.support:customtabs$=android-support-customtabs' '-rewrite=^com.android.support:support-annotations$=android-support-annotations' '-rewrite=^com.android.support:cardview-v7$=android-support-v7-cardview' '-rewrite=^com.android.support:transition$=android-support-transition' '-rewrite=^com.android.support:mediarouter-v7$=android-support-v7-mediarouter' '-rewrite=^com.android.support:support-core-ui$=android-support-core-ui' '-rewrite=^com.android.support:percent$=android-support-percent' '-rewrite=^com.android.support:support-fragment$=android-support-fragment' '-rewrite=^com.android.support:support-emoji-bundled$=android-support-emoji-bundled' '-rewrite=^com.android.support:exifinterface$=android-support-exifinterface' '-rewrite=^com.android.support:recyclerview-v7$=android-support-v7-recyclerview' '-rewrite=^com.android.support:support-compat$=android-support-compat' .
+
+android_library_import {
+    name: "android-support-constraint-layout-nodeps",
+    aars: ["constraintlayout/constraint-layout-1.1.0-beta1.aar"],
+    sdk_version: "current",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "android-support-constraint-layout",
+    sdk_version: "current",
+    manifest: "manifests/android-support-constraint-layout/AndroidManifest.xml",
+    static_libs: [
+        "android-support-constraint-layout-nodeps",
+        "android-support-constraint-layout-solver",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "android-support-constraint-layout-solver-nodeps",
+    jars: ["solver/constraint-layout-solver-1.1.0-beta1.jar"],
+    sdk_version: "current",
+}
+
+java_library_static {
+    name: "android-support-constraint-layout-solver",
+    sdk_version: "current",
+    static_libs: [
+        "android-support-constraint-layout-solver-nodeps",
+    ],
+    java_version: "1.7",
+}

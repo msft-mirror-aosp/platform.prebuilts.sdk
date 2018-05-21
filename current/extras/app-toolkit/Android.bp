@@ -1,0 +1,289 @@
+// Automatically generated with:
+// pom2bp -static-deps -sdk-version current '-rewrite=^android.arch.persistence.room:common$=android-arch-room-common' '-rewrite=^support-emoji$=android-support-emoji' '-rewrite=^gridlayout-v7$=android-support-v7-gridlayout' '-rewrite=^android.arch.lifecycle:livedata$=android-arch-lifecycle-livedata' '-rewrite=^animated-vector-drawable$=android-support-animatedvectordrawable' '-rewrite=^android.arch.persistence.room:testing$=android-arch-room-testing' '-rewrite=^support-annotations$=android-support-annotations' '-rewrite=^slices-core$=android-slices-core' '-rewrite=^wear$=android-support-wear' '-rewrite=^preference-leanback-v17$=android-support-v17-preference-leanback' '-rewrite=^transition$=android-support-transition' '-rewrite=^multidex-instrumentation$=android-support-multidex-instrumentation' '-rewrite=^android.arch.lifecycle:common-java8$=android-arch-lifecycle-common-java8' '-rewrite=^constraint-layout$=android-support-constraint-layout' '-rewrite=^slices-builders$=android-slices-builders' '-rewrite=^constraint-layout-solver$=android-support-constraint-layout-solver' '-rewrite=^appcompat-v7$=android-support-v7-appcompat' '-rewrite=^support-emoji-bundled$=android-support-emoji-bundled' '-rewrite=^mediarouter-v7$=android-support-v7-mediarouter' '-rewrite=^cardview-v7$=android-support-v7-cardview' '-rewrite=^android.arch.persistence.room:migration$=android-arch-room-migration' '-rewrite=^support-emoji-appcompat$=android-support-emoji-appcompat' '-rewrite=^multidex$=android-support-multidex' '-rewrite=^android.arch.lifecycle:viewmodel$=android-arch-lifecycle-viewmodel' '-rewrite=^support-dynamic-animation$=android-support-dynamic-animation' '-rewrite=^slices-view$=android-slices-view' '-rewrite=^support-v13$=android-support-v13' '-rewrite=^support-v4$=android-support-v4' '-rewrite=^recyclerview-v7$=android-support-v7-recyclerview' '-rewrite=^android.arch.persistence.room:runtime$=android-arch-room-runtime' '-rewrite=^percent$=android-support-percent' '-rewrite=^android.arch.core:common$=android-arch-core-common' '-rewrite=^preference-v7$=android-support-v7-preference' '-rewrite=^support-media-compat$=android-support-media-compat' '-rewrite=^support-vector-drawable$=android-support-vectordrawable' '-rewrite=^android.arch.paging:runtime$=android-arch-paging-runtime' '-rewrite=^android.arch.lifecycle:common$=android-arch-lifecycle-common' '-rewrite=^android.arch.lifecycle:runtime$=android-arch-lifecycle-runtime' '-rewrite=^android.arch.paging:common$=android-arch-paging-common' '-rewrite=^android.arch.persistence:db-framework$=android-arch-persistence-db-framework' '-rewrite=^android.arch.core:runtime$=android-arch-core-runtime' '-rewrite=^exifinterface$=android-support-exifinterface' '-rewrite=^android.arch.lifecycle:extensions$=android-arch-lifecycle-extensions' '-rewrite=^support-core-ui$=android-support-core-ui' '-rewrite=^design$=android-support-design' '-rewrite=^preference-v14$=android-support-v14-preference' '-rewrite=^android.arch.persistence:db$=android-arch-persistence-db' '-rewrite=^support-fragment$=android-support-fragment' '-rewrite=^palette-v7$=android-support-v7-palette' '-rewrite=^recommendation$=android-support-recommendation' '-rewrite=^support-core-utils$=android-support-core-utils' '-rewrite=^support-tv-provider$=android-support-tv-provider' '-rewrite=^leanback-v17$=android-support-v17-leanback' '-rewrite=^customtabs$=android-support-customtabs' '-rewrite=^support-compat$=android-support-compat' -exclude=android-arch-room-migration -exclude=android-arch-room-testing .
+
+java_import {
+    name: "android-arch-core-common-nodeps",
+    jars: ["m2repository/android/arch/core/common/1.0.0/common-1.0.0.jar"],
+    sdk_version: "current",
+}
+
+java_library_static {
+    name: "android-arch-core-common",
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-core-common-nodeps",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-core-runtime-nodeps",
+    aars: ["m2repository/android/arch/core/runtime/1.0.0/runtime-1.0.0.aar"],
+    sdk_version: "current",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "android-arch-core-runtime",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-core-runtime/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-core-runtime-nodeps",
+        "android-support-annotations",
+        "android-arch-core-common",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "android-arch-lifecycle-common-java8-nodeps",
+    jars: ["m2repository/android/arch/lifecycle/common-java8/1.1.0-SNAPSHOT/common-java8-1.1.0-20180105.182255-1.jar"],
+    sdk_version: "current",
+}
+
+java_library_static {
+    name: "android-arch-lifecycle-common-java8",
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-lifecycle-common-java8-nodeps",
+        "android-arch-lifecycle-common",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "android-arch-lifecycle-common-nodeps",
+    jars: ["m2repository/android/arch/lifecycle/common/1.0.3/common-1.0.3.jar"],
+    sdk_version: "current",
+}
+
+java_library_static {
+    name: "android-arch-lifecycle-common",
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-lifecycle-common-nodeps",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-lifecycle-extensions-nodeps",
+    aars: ["m2repository/android/arch/lifecycle/extensions/1.1.0-SNAPSHOT/extensions-1.1.0-20180105.182328-1.aar"],
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-lifecycle-runtime",
+        "android-arch-core-runtime",
+        "android-arch-lifecycle-livedata",
+        "android-arch-lifecycle-viewmodel",
+    ],
+}
+
+android_library {
+    name: "android-arch-lifecycle-extensions",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-lifecycle-extensions/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-lifecycle-extensions-nodeps",
+        "android-arch-core-common",
+        "android-support-fragment",
+        "android-arch-lifecycle-common",
+        "android-arch-lifecycle-runtime",
+        "android-arch-core-runtime",
+        "android-arch-lifecycle-livedata",
+        "android-arch-lifecycle-viewmodel",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-lifecycle-livedata-nodeps",
+    aars: ["m2repository/android/arch/lifecycle/livedata/1.1.0-SNAPSHOT/livedata-1.1.0-20180105.182329-1.aar"],
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-core-runtime",
+        "android-arch-lifecycle-runtime",
+    ],
+}
+
+android_library {
+    name: "android-arch-lifecycle-livedata",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-lifecycle-livedata/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-lifecycle-livedata-nodeps",
+        "android-arch-core-common",
+        "android-arch-lifecycle-common",
+        "android-arch-core-runtime",
+        "android-arch-lifecycle-runtime",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-lifecycle-runtime-nodeps",
+    aars: ["m2repository/android/arch/lifecycle/runtime/1.0.3/runtime-1.0.3.aar"],
+    sdk_version: "current",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "android-arch-lifecycle-runtime",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-lifecycle-runtime/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-lifecycle-runtime-nodeps",
+        "android-arch-lifecycle-common",
+        "android-arch-core-common",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-lifecycle-viewmodel-nodeps",
+    aars: ["m2repository/android/arch/lifecycle/viewmodel/1.1.0-SNAPSHOT/viewmodel-1.1.0-20180105.182308-1.aar"],
+    sdk_version: "current",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "android-arch-lifecycle-viewmodel",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-lifecycle-viewmodel/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-lifecycle-viewmodel-nodeps",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "android-arch-paging-common-nodeps",
+    jars: ["m2repository/android/arch/paging/common/1.0.0-alpha4-1/common-1.0.0-alpha4-1.jar"],
+    sdk_version: "current",
+}
+
+java_library_static {
+    name: "android-arch-paging-common",
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-paging-common-nodeps",
+        "android-support-annotations",
+        "android-arch-core-common",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-paging-runtime-nodeps",
+    aars: ["m2repository/android/arch/paging/runtime/1.0.0-alpha4-1/runtime-1.0.0-alpha4-1.aar"],
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-core-runtime",
+        "android-arch-lifecycle-runtime",
+        "android-arch-lifecycle-extensions",
+    ],
+}
+
+android_library {
+    name: "android-arch-paging-runtime",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-paging-runtime/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-paging-runtime-nodeps",
+        "android-arch-paging-common",
+        "android-support-v7-recyclerview",
+        "android-arch-core-runtime",
+        "android-arch-lifecycle-runtime",
+        "android-arch-lifecycle-extensions",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-persistence-db-framework-nodeps",
+    aars: ["m2repository/android/arch/persistence/db-framework/1.0.0/db-framework-1.0.0.aar"],
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-persistence-db",
+    ],
+}
+
+android_library {
+    name: "android-arch-persistence-db-framework",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-persistence-db-framework/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-persistence-db-framework-nodeps",
+        "android-support-annotations",
+        "android-arch-persistence-db",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-persistence-db-nodeps",
+    aars: ["m2repository/android/arch/persistence/db/1.0.0/db-1.0.0.aar"],
+    sdk_version: "current",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "android-arch-persistence-db",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-persistence-db/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-persistence-db-nodeps",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "android-arch-room-common-nodeps",
+    jars: ["m2repository/android/arch/persistence/room/common/1.0.0/common-1.0.0.jar"],
+    sdk_version: "current",
+}
+
+java_library_static {
+    name: "android-arch-room-common",
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-room-common-nodeps",
+        "android-support-annotations",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "android-arch-room-runtime-nodeps",
+    aars: ["m2repository/android/arch/persistence/room/runtime/1.0.0/runtime-1.0.0.aar"],
+    sdk_version: "current",
+    static_libs: [
+        "android-arch-persistence-db-framework",
+        "android-arch-persistence-db",
+        "android-arch-core-runtime",
+    ],
+}
+
+android_library {
+    name: "android-arch-room-runtime",
+    sdk_version: "current",
+    manifest: "manifests/android-arch-room-runtime/AndroidManifest.xml",
+    static_libs: [
+        "android-arch-room-runtime-nodeps",
+        "android-arch-room-common",
+        "android-support-core-utils",
+        "android-arch-persistence-db-framework",
+        "android-arch-persistence-db",
+        "android-arch-core-runtime",
+    ],
+    java_version: "1.7",
+}
