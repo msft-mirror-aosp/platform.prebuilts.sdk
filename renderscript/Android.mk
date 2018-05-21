@@ -60,6 +60,8 @@ LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .jar
 LOCAL_UNINSTALLABLE_MODULE := true
+# 23 as specified at frameworks/rs/support/Android.mk
+LOCAL_SDK_VERSION := 23
 
 include $(BUILD_PREBUILT)
 

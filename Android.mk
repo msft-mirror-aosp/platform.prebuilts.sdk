@@ -14,36 +14,31 @@
 # limitations under the License.
 #
 
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
-# $(1): sdk version
-define declare_sdk_prebuilts
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := sdk_v$(1)
-LOCAL_SRC_FILES := $(1)/android.jar
+# Declares a single sdk module. These targets are referenced by the core build system.
+# $(1): sdk version (e.g. 23, current)
+# $(2): api level (e.g. public, system)
+# $(3): stub jar file path
+define declare-sdk-prebuilt
+include $$(CLEAR_VARS)
+# Format: sdk_<api>_<sdk_version>_<stub_name>
+LOCAL_MODULE := sdk_$(2)_$(1)_$(notdir $(basename $(3)))
+LOCAL_PREBUILT_MODULE_FILE := $(3)
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := sdk_v$(1)$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
+LOCAL_MODULE_SUFFIX := $$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_BUILT_MODULE_STEM := $$(LOCAL_MODULE)$$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$$(PLATFORM_JACK_MIN_SDK_VERSION))
 LOCAL_UNINSTALLABLE_MODULE := true
-include $(BUILD_PREBUILT)
-
-ifneq (,$(wildcard $(LOCAL_PATH)/$(1)/uiautomator.jar))
-include $(CLEAR_VARS)
-LOCAL_MODULE := uiautomator_sdk_v$(1)
-LOCAL_SRC_FILES := $(1)/uiautomator.jar
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := uiautomator_sdk_v$(1)$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MIN_SDK_VERSION := $(if $(call math_is_number,$(strip $(1))),$(1),$(PLATFORM_JACK_MIN_SDK_VERSION))
-LOCAL_UNINSTALLABLE_MODULE := true
-include $(BUILD_PREBUILT)
-endif
-
+# TODO(hansson): change to $(1) after migration is done.
+LOCAL_SDK_VERSION := current
+include $$(BUILD_PREBUILT)
 endef
 
-$(foreach s,$(filter-out test_current,$(TARGET_AVAILABLE_SDK_VERSIONS)),\
-  $(eval $(call declare_sdk_prebuilts,$(s))))
+$(foreach version,$(patsubst $(LOCAL_PATH)/%/public/android.jar,%,$(wildcard $(LOCAL_PATH)/*/public/android.jar)),\
+  $(foreach api_level,core public system,\
+    $(foreach jar_file, $(wildcard $(LOCAL_PATH)/$(version)/$(api_level)/*.jar),\
+      $(eval \
+        $(call declare-sdk-prebuilt,$(version),$(api_level),$(jar_file))))))
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
