@@ -86,6 +86,7 @@ maven_to_make = {
     'com.android.support:slices-core': ['android-slices-core', 'slices-core'],
     'com.android.support:slices-view': ['android-slices-view', 'slices-view'],
     'com.android.support:slices-builders': ['android-slices-builders', 'slices-builders'],
+    'com.android.support:versionedparcelable': ['android-versionedparcelable', 'versionedparcelable'],
 
     # Multidex
     'com.android.support:multidex': ['android-support-multidex', 'multidex/library'],
@@ -120,6 +121,7 @@ maven_to_make = {
     'androidx.slice:slice-builders': ['androidx.slice_slice-builders', 'androidx/slice/slice-builders'],
     'androidx.slice:slice-core': ['androidx.slice_slice-core', 'androidx/slice/slice-core'],
     'androidx.slice:slice-view': ['androidx.slice_slice-view', 'androidx/slice/slice-view'],
+    'androidx.versionedparcelable:versionedparcelable': ['androidx.versionedparcelable_versionedparcelable', 'androidx/versionedparcelable'],
     'androidx.vectordrawable:vectordrawable-animated': ['androidx.vectordrawable_vectordrawable-animated', 'androidx/vectordrawable/vectordrawable-animated'],
     'androidx.annotation:annotation': ['androidx.annotation_annotation', 'androidx/annotation/annotation', 'jar'],
     'androidx.asynclayoutinflater:asynclayoutinflater': ['androidx.asynclayoutinflater_asynclayoutinflater', 'androidx/asynclayoutinflater/asynclayoutinflater'],
