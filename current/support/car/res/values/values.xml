@@ -15,7 +15,7 @@
     <color name="car_body1_light">@color/car_grey_100</color>
     <color name="car_body2">@color/car_body2_dark</color>
     <color name="car_body2_dark">@color/car_grey_650</color>
-    <color name="car_body2_light">@color/car_grey_300</color>
+    <color name="car_body2_light">@color/car_grey_400</color>
     <color name="car_body3">@color/car_body3_dark</color>
     <color name="car_body3_dark">@android:color/black</color>
     <color name="car_body3_light">@android:color/white</color>
@@ -86,10 +86,7 @@
     <color name="car_seekbar_track_background">@color/car_seekbar_track_background_light</color>
     <color name="car_seekbar_track_background_dark">@color/car_grey_700</color>
     <color name="car_seekbar_track_background_light">@color/car_grey_400</color>
-    <color name="car_seekbar_track_secondary_progress">
-        @color/car_seekbar_track_secondary_progress_dark</color>
-    <color name="car_seekbar_track_secondary_progress_dark">@color/car_grey_700</color>
-    <color name="car_seekbar_track_secondary_progress_light">@color/car_grey_400</color>
+    <color name="car_seekbar_track_secondary_progress">@color/car_grey_500</color>
     <color name="car_teal_200">#ff80cbc4</color>
     <color name="car_teal_700">#ff00796b</color>
     <color name="car_tint">@color/car_tint_dark</color>
@@ -279,9 +276,15 @@
                  "auto". -->
             <enum name="auto_inverse" value="1"/>
             <!-- Fixes the colors to be light colored.  -->
-            <enum name="force_night" value="2"/>
+            <enum name="always_light" value="2"/>
             <!-- Fixes the colors to be dark colored.  -->
-            <enum name="force_day" value="3"/>
+            <enum name="always_dark" value="3"/>
+            <!-- Fixes the colors to be light colored.
+                 Deprecated: use "always_light" instead. -->
+            <enum name="force_night" value="4"/>
+            <!-- Fixes the colors to be dark colored.
+                 Deprecated: use "always_dark" instead. -->
+            <enum name="force_day" value="5"/>
         </attr>
     </declare-styleable>
     <dimen name="app_header_height">96dp</dimen>
@@ -628,7 +631,7 @@
         <item name="actionBarSize">@dimen/car_app_bar_height</item>
         <item name="actionButtonStyle">@style/Widget.Car.ActionButton</item>
         <item name="actionMenuTextAppearance">@style/TextAppearance.Car.ActionBar.Menu</item>
-        <item name="actionMenuTextColor">@color/car_accent</item>
+        <item name="actionMenuTextColor">@drawable/car_borderless_button_text_color</item>
         <item name="carDialogTheme">@style/Theme.Car.Dialog</item>
         <item name="colorControlHighlight">@color/car_card_ripple_background</item>
         <item name="listItemBackgroundColor">@color/car_card</item>
