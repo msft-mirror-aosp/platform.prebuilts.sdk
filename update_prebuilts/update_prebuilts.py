@@ -5,14 +5,13 @@
 # visit go/update-prebuilts.
 import os, sys, getopt, zipfile, re
 import argparse
+import glob
 import subprocess
 from shutil import copyfile, rmtree, which
 from distutils.version import LooseVersion
 from functools import reduce
 
 current_path = 'current'
-api_path = 'api'
-system_api_path = 'system-api'
 framework_sdk_target = 'sdk_mac'
 support_dir = os.path.join(current_path, 'support')
 androidx_dir = os.path.join(current_path, 'androidx')
@@ -350,7 +349,12 @@ def mv(src_path, dst_path):
         rm(dst_path)
     if not os.path.exists(os.path.dirname(dst_path)):
         os.makedirs(os.path.dirname(dst_path))
-    os.rename(src_path, dst_path)
+    for f in (glob.glob(src_path)):
+        if '*' in dst_path:
+            dst = os.path.join(os.path.dirname(dst_path), os.path.basename(f))
+        else:
+            dst = dst_path
+        os.rename(f, dst)
 
 
 def detect_artifacts(maven_repo_dirs):
@@ -509,8 +513,12 @@ def process_aar(artifact_file, target_dir):
 
 
 def fetch_artifact(target, build_id, artifact_path):
-    print('Fetching %s from %s...' % (artifact_path, target))
-    fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path]
+    download_to = os.path.join('.', os.path.dirname(artifact_path))
+    print('Fetching %s from %s ...' % (artifact_path, target))
+    if not os.path.exists(download_to):
+        os.makedirs(download_to)
+    fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path,
+                 download_to]
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
@@ -637,7 +645,7 @@ def extract_to(zip_file, filename, parent_path):
     mv(src_path, dst_path)
 
 
-# This is a dict from an sdk level to an "artifact dict". The artifact dict
+# This is a dict from an api scope to an "artifact dict". The artifact dict
 # maps from artifact name to the respective package it stubs.
 # TODO(hansson): standardize the artifact names and remove this dict.
 sdk_artifacts_dict = {
@@ -645,25 +653,29 @@ sdk_artifacts_dict = {
         'core.current.stubs.jar': 'android.jar',
     },
     'public': {
-        'org.apache.http.legacy.jar': 'org.apache.http.legacy.jar',
+        'apistubs/public/*.jar': '*',
     },
     'system': {
         'android_system.jar': 'android.jar',
+        'apistubs/system/*.jar': '*',
+    },
+    'test': {
+        'apistubs/test/*.jar': '*',
     }
 }
 
 
 def update_framework(build_id, sdk_dir):
-    for api_level in ['core', 'public', 'system']:
-        target_dir = path(sdk_dir, api_level)
-        artifact_to_filename = sdk_artifacts_dict[api_level]
+    for api_scope in ['core', 'public', 'system', 'test']:
+        target_dir = path(sdk_dir, api_scope)
+        artifact_to_filename = sdk_artifacts_dict[api_scope]
         artifact_to_path = {artifact: path(target_dir, filename)
                             for (artifact, filename) in artifact_to_filename.items()}
 
         if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
             return False
 
-        if api_level == 'public':
+        if api_scope == 'public':
             # Fetch a few artifacts from the public sdk.
             artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id.fs_id
             artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, artifact)
