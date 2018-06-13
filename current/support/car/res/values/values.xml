@@ -145,10 +145,10 @@
 
         <!-- The background color of the drawer. -->
         <attr format="color" name="drawerBackgroundColor"/>
-        <!-- The color of the header text and arrow in the drawer when it is open. -->
-        <attr format="color" name="drawerOpenHeaderColor"/>
-        <!-- The color of the header text and arrow in the drawer when it is closed. -->
-        <attr format="color" name="drawerClosedHeaderColor"/>
+        <!-- The color of the header text and arrow in the drawer. -->
+        <attr format="color" name="drawerHeaderColor"/>
+        <!-- The ripple color for items in the drawer. -->
+        <attr format="color" name="drawerRippleColor"/>
         <!-- The TextAppearance of each item's title text in the drawer list. -->
         <attr format="reference" name="drawerItemTitleTextAppearance"/>
         <!-- The TextAppearance of each item's body text in the drawer list. -->
@@ -310,6 +310,7 @@
     <dimen name="car_arrow_shaft_length">34dp</dimen>
     <dimen name="car_arrow_size">96dp</dimen>
     <dimen name="car_arrow_thickness">3dp</dimen>
+    <dimen name="car_avatar_icon_size">56dp</dimen>
     <dimen name="car_avatar_size">56dp</dimen>
     <dimen name="car_body1_size">32sp</dimen>
     <dimen name="car_body2_size">26sp</dimen>
@@ -332,7 +333,6 @@
     <dimen name="car_drawer_list_item_icon_end_margin">32dp</dimen>
     <dimen name="car_drawer_list_item_icon_size">64dp</dimen>
     <dimen name="car_drawer_list_item_small_icon_size">56dp</dimen>
-    <dimen name="car_drawer_margin_end">96dp</dimen>
     <dimen name="car_drawer_max_width">720dp</dimen>
     <dimen name="car_drawer_progress_bar_size">48dp</dimen>
     <dimen name="car_fab_icon_size">76dp</dimen>
@@ -414,6 +414,7 @@
     <integer name="speed_bump_lock_out_duration_ms">5933</integer>
     <integer name="speed_bump_translate_y_duration_ms">300</integer>
     <string name="action_bar_expand_collapse_button">Expand/collapse button</string>
+    <string name="alpha_jump_placeholder_text" translatable="false">A</string>
     <string name="car_drawer_close" translatable="false">Close drawer</string>
     <string name="car_drawer_open" translatable="false">Open drawer</string>
     <string name="ellipsis" translatable="false">…</string>
@@ -565,8 +566,8 @@
     <style name="Theme.Car.Dark.NoActionBar.Drawer">
         <item name="drawerArrowStyle">@style/Widget.Car.DrawerArrowToggle</item>
         <item name="drawerBackgroundColor">@color/car_card_dark</item>
-        <item name="drawerOpenHeaderColor">@color/car_title2_light</item>
-        <item name="drawerClosedHeaderColor">@color/car_title2_light</item>
+        <item name="drawerRippleColor">@color/car_card_ripple_background_light</item>
+        <item name="drawerHeaderColor">@color/car_title2_light</item>
         <item name="drawerItemTitleTextAppearance">@style/TextAppearance.Car.Body1.Light</item>
         <item name="drawerItemBodyTextAppearance">@style/TextAppearance.Car.Body2.Light</item>
         <item name="drawerListStyle">@style/Widget.Car.Light.List.LightDivider</item>
@@ -646,8 +647,8 @@
     <style name="Theme.Car.NoActionBar.Drawer">
         <item name="drawerArrowStyle">@style/Widget.Car.DrawerArrowToggle</item>
         <item name="drawerBackgroundColor">@color/car_card</item>
-        <item name="drawerOpenHeaderColor">@color/car_title2</item>
-        <item name="drawerClosedHeaderColor">@color/car_title2_light</item>
+        <item name="drawerRippleColor">@color/car_card_ripple_background</item>
+        <item name="drawerHeaderColor">@color/car_title2</item>
         <item name="drawerItemTitleTextAppearance">@style/TextAppearance.Car.Body1</item>
         <item name="drawerItemBodyTextAppearance">@style/TextAppearance.Car.Body2</item>
         <item name="drawerListStyle">@style/Widget.Car.List</item>
@@ -720,7 +721,7 @@
         <item name="android:textAppearance">@style/TextAppearance.Car.Title2.Light</item>
     </style>
     <style name="Widget.Car.DrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/car_title_light</item>
+        <item name="color">@color/car_title2</item>
         <item name="spinBars">true</item>
         <item name="barLength">@dimen/car_menu_bar_length</item>
         <item name="thickness">@dimen/car_arrow_thickness</item>

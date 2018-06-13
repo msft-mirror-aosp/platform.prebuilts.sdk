@@ -66,5 +66,19 @@ LOCAL_SDK_VERSION := 23
 include $(BUILD_PREBUILT)
 
 ##################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := android-support-v8-renderscript-legacy
+LOCAL_SRC_FILES := lib/javalib_legacy.jar
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .jar
+LOCAL_UNINSTALLABLE_MODULE := true
+# 23 as specified at frameworks/rs/support/Android.mk
+LOCAL_SDK_VERSION := 23
+
+include $(BUILD_PREBUILT)
+
+##################################
 
 endif # TARGET_BUILD_APPS
