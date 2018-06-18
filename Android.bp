@@ -37,6 +37,17 @@ genrule {
     ],
 }
 
+genrule {
+    name: "public-api-for-metalava-annotations",
+    srcs: [
+        "*/public/api/android.txt",
+    ],
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -n | tail -2 | head -1) $(genDir)/last-released-api.txt",
+    out: [
+        "last-released-api.txt",
+    ],
+}
+
 prebuilt_apis {
     name: "prebuilt_apis",
 }
