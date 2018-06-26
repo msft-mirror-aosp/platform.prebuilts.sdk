@@ -594,18 +594,27 @@ def update_jetifier(target, build_id):
     return True
 
 
-def update_constraint(target, build_id):
-    layout_dir = fetch_and_extract(target, build_id.url_id,
-                                   'com.android.support.constraint-constraint-layout-%s.zip' % build_id.fs_id)
-    solver_dir = fetch_and_extract(target, build_id.url_id,
-                                   'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id.fs_id)
-    if not layout_dir or not solver_dir:
-        print_e('Failed to extract Constraint Layout repositories')
+def update_constraint(target, build_id, local_file):
+    if build_id:
+        layout_dir = fetch_and_extract(target, build_id.url_id,
+                                       'com.android.support.constraint-constraint-layout-%s.zip' % build_id.fs_id)
+        solver_dir = fetch_and_extract(target, build_id.url_id,
+                                       'com.android.support.constraint-constraint-layout-solver-%s.zip' % build_id.fs_id)
+        if not layout_dir or not solver_dir:
+            print_e('Failed to extract Constraint Layout repositories')
         return False
+
+        dirs = [layout_dir, solver_dir]
+    else:
+        repo_dir = extract_artifact(local_file)
+        if not repo_dir:
+            print_e('Failed to extract Constraint Layout')
+            return False
+        dirs = [repo_dir]
 
     # Passing False here is an inelegant solution, but it means we can replace
     # the top-level directory without worrying about other child directories.
-    return transform_maven_repos([layout_dir, solver_dir],
+    return transform_maven_repos(dirs,
                                 os.path.join(extras_dir, 'constraint-layout'), extract_res=False)
 
 def update_constraint_x(local_file):
@@ -853,7 +862,7 @@ if uncommittedChangesExist():
 try:
     components = None
     if args.constraint:
-        if update_constraint('studio', getBuildId(args)):
+        if update_constraint('studio', getBuildId(args), getFile(args)):
             components = append(components, 'Constraint Layout')
         else:
             print_e('Failed to update Constraint Layout, aborting...')
