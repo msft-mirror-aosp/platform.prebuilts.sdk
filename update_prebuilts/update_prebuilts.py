@@ -569,7 +569,7 @@ def update_support(target, build_id, local_file):
 
 def update_androidx(target, build_id, local_file):
     if build_id:
-        repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+        repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
     else:
         repo_dir = fetch_and_extract(target, None, None, local_file)
