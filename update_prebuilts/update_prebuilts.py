@@ -833,9 +833,10 @@ parser.add_argument(
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
 if args.stx:
-    args.support = args.androidx = True
+    args.androidx = True
 else:
-    args.support = args.androidx = False
+    args.androidx = False
+args.support = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
