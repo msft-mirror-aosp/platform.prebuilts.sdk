@@ -20,6 +20,7 @@ android_library_import {
     name: "androidx.appcompat_appcompat-nodeps",
     aars: ["m2repository/androidx/appcompat/appcompat/1.0.0-alpha1/appcompat-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.cursoradapter_cursoradapter",
@@ -33,6 +34,7 @@ android_library_import {
 android_library {
     name: "androidx.appcompat_appcompat",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.appcompat_appcompat/AndroidManifest.xml",
     static_libs: [
         "androidx.appcompat_appcompat-nodeps",
@@ -68,6 +70,7 @@ android_library_import {
     name: "androidx.arch.core_core-runtime-nodeps",
     aars: ["m2repository/androidx/arch/core/core-runtime/2.0.0-alpha1/core-runtime-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -75,6 +78,7 @@ android_library_import {
 android_library {
     name: "androidx.arch.core_core-runtime",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.arch.core_core-runtime/AndroidManifest.xml",
     static_libs: [
         "androidx.arch.core_core-runtime-nodeps",
@@ -88,6 +92,7 @@ android_library_import {
     name: "androidx.asynclayoutinflater_asynclayoutinflater-nodeps",
     aars: ["m2repository/androidx/asynclayoutinflater/asynclayoutinflater/1.0.0-alpha1/asynclayoutinflater-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -96,6 +101,7 @@ android_library_import {
 android_library {
     name: "androidx.asynclayoutinflater_asynclayoutinflater",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.asynclayoutinflater_asynclayoutinflater/AndroidManifest.xml",
     static_libs: [
         "androidx.asynclayoutinflater_asynclayoutinflater-nodeps",
@@ -109,6 +115,7 @@ android_library_import {
     name: "androidx.browser_browser-nodeps",
     aars: ["m2repository/androidx/browser/browser/1.0.0-alpha1/browser-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "15",
     static_libs: [
         "androidx.core_core",
         "androidx.interpolator_interpolator",
@@ -119,6 +126,7 @@ android_library_import {
 android_library {
     name: "androidx.browser_browser",
     sdk_version: "current",
+    min_sdk_version: "15",
     manifest: "manifests/androidx.browser_browser/AndroidManifest.xml",
     static_libs: [
         "androidx.browser_browser-nodeps",
@@ -133,8 +141,9 @@ android_library {
 
 android_library_import {
     name: "androidx.car_car-nodeps",
-    aars: ["m2repository/androidx/car/car/1.0.0-alpha3/car-1.0.0-alpha3.aar"],
+    aars: ["m2repository/androidx/car/car/1.0.0-alpha4/car-1.0.0-alpha4.aar"],
     sdk_version: "current",
+    min_sdk_version: "24",
     static_libs: [
         "com.google.android.material_material",
         "androidx.appcompat_appcompat",
@@ -142,12 +151,15 @@ android_library_import {
         "androidx.legacy_legacy-support-v4",
         "androidx.recyclerview_recyclerview",
         "androidx.gridlayout_gridlayout",
+        "androidx.preference_preference",
+        "androidx-constraintlayout_constraintlayout",
     ],
 }
 
 android_library {
     name: "androidx.car_car",
     sdk_version: "current",
+    min_sdk_version: "24",
     manifest: "manifests/androidx.car_car/AndroidManifest.xml",
     static_libs: [
         "androidx.car_car-nodeps",
@@ -158,6 +170,8 @@ android_library {
         "androidx.legacy_legacy-support-v4",
         "androidx.recyclerview_recyclerview",
         "androidx.gridlayout_gridlayout",
+        "androidx.preference_preference",
+        "androidx-constraintlayout_constraintlayout",
     ],
     java_version: "1.7",
 }
@@ -166,6 +180,7 @@ android_library_import {
     name: "androidx.cardview_cardview-nodeps",
     aars: ["m2repository/androidx/cardview/cardview/1.0.0-alpha1/cardview-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -173,6 +188,7 @@ android_library_import {
 android_library {
     name: "androidx.cardview_cardview",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.cardview_cardview/AndroidManifest.xml",
     static_libs: [
         "androidx.cardview_cardview-nodeps",
@@ -201,6 +217,7 @@ android_library_import {
     name: "androidx.coordinatorlayout_coordinatorlayout-nodeps",
     aars: ["m2repository/androidx/coordinatorlayout/coordinatorlayout/1.0.0-alpha1/coordinatorlayout-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.customview_customview",
@@ -210,6 +227,7 @@ android_library_import {
 android_library {
     name: "androidx.coordinatorlayout_coordinatorlayout",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.coordinatorlayout_coordinatorlayout/AndroidManifest.xml",
     static_libs: [
         "androidx.coordinatorlayout_coordinatorlayout-nodeps",
@@ -224,6 +242,7 @@ android_library_import {
     name: "androidx.core_core-nodeps",
     aars: ["m2repository/androidx/core/core/1.0.0-alpha1/core-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.versionedparcelable_versionedparcelable",
@@ -233,6 +252,7 @@ android_library_import {
 android_library {
     name: "androidx.core_core",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.core_core/AndroidManifest.xml",
     static_libs: [
         "androidx.core_core-nodeps",
@@ -248,6 +268,7 @@ android_library_import {
     name: "androidx.cursoradapter_cursoradapter-nodeps",
     aars: ["m2repository/androidx/cursoradapter/cursoradapter/1.0.0-alpha1/cursoradapter-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -255,6 +276,7 @@ android_library_import {
 android_library {
     name: "androidx.cursoradapter_cursoradapter",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.cursoradapter_cursoradapter/AndroidManifest.xml",
     static_libs: [
         "androidx.cursoradapter_cursoradapter-nodeps",
@@ -267,6 +289,7 @@ android_library_import {
     name: "androidx.customview_customview-nodeps",
     aars: ["m2repository/androidx/customview/customview/1.0.0-alpha1/customview-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -275,6 +298,7 @@ android_library_import {
 android_library {
     name: "androidx.customview_customview",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.customview_customview/AndroidManifest.xml",
     static_libs: [
         "androidx.customview_customview-nodeps",
@@ -288,6 +312,7 @@ android_library_import {
     name: "androidx.documentfile_documentfile-nodeps",
     aars: ["m2repository/androidx/documentfile/documentfile/1.0.0-alpha1/documentfile-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -295,6 +320,7 @@ android_library_import {
 android_library {
     name: "androidx.documentfile_documentfile",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.documentfile_documentfile/AndroidManifest.xml",
     static_libs: [
         "androidx.documentfile_documentfile-nodeps",
@@ -307,6 +333,7 @@ android_library_import {
     name: "androidx.drawerlayout_drawerlayout-nodeps",
     aars: ["m2repository/androidx/drawerlayout/drawerlayout/1.0.0-alpha1/drawerlayout-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.customview_customview",
@@ -316,6 +343,7 @@ android_library_import {
 android_library {
     name: "androidx.drawerlayout_drawerlayout",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.drawerlayout_drawerlayout/AndroidManifest.xml",
     static_libs: [
         "androidx.drawerlayout_drawerlayout-nodeps",
@@ -330,6 +358,7 @@ android_library_import {
     name: "androidx.dynamicanimation_dynamicanimation-nodeps",
     aars: ["m2repository/androidx/dynamicanimation/dynamicanimation/1.0.0-alpha1/dynamicanimation-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-utils",
@@ -339,6 +368,7 @@ android_library_import {
 android_library {
     name: "androidx.dynamicanimation_dynamicanimation",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.dynamicanimation_dynamicanimation/AndroidManifest.xml",
     static_libs: [
         "androidx.dynamicanimation_dynamicanimation-nodeps",
@@ -353,6 +383,7 @@ android_library_import {
     name: "androidx.emoji_emoji-appcompat-nodeps",
     aars: ["m2repository/androidx/emoji/emoji-appcompat/1.0.0-alpha1/emoji-appcompat-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.emoji_emoji",
         "androidx.appcompat_appcompat",
@@ -362,6 +393,7 @@ android_library_import {
 android_library {
     name: "androidx.emoji_emoji-appcompat",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.emoji_emoji-appcompat/AndroidManifest.xml",
     static_libs: [
         "androidx.emoji_emoji-appcompat-nodeps",
@@ -375,6 +407,7 @@ android_library_import {
     name: "androidx.emoji_emoji-bundled-nodeps",
     aars: ["m2repository/androidx/emoji/emoji-bundled/1.0.0-alpha1/emoji-bundled-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.emoji_emoji",
     ],
@@ -383,6 +416,7 @@ android_library_import {
 android_library {
     name: "androidx.emoji_emoji-bundled",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.emoji_emoji-bundled/AndroidManifest.xml",
     static_libs: [
         "androidx.emoji_emoji-bundled-nodeps",
@@ -395,6 +429,7 @@ android_library_import {
     name: "androidx.emoji_emoji-nodeps",
     aars: ["m2repository/androidx/emoji/emoji/1.0.0-alpha1/emoji-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -403,6 +438,7 @@ android_library_import {
 android_library {
     name: "androidx.emoji_emoji",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.emoji_emoji/AndroidManifest.xml",
     static_libs: [
         "androidx.emoji_emoji-nodeps",
@@ -415,6 +451,7 @@ android_library_import {
     name: "androidx.exifinterface_exifinterface-nodeps",
     aars: ["m2repository/androidx/exifinterface/exifinterface/1.0.0-alpha1/exifinterface-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -422,6 +459,7 @@ android_library_import {
 android_library {
     name: "androidx.exifinterface_exifinterface",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.exifinterface_exifinterface/AndroidManifest.xml",
     static_libs: [
         "androidx.exifinterface_exifinterface-nodeps",
@@ -434,6 +472,7 @@ android_library_import {
     name: "androidx.fragment_fragment-nodeps",
     aars: ["m2repository/androidx/fragment/fragment/1.0.0-alpha1/fragment-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-ui",
@@ -446,6 +485,7 @@ android_library_import {
 android_library {
     name: "androidx.fragment_fragment",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.fragment_fragment/AndroidManifest.xml",
     static_libs: [
         "androidx.fragment_fragment-nodeps",
@@ -463,6 +503,7 @@ android_library_import {
     name: "androidx.gridlayout_gridlayout-nodeps",
     aars: ["m2repository/androidx/gridlayout/gridlayout/1.0.0-alpha1/gridlayout-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-ui",
@@ -472,6 +513,7 @@ android_library_import {
 android_library {
     name: "androidx.gridlayout_gridlayout",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.gridlayout_gridlayout/AndroidManifest.xml",
     static_libs: [
         "androidx.gridlayout_gridlayout-nodeps",
@@ -485,6 +527,7 @@ android_library_import {
     name: "androidx.heifwriter_heifwriter-nodeps",
     aars: ["m2repository/androidx/heifwriter/heifwriter/1.0.0-alpha1/heifwriter-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "28",
     static_libs: [
     ],
 }
@@ -492,6 +535,7 @@ android_library_import {
 android_library {
     name: "androidx.heifwriter_heifwriter",
     sdk_version: "current",
+    min_sdk_version: "28",
     manifest: "manifests/androidx.heifwriter_heifwriter/AndroidManifest.xml",
     static_libs: [
         "androidx.heifwriter_heifwriter-nodeps",
@@ -504,6 +548,7 @@ android_library_import {
     name: "androidx.interpolator_interpolator-nodeps",
     aars: ["m2repository/androidx/interpolator/interpolator/1.0.0-alpha1/interpolator-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -511,6 +556,7 @@ android_library_import {
 android_library {
     name: "androidx.interpolator_interpolator",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.interpolator_interpolator/AndroidManifest.xml",
     static_libs: [
         "androidx.interpolator_interpolator-nodeps",
@@ -523,6 +569,7 @@ android_library_import {
     name: "androidx.leanback_leanback-preference-nodeps",
     aars: ["m2repository/androidx/leanback/leanback-preference/1.0.0-alpha1/leanback-preference-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "17",
     static_libs: [
         "androidx.appcompat_appcompat",
         "androidx.recyclerview_recyclerview",
@@ -535,6 +582,7 @@ android_library_import {
 android_library {
     name: "androidx.leanback_leanback-preference",
     sdk_version: "current",
+    min_sdk_version: "17",
     manifest: "manifests/androidx.leanback_leanback-preference/AndroidManifest.xml",
     static_libs: [
         "androidx.leanback_leanback-preference-nodeps",
@@ -552,6 +600,7 @@ android_library_import {
     name: "androidx.leanback_leanback-nodeps",
     aars: ["m2repository/androidx/leanback/leanback/1.0.0-alpha1/leanback-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "17",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-ui",
@@ -564,6 +613,7 @@ android_library_import {
 android_library {
     name: "androidx.leanback_leanback",
     sdk_version: "current",
+    min_sdk_version: "17",
     manifest: "manifests/androidx.leanback_leanback/AndroidManifest.xml",
     static_libs: [
         "androidx.leanback_leanback-nodeps",
@@ -580,6 +630,7 @@ android_library_import {
     name: "androidx.legacy_legacy-preference-v14-nodeps",
     aars: ["m2repository/androidx/legacy/legacy-preference-v14/1.0.0-alpha1/legacy-preference-v14-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.preference_preference",
     ],
@@ -588,6 +639,7 @@ android_library_import {
 android_library {
     name: "androidx.legacy_legacy-preference-v14",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.legacy_legacy-preference-v14/AndroidManifest.xml",
     static_libs: [
         "androidx.legacy_legacy-preference-v14-nodeps",
@@ -600,6 +652,7 @@ android_library_import {
     name: "androidx.legacy_legacy-support-core-ui-nodeps",
     aars: ["m2repository/androidx/legacy/legacy-support-core-ui/1.0.0-alpha1/legacy-support-core-ui-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-utils",
@@ -618,6 +671,7 @@ android_library_import {
 android_library {
     name: "androidx.legacy_legacy-support-core-ui",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.legacy_legacy-support-core-ui/AndroidManifest.xml",
     static_libs: [
         "androidx.legacy_legacy-support-core-ui-nodeps",
@@ -641,6 +695,7 @@ android_library_import {
     name: "androidx.legacy_legacy-support-core-utils-nodeps",
     aars: ["m2repository/androidx/legacy/legacy-support-core-utils/1.0.0-alpha1/legacy-support-core-utils-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.documentfile_documentfile",
@@ -653,6 +708,7 @@ android_library_import {
 android_library {
     name: "androidx.legacy_legacy-support-core-utils",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.legacy_legacy-support-core-utils/AndroidManifest.xml",
     static_libs: [
         "androidx.legacy_legacy-support-core-utils-nodeps",
@@ -670,6 +726,7 @@ android_library_import {
     name: "androidx.legacy_legacy-support-v13-nodeps",
     aars: ["m2repository/androidx/legacy/legacy-support-v13/1.0.0-alpha1/legacy-support-v13-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.legacy_legacy-support-v4",
     ],
@@ -678,6 +735,7 @@ android_library_import {
 android_library {
     name: "androidx.legacy_legacy-support-v13",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.legacy_legacy-support-v13/AndroidManifest.xml",
     static_libs: [
         "androidx.legacy_legacy-support-v13-nodeps",
@@ -690,6 +748,7 @@ android_library_import {
     name: "androidx.legacy_legacy-support-v4-nodeps",
     aars: ["m2repository/androidx/legacy/legacy-support-v4/1.0.0-alpha1/legacy-support-v4-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.media_media",
@@ -702,6 +761,7 @@ android_library_import {
 android_library {
     name: "androidx.legacy_legacy-support-v4",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.legacy_legacy-support-v4/AndroidManifest.xml",
     static_libs: [
         "androidx.legacy_legacy-support-v4-nodeps",
@@ -751,6 +811,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-extensions-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-extensions/2.0.0-alpha1/lifecycle-extensions-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.arch.core_core-runtime",
@@ -765,6 +826,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-extensions",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-extensions/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-extensions-nodeps",
@@ -785,6 +847,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-core-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core/2.0.0-alpha1/lifecycle-livedata-core-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.arch.core_core-runtime",
     ],
@@ -793,6 +856,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-livedata-core",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-livedata-core/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-livedata-core-nodeps",
@@ -807,6 +871,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-livedata/2.0.0-alpha1/lifecycle-livedata-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.arch.core_core-runtime",
         "androidx.lifecycle_lifecycle-livedata-core",
@@ -816,6 +881,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-livedata",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-livedata/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-livedata-nodeps",
@@ -830,6 +896,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-process-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.0.0-alpha1/lifecycle-process-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.lifecycle_lifecycle-runtime",
     ],
@@ -838,6 +905,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-process",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-process/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-process-nodeps",
@@ -850,6 +918,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.0.0-alpha1/lifecycle-runtime-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -857,6 +926,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-runtime",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-runtime/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-runtime-nodeps",
@@ -871,6 +941,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-service-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.0.0-alpha1/lifecycle-service-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.lifecycle_lifecycle-runtime",
     ],
@@ -879,6 +950,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-service",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-service/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-service-nodeps",
@@ -891,6 +963,7 @@ android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-nodeps",
     aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.0.0-alpha1/lifecycle-viewmodel-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -898,6 +971,7 @@ android_library_import {
 android_library {
     name: "androidx.lifecycle_lifecycle-viewmodel",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.lifecycle_lifecycle-viewmodel/AndroidManifest.xml",
     static_libs: [
         "androidx.lifecycle_lifecycle-viewmodel-nodeps",
@@ -910,6 +984,7 @@ android_library_import {
     name: "androidx.loader_loader-nodeps",
     aars: ["m2repository/androidx/loader/loader/1.0.0-alpha1/loader-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-livedata-core",
@@ -920,6 +995,7 @@ android_library_import {
 android_library {
     name: "androidx.loader_loader",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.loader_loader/AndroidManifest.xml",
     static_libs: [
         "androidx.loader_loader-nodeps",
@@ -935,6 +1011,7 @@ android_library_import {
     name: "androidx.localbroadcastmanager_localbroadcastmanager-nodeps",
     aars: ["m2repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0-alpha1/localbroadcastmanager-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -942,6 +1019,7 @@ android_library_import {
 android_library {
     name: "androidx.localbroadcastmanager_localbroadcastmanager",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.localbroadcastmanager_localbroadcastmanager/AndroidManifest.xml",
     static_libs: [
         "androidx.localbroadcastmanager_localbroadcastmanager-nodeps",
@@ -954,6 +1032,7 @@ android_library_import {
     name: "androidx.media_media-nodeps",
     aars: ["m2repository/androidx/media/media/1.0.0-alpha1/media-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -962,6 +1041,7 @@ android_library_import {
 android_library {
     name: "androidx.media_media",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.media_media/AndroidManifest.xml",
     static_libs: [
         "androidx.media_media-nodeps",
@@ -975,6 +1055,7 @@ android_library_import {
     name: "androidx.mediarouter_mediarouter-nodeps",
     aars: ["m2repository/androidx/mediarouter/mediarouter/1.0.0-alpha1/mediarouter-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.media_media",
         "androidx.appcompat_appcompat",
@@ -985,6 +1066,7 @@ android_library_import {
 android_library {
     name: "androidx.mediarouter_mediarouter",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.mediarouter_mediarouter/AndroidManifest.xml",
     static_libs: [
         "androidx.mediarouter_mediarouter-nodeps",
@@ -1016,6 +1098,7 @@ android_library_import {
     name: "androidx.paging_paging-runtime-nodeps",
     aars: ["m2repository/androidx/paging/paging-runtime/2.0.0-alpha1/paging-runtime-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.arch.core_core-runtime",
         "androidx.lifecycle_lifecycle-runtime",
@@ -1027,6 +1110,7 @@ android_library_import {
 android_library {
     name: "androidx.paging_paging-runtime",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.paging_paging-runtime/AndroidManifest.xml",
     static_libs: [
         "androidx.paging_paging-runtime-nodeps",
@@ -1043,6 +1127,7 @@ android_library_import {
     name: "androidx.palette_palette-nodeps",
     aars: ["m2repository/androidx/palette/palette/1.0.0-alpha1/palette-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-utils",
@@ -1052,6 +1137,7 @@ android_library_import {
 android_library {
     name: "androidx.palette_palette",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.palette_palette/AndroidManifest.xml",
     static_libs: [
         "androidx.palette_palette-nodeps",
@@ -1065,6 +1151,7 @@ android_library_import {
     name: "androidx.percentlayout_percentlayout-nodeps",
     aars: ["m2repository/androidx/percentlayout/percentlayout/1.0.0-alpha1/percentlayout-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -1073,6 +1160,7 @@ android_library_import {
 android_library {
     name: "androidx.percentlayout_percentlayout",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.percentlayout_percentlayout/AndroidManifest.xml",
     static_libs: [
         "androidx.percentlayout_percentlayout-nodeps",
@@ -1085,6 +1173,7 @@ android_library_import {
     name: "androidx.preference_preference-nodeps",
     aars: ["m2repository/androidx/preference/preference/1.0.0-alpha1/preference-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.fragment_fragment",
@@ -1096,6 +1185,7 @@ android_library_import {
 android_library {
     name: "androidx.preference_preference",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.preference_preference/AndroidManifest.xml",
     static_libs: [
         "androidx.preference_preference-nodeps",
@@ -1112,6 +1202,7 @@ android_library_import {
     name: "androidx.print_print-nodeps",
     aars: ["m2repository/androidx/print/print/1.0.0-alpha1/print-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -1119,6 +1210,7 @@ android_library_import {
 android_library {
     name: "androidx.print_print",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.print_print/AndroidManifest.xml",
     static_libs: [
         "androidx.print_print-nodeps",
@@ -1131,6 +1223,7 @@ android_library_import {
     name: "androidx.recommendation_recommendation-nodeps",
     aars: ["m2repository/androidx/recommendation/recommendation/1.0.0-alpha1/recommendation-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "21",
     static_libs: [
     ],
 }
@@ -1138,6 +1231,7 @@ android_library_import {
 android_library {
     name: "androidx.recommendation_recommendation",
     sdk_version: "current",
+    min_sdk_version: "21",
     manifest: "manifests/androidx.recommendation_recommendation/AndroidManifest.xml",
     static_libs: [
         "androidx.recommendation_recommendation-nodeps",
@@ -1150,6 +1244,7 @@ android_library_import {
     name: "androidx.recyclerview_recyclerview-selection-nodeps",
     aars: ["m2repository/androidx/recyclerview/recyclerview-selection/1.0.0-alpha1/recyclerview-selection-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.recyclerview_recyclerview",
         "androidx.core_core",
@@ -1159,6 +1254,7 @@ android_library_import {
 android_library {
     name: "androidx.recyclerview_recyclerview-selection",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.recyclerview_recyclerview-selection/AndroidManifest.xml",
     static_libs: [
         "androidx.recyclerview_recyclerview-selection-nodeps",
@@ -1173,6 +1269,7 @@ android_library_import {
     name: "androidx.recyclerview_recyclerview-nodeps",
     aars: ["m2repository/androidx/recyclerview/recyclerview/1.0.0-alpha1/recyclerview-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.legacy_legacy-support-core-ui",
@@ -1182,6 +1279,7 @@ android_library_import {
 android_library {
     name: "androidx.recyclerview_recyclerview",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.recyclerview_recyclerview/AndroidManifest.xml",
     static_libs: [
         "androidx.recyclerview_recyclerview-nodeps",
@@ -1212,6 +1310,7 @@ android_library_import {
     name: "androidx.room_room-runtime-nodeps",
     aars: ["m2repository/androidx/room/room-runtime/2.0.0-alpha1/room-runtime-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.sqlite_sqlite-framework",
         "androidx.sqlite_sqlite",
@@ -1223,6 +1322,7 @@ android_library_import {
 android_library {
     name: "androidx.room_room-runtime",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.room_room-runtime/AndroidManifest.xml",
     static_libs: [
         "androidx.room_room-runtime-nodeps",
@@ -1239,6 +1339,7 @@ android_library_import {
     name: "androidx.slice_slice-builders-nodeps",
     aars: ["m2repository/androidx/slice/slice-builders/1.0.0-alpha1/slice-builders-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "19",
     static_libs: [
         "androidx.slice_slice-core",
         "androidx.core_core",
@@ -1248,6 +1349,7 @@ android_library_import {
 android_library {
     name: "androidx.slice_slice-builders",
     sdk_version: "current",
+    min_sdk_version: "19",
     manifest: "manifests/androidx.slice_slice-builders/AndroidManifest.xml",
     static_libs: [
         "androidx.slice_slice-builders-nodeps",
@@ -1262,6 +1364,7 @@ android_library_import {
     name: "androidx.slice_slice-core-nodeps",
     aars: ["m2repository/androidx/slice/slice-core/1.0.0-alpha1/slice-core-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "19",
     static_libs: [
         "androidx.appcompat_appcompat",
     ],
@@ -1270,6 +1373,7 @@ android_library_import {
 android_library {
     name: "androidx.slice_slice-core",
     sdk_version: "current",
+    min_sdk_version: "19",
     manifest: "manifests/androidx.slice_slice-core/AndroidManifest.xml",
     static_libs: [
         "androidx.slice_slice-core-nodeps",
@@ -1283,6 +1387,7 @@ android_library_import {
     name: "androidx.slice_slice-view-nodeps",
     aars: ["m2repository/androidx/slice/slice-view/1.0.0-alpha1/slice-view-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "19",
     static_libs: [
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.slice_slice-core",
@@ -1293,6 +1398,7 @@ android_library_import {
 android_library {
     name: "androidx.slice_slice-view",
     sdk_version: "current",
+    min_sdk_version: "19",
     manifest: "manifests/androidx.slice_slice-view/AndroidManifest.xml",
     static_libs: [
         "androidx.slice_slice-view-nodeps",
@@ -1307,6 +1413,7 @@ android_library_import {
     name: "androidx.slidingpanelayout_slidingpanelayout-nodeps",
     aars: ["m2repository/androidx/slidingpanelayout/slidingpanelayout/1.0.0-alpha1/slidingpanelayout-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.customview_customview",
@@ -1316,6 +1423,7 @@ android_library_import {
 android_library {
     name: "androidx.slidingpanelayout_slidingpanelayout",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.slidingpanelayout_slidingpanelayout/AndroidManifest.xml",
     static_libs: [
         "androidx.slidingpanelayout_slidingpanelayout-nodeps",
@@ -1330,6 +1438,7 @@ android_library_import {
     name: "androidx.sqlite_sqlite-framework-nodeps",
     aars: ["m2repository/androidx/sqlite/sqlite-framework/2.0.0-alpha1/sqlite-framework-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.sqlite_sqlite",
     ],
@@ -1338,6 +1447,7 @@ android_library_import {
 android_library {
     name: "androidx.sqlite_sqlite-framework",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.sqlite_sqlite-framework/AndroidManifest.xml",
     static_libs: [
         "androidx.sqlite_sqlite-framework-nodeps",
@@ -1351,6 +1461,7 @@ android_library_import {
     name: "androidx.sqlite_sqlite-nodeps",
     aars: ["m2repository/androidx/sqlite/sqlite/2.0.0-alpha1/sqlite-2.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -1358,6 +1469,7 @@ android_library_import {
 android_library {
     name: "androidx.sqlite_sqlite",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.sqlite_sqlite/AndroidManifest.xml",
     static_libs: [
         "androidx.sqlite_sqlite-nodeps",
@@ -1370,6 +1482,7 @@ android_library_import {
     name: "androidx.swiperefreshlayout_swiperefreshlayout-nodeps",
     aars: ["m2repository/androidx/swiperefreshlayout/swiperefreshlayout/1.0.0-alpha1/swiperefreshlayout-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.interpolator_interpolator",
@@ -1379,6 +1492,7 @@ android_library_import {
 android_library {
     name: "androidx.swiperefreshlayout_swiperefreshlayout",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.swiperefreshlayout_swiperefreshlayout/AndroidManifest.xml",
     static_libs: [
         "androidx.swiperefreshlayout_swiperefreshlayout-nodeps",
@@ -1393,6 +1507,7 @@ android_library_import {
     name: "androidx.transition_transition-nodeps",
     aars: ["m2repository/androidx/transition/transition/1.0.0-alpha1/transition-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -1401,6 +1516,7 @@ android_library_import {
 android_library {
     name: "androidx.transition_transition",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.transition_transition/AndroidManifest.xml",
     static_libs: [
         "androidx.transition_transition-nodeps",
@@ -1414,6 +1530,7 @@ android_library_import {
     name: "androidx.tvprovider_tvprovider-nodeps",
     aars: ["m2repository/androidx/tvprovider/tvprovider/1.0.0-alpha1/tvprovider-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "21",
     static_libs: [
         "androidx.core_core",
     ],
@@ -1422,6 +1539,7 @@ android_library_import {
 android_library {
     name: "androidx.tvprovider_tvprovider",
     sdk_version: "current",
+    min_sdk_version: "21",
     manifest: "manifests/androidx.tvprovider_tvprovider/AndroidManifest.xml",
     static_libs: [
         "androidx.tvprovider_tvprovider-nodeps",
@@ -1435,6 +1553,7 @@ android_library_import {
     name: "androidx.vectordrawable_vectordrawable-animated-nodeps",
     aars: ["m2repository/androidx/vectordrawable/vectordrawable-animated/1.0.0-alpha1/vectordrawable-animated-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.vectordrawable_vectordrawable",
         "androidx.legacy_legacy-support-core-ui",
@@ -1444,6 +1563,7 @@ android_library_import {
 android_library {
     name: "androidx.vectordrawable_vectordrawable-animated",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.vectordrawable_vectordrawable-animated/AndroidManifest.xml",
     static_libs: [
         "androidx.vectordrawable_vectordrawable-animated-nodeps",
@@ -1457,6 +1577,7 @@ android_library_import {
     name: "androidx.vectordrawable_vectordrawable-nodeps",
     aars: ["m2repository/androidx/vectordrawable/vectordrawable/1.0.0-alpha1/vectordrawable-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -1465,6 +1586,7 @@ android_library_import {
 android_library {
     name: "androidx.vectordrawable_vectordrawable",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.vectordrawable_vectordrawable/AndroidManifest.xml",
     static_libs: [
         "androidx.vectordrawable_vectordrawable-nodeps",
@@ -1478,6 +1600,7 @@ android_library_import {
     name: "androidx.versionedparcelable_versionedparcelable-nodeps",
     aars: ["m2repository/androidx/versionedparcelable/versionedparcelable/1.0.0-alpha1/versionedparcelable-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
     ],
 }
@@ -1485,6 +1608,7 @@ android_library_import {
 android_library {
     name: "androidx.versionedparcelable_versionedparcelable",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.versionedparcelable_versionedparcelable/AndroidManifest.xml",
     static_libs: [
         "androidx.versionedparcelable_versionedparcelable-nodeps",
@@ -1497,6 +1621,7 @@ android_library_import {
     name: "androidx.viewpager_viewpager-nodeps",
     aars: ["m2repository/androidx/viewpager/viewpager/1.0.0-alpha1/viewpager-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.customview_customview",
@@ -1506,6 +1631,7 @@ android_library_import {
 android_library {
     name: "androidx.viewpager_viewpager",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.viewpager_viewpager/AndroidManifest.xml",
     static_libs: [
         "androidx.viewpager_viewpager-nodeps",
@@ -1520,6 +1646,7 @@ android_library_import {
     name: "androidx.wear_wear-nodeps",
     aars: ["m2repository/androidx/wear/wear/1.0.0-alpha1/wear-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "23",
     static_libs: [
         "androidx.legacy_legacy-support-core-ui",
         "androidx.fragment_fragment",
@@ -1531,6 +1658,7 @@ android_library_import {
 android_library {
     name: "androidx.wear_wear",
     sdk_version: "current",
+    min_sdk_version: "23",
     manifest: "manifests/androidx.wear_wear/AndroidManifest.xml",
     static_libs: [
         "androidx.wear_wear-nodeps",
@@ -1547,6 +1675,7 @@ android_library_import {
     name: "androidx.webkit_webkit-nodeps",
     aars: ["m2repository/androidx/webkit/webkit/1.0.0-alpha1/webkit-1.0.0-alpha1.aar"],
     sdk_version: "current",
+    min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
     ],
@@ -1555,6 +1684,7 @@ android_library_import {
 android_library {
     name: "androidx.webkit_webkit",
     sdk_version: "current",
+    min_sdk_version: "14",
     manifest: "manifests/androidx.webkit_webkit/AndroidManifest.xml",
     static_libs: [
         "androidx.webkit_webkit-nodeps",
