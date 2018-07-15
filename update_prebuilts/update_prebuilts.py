@@ -701,16 +701,28 @@ def update_framework(build_id, sdk_dir):
 
     return True
 
+def update_makefile(build_id):
+    template = '"%s",\n\
+        "current"'
+    makefile = os.path.join(git_dir, 'Android.bp')
+
+    with open(makefile, 'r+') as f:
+        contents = f.read().replace('"current"', template % build_id)
+        f.seek(0)
+        f.write(contents)
+
+    return True
 
 def finalize_sdk(build_id, sdk_version):
     target_finalize_dir = '%d' % sdk_version
 
     extra_finalize_artifacts = {
-      'public_api.txt': path(target_finalize_dir, 'public/api/android.txt'),
-      'system-api.txt': path(target_finalize_dir, 'system/api/android.txt'),
+      'api-stubs-docs_api.txt': path(target_finalize_dir, 'public/api/android.txt'),
+      'system-api-stubs-docs_api.txt': path(target_finalize_dir, 'system/api/android.txt'),
     }
     return fetch_artifacts(framework_sdk_target, build_id, extra_finalize_artifacts) \
-            and update_framework(build_id, target_finalize_dir)
+            and update_framework(build_id, target_finalize_dir) \
+            and update_makefile(target_finalize_dir)
 
 
 def update_framework_current(build_id):
@@ -904,6 +916,7 @@ try:
             # We commit the finalized dir separately from the current sdk update.
             msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
             subprocess.check_call(['git', 'add', '%d' % n])
+            subprocess.check_call(['git', 'add', 'Android.bp'])
             subprocess.check_call(['git', 'commit', '-m', msg])
         else:
             print_e('Failed to finalize SDK %d, aborting...' % n)
