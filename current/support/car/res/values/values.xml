@@ -151,11 +151,6 @@
         <attr format="reference" name="drawerProgressId"/>
 
     </declare-styleable>
-    <declare-styleable name="ClickThroughToolbar">
-        <!-- Whether or not clicks on this toolbar will pass through to an underlying view. This
-             value is false by default. -->
-        <attr format="boolean" name="clickThrough"/>
-    </declare-styleable>
     <declare-styleable name="ColumnCardView">
         <!-- The number of columns that this ColumnCardView should span across. This value will
              determine the width of the card. -->
@@ -289,7 +284,6 @@
             <enum name="always_dark" value="3"/>
         </attr>
     </declare-styleable>
-    <dimen name="app_header_height">96dp</dimen>
     <dimen name="car_action1_size">26sp</dimen>
     <dimen name="car_action2_size">26sp</dimen>
     <dimen name="car_action_bar_activation_ring_radius">64dp</dimen>
@@ -485,6 +479,7 @@
         <item name="android:widgetLayout">@layout/car_switch_compat_widget</item>
     </style>
     <style name="CarPreferenceFragment">
+        <item name="android:layout">@layout/preference_list_fragment_car</item>
         <item name="android:divider">@drawable/car_list_divider</item>
         <item name="allowDividerAfterLastItem">false</item>
     </style>
@@ -635,7 +630,7 @@
         <item name="android:windowTitleStyle">@style/Widget.Car.Dialog.Title.Light</item>
     </style>
     <style name="Theme.Car.Dark.NoActionBar" parent="Theme.Car.NoActionBar"/>
-    <style name="Theme.Car.Dark.NoActionBar.Drawer"/>
+    <style name="Theme.Car.Dark.NoActionBar.Drawer" parent="Theme.Car.NoActionBar.Drawer"/>
     <style name="Theme.Car.Dialog" parent="Theme.AppCompat.Dialog">
         <item name="android:colorButtonNormal">@color/car_accent</item>
         <item name="android:colorControlHighlight">@color/car_card_ripple_background</item>
@@ -712,7 +707,7 @@
         <item name="toolbarNavigationButtonStyle">@style/Widget.Car.Toolbar.Button.Navigation</item>
         <item name="toolbarStyle">@style/Widget.Car.Toolbar</item>
     </style>
-    <style name="Theme.Car.Light.NoActionBar.Drawer" parent="Theme.Car.NoActionBar.Drawer">
+    <style name="Theme.Car.Light.NoActionBar.Drawer">
         <item name="drawerArrowStyle">@style/Widget.Car.DrawerArrowToggle</item>
         <item name="drawerBackButtonTint">@color/car_tint</item>
         <item name="drawerBackgroundColor">@color/car_card</item>
