@@ -48,6 +48,7 @@ ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
     prebuilts += \
         android.test.base.stubs:public/android.test.base.jar \
         android.test.runner.stubs:public/android.test.runner.jar \
+        android.test.mock.stubs:public/android.test.mock.jar \
         org.apache.http.legacy:public/org.apache.http.legacy.jar
 
     $(foreach p,$(prebuilts),\
