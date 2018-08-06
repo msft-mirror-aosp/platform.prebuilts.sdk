@@ -19,18 +19,7 @@ LOCAL_PATH := $(call my-dir)
 #########################################
 # The prebuilt support libraries.
 
-# For apps (unbundled) build, replace the typical
-# make target artifacts with prebuilts.
-ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
-# Set up prebuilts for Multidex library artifacts.
-multidex_jars := \
-  $(patsubst $(LOCAL_PATH)/%,%,\
-    $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
-
-prebuilts := $(foreach jar,$(multidex_jars),\
-    $(basename $(notdir $(jar))):$(jar))
-
-prebuilts += org.apache.http.legacy:public/org.apache.http.legacy.jar
+include $(CLEAR_VARS)
 
 define define-prebuilt
     $(eval tw := $(subst :, ,$(strip $(1)))) \
@@ -44,9 +33,29 @@ define define-prebuilt
     $(eval include $(BUILD_PREBUILT))
 endef
 
-$(foreach p,$(prebuilts),\
-    $(call define-prebuilt,$(p)))
+# For apps (unbundled) build, replace the typical
+# make target artifacts with prebuilts.
+ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
+    # Set up prebuilts for Multidex library artifacts.
+    multidex_jars := \
+      $(patsubst $(LOCAL_PATH)/%,%,\
+        $(shell find $(LOCAL_PATH)/multidex -name "*.jar"))
+    prebuilts := $(foreach jar,$(multidex_jars),\
+        $(basename $(notdir $(jar))):$(jar))
 
-prebuilts :=
+    # Set up prebuilts for optional libraries. Need to specify them explicitly
+    # as the target name does not match the JAR name.
+    prebuilts += \
+        android.test.base.stubs:public/android.test.base.jar \
+        android.test.runner.stubs:public/android.test.runner.jar \
+        org.apache.http.legacy:public/org.apache.http.legacy.jar
 
+    $(foreach p,$(prebuilts),\
+        $(call define-prebuilt,$(p)))
+
+    prebuilts :=
 endif  # TARGET_BUILD_APPS not empty or TARGET_BUILD_PDK set to True
+
+
+# Include all Support Library modules as prebuilts.
+include $(call all-makefiles-under,$(LOCAL_PATH))
