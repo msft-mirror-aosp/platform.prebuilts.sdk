@@ -147,6 +147,8 @@ maven_to_make = {
     'androidx.loader:loader': ['androidx.loader_loader', 'androidx/loader/loader'],
     'androidx.localbroadcastmanager:localbroadcastmanager': ['androidx.localbroadcastmanager_localbroadcastmanager', 'androidx/localbroadcastmanager/localbroadcastmanager'],
     'androidx.media:media': ['androidx.media_media', 'androidx/media/media'],
+    'androidx.media2:media2': ['androidx.media2_media2', 'androidx/media2/media2'],
+    'androidx.media2:media2-exoplayer': ['androidx.media2_media2-exoplayer', 'androidx/media2/media2-exoplayer'],
     'androidx.percentlayout:percentlayout': ['androidx.percentlayout_percentlayout', 'androidx/percentlayout/percentlayout'],
     'androidx.print:print': ['androidx.print_print', 'androidx/print/print'],
     'androidx.recommendation:recommendation': ['androidx.recommendation_recommendation', 'androidx/recommendation/recommendation'],
@@ -457,11 +459,6 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
     # Move library into working dir
     new_dir = os.path.normpath(os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
     mv(artifact_info.dir, new_dir)
-
-    for dirpath, dirs, files in os.walk(new_dir):
-        for f in files:
-            if '-sources.jar' in f:
-                os.remove(os.path.join(dirpath, f))
 
     matcher = artifact_pattern.match(artifact_info.file)
     maven_lib_name = artifact_info.key
