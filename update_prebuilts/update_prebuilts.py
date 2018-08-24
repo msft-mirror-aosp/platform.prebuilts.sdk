@@ -120,6 +120,8 @@ maven_to_make = {
     'androidx.slice:slice-builders': {'name':'androidx.slice_slice-builders', 'path':'androidx/slice/slice-builders'},
     'androidx.slice:slice-core': {'name':'androidx.slice_slice-core', 'path':'androidx/slice/slice-core'},
     'androidx.slice:slice-view': {'name':'androidx.slice_slice-view', 'path':'androidx/slice/slice-view'},
+    'androidx.remotecallback:remotecallback': {'name':'androidx.remotecallback_remotecallback', 'path':'androidx/remotecallback/remotecallback'},
+    'androidx.remotecallback:remotecallback-processor': {'name':'androidx.remotecallback_remotecallback-processor', 'path':'androidx/remotecallback/remotecallback-processor', 'host':True},
     'androidx.versionedparcelable:versionedparcelable': {'name':'androidx.versionedparcelable_versionedparcelable', 'path':'androidx/versionedparcelable'},
     'androidx.vectordrawable:vectordrawable-animated': {'name':'androidx.vectordrawable_vectordrawable-animated', 'path':'androidx/vectordrawable/vectordrawable-animated'},
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation'},
@@ -439,7 +441,9 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
+        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
+        args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         # these depend on GSON which is not in AOSP
         args.extend(["-exclude=androidx.room_room-migration",
                      "-exclude=androidx.room_room-testing",
