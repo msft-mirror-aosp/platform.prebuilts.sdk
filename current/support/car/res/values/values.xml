@@ -10,6 +10,9 @@
     <color name="car_body3">@color/car_body3_dark</color>
     <color name="car_body4">@color/car_body4_dark</color>
     <color name="car_card">@color/car_card_light</color>
+    <color name="car_card_action_bar">@color/car_card_action_bar_light</color>
+    <color name="car_card_action_bar_dark">@color/car_grey_900</color>
+    <color name="car_card_action_bar_light">@color/car_grey_200</color>
     <color name="car_card_dark">@color/car_grey_868</color>
     <color name="car_card_light">@color/car_grey_50</color>
     <color name="car_card_ripple_background">@color/car_card_ripple_background_dark</color>
@@ -72,16 +75,13 @@
     <color name="car_subtext4">@color/car_subtext4_dark</color>
     <color name="car_subtext5">@color/car_subtext5_dark</color>
     <color name="car_switch_compat_track_off">@color/car_grey_400</color>
-    <color name="car_switch_compat_track_on">@color/car_teal_700_disabled</color>
+    <color name="car_switch_compat_track_on">@color/car_teal_700</color>
     <color name="car_switch_thumb_off">@color/car_body2</color>
     <color name="car_switch_thumb_on">@color/car_teal_700</color>
-    <color name="car_switch_thumb_on_disabled">@color/car_teal_700_disabled</color>
     <color name="car_switch_track_off">@color/car_body2</color>
     <color name="car_switch_track_on">@color/car_teal_700</color>
     <color name="car_teal_200">#ff80cbc4</color>
-    <color name="car_teal_200_disabled">#ffd5edec</color>
     <color name="car_teal_700">#ff00796b</color>
-    <color name="car_teal_700_disabled">#ffacd3cf</color>
     <color name="car_tint">@color/car_tint_dark</color>
     <color name="car_white_1000">#1effffff</color>
     <color name="car_yellow_500">#fff5c518</color>
@@ -427,6 +427,11 @@
     <string name="car_drawer_open" translatable="false">Open drawer</string>
     <string name="ellipsis" translatable="false">…</string>
     <string name="speed_bump_lockout_message">Focus on the road</string>
+    <style name="AlertDialog" parent="AlertDialog.AppCompat">
+        <item name="multiChoiceItemLayout">@layout/select_dialog_multichoice_car</item>
+        <item name="singleChoiceItemLayout">@layout/select_dialog_singlechoice_car</item>
+        <item name="android:layout">@layout/car_preference_alert_dialog</item>
+    </style>
     <style name="CarListVerticalDivider">
         <item name="android:layout_width">@dimen/car_vertical_line_divider_width</item>
         <item name="android:layout_height">@dimen/car_vertical_line_divider_height</item>
@@ -488,7 +493,7 @@
     </style>
     <style name="CarPreferenceFragment">
         <item name="android:layout">@layout/preference_list_fragment_car</item>
-        <item name="android:divider">@drawable/car_list_divider</item>
+        <item name="android:divider">@drawable/car_preference_divider</item>
         <item name="allowDividerAfterLastItem">false</item>
     </style>
     <style name="CarPreferenceFragmentList">
@@ -511,6 +516,14 @@
         <item name="dropdownPreferenceStyle">@style/CarPreference.DropDown</item>
         <item name="preferenceFragmentListStyle">@style/CarPreferenceFragmentList</item>
         <item name="android:preferenceLayoutChild">@layout/preference_material_car_child</item>
+    </style>
+    <style name="SpinnerDropDownItem">
+        <item name="android:textAppearance">@style/TextAppearance.Car.Body2</item>
+        <item name="android:divider">@drawable/car_preference_divider</item>
+        <item name="android:paddingLeft">@dimen/car_keyline_1</item>
+        <item name="android:paddingRight">@dimen/car_keyline_1</item>
+        <item name="android:paddingTop">@dimen/car_padding_4</item>
+        <item name="android:paddingBottom">@dimen/car_padding_4</item>
     </style>
     <style name="TextAppearance.Car" parent="TextAppearance.AppCompat"/>
     <style name="TextAppearance.Car.ActionBar.Menu" parent="TextAppearance.Car.Body3.Medium">
@@ -665,6 +678,13 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.Car.Button.Borderless.Colored</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.Car.Button.Borderless.Colored</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.Car.Button.Borderless.Colored</item>
+        <item name="android:listPreferredItemHeightSmall">@dimen/car_single_line_list_item_height</item>
+        <item name="android:listPreferredItemPaddingStart">@dimen/car_keyline_1</item>
+        <item name="android:listPreferredItemPaddingEnd">@dimen/car_keyline_1</item>
+        <item name="android:textAppearanceLarge">@style/TextAppearance.Car.Body2</item>
+        <item name="alertDialogStyle">@style/AlertDialog</item>
+        <item name="android:colorControlNormal">@color/car_body2</item>
+        <item name="android:colorControlActivated">@color/car_accent</item>
     </style>
     <style name="Theme.Car.Light.Dialog.Alert" parent="Theme.Car.Dialog.Alert">
         <item name="android:background">@color/car_card_light</item>
@@ -682,7 +702,8 @@
         <item name="listItemBodyTextAppearance">@style/TextAppearance.Car.Body2.Light</item>
     </style>
     <style name="Theme.Car.Light.NoActionBar" parent="Theme.Car.NoActionBar">
-        <item name="android:alertDialogTheme">@style/Theme.Car.Light.Dialog.Alert</item>
+        <item name="android:alertDialogTheme">@style/Theme.Car.Dialog.Alert</item>
+        <item name="android:checkboxStyle">@style/Widget.Car.CheckBox</item>
         <item name="android:colorAccent">@color/car_accent</item>
         <item name="android:colorButtonNormal">@color/car_accent</item>
         <item name="android:colorControlHighlight">@color/car_card_ripple_background</item>
@@ -699,16 +720,19 @@
         <item name="android:editTextColor">@color/car_body1</item>
         <item name="android:colorControlNormal">@color/car_body2</item>
         <item name="android:seekBarStyle">@style/Widget.Car.SeekBar</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem</item>
         <item name="actionBarItemBackground">@drawable/car_card_ripple_background</item>
         <item name="actionBarSize">@dimen/car_app_bar_height</item>
         <item name="actionButtonStyle">@style/Widget.Car.ActionButton</item>
         <item name="actionMenuTextAppearance">@style/TextAppearance.Car.ActionBar.Menu</item>
         <item name="actionMenuTextColor">?android:attr/colorButtonNormal</item>
+        <item name="alertDialogTheme">@style/Theme.Car.Dialog.Alert</item>
         <item name="carDialogTheme">@style/Theme.Car.Dialog</item>
         <item name="colorAccent">?attr/android:colorAccent</item>
         <item name="colorControlHighlight">@color/car_card_ripple_background</item>
         <item name="colorPrimary">@color/car_card</item>
         <item name="colorSwitchThumbNormal">@color/car_body2</item>
+        <item name="editTextStyle">@style/Widget.Car.EditText</item>
         <item name="listItemActionDividerColor">@color/car_list_divider</item>
         <item name="listItemBackgroundColor">@color/car_card</item>
         <item name="listItemTitleTextAppearance">@style/TextAppearance.Car.Body1</item>
@@ -757,6 +781,7 @@
         <item name="android:secondaryProgressTint">@color/car_seekbar_track_secondary_progress</item>
         <item name="android:seekBarStyle">@style/Widget.Car.SeekBar.Light</item>
         <item name="android:textColorHint">@color/car_body2_light</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem</item>
         <item name="actionBarItemBackground">@drawable/car_card_ripple_background</item>
         <item name="actionBarSize">@dimen/car_app_bar_height</item>
         <item name="actionButtonStyle">@style/Widget.Car.ActionButton.Light</item>
@@ -768,6 +793,7 @@
         <item name="colorControlHighlight">@color/car_card_ripple_background_light</item>
         <item name="colorPrimary">@color/car_card_dark</item>
         <item name="colorSwitchThumbNormal">@color/car_body2_light</item>
+        <item name="editTextStyle">@style/Widget.Car.EditText</item>
         <item name="listItemActionDividerColor">@color/car_list_divider_light</item>
         <item name="listItemBackgroundColor">@color/car_card_dark</item>
         <item name="listItemBodyTextAppearance">@style/TextAppearance.Car.Body2.Light</item>
