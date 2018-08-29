@@ -887,20 +887,20 @@ try:
             print_e('Failed to update Constraint Layout X, aborting...')
             sys.exit(1)
     if args.support:
-        if update_support('support_library', getBuildId(args), getFile(args)):
+        if update_support('androidx', getBuildId(args), getFile(args)):
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
             sys.exit(1)
     if args.androidx:
-        if update_androidx('support_library', \
+        if update_androidx('androidx', \
                            getBuildId(args), getFile(args)):
             components = append(components, 'AndroidX')
         else:
             print_e('Failed to update AndroidX, aborting...')
             sys.exit(1)
     if args.jetifier:
-        if update_jetifier('support_library', getBuildId(args)):
+        if update_jetifier('androidx', getBuildId(args)):
             components = append(components, 'Jetifier')
         else:
             print_e('Failed to update Jetifier, aborting...')
