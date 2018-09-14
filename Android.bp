@@ -15,6 +15,18 @@ filegroup {
     ],
 }
 
+filegroup {
+    name: "metalava-sdk-android-jars",
+    srcs: [
+        "**/android.jar",
+    ],
+}
+
+droiddoc_exported_dir {
+    name: "sdk-dir",
+    path: ".",
+}
+
 genrule {
     name: "last-released-public-api",
     srcs: [
