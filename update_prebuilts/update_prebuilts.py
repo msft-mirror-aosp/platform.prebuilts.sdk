@@ -130,7 +130,7 @@ maven_to_make = {
     'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
     'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
     'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
-    'androidx.concurrent:futures': {'name':'androidx.concurrent_futures', 'path':'androidx/concurrent/futures'},
+    'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
     'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
     'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
     'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
@@ -445,6 +445,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
+        args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         # these depend on GSON which is not in AOSP
