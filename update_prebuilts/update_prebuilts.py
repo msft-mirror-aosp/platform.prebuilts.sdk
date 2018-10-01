@@ -12,7 +12,7 @@ from distutils.version import LooseVersion
 from functools import reduce
 
 current_path = 'current'
-framework_sdk_target = 'sdk_phone_armv7-sdk_mac'
+framework_sdk_target = 'sdk_phone_armv7-sdk'
 support_dir = os.path.join(current_path, 'support')
 androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
@@ -124,10 +124,13 @@ maven_to_make = {
     'androidx.remotecallback:remotecallback-processor': {'name':'androidx.remotecallback_remotecallback-processor', 'path':'androidx/remotecallback/remotecallback-processor', 'host':True},
     'androidx.versionedparcelable:versionedparcelable': {'name':'androidx.versionedparcelable_versionedparcelable', 'path':'androidx/versionedparcelable'},
     'androidx.vectordrawable:vectordrawable-animated': {'name':'androidx.vectordrawable_vectordrawable-animated', 'path':'androidx/vectordrawable/vectordrawable-animated'},
+    'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation'},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
     'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
+    'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
     'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
+    'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
     'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
     'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
     'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
@@ -442,6 +445,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
+        args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         # these depend on GSON which is not in AOSP
@@ -653,44 +657,24 @@ def extract_to(zip_file, filename, parent_path):
     dst_path = path(parent_path, filename)
     mv(src_path, dst_path)
 
-
-# This is a dict from an api scope to an "artifact dict". The artifact dict
-# maps from artifact name to the respective package it stubs.
-# TODO(hansson): standardize the artifact names and remove this dict.
-sdk_artifacts_dict = {
-    'core': {
-        'core.current.stubs.jar': 'android.jar',
-    },
-    'public': {
-        'android.test.base.stubs.jar': 'android.test.base.jar',
-        'android.test.runner.stubs.jar': 'android.test.runner.jar',
-        'android.test.mock.stubs.jar': 'android.test.mock.jar',
-        'apistubs/public/*.jar': '*',
-    },
-    'system': {
-        'android_system.jar': 'android.jar',
-        'android.test.mock.stubs_system.jar': 'android.test.mock.jar',
-        'apistubs/system/*.jar': '*',
-    },
-    'test': {
-        'apistubs/test/*.jar': '*',
-    }
-}
-
-
 def update_framework(build_id, sdk_dir):
-    for api_scope in ['core', 'public', 'system', 'test']:
+    api_scope_list = ['public', 'system', 'test']
+    if sdk_dir == 'current':
+        api_scope_list.append('core')
+
+    for api_scope in api_scope_list:
         target_dir = path(sdk_dir, api_scope)
-        artifact_to_filename = sdk_artifacts_dict[api_scope]
-        artifact_to_path = {artifact: path(target_dir, filename)
-                            for (artifact, filename) in artifact_to_filename.items()}
+        if api_scope == 'core':
+            artifact_to_path = {'core.current.stubs.jar': path(target_dir, 'android.jar')}
+        else:
+            artifact_to_path = {'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*')}
 
         if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
             return False
 
         if api_scope == 'public':
             # Fetch a few artifacts from the public sdk.
-            artifact = 'sdk-repo-darwin-platforms-%s.zip' % build_id.fs_id
+            artifact = 'sdk-repo-linux-platforms-%s.zip' % build_id.fs_id
             artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, artifact)
             if not artifact_path:
                 return False
@@ -716,12 +700,14 @@ def update_makefile(build_id):
 def finalize_sdk(build_id, sdk_version):
     target_finalize_dir = '%d' % sdk_version
 
-    extra_finalize_artifacts = {
-      'api-stubs-docs_api.txt': path(target_finalize_dir, 'public/api/android.txt'),
-      'system-api-stubs-docs_api.txt': path(target_finalize_dir, 'system/api/android.txt'),
-    }
-    return fetch_artifacts(framework_sdk_target, build_id, extra_finalize_artifacts) \
-            and update_framework(build_id, target_finalize_dir) \
+    for api_scope in ['public', 'system', 'test']:
+        artifact_to_path = {'apistubs/android/' + api_scope + '/api/*.txt':
+                            path(target_finalize_dir, api_scope, 'api', '*')}
+
+        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+            return False
+
+    return update_framework(build_id, target_finalize_dir) \
             and update_makefile(target_finalize_dir)
 
 
