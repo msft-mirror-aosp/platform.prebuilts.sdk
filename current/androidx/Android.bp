@@ -1142,7 +1142,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media2_media2-nodeps",
-    aars: ["m2repository/androidx/media2/media2/1.0.0-alpha02/media2-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/media2/media2/1.0.0-alpha03/media2-1.0.0-alpha03.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1159,6 +1159,8 @@ android_library {
     manifest: "manifests/androidx.media2_media2/AndroidManifest.xml",
     static_libs: [
         "androidx.media2_media2-nodeps",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
         "androidx.media_media",
         "androidx.versionedparcelable_versionedparcelable",
         "androidx.media2_media2-exoplayer",
