@@ -523,6 +523,7 @@ def fetch_artifact(target, build_id, artifact_path):
         os.makedirs(download_to)
     fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path,
                  download_to]
+    print("Running: " + ' '.join(fetch_cmd))
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
