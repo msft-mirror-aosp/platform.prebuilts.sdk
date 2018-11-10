@@ -3,12 +3,13 @@
 
 android_library_import {
     name: "androidx.activity_activity-nodeps",
-    aars: ["m2repository/androidx/activity/activity/1.0.0-alpha01/activity-1.0.0-alpha01.aar"],
+    aars: ["m2repository/androidx/activity/activity/1.0.0-alpha02/activity-1.0.0-alpha02.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
     ],
 }
 
@@ -22,6 +23,7 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
     ],
     java_version: "1.7",
 }
@@ -49,10 +51,10 @@ android_library_import {
     static_libs: [
         "androidx.core_core",
         "androidx.cursoradapter_cursoradapter",
-        "androidx.legacy_legacy-support-core-utils",
         "androidx.fragment_fragment",
         "androidx.vectordrawable_vectordrawable",
         "androidx.vectordrawable_vectordrawable-animated",
+        "androidx.drawerlayout_drawerlayout",
     ],
 }
 
@@ -67,10 +69,10 @@ android_library {
         "androidx.collection_collection",
         "androidx.core_core",
         "androidx.cursoradapter_cursoradapter",
-        "androidx.legacy_legacy-support-core-utils",
         "androidx.fragment_fragment",
         "androidx.vectordrawable_vectordrawable",
         "androidx.vectordrawable_vectordrawable-animated",
+        "androidx.drawerlayout_drawerlayout",
     ],
     java_version: "1.7",
 }
@@ -138,7 +140,7 @@ android_library {
 
 android_library_import {
     name: "androidx.biometric_biometric-nodeps",
-    aars: ["m2repository/androidx/biometric/biometric/1.0.0-alpha02/biometric-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/biometric/biometric/1.0.0-alpha03/biometric-1.0.0-alpha03.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -223,7 +225,7 @@ android_library_import {
         "com.google.android.material_material",
         "androidx.appcompat_appcompat",
         "androidx.cardview_cardview",
-        "androidx.legacy_legacy-support-v4",
+        "androidx.coordinatorlayout_coordinatorlayout",
         "androidx.recyclerview_recyclerview",
         "androidx.gridlayout_gridlayout",
         "androidx.preference_preference",
@@ -242,7 +244,7 @@ android_library {
         "com.google.android.material_material",
         "androidx.appcompat_appcompat",
         "androidx.cardview_cardview",
-        "androidx.legacy_legacy-support-v4",
+        "androidx.coordinatorlayout_coordinatorlayout",
         "androidx.recyclerview_recyclerview",
         "androidx.gridlayout_gridlayout",
         "androidx.preference_preference",
@@ -290,7 +292,7 @@ java_library_static {
 
 java_import {
     name: "androidx.concurrent_concurrent-futures-nodeps",
-    jars: ["m2repository/androidx/concurrent/concurrent-futures/1.0.0-alpha01/concurrent-futures-1.0.0-alpha01.jar"],
+    jars: ["m2repository/androidx/concurrent/concurrent-futures/1.0.0-alpha02/concurrent-futures-1.0.0-alpha02.jar"],
     sdk_version: "current",
 }
 
@@ -348,8 +350,10 @@ android_library {
     manifest: "manifests/androidx.core_core/AndroidManifest.xml",
     static_libs: [
         "androidx.core_core-nodeps",
+        "guava-listenablefuture-prebuilt-jar",
         "androidx.annotation_annotation",
         "androidx.collection_collection",
+        "androidx.concurrent_concurrent-futures",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.versionedparcelable_versionedparcelable",
     ],
@@ -567,8 +571,7 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-ui",
-        "androidx.legacy_legacy-support-core-utils",
+        "androidx.viewpager_viewpager",
         "androidx.loader_loader",
         "androidx.activity_activity",
         "androidx.lifecycle_lifecycle-viewmodel",
@@ -584,8 +587,7 @@ android_library {
         "androidx.fragment_fragment-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-ui",
-        "androidx.legacy_legacy-support-core-utils",
+        "androidx.viewpager_viewpager",
         "androidx.loader_loader",
         "androidx.activity_activity",
         "androidx.lifecycle_lifecycle-viewmodel",
@@ -595,12 +597,11 @@ android_library {
 
 android_library_import {
     name: "androidx.gridlayout_gridlayout-nodeps",
-    aars: ["m2repository/androidx/gridlayout/gridlayout/1.0.0/gridlayout-1.0.0.aar"],
+    aars: ["m2repository/androidx/gridlayout/gridlayout/1.1.0-alpha01/gridlayout-1.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-ui",
     ],
 }
 
@@ -612,7 +613,6 @@ android_library {
     static_libs: [
         "androidx.gridlayout_gridlayout-nodeps",
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-ui",
     ],
     java_version: "1.7",
 }
@@ -719,28 +719,6 @@ android_library {
 }
 
 android_library_import {
-    name: "androidx.legacy_legacy-preference-v14-nodeps",
-    aars: ["m2repository/androidx/legacy/legacy-preference-v14/1.0.0/legacy-preference-v14-1.0.0.aar"],
-    sdk_version: "current",
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.preference_preference",
-    ],
-}
-
-android_library {
-    name: "androidx.legacy_legacy-preference-v14",
-    sdk_version: "current",
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.legacy_legacy-preference-v14/AndroidManifest.xml",
-    static_libs: [
-        "androidx.legacy_legacy-preference-v14-nodeps",
-        "androidx.preference_preference",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.legacy_legacy-support-core-ui-nodeps",
     aars: ["m2repository/androidx/legacy/legacy-support-core-ui/1.0.0/legacy-support-core-ui-1.0.0.aar"],
     sdk_version: "current",
@@ -814,61 +792,9 @@ android_library {
     java_version: "1.7",
 }
 
-android_library_import {
-    name: "androidx.legacy_legacy-support-v13-nodeps",
-    aars: ["m2repository/androidx/legacy/legacy-support-v13/1.0.0/legacy-support-v13-1.0.0.aar"],
-    sdk_version: "current",
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.legacy_legacy-support-v4",
-    ],
-}
-
-android_library {
-    name: "androidx.legacy_legacy-support-v13",
-    sdk_version: "current",
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.legacy_legacy-support-v13/AndroidManifest.xml",
-    static_libs: [
-        "androidx.legacy_legacy-support-v13-nodeps",
-        "androidx.legacy_legacy-support-v4",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.legacy_legacy-support-v4-nodeps",
-    aars: ["m2repository/androidx/legacy/legacy-support-v4/1.0.0/legacy-support-v4-1.0.0.aar"],
-    sdk_version: "current",
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.core_core",
-        "androidx.media_media",
-        "androidx.legacy_legacy-support-core-utils",
-        "androidx.legacy_legacy-support-core-ui",
-        "androidx.fragment_fragment",
-    ],
-}
-
-android_library {
-    name: "androidx.legacy_legacy-support-v4",
-    sdk_version: "current",
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.legacy_legacy-support-v4/AndroidManifest.xml",
-    static_libs: [
-        "androidx.legacy_legacy-support-v4-nodeps",
-        "androidx.core_core",
-        "androidx.media_media",
-        "androidx.legacy_legacy-support-core-utils",
-        "androidx.legacy_legacy-support-core-ui",
-        "androidx.fragment_fragment",
-    ],
-    java_version: "1.7",
-}
-
 java_import {
     name: "androidx.lifecycle_lifecycle-common-java8-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.0.0/lifecycle-common-java8-2.0.0.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.1.0-alpha01/lifecycle-common-java8-2.1.0-alpha01.jar"],
     sdk_version: "current",
 }
 
@@ -885,7 +811,7 @@ java_library_static {
 
 java_import {
     name: "androidx.lifecycle_lifecycle-common-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.0.0/lifecycle-common-2.0.0.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.1.0-alpha01/lifecycle-common-2.1.0-alpha01.jar"],
     sdk_version: "current",
 }
 
@@ -901,7 +827,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-extensions-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-extensions/2.0.0/lifecycle-extensions-2.0.0.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-extensions/2.1.0-alpha01/lifecycle-extensions-2.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -986,7 +912,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-process-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.0.0/lifecycle-process-2.0.0.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.1.0-alpha01/lifecycle-process-2.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1008,7 +934,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.0.0/lifecycle-runtime-2.0.0.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.1.0-alpha01/lifecycle-runtime-2.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1031,7 +957,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-service-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.0.0/lifecycle-service-2.0.0.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.1.0-alpha01/lifecycle-service-2.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1053,7 +979,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.0.0/lifecycle-viewmodel-2.0.0.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.1.0-alpha01/lifecycle-viewmodel-2.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1122,7 +1048,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media_media-nodeps",
-    aars: ["m2repository/androidx/media/media/1.0.0/media-1.0.0.aar"],
+    aars: ["m2repository/androidx/media/media/1.1.0-alpha01/media-1.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1223,7 +1149,7 @@ android_library {
 
 java_import {
     name: "androidx.paging_paging-common-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common/2.1.0-alpha01/paging-common-2.1.0-alpha01.jar"],
+    jars: ["m2repository/androidx/paging/paging-common/2.2.0-alpha01/paging-common-2.2.0-alpha01.jar"],
     sdk_version: "current",
 }
 
@@ -1240,7 +1166,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.paging_paging-runtime-nodeps",
-    aars: ["m2repository/androidx/paging/paging-runtime/2.1.0-alpha01/paging-runtime-2.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/paging/paging-runtime/2.2.0-alpha01/paging-runtime-2.2.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1269,12 +1195,11 @@ android_library {
 
 android_library_import {
     name: "androidx.palette_palette-nodeps",
-    aars: ["m2repository/androidx/palette/palette/1.0.0/palette-1.0.0.aar"],
+    aars: ["m2repository/androidx/palette/palette/1.1.0-alpha01/palette-1.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-utils",
     ],
 }
 
@@ -1285,8 +1210,8 @@ android_library {
     manifest: "manifests/androidx.palette_palette/AndroidManifest.xml",
     static_libs: [
         "androidx.palette_palette-nodeps",
+        "androidx.collection_collection",
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-utils",
     ],
     java_version: "1.7",
 }
@@ -1416,7 +1341,7 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-ui",
+        "androidx.customview_customview",
     ],
 }
 
@@ -1429,7 +1354,7 @@ android_library {
         "androidx.recyclerview_recyclerview-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
-        "androidx.legacy_legacy-support-core-ui",
+        "androidx.customview_customview",
     ],
     java_version: "1.7",
 }
@@ -1473,7 +1398,7 @@ android_library {
 
 java_import {
     name: "androidx.room_room-common-nodeps",
-    jars: ["m2repository/androidx/room/room-common/2.1.0-alpha01/room-common-2.1.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-common/2.1.0-alpha02/room-common-2.1.0-alpha02.jar"],
     sdk_version: "current",
 }
 
@@ -1489,14 +1414,13 @@ java_library_static {
 
 android_library_import {
     name: "androidx.room_room-runtime-nodeps",
-    aars: ["m2repository/androidx/room/room-runtime/2.1.0-alpha01/room-runtime-2.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/room/room-runtime/2.1.0-alpha02/room-runtime-2.1.0-alpha02.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
         "androidx.sqlite_sqlite-framework",
         "androidx.sqlite_sqlite",
         "androidx.arch.core_core-runtime",
-        "androidx.legacy_legacy-support-core-utils",
     ],
 }
 
@@ -1508,10 +1432,10 @@ android_library {
     static_libs: [
         "androidx.room_room-runtime-nodeps",
         "androidx.room_room-common",
+        "androidx.collection_collection",
         "androidx.sqlite_sqlite-framework",
         "androidx.sqlite_sqlite",
         "androidx.arch.core_core-runtime",
-        "androidx.legacy_legacy-support-core-utils",
     ],
     java_version: "1.7",
 }
@@ -1617,7 +1541,7 @@ android_library {
 
 android_library_import {
     name: "androidx.sqlite_sqlite-framework-nodeps",
-    aars: ["m2repository/androidx/sqlite/sqlite-framework/2.1.0-alpha01/sqlite-framework-2.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/sqlite/sqlite-framework/2.0.0/sqlite-framework-2.0.0.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1640,7 +1564,7 @@ android_library {
 
 android_library_import {
     name: "androidx.sqlite_sqlite-nodeps",
-    aars: ["m2repository/androidx/sqlite/sqlite/2.1.0-alpha01/sqlite-2.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/sqlite/sqlite/2.0.0/sqlite-2.0.0.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1712,7 +1636,7 @@ android_library {
 
 android_library_import {
     name: "androidx.transition_transition-nodeps",
-    aars: ["m2repository/androidx/transition/transition/1.0.0/transition-1.0.0.aar"],
+    aars: ["m2repository/androidx/transition/transition/1.1.0-alpha01/transition-1.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1758,12 +1682,12 @@ android_library {
 
 android_library_import {
     name: "androidx.vectordrawable_vectordrawable-animated-nodeps",
-    aars: ["m2repository/androidx/vectordrawable/vectordrawable-animated/1.0.0/vectordrawable-animated-1.0.0.aar"],
+    aars: ["m2repository/androidx/vectordrawable/vectordrawable-animated/1.1.0-alpha01/vectordrawable-animated-1.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
         "androidx.vectordrawable_vectordrawable",
-        "androidx.legacy_legacy-support-core-ui",
+        "androidx.interpolator_interpolator",
     ],
 }
 
@@ -1775,14 +1699,14 @@ android_library {
     static_libs: [
         "androidx.vectordrawable_vectordrawable-animated-nodeps",
         "androidx.vectordrawable_vectordrawable",
-        "androidx.legacy_legacy-support-core-ui",
+        "androidx.interpolator_interpolator",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.vectordrawable_vectordrawable-nodeps",
-    aars: ["m2repository/androidx/vectordrawable/vectordrawable/1.0.0/vectordrawable-1.0.0.aar"],
+    aars: ["m2repository/androidx/vectordrawable/vectordrawable/1.0.1/vectordrawable-1.0.1.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1827,7 +1751,7 @@ android_library {
 
 android_library_import {
     name: "androidx.viewpager_viewpager-nodeps",
-    aars: ["m2repository/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.aar"],
+    aars: ["m2repository/androidx/viewpager/viewpager/1.1.0-alpha01/viewpager-1.1.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
