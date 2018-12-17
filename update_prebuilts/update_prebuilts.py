@@ -154,6 +154,7 @@ maven_to_make = {
     'androidx.media:media': {'name':'androidx.media_media', 'path':'androidx/media/media'},
     'androidx.media2:media2': {'name':'androidx.media2_media2', 'path':'androidx/media2/media2'},
     'androidx.media2:media2-exoplayer': {'name':'androidx.media2_media2-exoplayer', 'path':'androidx/media2/media2-exoplayer'},
+    'androidx.media2:media2-widget': {'name':'androidx.media2_media2-widget', 'path':'androidx/media2/media2-widget'},
     'androidx.percentlayout:percentlayout': {'name':'androidx.percentlayout_percentlayout', 'path':'androidx/percentlayout/percentlayout'},
     'androidx.print:print': {'name':'androidx.print_print', 'path':'androidx/print/print'},
     'androidx.recommendation:recommendation': {'name':'androidx.recommendation_recommendation', 'path':'androidx/recommendation/recommendation'},
