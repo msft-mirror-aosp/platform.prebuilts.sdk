@@ -19,59 +19,6 @@ LOCAL_PATH:= $(call my-dir)
 ##################################
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := jack-admin
-LOCAL_SRC_FILES := jack-admin
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack-admin$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := jack-diagnose
-LOCAL_SRC_FILES := jack-diagnose
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack-diagnose$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := jack
-LOCAL_SRC_FILES := jack
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack$(HOST_EXECUTABLE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-LOCAL_REQUIRED_MODULES := jack-admin jack-diagnose
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := jack-coverage-plugin
-LOCAL_SRC_FILES := jack-coverage-plugin.jar
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-MOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := $(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_BUILT_MODULE_STEM := jack-coverage-plugin$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_IS_HOST_MODULE := true
-
-include $(BUILD_PREBUILT)
-
-##################################
-include $(CLEAR_VARS)
-
 LOCAL_MODULE := jack-jacoco-reporter
 LOCAL_SRC_FILES := jack-jacoco-reporter.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
