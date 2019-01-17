@@ -26,25 +26,3 @@ android_library {
     ],
     java_version: "1.7",
 }
-
-android_library_import {
-    name: "androidx.legacy_legacy-support-v13-nodeps",
-    aars: ["m2repository/androidx/legacy/legacy-support-v13/1.0.0/legacy-support-v13-1.0.0.aar"],
-    sdk_version: "current",
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.legacy_legacy-support-v4",
-    ],
-}
-
-android_library {
-    name: "androidx.legacy_legacy-support-v13",
-    sdk_version: "current",
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.legacy_legacy-support-v13/AndroidManifest.xml",
-    static_libs: [
-        "androidx.legacy_legacy-support-v13-nodeps",
-        "androidx.legacy_legacy-support-v4",
-    ],
-    java_version: "1.7",
-}
