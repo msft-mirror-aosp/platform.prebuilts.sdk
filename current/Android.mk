@@ -35,7 +35,7 @@ endef
 
 # For apps (unbundled) build, replace the typical
 # make target artifacts with prebuilts.
-ifneq (,$(TARGET_BUILD_APPS)$(filter true,$(TARGET_BUILD_PDK)))
+ifneq (,$(TARGET_BUILD_APPS_USE_PREBUILT_SDK)$(filter true,$(TARGET_BUILD_PDK)))
     # Set up prebuilts for Multidex library artifacts.
     multidex_jars := \
       $(patsubst $(LOCAL_PATH)/%,%,\
