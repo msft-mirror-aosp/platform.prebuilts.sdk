@@ -32,7 +32,7 @@ genrule {
     srcs: [
         "*/public/api/android.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -n | tail -1) $(genDir)/last-released-api.txt",
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
     out: [
         "last-released-api.txt",
     ],
@@ -43,7 +43,7 @@ genrule {
     srcs: [
         "*/system/api/android.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -n | tail -1) $(genDir)/last-released-api.txt",
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
     out: [
         "last-released-api.txt",
     ],
@@ -54,7 +54,7 @@ genrule {
     srcs: [
         "*/public/api/android.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -n | tail -2 | head -1) $(genDir)/last-released-api.txt",
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -2 | head -1) $(genDir)/last-released-api.txt",
     out: [
         "last-released-api.txt",
     ],
