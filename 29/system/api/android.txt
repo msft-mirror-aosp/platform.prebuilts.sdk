@@ -98,7 +98,6 @@ package android {
     field public static final java.lang.String MANAGE_AUTO_FILL = "android.permission.MANAGE_AUTO_FILL";
     field public static final java.lang.String MANAGE_CARRIER_OEM_UNLOCK_STATE = "android.permission.MANAGE_CARRIER_OEM_UNLOCK_STATE";
     field public static final java.lang.String MANAGE_CA_CERTIFICATES = "android.permission.MANAGE_CA_CERTIFICATES";
-    field public static final java.lang.String MANAGE_DEVICE_ADMINS = "android.permission.MANAGE_DEVICE_ADMINS";
     field public static final java.lang.String MANAGE_IPSEC_TUNNELS = "android.permission.MANAGE_IPSEC_TUNNELS";
     field public static final java.lang.String MANAGE_SOUND_TRIGGER = "android.permission.MANAGE_SOUND_TRIGGER";
     field public static final java.lang.String MANAGE_SUBSCRIPTION_PLANS = "android.permission.MANAGE_SUBSCRIPTION_PLANS";
@@ -1023,6 +1022,7 @@ package android.content.pm {
 
   public abstract class PackageManager {
     method public abstract void addOnPermissionsChangeListener(android.content.pm.PackageManager.OnPermissionsChangedListener);
+    method public abstract boolean arePermissionsIndividuallyControlled();
     method public abstract java.util.List<android.content.IntentFilter> getAllIntentFilters(java.lang.String);
     method public android.content.pm.dex.ArtManager getArtManager();
     method public abstract java.lang.String getDefaultBrowserPackageNameAsUser(int);
@@ -4471,6 +4471,7 @@ package android.service.euicc {
     ctor public EuiccService();
     method public android.os.IBinder onBind(android.content.Intent);
     method public abstract int onDeleteSubscription(int, java.lang.String);
+    method public abstract android.service.euicc.DownloadSubscriptionResult onDownloadSubscription(int, @NonNull android.telephony.euicc.DownloadableSubscription, boolean, boolean, @Nullable android.os.Bundle);
     method public abstract int onDownloadSubscription(int, android.telephony.euicc.DownloadableSubscription, boolean, boolean);
     method public abstract int onEraseSubscriptions(int);
     method public abstract android.service.euicc.GetDefaultDownloadableSubscriptionListResult onGetDefaultDownloadableSubscriptionList(int, boolean);
@@ -6285,20 +6286,6 @@ package android.webkit {
 
   public abstract class TokenBindingService {
     ctor public TokenBindingService();
-    method public abstract void deleteAllKeys(android.webkit.ValueCallback<java.lang.Boolean>);
-    method public abstract void deleteKey(android.net.Uri, android.webkit.ValueCallback<java.lang.Boolean>);
-    method public abstract void enableTokenBinding();
-    method public static android.webkit.TokenBindingService getInstance();
-    method public abstract void getKey(android.net.Uri, java.lang.String[], android.webkit.ValueCallback<android.webkit.TokenBindingService.TokenBindingKey>);
-    field public static final java.lang.String KEY_ALGORITHM_ECDSAP256 = "ECDSAP256";
-    field public static final java.lang.String KEY_ALGORITHM_RSA2048_PKCS_1_5 = "RSA2048_PKCS_1.5";
-    field public static final java.lang.String KEY_ALGORITHM_RSA2048_PSS = "RSA2048PSS";
-  }
-
-  public static abstract class TokenBindingService.TokenBindingKey {
-    ctor public TokenBindingService.TokenBindingKey();
-    method public abstract java.lang.String getAlgorithm();
-    method public abstract java.security.KeyPair getKeyPair();
   }
 
   public class WebChromeClient {
@@ -6497,6 +6484,8 @@ package android.webkit {
     method public abstract int getVisibleTitleHeight();
     method public abstract android.webkit.WebChromeClient getWebChromeClient();
     method public abstract android.webkit.WebViewClient getWebViewClient();
+    method public android.webkit.WebViewRenderer getWebViewRenderer();
+    method public android.webkit.WebViewRendererClient getWebViewRendererClient();
     method public abstract android.view.View getZoomControls();
     method public abstract void goBack();
     method public abstract void goBackOrForward(int);
@@ -6546,6 +6535,7 @@ package android.webkit {
     method public abstract void setVerticalScrollbarOverlay(boolean);
     method public abstract void setWebChromeClient(android.webkit.WebChromeClient);
     method public abstract void setWebViewClient(android.webkit.WebViewClient);
+    method public void setWebViewRendererClient(@NonNull java.util.concurrent.Executor, @NonNull android.webkit.WebViewRendererClient);
     method public abstract boolean showFindDialog(java.lang.String, boolean);
     method public abstract void stopLoading();
     method public abstract boolean zoomBy(float);
