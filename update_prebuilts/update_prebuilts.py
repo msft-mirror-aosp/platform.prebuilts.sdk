@@ -272,39 +272,6 @@ maven_to_make = {
 
     # Androidx Material Design Components
     'com.google.android.material:material': {'name':'com.google.android.material_material', 'path':'com/google/android/material/material'},
-
-    # Intermediate-AndroidX Material Design Components
-    'com.android.temp.support:design': {'name':'androidx.design_design', 'path':'com/android/temp/support/design/design'},
-    'com.android.temp.support:design-animation': {'name':'androidx.design_design-animation', 'path':'com/android/temp/support/design/design-animation'},
-    'com.android.temp.support:design-bottomnavigation': {'name':'androidx.design_design-bottomnavigation', 'path':'com/android/temp/support/design/design-bottomnavigation'},
-    'com.android.temp.support:design-bottomsheet': {'name':'androidx.design_design-bottomsheet', 'path':'com/android/temp/support/design/design-bottomsheet'},
-    'com.android.temp.support:design-button': {'name':'androidx.design_design-button', 'path':'com/android/temp/support/design/design-button'},
-    'com.android.temp.support:design-canvas': {'name':'androidx.design_design-canvas', 'path':'com/android/temp/support/design/design-canvas'},
-    'com.android.temp.support:design-card': {'name':'androidx.design_design-card', 'path':'com/android/temp/support/design/design-card'},
-    'com.android.temp.support:design-chip': {'name':'androidx.design_design-chip', 'path':'com/android/temp/support/design/design-chip'},
-    'com.android.temp.support:design-circularreveal': {'name':'androidx.design_design-circularreveal', 'path':'com/android/temp/support/design/design-circularreveal'},
-    'com.android.temp.support:design-circularreveal-cardview': {'name':'androidx.design_design-circularreveal-cardview', 'path':'com/android/temp/support/design/design-circularreveal-cardview'},
-    'com.android.temp.support:design-circularreveal-coordinatorlayout': {'name':'androidx.design_design-circularreveal-coordinatorlayout', 'path':'com/android/temp/support/design/design-circularreveal-coordinatorlayout'},
-    'com.android.temp.support:design-color': {'name':'androidx.design_design-color', 'path':'com/android/temp/support/design/design-color'},
-    'com.android.temp.support:design-dialog': {'name':'androidx.design_design-dialog', 'path':'com/android/temp/support/design/design-dialog'},
-    'com.android.temp.support:design-drawable': {'name':'androidx.design_design-drawable', 'path':'com/android/temp/support/design/design-drawable'},
-    'com.android.temp.support:design-expandable': {'name':'androidx.design_design-expandable', 'path':'com/android/temp/support/design/design-expandable'},
-    'com.android.temp.support:design-floatingactionbutton': {'name':'androidx.design_design-floatingactionbutton', 'path':'com/android/temp/support/design/design-floatingactionbutton'},
-    'com.android.temp.support:design-internal': {'name':'androidx.design_design-internal', 'path':'com/android/temp/support/design/design-internal'},
-    'com.android.temp.support:design-math': {'name':'androidx.design_design-math', 'path':'com/android/temp/support/design/design-math'},
-    'com.android.temp.support:design-resources': {'name':'androidx.design_design-resources', 'path':'com/android/temp/support/design/design-resources'},
-    'com.android.temp.support:design-ripple': {'name':'androidx.design_design-ripple', 'path':'com/android/temp/support/design/design-ripple'},
-    'com.android.temp.support:design-snackbar': {'name':'androidx.design_design-snackbar', 'path':'com/android/temp/support/design/design-snackbar'},
-    'com.android.temp.support:design-stateful': {'name':'androidx.design_design-stateful', 'path':'com/android/temp/support/design/design-stateful'},
-    'com.android.temp.support:design-textfield': {'name':'androidx.design_design-textfield', 'path':'com/android/temp/support/design/design-textfield'},
-    'com.android.temp.support:design-theme': {'name':'androidx.design_design-theme', 'path':'com/android/temp/support/design/design-theme'},
-    'com.android.temp.support:design-transformation': {'name':'androidx.design_design-transformation', 'path':'com/android/temp/support/design/design-transformation'},
-    'com.android.temp.support:design-typography': {'name':'androidx.design_design-typography', 'path':'com/android/temp/support/design/design-typography'},
-    'com.android.temp.support:design-widget': {'name':'androidx.design_design-widget', 'path':'com/android/temp/support/design/design-widget'},
-    'com.android.temp.support:design-navigation': {'name':'androidx.design_design-navigation', 'path':'com/android/temp/support/design/design-navigation'},
-    'com.android.temp.support:design-tabs': {'name':'androidx.design_design-tabs', 'path':'com/android/temp/support/design/design-tabs'},
-    'com.android.temp.support:design-bottomappbar': {'name':'androidx.design_design-bottomappbar', 'path':'com/android/temp/support/design/design-bottomappbar'},
-    'com.android.temp.support:design-shape': {'name':'androidx.design_design-shape', 'path':'com/android/temp/support/design/design-shape'},
 }
 
 # Always remove these files.
