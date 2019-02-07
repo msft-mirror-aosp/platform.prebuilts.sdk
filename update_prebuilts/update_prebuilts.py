@@ -519,6 +519,7 @@ def fetch_artifact(target, build_id, artifact_path):
         os.makedirs(download_to)
     fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path,
                  download_to]
+    print("Running: " + ' '.join(fetch_cmd))
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError:
@@ -569,7 +570,7 @@ def update_support(target, build_id, local_file):
 
 def update_androidx(target, build_id, local_file):
     if build_id:
-        repo_file = 'top-of-tree-m2repository-%s.zip' % build_id.fs_id
+        repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
     else:
         repo_dir = fetch_and_extract(target, None, None, local_file)
@@ -861,20 +862,20 @@ try:
             print_e('Failed to update Constraint Layout X, aborting...')
             sys.exit(1)
     if args.support:
-        if update_support('support_library', getBuildId(args), getFile(args)):
+        if update_support('androidx', getBuildId(args), getFile(args)):
             components = append(components, 'Support Library')
         else:
             print_e('Failed to update Support Library, aborting...')
             sys.exit(1)
     if args.androidx:
-        if update_androidx('support_library', \
+        if update_androidx('androidx', \
                            getBuildId(args), getFile(args)):
             components = append(components, 'AndroidX')
         else:
             print_e('Failed to update AndroidX, aborting...')
             sys.exit(1)
     if args.jetifier:
-        if update_jetifier('support_library', getBuildId(args)):
+        if update_jetifier('androidx', getBuildId(args)):
             components = append(components, 'Jetifier')
         else:
             print_e('Failed to update Jetifier, aborting...')
