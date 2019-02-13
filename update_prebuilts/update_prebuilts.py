@@ -172,6 +172,7 @@ maven_to_make = {
     'androidx.leanback:leanback-preference': {'name':'androidx.leanback_leanback-preference', 'path':'androidx/leanback/leanback-preference'},
     'androidx.legacy:legacy-support-v4': {'name':'androidx.legacy_legacy-support-v4', 'path':'androidx/legacy/legacy-support-v4'},
     'androidx.appcompat:appcompat': {'name':'androidx.appcompat_appcompat', 'path':'androidx/appcompat/appcompat'},
+    'androidx.appcompat:appcompat-resources': {'name':'androidx.appcompat_appcompat-resources', 'path':'androidx/appcompat/appcompat-resources'},
     'androidx.cardview:cardview': {'name':'androidx.cardview_cardview', 'path':'androidx/cardview/cardview'},
     'androidx.gridlayout:gridlayout': {'name':'androidx.gridlayout_gridlayout', 'path':'androidx/gridlayout/gridlayout'},
     'androidx.mediarouter:mediarouter': {'name':'androidx.mediarouter_mediarouter', 'path':'androidx/mediarouter/mediarouter'},
