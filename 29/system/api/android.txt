@@ -6484,8 +6484,8 @@ package android.webkit {
     method public abstract int getVisibleTitleHeight();
     method public abstract android.webkit.WebChromeClient getWebChromeClient();
     method public abstract android.webkit.WebViewClient getWebViewClient();
-    method public android.webkit.WebViewRenderer getWebViewRenderer();
-    method public android.webkit.WebViewRendererClient getWebViewRendererClient();
+    method @Nullable public android.webkit.WebViewRenderProcess getWebViewRenderProcess();
+    method @Nullable public android.webkit.WebViewRenderProcessClient getWebViewRenderProcessClient();
     method public abstract android.view.View getZoomControls();
     method public abstract void goBack();
     method public abstract void goBackOrForward(int);
@@ -6535,7 +6535,7 @@ package android.webkit {
     method public abstract void setVerticalScrollbarOverlay(boolean);
     method public abstract void setWebChromeClient(android.webkit.WebChromeClient);
     method public abstract void setWebViewClient(android.webkit.WebViewClient);
-    method public void setWebViewRendererClient(@NonNull java.util.concurrent.Executor, @NonNull android.webkit.WebViewRendererClient);
+    method public void setWebViewRenderProcessClient(@NonNull java.util.concurrent.Executor, @NonNull android.webkit.WebViewRenderProcessClient);
     method public abstract boolean showFindDialog(java.lang.String, boolean);
     method public abstract void stopLoading();
     method public abstract boolean zoomBy(float);
