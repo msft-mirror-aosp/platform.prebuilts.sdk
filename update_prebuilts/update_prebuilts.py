@@ -818,7 +818,7 @@ if not (args.support or args.platform or args.constraint or args.buildtools \
     sys.exit(1)
 if (args.support or args.constraint or args.constraint_x or args.design or args.material or args.androidx) \
         and which('pom2bp') is None:
-    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
+    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
     sys.exit(1)
 
 if uncommittedChangesExist():
