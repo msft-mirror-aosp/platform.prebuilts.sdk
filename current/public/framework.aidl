@@ -439,7 +439,6 @@ parcelable android.service.settings.suggestions.Suggestion;
 parcelable android.speech.tts.Voice;
 parcelable android.telecom.AudioState;
 parcelable android.telecom.CallAudioState;
-parcelable android.telecom.CallIdentification;
 parcelable android.telecom.ConnectionRequest;
 parcelable android.telecom.DisconnectCause;
 parcelable android.telecom.GatewayInfo;
