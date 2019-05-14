@@ -1164,10 +1164,11 @@ android_library {
 
 android_library_import {
     name: "androidx.media_media-nodeps",
-    aars: ["m2repository/androidx/media/media/1.1.0-alpha05/media-1.1.0-alpha05.aar"],
+    aars: ["m2repository/androidx/media/media/1.1.0-beta01/media-1.1.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
+        "androidx.collection_collection",
         "androidx.core_core",
     ],
 }
@@ -1186,8 +1187,36 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.media2_media2-common-nodeps",
+    aars: ["m2repository/androidx/media2/media2-common/1.0.0-beta01/media2-common-1.0.0-beta01.aar"],
+    sdk_version: "current",
+    min_sdk_version: "19",
+    static_libs: [
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.collection_collection",
+        "androidx.media_media",
+    ],
+}
+
+android_library {
+    name: "androidx.media2_media2-common",
+    sdk_version: "current",
+    min_sdk_version: "19",
+    manifest: "manifests/androidx.media2_media2-common/AndroidManifest.xml",
+    static_libs: [
+        "androidx.media2_media2-common-nodeps",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.collection_collection",
+        "androidx.media_media",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.media2_media2-exoplayer-nodeps",
-    aars: ["m2repository/androidx/media2/media2-exoplayer/1.0.0-alpha02/media2-exoplayer-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/media2/media2-exoplayer/1.0.0-beta01/media2-exoplayer-1.0.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1206,12 +1235,77 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.media2_media2-player-nodeps",
+    aars: ["m2repository/androidx/media2/media2-player/1.0.0-beta01/media2-player-1.0.0-beta01.aar"],
+    sdk_version: "current",
+    min_sdk_version: "19",
+    static_libs: [
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.collection_collection",
+        "androidx.media_media",
+        "androidx.media2_media2-common",
+        "androidx.media2_media2-exoplayer",
+    ],
+}
+
+android_library {
+    name: "androidx.media2_media2-player",
+    sdk_version: "current",
+    min_sdk_version: "19",
+    manifest: "manifests/androidx.media2_media2-player/AndroidManifest.xml",
+    static_libs: [
+        "androidx.media2_media2-player-nodeps",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.collection_collection",
+        "androidx.media_media",
+        "androidx.media2_media2-common",
+        "androidx.media2_media2-exoplayer",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.media2_media2-session-nodeps",
+    aars: ["m2repository/androidx/media2/media2-session/1.0.0-beta01/media2-session-1.0.0-beta01.aar"],
+    sdk_version: "current",
+    min_sdk_version: "19",
+    static_libs: [
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.collection_collection",
+        "androidx.media_media",
+        "androidx.media2_media2-common",
+    ],
+}
+
+android_library {
+    name: "androidx.media2_media2-session",
+    sdk_version: "current",
+    min_sdk_version: "19",
+    manifest: "manifests/androidx.media2_media2-session/AndroidManifest.xml",
+    static_libs: [
+        "androidx.media2_media2-session-nodeps",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.collection_collection",
+        "androidx.media_media",
+        "androidx.media2_media2-common",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.media2_media2-widget-nodeps",
     aars: ["m2repository/androidx/media2/media2-widget/1.0.0-alpha07/media2-widget-1.0.0-alpha07.aar"],
     sdk_version: "current",
     min_sdk_version: "19",
     static_libs: [
-        "androidx.media2_media2",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.media2_media2-common",
+        "androidx.media2_media2-player",
+        "androidx.media2_media2-session",
         "androidx.mediarouter_mediarouter",
         "androidx.appcompat_appcompat",
         "androidx.palette_palette",
@@ -1226,37 +1320,12 @@ android_library {
     static_libs: [
         "androidx.media2_media2-widget-nodeps",
         "androidx.concurrent_concurrent-futures",
-        "androidx.media2_media2",
+        "androidx.media2_media2-common",
+        "androidx.media2_media2-player",
+        "androidx.media2_media2-session",
         "androidx.mediarouter_mediarouter",
         "androidx.appcompat_appcompat",
         "androidx.palette_palette",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.media2_media2-nodeps",
-    aars: ["m2repository/androidx/media2/media2/1.0.0-alpha05/media2-1.0.0-alpha05.aar"],
-    sdk_version: "current",
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.media_media",
-        "androidx.media2_media2-exoplayer",
-    ],
-}
-
-android_library {
-    name: "androidx.media2_media2",
-    sdk_version: "current",
-    min_sdk_version: "19",
-    manifest: "manifests/androidx.media2_media2/AndroidManifest.xml",
-    static_libs: [
-        "androidx.media2_media2-nodeps",
-        "guava-listenablefuture-prebuilt-jar",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.collection_collection",
-        "androidx.media_media",
-        "androidx.media2_media2-exoplayer",
     ],
     java_version: "1.7",
 }
