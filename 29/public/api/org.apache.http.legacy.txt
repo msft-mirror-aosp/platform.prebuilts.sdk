@@ -872,10 +872,12 @@ package org.apache.http {
 
   @Deprecated public interface HeaderElementIterator extends java.util.Iterator {
     method @Deprecated public org.apache.http.HeaderElement nextElement();
+    method @Deprecated public boolean hasNext();
   }
 
   @Deprecated public interface HeaderIterator extends java.util.Iterator {
     method @Deprecated public org.apache.http.Header nextHeader();
+    method @Deprecated public boolean hasNext();
   }
 
   @Deprecated public interface HttpClientConnection extends org.apache.http.HttpConnection {
@@ -1143,6 +1145,7 @@ package org.apache.http {
 
   @Deprecated public interface TokenIterator extends java.util.Iterator {
     method @Deprecated public String nextToken();
+    method @Deprecated public boolean hasNext();
   }
 
   @Deprecated public class UnsupportedHttpVersionException extends org.apache.http.ProtocolException {
