@@ -131,6 +131,8 @@ maven_to_make = {
     'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
     'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
     'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
+    'androidx.concurrent:concurrent-listenablefuture-callback': {'name':'androidx.concurrent_concurrent-listenablefuture-callback', 'path':'androidx/concurrent/concurrent-listenablefuture-callback'},
+    'androidx.concurrent:concurrent-listenablefuture': {'name':'androidx.concurrent_concurrent-listenablefuture', 'path':'androidx/concurrent/concurrent-listenablefuture'},
     'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
     'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
     'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
