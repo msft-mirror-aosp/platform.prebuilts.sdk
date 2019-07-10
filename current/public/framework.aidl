@@ -558,6 +558,7 @@ parcelable android.view.KeyboardShortcutInfo;
 parcelable android.view.MotionEvent;
 parcelable android.view.PointerIcon;
 parcelable android.view.Surface;
+parcelable android.view.SurfaceControl.Transaction;
 parcelable android.view.SurfaceControl;
 parcelable android.view.View.BaseSavedState;
 parcelable android.view.WindowAnimationFrameStats;
