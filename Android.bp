@@ -50,13 +50,24 @@ genrule {
 }
 
 genrule {
-    name: "public-api-for-metalava-annotations",
+    name: "public-api-incompatibilities-with-last-released",
     srcs: [
-        "*/public/api/android.txt",
+        "*/public/api/incompatibilities.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -2 | head -1) $(genDir)/last-released-api.txt",
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
     out: [
-        "last-released-api.txt",
+        "incompatibilities.txt",
+    ],
+}
+
+genrule {
+    name: "system-api-incompatibilities-with-last-released",
+    srcs: [
+        "*/system/api/incompatibilities.txt",
+    ],
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
+    out: [
+        "incompatibilities.txt",
     ],
 }
 
