@@ -12,7 +12,7 @@ from distutils.version import LooseVersion
 from functools import reduce
 
 current_path = 'current'
-framework_sdk_target = 'sdk_phone_armv7-sdk'
+framework_sdk_target = 'sdk_phone_armv7-win_sdk'
 support_dir = os.path.join(current_path, 'support')
 androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
@@ -159,8 +159,7 @@ maven_to_make = {
     'androidx.print:print': {'name':'androidx.print_print', 'path':'androidx/print/print'},
     'androidx.recommendation:recommendation': {'name':'androidx.recommendation_recommendation', 'path':'androidx/recommendation/recommendation'},
     'androidx.recyclerview:recyclerview-selection': {'name':'androidx.recyclerview_recyclerview-selection', 'path':'androidx/recyclerview/recyclerview-selection'},
-    'androidx.savedstate:savedstate-common': {'name':'androidx.savedstate_savedstate-common', 'path':'androidx/savedstate/savedstate-common'},
-    'androidx.savedstate:savedstate-bundle': {'name':'androidx.savedstate_savedstate-bundle', 'path':'androidx/savedstate/savedstate-bundle'},
+    'androidx.savedstate:savedstate': {'name':'androidx.savedstate_savedstate', 'path':'androidx/savedstate/savedstate'},
     'androidx.slidingpanelayout:slidingpanelayout': {'name':'androidx.slidingpanelayout_slidingpanelayout', 'path':'androidx/slidingpanelayout/slidingpanelayout'},
     'androidx.swiperefreshlayout:swiperefreshlayout': {'name':'androidx.swiperefreshlayout_swiperefreshlayout', 'path':'androidx/swiperefreshlayout/swiperefreshlayout'},
     'androidx.textclassifier:textclassifier': {'name':'androidx.textclassifier_textclassifier', 'path':'androidx/textclassifier/textclassifier'},
@@ -819,7 +818,7 @@ if not (args.support or args.platform or args.constraint or args.buildtools \
     sys.exit(1)
 if (args.support or args.constraint or args.constraint_x or args.design or args.material or args.androidx) \
         and which('pom2bp') is None:
-    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment")
+    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
     sys.exit(1)
 
 if uncommittedChangesExist():
