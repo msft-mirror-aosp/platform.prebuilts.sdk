@@ -7,7 +7,7 @@ import os, sys, getopt, zipfile, re
 import argparse
 import glob
 import subprocess
-from shutil import copyfile, rmtree, which
+from shutil import copyfile, rmtree, which, move
 from distutils.version import LooseVersion
 from functools import reduce
 
@@ -336,7 +336,7 @@ def mv(src_path, dst_path):
             dst = os.path.join(os.path.dirname(dst_path), os.path.basename(f))
         else:
             dst = dst_path
-        os.rename(f, dst)
+        move(f, dst)
 
 
 def detect_artifacts(maven_repo_dirs):
