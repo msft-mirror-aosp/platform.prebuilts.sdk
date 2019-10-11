@@ -6886,7 +6886,6 @@ package android.content.res {
   public final class AssetManager.AssetInputStream extends java.io.InputStream {
     method public int getAssetInt();
     method public int read() throws java.io.IOException;
-    method public void reset() throws java.io.IOException;
   }
 
   public class ColorStateList implements android.os.Parcelable {
@@ -15802,7 +15801,6 @@ package android.os {
     method public void remove(String);
     method public void setClassLoader(ClassLoader);
     method public int size();
-    method public String toString();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator<android.os.Bundle> CREATOR;
     field public static final android.os.Bundle EMPTY;
@@ -21085,7 +21083,6 @@ package android.telephony.gsm {
 
   @Deprecated public static class SmsMessage.SubmitPdu {
     ctor @Deprecated public SmsMessage.SubmitPdu();
-    method @Deprecated public String toString();
     field @Deprecated public byte[] encodedMessage;
     field @Deprecated public byte[] encodedScAddress;
   }
@@ -22103,7 +22100,6 @@ package android.text {
     method public final int length();
     method public int nextSpanTransition(int, int, Class);
     method public CharSequence subSequence(int, int);
-    method public final String toString();
     method public static android.text.SpannedString valueOf(CharSequence);
   }
 
@@ -28808,8 +28804,6 @@ package android.widget {
     method public final void incrementProgressBy(int);
     method public final void incrementSecondaryProgressBy(int);
     method @android.view.ViewDebug.ExportedProperty(category="progress") public boolean isIndeterminate();
-    method protected void onDraw(android.graphics.Canvas);
-    method protected void onMeasure(int, int);
     method public void onRestoreInstanceState(android.os.Parcelable);
     method public android.os.Parcelable onSaveInstanceState();
     method public void setIndeterminate(boolean);
@@ -30152,7 +30146,6 @@ package dalvik.system {
     ctor public BaseDexClassLoader(String, java.io.File, String, ClassLoader);
     method public String findLibrary(String);
     method protected java.util.Enumeration<java.net.URL> findResources(String);
-    method protected Package getPackage(String);
   }
 
   public class DexClassLoader extends dalvik.system.BaseDexClassLoader {
@@ -30325,10 +30318,6 @@ package java.io {
   public class BufferedInputStream extends java.io.FilterInputStream {
     ctor public BufferedInputStream(java.io.InputStream);
     ctor public BufferedInputStream(java.io.InputStream, int);
-    method public int available() throws java.io.IOException;
-    method public int read() throws java.io.IOException;
-    method public int read(byte[], int, int) throws java.io.IOException;
-    method public long skip(long) throws java.io.IOException;
     field protected volatile byte[] buf;
     field protected int count;
     field protected int marklimit;
@@ -30339,10 +30328,6 @@ package java.io {
   public class BufferedOutputStream extends java.io.FilterOutputStream {
     ctor public BufferedOutputStream(java.io.OutputStream);
     ctor public BufferedOutputStream(java.io.OutputStream, int);
-    method public void close() throws java.io.IOException;
-    method public void flush() throws java.io.IOException;
-    method public void write(byte[], int, int) throws java.io.IOException;
-    method public void write(int) throws java.io.IOException;
     field protected byte[] buf;
     field protected int count;
   }
@@ -30368,7 +30353,6 @@ package java.io {
     ctor public ByteArrayInputStream(byte[]);
     ctor public ByteArrayInputStream(byte[], int, int);
     method public int available();
-    method public void mark(int);
     method public int read();
     method public int read(byte[], int, int);
     method public void reset();
@@ -30652,7 +30636,6 @@ package java.io {
 
   public class FilterInputStream extends java.io.InputStream {
     ctor protected FilterInputStream(java.io.InputStream);
-    method public void mark(int);
     method public int read() throws java.io.IOException;
     field protected volatile java.io.InputStream in;
   }
@@ -30666,7 +30649,6 @@ package java.io {
   public abstract class FilterReader extends java.io.Reader {
     ctor protected FilterReader(java.io.Reader);
     method public void close() throws java.io.IOException;
-    method public void mark(int) throws java.io.IOException;
     method public int read(char[], int, int) throws java.io.IOException;
     field protected java.io.Reader in;
   }
@@ -30736,7 +30718,6 @@ package java.io {
   @Deprecated public class LineNumberInputStream extends java.io.FilterInputStream {
     ctor public LineNumberInputStream(java.io.InputStream);
     method public int getLineNumber();
-    method public void reset() throws java.io.IOException;
     method public void setLineNumber(int);
   }
 
@@ -30963,11 +30944,8 @@ package java.io {
     ctor public PipedInputStream(java.io.PipedOutputStream) throws java.io.IOException;
     ctor public PipedInputStream(int);
     ctor public PipedInputStream(java.io.PipedOutputStream, int) throws java.io.IOException;
-    method public int available() throws java.io.IOException;
-    method public void close() throws java.io.IOException;
     method public void connect(java.io.PipedOutputStream) throws java.io.IOException;
     method public int read() throws java.io.IOException;
-    method public int read(byte[], int, int) throws java.io.IOException;
     method protected void receive(int) throws java.io.IOException;
     field protected static final int PIPE_SIZE = 1024; // 0x400
     field protected byte[] buffer;
@@ -30990,7 +30968,6 @@ package java.io {
     method public void close() throws java.io.IOException;
     method public void connect(java.io.PipedWriter) throws java.io.IOException;
     method public int read(char[], int, int) throws java.io.IOException;
-    method public boolean ready() throws java.io.IOException;
   }
 
   public class PipedWriter extends java.io.Writer {
@@ -31096,7 +31073,6 @@ package java.io {
   public class PushbackInputStream extends java.io.FilterInputStream {
     ctor public PushbackInputStream(java.io.InputStream);
     ctor public PushbackInputStream(java.io.InputStream, int);
-    method public void reset() throws java.io.IOException;
     method public void unread(byte[]) throws java.io.IOException;
     method public void unread(byte[], int, int) throws java.io.IOException;
     method public void unread(int) throws java.io.IOException;
@@ -32553,7 +32529,6 @@ package java.lang {
     method public CharSequence subSequence(int, int);
     method public String substring(int);
     method public String substring(int, int);
-    method public String toString();
     method public void trimToSize();
   }
 
@@ -35410,9 +35385,7 @@ package java.security {
     method public final java.security.Provider getProvider();
     method public static byte[] getSeed(int);
     method protected final int next(int);
-    method public void nextBytes(byte[]);
     method public void setSeed(byte[]);
-    method public void setSeed(long);
   }
 
   public abstract class SecureRandomSpi implements java.io.Serializable {
@@ -38749,9 +38722,7 @@ package java.util {
     method public boolean containsValue(Object);
     method public java.util.Enumeration<V> elements();
     method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
-    method public boolean equals(Object);
     method public V get(Object);
-    method public int hashCode();
     method public boolean isEmpty();
     method public java.util.Set<K> keySet();
     method public java.util.Enumeration<K> keys();
@@ -38760,7 +38731,6 @@ package java.util {
     method protected void rehash();
     method public V remove(Object);
     method public int size();
-    method public String toString();
     method public java.util.Collection<V> values();
   }
 
@@ -38913,7 +38883,6 @@ package java.util {
     method public static String[] getISOLanguages();
     method public String getLanguage();
     method public String getVariant();
-    method public int hashCode();
     method public static void setDefault(java.util.Locale);
     field public static final java.util.Locale CANADA;
     field public static final java.util.Locale CANADA_FRENCH;
@@ -39240,7 +39209,6 @@ package java.util {
     ctor public SimpleTimeZone(int, String, int, int, int, int, int, int, int, int, int, int, int);
     method public int getOffset(int, int, int, int, int, int);
     method public int getRawOffset();
-    method public int hashCode();
     method public boolean inDaylightTime(java.util.Date);
     method public void setDSTSavings(int);
     method public void setEndRule(int, int, int);
@@ -39438,41 +39406,25 @@ package java.util {
     ctor public Vector(int);
     ctor public Vector(int, int);
     ctor public Vector(java.util.Collection<? extends E>);
-    method public boolean add(E);
-    method public boolean addAll(int, java.util.Collection<? extends E>);
-    method public boolean addAll(java.util.Collection<? extends E>);
     method public void addElement(E);
     method public int capacity();
     method public Object clone();
-    method public boolean containsAll(java.util.Collection<?>);
     method public void copyInto(Object[]);
     method public E elementAt(int);
     method public java.util.Enumeration<E> elements();
     method public void ensureCapacity(int);
-    method public boolean equals(Object);
     method public E firstElement();
     method public E get(int);
-    method public int hashCode();
     method public int indexOf(Object, int);
     method public void insertElementAt(E, int);
-    method public boolean isEmpty();
     method public E lastElement();
-    method public int lastIndexOf(Object);
     method public int lastIndexOf(Object, int);
-    method public E remove(int);
-    method public boolean removeAll(java.util.Collection<?>);
     method public void removeAllElements();
     method public boolean removeElement(Object);
     method public void removeElementAt(int);
-    method public boolean retainAll(java.util.Collection<?>);
-    method public E set(int, E);
     method public void setElementAt(E, int);
     method public void setSize(int);
     method public int size();
-    method public java.util.List<E> subList(int, int);
-    method public Object[] toArray();
-    method public <T> T[] toArray(T[]);
-    method public String toString();
     method public void trimToSize();
     field protected int capacityIncrement;
     field protected int elementCount;
@@ -40636,7 +40588,6 @@ package java.util.logging {
 
   public class ConsoleHandler extends java.util.logging.StreamHandler {
     ctor public ConsoleHandler();
-    method public void publish(java.util.logging.LogRecord);
   }
 
   public class ErrorManager {
@@ -40835,7 +40786,6 @@ package java.util.logging {
   public class SocketHandler extends java.util.logging.StreamHandler {
     ctor public SocketHandler() throws java.io.IOException;
     ctor public SocketHandler(String, int) throws java.io.IOException;
-    method public void publish(java.util.logging.LogRecord);
   }
 
   public class StreamHandler extends java.util.logging.Handler {
@@ -41146,7 +41096,6 @@ package java.util.zip {
     ctor public DeflaterInputStream(java.io.InputStream);
     ctor public DeflaterInputStream(java.io.InputStream, java.util.zip.Deflater);
     ctor public DeflaterInputStream(java.io.InputStream, java.util.zip.Deflater, int);
-    method public void reset() throws java.io.IOException;
     field protected final byte[] buf;
     field protected final java.util.zip.Deflater def;
   }
@@ -41203,7 +41152,6 @@ package java.util.zip {
     ctor public InflaterInputStream(java.io.InputStream, java.util.zip.Inflater);
     ctor public InflaterInputStream(java.io.InputStream, java.util.zip.Inflater, int);
     method protected void fill() throws java.io.IOException;
-    method public void reset() throws java.io.IOException;
     field protected byte[] buf;
     field protected java.util.zip.Inflater inf;
     field protected int len;
@@ -43715,7 +43663,6 @@ package javax.xml.transform {
     method public String getLocationAsString();
     method public javax.xml.transform.SourceLocator getLocator();
     method public String getMessageAndLocation();
-    method public Throwable initCause(Throwable);
     method public void setLocator(javax.xml.transform.SourceLocator);
   }
 
@@ -47561,9 +47508,6 @@ package org.apache.http.protocol {
 
   public class SyncBasicHttpContext extends org.apache.http.protocol.BasicHttpContext {
     ctor public SyncBasicHttpContext(org.apache.http.protocol.HttpContext);
-    method public Object getAttribute(String);
-    method public Object removeAttribute(String);
-    method public void setAttribute(String, Object);
   }
 
   public class UriPatternMatcher {
