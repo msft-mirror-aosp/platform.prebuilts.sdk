@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>androidx.media2</groupId>
   <artifactId>media2-common</artifactId>
@@ -28,29 +27,29 @@
   </scm>
   <dependencies>
     <dependency>
+      <groupId>androidx.media</groupId>
+      <artifactId>media</artifactId>
+      <version>1.2.0-alpha02</version>
+      <scope>compile</scope>
+      <type>aar</type>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>listenablefuture</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>androidx.media</groupId>
-      <artifactId>media</artifactId>
-      <version>1.2.0-alpha01</version>
-      <type>aar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>androidx.concurrent</groupId>
       <artifactId>concurrent-futures</artifactId>
-      <version>1.0.0-rc01</version>
-      <scope>compile</scope>
+      <version>1.0.0</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>androidx.collection</groupId>
       <artifactId>collection</artifactId>
       <version>1.0.0</version>
-      <scope>compile</scope>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 </project>
