@@ -26,3 +26,73 @@ android_library {
     ],
     java_version: "1.7",
 }
+
+android_library_import {
+    name: "androidx.legacy_legacy-support-v13-nodeps",
+    aars: ["m2repository/androidx/legacy/legacy-support-v13/1.1.0-alpha01/legacy-support-v13-1.1.0-alpha01.aar"],
+    sdk_version: "current",
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.core_core",
+        "androidx.fragment_fragment",
+        "androidx.viewpager_viewpager",
+    ],
+}
+
+android_library {
+    name: "androidx.legacy_legacy-support-v13",
+    sdk_version: "current",
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.legacy_legacy-support-v13/AndroidManifest.xml",
+    static_libs: [
+        "androidx.legacy_legacy-support-v13-nodeps",
+        "androidx.core_core",
+        "androidx.fragment_fragment",
+        "androidx.viewpager_viewpager",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.legacy_legacy-support-core-ui-nodeps",
+    aars: ["m2repository/androidx/legacy/legacy-support-core-ui/1.1.0-alpha01/legacy-support-core-ui-1.1.0-alpha01.aar"],
+    sdk_version: "current",
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.legacy_legacy-support-core-utils",
+        "androidx.customview_customview",
+        "androidx.viewpager_viewpager",
+        "androidx.coordinatorlayout_coordinatorlayout",
+        "androidx.drawerlayout_drawerlayout",
+        "androidx.slidingpanelayout_slidingpanelayout",
+        "androidx.interpolator_interpolator",
+        "androidx.swiperefreshlayout_swiperefreshlayout",
+        "androidx.asynclayoutinflater_asynclayoutinflater",
+        "androidx.cursoradapter_cursoradapter",
+    ],
+}
+
+android_library {
+    name: "androidx.legacy_legacy-support-core-ui",
+    sdk_version: "current",
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.legacy_legacy-support-core-ui/AndroidManifest.xml",
+    static_libs: [
+        "androidx.legacy_legacy-support-core-ui-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.legacy_legacy-support-core-utils",
+        "androidx.customview_customview",
+        "androidx.viewpager_viewpager",
+        "androidx.coordinatorlayout_coordinatorlayout",
+        "androidx.drawerlayout_drawerlayout",
+        "androidx.slidingpanelayout_slidingpanelayout",
+        "androidx.interpolator_interpolator",
+        "androidx.swiperefreshlayout_swiperefreshlayout",
+        "androidx.asynclayoutinflater_asynclayoutinflater",
+        "androidx.cursoradapter_cursoradapter",
+    ],
+    java_version: "1.7",
+}
