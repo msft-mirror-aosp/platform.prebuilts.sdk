@@ -2052,6 +2052,7 @@ java_library_host {
         "xerial-sqlite-jdbc",
         "kotlin-metadata",
         "commons-codec",
+        "annotations",
         "guava-21.0",
         "jetbrains-annotations",
     ],
@@ -2202,8 +2203,8 @@ android_library_import {
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
-        "androidx.collection_collection",
         "androidx.annotation_annotation",
+        "androidx.collection_collection",
         "androidx.appcompat_appcompat",
     ],
 }
@@ -2215,8 +2216,8 @@ android_library {
     manifest: "manifests/androidx.slice_slice-core/AndroidManifest.xml",
     static_libs: [
         "androidx.slice_slice-core-nodeps",
-        "androidx.collection_collection",
         "androidx.annotation_annotation",
+        "androidx.collection_collection",
         "androidx.appcompat_appcompat",
     ],
     java_version: "1.7",
@@ -2280,7 +2281,7 @@ android_library {
 
 android_library_import {
     name: "androidx.sqlite_sqlite-framework-nodeps",
-    aars: ["m2repository/androidx/sqlite/sqlite-framework/2.1.0-alpha01/sqlite-framework-2.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/sqlite/sqlite-framework/2.1.0-beta01/sqlite-framework-2.1.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -2304,7 +2305,7 @@ android_library {
 
 android_library_import {
     name: "androidx.sqlite_sqlite-nodeps",
-    aars: ["m2repository/androidx/sqlite/sqlite/2.1.0-alpha01/sqlite-2.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/sqlite/sqlite/2.1.0-beta01/sqlite-2.1.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
