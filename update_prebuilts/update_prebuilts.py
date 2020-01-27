@@ -199,6 +199,7 @@ maven_to_make = {
     'androidx.wear:wear': {'name':'androidx.wear_wear', 'path':'androidx/wear/wear'},
     'androidx.webkit:webkit': {'name':'androidx.webkit_webkit', 'path':'androidx/webkit/webkit'},
     'androidx.biometric:biometric': {'name':'androidx.biometric_biometric', 'path':'androidx/biometric/biometric'},
+    'androidx.autofill:autofill': {'name':'androidx.autofill_autofill', 'path':'androidx/autofill/autofill'},
 
     # AndroidX for Multidex
     'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
