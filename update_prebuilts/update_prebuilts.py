@@ -7,7 +7,7 @@ import os, sys, getopt, zipfile, re
 import argparse
 import glob
 import subprocess
-from shutil import copyfile, rmtree, which
+from shutil import copyfile, rmtree, which, move
 from distutils.version import LooseVersion
 from functools import reduce
 
@@ -125,12 +125,13 @@ maven_to_make = {
     'androidx.versionedparcelable:versionedparcelable': {'name':'androidx.versionedparcelable_versionedparcelable', 'path':'androidx/versionedparcelable'},
     'androidx.vectordrawable:vectordrawable-animated': {'name':'androidx.vectordrawable_vectordrawable-animated', 'path':'androidx/vectordrawable/vectordrawable-animated'},
     'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
-    'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation'},
+    'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
     'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
-    'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
     'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
     'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
+    'androidx.concurrent:concurrent-listenablefuture-callback': {'name':'androidx.concurrent_concurrent-listenablefuture-callback', 'path':'androidx/concurrent/concurrent-listenablefuture-callback'},
+    'androidx.concurrent:concurrent-listenablefuture': {'name':'androidx.concurrent_concurrent-listenablefuture', 'path':'androidx/concurrent/concurrent-listenablefuture'},
     'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
     'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
     'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
@@ -152,7 +153,9 @@ maven_to_make = {
     'androidx.loader:loader': {'name':'androidx.loader_loader', 'path':'androidx/loader/loader'},
     'androidx.localbroadcastmanager:localbroadcastmanager': {'name':'androidx.localbroadcastmanager_localbroadcastmanager', 'path':'androidx/localbroadcastmanager/localbroadcastmanager'},
     'androidx.media:media': {'name':'androidx.media_media', 'path':'androidx/media/media'},
-    'androidx.media2:media2': {'name':'androidx.media2_media2', 'path':'androidx/media2/media2'},
+    'androidx.media2:media2-player': {'name':'androidx.media2_media2-player', 'path':'androidx/media2/media2-player'},
+    'androidx.media2:media2-session': {'name':'androidx.media2_media2-session', 'path':'androidx/media2/media2-session'},
+    'androidx.media2:media2-common': {'name':'androidx.media2_media2-common', 'path':'androidx/media2/media2-common'},
     'androidx.media2:media2-exoplayer': {'name':'androidx.media2_media2-exoplayer', 'path':'androidx/media2/media2-exoplayer'},
     'androidx.media2:media2-widget': {'name':'androidx.media2_media2-widget', 'path':'androidx/media2/media2-widget'},
     'androidx.percentlayout:percentlayout': {'name':'androidx.percentlayout_percentlayout', 'path':'androidx/percentlayout/percentlayout'},
@@ -204,12 +207,15 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-runtime': {'name':'androidx.lifecycle_lifecycle-runtime', 'path':'androidx/lifecycle/lifecycle-runtime'},
     'androidx.lifecycle:lifecycle-service': {'name':'androidx.lifecycle_lifecycle-service', 'path':'androidx/lifecycle/lifecycle-service'},
     'androidx.lifecycle:lifecycle-viewmodel': {'name':'androidx.lifecycle_lifecycle-viewmodel', 'path':'androidx/lifecycle/lifecycle-viewmodel'},
+    'androidx.lifecycle:lifecycle-viewmodel-savedstate': {'name':'androidx.lifecycle_lifecycle-viewmodel-savedstate', 'path':'androidx/lifecycle/lifecycle-viewmodel-savedstate'},
     'androidx.paging:paging-common': {'name':'androidx.paging_paging-common', 'path':'androidx/paging/paging-common'},
+    'androidx.paging:paging-common-ktx': {'name':'androidx.paging_paging-common-ktx', 'path':'androidx/paging/paging-common-ktx'},
     'androidx.paging:paging-runtime': {'name':'androidx.paging_paging-runtime', 'path':'androidx/paging/paging-runtime'},
     'androidx.sqlite:sqlite': {'name':'androidx.sqlite_sqlite', 'path':'androidx/sqlite/sqlite'},
     'androidx.sqlite:sqlite-framework': {'name':'androidx.sqlite_sqlite-framework', 'path':'androidx/sqlite/sqlite-framework'},
-    'androidx.room:room-common': {'name':'androidx.room_room-common', 'path':'androidx/room/room-common'},
-    'androidx.room:room-migration': {'name':'androidx.room_room-migration', 'path':'androidx/room/room-migration'},
+    'androidx.room:room-common': {'name':'androidx.room_room-common', 'path':'androidx/room/room-common', 'host_and_device' : True},
+    'androidx.room:room-compiler': {'name':'androidx.room_room-compiler', 'path':'androidx/room/room-compiler', 'host' : True},
+    'androidx.room:room-migration': {'name':'androidx.room_room-migration', 'path':'androidx/room/room-migration', 'host_and_device' : True},
     'androidx.room:room-runtime': {'name':'androidx.room_room-runtime', 'path':'androidx/room/room-runtime'},
     'androidx.room:room-testing': {'name':'androidx.room_room-testing', 'path':'androidx/room/room-testing'},
 
@@ -331,7 +337,7 @@ def mv(src_path, dst_path):
             dst = os.path.join(os.path.dirname(dst_path), os.path.basename(f))
         else:
             dst = dst_path
-        os.rename(f, dst)
+        move(f, dst)
 
 
 def detect_artifacts(maven_repo_dirs):
@@ -417,12 +423,16 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
+        args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
+        args.extend(["-rewrite=^kotlinx-metadata-jvm$=kotlin-metadata"])
+        args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
         args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
+        # remove jetbrains-annotations after b/144726918 is fixed
+        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0,jetbrains-annotations"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
+        args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
         # these depend on GSON which is not in AOSP
-        args.extend(["-exclude=androidx.room_room-migration",
-                     "-exclude=androidx.room_room-testing",
-                     "-exclude=android-arch-room-migration",
+        args.extend(["-exclude=android-arch-room-migration",
                      "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
@@ -553,9 +563,22 @@ def update_androidx(target, build_id, local_file):
         print_e('Failed to extract AndroidX repository')
         return False
 
-    # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], androidx_dir, extract_res=False)
+    # Keep JavaPlugins.bp file untounched.
+    java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
+    tmp_java_plugins_bp_path = os.path.join('/tmp', 'JavaPlugins.bp')
+    mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
 
+    # Transform the repo archive into a Makefile-compatible format.
+    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False):
+        return False
+
+    # Import JavaPlugins.bp in Android.bp.
+    makefile = os.path.join(androidx_dir, 'Android.bp')
+    with open(makefile, "a+") as f:
+        f.write('\nbuild = ["JavaPlugins.bp"]\n')
+    mv(tmp_java_plugins_bp_path, java_plugins_bp_path)
+
+    return True
 
 def update_jetifier(target, build_id):
     repo_file = 'jetifier-standalone.zip'

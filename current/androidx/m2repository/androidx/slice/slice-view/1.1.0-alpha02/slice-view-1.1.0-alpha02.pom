@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>androidx.slice</groupId>
   <artifactId>slice-view</artifactId>
@@ -8,7 +7,7 @@
   <packaging>aar</packaging>
   <name>Slice views</name>
   <description>A library that handles rendering of slice content into supported templates</description>
-  <url>http://developer.android.com/tools/extras/support-library.html</url>
+  <url>https://developer.android.com/jetpack/androidx</url>
   <inceptionYear>2017</inceptionYear>
   <licenses>
     <license>
@@ -31,34 +30,35 @@
       <groupId>androidx.lifecycle</groupId>
       <artifactId>lifecycle-livedata-core</artifactId>
       <version>2.0.0</version>
-      <type>aar</type>
       <scope>compile</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>*</artifactId>
-          <groupId>androidx.annotation</groupId>
-        </exclusion>
-      </exclusions>
+      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>androidx.slice</groupId>
       <artifactId>slice-core</artifactId>
       <version>1.1.0-alpha02</version>
+      <scope>runtime</scope>
       <type>aar</type>
-      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.appcompat</groupId>
+      <artifactId>appcompat</artifactId>
+      <version>1.2.0-alpha01</version>
+      <scope>runtime</scope>
+      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>androidx.recyclerview</groupId>
       <artifactId>recyclerview</artifactId>
-      <version>1.1.0-beta00</version>
+      <version>1.2.0-alpha01</version>
+      <scope>runtime</scope>
       <type>aar</type>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>androidx.collection</groupId>
       <artifactId>collection</artifactId>
-      <version>1.1.0-rc01</version>
-      <scope>compile</scope>
+      <version>1.1.0</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 </project>
