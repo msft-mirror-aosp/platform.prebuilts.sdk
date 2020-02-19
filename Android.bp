@@ -57,6 +57,17 @@ genrule {
 }
 
 genrule {
+    name: "last-released-module-lib-api",
+    srcs: [
+        "*/module-lib/api/android.txt",
+    ],
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
+    out: [
+        "last-released-api.txt",
+    ],
+}
+
+genrule {
     name: "public-api-incompatibilities-with-last-released",
     srcs: [
         "*/public/api/incompatibilities.txt",
@@ -71,6 +82,17 @@ genrule {
     name: "system-api-incompatibilities-with-last-released",
     srcs: [
         "*/system/api/incompatibilities.txt",
+    ],
+    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
+    out: [
+        "incompatibilities.txt",
+    ],
+}
+
+genrule {
+    name: "module-lib-api-incompatibilities-with-last-released",
+    srcs: [
+        "*/module-lib/api/incompatibilities.txt",
     ],
     cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
     out: [
