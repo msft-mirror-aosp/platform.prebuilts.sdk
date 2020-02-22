@@ -389,7 +389,7 @@ java_library_static {
 
 java_import {
     name: "androidx.concurrent_concurrent-futures-nodeps",
-    jars: ["m2repository/androidx/concurrent/concurrent-futures/1.1.0-alpha01/concurrent-futures-1.1.0-alpha01.jar"],
+    jars: ["m2repository/androidx/concurrent/concurrent-futures/1.1.0-beta01/concurrent-futures-1.1.0-beta01.jar"],
     sdk_version: "current",
 }
 
@@ -965,44 +965,6 @@ java_library_static {
     static_libs: [
         "androidx.lifecycle_lifecycle-common-nodeps",
         "androidx.annotation_annotation",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.lifecycle_lifecycle-extensions-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-extensions/2.3.0-alpha01/lifecycle-extensions-2.3.0-alpha01.aar"],
-    sdk_version: "current",
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.arch.core_core-common",
-        "androidx.lifecycle_lifecycle-common",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.arch.core_core-runtime",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-livedata",
-        "androidx.lifecycle_lifecycle-process",
-        "androidx.lifecycle_lifecycle-service",
-        "androidx.lifecycle_lifecycle-viewmodel",
-    ],
-}
-
-android_library {
-    name: "androidx.lifecycle_lifecycle-extensions",
-    sdk_version: "current",
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.lifecycle_lifecycle-extensions/AndroidManifest.xml",
-    static_libs: [
-        "androidx.lifecycle_lifecycle-extensions-nodeps",
-        "androidx.arch.core_core-common",
-        "androidx.lifecycle_lifecycle-common",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.arch.core_core-runtime",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-livedata",
-        "androidx.lifecycle_lifecycle-process",
-        "androidx.lifecycle_lifecycle-service",
-        "androidx.lifecycle_lifecycle-viewmodel",
     ],
     java_version: "1.7",
 }
@@ -1729,6 +1691,8 @@ android_library_import {
     static_libs: [
         "com.google.android.material_material",
         "androidx.navigation_navigation-runtime",
+        "androidx.customview_customview",
+        "androidx.drawerlayout_drawerlayout",
         "androidx.transition_transition",
     ],
 }
@@ -1742,6 +1706,8 @@ android_library {
         "androidx.navigation_navigation-ui-nodeps",
         "com.google.android.material_material",
         "androidx.navigation_navigation-runtime",
+        "androidx.customview_customview",
+        "androidx.drawerlayout_drawerlayout",
         "androidx.transition_transition",
     ],
     java_version: "1.7",
@@ -2351,7 +2317,7 @@ android_library {
 
 android_library_import {
     name: "androidx.swiperefreshlayout_swiperefreshlayout-nodeps",
-    aars: ["m2repository/androidx/swiperefreshlayout/swiperefreshlayout/1.1.0-alpha04/swiperefreshlayout-1.1.0-alpha04.aar"],
+    aars: ["m2repository/androidx/swiperefreshlayout/swiperefreshlayout/1.1.0-beta01/swiperefreshlayout-1.1.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
