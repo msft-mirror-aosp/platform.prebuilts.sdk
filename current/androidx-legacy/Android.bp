@@ -96,3 +96,41 @@ android_library {
     ],
     java_version: "1.7",
 }
+
+android_library_import {
+    name: "androidx.lifecycle_lifecycle-extensions-nodeps",
+    aars: ["m2repository/androidx/lifecycle/lifecycle-extensions/2.3.0-alpha01/lifecycle-extensions-2.3.0-alpha01.aar"],
+    sdk_version: "current",
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.arch.core_core-common",
+        "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.arch.core_core-runtime",
+        "androidx.fragment_fragment",
+        "androidx.lifecycle_lifecycle-livedata",
+        "androidx.lifecycle_lifecycle-process",
+        "androidx.lifecycle_lifecycle-service",
+        "androidx.lifecycle_lifecycle-viewmodel",
+    ],
+}
+
+android_library {
+    name: "androidx.lifecycle_lifecycle-extensions",
+    sdk_version: "current",
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.lifecycle_lifecycle-extensions/AndroidManifest.xml",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-extensions-nodeps",
+        "androidx.arch.core_core-common",
+        "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.arch.core_core-runtime",
+        "androidx.fragment_fragment",
+        "androidx.lifecycle_lifecycle-livedata",
+        "androidx.lifecycle_lifecycle-process",
+        "androidx.lifecycle_lifecycle-service",
+        "androidx.lifecycle_lifecycle-viewmodel",
+    ],
+    java_version: "1.7",
+}

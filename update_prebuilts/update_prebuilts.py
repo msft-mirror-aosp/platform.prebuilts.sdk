@@ -442,7 +442,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
-        args.extend(["-rewrite=^kotlinx-metadata-jvm$=kotlin-metadata"])
         args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
         args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
         # remove jetbrains-annotations after b/144726918 is fixed
