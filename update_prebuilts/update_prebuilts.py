@@ -196,6 +196,7 @@ maven_to_make = {
     'androidx.recyclerview:recyclerview': {'name':'androidx.recyclerview_recyclerview', 'path':'androidx/recyclerview/recyclerview'},
     'androidx.vectordrawable:vectordrawable': {'name':'androidx.vectordrawable_vectordrawable', 'path':'androidx/vectordrawable/vectordrawable'},
     'androidx.viewpager:viewpager': {'name':'androidx.viewpager_viewpager', 'path':'androidx/viewpager/viewpager'},
+    'androidx.viewpager2:viewpager2': {'name':'androidx.viewpager2_viewpager2', 'path':'androidx/viewpager2/viewpager2'},
     'androidx.wear:wear': {'name':'androidx.wear_wear', 'path':'androidx/wear/wear'},
     'androidx.webkit:webkit': {'name':'androidx.webkit_webkit', 'path':'androidx/webkit/webkit'},
     'androidx.biometric:biometric': {'name':'androidx.biometric_biometric', 'path':'androidx/biometric/biometric'},
