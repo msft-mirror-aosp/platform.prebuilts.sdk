@@ -443,9 +443,9 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
         args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
+        args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
         args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
-        # remove jetbrains-annotations after b/144726918 is fixed
-        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0,jetbrains-annotations"])
+        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
         # these depend on GSON which is not in AOSP
