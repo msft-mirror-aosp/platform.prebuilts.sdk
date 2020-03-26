@@ -664,12 +664,6 @@ def update_material(file):
                                  os.path.join(extras_dir, 'material-design-x'), extract_res=False)
 
 
-def extract_to(zip_file, filename, parent_path):
-    zip_path = next(filter(lambda path: filename in path, zip_file.namelist()))
-    src_path = zip_file.extract(zip_path)
-    dst_path = path(parent_path, filename)
-    mv(src_path, dst_path)
-
 def update_framework(build_id, sdk_dir):
     api_scope_list = ['public', 'system', 'test']
     if sdk_dir == 'current':
@@ -694,7 +688,15 @@ def update_framework(build_id, sdk_dir):
 
             with zipfile.ZipFile(artifact_path) as zipFile:
                 for filename in ['android.jar', 'framework.aidl', 'uiautomator.jar']:
-                    extract_to(zipFile, filename, target_dir)
+                    matches = list(filter(lambda path: filename in path, zipFile.namelist()))
+                    if len(matches) != 1:
+                        print_e('Expected 1 file named \'%s\' in zip %s, found %d' %
+                                (filename, zipFile.filename, len(matches)))
+                        return False
+                    zip_path = matches[0]
+                    src_path = zipFile.extract(zip_path)
+                    dst_path = path(target_dir, filename)
+                    mv(src_path, dst_path)
 
     return True
 
