@@ -665,7 +665,7 @@ def update_material(file):
 
 
 def update_framework(build_id, sdk_dir):
-    api_scope_list = ['public', 'system', 'test']
+    api_scope_list = ['public', 'system', 'test', 'module-lib', 'system-server']
     if sdk_dir == 'current':
         api_scope_list.append('core')
 
