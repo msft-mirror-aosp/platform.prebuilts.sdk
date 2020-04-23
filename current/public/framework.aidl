@@ -222,6 +222,7 @@ parcelable android.hardware.radio.RadioManager.ModuleProperties;
 parcelable android.hardware.radio.RadioManager.ProgramInfo;
 parcelable android.hardware.radio.RadioMetadata.Clock;
 parcelable android.hardware.radio.RadioMetadata;
+parcelable android.hardware.soundtrigger.KeyphraseMetadata;
 parcelable android.hardware.soundtrigger.SoundTrigger.Keyphrase;
 parcelable android.hardware.soundtrigger.SoundTrigger.KeyphraseSoundModel;
 parcelable android.hardware.soundtrigger.SoundTrigger.ModelParamRange;
