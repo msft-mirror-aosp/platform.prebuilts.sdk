@@ -417,7 +417,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
-        args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
+        args.extend(["-extra-deps=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         # these depend on GSON which is not in AOSP
         args.extend(["-exclude=androidx.room_room-migration",
