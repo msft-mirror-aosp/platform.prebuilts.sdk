@@ -706,5 +706,6 @@ parcelable android.webkit.WebViewProviderInfo;
 parcelable android.widget.RemoteViews;
 parcelable android.widget.TextView.SavedState;
 parcelable android.widget.inline.InlinePresentationSpec;
+parcelable android.window.DisplayAreaInfo;
 parcelable android.window.WindowContainerToken;
 parcelable android.window.WindowContainerTransaction;
