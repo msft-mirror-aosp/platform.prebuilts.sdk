@@ -696,7 +696,7 @@ def update_makefile(build_id):
 def finalize_sdk(build_id, sdk_version):
     target_finalize_dir = '%d' % sdk_version
 
-    for api_scope in ['public', 'system', 'test']:
+    for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {'apistubs/android/' + api_scope + '/api/*.txt':
                             path(target_finalize_dir, api_scope, 'api', '*')}
 
