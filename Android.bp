@@ -35,50 +35,6 @@ droiddoc_exported_dir {
 }
 
 genrule {
-    name: "last-released-public-api",
-    srcs: [
-        "*/public/api/android.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
-    out: [
-        "last-released-api.txt",
-    ],
-}
-
-genrule {
-    name: "last-released-system-api",
-    srcs: [
-        "*/system/api/android.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
-    out: [
-        "last-released-api.txt",
-    ],
-}
-
-genrule {
-    name: "last-released-module-lib-api",
-    srcs: [
-        "*/module-lib/api/android.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
-    out: [
-        "last-released-api.txt",
-    ],
-}
-
-genrule {
-    name: "last-released-system-server-api",
-    srcs: [
-        "*/system-server/api/android.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/last-released-api.txt",
-    out: [
-        "last-released-api.txt",
-    ],
-}
-
-genrule {
     name: "public-api-incompatibilities-with-last-released",
     srcs: [
         "*/public/api/incompatibilities.txt",
@@ -165,6 +121,7 @@ prebuilt_apis {
         "27",
         "28",
         "29",
+        "30",
         "current",
     ],
 }
