@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <!-- This module was also published with a richer model, Gradle metadata,  -->
-  <!-- which should be used instead. Do not delete the following line which  -->
-  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
-  <!-- that they should prefer consuming it instead. -->
-  <!-- do_not_remove: published-with-gradle-metadata -->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>androidx.slice</groupId>
   <artifactId>slice-builders</artifactId>
@@ -35,8 +31,15 @@
       <groupId>androidx.remotecallback</groupId>
       <artifactId>remotecallback</artifactId>
       <version>1.0.0-alpha02</version>
-      <scope>compile</scope>
       <type>aar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.slice</groupId>
+      <artifactId>slice-core</artifactId>
+      <version>1.1.0-alpha02</version>
+      <type>aar</type>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>androidx.annotation</groupId>
@@ -45,24 +48,17 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>androidx.slice</groupId>
-      <artifactId>slice-core</artifactId>
-      <version>1.1.0-alpha02</version>
-      <scope>runtime</scope>
-      <type>aar</type>
-    </dependency>
-    <dependency>
       <groupId>androidx.core</groupId>
       <artifactId>core</artifactId>
-      <version>1.1.0</version>
-      <scope>runtime</scope>
+      <version>1.1.0-rc01</version>
       <type>aar</type>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>androidx.collection</groupId>
       <artifactId>collection</artifactId>
       <version>1.2.0-alpha01</version>
-      <scope>runtime</scope>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>
