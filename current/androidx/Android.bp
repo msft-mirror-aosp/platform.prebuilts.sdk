@@ -125,6 +125,9 @@ android_library_import {
         "androidx.fragment_fragment",
         "androidx.appcompat_appcompat-resources",
         "androidx.drawerlayout_drawerlayout",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
     ],
 }
 
@@ -142,6 +145,9 @@ android_library {
         "androidx.fragment_fragment",
         "androidx.appcompat_appcompat-resources",
         "androidx.drawerlayout_drawerlayout",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
     ],
     java_version: "1.7",
 }
@@ -239,6 +245,7 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
+        "androidx.activity_activity",
         "androidx.appcompat_appcompat",
         "androidx.core_core",
         "androidx.fragment_fragment",
@@ -254,6 +261,7 @@ android_library {
     static_libs: [
         "androidx.biometric_biometric-nodeps",
         "androidx.annotation_annotation",
+        "androidx.activity_activity",
         "androidx.appcompat_appcompat",
         "androidx.core_core",
         "androidx.fragment_fragment",
@@ -737,6 +745,7 @@ android_library_import {
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.savedstate_savedstate",
     ],
 }
 
@@ -756,6 +765,7 @@ android_library {
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.savedstate_savedstate",
     ],
     java_version: "1.7",
 }
@@ -1485,7 +1495,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-common-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-common-ktx/2.3.0-alpha07/navigation-common-ktx-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-common-ktx/2.3.0-beta01/navigation-common-ktx-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1513,7 +1523,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-common-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-common/2.3.0-alpha07/navigation-common-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-common/2.3.0-beta01/navigation-common-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1539,7 +1549,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-fragment-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-fragment-ktx/2.3.0-alpha07/navigation-fragment-ktx-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-fragment-ktx/2.3.0-beta01/navigation-fragment-ktx-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1569,7 +1579,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-fragment-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-fragment/2.3.0-alpha07/navigation-fragment-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-fragment/2.3.0-beta01/navigation-fragment-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1593,7 +1603,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-runtime-ktx/2.3.0-alpha07/navigation-runtime-ktx-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-runtime-ktx/2.3.0-beta01/navigation-runtime-ktx-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1623,7 +1633,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-runtime-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-runtime/2.3.0-alpha07/navigation-runtime-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-runtime/2.3.0-beta01/navigation-runtime-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1653,7 +1663,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-ui-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-ui-ktx/2.3.0-alpha07/navigation-ui-ktx-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-ui-ktx/2.3.0-beta01/navigation-ui-ktx-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -1679,7 +1689,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-ui-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-ui/2.3.0-alpha07/navigation-ui-2.3.0-alpha07.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-ui/2.3.0-beta01/navigation-ui-2.3.0-beta01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
@@ -2363,14 +2373,13 @@ android_library {
 
 android_library_import {
     name: "androidx.transition_transition-nodeps",
-    aars: ["m2repository/androidx/transition/transition/2.0.0-alpha01/transition-2.0.0-alpha01.aar"],
+    aars: ["m2repository/androidx/transition/transition/1.4.0-alpha01/transition-1.4.0-alpha01.aar"],
     sdk_version: "current",
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.core_core",
-        "androidx.core_core-animation",
         "androidx.lifecycle_lifecycle-runtime",
     ],
 }
@@ -2385,7 +2394,6 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.core_core",
-        "androidx.core_core-animation",
         "androidx.lifecycle_lifecycle-runtime",
     ],
     java_version: "1.7",
@@ -2549,7 +2557,7 @@ android_library {
 
 android_library_import {
     name: "androidx.wear_wear-nodeps",
-    aars: ["m2repository/androidx/wear/wear/1.1.0-beta01/wear-1.1.0-beta01.aar"],
+    aars: ["m2repository/androidx/wear/wear/1.1.0-rc01/wear-1.1.0-rc01.aar"],
     sdk_version: "current",
     min_sdk_version: "23",
     static_libs: [
