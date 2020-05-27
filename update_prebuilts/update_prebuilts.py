@@ -668,7 +668,7 @@ def update_framework(build_id, sdk_dir):
                 return False
 
             with zipfile.ZipFile(artifact_path) as zipFile:
-                for filename in ['android.jar', 'framework.aidl', 'uiautomator.jar']:
+                for filename in ['android.jar', 'framework.aidl', 'uiautomator.jar', 'core-for-system-modules.jar']:
                     matches = list(filter(lambda path: filename in path, zipFile.namelist()))
                     if len(matches) != 1:
                         print_e('Expected 1 file named \'%s\' in zip %s, found %d' %
@@ -696,7 +696,7 @@ def update_makefile(build_id):
 def finalize_sdk(build_id, sdk_version):
     target_finalize_dir = '%d' % sdk_version
 
-    for api_scope in ['public', 'system', 'test']:
+    for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {'apistubs/android/' + api_scope + '/api/*.txt':
                             path(target_finalize_dir, api_scope, 'api', '*')}
 
