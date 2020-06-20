@@ -3,13 +3,22 @@
 
 java_import {
     name: "androidx-constraintlayout_constraintlayout-solver-nodeps",
-    jars: ["constraintlayout-solver/2.0.0-beta5/constraintlayout-solver-2.0.0-beta5.jar"],
+    jars: ["constraintlayout-solver/2.0.0-beta7/constraintlayout-solver-2.0.0-beta7.jar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
 
 java_library_static {
     name: "androidx-constraintlayout_constraintlayout-solver",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
         "androidx-constraintlayout_constraintlayout-solver-nodeps",
     ],
@@ -18,8 +27,12 @@ java_library_static {
 
 android_library_import {
     name: "androidx-constraintlayout_constraintlayout-nodeps",
-    aars: ["constraintlayout/2.0.0-beta5/constraintlayout-2.0.0-beta5.aar"],
+    aars: ["constraintlayout/2.0.0-beta7/constraintlayout-2.0.0-beta7.aar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     static_libs: [
         "androidx.appcompat_appcompat",
@@ -31,6 +44,10 @@ android_library_import {
 android_library {
     name: "androidx-constraintlayout_constraintlayout",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     manifest: "manifests/androidx-constraintlayout_constraintlayout/AndroidManifest.xml",
     static_libs: [
