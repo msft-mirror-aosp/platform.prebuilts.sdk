@@ -23,3 +23,20 @@ sdk {
         "liblog",
     ],
 }
+
+module_exports {
+    name: "platform-mainline-host-exports",
+    host_supported: true,
+    device_supported: false,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+        not_windows: {
+            native_shared_libs: [
+                "libartpalette-system",
+                "liblog",
+            ],
+        },
+    }
+}
