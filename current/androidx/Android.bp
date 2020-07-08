@@ -85,6 +85,10 @@ android_library_import {
     name: "androidx.annotation_annotation-experimental-nodeps",
     aars: ["m2repository/androidx/annotation/annotation-experimental/1.1.0-alpha01/annotation-experimental-1.1.0-alpha01.aar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     static_libs: [
     ],
@@ -93,6 +97,10 @@ android_library_import {
 android_library {
     name: "androidx.annotation_annotation-experimental",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     manifest: "manifests/androidx.annotation_annotation-experimental/AndroidManifest.xml",
     static_libs: [
@@ -334,8 +342,12 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-common-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-common/1.1.0-alpha01/benchmark-common-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-common/1.1.0-alpha02/benchmark-common-1.1.0-alpha02.aar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
@@ -349,6 +361,10 @@ android_library_import {
 android_library {
     name: "androidx.benchmark_benchmark-common",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     manifest: "manifests/androidx.benchmark_benchmark-common/AndroidManifest.xml",
     static_libs: [
@@ -364,8 +380,12 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.1.0-alpha01/benchmark-junit4-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.1.0-alpha02/benchmark-junit4-1.1.0-alpha02.aar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     static_libs: [
         "junit",
@@ -381,6 +401,10 @@ android_library_import {
 android_library {
     name: "androidx.benchmark_benchmark-junit4",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     manifest: "manifests/androidx.benchmark_benchmark-junit4/AndroidManifest.xml",
     static_libs: [
@@ -398,7 +422,7 @@ android_library {
 
 android_library_import {
     name: "androidx.biometric_biometric-nodeps",
-    aars: ["m2repository/androidx/biometric/biometric/1.1.0-alpha01/biometric-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/biometric/biometric/1.1.0-alpha02/biometric-1.1.0-alpha02.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -561,7 +585,7 @@ java_library_static {
 
 java_import {
     name: "androidx.concurrent_concurrent-futures-nodeps",
-    jars: ["m2repository/androidx/concurrent/concurrent-futures/1.1.0-beta01/concurrent-futures-1.1.0-beta01.jar"],
+    jars: ["m2repository/androidx/concurrent/concurrent-futures/1.1.0-rc01/concurrent-futures-1.1.0-rc01.jar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1317,7 +1341,7 @@ android_library {
 
 java_import {
     name: "androidx.lifecycle_lifecycle-common-java8-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.3.0-alpha05/lifecycle-common-java8-2.3.0-alpha05.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.3.0-alpha06/lifecycle-common-java8-2.3.0-alpha06.jar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1343,7 +1367,7 @@ java_library_static {
 
 java_import {
     name: "androidx.lifecycle_lifecycle-common-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.3.0-alpha05/lifecycle-common-2.3.0-alpha05.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.3.0-alpha06/lifecycle-common-2.3.0-alpha06.jar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1368,7 +1392,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-core-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core-ktx/2.3.0-alpha05/lifecycle-livedata-core-ktx-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core-ktx/2.3.0-alpha06/lifecycle-livedata-core-ktx-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1400,7 +1424,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-core-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core/2.3.0-alpha05/lifecycle-livedata-core-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core/2.3.0-alpha06/lifecycle-livedata-core-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1434,7 +1458,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-ktx/2.3.0-alpha05/lifecycle-livedata-ktx-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-ktx/2.3.0-alpha06/lifecycle-livedata-ktx-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1470,7 +1494,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata/2.3.0-alpha05/lifecycle-livedata-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata/2.3.0-alpha06/lifecycle-livedata-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1504,7 +1528,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-process-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.3.0-alpha05/lifecycle-process-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.3.0-alpha06/lifecycle-process-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1534,7 +1558,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-ktx/2.3.0-alpha05/lifecycle-runtime-ktx-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-ktx/2.3.0-alpha06/lifecycle-runtime-ktx-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1570,7 +1594,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.3.0-alpha05/lifecycle-runtime-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.3.0-alpha06/lifecycle-runtime-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1604,7 +1628,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-service-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.3.0-alpha05/lifecycle-service-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.3.0-alpha06/lifecycle-service-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1634,7 +1658,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-ktx/2.3.0-alpha05/lifecycle-viewmodel-ktx-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-ktx/2.3.0-alpha06/lifecycle-viewmodel-ktx-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1668,7 +1692,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-savedstate-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.3.0-alpha05/lifecycle-viewmodel-savedstate-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.3.0-alpha06/lifecycle-viewmodel-savedstate-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1704,7 +1728,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.3.0-alpha05/lifecycle-viewmodel-2.3.0-alpha05.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.3.0-alpha06/lifecycle-viewmodel-2.3.0-alpha06.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1802,7 +1826,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media_media-nodeps",
-    aars: ["m2repository/androidx/media/media/1.2.0-alpha04/media-1.2.0-alpha04.aar"],
+    aars: ["m2repository/androidx/media/media/1.2.0-alpha05/media-1.2.0-alpha05.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1834,7 +1858,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media2_media2-common-nodeps",
-    aars: ["m2repository/androidx/media2/media2-common/1.1.0-alpha01/media2-common-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/media2/media2-common/1.1.0-alpha02/media2-common-1.1.0-alpha02.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1870,7 +1894,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media2_media2-exoplayer-nodeps",
-    aars: ["m2repository/androidx/media2/media2-exoplayer/1.1.0-alpha01/media2-exoplayer-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/media2/media2-exoplayer/1.1.0-alpha02/media2-exoplayer-1.1.0-alpha02.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1898,7 +1922,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media2_media2-player-nodeps",
-    aars: ["m2repository/androidx/media2/media2-player/1.1.0-alpha01/media2-player-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/media2/media2-player/1.1.0-alpha02/media2-player-1.1.0-alpha02.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1936,7 +1960,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media2_media2-session-nodeps",
-    aars: ["m2repository/androidx/media2/media2-session/1.1.0-alpha01/media2-session-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/media2/media2-session/1.1.0-alpha02/media2-session-1.1.0-alpha02.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -1972,7 +1996,7 @@ android_library {
 
 android_library_import {
     name: "androidx.media2_media2-widget-nodeps",
-    aars: ["m2repository/androidx/media2/media2-widget/1.1.0-alpha01/media2-widget-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/media2/media2-widget/1.1.0-alpha02/media2-widget-1.1.0-alpha02.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -2332,7 +2356,7 @@ android_library {
 
 java_import {
     name: "androidx.paging_paging-common-ktx-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common-ktx/3.0.0-alpha02/paging-common-ktx-3.0.0-alpha02.jar"],
+    jars: ["m2repository/androidx/paging/paging-common-ktx/3.0.0-alpha03/paging-common-ktx-3.0.0-alpha03.jar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -2357,7 +2381,7 @@ java_library_static {
 
 java_import {
     name: "androidx.paging_paging-common-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common/3.0.0-alpha02/paging-common-3.0.0-alpha02.jar"],
+    jars: ["m2repository/androidx/paging/paging-common/3.0.0-alpha03/paging-common-3.0.0-alpha03.jar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -2385,7 +2409,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.paging_paging-runtime-nodeps",
-    aars: ["m2repository/androidx/paging/paging-runtime/3.0.0-alpha02/paging-runtime-3.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/paging/paging-runtime/3.0.0-alpha03/paging-runtime-3.0.0-alpha03.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -3182,8 +3206,12 @@ android_library {
 
 android_library_import {
     name: "androidx.tracing_tracing-ktx-nodeps",
-    aars: ["m2repository/androidx/tracing/tracing-ktx/1.0.0-alpha01/tracing-ktx-1.0.0-alpha01.aar"],
+    aars: ["m2repository/androidx/tracing/tracing-ktx/1.0.0-beta01/tracing-ktx-1.0.0-beta01.aar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     static_libs: [
         "kotlin-stdlib",
@@ -3194,6 +3222,10 @@ android_library_import {
 android_library {
     name: "androidx.tracing_tracing-ktx",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     manifest: "manifests/androidx.tracing_tracing-ktx/AndroidManifest.xml",
     static_libs: [
@@ -3206,8 +3238,12 @@ android_library {
 
 android_library_import {
     name: "androidx.tracing_tracing-nodeps",
-    aars: ["m2repository/androidx/tracing/tracing/1.0.0-alpha01/tracing-1.0.0-alpha01.aar"],
+    aars: ["m2repository/androidx/tracing/tracing/1.0.0-beta01/tracing-1.0.0-beta01.aar"],
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
@@ -3217,6 +3253,10 @@ android_library_import {
 android_library {
     name: "androidx.tracing_tracing",
     sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     min_sdk_version: "14",
     manifest: "manifests/androidx.tracing_tracing/AndroidManifest.xml",
     static_libs: [
@@ -3228,7 +3268,7 @@ android_library {
 
 android_library_import {
     name: "androidx.transition_transition-nodeps",
-    aars: ["m2repository/androidx/transition/transition/1.4.0-alpha01/transition-1.4.0-alpha01.aar"],
+    aars: ["m2repository/androidx/transition/transition/1.4.0-beta01/transition-1.4.0-beta01.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
