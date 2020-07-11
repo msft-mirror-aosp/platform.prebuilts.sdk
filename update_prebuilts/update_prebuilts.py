@@ -692,10 +692,6 @@ parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
-if args.stx:
-    args.androidx = True
-else:
-    args.androidx = False
 args.support = False
 args.file = True
 if not args.source:
