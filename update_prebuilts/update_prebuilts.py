@@ -540,7 +540,14 @@ def update_framework(build_id, sdk_dir):
                 return False
 
             with zipfile.ZipFile(artifact_path) as zipFile:
-                for filename in ['android.jar', 'framework.aidl', 'uiautomator.jar', 'core-for-system-modules.jar']:
+                extra_files = [
+                    'android.jar',
+                    'framework.aidl',
+                    'uiautomator.jar',
+                    'core-for-system-modules.jar',
+                    'data/annotations.zip',
+                    'data/api-versions.xml']
+                for filename in extra_files:
                     matches = list(filter(lambda path: filename in path, zipFile.namelist()))
                     if len(matches) != 1:
                         print_e('Expected 1 file named \'%s\' in zip %s, found %d' %
@@ -692,10 +699,6 @@ parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
-if args.stx:
-    args.androidx = True
-else:
-    args.androidx = False
 args.support = False
 args.file = True
 if not args.source:
