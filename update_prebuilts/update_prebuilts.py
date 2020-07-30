@@ -43,8 +43,6 @@ maven_to_make = {
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
     'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
-    'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
-    'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
     'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
     'androidx.collection:collection-ktx': {'name':'androidx.collection_collection-ktx', 'path':'androidx/collection/collection-ktx'},
     'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
@@ -331,7 +329,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
         args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
         args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
-        args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
