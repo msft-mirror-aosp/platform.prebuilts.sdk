@@ -27,10 +27,6 @@ FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
 maven_to_make = {
     # AndroidX
-    'androidx.benchmark:benchmark-common': {'name':'androidx.benchmark_benchmark-common', 'path':'androidx/benchmark/benchmark-common'},
-    'androidx.benchmark:benchmark-junit4': {'name':'androidx.benchmark_benchmark-junit4', 'path':'androidx/benchmark/benchmark-junit4'},
-    'androidx.tracing:tracing': {'name':'androidx.tracing_tracing', 'path':'androidx/tracing/tracing'},
-    'androidx.tracing:tracing-ktx': {'name':'androidx.tracing_tracing-ktx', 'path':'androidx/tracing/tracing-ktx'},
     'androidx.slice:slice-builders': {'name':'androidx.slice_slice-builders', 'path':'androidx/slice/slice-builders'},
     'androidx.slice:slice-core': {'name':'androidx.slice_slice-core', 'path':'androidx/slice/slice-core'},
     'androidx.slice:slice-view': {'name':'androidx.slice_slice-view', 'path':'androidx/slice/slice-view'},
@@ -41,7 +37,6 @@ maven_to_make = {
     'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
     'androidx.activity:activity-ktx': {'name':'androidx.activity_activity-ktx', 'path':'androidx/activity/activity-ktx'},
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
-    'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
     'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
     'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
@@ -51,6 +46,7 @@ maven_to_make = {
     'androidx.concurrent:concurrent-listenablefuture-callback': {'name':'androidx.concurrent_concurrent-listenablefuture-callback', 'path':'androidx/concurrent/concurrent-listenablefuture-callback'},
     'androidx.concurrent:concurrent-listenablefuture': {'name':'androidx.concurrent_concurrent-listenablefuture', 'path':'androidx/concurrent/concurrent-listenablefuture'},
     'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
+    'androidx.core:core-animation': {'name':'androidx.core_core-animation', 'path':'androidx/core/core-animation'},
     'androidx.core:core-ktx': {'name':'androidx.core_core-ktx', 'path':'androidx/core/core-ktx'},
     'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
     'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
@@ -322,9 +318,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
-        args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
-        args.extend(["-rewrite=^rules$=androidx.test.rules"])
-        args.extend(["-rewrite=^runner$=androidx.test.runner"])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
@@ -332,8 +325,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
         args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
-        # remove jetbrains-annotations after b/144726918 is fixed
-        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0,jetbrains-annotations"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
         # these depend on GSON which is not in AOSP
@@ -444,20 +435,6 @@ def fetch_and_extract(target, build_id, file, artifact_path=None):
     return extract_artifact(artifact_path)
 
 
-def update_support(target, build_id, local_file):
-    if build_id:
-        repo_file = 'top-of-tree-m2repository-dejetified-%s.zip' % build_id.fs_id
-        repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
-    else:
-        repo_dir = fetch_and_extract(target, None, None, local_file)
-    if not repo_dir:
-        print_e('Failed to extract Support Library repository')
-        return False
-
-    # Transform the repo archive into a Makefile-compatible format.
-    return transform_maven_repos([repo_dir], support_dir, extract_res=True)
-
-
 def update_androidx(target, build_id, local_file):
     if build_id:
         repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
@@ -484,6 +461,7 @@ def update_androidx(target, build_id, local_file):
     mv(tmp_java_plugins_bp_path, java_plugins_bp_path)
 
     return True
+
 
 def update_jetifier(target, build_id):
     repo_file = 'jetifier-standalone.zip'
@@ -678,8 +656,8 @@ parser.add_argument(
     '-m', '--material', action="store_true",
     help='If specified, updates only Material Design Components')
 parser.add_argument(
-    '--constraint', action="store_true",
-    help='If specified, updates only Constraint Layout X')
+    '-c', '--constraint', action="store_true",
+    help='If specified, updates only Constraint Layout')
 parser.add_argument(
     '-j', '--jetifier', action="store_true",
     help='If specified, updates only Jetifier')
@@ -699,7 +677,6 @@ parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 args = parser.parse_args()
-args.support = False
 args.file = True
 if not args.source:
     parser.error("You must specify a build ID or local Maven ZIP file")
@@ -726,17 +703,17 @@ if uncommittedChangesExist():
 try:
     components = None
     if args.constraint:
-        if update_constraint(getFile(args)):
+        if update_constraint_x(getFile(args)):
             components = append(components, 'Constraint Layout X')
         else:
-            print_e('Failed to update Constraint Layout, aborting...')
+            print_e('Failed to update Constraint Layout X, aborting...')
             sys.exit(1)
     if args.androidx:
         if update_androidx('androidx', \
                            getBuildId(args), getFile(args)):
             components = append(components, 'AndroidX')
         else:
-            print_e('Failed to update Jetpack (androidx), aborting...')
+            print_e('Failed to update AndroidX, aborting...')
             sys.exit(1)
     if args.jetifier:
         if update_jetifier('androidx', getBuildId(args)):
@@ -763,9 +740,9 @@ try:
             sys.exit(1)
     if args.material:
         if update_material(getFile(args)):
-            components = append(components, 'Material Design Components')
+            components = append(components, 'intermediate-AndroidX Design Library')
         else:
-            print_e('Failed to update Material Design Components, aborting...')
+            print_e('Failed to update intermediate-AndroidX Design Library, aborting...')
             sys.exit(1)
     if args.buildtools:
         if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', getBuildId(args)) \
