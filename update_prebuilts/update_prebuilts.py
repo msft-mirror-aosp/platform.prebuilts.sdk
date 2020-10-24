@@ -12,7 +12,7 @@ from distutils.version import LooseVersion
 from functools import reduce
 
 current_path = 'current'
-framework_sdk_target = 'sdk_phone_armv7-win_sdk'
+framework_sdk_target = 'sdk_phone_armv7-sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
