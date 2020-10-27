@@ -189,3 +189,15 @@ java_import {
     jars: ["multidex/library/android-support-multidex.jar"],
     sdk_version: "current",
 }
+
+// To provide apexer_test_host_tool the current android jar file to execute the host test
+filegroup {
+    name: "current_android_jar",
+    srcs: [
+        "public/android.jar",
+    ],
+    visibility: [
+         "//system/apex/apexer",
+    ],
+}
+
