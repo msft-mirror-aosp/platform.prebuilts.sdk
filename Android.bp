@@ -34,48 +34,51 @@ droiddoc_exported_dir {
     path: ".",
 }
 
+genrule_defaults {
+    name: "incompatibilities-with-last-released-defaults",
+    // The latest incompatibilities.txt. If that SDK is finalized, empty file.
+    // Note that $(in) has full paths, so -k3 in the sort matches <num> in prebuilts/sdk/<num>/...
+    cmd: "" +
+    "last_incompatibilities=$$(echo $(in) | tr ' ' '\\n' | sort -t/ -k3 -n | grep /incompatibilities.txt | tail -1);" +
+    "used_incompatibilities=$$(test -e $${last_incompatibilities/incompatibilities/android} && echo /dev/null || echo $$last_incompatibilities);" +
+    "cp -f $$used_incompatibilities $(genDir)/incompatibilities.txt",
+    out: ["incompatibilities.txt"],
+}
+
 genrule {
     name: "public-api-incompatibilities-with-last-released",
     srcs: [
+        "*/public/api/android.txt",
         "*/public/api/incompatibilities.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
+    defaults: ["incompatibilities-with-last-released-defaults"],
 }
 
 genrule {
     name: "system-api-incompatibilities-with-last-released",
     srcs: [
+        "*/system/api/android.txt",
         "*/system/api/incompatibilities.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
+    defaults: ["incompatibilities-with-last-released-defaults"],
 }
 
 genrule {
     name: "module-lib-api-incompatibilities-with-last-released",
     srcs: [
+        "*/module-lib/api/android.txt",
         "*/module-lib/api/incompatibilities.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
+    defaults: ["incompatibilities-with-last-released-defaults"],
 }
 
 genrule {
     name: "system-server-api-incompatibilities-with-last-released",
     srcs: [
+        "*/system-server/api/android.txt",
         "*/system-server/api/incompatibilities.txt",
     ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
+    defaults: ["incompatibilities-with-last-released-defaults"],
 }
 
 genrule {
