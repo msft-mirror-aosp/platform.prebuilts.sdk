@@ -3,7 +3,5 @@
 
 # Next steps
 - For source-code for your IDE, please use `*-sources.jar`s in `prebuilts/sdk/current/androidx`
-- To contribute, check out AOSP AndroidX repository ([guide here](https://android.googlesource.com/platform/frameworks/support/+/androidx-master-dev/README.md)).
-    - `repo init -u https://android.googlesource.com/platform/manifest -b androidx-master-dev`
-- For secret platform work, you can use internal `ub-supportlib-master` repo.
-    - `repo init -u persistent-https://googleplex-android.git.corp.google.com/platform/manifest -b ub-supportlib-master`
+- To contribute, check out the AOSP ([onboarding guide](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-master-dev:docs/onboarding.md)).
+- For internal contributions dependent on pre-release platforms, see go/androidx-dev.
