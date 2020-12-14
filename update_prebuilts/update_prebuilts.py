@@ -331,7 +331,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
         args.extend(["-rewrite=^rules$=androidx.test.rules"])
         args.extend(["-rewrite=^runner$=androidx.test.runner"])
-        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
+        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
         args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
