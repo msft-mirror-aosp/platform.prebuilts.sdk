@@ -127,6 +127,7 @@ maven_to_make = {
     'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
     'androidx.activity:activity-ktx': {'name':'androidx.activity_activity-ktx', 'path':'androidx/activity/activity-ktx'},
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
+    'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
     'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
     'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
@@ -177,6 +178,7 @@ maven_to_make = {
     'androidx.recommendation:recommendation': {'name':'androidx.recommendation_recommendation', 'path':'androidx/recommendation/recommendation'},
     'androidx.recyclerview:recyclerview-selection': {'name':'androidx.recyclerview_recyclerview-selection', 'path':'androidx/recyclerview/recyclerview-selection'},
     'androidx.savedstate:savedstate': {'name':'androidx.savedstate_savedstate', 'path':'androidx/savedstate/savedstate'},
+    'androidx.savedstate:savedstate-ktx': {'name':'androidx.savedstate_savedstate-ktx', 'path':'androidx/savedstate/savedstate-ktx'},
     'androidx.slidingpanelayout:slidingpanelayout': {'name':'androidx.slidingpanelayout_slidingpanelayout', 'path':'androidx/slidingpanelayout/slidingpanelayout'},
     'androidx.swiperefreshlayout:swiperefreshlayout': {'name':'androidx.swiperefreshlayout_swiperefreshlayout', 'path':'androidx/swiperefreshlayout/swiperefreshlayout'},
     'androidx.textclassifier:textclassifier': {'name':'androidx.textclassifier_textclassifier', 'path':'androidx/textclassifier/textclassifier'},
@@ -238,6 +240,10 @@ maven_to_make = {
     'androidx.room:room-migration': {'name':'androidx.room_room-migration', 'path':'androidx/room/room-migration', 'host_and_device' : True},
     'androidx.room:room-runtime': {'name':'androidx.room_room-runtime', 'path':'androidx/room/room-runtime'},
     'androidx.room:room-testing': {'name':'androidx.room_room-testing', 'path':'androidx/room/room-testing'},
+    'androidx.room:room-compiler-processing': {'name':'androidx.room_room-compiler-processing', 'path':'androidx/room/room-compiler-processing', 'host' : True},
+    'androidx.work:work-runtime': {'name':'androidx.work_work-runtime', 'path':'androidx/work/work-runtime'},
+    'androidx.work:work-runtime-ktx': {'name':'androidx.work_work-runtime-ktx', 'path':'androidx/work/work-runtime-ktx'},
+    'androidx.work:work-testing': {'name':'androidx.work_work-testing', 'path':'androidx/work/work-testing'},
 
     # Lifecycle
     # Missing dependencies:
