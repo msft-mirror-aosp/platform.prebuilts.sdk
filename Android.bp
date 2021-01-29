@@ -35,50 +35,6 @@ droiddoc_exported_dir {
 }
 
 genrule {
-    name: "public-api-incompatibilities-with-last-released",
-    srcs: [
-        "*/public/api/incompatibilities.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
-}
-
-genrule {
-    name: "system-api-incompatibilities-with-last-released",
-    srcs: [
-        "*/system/api/incompatibilities.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
-}
-
-genrule {
-    name: "module-lib-api-incompatibilities-with-last-released",
-    srcs: [
-        "*/module-lib/api/incompatibilities.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
-}
-
-genrule {
-    name: "system-server-api-incompatibilities-with-last-released",
-    srcs: [
-        "*/system-server/api/incompatibilities.txt",
-    ],
-    cmd: "cp -f $$(echo $(in) | tr \" \" \"\\n\" | sort -t/ -k3 -n | tail -1) $(genDir)/incompatibilities.txt",
-    out: [
-        "incompatibilities.txt",
-    ],
-}
-
-genrule {
     name: "last-released-public-api-for-metalava-annotations",
     srcs: [
         "*/public/api/android.txt",
@@ -124,6 +80,7 @@ prebuilt_apis {
         "30",
         "current",
     ],
+    next_api_dir: "31",
     imports_sdk_version: "none",
     imports_compile_dex: true,
 }
