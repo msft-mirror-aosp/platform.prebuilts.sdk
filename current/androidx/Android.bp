@@ -280,6 +280,42 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.appsearch_appsearch_platform_storage-nodeps",
+    aars: ["m2repository/androidx/appsearch/appsearch-platform-storage/1.0.0-alpha01/appsearch-platform-storage-1.0.0-alpha01.aar"],
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.appsearch_appsearch",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.appsearch_appsearch_platform_storage",
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.appsearch_appsearch_platform_storage/AndroidManifest.xml",
+    static_libs: [
+        "androidx.appsearch_appsearch_platform_storage-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.appsearch_appsearch",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.appsearch_appsearch-nodeps",
     aars: ["m2repository/androidx/appsearch/appsearch/1.0.0-alpha01/appsearch-1.0.0-alpha01.aar"],
     sdk_version: "current",
