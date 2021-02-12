@@ -577,6 +577,21 @@ def update_buildtools(target, arch, build_id):
     top_level_dir = os.listdir(artifact_path)[0]
     src_path = os.path.join(artifact_path, top_level_dir)
     dst_path = path(buildtools_dir, arch)
+
+    # There are a few libraries that have been manually added to the
+    # build tools, copy them from the destination back to the source
+    # before the destination is overwritten.
+    files_to_save = (
+        'lib64/libconscrypt_openjdk_jni.dylib',
+        'lib64/libconscrypt_openjdk_jni.so',
+        'bin/lib64/libwinpthread-1.dll',
+    )
+    for file in files_to_save:
+        src_file = os.path.join(dst_path, file)
+        dst_file = os.path.join(src_path, file)
+        if os.path.exists(dst_path):
+            mv(src_file, dst_file)
+
     mv(src_path, dst_path)
 
     # Move all top-level files to /bin and make them executable
