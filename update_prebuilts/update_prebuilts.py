@@ -588,6 +588,11 @@ def update_buildtools(target, arch, build_id):
         mv(src_file, dst_file)
         os.chmod(dst_file, 0o755)
 
+    # Make the files under lld-bin executable
+    lld_bin_files = os.listdir(os.path.join(dst_path, 'lld-bin'))
+    for file in lld_bin_files:
+        os.chmod(os.path.join(dst_path, 'lld-bin', file), 0o755)
+
     # Remove renderscript
     rm(path(dst_path, 'renderscript'))
 
