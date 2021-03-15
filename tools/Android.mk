@@ -20,6 +20,9 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := jack-jacoco-reporter
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := jack-jacoco-reporter.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 MOCAL_MODULE_TAGS := optional
@@ -49,6 +52,9 @@ include $(CLEAR_VARS)
 # available yet..
 
 LOCAL_MODULE := acp
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_IS_HOST_MODULE := true
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -62,6 +68,9 @@ $(ACP): $(LOCAL_PATH)/$(HOST_OS)/bin/acp$(HOST_EXECUTABLE_SUFFIX)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := aidl
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/bin/aidl$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -77,6 +86,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := aapt
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/bin/aapt$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -93,6 +105,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := zipalign
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/bin/zipalign$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -108,6 +123,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := signapk
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := lib/signapk.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
@@ -121,6 +139,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := dx
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := lib/dx.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
@@ -137,6 +158,9 @@ include $(CLEAR_VARS)
 # $(BUILD_PREBUILT) here, because we must put dx.jar as dependecy of dx.
 
 LOCAL_MODULE := dx
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_IS_HOST_MODULE := true
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -157,6 +181,9 @@ include $(CLEAR_VARS)
 # as dependecy of mainDexClasses.
 
 LOCAL_MODULE := mainDexClasses
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_IS_HOST_MODULE := true
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -176,6 +203,9 @@ $(LOCAL_BUILT_MODULE): $(LOCAL_PATH)/mainDexClasses | $(ACP)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := mainDexClasses.rules
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := mainDexClasses.rules
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -189,6 +219,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := shrinkedAndroid
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := lib/shrinkedAndroid.jar
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE_TAGS := optional
@@ -211,6 +244,9 @@ ifneq (,$(TARGET_BUILD_APPS))
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := llvm-rs-cc
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/bin/llvm-rs-cc$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -226,6 +262,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := bcc_compat
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/bin/$(LOCAL_MODULE)$(HOST_EXECUTABLE_SUFFIX)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
@@ -241,6 +280,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libbcc
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/lib64/$(LOCAL_MODULE)$(HOST_SHLIB_SUFFIX)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS := optional
@@ -254,6 +296,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libbcinfo
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES := $(HOST_OS)/lib64/$(LOCAL_MODULE)$(HOST_SHLIB_SUFFIX)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS := optional
@@ -267,6 +312,9 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libc++
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD SPDX-license-identifier-CPL-1.0 SPDX-license-identifier-MIT SPDX-license-identifier-Unicode-DFS SPDX-license-identifier-W3C
+LOCAL_LICENSE_CONDITIONS := notice reciprocal
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../NOTICE
 LOCAL_SRC_FILES_64 := $(HOST_OS)/lib64/$(LOCAL_MODULE)$(HOST_SHLIB_SUFFIX)
 LOCAL_SRC_FILES_32 := $(HOST_OS)/lib/$(LOCAL_MODULE)$(HOST_SHLIB_SUFFIX)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
