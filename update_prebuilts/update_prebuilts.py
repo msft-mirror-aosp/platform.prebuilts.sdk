@@ -120,7 +120,9 @@ maven_to_make = {
     'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage', 'path':'androidx/appsearch/appsearch/appsearch-local-storage'},
     'androidx.appsearch:appsearch-platform-storage': {'name':'androidx.appsearch_appsearch_platform_storage', 'path':'androidx/appsearch/appsearch/appsearch-platform-storage'},
     'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'path':'androidx/appsearch/appsearch-compiler', 'host' : True},
-
+    'androidx.car.app:app': {'name':'androidx.car.app_app', 'path':'androidx/car/app/app'},
+    'androidx.car.app:app-activity': {'name':'androidx.car.app_app-activity', 'path':'androidx/car/app/app-activity'},
+    'androidx.car.app:app-testing': {'name':'androidx.car.app_app-testing', 'path':'androidx/car/app/app-testing'},
     # AndroidX for Multidex
     'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
     'androidx.multidex:multidex-instrumentation': {'name':'androidx-multidex_multidex-instrumentation', 'path':'androidx/multidex/multidex-instrumentation'},
