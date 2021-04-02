@@ -645,6 +645,116 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.car.app_app-activity-nodeps",
+    aars: ["m2repository/androidx/car/app/app-activity/1.1.0-alpha01/app-activity-1.1.0-alpha01.aar"],
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "29",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.annotation_annotation",
+        "androidx.car.app_app",
+    ],
+}
+
+android_library {
+    name: "androidx.car.app_app-activity",
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "29",
+    manifest: "manifests/androidx.car.app_app-activity/AndroidManifest.xml",
+    static_libs: [
+        "androidx.car.app_app-activity-nodeps",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.annotation_annotation",
+        "androidx.car.app_app",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.car.app_app-testing-nodeps",
+    aars: ["m2repository/androidx/car/app/app-testing/1.1.0-alpha01/app-testing-1.1.0-alpha01.aar"],
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "23",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.annotation_annotation",
+        "androidx.car.app_app",
+        "androidx.lifecycle_lifecycle-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.car.app_app-testing",
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "23",
+    manifest: "manifests/androidx.car.app_app-testing/AndroidManifest.xml",
+    static_libs: [
+        "androidx.car.app_app-testing-nodeps",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.annotation_annotation",
+        "androidx.car.app_app",
+        "androidx.lifecycle_lifecycle-runtime",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.car.app_app-nodeps",
+    aars: ["m2repository/androidx/car/app/app/1.1.0-alpha01/app-1.1.0-alpha01.aar"],
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "23",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.annotation_annotation",
+        "androidx.activity_activity",
+        "androidx.core_core",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.annotation_annotation-experimental",
+    ],
+}
+
+android_library {
+    name: "androidx.car.app_app",
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "23",
+    manifest: "manifests/androidx.car.app_app/AndroidManifest.xml",
+    static_libs: [
+        "androidx.car.app_app-nodeps",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.annotation_annotation",
+        "androidx.activity_activity",
+        "androidx.core_core",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.annotation_annotation-experimental",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.cardview_cardview-nodeps",
     aars: ["m2repository/androidx/cardview/cardview/1.1.0-alpha01/cardview-1.1.0-alpha01.aar"],
     sdk_version: "current",
