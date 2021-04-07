@@ -313,7 +313,9 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     # generate a single Android.bp that specifies to use all of the above artifacts
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
-        args = ["pom2bp", "-sdk-version", "current"]
+        args = ["pom2bp"]
+        args.extend(["-sdk-version", "30"])
+        args.extend(["-default-min-sdk-version", "24"])
         if include_static_deps:
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
