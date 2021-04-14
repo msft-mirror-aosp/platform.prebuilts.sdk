@@ -334,6 +334,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
+        args.extend(["-rewrite=^auto-common$=auto_common"])
+        args.extend(["-rewrite=^auto-value-annotations$=auto_value_annotations"])
         args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
         args.extend(["-rewrite=^rules$=androidx.test.rules"])
         args.extend(["-rewrite=^runner$=androidx.test.runner"])
