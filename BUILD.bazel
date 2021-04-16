@@ -1,35 +1,33 @@
 load("@rules_android//toolchains/android:toolchain.bzl", "android_toolchain")
 
-exports_files(["tools/linux/bin/aapt2"])
-
 android_sdk(
     name = "android_sdk",
-    aapt = "tools/linux/bin/aapt",
-    aapt2 = "tools/linux/bin/aapt2",
+    aapt = "//prebuilts/sdk/tools:linux/bin/aapt",
+    aapt2 = "//prebuilts/sdk/tools:linux/bin/aapt2",
     adb = ":fail",  # TODO: use system/core/adb ?
-    aidl = "tools/linux/bin/aidl",
+    aidl = "//prebuilts/sdk/tools:linux/bin/aidl",
     android_jar = "30/public/android.jar",
     apksigner = ":apksigner",
-    dx = "tools/linux/bin/dx",  # TODO: add D8
+    dx = "//prebuilts/sdk/tools:linux/bin/dx",  # TODO: add D8
     framework_aidl = "30/public/framework.aidl",
-    main_dex_classes = "tools/mainDexClasses.rules",
+    main_dex_classes = "//prebuilts/sdk/tools:mainDexClasses.rules",
     main_dex_list_creator = ":fail",
     proguard = ":fail",  # TODO: add R8
     shrinked_android_jar = "30/public/android.jar",
     visibility = ["//visibility:public"],
-    zipalign = "tools/linux/bin/zipalign",
+    zipalign = "//prebuilts/sdk/tools:linux/bin/zipalign",
 )
 
 java_import(
     name = "dx_jar_import",
-    jars = ["tools/linux/lib/dx.jar"],
+    jars = ["//prebuilts/sdk/tools:linux/lib/dx.jar"],
     visibility = ["//visibility:public"],
 )
 
 java_binary(
     name = "apksigner",
     main_class = "com.android.apksigner.ApkSignerTool",
-    runtime_deps = ["tools/linux/lib/apksigner.jar"],
+    runtime_deps = ["//prebuilts/sdk/tools:linux/lib/apksigner.jar"],
 )
 
 toolchain(
@@ -50,7 +48,7 @@ toolchain(
 
 android_toolchain(
     name = "android_default",
-    aapt2 = "//prebuilts/sdk:tools/linux/bin/aapt2",
+    aapt2 = "//prebuilts/sdk/tools:linux/bin/aapt2",
     adb = ":fail",
     android_kit = ":fail",
     apk_to_bundle_tool = ":fail",
