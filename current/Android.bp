@@ -207,13 +207,14 @@ java_import {
     sdk_version: "current",
 }
 
-// To provide apexer_test_host_tool the current android jar file to execute the host test
+// To provide test host tools the current android jar file to execute the host test
 filegroup {
     name: "current_android_jar",
     srcs: [
         "public/android.jar",
     ],
     visibility: [
-         "//system/apex/apexer",
+         "//system/apex/apexer", // for apexer_host_test_tools
+         "//system/apex/tools",  // for apex_compression_test_host_tools
     ],
 }
