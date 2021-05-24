@@ -486,7 +486,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-common-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-common/1.1.0-alpha02/benchmark-common-1.1.0-alpha02.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-common/1.1.0-alpha05/benchmark-common-1.1.0-alpha05.aar"],
     sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
@@ -524,7 +524,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.1.0-alpha02/benchmark-junit4-1.1.0-alpha02.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.1.0-alpha05/benchmark-junit4-1.1.0-alpha05.aar"],
     sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
@@ -558,6 +558,94 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.test.rules",
         "androidx.test.runner",
+        "androidx.benchmark_benchmark-common",
+        "androidx.tracing_tracing-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.benchmark_benchmark-macro-junit4-nodeps",
+    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.1.0-alpha05/benchmark-macro-junit4-1.1.0-alpha05.aar"],
+    sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    static_libs: [
+        "junit",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation",
+        "androidx.test.rules",
+        "androidx.test.runner",
+        "uiautomator",
+        "androidx.benchmark_benchmark-macro",
+        "androidx.benchmark_benchmark-common",
+    ],
+}
+
+android_library {
+    name: "androidx.benchmark_benchmark-macro-junit4",
+    sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    manifest: "manifests/androidx.benchmark_benchmark-macro-junit4/AndroidManifest.xml",
+    static_libs: [
+        "androidx.benchmark_benchmark-macro-junit4-nodeps",
+        "junit",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation",
+        "androidx.test.rules",
+        "androidx.test.runner",
+        "uiautomator",
+        "androidx.benchmark_benchmark-macro",
+        "androidx.benchmark_benchmark-common",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.benchmark_benchmark-macro-nodeps",
+    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.1.0-alpha05/benchmark-macro-1.1.0-alpha05.aar"],
+    sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    static_libs: [
+        "junit",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation",
+        "wire-runtime",
+        "androidx.core_core",
+        "uiautomator",
+        "androidx.benchmark_benchmark-common",
+        "androidx.tracing_tracing-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.benchmark_benchmark-macro",
+    sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    manifest: "manifests/androidx.benchmark_benchmark-macro/AndroidManifest.xml",
+    static_libs: [
+        "androidx.benchmark_benchmark-macro-nodeps",
+        "junit",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation",
+        "wire-runtime",
+        "androidx.core_core",
+        "uiautomator",
         "androidx.benchmark_benchmark-common",
         "androidx.tracing_tracing-ktx",
     ],
