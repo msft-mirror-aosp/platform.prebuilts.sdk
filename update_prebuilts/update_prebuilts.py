@@ -27,6 +27,10 @@ FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 
 maven_to_make = {
     # AndroidX
+    'androidx.benchmark:benchmark-common': {'name':'androidx.benchmark_benchmark-common', 'path':'androidx/benchmark/benchmark-common'},
+    'androidx.benchmark:benchmark-junit4': {'name':'androidx.benchmark_benchmark-junit4', 'path':'androidx/benchmark/benchmark-junit4'},
+    'androidx.tracing:tracing': {'name':'androidx.tracing_tracing', 'path':'androidx/tracing/tracing'},
+    'androidx.tracing:tracing-ktx': {'name':'androidx.tracing_tracing-ktx', 'path':'androidx/tracing/tracing-ktx'},
     'androidx.slice:slice-builders': {'name':'androidx.slice_slice-builders', 'path':'androidx/slice/slice-builders'},
     'androidx.slice:slice-core': {'name':'androidx.slice_slice-core', 'path':'androidx/slice/slice-core'},
     'androidx.slice:slice-view': {'name':'androidx.slice_slice-view', 'path':'androidx/slice/slice-view'},
@@ -37,6 +41,7 @@ maven_to_make = {
     'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
     'androidx.activity:activity-ktx': {'name':'androidx.activity_activity-ktx', 'path':'androidx/activity/activity-ktx'},
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
+    'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
     'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
     'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
@@ -323,6 +328,9 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^auto-common$=auto_common"])
         args.extend(["-rewrite=^auto-value-annotations$=auto_value_annotations"])
+        args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
+        args.extend(["-rewrite=^rules$=androidx.test.rules"])
+        args.extend(["-rewrite=^runner$=androidx.test.runner"])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
