@@ -148,6 +148,7 @@ maven_to_make = {
     'androidx.room:room-migration': {'name':'androidx.room_room-migration', 'path':'androidx/room/room-migration', 'host_and_device' : True},
     'androidx.room:room-runtime': {'name':'androidx.room_room-runtime', 'path':'androidx/room/room-runtime'},
     'androidx.room:room-testing': {'name':'androidx.room_room-testing', 'path':'androidx/room/room-testing'},
+    'androidx.room:room-compiler-processing': {'name':'androidx.room_room-compiler-processing', 'path':'androidx/room/room-compiler-processing', 'host' : True},
 
     # Lifecycle
     # Missing dependencies:
