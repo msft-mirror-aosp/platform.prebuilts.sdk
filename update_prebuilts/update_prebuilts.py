@@ -92,6 +92,7 @@ maven_to_make = {
     'androidx.recommendation:recommendation': {'name':'androidx.recommendation_recommendation', 'path':'androidx/recommendation/recommendation'},
     'androidx.recyclerview:recyclerview-selection': {'name':'androidx.recyclerview_recyclerview-selection', 'path':'androidx/recyclerview/recyclerview-selection'},
     'androidx.savedstate:savedstate': {'name':'androidx.savedstate_savedstate', 'path':'androidx/savedstate/savedstate'},
+    'androidx.savedstate:savedstate-ktx': {'name':'androidx.savedstate_savedstate-ktx', 'path':'androidx/savedstate/savedstate-ktx'},
     'androidx.slidingpanelayout:slidingpanelayout': {'name':'androidx.slidingpanelayout_slidingpanelayout', 'path':'androidx/slidingpanelayout/slidingpanelayout'},
     'androidx.swiperefreshlayout:swiperefreshlayout': {'name':'androidx.swiperefreshlayout_swiperefreshlayout', 'path':'androidx/swiperefreshlayout/swiperefreshlayout'},
     'androidx.textclassifier:textclassifier': {'name':'androidx.textclassifier_textclassifier', 'path':'androidx/textclassifier/textclassifier'},
@@ -154,6 +155,9 @@ maven_to_make = {
     'androidx.room:room-runtime': {'name':'androidx.room_room-runtime', 'path':'androidx/room/room-runtime'},
     'androidx.room:room-testing': {'name':'androidx.room_room-testing', 'path':'androidx/room/room-testing'},
     'androidx.room:room-compiler-processing': {'name':'androidx.room_room-compiler-processing', 'path':'androidx/room/room-compiler-processing', 'host' : True},
+    'androidx.work:work-runtime': {'name':'androidx.work_work-runtime', 'path':'androidx/work/work-runtime'},
+    'androidx.work:work-runtime-ktx': {'name':'androidx.work_work-runtime-ktx', 'path':'androidx/work/work-runtime-ktx'},
+    'androidx.work:work-testing': {'name':'androidx.work_work-testing', 'path':'androidx/work/work-testing'},
 
     # Lifecycle
     # Missing dependencies:
