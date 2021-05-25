@@ -24,6 +24,7 @@ git_dir = os.getcwd()
 
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
+FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
 
 maven_to_make = {
     # AndroidX
@@ -414,12 +415,17 @@ def process_aar(artifact_file, target_dir):
 
 
 def fetch_artifact(target, build_id, artifact_path):
+    global args
     download_to = os.path.join('.', os.path.dirname(artifact_path))
     print('Fetching %s from %s ...' % (artifact_path, target))
     if not os.path.exists(download_to):
         os.makedirs(download_to)
-    fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path,
-                 download_to]
+    if args.beyond_corp:
+        fetch_cmd = [FETCH_ARTIFACT_BEYOND_CORP, '--use_oauth2',
+                     '--bid', str(build_id), '--target', target, artifact_path, download_to]
+    else:
+        fetch_cmd = [FETCH_ARTIFACT,
+                     '--bid', str(build_id), '--target', target, artifact_path, download_to]
     print("Running: " + ' '.join(fetch_cmd))
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
@@ -716,6 +722,9 @@ parser.add_argument(
 parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
+parser.add_argument(
+    '--beyond-corp', action="store_true",
+    help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
 args = parser.parse_args()
 args.file = True
 if not args.source:
