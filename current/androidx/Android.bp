@@ -3982,6 +3982,42 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.wear_wear-ongoing-nodeps",
+    aars: ["m2repository/androidx/wear/wear-ongoing/1.0.0-alpha07/wear-ongoing-1.0.0-alpha07.aar"],
+    sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "25",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.versionedparcelable_versionedparcelable",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.wear_wear-ongoing",
+    sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "25",
+    manifest: "manifests/androidx.wear_wear-ongoing/AndroidManifest.xml",
+    static_libs: [
+        "androidx.wear_wear-ongoing-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.versionedparcelable_versionedparcelable",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.webkit_webkit-nodeps",
     aars: ["m2repository/androidx/webkit/webkit/1.5.0-alpha01/webkit-1.5.0-alpha01.aar"],
     sdk_version: "30",
