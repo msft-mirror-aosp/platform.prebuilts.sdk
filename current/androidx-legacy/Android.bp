@@ -1,6 +1,15 @@
 // All of the following libraries should be replaced with direct usages of the dependencies.
 // BURN THESE WITH FIRE 🔥🔥🔥
 
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "prebuilts_sdk_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["prebuilts_sdk_license"],
+}
+
 android_library {
     name: "androidx.legacy_legacy-support-v4",
     sdk_version: "current",
@@ -163,44 +172,6 @@ android_library {
         "androidx.lifecycle_lifecycle-process",
         "androidx.lifecycle_lifecycle-service",
         "androidx.lifecycle_lifecycle-viewmodel",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.car_car-nodeps",
-    aars: ["m2repository/androidx/car/car/1.0.0-alpha8/car-1.0.0-alpha8.aar"],
-    sdk_version: "current",
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "com.google.android.material_material",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.recyclerview_recyclerview",
-        "androidx.core_core",
-        "androidx.gridlayout_gridlayout",
-        "androidx.preference_preference",
-        "androidx-constraintlayout_constraintlayout",
-    ],
-}
-
-android_library {
-    name: "androidx.car_car",
-    sdk_version: "current",
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.car_car/AndroidManifest.xml",
-    static_libs: [
-        "androidx.car_car-nodeps",
-        "androidx.annotation_annotation",
-        "com.google.android.material_material",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.recyclerview_recyclerview",
-        "androidx.core_core",
-        "androidx.gridlayout_gridlayout",
-        "androidx.preference_preference",
-        "androidx-constraintlayout_constraintlayout",
     ],
     java_version: "1.7",
 }
