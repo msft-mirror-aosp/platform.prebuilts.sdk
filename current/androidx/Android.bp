@@ -101,7 +101,7 @@ android_library {
 
 android_library_import {
     name: "androidx.annotation_annotation-experimental-nodeps",
-    aars: ["m2repository/androidx/annotation/annotation-experimental/1.1.0-rc01/annotation-experimental-1.1.0-rc01.aar"],
+    aars: ["m2repository/androidx/annotation/annotation-experimental/1.2.0-alpha01/annotation-experimental-1.2.0-alpha01.aar"],
     sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
@@ -129,7 +129,7 @@ android_library {
 
 java_import {
     name: "androidx.annotation_annotation-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation/1.2.0-rc01/annotation-1.2.0-rc01.jar"],
+    jars: ["m2repository/androidx/annotation/annotation/1.3.0-alpha01/annotation-1.3.0-alpha01.jar"],
     sdk_version: "30",
     host_supported: true,
     apex_available: [
@@ -974,7 +974,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-nodeps",
-    aars: ["m2repository/androidx/core/core/1.6.0-beta02/core-1.6.0-beta02.aar"],
+    aars: ["m2repository/androidx/core/core/1.6.0-beta03/core-1.6.0-beta03.aar"],
     sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
@@ -984,6 +984,7 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.collection_collection",
+        "androidx.annotation_annotation-experimental",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.versionedparcelable_versionedparcelable",
     ],
@@ -1002,6 +1003,7 @@ android_library {
         "androidx.core_core-nodeps",
         "androidx.annotation_annotation",
         "androidx.collection_collection",
+        "androidx.annotation_annotation-experimental",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.versionedparcelable_versionedparcelable",
     ],
@@ -2607,6 +2609,7 @@ android_library_import {
         "androidx.navigation_navigation-runtime-ktx",
         "androidx.customview_customview",
         "androidx.drawerlayout_drawerlayout",
+        "androidx.annotation_annotation-experimental",
         "androidx.transition_transition",
     ],
 }
@@ -2626,6 +2629,7 @@ android_library {
         "androidx.navigation_navigation-runtime-ktx",
         "androidx.customview_customview",
         "androidx.drawerlayout_drawerlayout",
+        "androidx.annotation_annotation-experimental",
         "androidx.transition_transition",
     ],
     java_version: "1.7",
