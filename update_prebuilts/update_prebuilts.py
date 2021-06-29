@@ -563,6 +563,9 @@ def update_framework(build_id, sdk_dir):
                     dst_path = path(target_dir, filename)
                     mv(src_path, dst_path)
 
+            # Filtered API DB is currently only available for "public"
+            fetch_artifacts(framework_sdk_target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
+
     return True
 
 def update_makefile(build_id):
