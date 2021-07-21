@@ -1,3 +1,20 @@
+// *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+//     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+//     DEPENDING ON IT IN YOUR PROJECT. ***
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "prebuilts_sdk_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   SPDX-license-identifier-CC0-1.0
+    //   SPDX-license-identifier-OFL (by exception only)
+    //   SPDX-license-identifier-Unicode-DFS
+    //   legacy_unencumbered
+    default_applicable_licenses: ["prebuilts_sdk_license"],
+}
+
 java_sdk_library_import {
     name: "android.test.base",
     public: {
@@ -188,4 +205,16 @@ java_import {
     name: "android-support-multidex",
     jars: ["multidex/library/android-support-multidex.jar"],
     sdk_version: "current",
+}
+
+// To provide test host tools the current android jar file to execute the host test
+filegroup {
+    name: "current_android_jar",
+    srcs: [
+        "public/android.jar",
+    ],
+    visibility: [
+         "//system/apex/apexer", // for apexer_host_test_tools
+         "//system/apex/tools",  // for apex_compression_test_host_tools
+    ],
 }
