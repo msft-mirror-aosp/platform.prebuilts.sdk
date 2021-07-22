@@ -8,7 +8,7 @@ android_sdk(
     aidl = "//prebuilts/sdk/tools:linux/bin/aidl",
     android_jar = "30/public/android.jar",
     apksigner = ":apksigner",
-    dx = "//prebuilts/sdk/tools:linux/bin/dx",  # TODO: add D8
+    dx = "//prebuilts/sdk/tools:dx",  # TODO: add D8
     framework_aidl = "30/public/framework.aidl",
     main_dex_classes = "//prebuilts/sdk/tools:mainDexClasses.rules",
     main_dex_list_creator = ":fail",
@@ -20,7 +20,7 @@ android_sdk(
 
 java_import(
     name = "dx_jar_import",
-    jars = ["//prebuilts/sdk/tools:linux/lib/dx.jar"],
+    jars = ["//prebuilts/sdk/tools:lib/dx.jar"],
     visibility = ["//visibility:public"],
 )
 
