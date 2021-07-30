@@ -67,6 +67,8 @@ maven_to_make = {
     'androidx.emoji:emoji': {'name':'androidx.emoji_emoji', 'path':'androidx/emoji/emoji'},
     'androidx.emoji:emoji-appcompat': {'name':'androidx.emoji_emoji-appcompat', 'path':'androidx/emoji/emoji-appcompat'},
     'androidx.emoji:emoji-bundled': {'name':'androidx.emoji_emoji-bundled', 'path':'androidx/emoji/emoji-bundled'},
+    'androidx.emoji2:emoji2': {'name':'androidx.emoji2_emoji', 'path':'androidx/emoji2/emoji2'},
+    'androidx.emoji2:emoji2-views-helper': {'name':'androidx.emoji2_emoji2-views-helpe', 'path':'androidx/emoji2/emoji2-views-helper'},
     'androidx.exifinterface:exifinterface': {'name':'androidx.exifinterface_exifinterface', 'path':'androidx/exifinterface/exifinterface'},
     'androidx.fragment:fragment': {'name':'androidx.fragment_fragment', 'path':'androidx/fragment/fragment'},
     'androidx.fragment:fragment-ktx': {'name':'androidx.fragment_fragment-ktx', 'path':'androidx/fragment/fragment-ktx'},
@@ -125,8 +127,13 @@ maven_to_make = {
     'androidx.appsearch:appsearch-platform-storage': {'name':'androidx.appsearch_appsearch_platform_storage', 'path':'androidx/appsearch/appsearch/appsearch-platform-storage'},
     'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'path':'androidx/appsearch/appsearch-compiler', 'host' : True},
     'androidx.car.app:app': {'name':'androidx.car.app_app', 'path':'androidx/car/app/app'},
-    'androidx.car.app:app-activity': {'name':'androidx.car.app_app-activity', 'path':'androidx/car/app/app-activity'},
+    'androidx.car.app:app-automotive': {'name':'androidx.car.app_app-automotive', 'path':'androidx/car/app/app-automotive'},
     'androidx.car.app:app-testing': {'name':'androidx.car.app_app-testing', 'path':'androidx/car/app/app-testing'},
+    'androidx.startup:startup-runtime': {'name':'androidx.startup_startup-runtime', 'path':'androidx/startup/startup-runtime'},
+    'androidx.window:window': {'name':'androidx.window_window', 'path':'androidx/window/window'},
+    'androidx.resourceinspection:resourceinspection-annotation': {'name':'androidx.resourceinspection_resourceinspection-annotation', 'path':'androidx/resourceinspection/resourceinspection-annotation'},
+    'androidx.profileinstaller:profileinstaller': {'name':'androidx.profileinstaller_profileinstaller', 'path':'androidx/profileinstaller/profileinstaller'},
+
     # AndroidX for Multidex
     'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
     'androidx.multidex:multidex-instrumentation': {'name':'androidx-multidex_multidex-instrumentation', 'path':'androidx/multidex/multidex-instrumentation'},
@@ -332,7 +339,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
         args = ["pom2bp"]
-        args.extend(["-sdk-version", "30"])
+        args.extend(["-sdk-version", "31"])
         args.extend(["-default-min-sdk-version", "24"])
         if include_static_deps:
             args.append("-static-deps")
@@ -340,14 +347,21 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^auto-common$=auto_common"])
         args.extend(["-rewrite=^auto-value-annotations$=auto_value_annotations"])
+        args.extend(["-rewrite=^com.google.auto.value:auto-value$=auto_value_plugin"])
         args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
         args.extend(["-rewrite=^rules$=androidx.test.rules"])
         args.extend(["-rewrite=^runner$=androidx.test.runner"])
+        args.extend(["-rewrite=^androidx.test:core$=androidx.test.core"])
         args.extend(["-rewrite=^com.squareup:javapoet$=javapoet"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
         args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
         args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
+        args.extend(["-rewrite=^javax.annotation:javax.annotation-api$=javax-annotation-api-prebuilt-host-jar"])
+        args.extend(["-rewrite=^org.robolectric:robolectric$=Robolectric_all-target"])
+        args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-coroutines-core$=kotlinx_coroutines"])
+        args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-coroutines-android$=kotlinx_coroutines_android"])
+        args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-metadata-jvm$=kotlinx_metadata_jvm"])
         args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
