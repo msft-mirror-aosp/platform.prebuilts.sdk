@@ -19,6 +19,19 @@
 
     <uses-sdk
         android:minSdkVersion="23"
-        android:targetSdkVersion="30" />
+        android:targetSdkVersion="31" />
+
+    <queries>
+        <provider android:authorities="androidx.car.app.connection" />
+    </queries>
+
+    <application>
+        <activity
+            android:name="androidx.car.app.CarAppPermissionActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver android:name="androidx.car.app.notification.CarAppNotificationBroadcastReceiver" />
+    </application>
 
 </manifest>
