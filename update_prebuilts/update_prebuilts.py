@@ -26,6 +26,9 @@ git_dir = os.getcwd()
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
 
+# Leave map blank to automatically populate name and path:
+# - Name format is MAVEN.replaceAll(':','_')
+# - Path format is MAVEN.replaceAll(':','/').replaceAll('.','/')
 maven_to_make = {
     # AndroidX
     'androidx.benchmark:benchmark-macro': { },
@@ -38,12 +41,12 @@ maven_to_make = {
     'androidx.slice:slice-core': { },
     'androidx.slice:slice-view': { },
     'androidx.remotecallback:remotecallback': { },
-    'androidx.remotecallback:remotecallback-processor': {'name':'androidx.remotecallback_remotecallback-processor', 'path':'androidx/remotecallback/remotecallback-processor', 'host':True},
-    'androidx.versionedparcelable:versionedparcelable': {'name':'androidx.versionedparcelable_versionedparcelable', 'path':'androidx/versionedparcelable'},
+    'androidx.remotecallback:remotecallback-processor': {'host':True},
+    'androidx.versionedparcelable:versionedparcelable': { },
     'androidx.vectordrawable:vectordrawable-animated': { },
     'androidx.activity:activity': { },
     'androidx.activity:activity-ktx': { },
-    'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
+    'androidx.annotation:annotation': {'host_and_device':True},
     'androidx.annotation:annotation-experimental': { },
     'androidx.asynclayoutinflater:asynclayoutinflater': { },
     'androidx.collection:collection': { },
@@ -123,9 +126,9 @@ maven_to_make = {
     'androidx.biometric:biometric': { },
     'androidx.autofill:autofill': { },
     'androidx.appsearch:appsearch': { },
-    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage', 'path':'androidx/appsearch/appsearch/appsearch-local-storage'},
-    'androidx.appsearch:appsearch-platform-storage': {'name':'androidx.appsearch_appsearch_platform_storage', 'path':'androidx/appsearch/appsearch/appsearch-platform-storage'},
-    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'path':'androidx/appsearch/appsearch-compiler', 'host' : True},
+    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage'},
+    'androidx.appsearch:appsearch-platform-storage': { },
+    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'host':True},
     'androidx.car.app:app': { },
     'androidx.car.app:app-automotive': { },
     'androidx.car.app:app-testing': { },
@@ -135,12 +138,12 @@ maven_to_make = {
     'androidx.profileinstaller:profileinstaller': { },
 
     # AndroidX for Multidex
-    'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
-    'androidx.multidex:multidex-instrumentation': {'name':'androidx-multidex_multidex-instrumentation', 'path':'androidx/multidex/multidex-instrumentation'},
+    'androidx.multidex:multidex': { },
+    'androidx.multidex:multidex-instrumentation': { },
 
     # AndroidX for Constraint Layout
-    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout', 'path':'androidx/constraintlayout/constraintlayout'},
-    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver', 'path':'androidx/constraintlayout/constraintlayout-solver'},
+    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout'},
+    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver'},
 
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': { },
@@ -164,12 +167,12 @@ maven_to_make = {
     'androidx.paging:paging-runtime': { },
     'androidx.sqlite:sqlite': { },
     'androidx.sqlite:sqlite-framework': { },
-    'androidx.room:room-common': {'host_and_device' : True},
-    'androidx.room:room-compiler': {'host' : True},
-    'androidx.room:room-migration': {'host_and_device' : True},
+    'androidx.room:room-common': {'host_and_device':True},
+    'androidx.room:room-compiler': {'host':True},
+    'androidx.room:room-migration': {'host_and_device':True},
     'androidx.room:room-runtime': { },
     'androidx.room:room-testing': { },
-    'androidx.room:room-compiler-processing': {'host' : True},
+    'androidx.room:room-compiler-processing': {'host':True},
     'androidx.work:work-runtime': { },
     'androidx.work:work-runtime-ktx': { },
     'androidx.work:work-testing': { },
