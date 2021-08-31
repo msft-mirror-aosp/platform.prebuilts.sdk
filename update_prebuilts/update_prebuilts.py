@@ -137,6 +137,26 @@ maven_to_make = {
     'androidx.resourceinspection:resourceinspection-annotation': { },
     'androidx.profileinstaller:profileinstaller': { },
 
+    # AndroidX for Compose
+    'androidx.compose.compiler:compiler-hosted': { },
+    'androidx.compose.runtime:runtime': { },
+    'androidx.compose.runtime:runtime-saveable': { },
+    'androidx.compose.foundation:foundation': { },
+    'androidx.compose.foundation:foundation-layout': { },
+    'androidx.compose.foundation:foundation-text': { },
+    'androidx.compose.ui:ui': { },
+    'androidx.compose.ui:ui-geometry': { },
+    'androidx.compose.ui:ui-graphics': { },
+    'androidx.compose.ui:ui-text': { },
+    'androidx.compose.ui:ui-unit': { },
+    'androidx.compose.ui:ui-util': { },
+    'androidx.compose.animation:animation-core': { },
+    'androidx.compose.animation:animation': { },
+    'androidx.compose.material:material-icons-core': { },
+    'androidx.compose.material:material-ripple': { },
+    'androidx.compose.material:material': { },
+    'androidx.activity:activity-compose': { },
+
     # AndroidX for Multidex
     'androidx.multidex:multidex': { },
     'androidx.multidex:multidex-instrumentation': { },
@@ -378,6 +398,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
         args.extend(["-rewrite=^javax.annotation:javax.annotation-api$=javax-annotation-api-prebuilt-host-jar"])
         args.extend(["-rewrite=^org.robolectric:robolectric$=Robolectric_all-target"])
+        args.extend(["-rewrite=^org.jetbrains.kotlin:kotlin-stdlib-common$=kotlin-stdlib"])
         args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-coroutines-core$=kotlinx_coroutines"])
         args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-coroutines-android$=kotlinx_coroutines_android"])
         args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-metadata-jvm$=kotlinx_metadata_jvm"])
