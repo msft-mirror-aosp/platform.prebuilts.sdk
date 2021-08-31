@@ -133,7 +133,7 @@ maven_to_make = {
     'androidx.car.app:app-automotive': { },
     'androidx.car.app:app-testing': { },
     'androidx.startup:startup-runtime': { },
-    'androidx.window:window': { },
+    'androidx.window:window': {'optional-uses-libs':{'androidx.window.extensions', 'androidx.window.sidecar'}},
     'androidx.resourceinspection:resourceinspection-annotation': { },
     'androidx.profileinstaller:profileinstaller': { },
 
@@ -188,7 +188,7 @@ maven_to_make = {
     'androidx.sqlite:sqlite': { },
     'androidx.sqlite:sqlite-framework': { },
     'androidx.room:room-common': {'host_and_device':True},
-    'androidx.room:room-compiler': {'host':True},
+    'androidx.room:room-compiler': {'host':True, 'extra-static-libs':{'guava-21.0'}},
     'androidx.room:room-migration': {'host_and_device':True},
     'androidx.room:room-runtime': { },
     'androidx.room:room-testing': { },
@@ -197,32 +197,33 @@ maven_to_make = {
     'androidx.work:work-runtime-ktx': { },
     'androidx.work:work-testing': { },
 
-    # Lifecycle
-    # Missing dependencies:
-    # - auto-common
-    # - javapoet
-    #'android.arch.lifecycle:compiler': {'name':'android-arch-lifecycle-compiler', 'path':'arch-lifecycle/compiler'},
-    # Missing dependencies:
-    # - reactive-streams
-    #'android.arch.lifecycle:reactivestreams': 'android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams',
-
-    # Room
-    # Missing dependencies:
-    # - auto-common
-    # - javapoet
-    # - antlr4
-    # - kotlin-metadata
-    # - commons-codec
-    #'android.arch.persistence.room:compiler': {'name':'android-arch-room-compiler', 'path':'arch-room/compiler'},
-    # Missing dependencies:
-    # - rxjava
-    #'android.arch.persistence.room:rxjava2': {'name':'android-arch-room-rxjava2', 'path':'arch-room/rxjava2'},
-
     # Third-party dependencies
     'com.google.android:flexbox': {'name':'flexbox', 'path':'flexbox'},
 
     # Androidx Material Design Components
     'com.google.android.material:material': { },
+}
+
+# Mapping of POM dependencies to Soong build targets
+deps_rewrite = {
+    'auto-common':'auto_common',
+    'auto-value-annotations':'auto_value_annotations',
+    'com.google.auto.value:auto-value':'auto_value_plugin',
+    'monitor':'androidx.test.monitor',
+    'rules':'androidx.test.rules',
+    'runner':'androidx.test.runner',
+    'androidx.test:core':'androidx.test.core',
+    'com.squareup:javapoet':'javapoet',
+    'com.google.guava:listenablefuture':'guava-listenablefuture-prebuilt-jar',
+    'sqlite-jdbc':'xerial-sqlite-jdbc',
+    'gson':'gson-prebuilt-jar',
+    'com.intellij:annotations':'jetbrains-annotations',
+    'javax.annotation:javax.annotation-api':'javax-annotation-api-prebuilt-host-jar',
+    'org.robolectric:robolectric':'Robolectric_all-target',
+    'org.jetbrains.kotlin:kotlin-stdlib-common':'kotlin-stdlib',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-core':'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
+    'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
 }
 
 
@@ -346,7 +347,7 @@ def detect_artifacts(maven_repo_dirs):
                     elif artifact_id in maven_to_make:
                         key = artifact_id
                     else:
-                        print('Failed to find artifact mapping for ' + group_artifact + ', using default')
+                        # No mapping entry, skip this library.
                         continue
 
                     # Store the latest version.
@@ -384,30 +385,11 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
-        args.extend(["-rewrite=^auto-common$=auto_common"])
-        args.extend(["-rewrite=^auto-value-annotations$=auto_value_annotations"])
-        args.extend(["-rewrite=^com.google.auto.value:auto-value$=auto_value_plugin"])
-        args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
-        args.extend(["-rewrite=^rules$=androidx.test.rules"])
-        args.extend(["-rewrite=^runner$=androidx.test.runner"])
-        args.extend(["-rewrite=^androidx.test:core$=androidx.test.core"])
-        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet"])
-        args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
-        args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
-        args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
-        args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
-        args.extend(["-rewrite=^javax.annotation:javax.annotation-api$=javax-annotation-api-prebuilt-host-jar"])
-        args.extend(["-rewrite=^org.robolectric:robolectric$=Robolectric_all-target"])
-        args.extend(["-rewrite=^org.jetbrains.kotlin:kotlin-stdlib-common$=kotlin-stdlib"])
-        args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-coroutines-core$=kotlinx_coroutines"])
-        args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-coroutines-android$=kotlinx_coroutines_android"])
-        args.extend(["-rewrite=^org.jetbrains.kotlinx:kotlinx-metadata-jvm$=kotlinx_metadata_jvm"])
-        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
+        args.extend(["-rewrite=^" + key + "$=" + value for key, value in deps_rewrite.items()])
+        args.extend(["-extra-static-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['extra-static-libs'])) for name in maven_to_make if 'extra-static-libs' in maven_to_make[name]])
+        args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if 'optional-uses-libs' in maven_to_make[name]])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
-        # these depend on GSON which is not in AOSP
-        args.extend(["-exclude=android-arch-room-migration",
-                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
