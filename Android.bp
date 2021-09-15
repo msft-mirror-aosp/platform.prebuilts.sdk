@@ -137,3 +137,11 @@ prebuilt_apis {
     imports_sdk_version: "none",
     imports_compile_dex: true,
 }
+
+filegroup {
+    name: "prebuilt_sdk_system_public_api_txt",
+    srcs: [
+        "*/system/api/*.txt",
+        "*/public/api/*.txt",
+    ],
+}
