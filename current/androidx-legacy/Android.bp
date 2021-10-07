@@ -95,7 +95,6 @@ android_library_import {
         "androidx.viewpager_viewpager",
         "androidx.coordinatorlayout_coordinatorlayout",
         "androidx.drawerlayout_drawerlayout",
-        "androidx.slidingpanelayout_slidingpanelayout",
         "androidx.interpolator_interpolator",
         "androidx.swiperefreshlayout_swiperefreshlayout",
         "androidx.asynclayoutinflater_asynclayoutinflater",
@@ -121,7 +120,6 @@ android_library {
         "androidx.viewpager_viewpager",
         "androidx.coordinatorlayout_coordinatorlayout",
         "androidx.drawerlayout_drawerlayout",
-        "androidx.slidingpanelayout_slidingpanelayout",
         "androidx.interpolator_interpolator",
         "androidx.swiperefreshlayout_swiperefreshlayout",
         "androidx.asynclayoutinflater_asynclayoutinflater",
@@ -172,44 +170,6 @@ android_library {
         "androidx.lifecycle_lifecycle-process",
         "androidx.lifecycle_lifecycle-service",
         "androidx.lifecycle_lifecycle-viewmodel",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.car_car-nodeps",
-    aars: ["m2repository/androidx/car/car/1.0.0-alpha8/car-1.0.0-alpha8.aar"],
-    sdk_version: "current",
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "com.google.android.material_material",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.recyclerview_recyclerview",
-        "androidx.core_core",
-        "androidx.gridlayout_gridlayout",
-        "androidx.preference_preference",
-        "androidx-constraintlayout_constraintlayout",
-    ],
-}
-
-android_library {
-    name: "androidx.car_car",
-    sdk_version: "current",
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.car_car/AndroidManifest.xml",
-    static_libs: [
-        "androidx.car_car-nodeps",
-        "androidx.annotation_annotation",
-        "com.google.android.material_material",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.recyclerview_recyclerview",
-        "androidx.core_core",
-        "androidx.gridlayout_gridlayout",
-        "androidx.preference_preference",
-        "androidx-constraintlayout_constraintlayout",
     ],
     java_version: "1.7",
 }
