@@ -24,6 +24,7 @@ git_dir = os.getcwd()
 
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
+FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
 
 maven_to_make = {
     # AndroidX
@@ -43,8 +44,6 @@ maven_to_make = {
     'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
     'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
     'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
-    'androidx.car:car': {'name':'androidx.car_car', 'path':'androidx/car/car'},
-    'androidx.car:car-cluster': {'name':'androidx.car_car-cluster', 'path':'androidx/car/car-cluster'},
     'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
     'androidx.collection:collection-ktx': {'name':'androidx.collection_collection-ktx', 'path':'androidx/collection/collection-ktx'},
     'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
@@ -118,7 +117,13 @@ maven_to_make = {
     'androidx.webkit:webkit': {'name':'androidx.webkit_webkit', 'path':'androidx/webkit/webkit'},
     'androidx.biometric:biometric': {'name':'androidx.biometric_biometric', 'path':'androidx/biometric/biometric'},
     'androidx.autofill:autofill': {'name':'androidx.autofill_autofill', 'path':'androidx/autofill/autofill'},
-
+    'androidx.appsearch:appsearch': {'name':'androidx.appsearch_appsearch', 'path':'androidx/appsearch/appsearch'},
+    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage', 'path':'androidx/appsearch/appsearch/appsearch-local-storage'},
+    'androidx.appsearch:appsearch-platform-storage': {'name':'androidx.appsearch_appsearch_platform_storage', 'path':'androidx/appsearch/appsearch/appsearch-platform-storage'},
+    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'path':'androidx/appsearch/appsearch-compiler', 'host' : True},
+    'androidx.car.app:app': {'name':'androidx.car.app_app', 'path':'androidx/car/app/app'},
+    'androidx.car.app:app-activity': {'name':'androidx.car.app_app-activity', 'path':'androidx/car/app/app-activity'},
+    'androidx.car.app:app-testing': {'name':'androidx.car.app_app-testing', 'path':'androidx/car/app/app-testing'},
     # AndroidX for Multidex
     'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
     'androidx.multidex:multidex-instrumentation': {'name':'androidx-multidex_multidex-instrumentation', 'path':'androidx/multidex/multidex-instrumentation'},
@@ -335,12 +340,11 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
         args.extend(["-rewrite=^rules$=androidx.test.rules"])
         args.extend(["-rewrite=^runner$=androidx.test.runner"])
-        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet-prebuilt-jar"])
+        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet"])
         args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
         args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
         args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
         args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
-        args.extend(["-extra-static-libs=android-support-car=prebuilt-android.car-stubs"])
         args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
@@ -411,12 +415,17 @@ def process_aar(artifact_file, target_dir):
 
 
 def fetch_artifact(target, build_id, artifact_path):
+    global args
     download_to = os.path.join('.', os.path.dirname(artifact_path))
     print('Fetching %s from %s ...' % (artifact_path, target))
     if not os.path.exists(download_to):
         os.makedirs(download_to)
-    fetch_cmd = [FETCH_ARTIFACT, '--bid', str(build_id), '--target', target, artifact_path,
-                 download_to]
+    if args.beyond_corp:
+        fetch_cmd = [FETCH_ARTIFACT_BEYOND_CORP, '--use_oauth2',
+                     '--bid', str(build_id), '--target', target, artifact_path, download_to]
+    else:
+        fetch_cmd = [FETCH_ARTIFACT,
+                     '--bid', str(build_id), '--target', target, artifact_path, download_to]
     print("Running: " + ' '.join(fetch_cmd))
     try:
         subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
@@ -552,6 +561,9 @@ def update_framework(build_id, sdk_dir):
                     src_path = zipFile.extract(zip_path)
                     dst_path = path(target_dir, filename)
                     mv(src_path, dst_path)
+
+            # Filtered API DB is currently only available for "public"
+            fetch_artifacts(framework_sdk_target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
 
     return True
 
@@ -713,6 +725,9 @@ parser.add_argument(
 parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
+parser.add_argument(
+    '--beyond-corp', action="store_true",
+    help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
 args = parser.parse_args()
 args.file = True
 if not args.source:
