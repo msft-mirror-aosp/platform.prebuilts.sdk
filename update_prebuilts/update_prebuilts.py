@@ -10,10 +10,13 @@ import subprocess
 from shutil import copyfile, rmtree, which, move
 from distutils.version import LooseVersion
 from functools import reduce
+import six
+import urllib.request, urllib.parse, urllib.error
 
 current_path = 'current'
 framework_sdk_target = 'sdk_phone_armv7-win_sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
+gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
@@ -25,6 +28,9 @@ git_dir = os.getcwd()
 # See go/fetch_artifact for details on this script.
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
+
+# See (https://developer.android.com/studio/build/dependencies#gmaven-access)
+GMAVEN_BASE_URL = 'https://maven.google.com'
 
 # Leave map blank to automatically populate name and path:
 # - Name format is MAVEN.replaceAll(':','_')
@@ -226,6 +232,15 @@ deps_rewrite = {
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
 }
 
+# List of artifacts that will be updated from GMaven
+# Use pattern: `group:library:version:extension`
+# e.g.:
+#   androidx.appcompat:appcompat:1.2.0:aar
+# Use `latest` to always fetch the latest version.
+# e.g.:
+#   androidx.appcompat:appcompat:latest:aar
+# Also make sure you add `group:library`:{} to maven_to_make as well.
+gmaven_artifacts = {}
 
 def name_for_artifact(group_artifact):
     return group_artifact.replace(':','_')
@@ -454,6 +469,89 @@ def process_aar(artifact_file, target_dir):
             os.remove(file_path)
 
 
+class GMavenArtifact(object):
+    # A map from group:library to the latest available version
+    key_versions_map = {}
+    def __init__(self, artifact_glob):
+        try:
+            (group, library, version, ext) = artifact_glob.split(':')
+        except ValueError:
+            raise ValueError(f'Error in {artifact_glob} expected: group:library:version:ext')
+
+        if not group or not library or not version or not ext:
+            raise ValueError(f'Error in {artifact_glob} expected: group:library:version:ext')
+
+        self.group = group
+        self.group_path = group.replace('.', '/')
+        self.library = library
+        self.key = f'{group}:{library}'
+        self.version = version
+        self.ext = ext
+
+    def get_pom_file_url(self):
+        return f'{GMAVEN_BASE_URL}/{self.group_path}/{self.library}/{self.version}/{self.library}-{self.version}.pom'
+
+    def get_artifact_url(self):
+        return f'{GMAVEN_BASE_URL}/{self.group_path}/{self.library}/{self.version}/{self.library}-{self.version}.{self.ext}'
+
+    def get_latest_version(self):
+        latest_version = GMavenArtifact.key_versions_map[self.key] \
+                if self.key in GMavenArtifact.key_versions_map else None
+
+        if not latest_version:
+            print(f'Fetching latest version for {self.key}')
+            group_index_url = f'{GMAVEN_BASE_URL}/{self.group_path}/group-index.xml'
+            import xml.etree.ElementTree as ET
+            tree = ET.parse(urllib.request.urlopen(group_index_url))
+            root = tree.getroot()
+            libraries = root.findall('./*[@versions]')
+            for library in libraries:
+                key = f'{root.tag}:{library.tag}'
+                GMavenArtifact.key_versions_map[key] = library.get('versions').split(',')[-1]
+            latest_version = GMavenArtifact.key_versions_map[self.key]
+        return latest_version
+
+
+def fetch_gmaven_artifact(artifact):
+    """Fetch a GMaven artifact.
+
+    Downloads a GMaven artifact
+    (https://developer.android.com/studio/build/dependencies#gmaven-access)
+
+    Args:
+        artifact_glob: an instance of GMavenArtifact.
+    """
+    download_to = os.path.join('gmaven', artifact.group, artifact.library, artifact.version)
+
+    _DownloadFileToDisk(artifact.get_pom_file_url(), os.path.join(download_to, f'{artifact.library}-{artifact.version}.pom'))
+    _DownloadFileToDisk(artifact.get_artifact_url(), os.path.join(download_to, f'{artifact.library}-{artifact.version}.{artifact.ext}'))
+
+    return download_to
+
+
+def _DownloadFileToDisk(url, filepath):
+    """Download the file at URL to the location dictated by the path.
+
+    Args:
+        url: Remote URL to download file from.
+        filepath: Filesystem path to write the file to.
+    """
+    print(f'Downloading URL: {url}')
+    file_data = urllib.request.urlopen(url)
+
+    try:
+        os.makedirs(os.path.dirname(filepath))
+    except os.error:
+        # This is a common situation - os.makedirs fails if dir already exists.
+        pass
+    try:
+        with open(filepath, 'wb') as f:
+            f.write(six.ensure_binary(file_data.read()))
+    except:
+        os.remove(os.path.dirname(filepath))
+        raise
+
+
 def fetch_artifact(target, build_id, artifact_path):
     global args
     download_to = os.path.join('.', os.path.dirname(artifact_path))
@@ -499,6 +597,18 @@ def fetch_and_extract(target, build_id, file, artifact_path=None):
     if not artifact_path:
         return None
     return extract_artifact(artifact_path)
+
+
+def update_gmaven(gmaven_artifacts):
+    artifacts = [GMavenArtifact(artifact) for artifact in gmaven_artifacts]
+    for artifact in artifacts:
+        if artifact.version == 'latest':
+            artifact.version = artifact.get_latest_version()
+
+    artifact_dirs = [fetch_gmaven_artifact(artifact) for artifact in artifacts]
+    if not transform_maven_repos(['gmaven'], gmaven_dir, extract_res=False):
+        return []
+    return [artifact.key for artifact in artifacts]
 
 
 def update_androidx(target, build_id, local_file):
@@ -739,7 +849,7 @@ rm(temp_dir)
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
-    'source',
+    'source', nargs='?',
     help='Build server build ID or local Maven ZIP file')
 parser.add_argument(
     '-m', '--material', action="store_true",
@@ -763,6 +873,9 @@ parser.add_argument(
     '-x', '--androidx', action="store_true",
     help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by other arguments')
 parser.add_argument(
+    '-g', '--gmaven', action="store_true",
+    help='If specified, updates only the artifact from GMaven libraries excluding those covered by other arguments')
+parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
 parser.add_argument(
@@ -770,15 +883,17 @@ parser.add_argument(
     help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
 args = parser.parse_args()
 args.file = True
-if not args.source:
+if not args.source and (args.platform or args.buildtools \
+                or args.jetifier or args.androidx or args.material \
+                or args.finalize_sdk or args.constraint):
     parser.error("You must specify a build ID or local Maven ZIP file")
     sys.exit(1)
-if not (args.platform or args.buildtools \
+if not (args.gmaven or args.platform or args.buildtools \
                 or args.jetifier or args.androidx or args.material \
                 or args.finalize_sdk or args.constraint):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.constraint or args.material or args.androidx) \
+if (args.constraint or args.material or args.androidx or args.gmaven) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
     sys.exit(1)
@@ -799,6 +914,13 @@ try:
             components = append(components, 'Constraint Layout X')
         else:
             print_e('Failed to update Constraint Layout X, aborting...')
+            sys.exit(1)
+    if args.gmaven:
+        updated_artifacts = update_gmaven(gmaven_artifacts)
+        if updated_artifacts:
+            components = append(components, '\n'.join(updated_artifacts))
+        else:
+            print_e('Failed to update GMaven, aborting...')
             sys.exit(1)
     if args.androidx:
         if update_androidx('androidx', \
@@ -848,7 +970,9 @@ try:
 
 
     subprocess.check_call(['git', 'add', current_path, buildtools_dir])
-    if not args.source.isnumeric():
+    if not args.source and args.gmaven:
+        src_msg = "GMaven"
+    elif not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
