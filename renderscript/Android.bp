@@ -105,3 +105,47 @@ java_import {
 }
 
 //#################################
+genrule {
+    name: "renderscript_sdk_prebuilts",
+    visibility: ["//development/build"],
+    tools: ["soong_zip", "zip2zip"],
+    cmd: "echo $(in) >$(genDir)/list && " +
+        "$(location soong_zip) -o $(out).unmapped -C prebuilts/sdk/renderscript/lib -l $(genDir)/list && " +
+        "$(location zip2zip) -i $(out).unmapped -o $(out)" +
+        " javalib.jar:renderscript/lib/androidx-rs.jar" +
+        " javalib_legacy.jar:renderscript/lib/renderscript-v8.jar" +
+        " arm/libc.so:renderscript/lib/intermediates/armeabi-v7a/libc.so" +
+        " arm/libm.so:renderscript/lib/intermediates/armeabi-v7a/libm.so" +
+        " arm/libcompiler_rt.a:renderscript/lib/intermediates/armeabi-v7a/libcompiler_rt.a" +
+        " arm/libRSSupport.so:renderscript/lib/packaged/armeabi-v7a/libRSSupport.so" +
+        " arm/librsjni.so:renderscript/lib/packaged/armeabi-v7a/librsjni.so" +
+        " arm/librsjni_androidx.so:renderscript/lib/packaged/armeabi-v7a/librsjni_androidx.so" +
+        " arm/libblasV8.so:renderscript/lib/blas/armeabi-v7a/libblasV8.so" +
+        " arm/librsrt_arm.bc:renderscript/lib/bc/armeabi-v7a/libclcore.bc" +
+        " x86/libc.so:renderscript/lib/intermediates/x86/libc.so" +
+        " x86/libm.so:renderscript/lib/intermediates/x86/libm.so" +
+        " x86/libcompiler_rt.a:renderscript/lib/intermediates/x86/libcompiler_rt.a" +
+        " x86/libRSSupport.so:renderscript/lib/packaged/x86/libRSSupport.so" +
+        " x86/librsjni.so:renderscript/lib/packaged/x86/librsjni.so" +
+        " x86/librsjni_androidx.so:renderscript/lib/packaged/x86/librsjni_androidx.so" +
+        " x86/libblasV8.so:renderscript/lib/blas/x86/libblasV8.so" +
+        " x86/librsrt_x86.bc:renderscript/lib/bc/x86/libclcore.bc" +
+        " arm64/libc.so:renderscript/lib/intermediates/arm64-v8a/libc.so" +
+        " arm64/libm.so:renderscript/lib/intermediates/arm64-v8a/libm.so" +
+        " arm64/libcompiler_rt.a:renderscript/lib/intermediates/arm64-v8a/libcompiler_rt.a" +
+        " arm64/libRSSupport.so:renderscript/lib/packaged/arm64-v8a/libRSSupport.so" +
+        " arm64/librsjni.so:renderscript/lib/packaged/arm64-v8a/librsjni.so" +
+        " arm64/librsjni_androidx.so:renderscript/lib/packaged/arm64-v8a/librsjni_androidx.so" +
+        " arm64/libblasV8.so:renderscript/lib/blas/arm64-v8a/libblasV8.so" +
+        " arm64/librsrt_arm64.bc:renderscript/lib/bc/arm64-v8a/libclcore.bc" +
+        " x86_64/libc.so:renderscript/lib/intermediates/x86_64/libc.so" +
+        " x86_64/libm.so:renderscript/lib/intermediates/x86_64/libm.so" +
+        " x86_64/libcompiler_rt.a:renderscript/lib/intermediates/x86_64/libcompiler_rt.a" +
+        " x86_64/libRSSupport.so:renderscript/lib/packaged/x86_64/libRSSupport.so" +
+        " x86_64/librsjni.so:renderscript/lib/packaged/x86_64/librsjni.so" +
+        " x86_64/librsjni_androidx.so:renderscript/lib/packaged/x86_64/librsjni_androidx.so" +
+        " x86_64/libblasV8.so:renderscript/lib/blas/x86_64/libblasV8.so" +
+        " x86_64/librsrt_x86_64.bc:renderscript/lib/bc/x86_64/libclcore.bc",
+    srcs: ["lib/**/*"],
+    out: ["prebuilts.zip"],
+}
