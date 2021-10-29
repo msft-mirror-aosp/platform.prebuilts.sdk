@@ -2424,46 +2424,6 @@ android_library {
     java_version: "1.7",
 }
 
-android_library_import {
-    name: "androidx.legacy_legacy-support-core-utils-nodeps",
-    aars: ["m2repository/androidx/legacy/legacy-support-core-utils/1.1.0-alpha01/legacy-support-core-utils-1.1.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.core_core",
-        "androidx.documentfile_documentfile",
-        "androidx.loader_loader",
-        "androidx.localbroadcastmanager_localbroadcastmanager",
-        "androidx.print_print",
-    ],
-}
-
-android_library {
-    name: "androidx.legacy_legacy-support-core-utils",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.legacy_legacy-support-core-utils/AndroidManifest.xml",
-    static_libs: [
-        "androidx.legacy_legacy-support-core-utils-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.core_core",
-        "androidx.documentfile_documentfile",
-        "androidx.loader_loader",
-        "androidx.localbroadcastmanager_localbroadcastmanager",
-        "androidx.print_print",
-    ],
-    java_version: "1.7",
-}
-
 java_import {
     name: "androidx.lifecycle_lifecycle-common-java8-nodeps",
     jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.4.0-alpha04/lifecycle-common-java8-2.4.0-alpha04.jar"],
