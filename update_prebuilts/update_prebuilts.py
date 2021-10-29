@@ -520,8 +520,7 @@ def update_material(file):
     return transform_maven_repos([design_dir],
                                  os.path.join(extras_dir, 'material-design-x'), extract_res=False)
 
-
-def update_framework(build_id, sdk_dir):
+def update_framework(target, build_id, sdk_dir):
     api_scope_list = ['public', 'system', 'test', 'module-lib', 'system-server']
     if sdk_dir == 'current':
         api_scope_list.append('core')
@@ -533,13 +532,13 @@ def update_framework(build_id, sdk_dir):
         else:
             artifact_to_path = {'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*')}
 
-        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+        if not fetch_artifacts(target, build_id, artifact_to_path):
             return False
 
         if api_scope == 'public':
             # Fetch a few artifacts from the public sdk.
             artifact = 'sdk-repo-linux-platforms-%s.zip' % build_id.fs_id
-            artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, artifact)
+            artifact_path = fetch_artifact(target, build_id.url_id, artifact)
             if not artifact_path:
                 return False
 
@@ -563,7 +562,7 @@ def update_framework(build_id, sdk_dir):
                     mv(src_path, dst_path)
 
             # Filtered API DB is currently only available for "public"
-            fetch_artifacts(framework_sdk_target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
+            fetch_artifacts(target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
 
     return True
 
@@ -579,22 +578,22 @@ def update_makefile(build_id):
 
     return True
 
-def finalize_sdk(build_id, sdk_version):
+def finalize_sdk(target, build_id, sdk_version):
     target_finalize_dir = '%d' % sdk_version
 
     for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {'apistubs/android/' + api_scope + '/api/*.txt':
                             path(target_finalize_dir, api_scope, 'api', '*')}
 
-        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+        if not fetch_artifacts(target, build_id, artifact_to_path):
             return False
 
-    return update_framework(build_id, target_finalize_dir) \
+    return update_framework(target, build_id, target_finalize_dir) \
             and update_makefile(target_finalize_dir)
 
 
-def update_framework_current(build_id):
-    return update_framework(build_id, current_path)
+def update_framework_current(target, build_id):
+    return update_framework(target, build_id, current_path)
 
 
 def update_buildtools(target, arch, build_id):
@@ -717,6 +716,10 @@ parser.add_argument(
     '-f', '--finalize_sdk', type=int,
     help='If specified, imports the source build as the specified finalized SDK version')
 parser.add_argument(
+    '--sdk_target',
+    default=framework_sdk_target,
+    help='If specified, the name of the build target from which to retrieve the SDK when -p or -f is specified.')
+parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 parser.add_argument(
@@ -774,14 +777,14 @@ try:
             print_e('Failed to update Jetifier, aborting...')
             sys.exit(1)
     if args.platform or args.finalize_sdk:
-        if update_framework_current(getBuildId(args)):
+        if update_framework_current(args.sdk_target, getBuildId(args)):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.finalize_sdk:
         n = args.finalize_sdk
-        if finalize_sdk(getBuildId(args), n):
+        if finalize_sdk(args.sdk_target, getBuildId(args), n):
             # We commit the finalized dir separately from the current sdk update.
             msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
             subprocess.check_call(['git', 'add', '%d' % n])
