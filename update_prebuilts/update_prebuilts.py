@@ -682,7 +682,13 @@ def update_framework(target, build_id, sdk_dir):
         if api_scope == 'core':
             artifact_to_path = {'core.current.stubs.jar': path(target_dir, 'android.jar')}
         else:
-            artifact_to_path = {'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*')}
+            artifact_to_path = {
+                'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*'),
+            }
+            if api_scope == 'public' or api_scope == 'module-lib':
+                # Distinct core-for-system-modules.jar files are only provided
+                # for the public and module-lib API surfaces.
+                artifact_to_path['system-modules/' + api_scope + '/core-for-system-modules.jar'] = path(target_dir, '*')
 
         if not fetch_artifacts(target, build_id, artifact_to_path):
             return False
@@ -699,7 +705,6 @@ def update_framework(target, build_id, sdk_dir):
                     'android.jar',
                     'framework.aidl',
                     'uiautomator.jar',
-                    'core-for-system-modules.jar',
                     'data/annotations.zip',
                     'data/api-versions.xml']
                 for filename in extra_files:
