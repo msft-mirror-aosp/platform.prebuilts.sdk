@@ -327,7 +327,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
         args = ["pom2bp"]
-        args.extend(["-sdk-version", "30"])
+        args.extend(["-sdk-version", "31"])
         args.extend(["-default-min-sdk-version", "24"])
         if include_static_deps:
             args.append("-static-deps")
