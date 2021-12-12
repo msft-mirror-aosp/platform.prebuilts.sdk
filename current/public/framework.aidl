@@ -131,6 +131,8 @@ parcelable android.bluetooth.le.ResultStorageDescriptor;
 parcelable android.bluetooth.le.ScanFilter;
 parcelable android.bluetooth.le.ScanResult;
 parcelable android.bluetooth.le.ScanSettings;
+parcelable android.bluetooth.le.TransportBlock;
+parcelable android.bluetooth.le.TransportDiscoveryData;
 parcelable android.companion.AssociationRequest;
 parcelable android.companion.BluetoothDeviceFilter;
 parcelable android.companion.BluetoothLeDeviceFilter;
