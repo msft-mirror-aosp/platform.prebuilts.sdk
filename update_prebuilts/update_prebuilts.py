@@ -28,6 +28,8 @@ FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
 
 maven_to_make = {
     # AndroidX
+    'androidx.benchmark:benchmark-macro': {'name':'androidx.benchmark_benchmark-macro', 'path':'androidx/benchmark/benchmark-macro'},
+    'androidx.benchmark:benchmark-macro-junit4': {'name':'androidx.benchmark_benchmark-macro-junit4', 'path':'androidx/benchmark/benchmark-macro-junit4'},
     'androidx.benchmark:benchmark-common': {'name':'androidx.benchmark_benchmark-common', 'path':'androidx/benchmark/benchmark-common'},
     'androidx.benchmark:benchmark-junit4': {'name':'androidx.benchmark_benchmark-junit4', 'path':'androidx/benchmark/benchmark-junit4'},
     'androidx.tracing:tracing': {'name':'androidx.tracing_tracing', 'path':'androidx/tracing/tracing'},
