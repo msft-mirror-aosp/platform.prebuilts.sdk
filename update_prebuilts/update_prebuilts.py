@@ -138,7 +138,7 @@ maven_to_make = {
     'androidx.profileinstaller:profileinstaller': { },
 
     # AndroidX for Compose
-    'androidx.compose.compiler:compiler-hosted': { },
+    'androidx.compose.compiler:compiler-hosted': { 'host':True },
     'androidx.compose.runtime:runtime': { },
     'androidx.compose.runtime:runtime-saveable': { },
     'androidx.compose.foundation:foundation': { },
