@@ -26,171 +26,221 @@ git_dir = os.getcwd()
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
 
+# Leave map blank to automatically populate name and path:
+# - Name format is MAVEN.replaceAll(':','_')
+# - Path format is MAVEN.replaceAll(':','/').replaceAll('.','/')
 maven_to_make = {
     # AndroidX
-    'androidx.benchmark:benchmark-common': {'name':'androidx.benchmark_benchmark-common', 'path':'androidx/benchmark/benchmark-common'},
-    'androidx.benchmark:benchmark-junit4': {'name':'androidx.benchmark_benchmark-junit4', 'path':'androidx/benchmark/benchmark-junit4'},
-    'androidx.tracing:tracing': {'name':'androidx.tracing_tracing', 'path':'androidx/tracing/tracing'},
-    'androidx.tracing:tracing-ktx': {'name':'androidx.tracing_tracing-ktx', 'path':'androidx/tracing/tracing-ktx'},
-    'androidx.slice:slice-builders': {'name':'androidx.slice_slice-builders', 'path':'androidx/slice/slice-builders'},
-    'androidx.slice:slice-core': {'name':'androidx.slice_slice-core', 'path':'androidx/slice/slice-core'},
-    'androidx.slice:slice-view': {'name':'androidx.slice_slice-view', 'path':'androidx/slice/slice-view'},
-    'androidx.remotecallback:remotecallback': {'name':'androidx.remotecallback_remotecallback', 'path':'androidx/remotecallback/remotecallback'},
-    'androidx.remotecallback:remotecallback-processor': {'name':'androidx.remotecallback_remotecallback-processor', 'path':'androidx/remotecallback/remotecallback-processor', 'host':True},
-    'androidx.versionedparcelable:versionedparcelable': {'name':'androidx.versionedparcelable_versionedparcelable', 'path':'androidx/versionedparcelable'},
-    'androidx.vectordrawable:vectordrawable-animated': {'name':'androidx.vectordrawable_vectordrawable-animated', 'path':'androidx/vectordrawable/vectordrawable-animated'},
-    'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
-    'androidx.activity:activity-ktx': {'name':'androidx.activity_activity-ktx', 'path':'androidx/activity/activity-ktx'},
-    'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
-    'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
-    'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
-    'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
-    'androidx.collection:collection-ktx': {'name':'androidx.collection_collection-ktx', 'path':'androidx/collection/collection-ktx'},
-    'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
-    'androidx.concurrent:concurrent-listenablefuture-callback': {'name':'androidx.concurrent_concurrent-listenablefuture-callback', 'path':'androidx/concurrent/concurrent-listenablefuture-callback'},
-    'androidx.concurrent:concurrent-listenablefuture': {'name':'androidx.concurrent_concurrent-listenablefuture', 'path':'androidx/concurrent/concurrent-listenablefuture'},
-    'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
-    'androidx.core:core-animation': {'name':'androidx.core_core-animation', 'path':'androidx/core/core-animation'},
-    'androidx.core:core-ktx': {'name':'androidx.core_core-ktx', 'path':'androidx/core/core-ktx'},
-    'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
-    'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
-    'androidx.legacy:legacy-support-core-ui': {'name':'androidx.legacy_legacy-support-core-ui', 'path':'androidx/legacy/legacy-support-core-ui'},
-    'androidx.legacy:legacy-support-core-utils': {'name':'androidx.legacy_legacy-support-core-utils', 'path':'androidx/legacy/legacy-support-core-utils'},
-    'androidx.cursoradapter:cursoradapter': {'name':'androidx.cursoradapter_cursoradapter', 'path':'androidx/cursoradapter/cursoradapter'},
-    'androidx.browser:browser': {'name':'androidx.browser_browser', 'path':'androidx/browser/browser'},
-    'androidx.customview:customview': {'name':'androidx.customview_customview', 'path':'androidx/customview/customview'},
-    'androidx.documentfile:documentfile': {'name':'androidx.documentfile_documentfile', 'path':'androidx/documentfile/documentfile'},
-    'androidx.drawerlayout:drawerlayout': {'name':'androidx.drawerlayout_drawerlayout', 'path':'androidx/drawerlayout/drawerlayout'},
-    'androidx.dynamicanimation:dynamicanimation': {'name':'androidx.dynamicanimation_dynamicanimation', 'path':'androidx/dynamicanimation/dynamicanimation'},
-    'androidx.emoji:emoji': {'name':'androidx.emoji_emoji', 'path':'androidx/emoji/emoji'},
-    'androidx.emoji:emoji-appcompat': {'name':'androidx.emoji_emoji-appcompat', 'path':'androidx/emoji/emoji-appcompat'},
-    'androidx.emoji:emoji-bundled': {'name':'androidx.emoji_emoji-bundled', 'path':'androidx/emoji/emoji-bundled'},
-    'androidx.exifinterface:exifinterface': {'name':'androidx.exifinterface_exifinterface', 'path':'androidx/exifinterface/exifinterface'},
-    'androidx.fragment:fragment': {'name':'androidx.fragment_fragment', 'path':'androidx/fragment/fragment'},
-    'androidx.fragment:fragment-ktx': {'name':'androidx.fragment_fragment-ktx', 'path':'androidx/fragment/fragment-ktx'},
-    'androidx.heifwriter:heifwriter': {'name':'androidx.heifwriter_heifwriter', 'path':'androidx/heifwriter/heifwriter'},
-    'androidx.interpolator:interpolator': {'name':'androidx.interpolator_interpolator', 'path':'androidx/interpolator/interpolator'},
-    'androidx.loader:loader': {'name':'androidx.loader_loader', 'path':'androidx/loader/loader'},
-    'androidx.localbroadcastmanager:localbroadcastmanager': {'name':'androidx.localbroadcastmanager_localbroadcastmanager', 'path':'androidx/localbroadcastmanager/localbroadcastmanager'},
-    'androidx.media:media': {'name':'androidx.media_media', 'path':'androidx/media/media'},
-    'androidx.media2:media2-player': {'name':'androidx.media2_media2-player', 'path':'androidx/media2/media2-player'},
-    'androidx.media2:media2-session': {'name':'androidx.media2_media2-session', 'path':'androidx/media2/media2-session'},
-    'androidx.media2:media2-common': {'name':'androidx.media2_media2-common', 'path':'androidx/media2/media2-common'},
-    'androidx.media2:media2-exoplayer': {'name':'androidx.media2_media2-exoplayer', 'path':'androidx/media2/media2-exoplayer'},
-    'androidx.media2:media2-widget': {'name':'androidx.media2_media2-widget', 'path':'androidx/media2/media2-widget'},
-    'androidx.navigation:navigation-common': {'name':'androidx.navigation_navigation-common', 'path':'androidx/navigation/navigation-common'},
-    'androidx.navigation:navigation-common-ktx': {'name':'androidx.navigation_navigation-common-ktx', 'path':'androidx/navigation/navigation-common-ktx'},
-    'androidx.navigation:navigation-fragment': {'name':'androidx.navigation_navigation-fragment', 'path':'androidx/navigation/navigation-fragment'},
-    'androidx.navigation:navigation-fragment-ktx': {'name':'androidx.navigation_navigation-fragment-ktx', 'path':'androidx/navigation/navigation-fragment-ktx'},
-    'androidx.navigation:navigation-runtime': {'name':'androidx.navigation_navigation-runtime', 'path':'androidx/navigation/navigation-runtime'},
-    'androidx.navigation:navigation-runtime-ktx': {'name':'androidx.navigation_navigation-runtime-ktx', 'path':'androidx/navigation/navigation-runtime-ktx'},
-    'androidx.navigation:navigation-ui': {'name':'androidx.navigation_navigation-ui', 'path':'androidx/navigation/navigation-ui'},
-    'androidx.navigation:navigation-ui-ktx': {'name':'androidx.navigation_navigation-ui-ktx', 'path':'androidx/navigation/navigation-ui-ktx'},
-    'androidx.percentlayout:percentlayout': {'name':'androidx.percentlayout_percentlayout', 'path':'androidx/percentlayout/percentlayout'},
-    'androidx.print:print': {'name':'androidx.print_print', 'path':'androidx/print/print'},
-    'androidx.recommendation:recommendation': {'name':'androidx.recommendation_recommendation', 'path':'androidx/recommendation/recommendation'},
-    'androidx.recyclerview:recyclerview-selection': {'name':'androidx.recyclerview_recyclerview-selection', 'path':'androidx/recyclerview/recyclerview-selection'},
-    'androidx.savedstate:savedstate': {'name':'androidx.savedstate_savedstate', 'path':'androidx/savedstate/savedstate'},
-    'androidx.savedstate:savedstate-ktx': {'name':'androidx.savedstate_savedstate-ktx', 'path':'androidx/savedstate/savedstate-ktx'},
-    'androidx.slidingpanelayout:slidingpanelayout': {'name':'androidx.slidingpanelayout_slidingpanelayout', 'path':'androidx/slidingpanelayout/slidingpanelayout'},
-    'androidx.swiperefreshlayout:swiperefreshlayout': {'name':'androidx.swiperefreshlayout_swiperefreshlayout', 'path':'androidx/swiperefreshlayout/swiperefreshlayout'},
-    'androidx.textclassifier:textclassifier': {'name':'androidx.textclassifier_textclassifier', 'path':'androidx/textclassifier/textclassifier'},
-    'androidx.transition:transition': {'name':'androidx.transition_transition', 'path':'androidx/transition/transition'},
-    'androidx.tvprovider:tvprovider': {'name':'androidx.tvprovider_tvprovider', 'path':'androidx/tvprovider/tvprovider'},
-    'androidx.legacy:legacy-support-v13': {'name':'androidx.legacy_legacy-support-v13', 'path':'androidx/legacy/legacy-support-v13'},
-    'androidx.legacy:legacy-preference-v14': {'name':'androidx.legacy_legacy-preference-v14', 'path':'androidx/legacy/legacy-preference-v14'},
-    'androidx.leanback:leanback': {'name':'androidx.leanback_leanback', 'path':'androidx/leanback/leanback'},
-    'androidx.leanback:leanback-preference': {'name':'androidx.leanback_leanback-preference', 'path':'androidx/leanback/leanback-preference'},
-    'androidx.legacy:legacy-support-v4': {'name':'androidx.legacy_legacy-support-v4', 'path':'androidx/legacy/legacy-support-v4'},
-    'androidx.appcompat:appcompat': {'name':'androidx.appcompat_appcompat', 'path':'androidx/appcompat/appcompat'},
-    'androidx.appcompat:appcompat-resources': {'name':'androidx.appcompat_appcompat-resources', 'path':'androidx/appcompat/appcompat-resources'},
-    'androidx.cardview:cardview': {'name':'androidx.cardview_cardview', 'path':'androidx/cardview/cardview'},
-    'androidx.gridlayout:gridlayout': {'name':'androidx.gridlayout_gridlayout', 'path':'androidx/gridlayout/gridlayout'},
-    'androidx.mediarouter:mediarouter': {'name':'androidx.mediarouter_mediarouter', 'path':'androidx/mediarouter/mediarouter'},
-    'androidx.palette:palette': {'name':'androidx.palette_palette', 'path':'androidx/palette/palette'},
-    'androidx.preference:preference': {'name':'androidx.preference_preference', 'path':'androidx/preference/preference'},
-    'androidx.recyclerview:recyclerview': {'name':'androidx.recyclerview_recyclerview', 'path':'androidx/recyclerview/recyclerview'},
-    'androidx.vectordrawable:vectordrawable': {'name':'androidx.vectordrawable_vectordrawable', 'path':'androidx/vectordrawable/vectordrawable'},
-    'androidx.viewpager:viewpager': {'name':'androidx.viewpager_viewpager', 'path':'androidx/viewpager/viewpager'},
-    'androidx.viewpager2:viewpager2': {'name':'androidx.viewpager2_viewpager2', 'path':'androidx/viewpager2/viewpager2'},
-    'androidx.wear:wear': {'name':'androidx.wear_wear', 'path':'androidx/wear/wear'},
-    'androidx.webkit:webkit': {'name':'androidx.webkit_webkit', 'path':'androidx/webkit/webkit'},
-    'androidx.biometric:biometric': {'name':'androidx.biometric_biometric', 'path':'androidx/biometric/biometric'},
-    'androidx.autofill:autofill': {'name':'androidx.autofill_autofill', 'path':'androidx/autofill/autofill'},
-    'androidx.appsearch:appsearch': {'name':'androidx.appsearch_appsearch', 'path':'androidx/appsearch/appsearch'},
-    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage', 'path':'androidx/appsearch/appsearch/appsearch-local-storage'},
-    'androidx.appsearch:appsearch-platform-storage': {'name':'androidx.appsearch_appsearch_platform_storage', 'path':'androidx/appsearch/appsearch/appsearch-platform-storage'},
-    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'path':'androidx/appsearch/appsearch-compiler', 'host' : True},
-    'androidx.car.app:app': {'name':'androidx.car.app_app', 'path':'androidx/car/app/app'},
-    'androidx.car.app:app-activity': {'name':'androidx.car.app_app-activity', 'path':'androidx/car/app/app-activity'},
-    'androidx.car.app:app-testing': {'name':'androidx.car.app_app-testing', 'path':'androidx/car/app/app-testing'},
+    'androidx.benchmark:benchmark-macro': { },
+    'androidx.benchmark:benchmark-macro-junit4': { },
+    'androidx.benchmark:benchmark-common': { },
+    'androidx.benchmark:benchmark-junit4': { },
+    'androidx.tracing:tracing': { },
+    'androidx.tracing:tracing-ktx': { },
+    'androidx.slice:slice-builders': { },
+    'androidx.slice:slice-core': { },
+    'androidx.slice:slice-view': { },
+    'androidx.remotecallback:remotecallback': { },
+    'androidx.remotecallback:remotecallback-processor': {'host':True},
+    'androidx.versionedparcelable:versionedparcelable': { },
+    'androidx.vectordrawable:vectordrawable-animated': { },
+    'androidx.activity:activity': { },
+    'androidx.activity:activity-ktx': { },
+    'androidx.annotation:annotation': {'host_and_device':True},
+    'androidx.annotation:annotation-experimental': { },
+    'androidx.asynclayoutinflater:asynclayoutinflater': { },
+    'androidx.collection:collection': { },
+    'androidx.collection:collection-ktx': { },
+    'androidx.concurrent:concurrent-futures': { },
+    'androidx.concurrent:concurrent-listenablefuture-callback': { },
+    'androidx.concurrent:concurrent-listenablefuture': { },
+    'androidx.core:core': { },
+    'androidx.core:core-animation': { },
+    'androidx.core:core-ktx': { },
+    'androidx.contentpaging:contentpaging': { },
+    'androidx.coordinatorlayout:coordinatorlayout': { },
+    'androidx.legacy:legacy-support-core-ui': { },
+    'androidx.legacy:legacy-support-core-utils': { },
+    'androidx.cursoradapter:cursoradapter': { },
+    'androidx.browser:browser': { },
+    'androidx.customview:customview': { },
+    'androidx.documentfile:documentfile': { },
+    'androidx.drawerlayout:drawerlayout': { },
+    'androidx.dynamicanimation:dynamicanimation': { },
+    'androidx.emoji:emoji': { },
+    'androidx.emoji:emoji-appcompat': { },
+    'androidx.emoji:emoji-bundled': { },
+    'androidx.emoji2:emoji2': { },
+    'androidx.emoji2:emoji2-views-helper': { },
+    'androidx.exifinterface:exifinterface': { },
+    'androidx.fragment:fragment': { },
+    'androidx.fragment:fragment-ktx': { },
+    'androidx.heifwriter:heifwriter': { },
+    'androidx.interpolator:interpolator': { },
+    'androidx.loader:loader': { },
+    'androidx.localbroadcastmanager:localbroadcastmanager': { },
+    'androidx.media:media': { },
+    'androidx.media2:media2-player': { },
+    'androidx.media2:media2-session': { },
+    'androidx.media2:media2-common': { },
+    'androidx.media2:media2-exoplayer': { },
+    'androidx.media2:media2-widget': { },
+    'androidx.navigation:navigation-common': { },
+    'androidx.navigation:navigation-common-ktx': { },
+    'androidx.navigation:navigation-fragment': { },
+    'androidx.navigation:navigation-fragment-ktx': { },
+    'androidx.navigation:navigation-runtime': { },
+    'androidx.navigation:navigation-runtime-ktx': { },
+    'androidx.navigation:navigation-ui': { },
+    'androidx.navigation:navigation-ui-ktx': { },
+    'androidx.percentlayout:percentlayout': { },
+    'androidx.print:print': { },
+    'androidx.recommendation:recommendation': { },
+    'androidx.recyclerview:recyclerview-selection': { },
+    'androidx.savedstate:savedstate': { },
+    'androidx.savedstate:savedstate-ktx': { },
+    'androidx.slidingpanelayout:slidingpanelayout': { },
+    'androidx.swiperefreshlayout:swiperefreshlayout': { },
+    'androidx.textclassifier:textclassifier': { },
+    'androidx.transition:transition': { },
+    'androidx.tvprovider:tvprovider': { },
+    'androidx.legacy:legacy-support-v13': { },
+    'androidx.legacy:legacy-preference-v14': { },
+    'androidx.leanback:leanback': { },
+    'androidx.leanback:leanback-preference': { },
+    'androidx.legacy:legacy-support-v4': { },
+    'androidx.appcompat:appcompat': { },
+    'androidx.appcompat:appcompat-resources': { },
+    'androidx.cardview:cardview': { },
+    'androidx.gridlayout:gridlayout': { },
+    'androidx.mediarouter:mediarouter': { },
+    'androidx.palette:palette': { },
+    'androidx.preference:preference': { },
+    'androidx.recyclerview:recyclerview': { },
+    'androidx.vectordrawable:vectordrawable': { },
+    'androidx.viewpager:viewpager': { },
+    'androidx.viewpager2:viewpager2': { },
+    'androidx.wear:wear': { },
+    'androidx.wear:wear-ongoing': { },
+    'androidx.webkit:webkit': { },
+    'androidx.biometric:biometric': { },
+    'androidx.autofill:autofill': { },
+    'androidx.appsearch:appsearch': { },
+    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage'},
+    'androidx.appsearch:appsearch-platform-storage': { },
+    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'host':True},
+    'androidx.car.app:app': { },
+    'androidx.car.app:app-automotive': { },
+    'androidx.car.app:app-testing': { },
+    'androidx.startup:startup-runtime': { },
+    'androidx.window:window': {'optional-uses-libs':{'androidx.window.extensions', 'androidx.window.sidecar'}},
+    'androidx.resourceinspection:resourceinspection-annotation': { },
+    'androidx.profileinstaller:profileinstaller': { },
+
+    # AndroidX for Compose
+    'androidx.compose.compiler:compiler-hosted': { 'host':True },
+    'androidx.compose.runtime:runtime': { },
+    'androidx.compose.runtime:runtime-saveable': { },
+    'androidx.compose.foundation:foundation': { },
+    'androidx.compose.foundation:foundation-layout': { },
+    'androidx.compose.foundation:foundation-text': { },
+    'androidx.compose.ui:ui': { },
+    'androidx.compose.ui:ui-geometry': { },
+    'androidx.compose.ui:ui-graphics': { },
+    'androidx.compose.ui:ui-text': { },
+    'androidx.compose.ui:ui-unit': { },
+    'androidx.compose.ui:ui-util': { },
+    'androidx.compose.animation:animation-core': { },
+    'androidx.compose.animation:animation': { },
+    'androidx.compose.material:material-icons-core': { },
+    'androidx.compose.material:material-ripple': { },
+    'androidx.compose.material:material': { },
+    'androidx.activity:activity-compose': { },
+
     # AndroidX for Multidex
-    'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
-    'androidx.multidex:multidex-instrumentation': {'name':'androidx-multidex_multidex-instrumentation', 'path':'androidx/multidex/multidex-instrumentation'},
+    'androidx.multidex:multidex': { },
+    'androidx.multidex:multidex-instrumentation': { },
 
     # AndroidX for Constraint Layout
-    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout', 'path':'androidx/constraintlayout/constraintlayout'},
-    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver', 'path':'androidx/constraintlayout/constraintlayout-solver'},
+    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout'},
+    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver'},
 
     # AndroidX for Architecture Components
-    'androidx.arch.core:core-common': {'name':'androidx.arch.core_core-common', 'path':'androidx/arch/core/core-common'},
-    'androidx.arch.core:core-runtime': {'name':'androidx.arch.core_core-runtime', 'path':'androidx/arch/core/core-runtime'},
-    'androidx.lifecycle:lifecycle-common': {'name':'androidx.lifecycle_lifecycle-common', 'path':'androidx/lifecycle/lifecycle-common'},
-    'androidx.lifecycle:lifecycle-common-java8': {'name':'androidx.lifecycle_lifecycle-common-java8', 'path':'androidx/lifecycle/lifecycle-common-java8'},
-    'androidx.lifecycle:lifecycle-extensions': {'name':'androidx.lifecycle_lifecycle-extensions', 'path':'androidx/lifecycle/lifecycle-extensions'},
-    'androidx.lifecycle:lifecycle-livedata': {'name':'androidx.lifecycle_lifecycle-livedata', 'path':'androidx/lifecycle/lifecycle-livedata'},
-    'androidx.lifecycle:lifecycle-livedata-ktx': {'name':'androidx.lifecycle_lifecycle-livedata-ktx', 'path':'androidx/lifecycle/lifecycle-livedata-ktx'},
-    'androidx.lifecycle:lifecycle-livedata-core': {'name':'androidx.lifecycle_lifecycle-livedata-core', 'path':'androidx/lifecycle/lifecycle-livedata-core'},
-    'androidx.lifecycle:lifecycle-livedata-core-ktx': {'name':'androidx.lifecycle_lifecycle-livedata-core-ktx', 'path':'androidx/lifecycle/lifecycle-livedata-core-ktx'},
-    'androidx.lifecycle:lifecycle-process': {'name':'androidx.lifecycle_lifecycle-process', 'path':'androidx/lifecycle/lifecycle-process'},
-    'androidx.lifecycle:lifecycle-runtime': {'name':'androidx.lifecycle_lifecycle-runtime', 'path':'androidx/lifecycle/lifecycle-runtime'},
-    'androidx.lifecycle:lifecycle-runtime-ktx': {'name':'androidx.lifecycle_lifecycle-runtime-ktx', 'path':'androidx/lifecycle/lifecycle-runtime-ktx'},
-    'androidx.lifecycle:lifecycle-service': {'name':'androidx.lifecycle_lifecycle-service', 'path':'androidx/lifecycle/lifecycle-service'},
-    'androidx.lifecycle:lifecycle-viewmodel': {'name':'androidx.lifecycle_lifecycle-viewmodel', 'path':'androidx/lifecycle/lifecycle-viewmodel'},
-    'androidx.lifecycle:lifecycle-viewmodel-ktx': {'name':'androidx.lifecycle_lifecycle-viewmodel-ktx', 'path':'androidx/lifecycle/lifecycle-viewmodel-ktx'},
-    'androidx.lifecycle:lifecycle-viewmodel-savedstate': {'name':'androidx.lifecycle_lifecycle-viewmodel-savedstate', 'path':'androidx/lifecycle/lifecycle-viewmodel-savedstate'},
-    'androidx.paging:paging-common': {'name':'androidx.paging_paging-common', 'path':'androidx/paging/paging-common'},
-    'androidx.paging:paging-common-ktx': {'name':'androidx.paging_paging-common-ktx', 'path':'androidx/paging/paging-common-ktx'},
-    'androidx.paging:paging-runtime': {'name':'androidx.paging_paging-runtime', 'path':'androidx/paging/paging-runtime'},
-    'androidx.sqlite:sqlite': {'name':'androidx.sqlite_sqlite', 'path':'androidx/sqlite/sqlite'},
-    'androidx.sqlite:sqlite-framework': {'name':'androidx.sqlite_sqlite-framework', 'path':'androidx/sqlite/sqlite-framework'},
-    'androidx.room:room-common': {'name':'androidx.room_room-common', 'path':'androidx/room/room-common', 'host_and_device' : True},
-    'androidx.room:room-compiler': {'name':'androidx.room_room-compiler', 'path':'androidx/room/room-compiler', 'host' : True},
-    'androidx.room:room-migration': {'name':'androidx.room_room-migration', 'path':'androidx/room/room-migration', 'host_and_device' : True},
-    'androidx.room:room-runtime': {'name':'androidx.room_room-runtime', 'path':'androidx/room/room-runtime'},
-    'androidx.room:room-testing': {'name':'androidx.room_room-testing', 'path':'androidx/room/room-testing'},
-    'androidx.room:room-compiler-processing': {'name':'androidx.room_room-compiler-processing', 'path':'androidx/room/room-compiler-processing', 'host' : True},
-    'androidx.work:work-runtime': {'name':'androidx.work_work-runtime', 'path':'androidx/work/work-runtime'},
-    'androidx.work:work-runtime-ktx': {'name':'androidx.work_work-runtime-ktx', 'path':'androidx/work/work-runtime-ktx'},
-    'androidx.work:work-testing': {'name':'androidx.work_work-testing', 'path':'androidx/work/work-testing'},
-
-    # Lifecycle
-    # Missing dependencies:
-    # - auto-common
-    # - javapoet
-    #'android.arch.lifecycle:compiler': {'name':'android-arch-lifecycle-compiler', 'path':'arch-lifecycle/compiler'},
-    # Missing dependencies:
-    # - reactive-streams
-    #'android.arch.lifecycle:reactivestreams': 'android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams',
-
-    # Room
-    # Missing dependencies:
-    # - auto-common
-    # - javapoet
-    # - antlr4
-    # - kotlin-metadata
-    # - commons-codec
-    #'android.arch.persistence.room:compiler': {'name':'android-arch-room-compiler', 'path':'arch-room/compiler'},
-    # Missing dependencies:
-    # - rxjava
-    #'android.arch.persistence.room:rxjava2': {'name':'android-arch-room-rxjava2', 'path':'arch-room/rxjava2'},
+    'androidx.arch.core:core-common': { },
+    'androidx.arch.core:core-runtime': { },
+    'androidx.lifecycle:lifecycle-common': { },
+    'androidx.lifecycle:lifecycle-common-java8': { },
+    'androidx.lifecycle:lifecycle-extensions': { },
+    'androidx.lifecycle:lifecycle-livedata': { },
+    'androidx.lifecycle:lifecycle-livedata-ktx': { },
+    'androidx.lifecycle:lifecycle-livedata-core': { },
+    'androidx.lifecycle:lifecycle-livedata-core-ktx': { },
+    'androidx.lifecycle:lifecycle-process': { },
+    'androidx.lifecycle:lifecycle-runtime': { },
+    'androidx.lifecycle:lifecycle-runtime-ktx': { },
+    'androidx.lifecycle:lifecycle-service': { },
+    'androidx.lifecycle:lifecycle-viewmodel': { },
+    'androidx.lifecycle:lifecycle-viewmodel-ktx': { },
+    'androidx.lifecycle:lifecycle-viewmodel-savedstate': { },
+    'androidx.paging:paging-common': { },
+    'androidx.paging:paging-common-ktx': { },
+    'androidx.paging:paging-runtime': { },
+    'androidx.sqlite:sqlite': { },
+    'androidx.sqlite:sqlite-framework': { },
+    'androidx.room:room-common': {'host_and_device':True},
+    'androidx.room:room-compiler': {'host':True, 'extra-static-libs':{'guava-21.0'}},
+    'androidx.room:room-migration': {'host_and_device':True},
+    'androidx.room:room-runtime': { },
+    'androidx.room:room-testing': { },
+    'androidx.room:room-compiler-processing': {'host':True},
+    'androidx.work:work-runtime': { },
+    'androidx.work:work-runtime-ktx': { },
+    'androidx.work:work-testing': { },
 
     # Third-party dependencies
     'com.google.android:flexbox': {'name':'flexbox', 'path':'flexbox'},
 
     # Androidx Material Design Components
-    'com.google.android.material:material': {'name':'com.google.android.material_material', 'path':'com/google/android/material/material'},
+    'com.google.android.material:material': { },
 }
+
+# Mapping of POM dependencies to Soong build targets
+deps_rewrite = {
+    'auto-common':'auto_common',
+    'auto-value-annotations':'auto_value_annotations',
+    'com.google.auto.value:auto-value':'auto_value_plugin',
+    'monitor':'androidx.test.monitor',
+    'rules':'androidx.test.rules',
+    'runner':'androidx.test.runner',
+    'androidx.test:core':'androidx.test.core',
+    'com.squareup:javapoet':'javapoet',
+    'com.google.guava:listenablefuture':'guava-listenablefuture-prebuilt-jar',
+    'sqlite-jdbc':'xerial-sqlite-jdbc',
+    'gson':'gson-prebuilt-jar',
+    'com.intellij:annotations':'jetbrains-annotations',
+    'javax.annotation:javax.annotation-api':'javax-annotation-api-prebuilt-host-jar',
+    'org.robolectric:robolectric':'Robolectric_all-target',
+    'org.jetbrains.kotlin:kotlin-stdlib-common':'kotlin-stdlib',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-core':'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
+    'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
+}
+
+
+def name_for_artifact(group_artifact):
+    return group_artifact.replace(':','_')
+
+
+def path_for_artifact(group_artifact):
+    return group_artifact.replace('.','/').replace(':','/')
+
+
+# Add automatic entries to maven_to_make.
+for key in maven_to_make:
+    if ('name' not in maven_to_make[key]):
+        maven_to_make[key]['name'] = name_for_artifact(key)
+    if ('path' not in maven_to_make[key]):
+        maven_to_make[key]['path'] = path_for_artifact(key)
 
 # Always remove these files.
 blacklist_files = [
@@ -297,7 +347,7 @@ def detect_artifacts(maven_repo_dirs):
                     elif artifact_id in maven_to_make:
                         key = artifact_id
                     else:
-                        print_e('Failed to find artifact mapping for ' + group_artifact)
+                        # No mapping entry, skip this library.
                         continue
 
                     # Store the latest version.
@@ -329,28 +379,17 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
         args = ["pom2bp"]
-        args.extend(["-sdk-version", "30"])
+        args.extend(["-sdk-version", "31"])
         args.extend(["-default-min-sdk-version", "24"])
         if include_static_deps:
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
-        args.extend(["-rewrite=^auto-common$=auto_common"])
-        args.extend(["-rewrite=^auto-value-annotations$=auto_value_annotations"])
-        args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
-        args.extend(["-rewrite=^rules$=androidx.test.rules"])
-        args.extend(["-rewrite=^runner$=androidx.test.runner"])
-        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet"])
-        args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
-        args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
-        args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
-        args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
-        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
+        args.extend(["-rewrite=^" + key + "$=" + value for key, value in deps_rewrite.items()])
+        args.extend(["-extra-static-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['extra-static-libs'])) for name in maven_to_make if 'extra-static-libs' in maven_to_make[name]])
+        args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if 'optional-uses-libs' in maven_to_make[name]])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
-        # these depend on GSON which is not in AOSP
-        args.extend(["-exclude=android-arch-room-migration",
-                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
@@ -370,8 +409,9 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
     maven_lib_vers = matcher.group(2)
     maven_lib_type = artifact_info.file[-3:]
 
-    make_lib_name = maven_to_make[artifact_info.key]['name']
-    make_dir_name = maven_to_make[artifact_info.key]['path']
+    group_artifact = artifact_info.key
+    make_lib_name = maven_to_make[group_artifact]['name']
+    make_dir_name = maven_to_make[group_artifact]['path']
 
     artifact_file = os.path.join(new_dir, artifact_info.file)
 
