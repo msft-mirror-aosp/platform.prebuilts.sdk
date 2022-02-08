@@ -84,7 +84,6 @@ maven_to_make = {
     'androidx.heifwriter:heifwriter': { },
     'androidx.interpolator:interpolator': { },
     'androidx.loader:loader': { },
-    'androidx.localbroadcastmanager:localbroadcastmanager': { },
     'androidx.media:media': { },
     'androidx.media2:media2-player': { },
     'androidx.media2:media2-session': { },
