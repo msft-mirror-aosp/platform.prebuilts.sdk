@@ -195,6 +195,22 @@ java_sdk_library_import {
     },
 }
 
+java_sdk_library_import {
+    name: "com.google.android.wearable",
+    public: {
+        jars: ["public/com.google.android.wearable.jar"],
+        sdk_version: "current",
+    },
+    system: {
+        jars: ["system/com.google.android.wearable.jar"],
+        sdk_version: "system_current",
+    },
+    test: {
+        jars: ["test/com.google.android.wearable.jar"],
+        sdk_version: "test_current",
+    },
+}
+
 java_import {
     name: "android-support-multidex-instrumentation",
     jars: ["multidex/instrumentation/android-support-multidex-instrumentation.jar"],
