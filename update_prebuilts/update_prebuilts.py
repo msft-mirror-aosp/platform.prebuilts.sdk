@@ -166,6 +166,7 @@ maven_to_make = {
     'androidx.compose.material:material-icons-core': { },
     'androidx.compose.material:material-ripple': { },
     'androidx.compose.material:material': { },
+    'androidx.compose.material3:material3': { },
     'androidx.activity:activity-compose': { },
 
     # AndroidX for Multidex
