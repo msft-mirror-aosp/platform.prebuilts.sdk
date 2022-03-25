@@ -131,9 +131,26 @@ prebuilt_apis {
         "29",
         "30",
         "31",
+        "32",
         "current",
     ],
-    next_api_dir: "31",
+    extensions_dir: "extensions",
+    next_api_dir: "33",
     imports_sdk_version: "none",
     imports_compile_dex: true,
+}
+
+filegroup {
+    name: "prebuilt_sdk_system_public_api_txt",
+    srcs: [
+        "*/system/api/*.txt",
+        "*/public/api/*.txt",
+    ]
+}
+
+filegroup {
+    name: "prebuilt_sdk_system_api_android_txt",
+    srcs: [
+        "*/system/api/android.txt",
+    ],
 }
