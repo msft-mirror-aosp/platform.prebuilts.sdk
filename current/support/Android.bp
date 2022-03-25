@@ -951,30 +951,3 @@ android_library {
     ],
     java_version: "1.7",
 }
-
-android_library_import {
-    name: "android-support-wear-nodeps",
-    aars: ["m2repository/com/android/support/wear/28.0.0/wear-28.0.0.aar"],
-    sdk_version: "current",
-    static_libs: [
-        "android-support-core-ui",
-        "android-support-fragment",
-        "android-support-v7-recyclerview",
-        "android-support-constraint-layout",
-    ],
-}
-
-android_library {
-    name: "android-support-wear",
-    sdk_version: "current",
-    manifest: "manifests/android-support-wear/AndroidManifest.xml",
-    static_libs: [
-        "android-support-wear-nodeps",
-        "android-support-annotations",
-        "android-support-core-ui",
-        "android-support-fragment",
-        "android-support-v7-recyclerview",
-        "android-support-constraint-layout",
-    ],
-    java_version: "1.7",
-}
