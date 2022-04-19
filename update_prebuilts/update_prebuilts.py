@@ -10,6 +10,7 @@ import subprocess
 from shutil import copyfile, rmtree, which, move
 from distutils.version import LooseVersion
 from functools import reduce
+from pathlib import Path
 import six
 import urllib.request, urllib.parse, urllib.error
 
@@ -20,7 +21,10 @@ gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
-
+repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
+extension_sdk_finalization_cmd = '%s -b {bug} -f {extension_version} {build_id}' % (
+    "packages/modules/common/tools/finalize_sdk.py"
+)
 temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
@@ -868,7 +872,10 @@ parser.add_argument(
     help='If specified, updates only the Android Platform')
 parser.add_argument(
     '-f', '--finalize_sdk', type=int,
-    help='If specified, imports the source build as the specified finalized SDK version')
+    help='Finalize the build as the specified SDK version. Must be used together with -e')
+parser.add_argument(
+    '-e', '--finalize_extension', type=int,
+    help='Finalize the build as the specified extension SDK version. Must be used together with -f')
 parser.add_argument('--bug', type=int, help='The bug number to add to the commit message.')
 parser.add_argument(
     '--sdk_target',
@@ -891,6 +898,7 @@ parser.add_argument(
     help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
 args = parser.parse_args()
 args.file = True
+
 if not args.source and (args.platform or args.buildtools \
                 or args.jetifier or args.androidx or args.material \
                 or args.finalize_sdk or args.constraint):
@@ -898,12 +906,15 @@ if not args.source and (args.platform or args.buildtools \
     sys.exit(1)
 if not (args.gmaven or args.platform or args.buildtools \
                 or args.jetifier or args.androidx or args.material \
-                or args.finalize_sdk or args.constraint):
+                or args.finalize_sdk or args.finalize_extension or args.constraint):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.constraint or args.material or args.androidx or args.gmaven) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
+    sys.exit(1)
+if (args.finalize_sdk is None) != (args.finalize_extension is None):
+    parser.error("Either both or neither of -e and -f must be specified.")
     sys.exit(1)
 if args.finalize_sdk and not args.bug:
     parser.error("Specifying a bug ID with --bug is required when finalizing an SDK.")
@@ -958,15 +969,21 @@ try:
             sys.exit(1)
     if args.finalize_sdk:
         n = args.finalize_sdk
-        if finalize_sdk(args.sdk_target, getBuildId(args), n):
-            # We commit the finalized dir separately from the current sdk update.
-            msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
-            subprocess.check_call(['git', 'add', '%d' % n])
-            subprocess.check_call(['git', 'add', 'Android.bp'])
-            subprocess.check_call(['git', 'commit', '-m', msg])
-        else:
+        if not finalize_sdk(args.sdk_target, getBuildId(args), n):
             print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
+        # We commit the finalized dir separately from the current sdk update.
+        msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
+        subprocess.check_call(['git', 'add', '%d' % n])
+        subprocess.check_call(['git', 'add', 'Android.bp'])
+        subprocess.check_call(['git', 'commit', '-m', msg])
+
+        # Finalize extension sdk level
+        cmd = extension_sdk_finalization_cmd.format(
+            bug=args.bug,
+            extension_version=args.finalize_extension,
+            build_id=getBuildId(args).url_id)
+        subprocess.check_call(cmd.split(' '), cwd=repo_root_dir.resolve())
     if args.material:
         if update_material(getFile(args)):
             components = append(components, 'intermediate-AndroidX Design Library')
@@ -994,8 +1011,8 @@ try:
     msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
     subprocess.check_call(['git', 'commit', '-m', msg])
     if args.finalize_sdk:
-        print('NOTE: Created two commits:')
-        subprocess.check_call(['git', 'log', '-2', '--oneline'])
+        print('NOTE: Created three commits:')
+        subprocess.check_call(['git', 'log', '-3', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
