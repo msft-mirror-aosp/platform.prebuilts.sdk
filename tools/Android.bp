@@ -22,7 +22,11 @@ cc_prebuilt_library_shared {
     // TODO(b/153609531): remove when no longer needed.
     native_bridge_supported: true,
     target: {
-        linux_glibc_x86_64: {
+        glibc_x86_64: {
+            srcs: ["linux/lib64/libLLVM_android.so"],
+        },
+        musl_x86_64: {
+            // TODO(ccross): add a musl specific version when a musl SDK build exists
             srcs: ["linux/lib64/libLLVM_android.so"],
         },
         darwin_x86_64: {
@@ -46,7 +50,11 @@ cc_prebuilt_library_shared {
     // TODO(b/153609531): remove when no longer needed.
     native_bridge_supported: true,
     target: {
-        linux_glibc_x86_64: {
+        glibc_x86_64: {
+            srcs: ["linux/lib64/libclang_android.so"],
+        },
+        musl_x86_64: {
+            // TODO(ccross): add a musl specific version when a musl SDK build exists
             srcs: ["linux/lib64/libclang_android.so"],
         },
         darwin_x86_64: {
