@@ -46,6 +46,13 @@ toolchain(
     visibility = ["//visibility:public"],
 )
 
+java_import(
+    name = "public_current_android_sdk_java_import",
+    jars = ["//prebuilts/sdk/current:public/android.jar"],
+    visibility = ["//visibility:public"],
+    neverlink = True,
+)
+
 android_toolchain(
     name = "android_default",
     aapt2 = "//prebuilts/sdk/tools:linux/bin/aapt2",
