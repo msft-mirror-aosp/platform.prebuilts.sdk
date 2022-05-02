@@ -140,6 +140,7 @@ maven_to_make = {
     'androidx.car.app:app-automotive': { },
     'androidx.car.app:app-testing': { },
     'androidx.startup:startup-runtime': { },
+    'androidx.window:window': {'optional-uses-libs':{'androidx.window.extensions', 'androidx.window.sidecar'}},
     'androidx.resourceinspection:resourceinspection-annotation': { },
     'androidx.profileinstaller:profileinstaller': { },
 
@@ -410,9 +411,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if 'optional-uses-libs' in maven_to_make[name]])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
-        # these depend on GSON which is not in AOSP
-        args.extend(["-exclude=android-arch-room-migration",
-                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
