@@ -165,13 +165,18 @@ maven_to_make = {
     'androidx.compose.ui:ui-tooling-data': { },
     'androidx.compose.ui:ui-unit': { },
     'androidx.compose.ui:ui-util': { },
+    'androidx.compose.ui:ui-test': { },
+    'androidx.compose.ui:ui-test-junit4': { },
     'androidx.compose.animation:animation-core': { },
     'androidx.compose.animation:animation': { },
     'androidx.compose.material:material-icons-core': { },
+    'androidx.compose.material:material-icons-extended': { },
     'androidx.compose.material:material-ripple': { },
     'androidx.compose.material:material': { },
     'androidx.compose.material3:material3': { },
     'androidx.activity:activity-compose': { },
+    'androidx.navigation:navigation-compose': { },
+    'androidx.lifecycle:lifecycle-viewmodel-compose': { },
 
     # AndroidX for Multidex
     'androidx.multidex:multidex': { },
@@ -239,7 +244,10 @@ deps_rewrite = {
     'org.jetbrains.kotlin:kotlin-stdlib-common':'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core':'kotlinx_coroutines',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
+    'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
+    'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
 }
 
 # List of artifacts that will be updated from GMaven
