@@ -21,6 +21,12 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="31" />
 
+    <permission
+        android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+
     <application android:appComponentFactory="androidx.core.app.CoreComponentFactory" />
 
 </manifest>
