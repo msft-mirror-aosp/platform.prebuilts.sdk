@@ -140,6 +140,7 @@ maven_to_make = {
     'androidx.car.app:app-automotive': { },
     'androidx.car.app:app-testing': { },
     'androidx.startup:startup-runtime': { },
+    'androidx.window:window': {'optional-uses-libs':{'androidx.window.extensions', 'androidx.window.sidecar'}},
     'androidx.resourceinspection:resourceinspection-annotation': { },
     'androidx.profileinstaller:profileinstaller': { },
 
@@ -410,9 +411,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if 'optional-uses-libs' in maven_to_make[name]])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
-        # these depend on GSON which is not in AOSP
-        args.extend(["-exclude=android-arch-room-migration",
-                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
@@ -878,6 +876,7 @@ parser.add_argument(
 parser.add_argument(
     '-f', '--finalize_sdk', type=int,
     help='If specified, imports the source build as the specified finalized SDK version')
+parser.add_argument('--bug', type=int, help='The bug number to add to the commit message.')
 parser.add_argument(
     '--sdk_target',
     default=framework_sdk_target,
@@ -913,6 +912,9 @@ if (args.constraint or args.material or args.androidx or args.gmaven) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
     sys.exit(1)
+if args.finalize_sdk and not args.bug:
+    parser.error("Specifying a bug ID with --bug is required when finalizing an SDK.")
+    sys.exit(1)
 
 if uncommittedChangesExist():
     if args.commit_first:
@@ -922,6 +924,10 @@ if uncommittedChangesExist():
 if uncommittedChangesExist():
     print_e('FAIL: There are uncommitted changes here. Please commit or stash before continuing, because %s will run "git reset --hard" if execution fails' % os.path.basename(__file__))
     sys.exit(1)
+
+commit_message_suffix = ""
+if args.bug:
+    commit_message_suffix = "\n\nBug: %d" % args.bug
 
 try:
     components = None
@@ -961,7 +967,7 @@ try:
         n = args.finalize_sdk
         if finalize_sdk(args.sdk_target, getBuildId(args), n):
             # We commit the finalized dir separately from the current sdk update.
-            msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
+            msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
             subprocess.check_call(['git', 'add', '%d' % n])
             subprocess.check_call(['git', 'add', 'Android.bp'])
             subprocess.check_call(['git', 'commit', '-m', msg])
@@ -992,7 +998,7 @@ try:
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
-    msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
+    msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
     subprocess.check_call(['git', 'commit', '-m', msg])
     if args.finalize_sdk:
         print('NOTE: Created two commits:')
