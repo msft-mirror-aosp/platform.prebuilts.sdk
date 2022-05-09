@@ -42,14 +42,6 @@ license {
 subdirs=["tools"]
 
 filegroup {
-    name: "api-version-xml",
-    srcs: [
-        "*/public/api/android.txt",
-        "*/public/api/android.xml",
-    ],
-}
-
-filegroup {
     name: "current-support-api",
     srcs: [
         "current/support-api.txt",
@@ -132,8 +124,10 @@ prebuilt_apis {
         "30",
         "31",
         "32",
+        "33",
         "current",
     ],
+    extensions_dir: "extensions",
     next_api_dir: "33",
     imports_sdk_version: "none",
     imports_compile_dex: true,
