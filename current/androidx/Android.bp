@@ -545,7 +545,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-common-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-common/1.1.0-beta04/benchmark-common-1.1.0-beta04.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-alpha01/benchmark-common-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -554,9 +554,9 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
+        "androidx.test.monitor",
         "wire-runtime",
         "kotlin-stdlib",
-        "androidx.test.monitor",
         "androidx.annotation_annotation-experimental",
         "androidx.tracing_tracing-ktx",
     ],
@@ -574,9 +574,9 @@ android_library {
     static_libs: [
         "androidx.benchmark_benchmark-common-nodeps",
         "androidx.annotation_annotation",
+        "androidx.test.monitor",
         "wire-runtime",
         "kotlin-stdlib",
-        "androidx.test.monitor",
         "androidx.annotation_annotation-experimental",
         "androidx.tracing_tracing-ktx",
     ],
@@ -585,7 +585,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.1.0-beta04/benchmark-junit4-1.1.0-beta04.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-alpha01/benchmark-junit4-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -593,11 +593,11 @@ android_library_import {
     ],
     min_sdk_version: "14",
     static_libs: [
-        "junit",
-        "kotlin-stdlib",
         "androidx.annotation_annotation",
         "androidx.test.rules",
         "androidx.test.runner",
+        "junit",
+        "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.tracing_tracing-ktx",
     ],
@@ -614,11 +614,11 @@ android_library {
     manifest: "manifests/androidx.benchmark_benchmark-junit4/AndroidManifest.xml",
     static_libs: [
         "androidx.benchmark_benchmark-junit4-nodeps",
-        "junit",
-        "kotlin-stdlib",
         "androidx.annotation_annotation",
         "androidx.test.rules",
         "androidx.test.runner",
+        "junit",
+        "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.tracing_tracing-ktx",
     ],
@@ -627,7 +627,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.1.0-beta04/benchmark-macro-junit4-1.1.0-beta04.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-alpha01/benchmark-macro-junit4-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -635,14 +635,14 @@ android_library_import {
     ],
     min_sdk_version: "23",
     static_libs: [
-        "junit",
-        "kotlin-stdlib",
         "androidx.annotation_annotation",
         "androidx.test.rules",
         "androidx.test.runner",
         "uiautomator",
-        "androidx.benchmark_benchmark-macro",
+        "junit",
+        "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
+        "androidx.benchmark_benchmark-macro",
     ],
 }
 
@@ -657,21 +657,21 @@ android_library {
     manifest: "manifests/androidx.benchmark_benchmark-macro-junit4/AndroidManifest.xml",
     static_libs: [
         "androidx.benchmark_benchmark-macro-junit4-nodeps",
-        "junit",
-        "kotlin-stdlib",
         "androidx.annotation_annotation",
         "androidx.test.rules",
         "androidx.test.runner",
         "uiautomator",
-        "androidx.benchmark_benchmark-macro",
+        "junit",
+        "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
+        "androidx.benchmark_benchmark-macro",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.1.0-beta04/benchmark-macro-1.1.0-beta04.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-alpha01/benchmark-macro-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -679,11 +679,11 @@ android_library_import {
     ],
     min_sdk_version: "23",
     static_libs: [
-        "junit",
-        "kotlin-stdlib",
         "androidx.annotation_annotation",
         "androidx.test.core",
         "uiautomator",
+        "junit",
+        "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.profileinstaller_profileinstaller",
         "androidx.tracing_tracing-ktx",
@@ -701,11 +701,11 @@ android_library {
     manifest: "manifests/androidx.benchmark_benchmark-macro/AndroidManifest.xml",
     static_libs: [
         "androidx.benchmark_benchmark-macro-nodeps",
-        "junit",
-        "kotlin-stdlib",
         "androidx.annotation_annotation",
         "androidx.test.core",
         "uiautomator",
+        "junit",
+        "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.profileinstaller_profileinstaller",
         "androidx.tracing_tracing-ktx",
@@ -725,10 +725,10 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.lifecycle_lifecycle-common-java8",
-        "androidx.core_core",
-        "androidx.fragment_fragment",
         "androidx.activity_activity",
         "androidx.appcompat_appcompat",
+        "androidx.core_core",
+        "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.lifecycle_lifecycle-viewmodel",
     ],
@@ -747,10 +747,10 @@ android_library {
         "androidx.biometric_biometric-nodeps",
         "androidx.annotation_annotation",
         "androidx.lifecycle_lifecycle-common-java8",
-        "androidx.core_core",
-        "androidx.fragment_fragment",
         "androidx.activity_activity",
         "androidx.appcompat_appcompat",
+        "androidx.core_core",
+        "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.lifecycle_lifecycle-viewmodel",
     ],
@@ -3947,7 +3947,7 @@ android_library {
 
 android_library_import {
     name: "androidx.profileinstaller_profileinstaller-nodeps",
-    aars: ["m2repository/androidx/profileinstaller/profileinstaller/1.2.0-alpha03/profileinstaller-1.2.0-alpha03.aar"],
+    aars: ["m2repository/androidx/profileinstaller/profileinstaller/1.2.0-beta01/profileinstaller-1.2.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4019,8 +4019,8 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.collection_collection",
-        "androidx.recyclerview_recyclerview",
         "androidx.core_core",
+        "androidx.recyclerview_recyclerview",
     ],
 }
 
