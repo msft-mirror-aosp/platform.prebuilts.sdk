@@ -10,14 +10,22 @@ import subprocess
 from shutil import copyfile, rmtree, which, move
 from distutils.version import LooseVersion
 from functools import reduce
+from pathlib import Path
+import six
+import urllib.request, urllib.parse, urllib.error
+import shlex
 
 current_path = 'current'
 framework_sdk_target = 'sdk_phone_armv7-win_sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
+gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
-
+repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
+extension_sdk_finalization_cmd = '%s -r "{readme}" -b {bug} -f {extension_version} {build_id}' % (
+    "packages/modules/common/tools/finalize_sdk.py"
+)
 temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
@@ -26,169 +34,232 @@ git_dir = os.getcwd()
 FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
 FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
 
+# See (https://developer.android.com/studio/build/dependencies#gmaven-access)
+GMAVEN_BASE_URL = 'https://maven.google.com'
+
+# Leave map blank to automatically populate name and path:
+# - Name format is MAVEN.replaceAll(':','_')
+# - Path format is MAVEN.replaceAll(':','/').replaceAll('.','/')
 maven_to_make = {
     # AndroidX
-    'androidx.benchmark:benchmark-common': {'name':'androidx.benchmark_benchmark-common', 'path':'androidx/benchmark/benchmark-common'},
-    'androidx.benchmark:benchmark-junit4': {'name':'androidx.benchmark_benchmark-junit4', 'path':'androidx/benchmark/benchmark-junit4'},
-    'androidx.tracing:tracing': {'name':'androidx.tracing_tracing', 'path':'androidx/tracing/tracing'},
-    'androidx.tracing:tracing-ktx': {'name':'androidx.tracing_tracing-ktx', 'path':'androidx/tracing/tracing-ktx'},
-    'androidx.slice:slice-builders': {'name':'androidx.slice_slice-builders', 'path':'androidx/slice/slice-builders'},
-    'androidx.slice:slice-core': {'name':'androidx.slice_slice-core', 'path':'androidx/slice/slice-core'},
-    'androidx.slice:slice-view': {'name':'androidx.slice_slice-view', 'path':'androidx/slice/slice-view'},
-    'androidx.remotecallback:remotecallback': {'name':'androidx.remotecallback_remotecallback', 'path':'androidx/remotecallback/remotecallback'},
-    'androidx.remotecallback:remotecallback-processor': {'name':'androidx.remotecallback_remotecallback-processor', 'path':'androidx/remotecallback/remotecallback-processor', 'host':True},
-    'androidx.versionedparcelable:versionedparcelable': {'name':'androidx.versionedparcelable_versionedparcelable', 'path':'androidx/versionedparcelable'},
-    'androidx.vectordrawable:vectordrawable-animated': {'name':'androidx.vectordrawable_vectordrawable-animated', 'path':'androidx/vectordrawable/vectordrawable-animated'},
-    'androidx.activity:activity': {'name':'androidx.activity_activity', 'path':'androidx/activity/activity'},
-    'androidx.activity:activity-ktx': {'name':'androidx.activity_activity-ktx', 'path':'androidx/activity/activity-ktx'},
-    'androidx.annotation:annotation': {'name':'androidx.annotation_annotation', 'path':'androidx/annotation/annotation', 'host_and_device' : True},
-    'androidx.annotation:annotation-experimental': {'name':'androidx.annotation_annotation-experimental', 'path':'androidx/annotation/annotation-experimental'},
-    'androidx.asynclayoutinflater:asynclayoutinflater': {'name':'androidx.asynclayoutinflater_asynclayoutinflater', 'path':'androidx/asynclayoutinflater/asynclayoutinflater'},
-    'androidx.collection:collection': {'name':'androidx.collection_collection', 'path':'androidx/collection/collection'},
-    'androidx.collection:collection-ktx': {'name':'androidx.collection_collection-ktx', 'path':'androidx/collection/collection-ktx'},
-    'androidx.concurrent:concurrent-futures': {'name':'androidx.concurrent_concurrent-futures', 'path':'androidx/concurrent/concurrent-futures'},
-    'androidx.concurrent:concurrent-listenablefuture-callback': {'name':'androidx.concurrent_concurrent-listenablefuture-callback', 'path':'androidx/concurrent/concurrent-listenablefuture-callback'},
-    'androidx.concurrent:concurrent-listenablefuture': {'name':'androidx.concurrent_concurrent-listenablefuture', 'path':'androidx/concurrent/concurrent-listenablefuture'},
-    'androidx.core:core': {'name':'androidx.core_core', 'path':'androidx/core/core'},
-    'androidx.core:core-animation': {'name':'androidx.core_core-animation', 'path':'androidx/core/core-animation'},
-    'androidx.core:core-ktx': {'name':'androidx.core_core-ktx', 'path':'androidx/core/core-ktx'},
-    'androidx.contentpaging:contentpaging': {'name':'androidx.contentpaging_contentpaging', 'path':'androidx/contentpaging/contentpaging'},
-    'androidx.coordinatorlayout:coordinatorlayout': {'name':'androidx.coordinatorlayout_coordinatorlayout', 'path':'androidx/coordinatorlayout/coordinatorlayout'},
-    'androidx.legacy:legacy-support-core-ui': {'name':'androidx.legacy_legacy-support-core-ui', 'path':'androidx/legacy/legacy-support-core-ui'},
-    'androidx.legacy:legacy-support-core-utils': {'name':'androidx.legacy_legacy-support-core-utils', 'path':'androidx/legacy/legacy-support-core-utils'},
-    'androidx.cursoradapter:cursoradapter': {'name':'androidx.cursoradapter_cursoradapter', 'path':'androidx/cursoradapter/cursoradapter'},
-    'androidx.browser:browser': {'name':'androidx.browser_browser', 'path':'androidx/browser/browser'},
-    'androidx.customview:customview': {'name':'androidx.customview_customview', 'path':'androidx/customview/customview'},
-    'androidx.documentfile:documentfile': {'name':'androidx.documentfile_documentfile', 'path':'androidx/documentfile/documentfile'},
-    'androidx.drawerlayout:drawerlayout': {'name':'androidx.drawerlayout_drawerlayout', 'path':'androidx/drawerlayout/drawerlayout'},
-    'androidx.dynamicanimation:dynamicanimation': {'name':'androidx.dynamicanimation_dynamicanimation', 'path':'androidx/dynamicanimation/dynamicanimation'},
-    'androidx.emoji:emoji': {'name':'androidx.emoji_emoji', 'path':'androidx/emoji/emoji'},
-    'androidx.emoji:emoji-appcompat': {'name':'androidx.emoji_emoji-appcompat', 'path':'androidx/emoji/emoji-appcompat'},
-    'androidx.emoji:emoji-bundled': {'name':'androidx.emoji_emoji-bundled', 'path':'androidx/emoji/emoji-bundled'},
-    'androidx.exifinterface:exifinterface': {'name':'androidx.exifinterface_exifinterface', 'path':'androidx/exifinterface/exifinterface'},
-    'androidx.fragment:fragment': {'name':'androidx.fragment_fragment', 'path':'androidx/fragment/fragment'},
-    'androidx.fragment:fragment-ktx': {'name':'androidx.fragment_fragment-ktx', 'path':'androidx/fragment/fragment-ktx'},
-    'androidx.heifwriter:heifwriter': {'name':'androidx.heifwriter_heifwriter', 'path':'androidx/heifwriter/heifwriter'},
-    'androidx.interpolator:interpolator': {'name':'androidx.interpolator_interpolator', 'path':'androidx/interpolator/interpolator'},
-    'androidx.loader:loader': {'name':'androidx.loader_loader', 'path':'androidx/loader/loader'},
-    'androidx.localbroadcastmanager:localbroadcastmanager': {'name':'androidx.localbroadcastmanager_localbroadcastmanager', 'path':'androidx/localbroadcastmanager/localbroadcastmanager'},
-    'androidx.media:media': {'name':'androidx.media_media', 'path':'androidx/media/media'},
-    'androidx.media2:media2-player': {'name':'androidx.media2_media2-player', 'path':'androidx/media2/media2-player'},
-    'androidx.media2:media2-session': {'name':'androidx.media2_media2-session', 'path':'androidx/media2/media2-session'},
-    'androidx.media2:media2-common': {'name':'androidx.media2_media2-common', 'path':'androidx/media2/media2-common'},
-    'androidx.media2:media2-exoplayer': {'name':'androidx.media2_media2-exoplayer', 'path':'androidx/media2/media2-exoplayer'},
-    'androidx.media2:media2-widget': {'name':'androidx.media2_media2-widget', 'path':'androidx/media2/media2-widget'},
-    'androidx.navigation:navigation-common': {'name':'androidx.navigation_navigation-common', 'path':'androidx/navigation/navigation-common'},
-    'androidx.navigation:navigation-common-ktx': {'name':'androidx.navigation_navigation-common-ktx', 'path':'androidx/navigation/navigation-common-ktx'},
-    'androidx.navigation:navigation-fragment': {'name':'androidx.navigation_navigation-fragment', 'path':'androidx/navigation/navigation-fragment'},
-    'androidx.navigation:navigation-fragment-ktx': {'name':'androidx.navigation_navigation-fragment-ktx', 'path':'androidx/navigation/navigation-fragment-ktx'},
-    'androidx.navigation:navigation-runtime': {'name':'androidx.navigation_navigation-runtime', 'path':'androidx/navigation/navigation-runtime'},
-    'androidx.navigation:navigation-runtime-ktx': {'name':'androidx.navigation_navigation-runtime-ktx', 'path':'androidx/navigation/navigation-runtime-ktx'},
-    'androidx.navigation:navigation-ui': {'name':'androidx.navigation_navigation-ui', 'path':'androidx/navigation/navigation-ui'},
-    'androidx.navigation:navigation-ui-ktx': {'name':'androidx.navigation_navigation-ui-ktx', 'path':'androidx/navigation/navigation-ui-ktx'},
-    'androidx.percentlayout:percentlayout': {'name':'androidx.percentlayout_percentlayout', 'path':'androidx/percentlayout/percentlayout'},
-    'androidx.print:print': {'name':'androidx.print_print', 'path':'androidx/print/print'},
-    'androidx.recommendation:recommendation': {'name':'androidx.recommendation_recommendation', 'path':'androidx/recommendation/recommendation'},
-    'androidx.recyclerview:recyclerview-selection': {'name':'androidx.recyclerview_recyclerview-selection', 'path':'androidx/recyclerview/recyclerview-selection'},
-    'androidx.savedstate:savedstate': {'name':'androidx.savedstate_savedstate', 'path':'androidx/savedstate/savedstate'},
-    'androidx.savedstate:savedstate-ktx': {'name':'androidx.savedstate_savedstate-ktx', 'path':'androidx/savedstate/savedstate-ktx'},
-    'androidx.slidingpanelayout:slidingpanelayout': {'name':'androidx.slidingpanelayout_slidingpanelayout', 'path':'androidx/slidingpanelayout/slidingpanelayout'},
-    'androidx.swiperefreshlayout:swiperefreshlayout': {'name':'androidx.swiperefreshlayout_swiperefreshlayout', 'path':'androidx/swiperefreshlayout/swiperefreshlayout'},
-    'androidx.textclassifier:textclassifier': {'name':'androidx.textclassifier_textclassifier', 'path':'androidx/textclassifier/textclassifier'},
-    'androidx.transition:transition': {'name':'androidx.transition_transition', 'path':'androidx/transition/transition'},
-    'androidx.tvprovider:tvprovider': {'name':'androidx.tvprovider_tvprovider', 'path':'androidx/tvprovider/tvprovider'},
-    'androidx.legacy:legacy-support-v13': {'name':'androidx.legacy_legacy-support-v13', 'path':'androidx/legacy/legacy-support-v13'},
-    'androidx.legacy:legacy-preference-v14': {'name':'androidx.legacy_legacy-preference-v14', 'path':'androidx/legacy/legacy-preference-v14'},
-    'androidx.leanback:leanback': {'name':'androidx.leanback_leanback', 'path':'androidx/leanback/leanback'},
-    'androidx.leanback:leanback-preference': {'name':'androidx.leanback_leanback-preference', 'path':'androidx/leanback/leanback-preference'},
-    'androidx.legacy:legacy-support-v4': {'name':'androidx.legacy_legacy-support-v4', 'path':'androidx/legacy/legacy-support-v4'},
-    'androidx.appcompat:appcompat': {'name':'androidx.appcompat_appcompat', 'path':'androidx/appcompat/appcompat'},
-    'androidx.appcompat:appcompat-resources': {'name':'androidx.appcompat_appcompat-resources', 'path':'androidx/appcompat/appcompat-resources'},
-    'androidx.cardview:cardview': {'name':'androidx.cardview_cardview', 'path':'androidx/cardview/cardview'},
-    'androidx.gridlayout:gridlayout': {'name':'androidx.gridlayout_gridlayout', 'path':'androidx/gridlayout/gridlayout'},
-    'androidx.mediarouter:mediarouter': {'name':'androidx.mediarouter_mediarouter', 'path':'androidx/mediarouter/mediarouter'},
-    'androidx.palette:palette': {'name':'androidx.palette_palette', 'path':'androidx/palette/palette'},
-    'androidx.preference:preference': {'name':'androidx.preference_preference', 'path':'androidx/preference/preference'},
-    'androidx.recyclerview:recyclerview': {'name':'androidx.recyclerview_recyclerview', 'path':'androidx/recyclerview/recyclerview'},
-    'androidx.vectordrawable:vectordrawable': {'name':'androidx.vectordrawable_vectordrawable', 'path':'androidx/vectordrawable/vectordrawable'},
-    'androidx.viewpager:viewpager': {'name':'androidx.viewpager_viewpager', 'path':'androidx/viewpager/viewpager'},
-    'androidx.viewpager2:viewpager2': {'name':'androidx.viewpager2_viewpager2', 'path':'androidx/viewpager2/viewpager2'},
-    'androidx.wear:wear': {'name':'androidx.wear_wear', 'path':'androidx/wear/wear'},
-    'androidx.webkit:webkit': {'name':'androidx.webkit_webkit', 'path':'androidx/webkit/webkit'},
-    'androidx.biometric:biometric': {'name':'androidx.biometric_biometric', 'path':'androidx/biometric/biometric'},
-    'androidx.autofill:autofill': {'name':'androidx.autofill_autofill', 'path':'androidx/autofill/autofill'},
-    'androidx.appsearch:appsearch': {'name':'androidx.appsearch_appsearch', 'path':'androidx/appsearch/appsearch'},
-    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage', 'path':'androidx/appsearch/appsearch/appsearch-local-storage'},
-    'androidx.appsearch:appsearch-platform-storage': {'name':'androidx.appsearch_appsearch_platform_storage', 'path':'androidx/appsearch/appsearch/appsearch-platform-storage'},
-    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'path':'androidx/appsearch/appsearch-compiler', 'host' : True},
+    'androidx.benchmark:benchmark-macro': { },
+    'androidx.benchmark:benchmark-macro-junit4': { },
+    'androidx.benchmark:benchmark-common': { },
+    'androidx.benchmark:benchmark-junit4': { },
+    'androidx.tracing:tracing': { },
+    'androidx.tracing:tracing-ktx': { },
+    'androidx.slice:slice-builders': { },
+    'androidx.slice:slice-core': { },
+    'androidx.slice:slice-view': { },
+    'androidx.remotecallback:remotecallback': { },
+    'androidx.remotecallback:remotecallback-processor': {'host':True},
+    'androidx.versionedparcelable:versionedparcelable': { },
+    'androidx.vectordrawable:vectordrawable-animated': { },
+    'androidx.activity:activity': { },
+    'androidx.activity:activity-ktx': { },
+    'androidx.annotation:annotation': {'host_and_device':True},
+    'androidx.annotation:annotation-experimental': { },
+    'androidx.asynclayoutinflater:asynclayoutinflater': { },
+    'androidx.collection:collection': { },
+    'androidx.collection:collection-ktx': { },
+    'androidx.concurrent:concurrent-futures': { },
+    'androidx.concurrent:concurrent-listenablefuture-callback': { },
+    'androidx.concurrent:concurrent-listenablefuture': { },
+    'androidx.core:core': { },
+    'androidx.core:core-animation': { },
+    'androidx.core:core-ktx': { },
+    'androidx.contentpaging:contentpaging': { },
+    'androidx.coordinatorlayout:coordinatorlayout': { },
+    'androidx.legacy:legacy-support-core-ui': { },
+    'androidx.legacy:legacy-support-core-utils': { },
+    'androidx.cursoradapter:cursoradapter': { },
+    'androidx.browser:browser': { },
+    'androidx.customview:customview': { },
+    'androidx.documentfile:documentfile': { },
+    'androidx.drawerlayout:drawerlayout': { },
+    'androidx.dynamicanimation:dynamicanimation': { },
+    'androidx.emoji:emoji': { },
+    'androidx.emoji:emoji-appcompat': { },
+    'androidx.emoji:emoji-bundled': { },
+    'androidx.emoji2:emoji2': { },
+    'androidx.emoji2:emoji2-views-helper': { },
+    'androidx.exifinterface:exifinterface': { },
+    'androidx.fragment:fragment': { },
+    'androidx.fragment:fragment-ktx': { },
+    'androidx.heifwriter:heifwriter': { },
+    'androidx.interpolator:interpolator': { },
+    'androidx.loader:loader': { },
+    'androidx.media:media': { },
+    'androidx.media2:media2-player': { },
+    'androidx.media2:media2-session': { },
+    'androidx.media2:media2-common': { },
+    'androidx.media2:media2-exoplayer': { },
+    'androidx.media2:media2-widget': { },
+    'androidx.navigation:navigation-common': { },
+    'androidx.navigation:navigation-common-ktx': { },
+    'androidx.navigation:navigation-fragment': { },
+    'androidx.navigation:navigation-fragment-ktx': { },
+    'androidx.navigation:navigation-runtime': { },
+    'androidx.navigation:navigation-runtime-ktx': { },
+    'androidx.navigation:navigation-ui': { },
+    'androidx.navigation:navigation-ui-ktx': { },
+    'androidx.percentlayout:percentlayout': { },
+    'androidx.print:print': { },
+    'androidx.recommendation:recommendation': { },
+    'androidx.recyclerview:recyclerview-selection': { },
+    'androidx.savedstate:savedstate': { },
+    'androidx.savedstate:savedstate-ktx': { },
+    'androidx.slidingpanelayout:slidingpanelayout': { },
+    'androidx.swiperefreshlayout:swiperefreshlayout': { },
+    'androidx.textclassifier:textclassifier': { },
+    'androidx.transition:transition': { },
+    'androidx.tvprovider:tvprovider': { },
+    'androidx.legacy:legacy-support-v13': { },
+    'androidx.legacy:legacy-preference-v14': { },
+    'androidx.leanback:leanback': { },
+    'androidx.leanback:leanback-preference': { },
+    'androidx.legacy:legacy-support-v4': { },
+    'androidx.appcompat:appcompat': { },
+    'androidx.appcompat:appcompat-resources': { },
+    'androidx.cardview:cardview': { },
+    'androidx.gridlayout:gridlayout': { },
+    'androidx.mediarouter:mediarouter': { },
+    'androidx.palette:palette': { },
+    'androidx.preference:preference': { },
+    'androidx.recyclerview:recyclerview': { },
+    'androidx.vectordrawable:vectordrawable': { },
+    'androidx.viewpager:viewpager': { },
+    'androidx.viewpager2:viewpager2': { },
+    'androidx.wear:wear': { },
+    'androidx.wear:wear-ongoing': { },
+    'androidx.webkit:webkit': { },
+    'androidx.biometric:biometric': { },
+    'androidx.autofill:autofill': { },
+    'androidx.appsearch:appsearch': { },
+    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage'},
+    'androidx.appsearch:appsearch-platform-storage': { },
+    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'host':True},
+    'androidx.car.app:app': { },
+    'androidx.car.app:app-automotive': { },
+    'androidx.car.app:app-testing': { },
+    'androidx.startup:startup-runtime': { },
+    'androidx.window:window': {'optional-uses-libs':{'androidx.window.extensions', 'androidx.window.sidecar'}},
+    'androidx.resourceinspection:resourceinspection-annotation': { },
+    'androidx.profileinstaller:profileinstaller': { },
+
+    # AndroidX for Compose
+    'androidx.compose.compiler:compiler-hosted': { 'host':True },
+    'androidx.compose.runtime:runtime': { },
+    'androidx.compose.runtime:runtime-saveable': { },
+    'androidx.compose.foundation:foundation': { },
+    'androidx.compose.foundation:foundation-layout': { },
+    'androidx.compose.foundation:foundation-text': { },
+    'androidx.compose.ui:ui': { },
+    'androidx.compose.ui:ui-geometry': { },
+    'androidx.compose.ui:ui-graphics': { },
+    'androidx.compose.ui:ui-text': { },
+    'androidx.compose.ui:ui-unit': { },
+    'androidx.compose.ui:ui-util': { },
+    'androidx.compose.animation:animation-core': { },
+    'androidx.compose.animation:animation': { },
+    'androidx.compose.material:material-icons-core': { },
+    'androidx.compose.material:material-ripple': { },
+    'androidx.compose.material:material': { },
+    'androidx.activity:activity-compose': { },
 
     # AndroidX for Multidex
-    'androidx.multidex:multidex': {'name':'androidx-multidex_multidex', 'path':'androidx/multidex/multidex'},
-    'androidx.multidex:multidex-instrumentation': {'name':'androidx-multidex_multidex-instrumentation', 'path':'androidx/multidex/multidex-instrumentation'},
+    'androidx.multidex:multidex': { },
+    'androidx.multidex:multidex-instrumentation': { },
 
     # AndroidX for Constraint Layout
-    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout', 'path':'androidx/constraintlayout/constraintlayout'},
-    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver', 'path':'androidx/constraintlayout/constraintlayout-solver'},
+    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout'},
+    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver'},
 
     # AndroidX for Architecture Components
-    'androidx.arch.core:core-common': {'name':'androidx.arch.core_core-common', 'path':'androidx/arch/core/core-common'},
-    'androidx.arch.core:core-runtime': {'name':'androidx.arch.core_core-runtime', 'path':'androidx/arch/core/core-runtime'},
-    'androidx.lifecycle:lifecycle-common': {'name':'androidx.lifecycle_lifecycle-common', 'path':'androidx/lifecycle/lifecycle-common'},
-    'androidx.lifecycle:lifecycle-common-java8': {'name':'androidx.lifecycle_lifecycle-common-java8', 'path':'androidx/lifecycle/lifecycle-common-java8'},
-    'androidx.lifecycle:lifecycle-extensions': {'name':'androidx.lifecycle_lifecycle-extensions', 'path':'androidx/lifecycle/lifecycle-extensions'},
-    'androidx.lifecycle:lifecycle-livedata': {'name':'androidx.lifecycle_lifecycle-livedata', 'path':'androidx/lifecycle/lifecycle-livedata'},
-    'androidx.lifecycle:lifecycle-livedata-ktx': {'name':'androidx.lifecycle_lifecycle-livedata-ktx', 'path':'androidx/lifecycle/lifecycle-livedata-ktx'},
-    'androidx.lifecycle:lifecycle-livedata-core': {'name':'androidx.lifecycle_lifecycle-livedata-core', 'path':'androidx/lifecycle/lifecycle-livedata-core'},
-    'androidx.lifecycle:lifecycle-livedata-core-ktx': {'name':'androidx.lifecycle_lifecycle-livedata-core-ktx', 'path':'androidx/lifecycle/lifecycle-livedata-core-ktx'},
-    'androidx.lifecycle:lifecycle-process': {'name':'androidx.lifecycle_lifecycle-process', 'path':'androidx/lifecycle/lifecycle-process'},
-    'androidx.lifecycle:lifecycle-runtime': {'name':'androidx.lifecycle_lifecycle-runtime', 'path':'androidx/lifecycle/lifecycle-runtime'},
-    'androidx.lifecycle:lifecycle-runtime-ktx': {'name':'androidx.lifecycle_lifecycle-runtime-ktx', 'path':'androidx/lifecycle/lifecycle-runtime-ktx'},
-    'androidx.lifecycle:lifecycle-service': {'name':'androidx.lifecycle_lifecycle-service', 'path':'androidx/lifecycle/lifecycle-service'},
-    'androidx.lifecycle:lifecycle-viewmodel': {'name':'androidx.lifecycle_lifecycle-viewmodel', 'path':'androidx/lifecycle/lifecycle-viewmodel'},
-    'androidx.lifecycle:lifecycle-viewmodel-ktx': {'name':'androidx.lifecycle_lifecycle-viewmodel-ktx', 'path':'androidx/lifecycle/lifecycle-viewmodel-ktx'},
-    'androidx.lifecycle:lifecycle-viewmodel-savedstate': {'name':'androidx.lifecycle_lifecycle-viewmodel-savedstate', 'path':'androidx/lifecycle/lifecycle-viewmodel-savedstate'},
-    'androidx.paging:paging-common': {'name':'androidx.paging_paging-common', 'path':'androidx/paging/paging-common'},
-    'androidx.paging:paging-common-ktx': {'name':'androidx.paging_paging-common-ktx', 'path':'androidx/paging/paging-common-ktx'},
-    'androidx.paging:paging-runtime': {'name':'androidx.paging_paging-runtime', 'path':'androidx/paging/paging-runtime'},
-    'androidx.sqlite:sqlite': {'name':'androidx.sqlite_sqlite', 'path':'androidx/sqlite/sqlite'},
-    'androidx.sqlite:sqlite-framework': {'name':'androidx.sqlite_sqlite-framework', 'path':'androidx/sqlite/sqlite-framework'},
-    'androidx.room:room-common': {'name':'androidx.room_room-common', 'path':'androidx/room/room-common', 'host_and_device' : True},
-    'androidx.room:room-compiler': {'name':'androidx.room_room-compiler', 'path':'androidx/room/room-compiler', 'host' : True},
-    'androidx.room:room-migration': {'name':'androidx.room_room-migration', 'path':'androidx/room/room-migration', 'host_and_device' : True},
-    'androidx.room:room-runtime': {'name':'androidx.room_room-runtime', 'path':'androidx/room/room-runtime'},
-    'androidx.room:room-testing': {'name':'androidx.room_room-testing', 'path':'androidx/room/room-testing'},
-    'androidx.room:room-compiler-processing': {'name':'androidx.room_room-compiler-processing', 'path':'androidx/room/room-compiler-processing', 'host' : True},
-    'androidx.work:work-runtime': {'name':'androidx.work_work-runtime', 'path':'androidx/work/work-runtime'},
-    'androidx.work:work-runtime-ktx': {'name':'androidx.work_work-runtime-ktx', 'path':'androidx/work/work-runtime-ktx'},
-    'androidx.work:work-testing': {'name':'androidx.work_work-testing', 'path':'androidx/work/work-testing'},
-
-    # Lifecycle
-    # Missing dependencies:
-    # - auto-common
-    # - javapoet
-    #'android.arch.lifecycle:compiler': {'name':'android-arch-lifecycle-compiler', 'path':'arch-lifecycle/compiler'},
-    # Missing dependencies:
-    # - reactive-streams
-    #'android.arch.lifecycle:reactivestreams': 'android-arch-lifecycle-reactivestreams','arch-lifecycle/reactivestreams',
-
-    # Room
-    # Missing dependencies:
-    # - auto-common
-    # - javapoet
-    # - antlr4
-    # - kotlin-metadata
-    # - commons-codec
-    #'android.arch.persistence.room:compiler': {'name':'android-arch-room-compiler', 'path':'arch-room/compiler'},
-    # Missing dependencies:
-    # - rxjava
-    #'android.arch.persistence.room:rxjava2': {'name':'android-arch-room-rxjava2', 'path':'arch-room/rxjava2'},
+    'androidx.arch.core:core-common': { },
+    'androidx.arch.core:core-runtime': { },
+    'androidx.lifecycle:lifecycle-common': { },
+    'androidx.lifecycle:lifecycle-common-java8': { },
+    'androidx.lifecycle:lifecycle-extensions': { },
+    'androidx.lifecycle:lifecycle-livedata': { },
+    'androidx.lifecycle:lifecycle-livedata-ktx': { },
+    'androidx.lifecycle:lifecycle-livedata-core': { },
+    'androidx.lifecycle:lifecycle-livedata-core-ktx': { },
+    'androidx.lifecycle:lifecycle-process': { },
+    'androidx.lifecycle:lifecycle-runtime': { },
+    'androidx.lifecycle:lifecycle-runtime-ktx': { },
+    'androidx.lifecycle:lifecycle-service': { },
+    'androidx.lifecycle:lifecycle-viewmodel': { },
+    'androidx.lifecycle:lifecycle-viewmodel-ktx': { },
+    'androidx.lifecycle:lifecycle-viewmodel-savedstate': { },
+    'androidx.paging:paging-common': { },
+    'androidx.paging:paging-common-ktx': { },
+    'androidx.paging:paging-runtime': { },
+    'androidx.sqlite:sqlite': { },
+    'androidx.sqlite:sqlite-framework': { },
+    'androidx.room:room-common': {'host_and_device':True},
+    'androidx.room:room-compiler': {'host':True, 'extra-static-libs':{'guava-21.0'}},
+    'androidx.room:room-migration': {'host_and_device':True},
+    'androidx.room:room-runtime': { },
+    'androidx.room:room-testing': { },
+    'androidx.room:room-compiler-processing': {'host':True},
+    'androidx.work:work-runtime': { },
+    'androidx.work:work-runtime-ktx': { },
+    'androidx.work:work-testing': { },
 
     # Third-party dependencies
     'com.google.android:flexbox': {'name':'flexbox', 'path':'flexbox'},
 
     # Androidx Material Design Components
-    'com.google.android.material:material': {'name':'com.google.android.material_material', 'path':'com/google/android/material/material'},
+    'com.google.android.material:material': { },
 }
+
+# Mapping of POM dependencies to Soong build targets
+deps_rewrite = {
+    'auto-common':'auto_common',
+    'auto-value-annotations':'auto_value_annotations',
+    'com.google.auto.value:auto-value':'auto_value_plugin',
+    'monitor':'androidx.test.monitor',
+    'rules':'androidx.test.rules',
+    'runner':'androidx.test.runner',
+    'androidx.test:core':'androidx.test.core',
+    'com.squareup:javapoet':'javapoet',
+    'com.google.guava:listenablefuture':'guava-listenablefuture-prebuilt-jar',
+    'sqlite-jdbc':'xerial-sqlite-jdbc',
+    'gson':'gson-prebuilt-jar',
+    'com.intellij:annotations':'jetbrains-annotations',
+    'javax.annotation:javax.annotation-api':'javax-annotation-api-prebuilt-host-jar',
+    'org.robolectric:robolectric':'Robolectric_all-target',
+    'org.jetbrains.kotlin:kotlin-stdlib-common':'kotlin-stdlib',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-core':'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
+    'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
+}
+
+# List of artifacts that will be updated from GMaven
+# Use pattern: `group:library:version:extension`
+# e.g.:
+#   androidx.appcompat:appcompat:1.2.0:aar
+# Use `latest` to always fetch the latest version.
+# e.g.:
+#   androidx.appcompat:appcompat:latest:aar
+# Also make sure you add `group:library`:{} to maven_to_make as well.
+gmaven_artifacts = {}
+
+def name_for_artifact(group_artifact):
+    return group_artifact.replace(':','_')
+
+
+def path_for_artifact(group_artifact):
+    return group_artifact.replace('.','/').replace(':','/')
+
+
+# Add automatic entries to maven_to_make.
+for key in maven_to_make:
+    if ('name' not in maven_to_make[key]):
+        maven_to_make[key]['name'] = name_for_artifact(key)
+    if ('path' not in maven_to_make[key]):
+        maven_to_make[key]['path'] = path_for_artifact(key)
 
 # Always remove these files.
 blacklist_files = [
@@ -295,7 +366,7 @@ def detect_artifacts(maven_repo_dirs):
                     elif artifact_id in maven_to_make:
                         key = artifact_id
                     else:
-                        print_e('Failed to find artifact mapping for ' + group_artifact)
+                        # No mapping entry, skip this library.
                         continue
 
                     # Store the latest version.
@@ -333,22 +404,11 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
             args.append("-static-deps")
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
-        args.extend(["-rewrite=^auto-common$=auto_common"])
-        args.extend(["-rewrite=^auto-value-annotations$=auto_value_annotations"])
-        args.extend(["-rewrite=^monitor$=androidx.test.monitor"])
-        args.extend(["-rewrite=^rules$=androidx.test.rules"])
-        args.extend(["-rewrite=^runner$=androidx.test.runner"])
-        args.extend(["-rewrite=^com.squareup:javapoet$=javapoet"])
-        args.extend(["-rewrite=^com.google.guava:listenablefuture$=guava-listenablefuture-prebuilt-jar"])
-        args.extend(["-rewrite=^sqlite-jdbc$=xerial-sqlite-jdbc"])
-        args.extend(["-rewrite=^gson$=gson-prebuilt-jar"])
-        args.extend(["-rewrite=^com.intellij:annotations$=jetbrains-annotations"])
-        args.extend(["-extra-static-libs=androidx.room_room-compiler=guava-21.0"])
+        args.extend(["-rewrite=^" + key + "$=" + value for key, value in deps_rewrite.items()])
+        args.extend(["-extra-static-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['extra-static-libs'])) for name in maven_to_make if 'extra-static-libs' in maven_to_make[name]])
+        args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if 'optional-uses-libs' in maven_to_make[name]])
         args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
         args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
-        # these depend on GSON which is not in AOSP
-        args.extend(["-exclude=android-arch-room-migration",
-                     "-exclude=android-arch-room-testing"])
         args.extend(["."])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
@@ -368,8 +428,9 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
     maven_lib_vers = matcher.group(2)
     maven_lib_type = artifact_info.file[-3:]
 
-    make_lib_name = maven_to_make[artifact_info.key]['name']
-    make_dir_name = maven_to_make[artifact_info.key]['path']
+    group_artifact = artifact_info.key
+    make_lib_name = maven_to_make[group_artifact]['name']
+    make_dir_name = maven_to_make[group_artifact]['path']
 
     artifact_file = os.path.join(new_dir, artifact_info.file)
 
@@ -410,6 +471,89 @@ def process_aar(artifact_file, target_dir):
         file_path = os.path.join(target_dir, file)
         if os.path.exists(file_path):
             os.remove(file_path)
+
+
+class GMavenArtifact(object):
+    # A map from group:library to the latest available version
+    key_versions_map = {}
+    def __init__(self, artifact_glob):
+        try:
+            (group, library, version, ext) = artifact_glob.split(':')
+        except ValueError:
+            raise ValueError(f'Error in {artifact_glob} expected: group:library:version:ext')
+
+        if not group or not library or not version or not ext:
+            raise ValueError(f'Error in {artifact_glob} expected: group:library:version:ext')
+
+        self.group = group
+        self.group_path = group.replace('.', '/')
+        self.library = library
+        self.key = f'{group}:{library}'
+        self.version = version
+        self.ext = ext
+
+    def get_pom_file_url(self):
+        return f'{GMAVEN_BASE_URL}/{self.group_path}/{self.library}/{self.version}/{self.library}-{self.version}.pom'
+
+    def get_artifact_url(self):
+        return f'{GMAVEN_BASE_URL}/{self.group_path}/{self.library}/{self.version}/{self.library}-{self.version}.{self.ext}'
+
+    def get_latest_version(self):
+        latest_version = GMavenArtifact.key_versions_map[self.key] \
+                if self.key in GMavenArtifact.key_versions_map else None
+
+        if not latest_version:
+            print(f'Fetching latest version for {self.key}')
+            group_index_url = f'{GMAVEN_BASE_URL}/{self.group_path}/group-index.xml'
+            import xml.etree.ElementTree as ET
+            tree = ET.parse(urllib.request.urlopen(group_index_url))
+            root = tree.getroot()
+            libraries = root.findall('./*[@versions]')
+            for library in libraries:
+                key = f'{root.tag}:{library.tag}'
+                GMavenArtifact.key_versions_map[key] = library.get('versions').split(',')[-1]
+            latest_version = GMavenArtifact.key_versions_map[self.key]
+        return latest_version
+
+
+def fetch_gmaven_artifact(artifact):
+    """Fetch a GMaven artifact.
+
+    Downloads a GMaven artifact
+    (https://developer.android.com/studio/build/dependencies#gmaven-access)
+
+    Args:
+        artifact_glob: an instance of GMavenArtifact.
+    """
+    download_to = os.path.join('gmaven', artifact.group, artifact.library, artifact.version)
+
+    _DownloadFileToDisk(artifact.get_pom_file_url(), os.path.join(download_to, f'{artifact.library}-{artifact.version}.pom'))
+    _DownloadFileToDisk(artifact.get_artifact_url(), os.path.join(download_to, f'{artifact.library}-{artifact.version}.{artifact.ext}'))
+
+    return download_to
+
+
+def _DownloadFileToDisk(url, filepath):
+    """Download the file at URL to the location dictated by the path.
+
+    Args:
+        url: Remote URL to download file from.
+        filepath: Filesystem path to write the file to.
+    """
+    print(f'Downloading URL: {url}')
+    file_data = urllib.request.urlopen(url)
+
+    try:
+        os.makedirs(os.path.dirname(filepath))
+    except os.error:
+        # This is a common situation - os.makedirs fails if dir already exists.
+        pass
+    try:
+        with open(filepath, 'wb') as f:
+            f.write(six.ensure_binary(file_data.read()))
+    except:
+        os.remove(os.path.dirname(filepath))
+        raise
 
 
 def fetch_artifact(target, build_id, artifact_path):
@@ -457,6 +601,18 @@ def fetch_and_extract(target, build_id, file, artifact_path=None):
     if not artifact_path:
         return None
     return extract_artifact(artifact_path)
+
+
+def update_gmaven(gmaven_artifacts):
+    artifacts = [GMavenArtifact(artifact) for artifact in gmaven_artifacts]
+    for artifact in artifacts:
+        if artifact.version == 'latest':
+            artifact.version = artifact.get_latest_version()
+
+    artifact_dirs = [fetch_gmaven_artifact(artifact) for artifact in artifacts]
+    if not transform_maven_repos(['gmaven'], gmaven_dir, extract_res=False):
+        return []
+    return [artifact.key for artifact in artifacts]
 
 
 def update_androidx(target, build_id, local_file):
@@ -518,8 +674,7 @@ def update_material(file):
     return transform_maven_repos([design_dir],
                                  os.path.join(extras_dir, 'material-design-x'), extract_res=False)
 
-
-def update_framework(build_id, sdk_dir):
+def update_framework(target, build_id, sdk_dir):
     api_scope_list = ['public', 'system', 'test', 'module-lib', 'system-server']
     if sdk_dir == 'current':
         api_scope_list.append('core')
@@ -529,15 +684,21 @@ def update_framework(build_id, sdk_dir):
         if api_scope == 'core':
             artifact_to_path = {'core.current.stubs.jar': path(target_dir, 'android.jar')}
         else:
-            artifact_to_path = {'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*')}
+            artifact_to_path = {
+                'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*'),
+            }
+            if api_scope == 'public' or api_scope == 'module-lib':
+                # Distinct core-for-system-modules.jar files are only provided
+                # for the public and module-lib API surfaces.
+                artifact_to_path['system-modules/' + api_scope + '/core-for-system-modules.jar'] = path(target_dir, '*')
 
-        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+        if not fetch_artifacts(target, build_id, artifact_to_path):
             return False
 
         if api_scope == 'public':
             # Fetch a few artifacts from the public sdk.
             artifact = 'sdk-repo-linux-platforms-%s.zip' % build_id.fs_id
-            artifact_path = fetch_artifact(framework_sdk_target, build_id.url_id, artifact)
+            artifact_path = fetch_artifact(target, build_id.url_id, artifact)
             if not artifact_path:
                 return False
 
@@ -546,7 +707,6 @@ def update_framework(build_id, sdk_dir):
                     'android.jar',
                     'framework.aidl',
                     'uiautomator.jar',
-                    'core-for-system-modules.jar',
                     'data/annotations.zip',
                     'data/api-versions.xml']
                 for filename in extra_files:
@@ -561,7 +721,7 @@ def update_framework(build_id, sdk_dir):
                     mv(src_path, dst_path)
 
             # Filtered API DB is currently only available for "public"
-            fetch_artifacts(framework_sdk_target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
+            fetch_artifacts(target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
 
     return True
 
@@ -577,22 +737,22 @@ def update_makefile(build_id):
 
     return True
 
-def finalize_sdk(build_id, sdk_version):
+def finalize_sdk(target, build_id, sdk_version):
     target_finalize_dir = '%d' % sdk_version
 
     for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {'apistubs/android/' + api_scope + '/api/*.txt':
                             path(target_finalize_dir, api_scope, 'api', '*')}
 
-        if not fetch_artifacts(framework_sdk_target, build_id, artifact_to_path):
+        if not fetch_artifacts(target, build_id, artifact_to_path):
             return False
 
-    return update_framework(build_id, target_finalize_dir) \
+    return update_framework(target, build_id, target_finalize_dir) \
             and update_makefile(target_finalize_dir)
 
 
-def update_framework_current(build_id):
-    return update_framework(build_id, current_path)
+def update_framework_current(target, build_id):
+    return update_framework(target, build_id, current_path)
 
 
 def update_buildtools(target, arch, build_id):
@@ -697,7 +857,7 @@ rm(temp_dir)
 parser = argparse.ArgumentParser(
     description=('Update current prebuilts'))
 parser.add_argument(
-    'source',
+    'source', nargs='?',
     help='Build server build ID or local Maven ZIP file')
 parser.add_argument(
     '-m', '--material', action="store_true",
@@ -713,13 +873,24 @@ parser.add_argument(
     help='If specified, updates only the Android Platform')
 parser.add_argument(
     '-f', '--finalize_sdk', type=int,
-    help='If specified, imports the source build as the specified finalized SDK version')
+    help='Finalize the build as the specified SDK version. Must be used together with -e')
+parser.add_argument(
+    '-e', '--finalize_extension', type=int,
+    help='Finalize the build as the specified extension SDK version. Must be used together with -f')
+parser.add_argument('--bug', type=int, help='The bug number to add to the commit message.')
+parser.add_argument(
+    '--sdk_target',
+    default=framework_sdk_target,
+    help='If specified, the name of the build target from which to retrieve the SDK when -p or -f is specified.')
 parser.add_argument(
     '-b', '--buildtools', action="store_true",
     help='If specified, updates only the Build Tools')
 parser.add_argument(
     '-x', '--androidx', action="store_true",
     help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by other arguments')
+parser.add_argument(
+    '-g', '--gmaven', action="store_true",
+    help='If specified, updates only the artifact from GMaven libraries excluding those covered by other arguments')
 parser.add_argument(
     '--commit-first', action="store_true",
     help='If specified, then if uncommited changes exist, commit before continuing')
@@ -728,17 +899,26 @@ parser.add_argument(
     help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
 args = parser.parse_args()
 args.file = True
-if not args.source:
-    parser.error("You must specify a build ID or local Maven ZIP file")
-    sys.exit(1)
-if not (args.platform or args.buildtools \
+
+if not args.source and (args.platform or args.buildtools \
                 or args.jetifier or args.androidx or args.material \
                 or args.finalize_sdk or args.constraint):
+    parser.error("You must specify a build ID or local Maven ZIP file")
+    sys.exit(1)
+if not (args.gmaven or args.platform or args.buildtools \
+                or args.jetifier or args.androidx or args.material \
+                or args.finalize_sdk or args.finalize_extension or args.constraint):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
-if (args.constraint or args.material or args.androidx) \
+if (args.constraint or args.material or args.androidx or args.gmaven) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
+    sys.exit(1)
+if (args.finalize_sdk is None) != (args.finalize_extension is None):
+    parser.error("Either both or neither of -e and -f must be specified.")
+    sys.exit(1)
+if args.finalize_sdk and not args.bug:
+    parser.error("Specifying a bug ID with --bug is required when finalizing an SDK.")
     sys.exit(1)
 
 if uncommittedChangesExist():
@@ -750,6 +930,10 @@ if uncommittedChangesExist():
     print_e('FAIL: There are uncommitted changes here. Please commit or stash before continuing, because %s will run "git reset --hard" if execution fails' % os.path.basename(__file__))
     sys.exit(1)
 
+commit_message_suffix = ""
+if args.bug:
+    commit_message_suffix = "\n\nBug: %d" % args.bug
+
 try:
     components = None
     if args.constraint:
@@ -757,6 +941,13 @@ try:
             components = append(components, 'Constraint Layout X')
         else:
             print_e('Failed to update Constraint Layout X, aborting...')
+            sys.exit(1)
+    if args.gmaven:
+        updated_artifacts = update_gmaven(gmaven_artifacts)
+        if updated_artifacts:
+            components = append(components, '\n'.join(updated_artifacts))
+        else:
+            print_e('Failed to update GMaven, aborting...')
             sys.exit(1)
     if args.androidx:
         if update_androidx('androidx', \
@@ -772,22 +963,30 @@ try:
             print_e('Failed to update Jetifier, aborting...')
             sys.exit(1)
     if args.platform or args.finalize_sdk:
-        if update_framework_current(getBuildId(args)):
+        if update_framework_current(args.sdk_target, getBuildId(args)):
             components = append(components, 'platform SDK')
         else:
             print_e('Failed to update platform SDK, aborting...')
             sys.exit(1)
     if args.finalize_sdk:
         n = args.finalize_sdk
-        if finalize_sdk(getBuildId(args), n):
-            # We commit the finalized dir separately from the current sdk update.
-            msg = "Import final sdk version %d from build %s" % (n, getBuildId(args).url_id)
-            subprocess.check_call(['git', 'add', '%d' % n])
-            subprocess.check_call(['git', 'add', 'Android.bp'])
-            subprocess.check_call(['git', 'commit', '-m', msg])
-        else:
+        if not finalize_sdk(args.sdk_target, getBuildId(args), n):
             print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
+        # We commit the finalized dir separately from the current sdk update.
+        msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
+        subprocess.check_call(['git', 'add', '%d' % n])
+        subprocess.check_call(['git', 'add', 'Android.bp'])
+        subprocess.check_call(['git', 'commit', '-m', msg])
+
+        # Finalize extension sdk level
+        readme = f"- {args.finalize_extension}: Finalized together with Android {args.finalize_sdk} (all modules)"
+        cmd = extension_sdk_finalization_cmd.format(
+            readme=readme,
+            bug=args.bug,
+            extension_version=args.finalize_extension,
+            build_id=getBuildId(args).url_id)
+        subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
     if args.material:
         if update_material(getFile(args)):
             components = append(components, 'intermediate-AndroidX Design Library')
@@ -806,15 +1005,17 @@ try:
 
 
     subprocess.check_call(['git', 'add', current_path, buildtools_dir])
-    if not args.source.isnumeric():
+    if not args.source and args.gmaven:
+        src_msg = "GMaven"
+    elif not args.source.isnumeric():
         src_msg = "local Maven ZIP"
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
-    msg = "Import %s from %s\n\n%s" % (components, src_msg, flatten(sys.argv))
+    msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
     subprocess.check_call(['git', 'commit', '-m', msg])
     if args.finalize_sdk:
-        print('NOTE: Created two commits:')
-        subprocess.check_call(['git', 'log', '-2', '--oneline'])
+        print('NOTE: Created three commits:')
+        subprocess.check_call(['git', 'log', '-3', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
