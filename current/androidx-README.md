@@ -3,5 +3,5 @@
 
 # Next steps
 - For source-code for your IDE, please use `*-sources.jar`s in `prebuilts/sdk/current/androidx`
-- To contribute, check out the AOSP ([onboarding guide](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-master-dev:docs/onboarding.md)).
+- To contribute, check out the AOSP ([onboarding guide](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:docs/onboarding.md)).
 - For internal contributions dependent on pre-release platforms, see go/androidx-dev.
