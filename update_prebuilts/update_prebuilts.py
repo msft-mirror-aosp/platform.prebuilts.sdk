@@ -220,7 +220,7 @@ maven_to_make = {
 deps_rewrite = {
     'auto-common':'auto_common',
     'auto-value-annotations':'auto_value_annotations',
-    'com.google.auto.value:auto-value':'auto_value_plugin',
+    'com.google.auto.value:auto-value':'libauto_value_plugin',
     'monitor':'androidx.test.monitor',
     'rules':'androidx.test.rules',
     'runner':'androidx.test.runner',
