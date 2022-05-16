@@ -167,6 +167,7 @@ maven_to_make = {
     'androidx.compose.ui:ui-util': { },
     'androidx.compose.ui:ui-test': { },
     'androidx.compose.ui:ui-test-junit4': { },
+    'androidx.compose.ui:ui-test-manifest': { },
     'androidx.compose.animation:animation-core': { },
     'androidx.compose.animation:animation': { },
     'androidx.compose.material:material-icons-core': { },
