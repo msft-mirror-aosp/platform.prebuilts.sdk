@@ -95,7 +95,6 @@ android_library_import {
         "androidx.viewpager_viewpager",
         "androidx.coordinatorlayout_coordinatorlayout",
         "androidx.drawerlayout_drawerlayout",
-        "androidx.slidingpanelayout_slidingpanelayout",
         "androidx.interpolator_interpolator",
         "androidx.swiperefreshlayout_swiperefreshlayout",
         "androidx.asynclayoutinflater_asynclayoutinflater",
@@ -121,7 +120,6 @@ android_library {
         "androidx.viewpager_viewpager",
         "androidx.coordinatorlayout_coordinatorlayout",
         "androidx.drawerlayout_drawerlayout",
-        "androidx.slidingpanelayout_slidingpanelayout",
         "androidx.interpolator_interpolator",
         "androidx.swiperefreshlayout_swiperefreshlayout",
         "androidx.asynclayoutinflater_asynclayoutinflater",
@@ -175,3 +173,74 @@ android_library {
     ],
     java_version: "1.7",
 }
+
+android_library_import {
+    name: "androidx.legacy_legacy-support-core-utils-nodeps",
+    aars: ["m2repository/androidx/legacy/legacy-support-core-utils/1.1.0-alpha01/legacy-support-core-utils-1.1.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.documentfile_documentfile",
+        "androidx.loader_loader",
+        "androidx.localbroadcastmanager_localbroadcastmanager",
+        "androidx.print_print",
+    ],
+}
+
+android_library {
+    name: "androidx.legacy_legacy-support-core-utils",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.legacy_legacy-support-core-utils/AndroidManifest.xml",
+    static_libs: [
+        "androidx.legacy_legacy-support-core-utils-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.documentfile_documentfile",
+        "androidx.loader_loader",
+        "androidx.localbroadcastmanager_localbroadcastmanager",
+        "androidx.print_print",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.localbroadcastmanager_localbroadcastmanager-nodeps",
+    aars: ["m2repository/androidx/localbroadcastmanager/localbroadcastmanager/1.1.0-alpha02/localbroadcastmanager-1.1.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+    ],
+}
+
+android_library {
+    name: "androidx.localbroadcastmanager_localbroadcastmanager",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.localbroadcastmanager_localbroadcastmanager/AndroidManifest.xml",
+    static_libs: [
+        "androidx.localbroadcastmanager_localbroadcastmanager-nodeps",
+        "androidx.annotation_annotation",
+    ],
+    java_version: "1.7",
+}
+
