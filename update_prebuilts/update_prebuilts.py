@@ -16,7 +16,7 @@ import urllib.request, urllib.parse, urllib.error
 import shlex
 
 current_path = 'current'
-framework_sdk_target = 'sdk_phone_armv7-win_sdk'
+framework_sdk_target = 'sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
