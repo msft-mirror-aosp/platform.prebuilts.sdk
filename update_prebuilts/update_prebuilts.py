@@ -13,6 +13,7 @@ from functools import reduce
 from pathlib import Path
 import six
 import urllib.request, urllib.parse, urllib.error
+import shlex
 
 current_path = 'current'
 framework_sdk_target = 'sdk_phone_armv7-win_sdk'
@@ -22,7 +23,7 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -b {bug} -f {extension_version} {build_id}' % (
+extension_sdk_finalization_cmd = '%s -r "{readme}" -b {bug} -f {extension_version} {build_id}' % (
     "packages/modules/common/tools/finalize_sdk.py"
 )
 temp_dir = os.path.join(os.getcwd(), "support_tmp")
@@ -979,11 +980,13 @@ try:
         subprocess.check_call(['git', 'commit', '-m', msg])
 
         # Finalize extension sdk level
+        readme = f"- {args.finalize_extension}: Finalized together with Android {args.finalize_sdk} (all modules)"
         cmd = extension_sdk_finalization_cmd.format(
+            readme=readme,
             bug=args.bug,
             extension_version=args.finalize_extension,
             build_id=getBuildId(args).url_id)
-        subprocess.check_call(cmd.split(' '), cwd=repo_root_dir.resolve())
+        subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
     if args.material:
         if update_material(getFile(args)):
             components = append(components, 'intermediate-AndroidX Design Library')
