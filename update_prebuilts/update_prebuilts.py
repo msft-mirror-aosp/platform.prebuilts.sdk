@@ -14,7 +14,7 @@ import six
 import urllib.request, urllib.parse, urllib.error
 
 current_path = 'current'
-framework_sdk_target = 'sdk_phone_armv7-win_sdk'
+framework_sdk_target = 'sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
@@ -220,7 +220,7 @@ maven_to_make = {
 deps_rewrite = {
     'auto-common':'auto_common',
     'auto-value-annotations':'auto_value_annotations',
-    'com.google.auto.value:auto-value':'auto_value_plugin',
+    'com.google.auto.value:auto-value':'libauto_value_plugin',
     'monitor':'androidx.test.monitor',
     'rules':'androidx.test.rules',
     'runner':'androidx.test.runner',
