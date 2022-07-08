@@ -63,7 +63,7 @@ maven_to_make = {
     'androidx.annotation:annotation': {'host_and_device':True},
     'androidx.annotation:annotation-experimental': { },
     'androidx.asynclayoutinflater:asynclayoutinflater': { },
-    'androidx.collection:collection': { },
+    'androidx.collection:collection': {'extra-static-libs':{'androidx.collection_collection-jvm'}},
     'androidx.collection:collection-ktx': { },
     'androidx.collection:collection-jvm': { },
     'androidx.concurrent:concurrent-futures': { },
