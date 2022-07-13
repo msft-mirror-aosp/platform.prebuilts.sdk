@@ -78,6 +78,7 @@ maven_to_make = {
     'androidx.cursoradapter:cursoradapter': { },
     'androidx.browser:browser': { },
     'androidx.customview:customview': { },
+    'androidx.customview:customview-poolingcontainer': { },
     'androidx.documentfile:documentfile': { },
     'androidx.drawerlayout:drawerlayout': { },
     'androidx.dynamicanimation:dynamicanimation': { },
