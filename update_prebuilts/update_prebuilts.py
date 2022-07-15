@@ -390,7 +390,9 @@ def detect_artifacts(maven_repo_dirs):
                     elif os.path.exists(artifact_file + '.aar'):
                         artifact_file = artifact_file + '.aar'
                     else:
-                        print_e('Failed to find artifact for ' + artifact_file)
+                        # This error only occurs for a handful of gradle.plugin artifacts that only
+                        # ship POM files, so we probably don't need to log unless we're debugging.
+                        # print_e('Failed to find artifact for ' + artifact_file)
                         continue
 
                     # Make relative to root.
@@ -416,7 +418,8 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
+                          include_static_deps=True, exclude=[]):
     """Transforms a standard Maven repository to be compatible with the Android build system.
 
     Args:
@@ -424,20 +427,40 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         transformed_dir: relative path for output, ex. androidx
         extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
         include_static_deps: whether to pass --static-deps to pom2bp
+        exclude: list of Maven groupIds or unversioned artifact coordinates to exclude from
+                 updates, ex. androidx.core or androidx.core:core
     Returns:
         True if successful, false otherwise.
     """
     cwd = os.getcwd()
+    output_dir = os.path.join(cwd, transformed_dir)
 
     # Use a temporary working directory.
-    maven_lib_info = detect_artifacts(maven_repo_dirs)
     working_dir = temp_dir
+
+    # Handle exclusions by removing any new prebuilts from the working directory, then copying in
+    # any existing prebuilts. This must happen before we parse the artifacts.
+    for maven_repo in maven_repo_dirs:
+        for group_artifact in exclude:
+            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+            working_path = os.path.join(maven_repo, artifact_path)
+            if os.path.exists(working_path):
+                rm(working_path)
+                output_path = os.path.join(output_dir, artifact_path)
+                if os.path.exists(output_path):
+                    print(f'Excluded {group_artifact} from update, used existing version')
+                    mv(output_path, working_path)
+                else:
+                    print(f'Excluded {group_artifact} from update, no existing version present')
+
+    # Parse artifacts.
+    maven_lib_info = detect_artifacts(maven_repo_dirs)
 
     if not maven_lib_info:
         print_e('Failed to detect artifacts')
         return False
 
-    # Extract some files (for example, AndroidManifest.xml) from any relevant artifacts.
+    # Move libraries into the working directory, performing any necessary transformations.
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
@@ -460,7 +483,6 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, transformed_dir)
     mv(working_dir, output_dir)
     return True
 
@@ -502,8 +524,6 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
         with zipfile.ZipFile(artifact_file) as zip:
             manifests_dir = os.path.join(working_dir, "manifests")
             zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
-
-    print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
 
 def process_aar(artifact_file, target_dir):
@@ -699,7 +719,7 @@ def update_androidx(target, build_id, local_file, exclude):
     mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
 
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False):
+    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, exclude=exclude):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
@@ -954,6 +974,9 @@ parser.add_argument(
     '-x', '--androidx', action="store_true",
     help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by other arguments')
 parser.add_argument(
+    '--exclude', action='append',
+    help='If specified with -x, excludes the specified Jetpack library Maven group or artifact from updates')
+parser.add_argument(
     '-g', '--gmaven', action="store_true",
     help='If specified, updates only the artifact from GMaven libraries excluding those covered by other arguments')
 parser.add_argument(
@@ -1011,8 +1034,7 @@ try:
             print_e('Failed to update GMaven, aborting...')
             sys.exit(1)
     if args.androidx:
-        if update_androidx('androidx', \
-                           getBuildId(args), getFile(args)):
+        if update_androidx('androidx', getBuildId(args), getFile(args), args.exclude):
             components = append(components, 'AndroidX')
         else:
             print_e('Failed to update AndroidX, aborting...')
@@ -1055,8 +1077,6 @@ try:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
 
-
-
     subprocess.check_call(['git', 'add', current_path, buildtools_dir])
     if not args.source and args.gmaven:
         src_msg = "GMaven"
@@ -1065,10 +1085,13 @@ try:
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
-    subprocess.check_call(['git', 'commit', '-m', msg])
+    subprocess.check_call(['git', 'commit', '-q', '-m', msg])
     if args.finalize_sdk:
-        print('NOTE: Created two commits:')
+        print('Created two commits:')
         subprocess.check_call(['git', 'log', '-2', '--oneline'])
+    else:
+        print('Created commit:')
+        subprocess.check_call(['git', 'log', '-1', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
