@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-# This script is used to update platform SDK prebuilts, Support Library, and a variety of other
-# prebuilt libraries used by Android's Makefile builds. For details on how to use this script,
-# visit go/update-prebuilts.
+"""Updates prebuilt libraries used by Android builds.
+
+For details on how to use this script, visit go/update-prebuilts.
+"""
 import os, sys, getopt, zipfile, re
 import argparse
 import glob
@@ -256,11 +257,26 @@ deps_rewrite = {
 # Also make sure you add `group:library`:{} to maven_to_make as well.
 gmaven_artifacts = {}
 
+
 def name_for_artifact(group_artifact):
+    """Returns the build system target name for a given library's Maven coordinate.
+
+    Args:
+        group_artifact: an unversioned Maven artifact coordinate, ex. androidx.core:core
+    Returns:
+        The build system target name for the artifact, ex. androidx.core_core.
+    """
     return group_artifact.replace(':','_')
 
 
 def path_for_artifact(group_artifact):
+    """Returns the file system path for a given library's Maven coordinate.
+
+    Args:
+        group_artifact: an unversioned Maven artifact coordinate, ex. androidx.core:core
+    Returns:
+        The file system path for the artifact, ex. androidx/core/core.
+    """
     return group_artifact.replace('.','/').replace(':','/')
 
 
@@ -312,6 +328,11 @@ def flatten(list):
 
 
 def rm(path):
+    """Removes the file or directory tree at the specified path, if it exists.
+
+    Args:
+        path: Path to remove
+    """
     if os.path.isdir(path):
         rmtree(path)
     elif os.path.exists(path):
@@ -319,6 +340,16 @@ def rm(path):
 
 
 def mv(src_path, dst_path):
+    """Moves the file or directory tree at the source path to the destination path.
+
+    This method does not merge directory contents. If the destination is a directory that already
+    exists, it will be removed and replaced by the source. If the destination is rooted at a path
+    that does not exist, it will be created.
+
+    Args:
+        src_path: Source path
+        dst_path: Destination path
+    """
     if os.path.exists(dst_path):
         rm(dst_path)
     if not os.path.exists(os.path.dirname(dst_path)):
@@ -390,6 +421,16 @@ def detect_artifacts(maven_repo_dirs):
 
 
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
+    """Transforms a standard Maven repository to be compatible with the Android build system.
+
+    Args:
+        maven_repo_dirs: path to local Maven repository
+        transformed_dir: relative path for output, ex. androidx
+        extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
+        include_static_deps: whether to pass --static-deps to pom2bp
+    Returns:
+        True if successful, false otherwise.
+    """
     cwd = os.getcwd()
 
     # Use a temporary working directory.
@@ -400,11 +441,11 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         print_e('Failed to detect artifacts')
         return False
 
-    # extract some files (for example, AndroidManifest.xml) from any relevant artifacts
+    # Extract some files (for example, AndroidManifest.xml) from any relevant artifacts.
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
-    # generate a single Android.bp that specifies to use all of the above artifacts
+    # Generate a single Android.bp that specifies to use all of the above artifacts.
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
         args = ["pom2bp"]
@@ -427,8 +468,18 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
     mv(working_dir, output_dir)
     return True
 
-# moves <artifact_info> (of type MavenLibraryInfo) into the appropriate part of <working_dir> , and possibly unpacks any necessary included files
+#
 def transform_maven_lib(working_dir, artifact_info, extract_res):
+    """Transforms the specified artifact for use in the Android build system.
+
+    Moves relevant files for the artifact represented by artifact_info of type MavenLibraryInfo into
+    the appropriate path inside working_dir, unpacking files needed by the build system from AARs.
+
+    Args:
+        working_dir: The directory into which the artifact should be moved
+        artifact_info: A MavenLibraryInfo representing the library artifact
+        extract_res: True to extract resources from AARs, false otherwise.
+    """
     # Move library into working dir
     new_dir = os.path.normpath(os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
     mv(artifact_info.dir, new_dir)
@@ -625,7 +676,18 @@ def update_gmaven(gmaven_artifacts):
     return [artifact.key for artifact in artifacts]
 
 
-def update_androidx(target, build_id, local_file):
+def update_androidx(target, build_id, local_file, exclude):
+    """Fetches and extracts Jetpack library prebuilts.
+
+    Args:
+        target: Android build server target name, must be specified if local_file is empty
+        build_id: Optional Android build server ID, must be specified if local_file is empty
+        local_file: Optional local top-of-tree ZIP, must be specified if build_id is empty
+        exclude: List of Maven groupIds or unversioned artifact coordinates to exclude from
+                 updates, ex. android.core or androidx.core:core
+    Returns:
+        True if successful, false otherwise.
+    """
     if build_id:
         repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
