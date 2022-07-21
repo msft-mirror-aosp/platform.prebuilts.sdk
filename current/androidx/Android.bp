@@ -588,10 +588,13 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.test.monitor",
+        "androidx.tracing_tracing-perfetto-common",
         "wire-runtime",
         "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
         "androidx.tracing_tracing-ktx",
+        "androidx.tracing_tracing-perfetto",
+        "androidx.tracing_tracing-perfetto-binary",
     ],
 }
 
@@ -608,10 +611,13 @@ android_library {
         "androidx.benchmark_benchmark-common-nodeps",
         "androidx.annotation_annotation",
         "androidx.test.monitor",
+        "androidx.tracing_tracing-perfetto-common",
         "wire-runtime",
         "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
         "androidx.tracing_tracing-ktx",
+        "androidx.tracing_tracing-perfetto",
+        "androidx.tracing_tracing-perfetto-binary",
     ],
     java_version: "1.7",
 }
@@ -5017,44 +5023,8 @@ android_library {
 }
 
 android_library_import {
-    name: "androidx.textclassifier_textclassifier-nodeps",
-    aars: ["m2repository/androidx/textclassifier/textclassifier/1.0.0-alpha03/textclassifier-1.0.0-alpha03.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "14",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.appcompat_appcompat",
-        "androidx.core_core",
-    ],
-}
-
-android_library {
-    name: "androidx.textclassifier_textclassifier",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "14",
-    manifest: "manifests/androidx.textclassifier_textclassifier/AndroidManifest.xml",
-    static_libs: [
-        "androidx.textclassifier_textclassifier-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.appcompat_appcompat",
-        "androidx.core_core",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.tracing_tracing-ktx-nodeps",
-    aars: ["m2repository/androidx/tracing/tracing-ktx/1.1.0-beta03/tracing-ktx-1.1.0-beta03.aar"],
+    aars: ["m2repository/androidx/tracing/tracing-ktx/1.2.0-alpha01/tracing-ktx-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5085,8 +5055,96 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.tracing_tracing-perfetto-binary-nodeps",
+    aars: ["m2repository/androidx/tracing/tracing-perfetto-binary/1.0.0-alpha01/tracing-perfetto-binary-1.0.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "androidx.tracing_tracing-perfetto-binary",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.tracing_tracing-perfetto-binary/AndroidManifest.xml",
+    static_libs: [
+        "androidx.tracing_tracing-perfetto-binary-nodeps",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "androidx.tracing_tracing-perfetto-common-nodeps",
+    jars: ["m2repository/androidx/tracing/tracing-perfetto-common/1.0.0-alpha01/tracing-perfetto-common-1.0.0-alpha01.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.tracing_tracing-perfetto-common",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.tracing_tracing-perfetto-common-nodeps",
+        "androidx.annotation_annotation",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.tracing_tracing-perfetto-nodeps",
+    aars: ["m2repository/androidx/tracing/tracing-perfetto/1.0.0-alpha01/tracing-perfetto-1.0.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.tracing_tracing-perfetto-common",
+        "kotlin-stdlib",
+    ],
+}
+
+android_library {
+    name: "androidx.tracing_tracing-perfetto",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.tracing_tracing-perfetto/AndroidManifest.xml",
+    static_libs: [
+        "androidx.tracing_tracing-perfetto-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.tracing_tracing-perfetto-common",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.tracing_tracing-nodeps",
-    aars: ["m2repository/androidx/tracing/tracing/1.1.0-beta03/tracing-1.1.0-beta03.aar"],
+    aars: ["m2repository/androidx/tracing/tracing/1.2.0-alpha01/tracing-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
