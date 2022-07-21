@@ -981,7 +981,7 @@ parser.add_argument(
     '-x', '--androidx', action="store_true",
     help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by other arguments')
 parser.add_argument(
-    '--exclude', action='append',
+    '--exclude', action='append', default=[],
     help='If specified with -x, excludes the specified Jetpack library Maven group or artifact from updates')
 parser.add_argument(
     '-g', '--gmaven', action="store_true",
