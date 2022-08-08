@@ -134,6 +134,7 @@ maven_to_make = {
     'androidx.viewpager2:viewpager2': { },
     'androidx.wear:wear': { },
     'androidx.wear:wear-ongoing': { },
+    'androidx.javascriptengine:javascriptengine': { },
     'androidx.webkit:webkit': { },
     'androidx.biometric:biometric': { },
     'androidx.autofill:autofill': { },
