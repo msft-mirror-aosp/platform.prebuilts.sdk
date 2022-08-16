@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 
-# This script is used to update platform SDK prebuilts, Support Library, and a variety of other
-# prebuilt libraries used by Android's Makefile builds. For details on how to use this script,
-# visit go/update-prebuilts.
+"""Updates prebuilt libraries used by Android builds.
+
+For details on how to use this script, visit go/update-prebuilts.
+"""
 import os, sys, getopt, zipfile, re
 import argparse
 import glob
 import subprocess
-from shutil import copyfile, rmtree, which, move
+from shutil import copyfile, rmtree, which, move, copy, copytree
 from distutils.version import LooseVersion
 from functools import reduce
 import six
@@ -42,6 +43,9 @@ maven_to_make = {
     'androidx.benchmark:benchmark-common': { },
     'androidx.benchmark:benchmark-junit4': { },
     'androidx.tracing:tracing': { },
+    'androidx.tracing:tracing-perfetto': { },
+    'androidx.tracing:tracing-perfetto-binary': { },
+    'androidx.tracing:tracing-perfetto-common': { },
     'androidx.tracing:tracing-ktx': { },
     'androidx.slice:slice-builders': { },
     'androidx.slice:slice-core': { },
@@ -55,7 +59,7 @@ maven_to_make = {
     'androidx.annotation:annotation': {'host_and_device':True},
     'androidx.annotation:annotation-experimental': { },
     'androidx.asynclayoutinflater:asynclayoutinflater': { },
-    'androidx.collection:collection': { },
+    'androidx.collection:collection': {'extra-static-libs':{'androidx.collection_collection-jvm'}},
     'androidx.collection:collection-ktx': { },
     'androidx.collection:collection-jvm': { },
     'androidx.concurrent:concurrent-futures': { },
@@ -71,6 +75,7 @@ maven_to_make = {
     'androidx.cursoradapter:cursoradapter': { },
     'androidx.browser:browser': { },
     'androidx.customview:customview': { },
+    'androidx.customview:customview-poolingcontainer': { },
     'androidx.documentfile:documentfile': { },
     'androidx.drawerlayout:drawerlayout': { },
     'androidx.dynamicanimation:dynamicanimation': { },
@@ -129,6 +134,7 @@ maven_to_make = {
     'androidx.viewpager2:viewpager2': { },
     'androidx.wear:wear': { },
     'androidx.wear:wear-ongoing': { },
+    'androidx.javascriptengine:javascriptengine': { },
     'androidx.webkit:webkit': { },
     'androidx.biometric:biometric': { },
     'androidx.autofill:autofill': { },
@@ -248,11 +254,26 @@ deps_rewrite = {
 # Also make sure you add `group:library`:{} to maven_to_make as well.
 gmaven_artifacts = {}
 
+
 def name_for_artifact(group_artifact):
+    """Returns the build system target name for a given library's Maven coordinate.
+
+    Args:
+        group_artifact: an unversioned Maven artifact coordinate, ex. androidx.core:core
+    Returns:
+        The build system target name for the artifact, ex. androidx.core_core.
+    """
     return group_artifact.replace(':','_')
 
 
 def path_for_artifact(group_artifact):
+    """Returns the file system path for a given library's Maven coordinate.
+
+    Args:
+        group_artifact: an unversioned Maven artifact coordinate, ex. androidx.core:core
+    Returns:
+        The file system path for the artifact, ex. androidx/core/core.
+    """
     return group_artifact.replace('.','/').replace(':','/')
 
 
@@ -304,6 +325,11 @@ def flatten(list):
 
 
 def rm(path):
+    """Removes the file or directory tree at the specified path, if it exists.
+
+    Args:
+        path: Path to remove
+    """
     if os.path.isdir(path):
         rmtree(path)
     elif os.path.exists(path):
@@ -311,6 +337,16 @@ def rm(path):
 
 
 def mv(src_path, dst_path):
+    """Moves the file or directory tree at the source path to the destination path.
+
+    This method does not merge directory contents. If the destination is a directory that already
+    exists, it will be removed and replaced by the source. If the destination is rooted at a path
+    that does not exist, it will be created.
+
+    Args:
+        src_path: Source path
+        dst_path: Destination path
+    """
     if os.path.exists(dst_path):
         rm(dst_path)
     if not os.path.exists(os.path.dirname(dst_path)):
@@ -321,6 +357,31 @@ def mv(src_path, dst_path):
         else:
             dst = dst_path
         move(f, dst)
+
+
+def cp(src_path, dst_path):
+    """Copies the file or directory tree at the source path to the destination path.
+
+    This method does not merge directory contents. If the destination is a directory that already
+    exists, it will be removed and replaced by the source. If the destination is rooted at a path
+    that does not exist, it will be created.
+
+    Note that the implementation of this method differs from mv, in that it does not handle "*" in
+    the destination path.
+
+    Args:
+        src_path: Source path
+        dst_path: Destination path
+    """
+    if os.path.exists(dst_path):
+        rm(dst_path)
+    if not os.path.exists(os.path.dirname(dst_path)):
+        os.makedirs(os.path.dirname(dst_path))
+    for f in (glob.glob(src_path)):
+        if os.path.isdir(f):
+            copytree(f, dst_path)
+        else:
+            copy(f, dst_path)
 
 
 def detect_artifacts(maven_repo_dirs):
@@ -355,7 +416,9 @@ def detect_artifacts(maven_repo_dirs):
                     elif os.path.exists(artifact_file + '.aar'):
                         artifact_file = artifact_file + '.aar'
                     else:
-                        print_e('Failed to find artifact for ' + artifact_file)
+                        # This error only occurs for a handful of gradle.plugin artifacts that only
+                        # ship POM files, so we probably don't need to log unless we're debugging.
+                        # print_e('Failed to find artifact for ' + artifact_file)
                         continue
 
                     # Make relative to root.
@@ -381,22 +444,81 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
-    cwd = os.getcwd()
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
+                          include_static_deps=True, include=[], exclude=[]):
+    """Transforms a standard Maven repository to be compatible with the Android build system.
 
-    # Use a temporary working directory.
-    maven_lib_info = detect_artifacts(maven_repo_dirs)
+    When using the include argument by itself, all other libraries will be excluded. When using the
+    exclude argument by itself, all other libraries will be included. When using both arguments, the
+    inclusion list will be applied followed by the exclusion list.
+
+    Args:
+        maven_repo_dirs: path to local Maven repository
+        transformed_dir: relative path for output, ex. androidx
+        extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
+        include_static_deps: whether to pass --static-deps to pom2bp
+        include: list of Maven groupIds or unversioned artifact coordinates to include for
+                 updates, ex. androidx.core or androidx.core:core
+        exclude: list of Maven groupIds or unversioned artifact coordinates to exclude from
+                 updates, ex. androidx.core or androidx.core:core
+    Returns:
+        True if successful, false otherwise.
+    """
+    cwd = os.getcwd()
+    local_repo = os.path.join(cwd, transformed_dir)
     working_dir = temp_dir
+
+    # Handle inclusions by stashing the remote artifacts for the inclusions, replacing the entire
+    # remote repo with the local repo, then restoring the stashed artifacts.
+    for remote_repo in maven_repo_dirs:
+        remote_repo = os.path.join(cwd, remote_repo)
+        paths_to_copy = []
+        for group_artifact in include:
+            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+            remote_path = os.path.join(remote_repo, artifact_path)
+            working_path = os.path.join(working_dir, artifact_path)
+            if os.path.exists(remote_path):
+                print(f'Included {group_artifact} in update')
+                paths_to_copy.append([remote_path, working_path])
+
+        # Move included artifacts from repo to temp.
+        for [remote_path, working_path] in paths_to_copy:
+            mv(remote_path, working_path)
+
+        # Replace all remaining artifacts in remote repo with local repo.
+        cp(local_repo, remote_repo)
+
+        # Restore included artifacts to remote repo.
+        for [remote_path, working_path] in paths_to_copy:
+            mv(working_path, remote_path)
+
+    # Handle exclusions by replacing the remote artifacts for the exclusions with local artifacts.
+    # This must happen before we parse the artifacts.
+    for remote_repo in maven_repo_dirs:
+        for group_artifact in exclude:
+            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+            remote_path = os.path.join(remote_repo, artifact_path)
+            if os.path.exists(remote_path):
+                rm(remote_path)
+                local_path = os.path.join(local_repo, artifact_path)
+                if os.path.exists(local_path):
+                    print(f'Excluded {group_artifact} from update, used local artifact')
+                    mv(local_path, remote_path)
+                else:
+                    print(f'Excluded {group_artifact} from update, no local artifact present')
+
+    # Parse artifacts.
+    maven_lib_info = detect_artifacts(maven_repo_dirs)
 
     if not maven_lib_info:
         print_e('Failed to detect artifacts')
         return False
 
-    # extract some files (for example, AndroidManifest.xml) from any relevant artifacts
+    # Move libraries into the working directory, performing any necessary transformations.
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
-    # generate a single Android.bp that specifies to use all of the above artifacts
+    # Generate a single Android.bp that specifies to use all of the above artifacts.
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
         args = ["pom2bp"]
@@ -415,12 +537,22 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, in
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, transformed_dir)
-    mv(working_dir, output_dir)
+    local_repo = os.path.join(cwd, transformed_dir)
+    mv(working_dir, local_repo)
     return True
 
-# moves <artifact_info> (of type MavenLibraryInfo) into the appropriate part of <working_dir> , and possibly unpacks any necessary included files
+#
 def transform_maven_lib(working_dir, artifact_info, extract_res):
+    """Transforms the specified artifact for use in the Android build system.
+
+    Moves relevant files for the artifact represented by artifact_info of type MavenLibraryInfo into
+    the appropriate path inside working_dir, unpacking files needed by the build system from AARs.
+
+    Args:
+        working_dir: The directory into which the artifact should be moved
+        artifact_info: A MavenLibraryInfo representing the library artifact
+        extract_res: True to extract resources from AARs, false otherwise.
+    """
     # Move library into working dir
     new_dir = os.path.normpath(os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
     mv(artifact_info.dir, new_dir)
@@ -447,8 +579,6 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
         with zipfile.ZipFile(artifact_file) as zip:
             manifests_dir = os.path.join(working_dir, "manifests")
             zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
-
-    print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
 
 
 def process_aar(artifact_file, target_dir):
@@ -617,7 +747,20 @@ def update_gmaven(gmaven_artifacts):
     return [artifact.key for artifact in artifacts]
 
 
-def update_androidx(target, build_id, local_file):
+def update_androidx(target, build_id, local_file, include, exclude):
+    """Fetches and extracts Jetpack library prebuilts.
+
+    Args:
+        target: Android build server target name, must be specified if local_file is empty
+        build_id: Optional Android build server ID, must be specified if local_file is empty
+        local_file: Optional local top-of-tree ZIP, must be specified if build_id is empty
+        include: List of Maven groupIds or unversioned artifact coordinates to include for
+                 updates, ex. android.core or androidx.core:core
+        exclude: List of Maven groupIds or unversioned artifact coordinates to exclude from
+                 updates, ex. android.core or androidx.core:core
+    Returns:
+        True if successful, false otherwise.
+    """
     if build_id:
         repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
         repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
@@ -633,7 +776,7 @@ def update_androidx(target, build_id, local_file):
     mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
 
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False):
+    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include, exclude=exclude):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
@@ -888,6 +1031,12 @@ parser.add_argument(
     '-x', '--androidx', action="store_true",
     help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by other arguments')
 parser.add_argument(
+    '--include', action='append', default=[],
+    help='If specified with -x, includes the specified Jetpack library Maven group or artifact for updates. Applied before exclude.')
+parser.add_argument(
+    '--exclude', action='append', default=[],
+    help='If specified with -x, excludes the specified Jetpack library Maven group or artifact from updates')
+parser.add_argument(
     '-g', '--gmaven', action="store_true",
     help='If specified, updates only the artifact from GMaven libraries excluding those covered by other arguments')
 parser.add_argument(
@@ -945,8 +1094,7 @@ try:
             print_e('Failed to update GMaven, aborting...')
             sys.exit(1)
     if args.androidx:
-        if update_androidx('androidx', \
-                           getBuildId(args), getFile(args)):
+        if update_androidx('androidx', getBuildId(args), getFile(args), args.include, args.exclude):
             components = append(components, 'AndroidX')
         else:
             print_e('Failed to update AndroidX, aborting...')
@@ -989,8 +1137,6 @@ try:
             print_e('Failed to update build tools, aborting...')
             sys.exit(1)
 
-
-
     subprocess.check_call(['git', 'add', current_path, buildtools_dir])
     if not args.source and args.gmaven:
         src_msg = "GMaven"
@@ -999,10 +1145,13 @@ try:
     else:
         src_msg = "build %s" % (getBuildId(args).url_id)
     msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
-    subprocess.check_call(['git', 'commit', '-m', msg])
+    subprocess.check_call(['git', 'commit', '-q', '-m', msg])
     if args.finalize_sdk:
-        print('NOTE: Created two commits:')
+        print('Created two commits:')
         subprocess.check_call(['git', 'log', '-2', '--oneline'])
+    else:
+        print('Created commit:')
+        subprocess.check_call(['git', 'log', '-1', '--oneline'])
     print('Remember to test this change before uploading it to Gerrit!')
 
 finally:
