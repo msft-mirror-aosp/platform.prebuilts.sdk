@@ -458,7 +458,7 @@ def detect_artifacts(maven_repo_dirs):
 
 
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
-                          include_static_deps=True, include=[], exclude=[]):
+                          include_static_deps=True, include=[], exclude=[], prepend=None):
     """Transforms a standard Maven repository to be compatible with the Android build system.
 
     When using the include argument by itself, all other libraries will be excluded. When using the
@@ -474,6 +474,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
                  updates, ex. androidx.core or androidx.core:core
         exclude: list of Maven groupIds or unversioned artifact coordinates to exclude from
                  updates, ex. androidx.core or androidx.core:core
+        prepend: Path to a file containing text to be inserted at the beginning of the generated
+                 build file
     Returns:
         True if successful, false otherwise.
     """
@@ -539,6 +541,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         args.extend(["-default-min-sdk-version", "24"])
         if include_static_deps:
             args.append("-static-deps")
+        if prepend:
+            args.append("-prepend=" + prepend)
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^" + key + "$=" + value for key, value in deps_rewrite.items()])
@@ -788,8 +792,13 @@ def update_androidx(target, build_id, local_file, include, exclude):
     tmp_java_plugins_bp_path = os.path.join('/tmp', 'JavaPlugins.bp')
     mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
 
+    # Resolve symlinks and use an absolute path to prepend file.
+    prepend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+        'prepend_androidx_license')
+
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include, exclude=exclude):
+    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include,
+            exclude=exclude, prepend=prepend_path):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
