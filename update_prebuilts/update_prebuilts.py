@@ -254,6 +254,8 @@ deps_rewrite = {
     'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
+    'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
+    'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
 }
 
 # List of artifacts that will be updated from GMaven
