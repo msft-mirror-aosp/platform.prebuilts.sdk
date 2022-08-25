@@ -11,6 +11,7 @@ import subprocess
 from shutil import copyfile, rmtree, which, move, copy, copytree
 from distutils.version import LooseVersion
 from functools import reduce
+from pathlib import Path
 import six
 import urllib.request, urllib.parse, urllib.error
 
@@ -21,7 +22,10 @@ gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
-
+repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
+extension_sdk_finalization_cmd = '%s -b {bug} -f {extension_version} {build_id}' % (
+    "packages/modules/common/tools/finalize_sdk.py"
+)
 temp_dir = os.path.join(os.getcwd(), "support_tmp")
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
@@ -139,9 +143,10 @@ maven_to_make = {
     'androidx.biometric:biometric': { },
     'androidx.autofill:autofill': { },
     'androidx.appsearch:appsearch': { },
+    'androidx.appsearch:appsearch-builtin-types': { },
+    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'host':True},
     'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage'},
     'androidx.appsearch:appsearch-platform-storage': { },
-    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'host':True},
     'androidx.car.app:app': { },
     'androidx.car.app:app-automotive': { },
     'androidx.car.app:app-testing': { },
@@ -167,13 +172,19 @@ maven_to_make = {
     'androidx.compose.ui:ui-tooling-data': { },
     'androidx.compose.ui:ui-unit': { },
     'androidx.compose.ui:ui-util': { },
+    'androidx.compose.ui:ui-test': { },
+    'androidx.compose.ui:ui-test-junit4': { },
+    'androidx.compose.ui:ui-test-manifest': { },
     'androidx.compose.animation:animation-core': { },
     'androidx.compose.animation:animation': { },
     'androidx.compose.material:material-icons-core': { },
+    'androidx.compose.material:material-icons-extended': { },
     'androidx.compose.material:material-ripple': { },
     'androidx.compose.material:material': { },
     'androidx.compose.material3:material3': { },
     'androidx.activity:activity-compose': { },
+    'androidx.navigation:navigation-compose': { },
+    'androidx.lifecycle:lifecycle-viewmodel-compose': { },
 
     # AndroidX for Multidex
     'androidx.multidex:multidex': { },
@@ -241,7 +252,10 @@ deps_rewrite = {
     'org.jetbrains.kotlin:kotlin-stdlib-common':'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core':'kotlinx_coroutines',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
+    'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
+    'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
 }
 
 # List of artifacts that will be updated from GMaven
@@ -445,7 +459,7 @@ def detect_artifacts(maven_repo_dirs):
 
 
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
-                          include_static_deps=True, include=[], exclude=[]):
+                          include_static_deps=True, include=[], exclude=[], prepend=None):
     """Transforms a standard Maven repository to be compatible with the Android build system.
 
     When using the include argument by itself, all other libraries will be excluded. When using the
@@ -461,6 +475,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
                  updates, ex. androidx.core or androidx.core:core
         exclude: list of Maven groupIds or unversioned artifact coordinates to exclude from
                  updates, ex. androidx.core or androidx.core:core
+        prepend: Path to a file containing text to be inserted at the beginning of the generated
+                 build file
     Returns:
         True if successful, false otherwise.
     """
@@ -526,6 +542,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         args.extend(["-default-min-sdk-version", "24"])
         if include_static_deps:
             args.append("-static-deps")
+        if prepend:
+            args.append("-prepend=" + prepend)
         rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
         args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
         args.extend(["-rewrite=^" + key + "$=" + value for key, value in deps_rewrite.items()])
@@ -775,8 +793,13 @@ def update_androidx(target, build_id, local_file, include, exclude):
     tmp_java_plugins_bp_path = os.path.join('/tmp', 'JavaPlugins.bp')
     mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
 
+    # Resolve symlinks and use an absolute path to prepend file.
+    prepend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+        'prepend_androidx_license')
+
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include, exclude=exclude):
+    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include,
+            exclude=exclude, prepend=prepend_path):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
@@ -1018,7 +1041,10 @@ parser.add_argument(
     help='If specified, updates only the Android Platform')
 parser.add_argument(
     '-f', '--finalize_sdk', type=int,
-    help='If specified, imports the source build as the specified finalized SDK version')
+    help='Finalize the build as the specified SDK version. Must be used together with -e')
+parser.add_argument(
+    '-e', '--finalize_extension', type=int,
+    help='Finalize the build as the specified extension SDK version. Must be used together with -f')
 parser.add_argument('--bug', type=int, help='The bug number to add to the commit message.')
 parser.add_argument(
     '--sdk_target',
@@ -1047,6 +1073,7 @@ parser.add_argument(
     help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
 args = parser.parse_args()
 args.file = True
+
 if not args.source and (args.platform or args.buildtools \
                 or args.jetifier or args.androidx or args.material \
                 or args.finalize_sdk or args.constraint):
@@ -1054,12 +1081,15 @@ if not args.source and (args.platform or args.buildtools \
     sys.exit(1)
 if not (args.gmaven or args.platform or args.buildtools \
                 or args.jetifier or args.androidx or args.material \
-                or args.finalize_sdk or args.constraint):
+                or args.finalize_sdk or args.finalize_extension or args.constraint):
     parser.error("You must specify at least one target to update")
     sys.exit(1)
 if (args.constraint or args.material or args.androidx or args.gmaven) \
         and which('pom2bp') is None:
     parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
+    sys.exit(1)
+if (args.finalize_sdk is None) != (args.finalize_extension is None):
+    parser.error("Either both or neither of -e and -f must be specified.")
     sys.exit(1)
 if args.finalize_sdk and not args.bug:
     parser.error("Specifying a bug ID with --bug is required when finalizing an SDK.")
@@ -1113,15 +1143,21 @@ try:
             sys.exit(1)
     if args.finalize_sdk:
         n = args.finalize_sdk
-        if finalize_sdk(args.sdk_target, getBuildId(args), n):
-            # We commit the finalized dir separately from the current sdk update.
-            msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
-            subprocess.check_call(['git', 'add', '%d' % n])
-            subprocess.check_call(['git', 'add', 'Android.bp'])
-            subprocess.check_call(['git', 'commit', '-m', msg])
-        else:
+        if not finalize_sdk(args.sdk_target, getBuildId(args), n):
             print_e('Failed to finalize SDK %d, aborting...' % n)
             sys.exit(1)
+        # We commit the finalized dir separately from the current sdk update.
+        msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
+        subprocess.check_call(['git', 'add', '%d' % n])
+        subprocess.check_call(['git', 'add', 'Android.bp'])
+        subprocess.check_call(['git', 'commit', '-m', msg])
+
+        # Finalize extension sdk level
+        cmd = extension_sdk_finalization_cmd.format(
+            bug=args.bug,
+            extension_version=args.finalize_extension,
+            build_id=getBuildId(args).url_id)
+        subprocess.check_call(cmd.split(' '), cwd=repo_root_dir.resolve())
     if args.material:
         if update_material(getFile(args)):
             components = append(components, 'intermediate-AndroidX Design Library')
@@ -1147,8 +1183,8 @@ try:
     msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
     subprocess.check_call(['git', 'commit', '-q', '-m', msg])
     if args.finalize_sdk:
-        print('Created two commits:')
-        subprocess.check_call(['git', 'log', '-2', '--oneline'])
+        print('NOTE: Created three commits:')
+        subprocess.check_call(['git', 'log', '-3', '--oneline'])
     else:
         print('Created commit:')
         subprocess.check_call(['git', 'log', '-1', '--oneline'])
