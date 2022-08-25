@@ -19,6 +19,8 @@ import shlex
 current_path = 'current'
 framework_sdk_target = 'sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
+androidx_owners = os.path.join(androidx_dir, 'OWNERS')
+java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
@@ -300,7 +302,7 @@ for key in maven_to_make:
         maven_to_make[key]['path'] = path_for_artifact(key)
 
 # Always remove these files.
-blacklist_files = [
+denylist_files = [
     'annotations.zip',
     'public.txt',
     'R.txt',
@@ -618,7 +620,7 @@ def process_aar(artifact_file, target_dir):
                 os.rmdir(dir_path)
 
     # Remove top-level cruft.
-    for file in blacklist_files:
+    for file in denylist_files:
         file_path = os.path.join(target_dir, file)
         if os.path.exists(file_path):
             os.remove(file_path)
@@ -789,11 +791,6 @@ def update_androidx(target, build_id, local_file, include, exclude):
         print_e('Failed to extract AndroidX repository')
         return False
 
-    # Keep JavaPlugins.bp file untounched.
-    java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
-    tmp_java_plugins_bp_path = os.path.join('/tmp', 'JavaPlugins.bp')
-    mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
-
     # Resolve symlinks and use an absolute path to prepend file.
     prepend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
         'prepend_androidx_license')
@@ -807,7 +804,9 @@ def update_androidx(target, build_id, local_file, include, exclude):
     makefile = os.path.join(androidx_dir, 'Android.bp')
     with open(makefile, "a+") as f:
         f.write('\nbuild = ["JavaPlugins.bp"]\n')
-    mv(tmp_java_plugins_bp_path, java_plugins_bp_path)
+
+    # Keep OWNERs file and JavaPlugins.bp file untouched.
+    subprocess.check_call(['git', 'restore', androidx_owners, java_plugins_bp_path])
 
     return True
 
