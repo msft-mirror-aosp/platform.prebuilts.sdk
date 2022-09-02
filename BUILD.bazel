@@ -50,6 +50,14 @@ java_import(
     name = "public_current_android_sdk_java_import",
     jars = ["//prebuilts/sdk/current:public/android.jar"],
     visibility = ["//visibility:public"],
+    neverlink = True,
+)
+
+# Temporary target to workaround lack of support for sdk_version property
+java_import(
+    name = "current_module_lib_framework_connectivity",
+    jars = ["//prebuilts/sdk/current:module-lib/framework-connectivity.jar"],
+    visibility = ["//visibility:public"],
 )
 
 android_toolchain(
@@ -66,6 +74,7 @@ android_toolchain(
     jacocorunner = ":fail",
     java_stub = ":fail",
     jdeps_tool = ":fail",
+    object_method_rewriter = ":fail",
     proto_map_generator = ":fail",
     testsupport = ":fail",
 )
