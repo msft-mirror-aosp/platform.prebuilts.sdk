@@ -176,6 +176,7 @@ maven_to_make = {
     },
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
+    'androidx.test.uiautomator:uiautomator': {},
 
     # AndroidX for Compose
     'androidx.compose.compiler:compiler-hosted': {
