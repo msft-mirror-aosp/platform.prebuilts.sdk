@@ -680,7 +680,7 @@ android_library_import {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.benchmark_benchmark-macro",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
     ],
 }
 
@@ -702,7 +702,7 @@ android_library {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.benchmark_benchmark-macro",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
     ],
     java_version: "1.7",
 }
@@ -723,7 +723,7 @@ android_library_import {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.profileinstaller_profileinstaller",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
     ],
 }
@@ -745,7 +745,7 @@ android_library {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.profileinstaller_profileinstaller",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
     ],
     java_version: "1.7",
@@ -4755,6 +4755,38 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.core_core",
         "androidx.interpolator_interpolator",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.test.uiautomator_uiautomator-nodeps",
+    aars: ["m2repository/androidx/test/uiautomator/uiautomator/2.3.0-alpha01/uiautomator-2.3.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "junit",
+    ],
+}
+
+android_library {
+    name: "androidx.test.uiautomator_uiautomator",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    manifest: "manifests/androidx.test.uiautomator_uiautomator/AndroidManifest.xml",
+    static_libs: [
+        "androidx.test.uiautomator_uiautomator-nodeps",
+        "androidx.annotation_annotation",
+        "junit",
     ],
     java_version: "1.7",
 }
