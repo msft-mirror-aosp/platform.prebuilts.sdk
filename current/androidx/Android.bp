@@ -201,7 +201,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.appcompat_appcompat-resources-nodeps",
-    aars: ["m2repository/androidx/appcompat/appcompat-resources/1.6.0-alpha02/appcompat-resources-1.6.0-alpha02.aar"],
+    aars: ["m2repository/androidx/appcompat/appcompat-resources/1.6.0-rc01/appcompat-resources-1.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -239,7 +239,7 @@ android_library {
 
 android_library_import {
     name: "androidx.appcompat_appcompat-nodeps",
-    aars: ["m2repository/androidx/appcompat/appcompat/1.6.0-alpha02/appcompat-1.6.0-alpha02.aar"],
+    aars: ["m2repository/androidx/appcompat/appcompat/1.6.0-rc01/appcompat-1.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -250,17 +250,19 @@ android_library_import {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.resourceinspection_resourceinspection-annotation",
-        "androidx.core_core",
-        "androidx.cursoradapter_cursoradapter",
+        "kotlin-stdlib",
         "androidx.activity_activity",
-        "androidx.fragment_fragment",
         "androidx.appcompat_appcompat-resources",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.cursoradapter_cursoradapter",
         "androidx.drawerlayout_drawerlayout",
-        "androidx.savedstate_savedstate",
         "androidx.emoji2_emoji2",
         "androidx.emoji2_emoji2-views-helper",
+        "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
     ],
 }
 
@@ -278,17 +280,19 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.resourceinspection_resourceinspection-annotation",
-        "androidx.core_core",
-        "androidx.cursoradapter_cursoradapter",
+        "kotlin-stdlib",
         "androidx.activity_activity",
-        "androidx.fragment_fragment",
         "androidx.appcompat_appcompat-resources",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.cursoradapter_cursoradapter",
         "androidx.drawerlayout_drawerlayout",
-        "androidx.savedstate_savedstate",
         "androidx.emoji2_emoji2",
         "androidx.emoji2_emoji2-views-helper",
+        "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
     ],
     java_version: "1.7",
 }
@@ -684,7 +688,7 @@ android_library_import {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.benchmark_benchmark-macro",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
     ],
 }
 
@@ -706,7 +710,7 @@ android_library {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.benchmark_benchmark-macro",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
     ],
     java_version: "1.7",
 }
@@ -727,7 +731,7 @@ android_library_import {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.profileinstaller_profileinstaller",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
     ],
 }
@@ -749,7 +753,7 @@ android_library {
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
         "androidx.profileinstaller_profileinstaller",
-        "uiautomator",
+        "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
     ],
     java_version: "1.7",
@@ -5067,6 +5071,38 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.core_core",
         "androidx.interpolator_interpolator",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.test.uiautomator_uiautomator-nodeps",
+    aars: ["m2repository/androidx/test/uiautomator/uiautomator/2.3.0-alpha01/uiautomator-2.3.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "junit",
+    ],
+}
+
+android_library {
+    name: "androidx.test.uiautomator_uiautomator",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "18",
+    manifest: "manifests/androidx.test.uiautomator_uiautomator/AndroidManifest.xml",
+    static_libs: [
+        "androidx.test.uiautomator_uiautomator-nodeps",
+        "androidx.annotation_annotation",
+        "junit",
     ],
     java_version: "1.7",
 }
