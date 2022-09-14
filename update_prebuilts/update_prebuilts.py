@@ -288,7 +288,6 @@ deps_rewrite = {
     'com.squareup:javapoet': 'javapoet',
     'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
     'sqlite-jdbc': 'xerial-sqlite-jdbc',
-    'gson': 'gson-prebuilt-jar',
     'com.intellij:annotations': 'jetbrains-annotations',
     'javax.annotation:javax.annotation-api': 'javax-annotation-api-prebuilt-host-jar',
     'org.robolectric:robolectric': 'Robolectric_all-target',
