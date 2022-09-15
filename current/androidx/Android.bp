@@ -17,7 +17,7 @@ package {
 
 android_library_import {
     name: "androidx.activity_activity-compose-nodeps",
-    aars: ["m2repository/androidx/activity/activity-compose/1.5.0-alpha03/activity-compose-1.5.0-alpha03.aar"],
+    aars: ["m2repository/androidx/activity/activity-compose/1.7.0-alpha01/activity-compose-1.7.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -25,11 +25,11 @@ android_library_import {
     ],
     min_sdk_version: "21",
     static_libs: [
-        "kotlin-stdlib",
         "androidx.lifecycle_lifecycle-common-java8",
+        "kotlin-stdlib",
+        "androidx.activity_activity-ktx",
         "androidx.compose.runtime_runtime",
         "androidx.compose.runtime_runtime-saveable",
-        "androidx.activity_activity-ktx",
         "androidx.compose.ui_ui",
     ],
 }
@@ -45,11 +45,11 @@ android_library {
     manifest: "manifests/androidx.activity_activity-compose/AndroidManifest.xml",
     static_libs: [
         "androidx.activity_activity-compose-nodeps",
-        "kotlin-stdlib",
         "androidx.lifecycle_lifecycle-common-java8",
+        "kotlin-stdlib",
+        "androidx.activity_activity-ktx",
         "androidx.compose.runtime_runtime",
         "androidx.compose.runtime_runtime-saveable",
-        "androidx.activity_activity-ktx",
         "androidx.compose.ui_ui",
     ],
     java_version: "1.7",
@@ -57,7 +57,7 @@ android_library {
 
 android_library_import {
     name: "androidx.activity_activity-ktx-nodeps",
-    aars: ["m2repository/androidx/activity/activity-ktx/1.5.0-alpha03/activity-ktx-1.5.0-alpha03.aar"],
+    aars: ["m2repository/androidx/activity/activity-ktx/1.7.0-alpha01/activity-ktx-1.7.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -97,7 +97,7 @@ android_library {
 
 android_library_import {
     name: "androidx.activity_activity-nodeps",
-    aars: ["m2repository/androidx/activity/activity/1.5.0-alpha03/activity-1.5.0-alpha03.aar"],
+    aars: ["m2repository/androidx/activity/activity/1.7.0-alpha01/activity-1.7.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -106,13 +106,13 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
-        "kotlin-stdlib",
         "androidx.collection_collection",
+        "kotlin-stdlib",
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.savedstate_savedstate",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.savedstate_savedstate",
         "androidx.tracing_tracing",
     ],
 }
@@ -129,13 +129,13 @@ android_library {
     static_libs: [
         "androidx.activity_activity-nodeps",
         "androidx.annotation_annotation",
-        "kotlin-stdlib",
         "androidx.collection_collection",
+        "kotlin-stdlib",
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.savedstate_savedstate",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.savedstate_savedstate",
         "androidx.tracing_tracing",
     ],
     java_version: "1.7",
