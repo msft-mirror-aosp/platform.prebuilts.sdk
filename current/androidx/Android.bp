@@ -2285,8 +2285,40 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.customview_customview-poolingcontainer-nodeps",
+    aars: ["m2repository/androidx/customview/customview-poolingcontainer/1.1.0-alpha01/customview-poolingcontainer-1.1.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.customview_customview-poolingcontainer",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.customview_customview-poolingcontainer/AndroidManifest.xml",
+    static_libs: [
+        "androidx.customview_customview-poolingcontainer-nodeps",
+        "kotlin-stdlib",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.customview_customview-nodeps",
-    aars: ["m2repository/androidx/customview/customview/1.2.0-alpha01/customview-1.2.0-alpha01.aar"],
+    aars: ["m2repository/androidx/customview/customview/1.2.0-alpha02/customview-1.2.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
