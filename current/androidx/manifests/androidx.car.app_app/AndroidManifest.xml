@@ -15,14 +15,16 @@
   limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="androidx.car.app" >
 
-    <uses-sdk
-        android:minSdkVersion="23"
-        android:targetSdkVersion="31" />
+    <uses-sdk android:minSdkVersion="21" />
 
     <queries>
-        <provider android:authorities="androidx.car.app.connection" />
+        <provider
+            android:name="androidx.car.app.connection.provider"
+            android:authorities="androidx.car.app.connection"
+            tools:ignore="MissingClass" />
     </queries>
 
     <application>
@@ -31,7 +33,9 @@
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <receiver android:name="androidx.car.app.notification.CarAppNotificationBroadcastReceiver" />
+        <receiver
+            android:name="androidx.car.app.notification.CarAppNotificationBroadcastReceiver"
+            android:exported="false" />
     </application>
 
 </manifest>
