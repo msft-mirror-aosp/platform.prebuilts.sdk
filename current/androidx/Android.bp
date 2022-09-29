@@ -4719,7 +4719,7 @@ android_library {
 
 android_library_import {
     name: "androidx.sqlite_sqlite-framework-nodeps",
-    aars: ["m2repository/androidx/sqlite/sqlite-framework/2.3.0-alpha01/sqlite-framework-2.3.0-alpha01.aar"],
+    aars: ["m2repository/androidx/sqlite/sqlite-framework/2.3.0-beta01/sqlite-framework-2.3.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4728,6 +4728,7 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
         "androidx.sqlite_sqlite",
     ],
 }
@@ -4744,6 +4745,7 @@ android_library {
     static_libs: [
         "androidx.sqlite_sqlite-framework-nodeps",
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
         "androidx.sqlite_sqlite",
     ],
     java_version: "1.7",
@@ -4751,7 +4753,7 @@ android_library {
 
 android_library_import {
     name: "androidx.sqlite_sqlite-nodeps",
-    aars: ["m2repository/androidx/sqlite/sqlite/2.3.0-alpha01/sqlite-2.3.0-alpha01.aar"],
+    aars: ["m2repository/androidx/sqlite/sqlite/2.3.0-beta01/sqlite-2.3.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4760,6 +4762,7 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
     ],
 }
 
@@ -4775,6 +4778,7 @@ android_library {
     static_libs: [
         "androidx.sqlite_sqlite-nodeps",
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
     ],
     java_version: "1.7",
 }
@@ -5455,7 +5459,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/work/work-runtime-ktx/2.8.0-alpha02/work-runtime-ktx-2.8.0-alpha02.aar"],
+    aars: ["m2repository/androidx/work/work-runtime-ktx/2.8.0-beta01/work-runtime-ktx-2.8.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5489,7 +5493,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-runtime-nodeps",
-    aars: ["m2repository/androidx/work/work-runtime/2.8.0-alpha02/work-runtime-2.8.0-alpha02.aar"],
+    aars: ["m2repository/androidx/work/work-runtime/2.8.0-beta01/work-runtime-2.8.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5500,13 +5504,12 @@ android_library_import {
         "guava-listenablefuture-prebuilt-jar",
         "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
-        "androidx.lifecycle_lifecycle-livedata",
-        "androidx.startup_startup-runtime",
         "androidx.core_core",
-        "androidx.room_room-runtime",
-        "androidx.sqlite_sqlite",
-        "androidx.sqlite_sqlite-framework",
+        "androidx.lifecycle_lifecycle-livedata",
         "androidx.lifecycle_lifecycle-service",
+        "androidx.room_room-runtime",
+        "androidx.sqlite_sqlite-framework",
+        "androidx.startup_startup-runtime",
     ],
 }
 
@@ -5524,20 +5527,19 @@ android_library {
         "guava-listenablefuture-prebuilt-jar",
         "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
-        "androidx.lifecycle_lifecycle-livedata",
-        "androidx.startup_startup-runtime",
         "androidx.core_core",
-        "androidx.room_room-runtime",
-        "androidx.sqlite_sqlite",
-        "androidx.sqlite_sqlite-framework",
+        "androidx.lifecycle_lifecycle-livedata",
         "androidx.lifecycle_lifecycle-service",
+        "androidx.room_room-runtime",
+        "androidx.sqlite_sqlite-framework",
+        "androidx.startup_startup-runtime",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.work_work-testing-nodeps",
-    aars: ["m2repository/androidx/work/work-testing/2.8.0-alpha02/work-testing-2.8.0-alpha02.aar"],
+    aars: ["m2repository/androidx/work/work-testing/2.8.0-beta01/work-testing-2.8.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5545,9 +5547,9 @@ android_library_import {
     ],
     min_sdk_version: "14",
     static_libs: [
-        "androidx.work_work-runtime-ktx",
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.room_room-runtime",
+        "androidx.work_work-runtime-ktx",
     ],
 }
 
@@ -5562,9 +5564,9 @@ android_library {
     manifest: "manifests/androidx.work_work-testing/AndroidManifest.xml",
     static_libs: [
         "androidx.work_work-testing-nodeps",
-        "androidx.work_work-runtime-ktx",
         "androidx.lifecycle_lifecycle-livedata-core",
         "androidx.room_room-runtime",
+        "androidx.work_work-runtime-ktx",
     ],
     java_version: "1.7",
 }
