@@ -32,8 +32,8 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -b {bug} -f {extension_version} {build_id}' % (
-    'packages/modules/common/tools/finalize_sdk.py'
+extension_sdk_finalization_cmd = '%s -r "{readme}" -b {bug} -f {extension_version} {build_id}' % (
+    "packages/modules/common/tools/finalize_sdk.py"
 )
 temp_dir = os.path.join(os.getcwd(), 'support_tmp')
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
@@ -1070,7 +1070,10 @@ def main():
             subprocess.check_call(['git', 'commit', '-m', msg])
 
             # Finalize extension sdk level
+            readme = (f'- {args.finalize_extension}: Finalized together with '
+                      'Android {args.finalize_sdk} (all modules)')
             cmd = extension_sdk_finalization_cmd.format(
+                readme=readme,
                 bug=args.bug,
                 extension_version=args.finalize_extension,
                 build_id=build_id.url_id)
