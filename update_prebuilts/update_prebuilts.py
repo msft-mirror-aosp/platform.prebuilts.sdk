@@ -11,6 +11,7 @@ import re
 import argparse
 import subprocess
 import six
+import shlex
 
 from urllib import request
 from shutil import which
@@ -1077,7 +1078,7 @@ def main():
                 bug=args.bug,
                 extension_version=args.finalize_extension,
                 build_id=build_id.url_id)
-            subprocess.check_call(cmd.split(' '), cwd=repo_root_dir.resolve())
+            subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
         if args.buildtools:
             if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin',
                                  build_id, args.beyond_corp) \
