@@ -687,9 +687,7 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
         print_e('Failed to extract AndroidX repository')
         return False
 
-    # Resolve symlinks and use an absolute path to prepend file.
-    prepend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                'prepend_androidx_license')
+    prepend_path = os.path.relpath('update_prebuilts/prepend_androidx_license', start=temp_dir)
 
     # Transform the repo archive into a Makefile-compatible format.
     if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include,
