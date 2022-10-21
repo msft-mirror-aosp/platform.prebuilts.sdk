@@ -195,6 +195,7 @@ parcelable android.companion.BluetoothDeviceFilter;
 parcelable android.companion.BluetoothLeDeviceFilter;
 parcelable android.companion.DeviceFilter;
 parcelable android.companion.WifiDeviceFilter;
+parcelable android.companion.virtual.VirtualDevice;
 parcelable android.companion.virtual.VirtualDeviceParams;
 parcelable android.content.AttributionSource;
 parcelable android.content.AutofillOptions;
