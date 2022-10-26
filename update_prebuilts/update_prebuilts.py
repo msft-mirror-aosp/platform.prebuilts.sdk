@@ -28,6 +28,7 @@ framework_sdk_target = 'sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
 androidx_owners = os.path.join(androidx_dir, 'OWNERS')
 java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
+test_mapping_file = os.path.join(androidx_dir, 'TEST_MAPPING')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
@@ -66,6 +67,12 @@ maven_to_make = {
     'androidx.activity:activity': {},
     'androidx.activity:activity-ktx': {},
     'androidx.annotation:annotation': {
+        'host_and_device': True,
+        'extra-static-libs': {
+            'androidx.annotation_annotation-jvm'
+        }
+    },
+    'androidx.annotation:annotation-jvm': {
         'host_and_device': True
     },
     'androidx.annotation:annotation-experimental': {},
@@ -699,8 +706,9 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
     with open(makefile, 'a+') as f:
         f.write('\nbuild = ["JavaPlugins.bp"]\n')
 
-    # Keep OWNERs file and JavaPlugins.bp file untouched.
-    subprocess.check_call(['git', 'restore', androidx_owners, java_plugins_bp_path])
+    # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
+    subprocess.check_call(['git', 'restore', androidx_owners, java_plugins_bp_path, test_mapping_file])
+
 
     return True
 
