@@ -244,6 +244,8 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-process': {},
     'androidx.lifecycle:lifecycle-runtime': {},
     'androidx.lifecycle:lifecycle-runtime-ktx': {},
+    'androidx.lifecycle:lifecycle-runtime-compose': {},
+    'androidx.lifecycle:lifecycle-runtime-testing': {},
     'androidx.lifecycle:lifecycle-service': {},
     'androidx.lifecycle:lifecycle-viewmodel': {},
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
