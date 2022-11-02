@@ -66,6 +66,12 @@ maven_to_make = {
     'androidx.activity:activity': {},
     'androidx.activity:activity-ktx': {},
     'androidx.annotation:annotation': {
+        'host_and_device': True,
+        'extra-static-libs': {
+            'androidx.annotation_annotation-jvm'
+        }
+    },
+    'androidx.annotation:annotation-jvm': {
         'host_and_device': True
     },
     'androidx.annotation:annotation-experimental': {},
