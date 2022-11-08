@@ -261,7 +261,7 @@ maven_to_make = {
     'androidx.room:room-compiler': {
         'host': True,
         'extra-static-libs': {
-            'guava-21.0'
+            'guava'
         }
     },
     'androidx.room:room-migration': {
