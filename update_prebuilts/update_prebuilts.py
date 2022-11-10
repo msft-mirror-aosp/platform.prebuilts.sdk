@@ -29,6 +29,7 @@ androidx_dir = os.path.join(current_path, 'androidx')
 androidx_owners = os.path.join(androidx_dir, 'OWNERS')
 java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
 test_mapping_file = os.path.join(androidx_dir, 'TEST_MAPPING')
+compose_test_mapping_file = os.path.join(androidx_dir, 'm2repository/androidx/compose/TEST_MAPPING')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
@@ -709,7 +710,13 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
         f.write('\nbuild = ["JavaPlugins.bp"]\n')
 
     # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
-    subprocess.check_call(['git', 'restore', androidx_owners, java_plugins_bp_path, test_mapping_file])
+    files_to_restore = [androidx_owners, java_plugins_bp_path, test_mapping_file,
+                        compose_test_mapping_file]
+    for file_to_restore in files_to_restore:
+        # Ignore any output or error - these files are not gauranteed to exist, but
+        # if they do, we want to restore them.
+        subprocess.call(['git', 'restore', file_to_restore],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     return True
 
