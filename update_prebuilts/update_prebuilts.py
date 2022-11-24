@@ -195,6 +195,7 @@ maven_to_make = {
     'androidx.compose.runtime:runtime': {},
     'androidx.compose.runtime:runtime-saveable': {},
     'androidx.compose.runtime:runtime-livedata': {},
+    'androidx.compose.runtime:runtime-tracing': {},
     'androidx.compose.foundation:foundation': {},
     'androidx.compose.foundation:foundation-layout': {},
     'androidx.compose.foundation:foundation-text': {},
