@@ -90,6 +90,7 @@ maven_to_make = {
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
     'androidx.core:core-animation': {},
+    'androidx.core:core-animation-testing': {},
     'androidx.core:core-ktx': {},
     'androidx.core.uwb:uwb': {},
     'androidx.core.uwb:uwb-rxjava3': {},
