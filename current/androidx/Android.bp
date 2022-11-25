@@ -2027,6 +2027,44 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.core_core-animation-testing-nodeps",
+    aars: ["m2repository/androidx/core/core-animation-testing/1.0.0-alpha03/core-animation-testing-1.0.0-alpha03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "junit",
+        "androidx.test.core",
+        "androidx.core_core-animation",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.core_core-animation-testing",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.core_core-animation-testing/AndroidManifest.xml",
+    static_libs: [
+        "androidx.core_core-animation-testing-nodeps",
+        "androidx.annotation_annotation",
+        "junit",
+        "androidx.test.core",
+        "androidx.core_core-animation",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.core_core-animation-nodeps",
     aars: ["m2repository/androidx/core/core-animation/1.0.0-beta02/core-animation-1.0.0-beta02.aar"],
     sdk_version: "31",
