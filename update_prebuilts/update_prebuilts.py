@@ -237,6 +237,7 @@ maven_to_make = {
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': {},
     'androidx.arch.core:core-runtime': {},
+    'androidx.arch.core:core-testing': {},
     'androidx.lifecycle:lifecycle-common': {},
     'androidx.lifecycle:lifecycle-common-java8': {},
     'androidx.lifecycle:lifecycle-extensions': {},
