@@ -16,7 +16,7 @@ function downloadApp {
     # sudo apt update && \
     # sudo apt install android-fetch-artifact
 
-    CMD="fetch_artifact --bid $1 --target $TARGET --use_oauth2"
+    CMD="fetch_artifact --bid $1 --target $4 --use_oauth2"
 
     $CMD $2 $3
 }
@@ -41,13 +41,13 @@ case $LIB_TARGET in
         echo "Downloading car-telephony-common"
         downloadApp $1 "car-telephony-common.aar" "car-telephony-common.aar" $BUILD_TARGET
         echo "Downloading car-ui-lib"
-        downloadApp $1 "car-ui-lib.aar" "car-ui-lib.aar" $BUILD_TARGET
+        downloadApp $1 "car-ui-lib.aar" "car-ui-lib.aar" "car_apps-user"
         echo "Downloading car-ui-lib-oem-apis"
-        downloadApp $1 "car-ui-lib-oem-apis-jar.jar" "car-ui-lib-oem-apis.jar" $BUILD_TARGET
+        downloadApp $1 "car-ui-lib-oem-apis-jar.jar" "car-ui-lib-oem-apis.jar" "car_apps-user"
         echo "Downloading car-uxr-client-lib"
         downloadApp $1 "car-uxr-client-lib.aar" "car-uxr-client-lib.aar" $BUILD_TARGET
         echo "Downloading car-ui-lib-testing-support.aar"
-        downloadApp $1 "car-ui-lib-testing-support.aar" "car-ui-lib-testing-support.aar" $BUILD_TARGET
+        downloadApp $1 "car-ui-lib-testing-support.aar" "car-ui-lib-testing-support.aar" "car_apps-user"
         ;;
     car-apps-common)
         echo "Downloading car-apps-common"
@@ -75,9 +75,10 @@ case $LIB_TARGET in
         ;;
     car-ui-lib)
         echo "Downloading car-ui-lib"
-        downloadApp $1 "car-ui-lib.aar" "car-ui-lib.aar" $BUILD_TARGET
+        downloadApp $1 "car-ui-lib.aar" "car-ui-lib.aar" "car_apps-user"
         echo "Downloading car-ui-lib-oem-apis"
-        downloadApp $1 "car-ui-lib-oem-apis-jar.jar" "car-ui-lib-oem-apis.jar" $BUILD_TARGET
+        # TODO(b/258809109): car-ui-lib-oem-apis-jar.jar doesn't have a gradle target yet.
+        downloadApp $1 "car-ui-lib-oem-apis-jar.jar" "car-ui-lib-oem-apis.jar" "car_apps-user"
         # TODO(b/258809109): car-ui-lib-testing-support doesn't have a gradle target yet.
         echo "Downloading car-ui-lib-testing-support.aar"
         downloadApp $1 "car-ui-lib-testing-support.aar" "car-ui-lib-testing-support.aar" "car_apps-user"
