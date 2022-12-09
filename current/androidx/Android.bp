@@ -1255,7 +1255,7 @@ java_library_host {
 
 android_library_import {
     name: "androidx.compose.foundation_foundation-layout-nodeps",
-    aars: ["m2repository/androidx/compose/foundation/foundation-layout/1.2.0-alpha04/foundation-layout-1.2.0-alpha04.aar"],
+    aars: ["m2repository/androidx/compose/foundation/foundation-layout/1.4.0-alpha01/foundation-layout-1.4.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1265,9 +1265,10 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui",
         "androidx.compose.ui_ui-unit",
-        "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui-util",
         "androidx.core_core",
     ],
@@ -1286,9 +1287,10 @@ android_library {
         "androidx.compose.foundation_foundation-layout-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui",
         "androidx.compose.ui_ui-unit",
-        "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui-util",
         "androidx.core_core",
     ],
@@ -1297,7 +1299,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.foundation_foundation-nodeps",
-    aars: ["m2repository/androidx/compose/foundation/foundation/1.2.0-alpha04/foundation-1.2.0-alpha04.aar"],
+    aars: ["m2repository/androidx/compose/foundation/foundation/1.4.0-alpha01/foundation-1.4.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1308,9 +1310,9 @@ android_library_import {
         "androidx.annotation_annotation",
         "kotlin-stdlib",
         "androidx.compose.animation_animation",
+        "androidx.compose.foundation_foundation-layout",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui",
-        "androidx.compose.foundation_foundation-layout",
         "androidx.compose.ui_ui-graphics",
         "androidx.compose.ui_ui-text",
         "androidx.compose.ui_ui-util",
@@ -1331,9 +1333,9 @@ android_library {
         "androidx.annotation_annotation",
         "kotlin-stdlib",
         "androidx.compose.animation_animation",
+        "androidx.compose.foundation_foundation-layout",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui",
-        "androidx.compose.foundation_foundation-layout",
         "androidx.compose.ui_ui-graphics",
         "androidx.compose.ui_ui-text",
         "androidx.compose.ui_ui-util",
