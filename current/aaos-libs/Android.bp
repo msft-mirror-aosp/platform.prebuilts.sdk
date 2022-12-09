@@ -15,11 +15,13 @@
 // AAOS prebuilt targets.
 // These libraries are built from `car-apps-dev` branch.
 // Clients are expected to depend on the plain targets (like `car-apps-common`).
-// `*-nodeps` targets don't export their dependencies and they're just there to make the target build.
-// Hence plain targets are added to export the AAR as well as their dependencies.
-// Clients that depend on the `*-nodeps` targets need to add the AAR dependencies to their build as well.
-// Note: the targets names don't have the -sdk suffix to make it easier to switch between using bundled
-// and unbundled code.
+// `*-source` targets don't export their dependencies and they're just there to make the target
+// build. Hence plain targets are added to export the AAR as well as their dependencies.
+// Clients that depend on the `*-source` targets need to add the AAR dependencies to their build as
+// well. some of the target names have the -source suffix to make it match the source target in
+// `car-apps-dev`. That way the source code will be used when buidling the apps in `car-apps-dev`
+// Note: the targets names don't have the -sdk suffix to make it easier to switch between using
+// bundled and unbundled code.
 
 package {
     // See: http://go/android-license-faq
@@ -34,7 +36,7 @@ android_library {
     name: "car-apps-common",
     sdk_version: "31",
     static_libs: [
-        "car-apps-common-nodeps",
+        "car-apps-common-source",
         "androidx.annotation_annotation",
         "androidx.cardview_cardview",
         "androidx.interpolator_interpolator",
@@ -43,13 +45,13 @@ android_library {
         "androidx-constraintlayout_constraintlayout",
         "androidx.recyclerview_recyclerview",
         "androidx-constraintlayout_constraintlayout-solver",
-        "car-ui-lib-nodeps",
+        "car-ui-lib-source",
         "junit",
     ]
 }
 
 android_library_import {
-    name: "car-apps-common-nodeps",
+    name: "car-apps-common-source",
     aars: ["car-apps-common.aar"],
     sdk_version: "31",
     static_libs: [
@@ -61,7 +63,7 @@ android_library_import {
         "androidx-constraintlayout_constraintlayout",
         "androidx.recyclerview_recyclerview",
         "androidx-constraintlayout_constraintlayout-solver",
-        "car-ui-lib-nodeps",
+        "car-ui-lib-source",
         "junit",
     ]
 }
@@ -70,19 +72,19 @@ android_library {
     name: "car-assist-lib",
     sdk_version: "31",
     static_libs: [
-        "car-assist-lib-nodeps",
-        "car-messaging-models-nodeps",
+        "car-assist-lib-source",
+        "car-messaging-models-source",
         "androidx.legacy_legacy-support-v4",
         "androidx.annotation_annotation",
     ]
 }
 
 android_library_import {
-    name: "car-assist-lib-nodeps",
+    name: "car-assist-lib-source",
     aars: ["car-assist-lib.aar"],
     sdk_version: "31",
     static_libs:[
-        "car-messaging-models-nodeps",
+        "car-messaging-models-source",
         "androidx.legacy_legacy-support-v4",
         "androidx.annotation_annotation",
     ]
@@ -92,7 +94,7 @@ android_library {
     name: "car-media-common",
     sdk_version: "31",
     static_libs: [
-        "car-media-common-nodeps",
+        "car-media-common-source",
         "androidx.cardview_cardview",
         "androidx.legacy_legacy-support-v4",
         "androidx.recyclerview_recyclerview",
@@ -101,12 +103,12 @@ android_library {
         "androidx-constraintlayout_constraintlayout-solver",
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-extensions",
-        "car-apps-common-nodeps",
+        "car-apps-common-source",
     ]
 }
 
 android_library_import {
-    name: "car-media-common-nodeps",
+    name: "car-media-common-source",
     aars: ["car-media-common.aar"],
     sdk_version: "31",
     static_libs: [
@@ -118,7 +120,7 @@ android_library_import {
         "androidx-constraintlayout_constraintlayout-solver",
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-extensions",
-        "car-apps-common-nodeps",
+        "car-apps-common-source",
     ]
 }
 
@@ -126,14 +128,14 @@ android_library {
     name: "car-messaging-models",
     sdk_version: "31",
     static_libs:[
-        "car-messaging-models-nodeps",
+        "car-messaging-models-source",
         "androidx.legacy_legacy-support-v4",
         "androidx.annotation_annotation",
     ]
 }
 
 android_library_import {
-    name: "car-messaging-models-nodeps",
+    name: "car-messaging-models-source",
     aars: ["car-messaging-models.aar"],
     sdk_version: "31",
     static_libs:[
@@ -146,12 +148,12 @@ android_library {
     name: "car-telephony-common",
     sdk_version: "31",
     static_libs:[
-        "car-telephony-common-nodeps",
+        "car-telephony-common-source",
         "androidx.exifinterface_exifinterface",
         "androidx.legacy_legacy-support-v4",
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-extensions",
-        "car-apps-common-nodeps",
+        "car-apps-common-source",
         "glide-prebuilt",
         "glide-gifdecoder-prebuilt",
         "glide-disklrucache-prebuilt",
@@ -162,7 +164,7 @@ android_library {
 }
 
 android_library_import {
-    name: "car-telephony-common-nodeps",
+    name: "car-telephony-common-source",
     aars: ["car-telephony-common.aar"],
     sdk_version: "31",
     static_libs:[
@@ -170,7 +172,7 @@ android_library_import {
         "androidx.legacy_legacy-support-v4",
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-extensions",
-        "car-apps-common-nodeps",
+        "car-apps-common-source",
         "glide-prebuilt",
         "glide-gifdecoder-prebuilt",
         "glide-disklrucache-prebuilt",
@@ -186,7 +188,7 @@ android_library {
     target_sdk_version: "30",
     sdk_version: "31",
     static_libs:[
-        "car-ui-lib-nodeps",
+        "car-ui-lib-source",
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat",
         "androidx-constraintlayout_constraintlayout",
@@ -202,7 +204,7 @@ android_library {
 }
 
 android_library_import {
-    name: "car-ui-lib-nodeps",
+    name: "car-ui-lib-source",
     aars: ["car-ui-lib.aar"],
     min_sdk_version: "28",
     sdk_version: "31",
@@ -215,14 +217,14 @@ android_library_import {
         "androidx-constraintlayout_constraintlayout-solver",
         "androidx.asynclayoutinflater_asynclayoutinflater",
     ],
-        apex_available: [
+    apex_available: [
         "com.android.permission",
         "//apex_available:platform",
     ],
 }
 
 java_import {
-    name: "car-ui-lib-oem-apis-nodeps",
+    name: "car-ui-lib-oem-apis-source",
     jars: ["car-ui-lib-oem-apis.jar"],
     sdk_version: "31",
     apex_available: [
@@ -241,7 +243,7 @@ java_library {
     ],
     min_sdk_version: "28",
     static_libs: [
-        "car-ui-lib-oem-apis-nodeps",
+        "car-ui-lib-oem-apis-source",
     ],
 }
 
@@ -249,18 +251,18 @@ android_library {
     name: "car-ui-lib-testing-support",
     sdk_version: "31",
     static_libs:[
-        "car-ui-lib-testing-support-nodeps",
-        "car-ui-lib-nodeps",
+        "car-ui-lib-testing-support-source",
+        "car-ui-lib-source",
         "Robolectric_all-target",
     ]
 }
 
 android_library_import {
-    name: "car-ui-lib-testing-support-nodeps",
+    name: "car-ui-lib-testing-support-source",
     aars: ["car-ui-lib-testing-support.aar"],
     sdk_version: "31",
     static_libs:[
-        "car-ui-lib-nodeps",
+        "car-ui-lib-source",
         "Robolectric_all-target",
     ]
 }
@@ -270,20 +272,20 @@ android_library {
     name: "car-uxr-client-lib",
     sdk_version: "31",
     static_libs:[
-        "car-uxr-client-lib-nodeps",
+        "car-uxr-client-lib-source",
         "androidx.recyclerview_recyclerview",
         "androidx.lifecycle_lifecycle-common-java8",
-        "car-ui-lib-nodeps",
+        "car-ui-lib-source",
     ]
 }
 
 android_library_import {
-    name: "car-uxr-client-lib-nodeps",
+    name: "car-uxr-client-lib-source",
     aars: ["car-uxr-client-lib.aar"],
     sdk_version: "31",
     static_libs:[
         "androidx.recyclerview_recyclerview",
         "androidx.lifecycle_lifecycle-common-java8",
-        "car-ui-lib-nodeps",
+        "car-ui-lib-source",
     ]
 }
