@@ -438,6 +438,27 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
+def find_invalid_spec(artifact_list):
+    """Verifies whether all the artifacts in the list correspond to an entry in maven_to_make.
+
+    Args:
+        artifact_list: list of group IDs or artifact coordinates
+    Returns:
+        The first invalid artifact specification in the list, or None if all specs are valid.
+    """
+    if artifact_list is None:
+        return None
+    for prefix in artifact_list:
+        has_prefix = False
+        for artifact_id in maven_to_make:
+            if artifact_id.startswith(prefix):
+                has_prefix = True
+                break
+        if not has_prefix:
+            return prefix
+    return None
+
+
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
                           include_static_deps=True, include=None, exclude=None, prepend=None):
     """Transforms a standard Maven repository to be compatible with the Android build system.
@@ -1009,6 +1030,18 @@ def main():
         parser.error('Cannot find pom2bp in path; please run lunch to set up build environment. '
                      'You may also need to run \'m pom2bp\' if it hasn\'t been built already.')
         sys.exit(1)
+
+    # Validate include/exclude arguments.
+    if args.exclude:
+        invalid_spec = find_invalid_spec(args.exclude)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in exclude: ' + invalid_spec)
+            sys.exit(1)
+    if args.include:
+        invalid_spec = find_invalid_spec(args.include)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in include: ' + invalid_spec)
+            sys.exit(1)
 
     # Validate the git status.
     if has_uncommitted_changes():
