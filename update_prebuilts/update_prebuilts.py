@@ -463,7 +463,8 @@ def find_invalid_spec(artifact_list):
 
 
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
-                          include_static_deps=True, include=None, exclude=None, prepend=None):
+                          write_pom2bp_cmd=True, include_static_deps=True, include=None,
+                          exclude=None, prepend=None):
     """Transforms a standard Maven repository to be compatible with the Android build system.
 
     When using the include argument by itself, all other libraries will be excluded. When using the
@@ -474,6 +475,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         maven_repo_dirs: path to local Maven repository
         transformed_dir: relative path for output, ex. androidx
         extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
+        write_pom2bp_cmd: whether pom2bp should write its own invocation arguments to output
         include_static_deps: whether to pass --static-deps to pom2bp
         include: list of Maven groupIds or unversioned artifact coordinates to include for
                  updates, ex. androidx.core or androidx.core:core
@@ -549,6 +551,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         args = ['pom2bp']
         args.extend(['-sdk-version', '31'])
         args.extend(['-default-min-sdk-version', '24'])
+        if not write_pom2bp_cmd:
+            args.extend(['-write-cmd=false'])
         if include_static_deps:
             args.append('-static-deps')
         if prepend:
@@ -726,8 +730,9 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
     prepend_path = os.path.relpath('update_prebuilts/prepend_androidx_license', start=temp_dir)
 
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include,
-                                 exclude=exclude, prepend=prepend_path):
+    if not transform_maven_repos([repo_dir], androidx_dir, write_pom2bp_cmd=False,
+                                 extract_res=False, include=include, exclude=exclude,
+                                 prepend=prepend_path):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
