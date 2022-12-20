@@ -441,8 +441,30 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
+def find_invalid_spec(artifact_list):
+    """Verifies whether all the artifacts in the list correspond to an entry in maven_to_make.
+
+    Args:
+        artifact_list: list of group IDs or artifact coordinates
+    Returns:
+        The first invalid artifact specification in the list, or None if all specs are valid.
+    """
+    if artifact_list is None:
+        return None
+    for prefix in artifact_list:
+        has_prefix = False
+        for artifact_id in maven_to_make:
+            if artifact_id.startswith(prefix):
+                has_prefix = True
+                break
+        if not has_prefix:
+            return prefix
+    return None
+
+
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
-                          include_static_deps=True, include=None, exclude=None, prepend=None):
+                          write_pom2bp_cmd=True, include_static_deps=True, include=None,
+                          exclude=None, prepend=None):
     """Transforms a standard Maven repository to be compatible with the Android build system.
 
     When using the include argument by itself, all other libraries will be excluded. When using the
@@ -453,6 +475,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         maven_repo_dirs: path to local Maven repository
         transformed_dir: relative path for output, ex. androidx
         extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
+        write_pom2bp_cmd: whether pom2bp should write its own invocation arguments to output
         include_static_deps: whether to pass --static-deps to pom2bp
         include: list of Maven groupIds or unversioned artifact coordinates to include for
                  updates, ex. androidx.core or androidx.core:core
@@ -528,6 +551,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         args = ['pom2bp']
         args.extend(['-sdk-version', '31'])
         args.extend(['-default-min-sdk-version', '24'])
+        if not write_pom2bp_cmd:
+            args.extend(['-write-cmd=false'])
         if include_static_deps:
             args.append('-static-deps')
         if prepend:
@@ -705,8 +730,9 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
     prepend_path = os.path.relpath('update_prebuilts/prepend_androidx_license', start=temp_dir)
 
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include,
-                                 exclude=exclude, prepend=prepend_path):
+    if not transform_maven_repos([repo_dir], androidx_dir, write_pom2bp_cmd=False,
+                                 extract_res=False, include=include, exclude=exclude,
+                                 prepend=prepend_path):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
@@ -1011,6 +1037,18 @@ def main():
         parser.error('Cannot find pom2bp in path; please run lunch to set up build environment. '
                      'You may also need to run \'m pom2bp\' if it hasn\'t been built already.')
         sys.exit(1)
+
+    # Validate include/exclude arguments.
+    if args.exclude:
+        invalid_spec = find_invalid_spec(args.exclude)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in exclude: ' + invalid_spec)
+            sys.exit(1)
+    if args.include:
+        invalid_spec = find_invalid_spec(args.include)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in include: ' + invalid_spec)
+            sys.exit(1)
 
     # Validate the git status.
     if has_uncommitted_changes():
