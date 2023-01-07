@@ -28,6 +28,8 @@ framework_sdk_target = 'sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
 androidx_owners = os.path.join(androidx_dir, 'OWNERS')
 java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
+test_mapping_file = os.path.join(androidx_dir, 'TEST_MAPPING')
+compose_test_mapping_file = os.path.join(androidx_dir, 'm2repository/androidx/compose/TEST_MAPPING')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
@@ -66,6 +68,12 @@ maven_to_make = {
     'androidx.activity:activity': {},
     'androidx.activity:activity-ktx': {},
     'androidx.annotation:annotation': {
+        'host_and_device': True,
+        'extra-static-libs': {
+            'androidx.annotation_annotation-jvm'
+        }
+    },
+    'androidx.annotation:annotation-jvm': {
         'host_and_device': True
     },
     'androidx.annotation:annotation-experimental': {},
@@ -82,6 +90,7 @@ maven_to_make = {
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
     'androidx.core:core-animation': {},
+    'androidx.core:core-animation-testing': {},
     'androidx.core:core-ktx': {},
     'androidx.core.uwb:uwb': {},
     'androidx.core.uwb:uwb-rxjava3': {},
@@ -175,8 +184,10 @@ maven_to_make = {
             'androidx.window.sidecar'
         }
     },
+    'androidx.window.extensions:extensions': {},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
+    'androidx.test.uiautomator:uiautomator': {},
 
     # AndroidX for Compose
     'androidx.compose.compiler:compiler-hosted': {
@@ -185,6 +196,7 @@ maven_to_make = {
     'androidx.compose.runtime:runtime': {},
     'androidx.compose.runtime:runtime-saveable': {},
     'androidx.compose.runtime:runtime-livedata': {},
+    'androidx.compose.runtime:runtime-tracing': {},
     'androidx.compose.foundation:foundation': {},
     'androidx.compose.foundation:foundation-layout': {},
     'androidx.compose.foundation:foundation-text': {},
@@ -222,10 +234,12 @@ maven_to_make = {
     'androidx.constraintlayout:constraintlayout-solver': {
         'name': 'androidx-constraintlayout_constraintlayout-solver'
     },
-
+    'androidx.constraintlayout:constraintlayout-core': {},
+    'androidx.constraintlayout:constraintlayout-compose': {},
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': {},
     'androidx.arch.core:core-runtime': {},
+    'androidx.arch.core:core-testing': {},
     'androidx.lifecycle:lifecycle-common': {},
     'androidx.lifecycle:lifecycle-common-java8': {},
     'androidx.lifecycle:lifecycle-extensions': {},
@@ -236,6 +250,8 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-process': {},
     'androidx.lifecycle:lifecycle-runtime': {},
     'androidx.lifecycle:lifecycle-runtime-ktx': {},
+    'androidx.lifecycle:lifecycle-runtime-compose': {},
+    'androidx.lifecycle:lifecycle-runtime-testing': {},
     'androidx.lifecycle:lifecycle-service': {},
     'androidx.lifecycle:lifecycle-viewmodel': {},
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
@@ -251,7 +267,7 @@ maven_to_make = {
     'androidx.room:room-compiler': {
         'host': True,
         'extra-static-libs': {
-            'guava-21.0'
+            'guava'
         }
     },
     'androidx.room:room-migration': {
@@ -288,7 +304,6 @@ deps_rewrite = {
     'com.squareup:javapoet': 'javapoet',
     'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
     'sqlite-jdbc': 'xerial-sqlite-jdbc',
-    'gson': 'gson-prebuilt-jar',
     'com.intellij:annotations': 'jetbrains-annotations',
     'javax.annotation:javax.annotation-api': 'javax-annotation-api-prebuilt-host-jar',
     'org.robolectric:robolectric': 'Robolectric_all-target',
@@ -426,8 +441,30 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
+def find_invalid_spec(artifact_list):
+    """Verifies whether all the artifacts in the list correspond to an entry in maven_to_make.
+
+    Args:
+        artifact_list: list of group IDs or artifact coordinates
+    Returns:
+        The first invalid artifact specification in the list, or None if all specs are valid.
+    """
+    if artifact_list is None:
+        return None
+    for prefix in artifact_list:
+        has_prefix = False
+        for artifact_id in maven_to_make:
+            if artifact_id.startswith(prefix):
+                has_prefix = True
+                break
+        if not has_prefix:
+            return prefix
+    return None
+
+
 def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
-                          include_static_deps=True, include=None, exclude=None, prepend=None):
+                          write_pom2bp_cmd=True, include_static_deps=True, include=None,
+                          exclude=None, prepend=None):
     """Transforms a standard Maven repository to be compatible with the Android build system.
 
     When using the include argument by itself, all other libraries will be excluded. When using the
@@ -438,6 +475,7 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         maven_repo_dirs: path to local Maven repository
         transformed_dir: relative path for output, ex. androidx
         extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
+        write_pom2bp_cmd: whether pom2bp should write its own invocation arguments to output
         include_static_deps: whether to pass --static-deps to pom2bp
         include: list of Maven groupIds or unversioned artifact coordinates to include for
                  updates, ex. androidx.core or androidx.core:core
@@ -513,6 +551,8 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
         args = ['pom2bp']
         args.extend(['-sdk-version', '31'])
         args.extend(['-default-min-sdk-version', '24'])
+        if not write_pom2bp_cmd:
+            args.extend(['-write-cmd=false'])
         if include_static_deps:
             args.append('-static-deps')
         if prepend:
@@ -687,13 +727,12 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
         print_e('Failed to extract AndroidX repository')
         return False
 
-    # Resolve symlinks and use an absolute path to prepend file.
-    prepend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                'prepend_androidx_license')
+    prepend_path = os.path.relpath('update_prebuilts/prepend_androidx_license', start=temp_dir)
 
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False, include=include,
-                                 exclude=exclude, prepend=prepend_path):
+    if not transform_maven_repos([repo_dir], androidx_dir, write_pom2bp_cmd=False,
+                                 extract_res=False, include=include, exclude=exclude,
+                                 prepend=prepend_path):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
@@ -701,8 +740,14 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
     with open(makefile, 'a+') as f:
         f.write('\nbuild = ["JavaPlugins.bp"]\n')
 
-    # Keep OWNERs file and JavaPlugins.bp file untouched.
-    subprocess.check_call(['git', 'restore', androidx_owners, java_plugins_bp_path])
+    # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
+    files_to_restore = [androidx_owners, java_plugins_bp_path, test_mapping_file,
+                        compose_test_mapping_file]
+    for file_to_restore in files_to_restore:
+        # Ignore any output or error - these files are not gauranteed to exist, but
+        # if they do, we want to restore them.
+        subprocess.call(['git', 'restore', file_to_restore],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     return True
 
@@ -992,6 +1037,18 @@ def main():
         parser.error('Cannot find pom2bp in path; please run lunch to set up build environment. '
                      'You may also need to run \'m pom2bp\' if it hasn\'t been built already.')
         sys.exit(1)
+
+    # Validate include/exclude arguments.
+    if args.exclude:
+        invalid_spec = find_invalid_spec(args.exclude)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in exclude: ' + invalid_spec)
+            sys.exit(1)
+    if args.include:
+        invalid_spec = find_invalid_spec(args.include)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in include: ' + invalid_spec)
+            sys.exit(1)
 
     # Validate the git status.
     if has_uncommitted_changes():
