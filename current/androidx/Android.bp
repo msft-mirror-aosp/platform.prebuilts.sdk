@@ -6097,8 +6097,74 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.window.extensions.core_core-nodeps",
+    aars: ["m2repository/androidx/window/extensions/core/core/1.0.0-alpha01/core-1.0.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+    ],
+}
+
+android_library {
+    name: "androidx.window.extensions.core_core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.window.extensions.core_core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.window.extensions.core_core-nodeps",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.window.extensions_extensions-nodeps",
+    aars: ["m2repository/androidx/window/extensions/extensions/1.1.0-alpha02/extensions-1.1.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation-experimental",
+        "androidx.window.extensions.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.window.extensions_extensions",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.window.extensions_extensions/AndroidManifest.xml",
+    static_libs: [
+        "androidx.window.extensions_extensions-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation-experimental",
+        "androidx.window.extensions.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.window_window-nodeps",
-    aars: ["m2repository/androidx/window/window/1.1.0-alpha04/window-1.1.0-alpha04.aar"],
+    aars: ["m2repository/androidx/window/window/1.1.0-alpha05/window-1.1.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6111,6 +6177,7 @@ android_library_import {
         "kotlin-stdlib",
         "kotlinx_coroutines_android",
         "androidx.core_core",
+        "androidx.window.extensions.core_core",
     ],
 }
 
@@ -6130,6 +6197,7 @@ android_library {
         "kotlin-stdlib",
         "kotlinx_coroutines_android",
         "androidx.core_core",
+        "androidx.window.extensions.core_core",
     ],
     optional_uses_libs: [
         "androidx.window.extensions",
