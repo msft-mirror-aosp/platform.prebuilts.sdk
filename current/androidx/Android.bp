@@ -1630,6 +1630,44 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.compose.runtime_runtime-tracing-nodeps",
+    aars: ["m2repository/androidx/compose/runtime/runtime-tracing/1.0.0-alpha02/runtime-tracing-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.runtime_runtime",
+        "androidx.startup_startup-runtime",
+        "androidx.tracing_tracing-perfetto",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.runtime_runtime-tracing",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.runtime_runtime-tracing/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.runtime_runtime-tracing-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.runtime_runtime",
+        "androidx.startup_startup-runtime",
+        "androidx.tracing_tracing-perfetto",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.compose.runtime_runtime-nodeps",
     aars: ["m2repository/androidx/compose/runtime/runtime/1.4.0-alpha03/runtime-1.4.0-alpha03.aar"],
     sdk_version: "31",
