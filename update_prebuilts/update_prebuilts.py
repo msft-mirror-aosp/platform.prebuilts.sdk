@@ -185,6 +185,7 @@ maven_to_make = {
         }
     },
     'androidx.window.extensions:extensions': {},
+    'androidx.window.extensions.core:core': {},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
@@ -1137,7 +1138,7 @@ def main():
                 build_id=build_id.url_id)
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
         if args.buildtools:
-            if update_buildtools('sdk_mac', 'darwin', build_id, args.beyond_corp) \
+            if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'linux', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'windows', build_id, args.beyond_corp):
                 components.append('build tools')
