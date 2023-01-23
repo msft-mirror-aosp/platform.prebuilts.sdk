@@ -2547,6 +2547,40 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.credentials_credentials-nodeps",
+    aars: ["m2repository/androidx/credentials/credentials/1.0.0-alpha02/credentials-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+}
+
+android_library {
+    name: "androidx.credentials_credentials",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifests/androidx.credentials_credentials/AndroidManifest.xml",
+    static_libs: [
+        "androidx.credentials_credentials-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.cursoradapter_cursoradapter-nodeps",
     aars: ["m2repository/androidx/cursoradapter/cursoradapter/1.1.0-alpha01/cursoradapter-1.1.0-alpha01.aar"],
     sdk_version: "31",
