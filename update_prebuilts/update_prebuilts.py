@@ -102,6 +102,7 @@ maven_to_make = {
     'androidx.browser:browser': {},
     'androidx.customview:customview': {},
     'androidx.customview:customview-poolingcontainer': {},
+    'androidx.credentials:credentials': {},
     'androidx.documentfile:documentfile': {},
     'androidx.drawerlayout:drawerlayout': {},
     'androidx.dynamicanimation:dynamicanimation': {},
