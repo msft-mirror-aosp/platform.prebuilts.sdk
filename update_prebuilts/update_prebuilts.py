@@ -221,6 +221,7 @@ maven_to_make = {
     'androidx.compose.material:material-ripple': {},
     'androidx.compose.material:material': {},
     'androidx.compose.material3:material3': {},
+    'androidx.compose.material3:material3-window-size-class': {},
     'androidx.activity:activity-compose': {},
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
