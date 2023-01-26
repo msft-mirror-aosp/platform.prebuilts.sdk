@@ -48,6 +48,8 @@ case $LIB_TARGET in
         downloadApp $1 "car-uxr-client-lib.aar" "car-uxr-client-lib.aar" $BUILD_TARGET
         echo "Downloading car-ui-lib-testing-support.aar"
         downloadApp $1 "car-ui-lib-testing-support.aar" "car-ui-lib-testing-support.aar" "car_apps-user"
+        echo "Downloading car-ui-lib-no-overlayable.aar"
+        downloadApp $1 "car-ui-lib-no-overlayable.aar" "car-ui-lib-no-overlayable.aar" "car_apps-user"
         ;;
     car-apps-common)
         echo "Downloading car-apps-common"
@@ -82,6 +84,9 @@ case $LIB_TARGET in
         # TODO(b/258809109): car-ui-lib-testing-support doesn't have a gradle target yet.
         echo "Downloading car-ui-lib-testing-support.aar"
         downloadApp $1 "car-ui-lib-testing-support.aar" "car-ui-lib-testing-support.aar" "car_apps-user"
+        # TODO(b/258809109): car-ui-lib-no-overlayable doesn't have a gradle target yet.
+        echo "Downloading car-ui-lib-no-overlayable.aar"
+        downloadApp $1 "car-ui-lib-no-overlayable.aar" "car-ui-lib-no-overlayable.aar" "car_apps-user"
         ;;
     *)
         echo "Invalid application option {all|car-apps-common|car-assist-lib|car-media-common|car-messaging-models|car-uxr-client-lib|car-telephony-common|car-ui-lib}"
