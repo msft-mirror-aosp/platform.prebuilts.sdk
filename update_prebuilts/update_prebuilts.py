@@ -102,6 +102,7 @@ maven_to_make = {
     'androidx.browser:browser': {},
     'androidx.customview:customview': {},
     'androidx.customview:customview-poolingcontainer': {},
+    'androidx.credentials:credentials': {},
     'androidx.documentfile:documentfile': {},
     'androidx.drawerlayout:drawerlayout': {},
     'androidx.dynamicanimation:dynamicanimation': {},
@@ -185,6 +186,7 @@ maven_to_make = {
         }
     },
     'androidx.window.extensions:extensions': {},
+    'androidx.window.extensions.core:core': {},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
@@ -219,6 +221,7 @@ maven_to_make = {
     'androidx.compose.material:material-ripple': {},
     'androidx.compose.material:material': {},
     'androidx.compose.material3:material3': {},
+    'androidx.compose.material3:material3-window-size-class': {},
     'androidx.activity:activity-compose': {},
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
@@ -843,9 +846,7 @@ def update_framework(target, build_id, sdk_dir, beyond_corp):
                 extra_files = [
                     'android.jar',
                     'framework.aidl',
-                    'uiautomator.jar',
-                    'data/annotations.zip',
-                    'data/api-versions.xml']
+                    'uiautomator.jar']
                 for filename in extra_files:
                     matches = list(filter(lambda path: filename in path, zipFile.namelist()))
                     if len(matches) != 1:
@@ -857,9 +858,16 @@ def update_framework(target, build_id, sdk_dir, beyond_corp):
                     dst_path = os.path.join(target_dir, filename)
                     mv(src_path, dst_path)
 
-            # Filtered API DB is currently only available for "public"
-            fetch_artifacts(target, build_id, {'api-versions-public-filtered.xml': os.path.join(
-                target_dir, 'data/api-versions-filtered.xml')}, beyond_corp)
+    # Fetch the lint api databases
+    lint_database_artifacts = {}
+    for api_scope in ['public', 'system', 'module-lib', 'system-server']:
+        data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
+        lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
+        lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
+    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
+    for api_scope in ['public', 'module-lib', 'system-server']:
+        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
+    fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp)
 
     return True
 
@@ -1137,7 +1145,7 @@ def main():
                 build_id=build_id.url_id)
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
         if args.buildtools:
-            if update_buildtools('sdk_mac', 'darwin', build_id, args.beyond_corp) \
+            if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'linux', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'windows', build_id, args.beyond_corp):
                 components.append('build tools')

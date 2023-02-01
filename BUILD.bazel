@@ -53,6 +53,13 @@ java_import(
     neverlink = True,
 )
 
+# Temporary target to workaround lack of support for sdk_version property
+java_import(
+    name = "current_module_lib_framework_connectivity",
+    jars = ["//prebuilts/sdk/current:module-lib/framework-connectivity.jar"],
+    visibility = ["//visibility:public"],
+)
+
 android_toolchain(
     name = "android_default",
     aapt2 = "//prebuilts/sdk/tools:linux/bin/aapt2",
@@ -67,6 +74,7 @@ android_toolchain(
     jacocorunner = ":fail",
     java_stub = ":fail",
     jdeps_tool = ":fail",
+    object_method_rewriter = ":fail",
     proto_map_generator = ":fail",
     testsupport = ":fail",
 )

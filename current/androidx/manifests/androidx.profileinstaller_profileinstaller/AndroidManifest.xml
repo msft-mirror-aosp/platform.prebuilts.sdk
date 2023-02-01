@@ -18,9 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="androidx.profileinstaller" >
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="31" />
+    <uses-sdk android:minSdkVersion="14" />
 
     <application>
         <provider
@@ -44,6 +42,12 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
             </intent-filter>
         </receiver>
     </application>
