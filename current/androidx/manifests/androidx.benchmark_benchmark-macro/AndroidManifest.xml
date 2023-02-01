@@ -20,16 +20,25 @@
 
     <uses-sdk android:minSdkVersion="23" />
 
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
     <!--
-    QUERY_ALL_PACKAGES is used to enable macrobenchmarks to read package information from
+         Internet permission is required for perfetto trace shell processor http server but
+        it's used to reach localhost only
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+     QUERY_ALL_PACKAGES is used to enable macrobenchmarks to read package information from
     potential target packages, e.g. for querying debuggable, profileable, or default launch intent.
 
     This could also be done by making each macrobenchmark specify a <queries/> tag, with the
     target package, but this removes the need for documenting that setup step, and detecting
     misconfiguration.
     -->
-    <uses-permission
-        android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="QueryAllPackagesPermission" />
+    <!-- usesCleartextTraffic is required for perfetto trace shell processor http server -->
+    <application android:networkSecurityConfig="@xml/network_security_config" />
 
 </manifest>

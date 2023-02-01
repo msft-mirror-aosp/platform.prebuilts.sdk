@@ -7,4 +7,6 @@ latest finalized version for each API surface.
 
 **Version history**:
 
-- 1: Finalized together with Android S / 31
+- 1: Finalized together with Android S / 31 (all modules)
+- 2: Finalized in March 2022 between S and T (mediaprovider, sdkextensions)
+- 3: Finalized together with Android T / 33 (all modules)
