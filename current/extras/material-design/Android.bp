@@ -47,3 +47,22 @@ android_library {
     ],
     java_version: "1.7",
 }
+
+android_library_import {
+    name: "flexbox-nodeps",
+    aars: ["repository/com/google/android/flexbox/0.3.2/flexbox-0.3.2.aar"],
+    sdk_version: "current",
+    static_libs: [
+    ],
+}
+
+android_library {
+    name: "flexbox",
+    sdk_version: "current",
+    manifest: "manifests/flexbox/AndroidManifest.xml",
+    static_libs: [
+        "flexbox-nodeps",
+    ],
+    java_version: "1.7",
+}
+
