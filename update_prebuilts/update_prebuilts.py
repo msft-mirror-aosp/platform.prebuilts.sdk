@@ -846,9 +846,7 @@ def update_framework(target, build_id, sdk_dir, beyond_corp):
                 extra_files = [
                     'android.jar',
                     'framework.aidl',
-                    'uiautomator.jar',
-                    'data/annotations.zip',
-                    'data/api-versions.xml']
+                    'uiautomator.jar']
                 for filename in extra_files:
                     matches = list(filter(lambda path: filename in path, zipFile.namelist()))
                     if len(matches) != 1:
@@ -860,9 +858,16 @@ def update_framework(target, build_id, sdk_dir, beyond_corp):
                     dst_path = os.path.join(target_dir, filename)
                     mv(src_path, dst_path)
 
-            # Filtered API DB is currently only available for "public"
-            fetch_artifacts(target, build_id, {'api-versions-public-filtered.xml': os.path.join(
-                target_dir, 'data/api-versions-filtered.xml')}, beyond_corp)
+    # Fetch the lint api databases
+    lint_database_artifacts = {}
+    for api_scope in ['public', 'system', 'module-lib', 'system-server']:
+        data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
+        lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
+        lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
+    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
+    for api_scope in ['public', 'module-lib', 'system-server']:
+        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
+    fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp)
 
     return True
 
