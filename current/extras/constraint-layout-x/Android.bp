@@ -34,9 +34,34 @@ java_library_static {
     java_version: "1.7",
 }
 
+java_import {
+    name: "androidx-constraintlayout_constraintlayout-core-nodeps",
+    jars: ["constraintlayout-core/1.1.0-alpha05/constraintlayout-core-1.1.0-alpha05.jar"],
+    sdk_version: "current",
+    min_sdk_version: "29",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+}
+
+java_library_static {
+    name: "androidx-constraintlayout_constraintlayout-core",
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx-constraintlayout_constraintlayout-core-nodeps",
+    ],
+    java_version: "1.7",
+}
+
 android_library_import {
     name: "androidx-constraintlayout_constraintlayout-nodeps",
-    aars: ["constraintlayout/2.0.0-beta7/constraintlayout-2.0.0-beta7.aar"],
+    aars: ["constraintlayout/2.2.0-alpha05/constraintlayout-2.2.0-alpha05.aar"],
     sdk_version: "current",
     apex_available: [
         "//apex_available:platform",
@@ -46,7 +71,7 @@ android_library_import {
     static_libs: [
         "androidx.appcompat_appcompat",
         "androidx.core_core",
-        "androidx-constraintlayout_constraintlayout-solver",
+        "androidx-constraintlayout_constraintlayout-core",
     ],
 }
 
@@ -63,7 +88,7 @@ android_library {
         "androidx-constraintlayout_constraintlayout-nodeps",
         "androidx.appcompat_appcompat",
         "androidx.core_core",
-        "androidx-constraintlayout_constraintlayout-solver",
+        "androidx-constraintlayout_constraintlayout-core",
     ],
     java_version: "1.7",
 }
