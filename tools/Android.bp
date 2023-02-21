@@ -69,6 +69,31 @@ cc_prebuilt_library_shared {
     },
 }
 
+cc_prebuilt_binary {
+    name: "aapt2",
+    host_supported: true,
+
+    compile_multilib: "64",
+    prefer: true,
+    target: {
+        linux: {
+            srcs: ["linux/bin/aapt2"],
+        },
+        darwin: {
+            srcs: ["darwin/bin/aapt2"],
+        },
+        windows: {
+            srcs: ["windows/bin/aapt2.exe"],
+        },
+    },
+    enabled: false,
+    product_variables: {
+        always_use_prebuilt_sdks: {
+            enabled: true,
+        },
+    },
+}
+
 java_import {
     name: "sdk-core-lambda-stubs",
     jars: ["core-lambda-stubs.jar"],
