@@ -289,6 +289,17 @@ java_import {
     sdk_version: "current",
 }
 
+android_library_import {
+    name: "com.android.support.multidex_1.0.3",
+    aars: ["multidex/multidex-1.0.3.aar"],
+    sdk_version: "current",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    //min_sdk_version: "14",
+}
+
 // To provide test host tools the current android jar file to execute the host test
 filegroup {
     name: "current_android_jar",
