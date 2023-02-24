@@ -49,8 +49,15 @@ toolchain(
 java_import(
     name = "public_current_android_sdk_java_import",
     jars = ["//prebuilts/sdk/current:public/android.jar"],
-    visibility = ["//visibility:public"],
     neverlink = True,
+    visibility = ["//visibility:public"],
+)
+
+java_import(
+    name = "system_current_android_sdk_java_import",
+    jars = ["//prebuilts/sdk/current:system/android.jar"],
+    neverlink = True,
+    visibility = ["//visibility:public"],
 )
 
 # Temporary target to workaround lack of support for sdk_version property
