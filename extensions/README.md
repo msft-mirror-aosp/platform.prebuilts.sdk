@@ -12,3 +12,4 @@ latest finalized version for each API surface.
 - 3: Finalized together with Android T / 33 (all modules)
 - 4: Finalized in September 2022 between T and U (adservices, sdkextensions, tethering)
 - 5: Finalized in November 2022 between T and U (adservices, mediaprovider)
+- 6: Finalized in March 2023 between T and U (adservices)
