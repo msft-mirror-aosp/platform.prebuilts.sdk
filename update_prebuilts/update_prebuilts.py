@@ -195,6 +195,7 @@ maven_to_make = {
     'androidx.window.extensions:extensions': {},
     'androidx.window.extensions.core:core': {},
     'androidx.window:window-core': {},
+    'androidx.window:window-java':{},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
