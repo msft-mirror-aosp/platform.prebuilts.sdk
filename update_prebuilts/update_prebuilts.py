@@ -94,6 +94,7 @@ maven_to_make = {
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
+    'androidx.concurrent:concurrent-futures-ktx':{},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
