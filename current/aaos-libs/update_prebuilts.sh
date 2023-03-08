@@ -43,7 +43,7 @@ case $LIB_TARGET in
         echo "Downloading car-ui-lib"
         downloadApp $1 "car-ui-lib.aar" "car-ui-lib.aar" "car_apps-user"
         echo "Downloading car-ui-lib-oem-apis"
-        downloadApp $1 "car-ui-lib-oem-apis-jar.jar" "car-ui-lib-oem-apis.jar" "car_apps-user"
+        downloadApp $1 "car-ui-lib-oem-apis-source.jar" "car-ui-lib-oem-apis.jar" "car_apps-user"
         echo "Downloading car-uxr-client-lib"
         downloadApp $1 "car-uxr-client-lib.aar" "car-uxr-client-lib.aar" $BUILD_TARGET
         echo "Downloading car-ui-lib-testing-support.aar"
@@ -80,7 +80,7 @@ case $LIB_TARGET in
         downloadApp $1 "car-ui-lib.aar" "car-ui-lib.aar" "car_apps-user"
         echo "Downloading car-ui-lib-oem-apis"
         # TODO(b/258809109): car-ui-lib-oem-apis-jar.jar doesn't have a gradle target yet.
-        downloadApp $1 "car-ui-lib-oem-apis-jar.jar" "car-ui-lib-oem-apis.jar" "car_apps-user"
+        downloadApp $1 "car-ui-lib-oem-apis-source.jar" "car-ui-lib-oem-apis.jar" "car_apps-user"
         # TODO(b/258809109): car-ui-lib-testing-support doesn't have a gradle target yet.
         echo "Downloading car-ui-lib-testing-support.aar"
         downloadApp $1 "car-ui-lib-testing-support.aar" "car-ui-lib-testing-support.aar" "car_apps-user"
