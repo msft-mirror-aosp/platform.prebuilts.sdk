@@ -42,7 +42,7 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
+extension_sdk_finalization_cmd = 'prebuilts/build-tools/path/linux-x86/python3 %s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
     "packages/modules/common/tools/finalize_sdk.py"
 )
 temp_dir = os.path.join(os.getcwd(), 'support_tmp')
@@ -90,9 +90,11 @@ maven_to_make = {
             'androidx.collection_collection-jvm'
         }
     },
+    'androidx.camera:camera-viewfinder':{},
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
+    'androidx.concurrent:concurrent-futures-ktx':{},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
@@ -195,6 +197,7 @@ maven_to_make = {
     'androidx.window.extensions:extensions': {},
     'androidx.window.extensions.core:core': {},
     'androidx.window:window-core': {},
+    'androidx.window:window-java':{},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
