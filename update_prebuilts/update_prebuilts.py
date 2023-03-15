@@ -94,7 +94,7 @@ maven_to_make = {
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
-    'androidx.concurrent:concurrent-futures-ktx':{},
+    'androidx.concurrent:concurrent-futures-ktx': {},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
@@ -760,6 +760,7 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
         # if they do, we want to restore them.
         subprocess.call(['git', 'restore', file_to_restore],
                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
 
     return True
 
