@@ -904,9 +904,6 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
         data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
         lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
         lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
-    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
-    for api_scope in ['public', 'module-lib', 'system-server']:
-        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
     fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
