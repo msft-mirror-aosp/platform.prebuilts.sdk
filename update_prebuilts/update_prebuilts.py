@@ -26,7 +26,7 @@ from distutils.version import LooseVersion
 from pathlib import Path
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
 from buildserver import fetch_and_extract, extract_artifact, \
-    parse_build_id
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifact
 from utils import print_e, append, cp, mv, rm
 
 
@@ -831,7 +831,7 @@ def update_material(local_file):
 
 def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifact(target, build_id, artifact_path, beyond_corp)
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
 
     copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
     copy_to = os.path.join('.', os.path.dirname(artifact_path))
@@ -850,7 +850,7 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
 
 def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
 
     for artifact, target_path in artifact_dict.items():
         artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
