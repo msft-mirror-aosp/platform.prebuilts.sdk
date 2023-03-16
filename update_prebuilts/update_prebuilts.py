@@ -285,6 +285,7 @@ maven_to_make = {
     'androidx.room:room-migration': {
         'host_and_device': True
     },
+    'androidx.room:room-ktx': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
