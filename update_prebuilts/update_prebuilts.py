@@ -26,7 +26,7 @@ from distutils.version import LooseVersion
 from pathlib import Path
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
 from buildserver import fetch_and_extract, extract_artifact, \
-    parse_build_id
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
 from utils import print_e, append, cp, mv, rm
 
 
@@ -824,7 +824,7 @@ def update_material(local_file):
 
 def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifact(target, build_id, artifact_path, beyond_corp)
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
 
     copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
     copy_to = os.path.join('.', os.path.dirname(artifact_path))
@@ -843,7 +843,7 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
 
 def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
 
     for artifact, target_path in artifact_dict.items():
         artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
@@ -905,9 +905,6 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
         data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
         lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
         lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
-    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
-    for api_scope in ['public', 'module-lib', 'system-server']:
-        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
     fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
