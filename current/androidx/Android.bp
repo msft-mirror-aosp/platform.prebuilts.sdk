@@ -5156,6 +5156,42 @@ java_library_host {
     java_version: "1.7",
 }
 
+android_library_import {
+    name: "androidx.room_room-ktx-nodeps",
+    aars: ["m2repository/androidx/room/room-ktx/2.6.0-alpha01/room-ktx-2.6.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.room_room-common",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "androidx.room_room-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-ktx",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-ktx/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-ktx-nodeps",
+        "androidx.room_room-common",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "androidx.room_room-runtime",
+    ],
+    java_version: "1.7",
+}
+
 java_import {
     name: "androidx.room_room-migration-nodeps",
     jars: ["m2repository/androidx/room/room-migration/2.5.0-alpha01/room-migration-2.5.0-alpha01.jar"],
@@ -6330,7 +6366,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/work/work-runtime-ktx/2.8.0-beta01/work-runtime-ktx-2.8.0-beta01.aar"],
+    aars: ["m2repository/androidx/work/work-runtime-ktx/2.9.0-alpha01/work-runtime-ktx-2.9.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6364,7 +6400,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-runtime-nodeps",
-    aars: ["m2repository/androidx/work/work-runtime/2.8.0-beta01/work-runtime-2.8.0-beta01.aar"],
+    aars: ["m2repository/androidx/work/work-runtime/2.9.0-alpha01/work-runtime-2.9.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6378,7 +6414,7 @@ android_library_import {
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.lifecycle_lifecycle-service",
-        "androidx.room_room-runtime",
+        "androidx.room_room-ktx",
         "androidx.sqlite_sqlite-framework",
         "androidx.startup_startup-runtime",
     ],
@@ -6401,7 +6437,7 @@ android_library {
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.lifecycle_lifecycle-service",
-        "androidx.room_room-runtime",
+        "androidx.room_room-ktx",
         "androidx.sqlite_sqlite-framework",
         "androidx.startup_startup-runtime",
     ],
@@ -6410,7 +6446,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-testing-nodeps",
-    aars: ["m2repository/androidx/work/work-testing/2.8.0-beta01/work-testing-2.8.0-beta01.aar"],
+    aars: ["m2repository/androidx/work/work-testing/2.9.0-alpha01/work-testing-2.9.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
