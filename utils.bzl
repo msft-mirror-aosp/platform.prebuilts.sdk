@@ -15,19 +15,20 @@
 """Constants and utility functions relating to prebuilt SDKs.
 """
 
+load("//build/bazel/rules/common:api.bzl", "api")
+
 # The highest numbered directory under prebuilts/sdk
 _MAX_API_LEVEL = 34
 
-# All directories under prebuilt/sdk that contain a prebuilt SDK.
-_API_LEVELS = [str(v) for v in range(1, _MAX_API_LEVEL + 1)] + ["current"]
+# All api levels that have a prebuilt SDK.
+_API_LEVELS = list(range(1, _MAX_API_LEVEL + 1)) + [api.FUTURE_API_LEVEL]
 
-def _available_kinds_for_api_level(api_level_string):
+def _available_kinds_for_api_level(api_level):
     """Return the available SDK kinds (or scopes) under the given api level directory."""
-    if api_level_string not in _API_LEVELS:
-        fail("api_level_string %s is not one of %s" % (api_level_string, _API_LEVELS.join(",")))
-    if api_level_string == "current":
+    if api_level not in _API_LEVELS:
+        fail("api_level %s is not one of %s" % (api_level, _API_LEVELS.join(",")))
+    if api_level == api.FUTURE_API_LEVEL:
         return ["public", "system", "test", "system_server", "module", "core"]
-    api_level = int(api_level_string)
     if api_level <= 20:
         return ["public"]
     if api_level <= 28:
