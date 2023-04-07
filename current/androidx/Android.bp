@@ -4863,6 +4863,258 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.privacysandbox.ads_ads-adservices-java-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta03/ads-adservices-java-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.ads_ads-adservices",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ads_ads-adservices-java",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ads_ads-adservices-java/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ads_ads-adservices-java-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.ads_ads-adservices",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ads_ads-adservices-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta03/ads-adservices-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ads_ads-adservices",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ads_ads-adservices/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ads_ads-adservices-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-client/1.0.0-alpha03/sdkruntime-client-1.0.0-alpha03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.sdkruntime_sdkruntime-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-core/1.0.0-alpha03/sdkruntime-core-1.0.0-alpha03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.sdkruntime_sdkruntime-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ui_ui-client-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha02/ui-client-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ui_ui-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-client-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ui_ui-core-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-core/1.0.0-alpha02/ui-core-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ui_ui-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-core-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ui_ui-provider-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-provider/1.0.0-alpha02/ui-provider-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-provider",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ui_ui-provider/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-provider-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.profileinstaller_profileinstaller-nodeps",
     aars: ["m2repository/androidx/profileinstaller/profileinstaller/1.3.0-beta01/profileinstaller-1.3.0-beta01.aar"],
     sdk_version: "31",
