@@ -49,8 +49,15 @@ toolchain(
 java_import(
     name = "public_current_android_sdk_java_import",
     jars = ["//prebuilts/sdk/current:public/android.jar"],
-    visibility = ["//visibility:public"],
     neverlink = True,
+    visibility = ["//visibility:public"],
+)
+
+java_import(
+    name = "system_current_android_sdk_java_import",
+    jars = ["//prebuilts/sdk/current:system/android.jar"],
+    neverlink = True,
+    visibility = ["//visibility:public"],
 )
 
 # Temporary target to workaround lack of support for sdk_version property
@@ -65,11 +72,11 @@ android_toolchain(
     aapt2 = "//prebuilts/sdk/tools:linux/bin/aapt2",
     adb = ":fail",
     android_archive_jar_optimization_inputs_validator = ":fail",
-    android_archive_manifest_package_validator = ":fail",
     android_archive_packages_validator = ":fail",
     android_kit = ":fail",
     apk_to_bundle_tool = ":fail",
     bundletool = ":fail",
+    centralize_r_class_tool = ":fail",
     data_binding_annotation_processor = ":compiler_annotation_processor",
     jacocorunner = ":fail",
     java_stub = ":fail",
