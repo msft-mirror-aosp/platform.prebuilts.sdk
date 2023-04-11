@@ -142,6 +142,13 @@ maven_to_make = {
     'androidx.navigation:navigation-ui-ktx': {},
     'androidx.percentlayout:percentlayout': {},
     'androidx.print:print': {},
+    'androidx.privacysandbox_ads:privacysandbox_ads':{},
+    'androidx.privacysandbox_ui:privacysandbox_ui':{},
+    'androidx.privacysandbox_ui:ui_client':{},
+    'androidx.privacysandbox_ui:ui_core':{},
+    'androidx.privacysandbox_ui:ui_provider':{},
+    'androidx.privacysandbox_ui:ui_tests':{},
+    'androidx.privacysandbox_sdkruntime:privacysandbox_sdkruntime':{},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
     'androidx.savedstate:savedstate': {},
@@ -293,6 +300,7 @@ maven_to_make = {
     'androidx.room:room-migration': {
         'host_and_device': True
     },
+    'androidx.room:room-ktx': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
