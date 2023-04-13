@@ -91,6 +91,7 @@ maven_to_make = {
         }
     },
     'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
     'androidx.camera:camera-core': {},
     'androidx.camera:camera-lifecycle': {},
     'androidx.camera:camera-extensions': {},
