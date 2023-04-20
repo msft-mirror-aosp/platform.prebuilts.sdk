@@ -1193,6 +1193,11 @@ def main():
                 sys.exit(1)
 
             if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
                 # We commit the finalized dir separately from the current sdk update.
                 msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
                 subprocess.check_call(['git', 'add', '%d' % n])
