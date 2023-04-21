@@ -26,7 +26,7 @@ from distutils.version import LooseVersion
 from pathlib import Path
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
 from buildserver import fetch_and_extract, extract_artifact, \
-    parse_build_id
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
 from utils import print_e, append, cp, mv, rm
 
 
@@ -42,7 +42,7 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
+extension_sdk_finalization_cmd = 'prebuilts/build-tools/path/linux-x86/python3 %s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
     "packages/modules/common/tools/finalize_sdk.py"
 )
 temp_dir = os.path.join(os.getcwd(), 'support_tmp')
@@ -90,9 +90,15 @@ maven_to_make = {
             'androidx.collection_collection-jvm'
         }
     },
+    'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
+    'androidx.camera:camera-core': {},
+    'androidx.camera:camera-lifecycle': {},
+    'androidx.camera:camera-extensions': {},
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
+    'androidx.concurrent:concurrent-futures-ktx': {},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
@@ -140,6 +146,14 @@ maven_to_make = {
     'androidx.navigation:navigation-ui-ktx': {},
     'androidx.percentlayout:percentlayout': {},
     'androidx.print:print': {},
+    'androidx.privacysandbox.ads:ads-adservices': {},
+    'androidx.privacysandbox.ads:ads-adservices-java': {},
+    'androidx.privacysandbox.ui:ui-client': {},
+    'androidx.privacysandbox.ui:ui-provider': {},
+    'androidx.privacysandbox.ui:ui-core': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
     'androidx.savedstate:savedstate': {},
@@ -195,6 +209,7 @@ maven_to_make = {
     'androidx.window.extensions:extensions': {},
     'androidx.window.extensions.core:core': {},
     'androidx.window:window-core': {},
+    'androidx.window:window-java':{},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
@@ -290,6 +305,7 @@ maven_to_make = {
     'androidx.room:room-migration': {
         'host_and_device': True
     },
+    'androidx.room:room-ktx': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
@@ -828,7 +844,7 @@ def update_material(local_file):
 
 def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifact(target, build_id, artifact_path, beyond_corp)
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
 
     copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
     copy_to = os.path.join('.', os.path.dirname(artifact_path))
@@ -847,7 +863,7 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
 
 def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
 
     for artifact, target_path in artifact_dict.items():
         artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
@@ -909,9 +925,6 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
         data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
         lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
         lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
-    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
-    for api_scope in ['public', 'module-lib', 'system-server']:
-        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
     fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
@@ -1180,6 +1193,11 @@ def main():
                 sys.exit(1)
 
             if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
                 # We commit the finalized dir separately from the current sdk update.
                 msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
                 subprocess.check_call(['git', 'add', '%d' % n])
