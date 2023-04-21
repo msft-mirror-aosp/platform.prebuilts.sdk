@@ -282,6 +282,7 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
     'androidx.paging:paging-common': {},
     'androidx.paging:paging-common-ktx': {},
+    'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
@@ -294,10 +295,13 @@ maven_to_make = {
             'guava'
         }
     },
+    'androidx.room:room-guava': {},
     'androidx.room:room-migration': {
         'host_and_device': True
     },
     'androidx.room:room-ktx': {},
+    'androidx.room:room-paging': {},
+    'androidx.room:room-paging-guava': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
