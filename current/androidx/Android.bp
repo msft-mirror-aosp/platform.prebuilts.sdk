@@ -3411,6 +3411,50 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.health_health-services-client-nodeps",
+    aars: ["m2repository/androidx/health/health-services-client/1.0.0-beta03/health-services-client-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "30",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "libprotobuf-java-lite",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.health_health-services-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "30",
+    manifest: "manifests/androidx.health_health-services-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.health_health-services-client-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "libprotobuf-java-lite",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.heifwriter_heifwriter-nodeps",
     aars: ["m2repository/androidx/heifwriter/heifwriter/1.1.0-alpha02/heifwriter-1.1.0-alpha02.aar"],
     sdk_version: "31",
