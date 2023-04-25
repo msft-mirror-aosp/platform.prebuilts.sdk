@@ -128,6 +128,7 @@ maven_to_make = {
     'androidx.fragment:fragment': {},
     'androidx.fragment:fragment-ktx': {},
     'androidx.heifwriter:heifwriter': {},
+    'androidx.health:health-services-client': {},
     'androidx.interpolator:interpolator': {},
     'androidx.loader:loader': {},
     'androidx.media:media': {},
