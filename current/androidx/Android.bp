@@ -5590,7 +5590,7 @@ java_library_static {
 
 java_import {
     name: "androidx.room_room-common-nodeps",
-    jars: ["m2repository/androidx/room/room-common/2.6.0-alpha01/room-common-2.6.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-common/2.5.0-alpha01/room-common-2.5.0-alpha01.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -5619,7 +5619,7 @@ java_library_static {
 
 java_import_host {
     name: "androidx.room_room-compiler-processing-nodeps",
-    jars: ["m2repository/androidx/room/room-compiler-processing/2.6.0-alpha01/room-compiler-processing-2.6.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-compiler-processing/2.5.0-alpha01/room-compiler-processing-2.5.0-alpha01.jar"],
     sdk_version: "31",
 }
 
@@ -5627,24 +5627,23 @@ java_library_host {
     name: "androidx.room_room-compiler-processing",
     static_libs: [
         "androidx.room_room-compiler-processing-nodeps",
-        "auto_common",
-        "auto_value_annotations",
-        "symbol-processing-api",
-        "guava",
-        "jetbrains-annotations",
+        "kotlin-stdlib",
         "javapoet",
         "kotlinpoet",
-        "kotlinpoet-javapoet",
-        "kotlin-stdlib",
-        "kotlin-stdlib-jdk8",
+        "guava",
+        "auto_common",
+        "auto_value_annotations",
         "kotlinx_metadata_jvm",
+        "jetbrains-annotations",
+        "symbol-processing-api",
+        "kotlin-stdlib-jdk8",
     ],
     java_version: "1.7",
 }
 
 java_import_host {
     name: "androidx.room_room-compiler-nodeps",
-    jars: ["m2repository/androidx/room/room-compiler/2.6.0-alpha01/room-compiler-2.6.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-compiler/2.5.0-alpha01/room-compiler-2.5.0-alpha01.jar"],
     sdk_version: "31",
 }
 
@@ -5653,18 +5652,17 @@ java_library_host {
     static_libs: [
         "androidx.room_room-compiler-nodeps",
         "androidx.room_room-common",
-        "androidx.room_room-compiler-processing",
         "androidx.room_room-migration",
+        "androidx.room_room-compiler-processing",
+        "kotlin-stdlib",
         "auto_common",
         "auto_value_annotations",
-        "symbol-processing-api",
-        "jetbrains-annotations",
         "javapoet",
-        "kotlinpoet",
-        "kotlinpoet-javapoet",
-        "commons-codec",
-        "kotlin-stdlib",
+        "symbol-processing-api",
         "xerial-sqlite-jdbc",
+        "kotlinx_metadata_jvm",
+        "commons-codec",
+        "jetbrains-annotations",
         "guava",
     ],
     java_version: "1.7",
@@ -5746,7 +5744,7 @@ android_library {
 
 java_import {
     name: "androidx.room_room-migration-nodeps",
-    jars: ["m2repository/androidx/room/room-migration/2.6.0-alpha01/room-migration-2.6.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-migration/2.5.0-alpha01/room-migration-2.5.0-alpha01.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -5768,8 +5766,8 @@ java_library_static {
     static_libs: [
         "androidx.room_room-migration-nodeps",
         "androidx.room_room-common",
-        "gson",
         "kotlin-stdlib",
+        "gson",
     ],
     java_version: "1.7",
 }
@@ -5848,7 +5846,7 @@ android_library {
 
 android_library_import {
     name: "androidx.room_room-runtime-nodeps",
-    aars: ["m2repository/androidx/room/room-runtime/2.6.0-alpha01/room-runtime-2.6.0-alpha01.aar"],
+    aars: ["m2repository/androidx/room/room-runtime/2.5.0-alpha01/room-runtime-2.5.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5857,10 +5855,10 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.room_room-common",
-        "androidx.annotation_annotation-experimental",
-        "androidx.arch.core_core-runtime",
-        "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
+        "androidx.sqlite_sqlite",
+        "androidx.arch.core_core-runtime",
+        "androidx.annotation_annotation-experimental",
     ],
 }
 
@@ -5876,17 +5874,17 @@ android_library {
     static_libs: [
         "androidx.room_room-runtime-nodeps",
         "androidx.room_room-common",
-        "androidx.annotation_annotation-experimental",
-        "androidx.arch.core_core-runtime",
-        "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
+        "androidx.sqlite_sqlite",
+        "androidx.arch.core_core-runtime",
+        "androidx.annotation_annotation-experimental",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.room_room-testing-nodeps",
-    aars: ["m2repository/androidx/room/room-testing/2.6.0-alpha01/room-testing-2.6.0-alpha01.aar"],
+    aars: ["m2repository/androidx/room/room-testing/2.5.0-alpha01/room-testing-2.5.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5897,10 +5895,10 @@ android_library_import {
         "androidx.room_room-common",
         "androidx.room_room-migration",
         "junit",
-        "androidx.arch.core_core-runtime",
         "androidx.room_room-runtime",
         "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
+        "androidx.arch.core_core-runtime",
     ],
 }
 
@@ -5918,10 +5916,10 @@ android_library {
         "androidx.room_room-common",
         "androidx.room_room-migration",
         "junit",
-        "androidx.arch.core_core-runtime",
         "androidx.room_room-runtime",
         "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
+        "androidx.arch.core_core-runtime",
     ],
     java_version: "1.7",
 }
