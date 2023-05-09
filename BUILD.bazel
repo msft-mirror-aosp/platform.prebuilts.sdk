@@ -28,7 +28,8 @@ toolchain(
         "//build/bazel/platforms/os:linux",
     ],
     target_compatible_with = [
-        "//build/bazel/platforms/os:android",
+        # TODO(b/278596841): uncomment when DexArchiveAspect propagation into host/exec config is properly handled
+        # "//build/bazel/platforms/os:android",
     ],
     toolchain = ":android_sdk",
     toolchain_type = "@rules_android//toolchains/android_sdk:toolchain_type",
