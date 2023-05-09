@@ -14,7 +14,7 @@
 
 load("//build/bazel/rules/java:bootclasspath.bzl", "bootclasspath")
 load("//build/bazel/rules/java:java_system_modules.bzl", "java_system_modules")
-load("//build/bazel/rules/java:rules.bzl", "java_import")
+load("//build/bazel/rules/java:import.bzl", "java_import")
 load("//build/bazel/rules/java:versions.bzl", "java_versions")
 load("//prebuilts/sdk:utils.bzl", "prebuilt_sdk_utils")
 load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "DEFAULT_JAVACOPTS", "default_java_toolchain")
