@@ -26,7 +26,7 @@ from distutils.version import LooseVersion
 from pathlib import Path
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
 from buildserver import fetch_and_extract, extract_artifact, \
-    parse_build_id
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
 from utils import print_e, append, cp, mv, rm
 
 
@@ -91,10 +91,14 @@ maven_to_make = {
         }
     },
     'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
+    'androidx.camera:camera-core': {},
+    'androidx.camera:camera-lifecycle': {},
+    'androidx.camera:camera-extensions': {},
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
-    'androidx.concurrent:concurrent-futures-ktx':{},
+    'androidx.concurrent:concurrent-futures-ktx': {},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
@@ -105,6 +109,13 @@ maven_to_make = {
     'androidx.core.uwb:uwb-rxjava3': {},
     'androidx.contentpaging:contentpaging': {},
     'androidx.coordinatorlayout:coordinatorlayout': {},
+    'androidx.datastore:datastore': {},
+    'androidx.datastore:datastore-core': {},
+    'androidx.datastore:datastore-core-okio': {},
+    'androidx.datastore:datastore-preferences': {},
+    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-preferences-rxjava2': {},
+    'androidx.datastore:datastore-rxjava2': {},
     'androidx.legacy:legacy-support-core-ui': {},
     'androidx.legacy:legacy-support-core-utils': {},
     'androidx.cursoradapter:cursoradapter': {},
@@ -124,6 +135,7 @@ maven_to_make = {
     'androidx.fragment:fragment': {},
     'androidx.fragment:fragment-ktx': {},
     'androidx.heifwriter:heifwriter': {},
+    'androidx.health:health-services-client': {},
     'androidx.interpolator:interpolator': {},
     'androidx.loader:loader': {},
     'androidx.media:media': {},
@@ -142,6 +154,14 @@ maven_to_make = {
     'androidx.navigation:navigation-ui-ktx': {},
     'androidx.percentlayout:percentlayout': {},
     'androidx.print:print': {},
+    'androidx.privacysandbox.ads:ads-adservices': {},
+    'androidx.privacysandbox.ads:ads-adservices-java': {},
+    'androidx.privacysandbox.ui:ui-client': {},
+    'androidx.privacysandbox.ui:ui-provider': {},
+    'androidx.privacysandbox.ui:ui-core': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
     'androidx.savedstate:savedstate': {},
@@ -278,6 +298,7 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
     'androidx.paging:paging-common': {},
     'androidx.paging:paging-common-ktx': {},
+    'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
@@ -290,9 +311,13 @@ maven_to_make = {
             'guava'
         }
     },
+    'androidx.room:room-guava': {},
     'androidx.room:room-migration': {
         'host_and_device': True
     },
+    'androidx.room:room-ktx': {},
+    'androidx.room:room-paging': {},
+    'androidx.room:room-paging-guava': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
@@ -317,6 +342,7 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
@@ -329,6 +355,7 @@ deps_rewrite = {
     'org.robolectric:robolectric': 'Robolectric_all-target',
     'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
@@ -831,7 +858,7 @@ def update_material(local_file):
 
 def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifact(target, build_id, artifact_path, beyond_corp)
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
 
     copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
     copy_to = os.path.join('.', os.path.dirname(artifact_path))
@@ -850,7 +877,7 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
 
 def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
 
     for artifact, target_path in artifact_dict.items():
         artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
@@ -912,9 +939,6 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
         data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
         lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
         lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
-    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
-    for api_scope in ['public', 'module-lib', 'system-server']:
-        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
     fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
@@ -1183,6 +1207,11 @@ def main():
                 sys.exit(1)
 
             if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
                 # We commit the finalized dir separately from the current sdk update.
                 msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
                 subprocess.check_call(['git', 'add', '%d' % n])
