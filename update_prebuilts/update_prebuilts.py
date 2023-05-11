@@ -91,6 +91,10 @@ maven_to_make = {
         }
     },
     'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
+    'androidx.camera:camera-core': {},
+    'androidx.camera:camera-lifecycle': {},
+    'androidx.camera:camera-extensions': {},
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
@@ -124,6 +128,7 @@ maven_to_make = {
     'androidx.fragment:fragment': {},
     'androidx.fragment:fragment-ktx': {},
     'androidx.heifwriter:heifwriter': {},
+    'androidx.health:health-services-client': {},
     'androidx.interpolator:interpolator': {},
     'androidx.loader:loader': {},
     'androidx.media:media': {},
@@ -142,13 +147,14 @@ maven_to_make = {
     'androidx.navigation:navigation-ui-ktx': {},
     'androidx.percentlayout:percentlayout': {},
     'androidx.print:print': {},
-    'androidx.privacysandbox_ads:privacysandbox_ads':{},
-    'androidx.privacysandbox_ui:privacysandbox_ui':{},
-    'androidx.privacysandbox_ui:ui_client':{},
-    'androidx.privacysandbox_ui:ui_core':{},
-    'androidx.privacysandbox_ui:ui_provider':{},
-    'androidx.privacysandbox_ui:ui_tests':{},
-    'androidx.privacysandbox_sdkruntime:privacysandbox_sdkruntime':{},
+    'androidx.privacysandbox.ads:ads-adservices': {},
+    'androidx.privacysandbox.ads:ads-adservices-java': {},
+    'androidx.privacysandbox.ui:ui-client': {},
+    'androidx.privacysandbox.ui:ui-provider': {},
+    'androidx.privacysandbox.ui:ui-core': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
     'androidx.savedstate:savedstate': {},
@@ -285,6 +291,7 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
     'androidx.paging:paging-common': {},
     'androidx.paging:paging-common-ktx': {},
+    'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
@@ -297,10 +304,13 @@ maven_to_make = {
             'guava'
         }
     },
+    'androidx.room:room-guava': {},
     'androidx.room:room-migration': {
         'host_and_device': True
     },
     'androidx.room:room-ktx': {},
+    'androidx.room:room-paging': {},
+    'androidx.room:room-paging-guava': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
@@ -325,6 +335,7 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
@@ -337,6 +348,7 @@ deps_rewrite = {
     'org.robolectric:robolectric': 'Robolectric_all-target',
     'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
@@ -1188,6 +1200,11 @@ def main():
                 sys.exit(1)
 
             if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
                 # We commit the finalized dir separately from the current sdk update.
                 msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
                 subprocess.check_call(['git', 'add', '%d' % n])
