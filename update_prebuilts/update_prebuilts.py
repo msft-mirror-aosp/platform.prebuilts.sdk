@@ -236,6 +236,7 @@ maven_to_make = {
     'androidx.compose.foundation:foundation': {},
     'androidx.compose.foundation:foundation-layout': {},
     'androidx.compose.foundation:foundation-text': {},
+    'androidx.compose.animation:animation-graphics': {},
     'androidx.compose.ui:ui': {},
     'androidx.compose.ui:ui-geometry': {},
     'androidx.compose.ui:ui-graphics': {},
