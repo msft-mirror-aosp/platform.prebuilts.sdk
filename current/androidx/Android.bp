@@ -1417,6 +1417,36 @@ android_library {
     java_version: "1.7",
 }
 
+java_import {
+    name: "androidx.compose.animation_animation-graphics-nodeps",
+    jars: ["m2repository/androidx/compose/animation/animation-graphics/1.6.0-alpha01/animation-graphics-1.6.0-alpha01.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.compose.animation_animation-graphics",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.compose.animation_animation-graphics-nodeps",
+        "androidx.compose.animation_animation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-geometry",
+    ],
+    java_version: "1.7",
+}
+
 android_library_import {
     name: "androidx.compose.animation_animation-nodeps",
     aars: ["m2repository/androidx/compose/animation/animation/1.5.0-alpha02/animation-1.5.0-alpha02.aar"],
