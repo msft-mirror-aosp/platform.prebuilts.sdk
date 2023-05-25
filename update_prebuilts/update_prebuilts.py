@@ -229,34 +229,159 @@ maven_to_make = {
     'androidx.compose.compiler:compiler-hosted': {
         'host': True
     },
-    'androidx.compose.runtime:runtime': {},
-    'androidx.compose.runtime:runtime-saveable': {},
+    'androidx.compose.animation:animation': {
+        'extra-static-libs': {
+            'androidx.compose.animation:animation-android'
+        }
+    },
+    'androidx.compose.animation:animation-android': {},
+    'androidx.compose.animation:animation-core': {
+        'extra-static-libs': {
+            'androidx.compose.animation:animation-core-android'
+        }
+    },
+    'androidx.compose.animation:animation-core-android': {},
+    'androidx.compose.animation:animation-graphics': {
+        'extra-static-libs': {
+            'androidx.compose.animation:animation-graphics-android'
+        }
+    },
+    'androidx.compose.animation:animation-graphics-android': {},
+    'androidx.compose.foundation:foundation': {
+        'extra-static-libs': {
+            'androidx.compose.foundation:foundation-android'
+        }
+    },
+    'androidx.compose.foundation:foundation-android': {},
+    'androidx.compose.foundation:foundation-layout': {
+        'extra-static-libs': {
+            'androidx.compose.foundation:foundation-layout-android'
+        }
+    },
+    'androidx.compose.foundation:foundation-layout-android': {},
+    'androidx.compose.foundation:foundation-text': {
+        'extra-static-libs': {
+            'androidx.compose.foundation:foundation-text-android'
+        }
+    },
+    'androidx.compose.foundation:foundation-text-android': {},
+    'androidx.compose.material:material': {
+        'extra-static-libs': {
+            'androidx.compose.material:material-android'
+        }
+    },
+    'androidx.compose.material:material-android': {},
+    'androidx.compose.material:material-icons-core': {
+        'extra-static-libs': {
+            'androidx.compose.material:material-icons-core-android'
+        }
+    },
+    'androidx.compose.material:material-icons-core-android': {},
+    'androidx.compose.material:material-icons-extended': {
+        'extra-static-libs': {
+            'androidx.compose.material:material-icons-extended-android'
+        }
+    },
+    'androidx.compose.material:material-icons-extended-android': {},
+    'androidx.compose.material:material-ripple': {
+        'extra-static-libs': {
+            'androidx.compose.material:material-ripple-android'
+        }
+    },
+    'androidx.compose.material:material-ripple-android': {},
+    'androidx.compose.material3:material3': {
+        'extra-static-libs': {
+            'androidx.compose.material3:material3-android'
+        }
+    },
+    'androidx.compose.material3:material3-android': {},
+    'androidx.compose.material3:material3-window-size-class': {
+        'extra-static-libs': {
+            'androidx.compose.material3:material3-window-size-class-android'
+        }
+    },
+    'androidx.compose.material3:material3-window-size-class-android': {},
+    'androidx.compose.runtime:runtime': {
+        'extra-static-libs': {
+            'androidx.compose.runtime:runtime-android'
+        }
+    },
+    'androidx.compose.runtime:runtime-android': {},
     'androidx.compose.runtime:runtime-livedata': {},
+    'androidx.compose.runtime:runtime-saveable': {
+        'extra-static-libs': {
+            'androidx.compose.runtime:runtime-saveable-android'
+        }
+    },
+    'androidx.compose.runtime:runtime-saveable-android': {},
     'androidx.compose.runtime:runtime-tracing': {},
-    'androidx.compose.foundation:foundation': {},
-    'androidx.compose.foundation:foundation-layout': {},
-    'androidx.compose.foundation:foundation-text': {},
-    'androidx.compose.animation:animation-graphics': {},
-    'androidx.compose.ui:ui': {},
-    'androidx.compose.ui:ui-geometry': {},
-    'androidx.compose.ui:ui-graphics': {},
-    'androidx.compose.ui:ui-text': {},
-    'androidx.compose.ui:ui-tooling': {},
-    'androidx.compose.ui:ui-tooling-preview': {},
-    'androidx.compose.ui:ui-tooling-data': {},
-    'androidx.compose.ui:ui-unit': {},
-    'androidx.compose.ui:ui-util': {},
-    'androidx.compose.ui:ui-test': { },
-    'androidx.compose.ui:ui-test-junit4': { },
-    'androidx.compose.ui:ui-test-manifest': { },
-    'androidx.compose.animation:animation-core': {},
-    'androidx.compose.animation:animation': {},
-    'androidx.compose.material:material-icons-core': {},
-    'androidx.compose.material:material-icons-extended': { },
-    'androidx.compose.material:material-ripple': {},
-    'androidx.compose.material:material': {},
-    'androidx.compose.material3:material3': {},
-    'androidx.compose.material3:material3-window-size-class': {},
+    'androidx.compose.ui:ui-util-android': {},
+    'androidx.compose.ui:ui': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-android'
+        }
+    },
+    'androidx.compose.ui:ui-android': {},
+    'androidx.compose.ui:ui-geometry': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-geometry-android'
+        }
+    },
+    'androidx.compose.ui:ui-geometry-android': {},
+    'androidx.compose.ui:ui-graphics': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-graphics-android'
+        }
+    },
+    'androidx.compose.ui:ui-graphics-android': {},
+    'androidx.compose.ui:ui-test-manifest': {},
+    'androidx.compose.ui:ui-test': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-test-android'
+        }
+    },
+    'androidx.compose.ui:ui-test-android': {},
+    'androidx.compose.ui:ui-test-junit4': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-test-junit4-android'
+        }
+    },
+    'androidx.compose.ui:ui-test-junit4-android': {},
+    'androidx.compose.ui:ui-text': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-text-android'
+        }
+    },
+    'androidx.compose.ui:ui-text-android': {},
+    'androidx.compose.ui:ui-tooling': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-tooling-android'
+        }
+    },
+    'androidx.compose.ui:ui-tooling-android': {},
+    'androidx.compose.ui:ui-tooling-data': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-tooling-data-android'
+        }
+    },
+    'androidx.compose.ui:ui-tooling-data-android': {},
+    'androidx.compose.ui:ui-tooling-preview': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-tooling-preview-android'
+        }
+    },
+    'androidx.compose.ui:ui-tooling-preview-android': {},
+    'androidx.compose.ui:ui-unit': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-unit-android'
+        }
+    },
+    'androidx.compose.ui:ui-unit-android': {},
+    'androidx.compose.ui:ui-util': {
+        'extra-static-libs': {
+            'androidx.compose.ui:ui-util-android'
+        }
+    },
     'androidx.activity:activity-compose': {},
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
