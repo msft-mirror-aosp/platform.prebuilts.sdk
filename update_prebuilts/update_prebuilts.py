@@ -391,6 +391,8 @@ denylist_files = [
 enabled_initializers = set([
     'androidx.lifecycle.ProcessLifecycleInitializer',
     'androidx.work.WorkManagerInitializer',
+    # TODO(282947321): update after http://aosp/2600447 lands
+    'androidx.compose.runtime.tracing.TracingInitializer',
 ])
 
 android_manifest_namepaces = {
