@@ -24,6 +24,9 @@ from urllib import request
 from shutil import which
 from distutils.version import LooseVersion
 from pathlib import Path
+from io import StringIO
+from typing import Iterable, Optional
+import xml.etree.ElementTree as ET
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
 from buildserver import fetch_and_extract, extract_artifact, \
     parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
@@ -384,6 +387,19 @@ denylist_files = [
     os.path.join('libs', 'noto-emoji-compat-java.jar')
 ]
 
+# Explicitly allow-listed initializers
+enabled_initializers = set([
+    'androidx.lifecycle.ProcessLifecycleInitializer',
+    'androidx.work.WorkManagerInitializer',
+])
+
+android_manifest_namepaces = {
+    'android': 'http://schemas.android.com/apk/res/android',
+    'tools': 'http://schemas.android.com/tools'
+}
+
+startup_initializer_pattern = re.compile(r'(\s+)android:value="androidx.startup".*')
+
 artifact_pattern = re.compile(r'^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$')
 
 
@@ -662,7 +678,12 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
         with zipfile.ZipFile(artifact_file) as zip_file:
             manifests_dir = os.path.join(working_dir, 'manifests')
-            zip_file.extract('AndroidManifest.xml', os.path.join(manifests_dir, make_lib_name))
+            lib_path = Path(os.path.join(manifests_dir, make_lib_name))
+            manifest_path = lib_path / 'AndroidManifest.xml'
+            zip_file.extract('AndroidManifest.xml', lib_path.as_posix())
+            contents = check_startup_initializers(manifest_path)
+            if contents:
+                manifest_path.write_text(contents)
 
 
 def process_aar(artifact_file, target_dir):
@@ -739,6 +760,78 @@ def download_file_to_disk(url, filepath):
         print_e(e.__class__, 'occurred while reading', filepath)
         os.remove(os.path.dirname(filepath))
         raise
+
+
+def check_startup_initializers(manifest_path: str) -> Optional[str]:
+    try:
+        for prefix in android_manifest_namepaces:
+            ET.register_namespace(prefix, android_manifest_namepaces[prefix])
+
+        # Use ElementTree to check if we need updates.
+        # That way we avoid false positives.
+        manifest = ET.parse(manifest_path)
+        root = manifest.getroot()
+        needs_changes = _check_node(root)
+        if needs_changes:
+            # Ideally we would use ElementTree here.
+            # Instead, we are using regular expressions here so we can
+            # preserve comments and whitespaces.
+            manifest_contents = Path(manifest_path).read_text()
+            lines = manifest_contents.splitlines()
+            output = StringIO()
+            for line in lines:
+                matcher = startup_initializer_pattern.match(line)
+                if matcher:
+                    prefix = matcher.group(1)
+                    # Adding an explicit tools:node="remove" so this is still traceable
+                    # when looking at the source.
+                    output.write(f'{prefix}android:value="androidx.startup"\n')
+                    output.write(f'{prefix}tools:node="remove" />')
+                else:
+                    output.write(line)
+                output.write('\n')
+
+            output.write('\n')
+            return output.getvalue()
+    except BaseException as exception:
+        print(
+            f'Unable to parse manifest file with path {manifest_path}.\n\n Details ({exception})'
+        )
+
+def _attribute_name(namespace: str, attribute: str) -> str:
+    if not namespace in android_manifest_namepaces:
+        raise ValueError(f'Unexpected namespace {namespace}')
+
+    return f'{{{android_manifest_namepaces[namespace]}}}{attribute}'
+
+
+def _check_node(node: ET.Element) -> bool:
+    for child in node:
+        # Find the initialization provider
+        is_provider = child.tag == 'provider'
+        provider_name = child.attrib.get(_attribute_name('android', 'name'))
+        is_initialization_provider = provider_name == 'androidx.startup.InitializationProvider'
+
+        if is_provider and is_initialization_provider:
+            metadata_nodes = child.findall('meta-data', namespaces=android_manifest_namepaces)
+            return _needs_disable_initialization(metadata_nodes)
+
+        if len(child) > 0:
+            return _check_node(child)
+
+    return False
+
+
+def _needs_disable_initialization(metadata_nodes: Iterable[ET.Element]) -> bool:
+    needs_update = False
+    for node in metadata_nodes:
+        name = node.attrib.get(_attribute_name('android', 'name'))
+        value = node.attrib.get(_attribute_name('android', 'value'))
+        if value == 'androidx.startup':
+            if name not in enabled_initializers:
+                needs_update = True
+
+    return needs_update
 
 
 def update_gmaven(gmaven_artifacts_list):
