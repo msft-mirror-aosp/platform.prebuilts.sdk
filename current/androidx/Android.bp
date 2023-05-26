@@ -174,7 +174,7 @@ android_library {
 
 java_import {
     name: "androidx.annotation_annotation-jvm-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation-jvm/1.6.0-rc01/annotation-jvm-1.6.0-rc01.jar"],
+    jars: ["m2repository/androidx/annotation/annotation-jvm/1.7.0-alpha03/annotation-jvm-1.7.0-alpha03.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -202,7 +202,7 @@ java_library_static {
 
 java_import {
     name: "androidx.annotation_annotation-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation/1.6.0-rc01/annotation-1.6.0-rc01.jar"],
+    jars: ["m2repository/androidx/annotation/annotation/1.7.0-alpha03/annotation-1.7.0-alpha03.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -292,6 +292,7 @@ android_library_import {
         "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
     ],
 }
@@ -322,6 +323,7 @@ android_library {
         "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
     ],
     java_version: "1.7",
@@ -651,7 +653,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-common-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-alpha09/benchmark-common-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-alpha14/benchmark-common-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -693,7 +695,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-alpha09/benchmark-junit4-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-alpha14/benchmark-junit4-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -735,7 +737,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-alpha09/benchmark-macro-junit4-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-alpha14/benchmark-macro-junit4-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -779,7 +781,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-alpha09/benchmark-macro-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-alpha14/benchmark-macro-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -793,6 +795,7 @@ android_library_import {
         "junit",
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
+        "androidx.core_core",
         "androidx.profileinstaller_profileinstaller",
         "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
@@ -816,6 +819,7 @@ android_library {
         "junit",
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
+        "androidx.core_core",
         "androidx.profileinstaller_profileinstaller",
         "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
@@ -903,6 +907,224 @@ android_library {
         "guava-listenablefuture-prebuilt-jar",
         "androidx.core_core",
         "androidx.interpolator_interpolator",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.camera_camera-camera2-nodeps",
+    aars: ["m2repository/androidx/camera/camera-camera2/1.3.0-alpha06/camera-camera2-1.3.0-alpha06.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.camera_camera-core",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.camera_camera-camera2",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.camera_camera-camera2/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-camera2-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.camera_camera-core",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.camera_camera-core-nodeps",
+    aars: ["m2repository/androidx/camera/camera-core/1.3.0-alpha06/camera-core-1.3.0-alpha06.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.lifecycle_lifecycle-common",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation-experimental",
+        "androidx.core_core",
+        "androidx.exifinterface_exifinterface",
+        "androidx.lifecycle_lifecycle-livedata",
+    ],
+}
+
+android_library {
+    name: "androidx.camera_camera-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.camera_camera-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-core-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.lifecycle_lifecycle-common",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "androidx.annotation_annotation-experimental",
+        "androidx.core_core",
+        "androidx.exifinterface_exifinterface",
+        "androidx.lifecycle_lifecycle-livedata",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.camera_camera-extensions-nodeps",
+    aars: ["m2repository/androidx/camera/camera-extensions/1.3.0-alpha06/camera-extensions-1.3.0-alpha06.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.concurrent_concurrent-futures",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.camera_camera-camera2",
+        "androidx.camera_camera-core",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.camera_camera-extensions",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.camera_camera-extensions/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-extensions-nodeps",
+        "androidx.concurrent_concurrent-futures",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.camera_camera-camera2",
+        "androidx.camera_camera-core",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.camera_camera-lifecycle-nodeps",
+    aars: ["m2repository/androidx/camera/camera-lifecycle/1.3.0-alpha06/camera-lifecycle-1.3.0-alpha06.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.concurrent_concurrent-futures",
+        "androidx.lifecycle_lifecycle-common",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.camera_camera-core",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.camera_camera-lifecycle",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.camera_camera-lifecycle/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-lifecycle-nodeps",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.lifecycle_lifecycle-common",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "androidx.camera_camera-core",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.camera_camera-viewfinder-nodeps",
+    aars: ["m2repository/androidx/camera/camera-viewfinder/1.3.0-alpha06/camera-viewfinder-1.3.0-alpha06.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "androidx.test.espresso.idling-resource",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlinx_coroutines_android",
+        "kotlinx_coroutines",
+        "androidx.annotation_annotation-experimental",
+        "androidx.appcompat_appcompat",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.camera_camera-viewfinder",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.camera_camera-viewfinder/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-viewfinder-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "androidx.test.espresso.idling-resource",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlinx_coroutines_android",
+        "kotlinx_coroutines",
+        "androidx.annotation_annotation-experimental",
+        "androidx.appcompat_appcompat",
+        "androidx.core_core",
     ],
     java_version: "1.7",
 }
@@ -1241,7 +1463,7 @@ android_library {
 
 java_import_host {
     name: "androidx.compose.compiler_compiler-hosted-nodeps",
-    jars: ["m2repository/androidx/compose/compiler/compiler-hosted/1.4.0-dev-k1.8.0-33c0ad36f83/compiler-hosted-1.4.0-dev-k1.8.0-33c0ad36f83.jar"],
+    jars: ["m2repository/androidx/compose/compiler/compiler-hosted/1.4.1-dev-k1.8.10-c312d77f4cb/compiler-hosted-1.4.1-dev-k1.8.10-c312d77f4cb.jar"],
     sdk_version: "31",
 }
 
@@ -2288,6 +2510,34 @@ android_library {
 }
 
 java_import {
+    name: "androidx.concurrent_concurrent-futures-ktx-nodeps",
+    jars: ["m2repository/androidx/concurrent/concurrent-futures-ktx/1.2.0-alpha01/concurrent-futures-ktx-1.2.0-alpha01.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.concurrent_concurrent-futures-ktx",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.concurrent_concurrent-futures-ktx-nodeps",
+        "androidx.concurrent_concurrent-futures",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
     name: "androidx.concurrent_concurrent-futures-nodeps",
     jars: ["m2repository/androidx/concurrent/concurrent-futures/1.2.0-alpha01/concurrent-futures-1.2.0-alpha01.jar"],
     sdk_version: "31",
@@ -2316,7 +2566,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.constraintlayout_constraintlayout-compose-nodeps",
-    aars: ["m2repository/androidx/constraintlayout/constraintlayout-compose/1.1.0-alpha05/constraintlayout-compose-1.1.0-alpha05.aar"],
+    aars: ["m2repository/androidx/constraintlayout/constraintlayout-compose/1.1.0-alpha10/constraintlayout-compose-1.1.0-alpha10.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2356,7 +2606,7 @@ android_library {
 
 java_import {
     name: "androidx.constraintlayout_constraintlayout-core-nodeps",
-    jars: ["m2repository/androidx/constraintlayout/constraintlayout-core/1.1.0-alpha05/constraintlayout-core-1.1.0-alpha05.jar"],
+    jars: ["m2repository/androidx/constraintlayout/constraintlayout-core/1.1.0-alpha10/constraintlayout-core-1.1.0-alpha10.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2382,7 +2632,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx-constraintlayout_constraintlayout-nodeps",
-    aars: ["m2repository/androidx/constraintlayout/constraintlayout/2.2.0-alpha05/constraintlayout-2.2.0-alpha05.aar"],
+    aars: ["m2repository/androidx/constraintlayout/constraintlayout/2.2.0-alpha10/constraintlayout-2.2.0-alpha10.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2393,6 +2643,7 @@ android_library_import {
         "androidx.constraintlayout_constraintlayout-core",
         "androidx.appcompat_appcompat",
         "androidx.core_core",
+        "androidx.profileinstaller_profileinstaller",
     ],
 }
 
@@ -2410,6 +2661,7 @@ android_library {
         "androidx.constraintlayout_constraintlayout-core",
         "androidx.appcompat_appcompat",
         "androidx.core_core",
+        "androidx.profileinstaller_profileinstaller",
     ],
     java_version: "1.7",
 }
@@ -2452,7 +2704,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-animation-testing-nodeps",
-    aars: ["m2repository/androidx/core/core-animation-testing/1.0.0-alpha03/core-animation-testing-1.0.0-alpha03.aar"],
+    aars: ["m2repository/androidx/core/core-animation-testing/1.0.0-beta01/core-animation-testing-1.0.0-beta01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2462,9 +2714,8 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "junit",
-        "androidx.test.core",
-        "androidx.core_core-animation",
         "androidx.core_core",
+        "androidx.core_core-animation",
     ],
 }
 
@@ -2481,9 +2732,8 @@ android_library {
         "androidx.core_core-animation-testing-nodeps",
         "androidx.annotation_annotation",
         "junit",
-        "androidx.test.core",
-        "androidx.core_core-animation",
         "androidx.core_core",
+        "androidx.core_core-animation",
     ],
     java_version: "1.7",
 }
@@ -2526,7 +2776,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-ktx-nodeps",
-    aars: ["m2repository/androidx/core/core-ktx/1.10.0-alpha02/core-ktx-1.10.0-alpha02.aar"],
+    aars: ["m2repository/androidx/core/core-ktx/1.12.0-alpha02/core-ktx-1.12.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2560,7 +2810,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-nodeps",
-    aars: ["m2repository/androidx/core/core/1.10.0-alpha02/core-1.10.0-alpha02.aar"],
+    aars: ["m2repository/androidx/core/core/1.12.0-alpha02/core-1.12.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2571,6 +2821,7 @@ android_library_import {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
+        "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
         "androidx.interpolator_interpolator",
         "androidx.lifecycle_lifecycle-runtime",
@@ -2592,6 +2843,7 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
+        "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
         "androidx.interpolator_interpolator",
         "androidx.lifecycle_lifecycle-runtime",
@@ -2602,7 +2854,7 @@ android_library {
 
 android_library_import {
     name: "androidx.credentials_credentials-nodeps",
-    aars: ["m2repository/androidx/credentials/credentials/1.2.0-alpha01/credentials-1.2.0-alpha01.aar"],
+    aars: ["m2repository/androidx/credentials/credentials/1.2.0-alpha04/credentials-1.2.0-alpha04.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2766,7 +3018,7 @@ android_library {
 
 android_library_import {
     name: "androidx.drawerlayout_drawerlayout-nodeps",
-    aars: ["m2repository/androidx/drawerlayout/drawerlayout/1.2.0-alpha02/drawerlayout-1.2.0-alpha02.aar"],
+    aars: ["m2repository/androidx/drawerlayout/drawerlayout/1.3.0-alpha01/drawerlayout-1.3.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2926,7 +3178,7 @@ android_library {
 
 android_library_import {
     name: "androidx.emoji2_emoji2-views-helper-nodeps",
-    aars: ["m2repository/androidx/emoji2/emoji2-views-helper/1.3.0-alpha01/emoji2-views-helper-1.3.0-alpha01.aar"],
+    aars: ["m2repository/androidx/emoji2/emoji2-views-helper/1.4.0-beta02/emoji2-views-helper-1.4.0-beta02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2960,7 +3212,7 @@ android_library {
 
 android_library_import {
     name: "androidx.emoji2_emoji2-nodeps",
-    aars: ["m2repository/androidx/emoji2/emoji2/1.3.0-alpha01/emoji2-1.3.0-alpha01.aar"],
+    aars: ["m2repository/androidx/emoji2/emoji2/1.4.0-beta02/emoji2-1.4.0-beta02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -3028,7 +3280,7 @@ android_library {
 
 android_library_import {
     name: "androidx.fragment_fragment-ktx-nodeps",
-    aars: ["m2repository/androidx/fragment/fragment-ktx/1.6.0-alpha05/fragment-ktx-1.6.0-alpha05.aar"],
+    aars: ["m2repository/androidx/fragment/fragment-ktx/1.6.0-alpha08/fragment-ktx-1.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -3072,7 +3324,7 @@ android_library {
 
 android_library_import {
     name: "androidx.fragment_fragment-nodeps",
-    aars: ["m2repository/androidx/fragment/fragment/1.6.0-alpha05/fragment-1.6.0-alpha05.aar"],
+    aars: ["m2repository/androidx/fragment/fragment/1.6.0-alpha08/fragment-1.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -3091,6 +3343,7 @@ android_library_import {
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
         "androidx.loader_loader",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
         "androidx.viewpager_viewpager",
     ],
@@ -3118,6 +3371,7 @@ android_library {
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
         "androidx.loader_loader",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
         "androidx.viewpager_viewpager",
     ],
@@ -3126,7 +3380,7 @@ android_library {
 
 android_library_import {
     name: "androidx.gridlayout_gridlayout-nodeps",
-    aars: ["m2repository/androidx/gridlayout/gridlayout/1.1.0-alpha01/gridlayout-1.1.0-alpha01.aar"],
+    aars: ["m2repository/androidx/gridlayout/gridlayout/1.1.0-alpha02/gridlayout-1.1.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -3152,6 +3406,50 @@ android_library {
         "androidx.gridlayout_gridlayout-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.health_health-services-client-nodeps",
+    aars: ["m2repository/androidx/health/health-services-client/1.0.0-beta03/health-services-client-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "30",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "libprotobuf-java-lite",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.health_health-services-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "30",
+    manifest: "manifests/androidx.health_health-services-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.health_health-services-client-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "libprotobuf-java-lite",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
     ],
     java_version: "1.7",
 }
@@ -3218,7 +3516,7 @@ android_library {
 
 android_library_import {
     name: "androidx.javascriptengine_javascriptengine-nodeps",
-    aars: ["m2repository/androidx/javascriptengine/javascriptengine/1.0.0-alpha04/javascriptengine-1.0.0-alpha04.aar"],
+    aars: ["m2repository/androidx/javascriptengine/javascriptengine/1.0.0-alpha06/javascriptengine-1.0.0-alpha06.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4215,7 +4513,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-common-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-common-ktx/2.6.0-alpha04/navigation-common-ktx-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-common-ktx/2.6.0-alpha08/navigation-common-ktx-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4245,7 +4543,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-common-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-common/2.6.0-alpha04/navigation-common-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-common/2.6.0-alpha08/navigation-common-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4255,11 +4553,13 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.collection_collection-ktx",
+        "androidx.lifecycle_lifecycle-common",
         "kotlin-stdlib",
         "androidx.core_core-ktx",
         "androidx.lifecycle_lifecycle-runtime-ktx",
         "androidx.lifecycle_lifecycle-viewmodel-ktx",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate-ktx",
     ],
 }
@@ -4277,11 +4577,13 @@ android_library {
         "androidx.navigation_navigation-common-nodeps",
         "androidx.annotation_annotation",
         "androidx.collection_collection-ktx",
+        "androidx.lifecycle_lifecycle-common",
         "kotlin-stdlib",
         "androidx.core_core-ktx",
         "androidx.lifecycle_lifecycle-runtime-ktx",
         "androidx.lifecycle_lifecycle-viewmodel-ktx",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate-ktx",
     ],
     java_version: "1.7",
@@ -4289,7 +4591,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-compose-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-compose/2.6.0-alpha04/navigation-compose-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-compose/2.6.0-alpha08/navigation-compose-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4297,7 +4599,6 @@ android_library_import {
     ],
     min_sdk_version: "21",
     static_libs: [
-        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
         "androidx.activity_activity-compose",
         "androidx.compose.animation_animation",
@@ -4321,7 +4622,6 @@ android_library {
     manifest: "manifests/androidx.navigation_navigation-compose/AndroidManifest.xml",
     static_libs: [
         "androidx.navigation_navigation-compose-nodeps",
-        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
         "androidx.activity_activity-compose",
         "androidx.compose.animation_animation",
@@ -4337,7 +4637,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-fragment-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-fragment-ktx/2.6.0-alpha04/navigation-fragment-ktx-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-fragment-ktx/2.6.0-alpha08/navigation-fragment-ktx-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4369,7 +4669,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-fragment-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-fragment/2.6.0-alpha04/navigation-fragment-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-fragment/2.6.0-alpha08/navigation-fragment-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4405,7 +4705,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-runtime-ktx/2.6.0-alpha04/navigation-runtime-ktx-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-runtime-ktx/2.6.0-alpha08/navigation-runtime-ktx-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4437,7 +4737,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-runtime-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-runtime/2.6.0-alpha04/navigation-runtime-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-runtime/2.6.0-alpha08/navigation-runtime-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4479,7 +4779,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-ui-ktx-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-ui-ktx/2.6.0-alpha04/navigation-ui-ktx-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-ui-ktx/2.6.0-alpha08/navigation-ui-ktx-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4511,7 +4811,7 @@ android_library {
 
 android_library_import {
     name: "androidx.navigation_navigation-ui-nodeps",
-    aars: ["m2repository/androidx/navigation/navigation-ui/2.6.0-alpha04/navigation-ui-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/navigation/navigation-ui/2.6.0-alpha08/navigation-ui-2.6.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4600,6 +4900,42 @@ java_library_static {
         "androidx.arch.core_core-common",
         "kotlin-stdlib",
         "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.paging_paging-guava-nodeps",
+    aars: ["m2repository/androidx/paging/paging-guava/3.2.0-alpha05/paging-guava-3.2.0-alpha05.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.paging_paging-common",
+        "guava",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_guava",
+    ],
+}
+
+android_library {
+    name: "androidx.paging_paging-guava",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.paging_paging-guava/AndroidManifest.xml",
+    static_libs: [
+        "androidx.paging_paging-guava-nodeps",
+        "androidx.paging_paging-common",
+        "guava",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_guava",
     ],
     java_version: "1.7",
 }
@@ -4780,6 +5116,258 @@ android_library {
     static_libs: [
         "androidx.print_print-nodeps",
         "androidx.annotation_annotation",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ads_ads-adservices-java-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta03/ads-adservices-java-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.ads_ads-adservices",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ads_ads-adservices-java",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ads_ads-adservices-java/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ads_ads-adservices-java-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.ads_ads-adservices",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ads_ads-adservices-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta03/ads-adservices-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ads_ads-adservices",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ads_ads-adservices/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ads_ads-adservices-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-client/1.0.0-alpha03/sdkruntime-client-1.0.0-alpha03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.sdkruntime_sdkruntime-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-core/1.0.0-alpha03/sdkruntime-core-1.0.0-alpha03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.sdkruntime_sdkruntime-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ui_ui-client-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha02/ui-client-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ui_ui-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-client-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ui_ui-core-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-core/1.0.0-alpha02/ui-core-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ui_ui-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-core-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.privacysandbox.ui_ui-provider-nodeps",
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-provider/1.0.0-alpha02/ui-provider-1.0.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
+    ],
+}
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-provider",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.privacysandbox.ui_ui-provider/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-provider-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.privacysandbox.ui_ui-core",
     ],
     java_version: "1.7",
 }
@@ -5080,6 +5668,80 @@ java_library_host {
     java_version: "1.7",
 }
 
+android_library_import {
+    name: "androidx.room_room-guava-nodeps",
+    aars: ["m2repository/androidx/room/room-guava/2.6.0-alpha02/room-guava-2.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.room_room-common",
+        "androidx.arch.core_core-runtime",
+        "androidx.room_room-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-guava",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-guava/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-guava-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.room_room-common",
+        "androidx.arch.core_core-runtime",
+        "androidx.room_room-runtime",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.room_room-ktx-nodeps",
+    aars: ["m2repository/androidx/room/room-ktx/2.6.0-alpha01/room-ktx-2.6.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.room_room-common",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "androidx.room_room-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-ktx",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-ktx/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-ktx-nodeps",
+        "androidx.room_room-common",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "androidx.room_room-runtime",
+    ],
+    java_version: "1.7",
+}
+
 java_import {
     name: "androidx.room_room-migration-nodeps",
     jars: ["m2repository/androidx/room/room-migration/2.5.0-alpha01/room-migration-2.5.0-alpha01.jar"],
@@ -5106,6 +5768,78 @@ java_library_static {
         "androidx.room_room-common",
         "kotlin-stdlib",
         "gson",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.room_room-paging-guava-nodeps",
+    aars: ["m2repository/androidx/room/room-paging-guava/2.6.0-alpha02/room-paging-guava-2.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.paging_paging-guava",
+        "androidx.room_room-guava",
+        "androidx.room_room-paging",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-paging-guava",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-paging-guava/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-paging-guava-nodeps",
+        "kotlin-stdlib",
+        "androidx.paging_paging-guava",
+        "androidx.room_room-guava",
+        "androidx.room_room-paging",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.room_room-paging-nodeps",
+    aars: ["m2repository/androidx/room/room-paging/2.6.0-alpha02/room-paging-2.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.paging_paging-common",
+        "kotlin-stdlib",
+        "androidx.room_room-ktx",
+        "androidx.room_room-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-paging",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-paging/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-paging-nodeps",
+        "androidx.paging_paging-common",
+        "kotlin-stdlib",
+        "androidx.room_room-ktx",
+        "androidx.room_room-runtime",
     ],
     java_version: "1.7",
 }
@@ -6010,8 +6744,8 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.core_core",
-        "androidx.versionedparcelable_versionedparcelable",
         "androidx.core_core-ktx",
+        "androidx.versionedparcelable_versionedparcelable",
     ],
 }
 
@@ -6028,15 +6762,15 @@ android_library {
         "androidx.wear_wear-ongoing-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
-        "androidx.versionedparcelable_versionedparcelable",
         "androidx.core_core-ktx",
+        "androidx.versionedparcelable_versionedparcelable",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.wear_wear-nodeps",
-    aars: ["m2repository/androidx/wear/wear/1.3.0-alpha02/wear-1.3.0-alpha02.aar"],
+    aars: ["m2repository/androidx/wear/wear/1.3.0-alpha05/wear-1.3.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6045,12 +6779,14 @@ android_library_import {
     min_sdk_version: "23",
     static_libs: [
         "androidx.annotation_annotation",
-        "androidx.swiperefreshlayout_swiperefreshlayout",
-        "androidx.fragment_fragment",
-        "androidx.recyclerview_recyclerview",
         "androidx.core_core",
-        "androidx.versionedparcelable_versionedparcelable",
         "androidx.core_core-ktx",
+        "androidx.dynamicanimation_dynamicanimation",
+        "androidx.fragment_fragment",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.recyclerview_recyclerview",
+        "androidx.swiperefreshlayout_swiperefreshlayout",
+        "androidx.versionedparcelable_versionedparcelable",
     ],
 }
 
@@ -6066,12 +6802,14 @@ android_library {
     static_libs: [
         "androidx.wear_wear-nodeps",
         "androidx.annotation_annotation",
-        "androidx.swiperefreshlayout_swiperefreshlayout",
-        "androidx.fragment_fragment",
-        "androidx.recyclerview_recyclerview",
         "androidx.core_core",
-        "androidx.versionedparcelable_versionedparcelable",
         "androidx.core_core-ktx",
+        "androidx.dynamicanimation_dynamicanimation",
+        "androidx.fragment_fragment",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.recyclerview_recyclerview",
+        "androidx.swiperefreshlayout_swiperefreshlayout",
+        "androidx.versionedparcelable_versionedparcelable",
     ],
     java_version: "1.7",
 }
@@ -6110,7 +6848,7 @@ android_library {
 
 android_library_import {
     name: "androidx.window.extensions.core_core-nodeps",
-    aars: ["m2repository/androidx/window/extensions/core/core/1.0.0-alpha01/core-1.0.0-alpha01.aar"],
+    aars: ["m2repository/androidx/window/extensions/core/core/1.1.0-alpha01/core-1.1.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6118,6 +6856,7 @@ android_library_import {
     ],
     min_sdk_version: "14",
     static_libs: [
+        "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
 }
@@ -6133,6 +6872,7 @@ android_library {
     manifest: "manifests/androidx.window.extensions.core_core/AndroidManifest.xml",
     static_libs: [
         "androidx.window.extensions.core_core-nodeps",
+        "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
     java_version: "1.7",
@@ -6140,7 +6880,7 @@ android_library {
 
 android_library_import {
     name: "androidx.window.extensions_extensions-nodeps",
-    aars: ["m2repository/androidx/window/extensions/extensions/1.1.0-alpha02/extensions-1.1.0-alpha02.aar"],
+    aars: ["m2repository/androidx/window/extensions/extensions/1.2.0-alpha01/extensions-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6175,8 +6915,74 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.window_window-core-nodeps",
+    aars: ["m2repository/androidx/window/window-core/1.2.0-alpha01/window-core-1.2.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+    ],
+}
+
+android_library {
+    name: "androidx.window_window-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.window_window-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.window_window-core-nodeps",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.window_window-java-nodeps",
+    aars: ["m2repository/androidx/window/window-java/1.2.0-alpha01/window-java-1.2.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.window_window",
+    ],
+}
+
+android_library {
+    name: "androidx.window_window-java",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.window_window-java/AndroidManifest.xml",
+    static_libs: [
+        "androidx.window_window-java-nodeps",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.window_window",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.window_window-nodeps",
-    aars: ["m2repository/androidx/window/window/1.1.0-alpha05/window-1.1.0-alpha05.aar"],
+    aars: ["m2repository/androidx/window/window/1.2.0-alpha01/window-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6220,7 +7026,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/work/work-runtime-ktx/2.8.0-beta01/work-runtime-ktx-2.8.0-beta01.aar"],
+    aars: ["m2repository/androidx/work/work-runtime-ktx/2.9.0-alpha01/work-runtime-ktx-2.9.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6254,7 +7060,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-runtime-nodeps",
-    aars: ["m2repository/androidx/work/work-runtime/2.8.0-beta01/work-runtime-2.8.0-beta01.aar"],
+    aars: ["m2repository/androidx/work/work-runtime/2.9.0-alpha01/work-runtime-2.9.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6268,7 +7074,7 @@ android_library_import {
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.lifecycle_lifecycle-service",
-        "androidx.room_room-runtime",
+        "androidx.room_room-ktx",
         "androidx.sqlite_sqlite-framework",
         "androidx.startup_startup-runtime",
     ],
@@ -6291,7 +7097,7 @@ android_library {
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.lifecycle_lifecycle-service",
-        "androidx.room_room-runtime",
+        "androidx.room_room-ktx",
         "androidx.sqlite_sqlite-framework",
         "androidx.startup_startup-runtime",
     ],
@@ -6300,7 +7106,7 @@ android_library {
 
 android_library_import {
     name: "androidx.work_work-testing-nodeps",
-    aars: ["m2repository/androidx/work/work-testing/2.8.0-beta01/work-testing-2.8.0-beta01.aar"],
+    aars: ["m2repository/androidx/work/work-testing/2.9.0-alpha01/work-testing-2.9.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",

@@ -24,9 +24,12 @@ from urllib import request
 from shutil import which
 from distutils.version import LooseVersion
 from pathlib import Path
+from io import StringIO
+from typing import Iterable, Optional
+import xml.etree.ElementTree as ET
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
 from buildserver import fetch_and_extract, extract_artifact, \
-    parse_build_id
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
 from utils import print_e, append, cp, mv, rm
 
 
@@ -42,7 +45,7 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
+extension_sdk_finalization_cmd = 'prebuilts/build-tools/path/linux-x86/python3 %s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
     "packages/modules/common/tools/finalize_sdk.py"
 )
 temp_dir = os.path.join(os.getcwd(), 'support_tmp')
@@ -90,9 +93,15 @@ maven_to_make = {
             'androidx.collection_collection-jvm'
         }
     },
+    'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
+    'androidx.camera:camera-core': {},
+    'androidx.camera:camera-lifecycle': {},
+    'androidx.camera:camera-extensions': {},
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
+    'androidx.concurrent:concurrent-futures-ktx': {},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
@@ -103,6 +112,13 @@ maven_to_make = {
     'androidx.core.uwb:uwb-rxjava3': {},
     'androidx.contentpaging:contentpaging': {},
     'androidx.coordinatorlayout:coordinatorlayout': {},
+    'androidx.datastore:datastore': {},
+    'androidx.datastore:datastore-core': {},
+    'androidx.datastore:datastore-core-okio': {},
+    'androidx.datastore:datastore-preferences': {},
+    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-preferences-rxjava2': {},
+    'androidx.datastore:datastore-rxjava2': {},
     'androidx.legacy:legacy-support-core-ui': {},
     'androidx.legacy:legacy-support-core-utils': {},
     'androidx.cursoradapter:cursoradapter': {},
@@ -122,6 +138,7 @@ maven_to_make = {
     'androidx.fragment:fragment': {},
     'androidx.fragment:fragment-ktx': {},
     'androidx.heifwriter:heifwriter': {},
+    'androidx.health:health-services-client': {},
     'androidx.interpolator:interpolator': {},
     'androidx.loader:loader': {},
     'androidx.media:media': {},
@@ -140,6 +157,14 @@ maven_to_make = {
     'androidx.navigation:navigation-ui-ktx': {},
     'androidx.percentlayout:percentlayout': {},
     'androidx.print:print': {},
+    'androidx.privacysandbox.ads:ads-adservices': {},
+    'androidx.privacysandbox.ads:ads-adservices-java': {},
+    'androidx.privacysandbox.ui:ui-client': {},
+    'androidx.privacysandbox.ui:ui-provider': {},
+    'androidx.privacysandbox.ui:ui-core': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
     'androidx.savedstate:savedstate': {},
@@ -195,6 +220,7 @@ maven_to_make = {
     'androidx.window.extensions:extensions': {},
     'androidx.window.extensions.core:core': {},
     'androidx.window:window-core': {},
+    'androidx.window:window-java':{},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
@@ -275,6 +301,7 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
     'androidx.paging:paging-common': {},
     'androidx.paging:paging-common-ktx': {},
+    'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
@@ -287,9 +314,13 @@ maven_to_make = {
             'guava'
         }
     },
+    'androidx.room:room-guava': {},
     'androidx.room:room-migration': {
         'host_and_device': True
     },
+    'androidx.room:room-ktx': {},
+    'androidx.room:room-paging': {},
+    'androidx.room:room-paging-guava': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
@@ -314,6 +345,7 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
@@ -326,6 +358,7 @@ deps_rewrite = {
     'org.robolectric:robolectric': 'Robolectric_all-target',
     'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
@@ -351,6 +384,21 @@ denylist_files = [
     'AndroidManifest.xml',
     os.path.join('libs', 'noto-emoji-compat-java.jar')
 ]
+
+# Explicitly allow-listed initializers
+enabled_initializers = set([
+    'androidx.lifecycle.ProcessLifecycleInitializer',
+    'androidx.work.WorkManagerInitializer',
+    # TODO(282947321): update after http://aosp/2600447 lands
+    'androidx.compose.runtime.tracing.TracingInitializer',
+])
+
+android_manifest_namepaces = {
+    'android': 'http://schemas.android.com/apk/res/android',
+    'tools': 'http://schemas.android.com/tools'
+}
+
+startup_initializer_pattern = re.compile(r'(\s+)android:value="androidx.startup".*')
 
 artifact_pattern = re.compile(r'^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$')
 
@@ -630,7 +678,12 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
         with zipfile.ZipFile(artifact_file) as zip_file:
             manifests_dir = os.path.join(working_dir, 'manifests')
-            zip_file.extract('AndroidManifest.xml', os.path.join(manifests_dir, make_lib_name))
+            lib_path = Path(os.path.join(manifests_dir, make_lib_name))
+            manifest_path = lib_path / 'AndroidManifest.xml'
+            zip_file.extract('AndroidManifest.xml', lib_path.as_posix())
+            contents = check_startup_initializers(manifest_path)
+            if contents:
+                manifest_path.write_text(contents)
 
 
 def process_aar(artifact_file, target_dir):
@@ -707,6 +760,78 @@ def download_file_to_disk(url, filepath):
         print_e(e.__class__, 'occurred while reading', filepath)
         os.remove(os.path.dirname(filepath))
         raise
+
+
+def check_startup_initializers(manifest_path: str) -> Optional[str]:
+    try:
+        for prefix in android_manifest_namepaces:
+            ET.register_namespace(prefix, android_manifest_namepaces[prefix])
+
+        # Use ElementTree to check if we need updates.
+        # That way we avoid false positives.
+        manifest = ET.parse(manifest_path)
+        root = manifest.getroot()
+        needs_changes = _check_node(root)
+        if needs_changes:
+            # Ideally we would use ElementTree here.
+            # Instead, we are using regular expressions here so we can
+            # preserve comments and whitespaces.
+            manifest_contents = Path(manifest_path).read_text()
+            lines = manifest_contents.splitlines()
+            output = StringIO()
+            for line in lines:
+                matcher = startup_initializer_pattern.match(line)
+                if matcher:
+                    prefix = matcher.group(1)
+                    # Adding an explicit tools:node="remove" so this is still traceable
+                    # when looking at the source.
+                    output.write(f'{prefix}android:value="androidx.startup"\n')
+                    output.write(f'{prefix}tools:node="remove" />')
+                else:
+                    output.write(line)
+                output.write('\n')
+
+            output.write('\n')
+            return output.getvalue()
+    except BaseException as exception:
+        print(
+            f'Unable to parse manifest file with path {manifest_path}.\n\n Details ({exception})'
+        )
+
+def _attribute_name(namespace: str, attribute: str) -> str:
+    if not namespace in android_manifest_namepaces:
+        raise ValueError(f'Unexpected namespace {namespace}')
+
+    return f'{{{android_manifest_namepaces[namespace]}}}{attribute}'
+
+
+def _check_node(node: ET.Element) -> bool:
+    for child in node:
+        # Find the initialization provider
+        is_provider = child.tag == 'provider'
+        provider_name = child.attrib.get(_attribute_name('android', 'name'))
+        is_initialization_provider = provider_name == 'androidx.startup.InitializationProvider'
+
+        if is_provider and is_initialization_provider:
+            metadata_nodes = child.findall('meta-data', namespaces=android_manifest_namepaces)
+            return _needs_disable_initialization(metadata_nodes)
+
+        if len(child) > 0:
+            return _check_node(child)
+
+    return False
+
+
+def _needs_disable_initialization(metadata_nodes: Iterable[ET.Element]) -> bool:
+    needs_update = False
+    for node in metadata_nodes:
+        name = node.attrib.get(_attribute_name('android', 'name'))
+        value = node.attrib.get(_attribute_name('android', 'value'))
+        if value == 'androidx.startup':
+            if name not in enabled_initializers:
+                needs_update = True
+
+    return needs_update
 
 
 def update_gmaven(gmaven_artifacts_list):
@@ -828,7 +953,7 @@ def update_material(local_file):
 
 def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifact(target, build_id, artifact_path, beyond_corp)
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
 
     copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
     copy_to = os.path.join('.', os.path.dirname(artifact_path))
@@ -847,7 +972,7 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
 
 def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
     if not local_mode:
-        return buildserver.fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
 
     for artifact, target_path in artifact_dict.items():
         artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
@@ -909,9 +1034,6 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
         data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
         lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
         lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
-    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
-    for api_scope in ['public', 'module-lib', 'system-server']:
-        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
     fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
@@ -1180,6 +1302,11 @@ def main():
                 sys.exit(1)
 
             if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
                 # We commit the finalized dir separately from the current sdk update.
                 msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
                 subprocess.check_call(['git', 'add', '%d' % n])
