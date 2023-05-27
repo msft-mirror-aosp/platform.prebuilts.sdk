@@ -1,4 +1,4 @@
-load("//build/bazel/rules/java:rules.bzl", "java_import")
+load("//build/bazel/rules/java:import.bzl", "java_import")
 load("//build/bazel/rules/java:versions.bzl", "java_versions")
 load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
 load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "DEFAULT_JAVACOPTS", "default_java_toolchain")
@@ -28,7 +28,8 @@ toolchain(
         "//build/bazel/platforms/os:linux",
     ],
     target_compatible_with = [
-        "//build/bazel/platforms/os:android",
+        # TODO(b/278596841): uncomment when DexArchiveAspect propagation into host/exec config is properly handled
+        # "//build/bazel/platforms/os:android",
     ],
     toolchain = ":android_sdk",
     toolchain_type = "@rules_android//toolchains/android_sdk:toolchain_type",
@@ -44,7 +45,8 @@ toolchain(
         "//build/bazel/platforms/os:linux",
     ],
     target_compatible_with = [
-        "//build/bazel/platforms/os:android",
+        # TODO(b/278596841): uncomment when DexArchiveAspect propagation into host/exec config is properly handled
+        # "//build/bazel/platforms/os:android",
     ],
     toolchain = ":android_sdk",
     toolchain_type = "@bazel_tools//tools/android:sdk_toolchain_type",

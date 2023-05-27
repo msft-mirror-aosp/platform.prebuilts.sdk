@@ -174,7 +174,7 @@ android_library {
 
 java_import {
     name: "androidx.annotation_annotation-jvm-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation-jvm/1.6.0-rc01/annotation-jvm-1.6.0-rc01.jar"],
+    jars: ["m2repository/androidx/annotation/annotation-jvm/1.7.0-alpha03/annotation-jvm-1.7.0-alpha03.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -202,7 +202,7 @@ java_library_static {
 
 java_import {
     name: "androidx.annotation_annotation-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation/1.6.0-rc01/annotation-1.6.0-rc01.jar"],
+    jars: ["m2repository/androidx/annotation/annotation/1.7.0-alpha03/annotation-1.7.0-alpha03.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -292,6 +292,7 @@ android_library_import {
         "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
     ],
 }
@@ -322,6 +323,7 @@ android_library {
         "androidx.fragment_fragment",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
     ],
     java_version: "1.7",
@@ -651,7 +653,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-common-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-alpha09/benchmark-common-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-alpha14/benchmark-common-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -693,7 +695,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-alpha09/benchmark-junit4-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-alpha14/benchmark-junit4-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -735,7 +737,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-alpha09/benchmark-macro-junit4-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-alpha14/benchmark-macro-junit4-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -779,7 +781,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-alpha09/benchmark-macro-1.2.0-alpha09.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-alpha14/benchmark-macro-1.2.0-alpha14.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -793,6 +795,7 @@ android_library_import {
         "junit",
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
+        "androidx.core_core",
         "androidx.profileinstaller_profileinstaller",
         "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
@@ -816,6 +819,7 @@ android_library {
         "junit",
         "kotlin-stdlib",
         "androidx.benchmark_benchmark-common",
+        "androidx.core_core",
         "androidx.profileinstaller_profileinstaller",
         "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
@@ -2560,42 +2564,27 @@ java_library_static {
     java_version: "1.7",
 }
 
-android_library_import {
+java_import {
     name: "androidx.constraintlayout_constraintlayout-compose-nodeps",
-    aars: ["m2repository/androidx/constraintlayout/constraintlayout-compose/1.1.0-alpha10/constraintlayout-compose-1.1.0-alpha10.aar"],
+    jars: ["m2repository/androidx/constraintlayout/constraintlayout-compose/1.1.0-alpha10/constraintlayout-compose-1.1.0-alpha10.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.constraintlayout_constraintlayout-core",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.foundation_foundation-layout",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-    ],
+    min_sdk_version: "24",
 }
 
-android_library {
+java_library_static {
     name: "androidx.constraintlayout_constraintlayout-compose",
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.constraintlayout_constraintlayout-compose/AndroidManifest.xml",
+    min_sdk_version: "24",
     static_libs: [
         "androidx.constraintlayout_constraintlayout-compose-nodeps",
-        "androidx.constraintlayout_constraintlayout-core",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.foundation_foundation-layout",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
     ],
     java_version: "1.7",
 }
@@ -3398,6 +3387,50 @@ android_library {
         "androidx.gridlayout_gridlayout-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.health_health-services-client-nodeps",
+    aars: ["m2repository/androidx/health/health-services-client/1.0.0-beta03/health-services-client-1.0.0-beta03.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "30",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "libprotobuf-java-lite",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.health_health-services-client",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "30",
+    manifest: "manifests/androidx.health_health-services-client/AndroidManifest.xml",
+    static_libs: [
+        "androidx.health_health-services-client-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "guava",
+        "guava-listenablefuture-prebuilt-jar",
+        "libprotobuf-java-lite",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core-ktx",
     ],
     java_version: "1.7",
 }
@@ -4725,7 +4758,7 @@ android_library {
 
 java_import {
     name: "androidx.paging_paging-common-ktx-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common-ktx/3.2.0-alpha04/paging-common-ktx-3.2.0-alpha04.jar"],
+    jars: ["m2repository/androidx/paging/paging-common-ktx/3.2.0-alpha05/paging-common-ktx-3.2.0-alpha05.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4751,7 +4784,7 @@ java_library_static {
 
 java_import {
     name: "androidx.paging_paging-common-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common/3.2.0-alpha04/paging-common-3.2.0-alpha04.jar"],
+    jars: ["m2repository/androidx/paging/paging-common/3.2.0-alpha05/paging-common-3.2.0-alpha05.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4779,8 +4812,44 @@ java_library_static {
 }
 
 android_library_import {
+    name: "androidx.paging_paging-guava-nodeps",
+    aars: ["m2repository/androidx/paging/paging-guava/3.2.0-alpha05/paging-guava-3.2.0-alpha05.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.paging_paging-common",
+        "guava",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_guava",
+    ],
+}
+
+android_library {
+    name: "androidx.paging_paging-guava",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.paging_paging-guava/AndroidManifest.xml",
+    static_libs: [
+        "androidx.paging_paging-guava-nodeps",
+        "androidx.paging_paging-common",
+        "guava",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_guava",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.paging_paging-runtime-nodeps",
-    aars: ["m2repository/androidx/paging/paging-runtime/3.2.0-alpha04/paging-runtime-3.2.0-alpha04.aar"],
+    aars: ["m2repository/androidx/paging/paging-runtime/3.2.0-alpha05/paging-runtime-3.2.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4960,7 +5029,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ads_ads-adservices-java-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta03/ads-adservices-java-1.0.0-beta03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta04/ads-adservices-java-1.0.0-beta04.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5004,7 +5073,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ads_ads-adservices-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta03/ads-adservices-1.0.0-beta03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta04/ads-adservices-1.0.0-beta04.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5040,7 +5109,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-client/1.0.0-alpha03/sdkruntime-client-1.0.0-alpha03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-client/1.0.0-alpha04/sdkruntime-client-1.0.0-alpha04.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5078,7 +5147,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-core/1.0.0-alpha03/sdkruntime-core-1.0.0-alpha03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-core/1.0.0-alpha04/sdkruntime-core-1.0.0-alpha04.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5112,7 +5181,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-client-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha02/ui-client-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha03/ui-client-1.0.0-alpha03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5146,7 +5215,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-core-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ui/ui-core/1.0.0-alpha02/ui-core-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-core/1.0.0-alpha03/ui-core-1.0.0-alpha03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5178,7 +5247,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-provider-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ui/ui-provider/1.0.0-alpha02/ui-provider-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-provider/1.0.0-alpha03/ui-provider-1.0.0-alpha03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5428,7 +5497,7 @@ java_library_static {
 
 java_import {
     name: "androidx.room_room-common-nodeps",
-    jars: ["m2repository/androidx/room/room-common/2.5.0-alpha01/room-common-2.5.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-common/2.6.0-alpha02/room-common-2.6.0-alpha02.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -5457,7 +5526,7 @@ java_library_static {
 
 java_import_host {
     name: "androidx.room_room-compiler-processing-nodeps",
-    jars: ["m2repository/androidx/room/room-compiler-processing/2.5.0-alpha01/room-compiler-processing-2.5.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-compiler-processing/2.6.0-alpha02/room-compiler-processing-2.6.0-alpha02.jar"],
     sdk_version: "31",
 }
 
@@ -5465,23 +5534,24 @@ java_library_host {
     name: "androidx.room_room-compiler-processing",
     static_libs: [
         "androidx.room_room-compiler-processing-nodeps",
-        "kotlin-stdlib",
-        "javapoet",
-        "kotlinpoet",
-        "guava",
         "auto_common",
         "auto_value_annotations",
-        "kotlinx_metadata_jvm",
-        "jetbrains-annotations",
         "symbol-processing-api",
+        "guava",
+        "jetbrains-annotations",
+        "javapoet",
+        "kotlinpoet",
+        "kotlinpoet-javapoet",
+        "kotlin-stdlib",
         "kotlin-stdlib-jdk8",
+        "kotlinx_metadata_jvm",
     ],
     java_version: "1.7",
 }
 
 java_import_host {
     name: "androidx.room_room-compiler-nodeps",
-    jars: ["m2repository/androidx/room/room-compiler/2.5.0-alpha01/room-compiler-2.5.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-compiler/2.6.0-alpha02/room-compiler-2.6.0-alpha02.jar"],
     sdk_version: "31",
 }
 
@@ -5490,25 +5560,64 @@ java_library_host {
     static_libs: [
         "androidx.room_room-compiler-nodeps",
         "androidx.room_room-common",
-        "androidx.room_room-migration",
         "androidx.room_room-compiler-processing",
-        "kotlin-stdlib",
+        "androidx.room_room-migration",
         "auto_common",
         "auto_value_annotations",
-        "javapoet",
         "symbol-processing-api",
-        "xerial-sqlite-jdbc",
-        "kotlinx_metadata_jvm",
-        "commons-codec",
         "jetbrains-annotations",
+        "javapoet",
+        "kotlinpoet",
+        "kotlinpoet-javapoet",
+        "commons-codec",
+        "kotlin-stdlib",
+        "xerial-sqlite-jdbc",
         "guava",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
+    name: "androidx.room_room-guava-nodeps",
+    aars: ["m2repository/androidx/room/room-guava/2.6.0-alpha02/room-guava-2.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.room_room-common",
+        "androidx.arch.core_core-runtime",
+        "androidx.room_room-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-guava",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-guava/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-guava-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.room_room-common",
+        "androidx.arch.core_core-runtime",
+        "androidx.room_room-runtime",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.room_room-ktx-nodeps",
-    aars: ["m2repository/androidx/room/room-ktx/2.6.0-alpha01/room-ktx-2.6.0-alpha01.aar"],
+    aars: ["m2repository/androidx/room/room-ktx/2.6.0-alpha02/room-ktx-2.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5544,7 +5653,7 @@ android_library {
 
 java_import {
     name: "androidx.room_room-migration-nodeps",
-    jars: ["m2repository/androidx/room/room-migration/2.5.0-alpha01/room-migration-2.5.0-alpha01.jar"],
+    jars: ["m2repository/androidx/room/room-migration/2.6.0-alpha02/room-migration-2.6.0-alpha02.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -5566,15 +5675,87 @@ java_library_static {
     static_libs: [
         "androidx.room_room-migration-nodeps",
         "androidx.room_room-common",
-        "kotlin-stdlib",
         "gson",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.room_room-paging-guava-nodeps",
+    aars: ["m2repository/androidx/room/room-paging-guava/2.6.0-alpha02/room-paging-guava-2.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.paging_paging-guava",
+        "androidx.room_room-guava",
+        "androidx.room_room-paging",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-paging-guava",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-paging-guava/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-paging-guava-nodeps",
+        "kotlin-stdlib",
+        "androidx.paging_paging-guava",
+        "androidx.room_room-guava",
+        "androidx.room_room-paging",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.room_room-paging-nodeps",
+    aars: ["m2repository/androidx/room/room-paging/2.6.0-alpha02/room-paging-2.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.paging_paging-common",
+        "kotlin-stdlib",
+        "androidx.room_room-ktx",
+        "androidx.room_room-runtime",
+    ],
+}
+
+android_library {
+    name: "androidx.room_room-paging",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.room_room-paging/AndroidManifest.xml",
+    static_libs: [
+        "androidx.room_room-paging-nodeps",
+        "androidx.paging_paging-common",
+        "kotlin-stdlib",
+        "androidx.room_room-ktx",
+        "androidx.room_room-runtime",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.room_room-runtime-nodeps",
-    aars: ["m2repository/androidx/room/room-runtime/2.5.0-alpha01/room-runtime-2.5.0-alpha01.aar"],
+    aars: ["m2repository/androidx/room/room-runtime/2.6.0-alpha02/room-runtime-2.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5583,10 +5764,10 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.room_room-common",
-        "androidx.sqlite_sqlite-framework",
-        "androidx.sqlite_sqlite",
-        "androidx.arch.core_core-runtime",
         "androidx.annotation_annotation-experimental",
+        "androidx.arch.core_core-runtime",
+        "androidx.sqlite_sqlite",
+        "androidx.sqlite_sqlite-framework",
     ],
 }
 
@@ -5602,17 +5783,17 @@ android_library {
     static_libs: [
         "androidx.room_room-runtime-nodeps",
         "androidx.room_room-common",
-        "androidx.sqlite_sqlite-framework",
-        "androidx.sqlite_sqlite",
-        "androidx.arch.core_core-runtime",
         "androidx.annotation_annotation-experimental",
+        "androidx.arch.core_core-runtime",
+        "androidx.sqlite_sqlite",
+        "androidx.sqlite_sqlite-framework",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.room_room-testing-nodeps",
-    aars: ["m2repository/androidx/room/room-testing/2.5.0-alpha01/room-testing-2.5.0-alpha01.aar"],
+    aars: ["m2repository/androidx/room/room-testing/2.6.0-alpha02/room-testing-2.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5623,10 +5804,10 @@ android_library_import {
         "androidx.room_room-common",
         "androidx.room_room-migration",
         "junit",
+        "androidx.arch.core_core-runtime",
         "androidx.room_room-runtime",
         "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
-        "androidx.arch.core_core-runtime",
     ],
 }
 
@@ -5644,10 +5825,10 @@ android_library {
         "androidx.room_room-common",
         "androidx.room_room-migration",
         "junit",
+        "androidx.arch.core_core-runtime",
         "androidx.room_room-runtime",
         "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
-        "androidx.arch.core_core-runtime",
     ],
     java_version: "1.7",
 }
@@ -6576,7 +6757,7 @@ android_library {
 
 android_library_import {
     name: "androidx.window.extensions.core_core-nodeps",
-    aars: ["m2repository/androidx/window/extensions/core/core/1.0.0-alpha01/core-1.0.0-alpha01.aar"],
+    aars: ["m2repository/androidx/window/extensions/core/core/1.1.0-alpha01/core-1.1.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6584,6 +6765,7 @@ android_library_import {
     ],
     min_sdk_version: "14",
     static_libs: [
+        "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
 }
@@ -6599,6 +6781,7 @@ android_library {
     manifest: "manifests/androidx.window.extensions.core_core/AndroidManifest.xml",
     static_libs: [
         "androidx.window.extensions.core_core-nodeps",
+        "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
     java_version: "1.7",
@@ -6606,7 +6789,7 @@ android_library {
 
 android_library_import {
     name: "androidx.window.extensions_extensions-nodeps",
-    aars: ["m2repository/androidx/window/extensions/extensions/1.1.0-alpha03/extensions-1.1.0-alpha03.aar"],
+    aars: ["m2repository/androidx/window/extensions/extensions/1.2.0-alpha01/extensions-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6642,7 +6825,7 @@ android_library {
 
 android_library_import {
     name: "androidx.window_window-core-nodeps",
-    aars: ["m2repository/androidx/window/window-core/1.1.0-alpha06/window-core-1.1.0-alpha06.aar"],
+    aars: ["m2repository/androidx/window/window-core/1.2.0-alpha01/window-core-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6671,8 +6854,44 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.window_window-java-nodeps",
+    aars: ["m2repository/androidx/window/window-java/1.2.0-alpha01/window-java-1.2.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.window_window",
+    ],
+}
+
+android_library {
+    name: "androidx.window_window-java",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.window_window-java/AndroidManifest.xml",
+    static_libs: [
+        "androidx.window_window-java-nodeps",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
+        "androidx.window_window",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.window_window-nodeps",
-    aars: ["m2repository/androidx/window/window/1.1.0-alpha06/window-1.1.0-alpha06.aar"],
+    aars: ["m2repository/androidx/window/window/1.2.0-alpha01/window-1.2.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
