@@ -15,108 +15,109 @@
   },
   "variants": [
     {
-      "name": "releaseVariantReleaseApiPublication",
-      "attributes": {
-        "org.gradle.category": "library",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.libraryelements": "aar",
-        "org.gradle.usage": "java-api"
-      },
-      "files": [
-        {
-          "name": "constraintlayout-compose-1.1.0-alpha10.aar",
-          "url": "constraintlayout-compose-1.1.0-alpha10.aar",
-          "size": 1683557,
-          "sha512": "baf894a1bf6ba50c403fd65e1b91002c6a26a92733e95972175c2453d28f4706ee4d6ab8f4543a728a9bfa6e7068b501b06779822a08fa32b2964a619deb38ee",
-          "sha256": "b79fe14cc33bebde3d68083463f21f2b6ca72583009812d823f06e12f0a2d1fa",
-          "sha1": "bc52e406fe802f1e722d8d54ac70d3181f879c5f",
-          "md5": "2492893667011289cd53f73acaf257cf"
-        }
-      ]
-    },
-    {
-      "name": "releaseVariantReleaseRuntimePublication",
-      "attributes": {
-        "org.gradle.category": "library",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.libraryelements": "aar",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencies": [
-        {
-          "group": "androidx.compose.foundation",
-          "module": "foundation",
-          "version": {
-            "requires": "1.5.0-alpha03"
-          }
-        },
-        {
-          "group": "androidx.compose.foundation",
-          "module": "foundation-layout",
-          "version": {
-            "requires": "1.5.0-alpha03"
-          }
-        },
-        {
-          "group": "androidx.compose.ui",
-          "module": "ui",
-          "version": {
-            "requires": "1.5.0-alpha03"
-          }
-        },
-        {
-          "group": "androidx.compose.ui",
-          "module": "ui-unit",
-          "version": {
-            "requires": "1.5.0-alpha03"
-          }
-        },
-        {
-          "group": "androidx.compose.ui",
-          "module": "ui-util",
-          "version": {
-            "requires": "1.5.0-alpha03"
-          }
-        },
-        {
-          "group": "androidx.constraintlayout",
-          "module": "constraintlayout-core",
-          "version": {
-            "requires": "1.1.0-alpha10"
-          }
-        }
-      ],
-      "files": [
-        {
-          "name": "constraintlayout-compose-1.1.0-alpha10.aar",
-          "url": "constraintlayout-compose-1.1.0-alpha10.aar",
-          "size": 1683557,
-          "sha512": "baf894a1bf6ba50c403fd65e1b91002c6a26a92733e95972175c2453d28f4706ee4d6ab8f4543a728a9bfa6e7068b501b06779822a08fa32b2964a619deb38ee",
-          "sha256": "b79fe14cc33bebde3d68083463f21f2b6ca72583009812d823f06e12f0a2d1fa",
-          "sha1": "bc52e406fe802f1e722d8d54ac70d3181f879c5f",
-          "md5": "2492893667011289cd53f73acaf257cf"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
+      "name": "androidxSourcesElements",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
+        "org.gradle.usage": "androidx-multiplatform-docs"
       },
       "files": [
         {
-          "name": "constraintlayout-compose-1.1.0-alpha10-sources.jar",
-          "url": "constraintlayout-compose-1.1.0-alpha10-sources.jar",
-          "size": 90925,
-          "sha512": "fbfacaa20174e6f0357b324dcbd383fa77e68d32fdf14606ea91e74e7c59138569a635d3b56869cd8b629e830bdec1d9065fc40898bb7862ad6076c01de5e7b7",
-          "sha256": "7829cbb1020f6677f4860b8cee480af3e8c1604444af0e4c9b61fa02608cf998",
-          "sha1": "479c7e43aff0fcf50c56981d4c7dfbc63d9595a7",
-          "md5": "90ed7ec27f392ea5b5b0f21bf257b286"
+          "name": "constraintlayout-compose-1.1.0-alpha10-multiplatform-sources.jar",
+          "url": "constraintlayout-compose-1.1.0-alpha10-multiplatform-sources.jar",
+          "size": 88123,
+          "sha512": "a5336d5aaf0c9a2a423cc02daad97656f754e928e7adbe73407dfaae2ffb1f7ba850fd677f5ac5b13c400438722399b4c1cd48d21728ea8f5f3c8627eab25ddf",
+          "sha256": "85ef913f67a663e481a521d5d16e82caf2f5a36450ddd8bbdd0cba07f6fd1507",
+          "sha1": "5e64aa04c4000ae03b5bb66d5694b9a0137ec075",
+          "md5": "83909146a521f3cf6f37e5bd5b7b802a"
         }
       ]
+    },
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "constraintlayout-compose-metadata-1.1.0-alpha10.jar",
+          "url": "constraintlayout-compose-1.1.0-alpha10.jar",
+          "size": 660,
+          "sha512": "b2f9847ad3b9e240fe027dd4b7bae0977964c709907294254b4906a8a4786c1c7b4d1d191aa7593985c5baac302772dcbf2933dc7173324ab645131182260d53",
+          "sha256": "1dd30ce8cca076140ed92ee748c1d35a4ac46b9da435406e353208a07267996d",
+          "sha1": "b5c589b0e46d99e25aebe48839215aaec925ae55",
+          "md5": "ba41245ca2b526249e40016327115655"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "constraintlayout-compose-kotlin-1.1.0-alpha10-sources.jar",
+          "url": "constraintlayout-compose-1.1.0-alpha10-sources.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../constraintlayout-compose-android/1.1.0-alpha10/constraintlayout-compose-android-1.1.0-alpha10.module",
+        "group": "androidx.constraintlayout",
+        "module": "constraintlayout-compose-android",
+        "version": "1.1.0-alpha10"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../constraintlayout-compose-android/1.1.0-alpha10/constraintlayout-compose-android-1.1.0-alpha10.module",
+        "group": "androidx.constraintlayout",
+        "module": "constraintlayout-compose-android",
+        "version": "1.1.0-alpha10"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../constraintlayout-compose-android/1.1.0-alpha10/constraintlayout-compose-android-1.1.0-alpha10.module",
+        "group": "androidx.constraintlayout",
+        "module": "constraintlayout-compose-android",
+        "version": "1.1.0-alpha10"
+      }
     }
   ]
 }
