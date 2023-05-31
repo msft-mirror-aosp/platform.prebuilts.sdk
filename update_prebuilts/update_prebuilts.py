@@ -484,6 +484,7 @@ deps_rewrite = {
     'org.robolectric:robolectric': 'Robolectric_all-target',
     'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm': 'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
