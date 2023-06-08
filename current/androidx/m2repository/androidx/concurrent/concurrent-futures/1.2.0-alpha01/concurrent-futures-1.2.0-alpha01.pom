@@ -9,7 +9,7 @@
   <groupId>androidx.concurrent</groupId>
   <artifactId>concurrent-futures</artifactId>
   <version>1.2.0-alpha01</version>
-  <name>AndroidX Futures</name>
+  <name>Futures</name>
   <description>Androidx implementation of Guava's ListenableFuture</description>
   <url>https://developer.android.com/jetpack/androidx/releases/concurrent#1.2.0-alpha01</url>
   <inceptionYear>2018</inceptionYear>
@@ -29,6 +29,15 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.concurrent</groupId>
+        <artifactId>concurrent-futures-ktx</artifactId>
+        <version>1.2.0-alpha01</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>androidx.annotation</groupId>
