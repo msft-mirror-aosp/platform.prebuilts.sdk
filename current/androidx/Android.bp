@@ -3308,6 +3308,74 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.fragment_fragment-testing-manifest-nodeps",
+    aars: ["m2repository/androidx/fragment/fragment-testing-manifest/1.7.0-alpha01/fragment-testing-manifest-1.7.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.fragment_fragment-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.fragment_fragment-testing-manifest",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.fragment_fragment-testing-manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.fragment_fragment-testing-manifest-nodeps",
+        "kotlin-stdlib",
+        "androidx.fragment_fragment-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.fragment_fragment-testing-nodeps",
+    aars: ["m2repository/androidx/fragment/fragment-testing/1.7.0-alpha01/fragment-testing-1.7.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.test.core",
+        "kotlin-stdlib",
+        "androidx.fragment_fragment-ktx",
+        "androidx.fragment_fragment-testing-manifest",
+    ],
+}
+
+android_library {
+    name: "androidx.fragment_fragment-testing",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.fragment_fragment-testing/AndroidManifest.xml",
+    static_libs: [
+        "androidx.fragment_fragment-testing-nodeps",
+        "androidx.test.core",
+        "kotlin-stdlib",
+        "androidx.fragment_fragment-ktx",
+        "androidx.fragment_fragment-testing-manifest",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.fragment_fragment-nodeps",
     aars: ["m2repository/androidx/fragment/fragment/1.6.0-alpha08/fragment-1.6.0-alpha08.aar"],
     sdk_version: "31",
