@@ -52,6 +52,10 @@ temp_dir = os.path.join(os.getcwd(), 'support_tmp')
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
 
+# Suffixes used by KMP artifacts. If an artifact in maven_to_make ends with one
+# of these, it will replace the anchor artifact.
+kmp_suffixes = ['android','jvm']
+
 # Leave map blank to automatically populate name and path:
 # - Name format is MAVEN.replaceAll(':','_')
 # - Path format is MAVEN.replaceAll(':','/').replaceAll('.','/')
@@ -77,22 +81,11 @@ maven_to_make = {
     'androidx.vectordrawable:vectordrawable-animated': {},
     'androidx.activity:activity': {},
     'androidx.activity:activity-ktx': {},
-    'androidx.annotation:annotation': {
-        'host_and_device': True,
-        'extra-static-libs': {
-            'androidx.annotation_annotation-jvm'
-        }
-    },
     'androidx.annotation:annotation-jvm': {
         'host_and_device': True
     },
     'androidx.annotation:annotation-experimental': {},
     'androidx.asynclayoutinflater:asynclayoutinflater': {},
-    'androidx.collection:collection': {
-        'extra-static-libs': {
-            'androidx.collection_collection-jvm'
-        }
-    },
     'androidx.camera:camera-viewfinder':{},
     'androidx.camera:camera-camera2' :{},
     'androidx.camera:camera-core': {},
@@ -231,159 +224,34 @@ maven_to_make = {
     'androidx.compose.compiler:compiler-hosted': {
         'host': True
     },
-    'androidx.compose.animation:animation': {
-        'extra-static-libs': {
-            'androidx.compose.animation_animation-android'
-        }
-    },
     'androidx.compose.animation:animation-android': {},
-    'androidx.compose.animation:animation-core': {
-        'extra-static-libs': {
-            'androidx.compose.animation_animation-core-android'
-        }
-    },
     'androidx.compose.animation:animation-core-android': {},
-    'androidx.compose.animation:animation-graphics': {
-        'extra-static-libs': {
-            'androidx.compose.animation_animation-graphics-android'
-        }
-    },
     'androidx.compose.animation:animation-graphics-android': {},
-    'androidx.compose.foundation:foundation': {
-        'extra-static-libs': {
-            'androidx.compose.foundation_foundation-android'
-        }
-    },
     'androidx.compose.foundation:foundation-android': {},
-    'androidx.compose.foundation:foundation-layout': {
-        'extra-static-libs': {
-            'androidx.compose.foundation_foundation-layout-android'
-        }
-    },
     'androidx.compose.foundation:foundation-layout-android': {},
-    'androidx.compose.foundation:foundation-text': {
-        'extra-static-libs': {
-            'androidx.compose.foundation_foundation-text-android'
-        }
-    },
     'androidx.compose.foundation:foundation-text-android': {},
-    'androidx.compose.material:material': {
-        'extra-static-libs': {
-            'androidx.compose.material_material-android'
-        }
-    },
     'androidx.compose.material:material-android': {},
-    'androidx.compose.material:material-icons-core': {
-        'extra-static-libs': {
-            'androidx.compose.material_material-icons-core-android'
-        }
-    },
     'androidx.compose.material:material-icons-core-android': {},
-    'androidx.compose.material:material-icons-extended': {
-        'extra-static-libs': {
-            'androidx.compose.material_material-icons-extended-android'
-        }
-    },
     'androidx.compose.material:material-icons-extended-android': {},
-    'androidx.compose.material:material-ripple': {
-        'extra-static-libs': {
-            'androidx.compose.material_material-ripple-android'
-        }
-    },
     'androidx.compose.material:material-ripple-android': {},
-    'androidx.compose.material3:material3': {
-        'extra-static-libs': {
-            'androidx.compose.material3_material3-android'
-        }
-    },
     'androidx.compose.material3:material3-android': {},
-    'androidx.compose.material3:material3-window-size-class': {
-        'extra-static-libs': {
-            'androidx.compose.material3_material3-window-size-class-android'
-        }
-    },
     'androidx.compose.material3:material3-window-size-class-android': {},
-    'androidx.compose.runtime:runtime': {
-        'extra-static-libs': {
-            'androidx.compose.runtime_runtime-android'
-        }
-    },
     'androidx.compose.runtime:runtime-android': {},
     'androidx.compose.runtime:runtime-livedata': {},
-    'androidx.compose.runtime:runtime-saveable': {
-        'extra-static-libs': {
-            'androidx.compose.runtime_runtime-saveable-android'
-        }
-    },
     'androidx.compose.runtime:runtime-saveable-android': {},
     'androidx.compose.runtime:runtime-tracing': {},
     'androidx.compose.ui:ui-util-android': {},
-    'androidx.compose.ui:ui': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-android'
-        }
-    },
     'androidx.compose.ui:ui-android': {},
-    'androidx.compose.ui:ui-geometry': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-geometry-android'
-        }
-    },
     'androidx.compose.ui:ui-geometry-android': {},
-    'androidx.compose.ui:ui-graphics': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-graphics-android'
-        }
-    },
     'androidx.compose.ui:ui-graphics-android': {},
     'androidx.compose.ui:ui-test-manifest': {},
-    'androidx.compose.ui:ui-test': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-test-android'
-        }
-    },
     'androidx.compose.ui:ui-test-android': {},
-    'androidx.compose.ui:ui-test-junit4': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-test-junit4-android'
-        }
-    },
     'androidx.compose.ui:ui-test-junit4-android': {},
-    'androidx.compose.ui:ui-text': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-text-android'
-        }
-    },
     'androidx.compose.ui:ui-text-android': {},
-    'androidx.compose.ui:ui-tooling': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-tooling-android'
-        }
-    },
     'androidx.compose.ui:ui-tooling-android': {},
-    'androidx.compose.ui:ui-tooling-data': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-tooling-data-android'
-        }
-    },
     'androidx.compose.ui:ui-tooling-data-android': {},
-    'androidx.compose.ui:ui-tooling-preview': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-tooling-preview-android'
-        }
-    },
     'androidx.compose.ui:ui-tooling-preview-android': {},
-    'androidx.compose.ui:ui-unit': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-unit-android'
-        }
-    },
     'androidx.compose.ui:ui-unit-android': {},
-    'androidx.compose.ui:ui-util': {
-        'extra-static-libs': {
-            'androidx.compose.ui_ui-util-android'
-        }
-    },
     'androidx.activity:activity-compose': {},
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
@@ -532,6 +400,15 @@ def name_for_artifact(group_artifact):
     Returns:
         The build system target name for the artifact, ex. androidx.core_core.
     """
+    for kmp_suffix in kmp_suffixes:
+        if group_artifact.endswith("-" + kmp_suffix):
+            loc = group_artifact.rfind("-" + kmp_suffix)
+            group_artifact = group_artifact[0:loc]
+            if group_artifact in maven_to_make:
+                raise ValueError(f'Do not specify KMP anchor artifact in '
+                                 f'maven_to_make: {group_artifact}')
+            deps_rewrite[group_artifact] = group_artifact.replace(':', '_')
+            break
     return group_artifact.replace(':', '_')
 
 
