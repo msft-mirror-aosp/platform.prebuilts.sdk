@@ -680,6 +680,9 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
     Returns:
         True if successful, false otherwise.
     """
+    # If neither include nor exclude is set, fall back to legacy behavior of including everything.
+    include_all = exclude is None and include is None
+
     if exclude is None:
         exclude = []
     if include is None:
@@ -694,24 +697,32 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
     for remote_repo in maven_repo_dirs:
         remote_repo = os.path.join(cwd, remote_repo)
         paths_to_copy = []
-        for group_artifact in include:
-            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
-            remote_path = os.path.join(remote_repo, artifact_path)
-            working_path = os.path.join(working_dir, artifact_path)
-            if os.path.exists(remote_path):
-                print(f'Included {group_artifact} in update')
-                paths_to_copy.append([remote_path, working_path])
 
-        # Move included artifacts from repo to temp.
-        for [remote_path, working_path] in paths_to_copy:
-            mv(remote_path, working_path)
+        # If we're including everything, move the entire repo to temp.
+        if include_all:
+            cp(remote_repo, working_dir)
+        else:
+            # Move included artifacts from repo to temp.
+            for group_artifact in include:
+                artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+                remote_path = os.path.join(remote_repo, artifact_path)
+                working_path = os.path.join(working_dir, artifact_path)
+                if os.path.exists(remote_path):
+                    print(f'Included {group_artifact} in update')
+                    paths_to_copy.append([remote_path, working_path])
+            for [remote_path, working_path] in paths_to_copy:
+                mv(remote_path, working_path)
 
         # Replace all remaining artifacts in remote repo with local repo.
         cp(local_repo, remote_repo)
 
-        # Restore included artifacts to remote repo.
-        for [remote_path, working_path] in paths_to_copy:
-            mv(working_path, remote_path)
+        # If we're including everything, restore the entire repo.
+        if include_all:
+            cp(working_dir, remote_repo)
+        else:
+            # Restore included artifacts to remote repo.
+            for [remote_path, working_path] in paths_to_copy:
+                mv(working_path, remote_path)
 
     # Handle exclusions by replacing the remote artifacts for the exclusions with local artifacts.
     # This must happen before we parse the artifacts.
