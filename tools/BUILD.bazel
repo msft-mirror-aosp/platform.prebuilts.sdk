@@ -2,8 +2,8 @@ exports_files(
     # TODO(b/225291837): Get Bazel to build aapt2 from source instead.
     ["linux/bin/aapt2"],
     visibility = [
-        "//prebuilts/sdk:__pkg__",
         "//build/bazel:__subpackages__",
+        "//prebuilts/sdk:__pkg__",
         "//vendor:__subpackages__",
     ],
 )
@@ -19,6 +19,17 @@ exports_files(
         "linux/lib/apksigner.jar",
     ],
     visibility = [
+        "//prebuilts/sdk:__pkg__",
+    ],
+)
+
+exports_files(
+    [
+        #TODO (b/245736162): Get Bazel to build llvm-rs-cc from source instead.
+        "linux/bin/llvm-rs-cc",
+    ],
+    visibility = [
+        "//build/bazel:__subpackages__",
         "//prebuilts/sdk:__pkg__",
     ],
 )
