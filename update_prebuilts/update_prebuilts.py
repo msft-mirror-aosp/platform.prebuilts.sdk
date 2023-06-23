@@ -68,6 +68,7 @@ maven_to_make = {
     'androidx.tracing:tracing': {},
     'androidx.tracing:tracing-perfetto': {},
     'androidx.tracing:tracing-perfetto-binary': {},
+    'androidx.tracing:tracing-perfetto-handshake': {},
     'androidx.tracing:tracing-perfetto-common': {},
     'androidx.tracing:tracing-ktx': {},
     'androidx.slice:slice-builders': {},
