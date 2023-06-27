@@ -3756,7 +3756,7 @@ java_library_static {
 
 java_import {
     name: "androidx.lifecycle_lifecycle-common-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.6.0-alpha04/lifecycle-common-2.6.0-alpha04.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.6.1/lifecycle-common-2.6.1.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -3776,6 +3776,8 @@ java_library_static {
     static_libs: [
         "androidx.lifecycle_lifecycle-common-nodeps",
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
     ],
     java_version: "1.7",
 }
@@ -3990,7 +3992,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-ktx/2.6.0-alpha04/lifecycle-runtime-ktx-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-ktx/2.6.1/lifecycle-runtime-ktx-2.6.1.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4060,7 +4062,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.6.0-alpha04/lifecycle-runtime-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.6.1/lifecycle-runtime-2.6.1.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4071,7 +4073,9 @@ android_library_import {
         "androidx.annotation_annotation",
         "androidx.arch.core_core-common",
         "androidx.lifecycle_lifecycle-common",
+        "kotlin-stdlib",
         "androidx.arch.core_core-runtime",
+        "androidx.profileinstaller_profileinstaller",
     ],
 }
 
@@ -4089,7 +4093,9 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.arch.core_core-common",
         "androidx.lifecycle_lifecycle-common",
+        "kotlin-stdlib",
         "androidx.arch.core_core-runtime",
+        "androidx.profileinstaller_profileinstaller",
     ],
     java_version: "1.7",
 }
@@ -4244,7 +4250,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.6.0-alpha04/lifecycle-viewmodel-2.6.0-alpha04.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.6.1/lifecycle-viewmodel-2.6.1.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
