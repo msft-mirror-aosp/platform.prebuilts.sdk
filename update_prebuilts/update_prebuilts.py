@@ -169,6 +169,7 @@ maven_to_make = {
     'androidx.swiperefreshlayout:swiperefreshlayout': {},
     'androidx.textclassifier:textclassifier': {},
     'androidx.transition:transition': {},
+    'androidx.transition:transition-ktx': {},
     'androidx.tvprovider:tvprovider': {},
     'androidx.legacy:legacy-support-v13': {},
     'androidx.legacy:legacy-preference-v14': {},
