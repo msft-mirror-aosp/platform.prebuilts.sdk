@@ -781,22 +781,21 @@ def download_file_to_disk(url, filepath):
         raise
 
 
-def check_startup_initializers(manifest_path: str) -> Optional[str]:
+def check_startup_initializers(manifest_path: Path) -> Optional[str]:
     try:
         for prefix in android_manifest_namepaces:
             ET.register_namespace(prefix, android_manifest_namepaces[prefix])
 
         # Use ElementTree to check if we need updates.
         # That way we avoid false positives.
-        manifest = ET.parse(manifest_path)
-        root = manifest.getroot()
+        contents = manifest_path.read_text()
+        root = ET.fromstring(contents)
         needs_changes = _check_node(root)
         if needs_changes:
             # Ideally we would use ElementTree here.
             # Instead, we are using regular expressions here so we can
             # preserve comments and whitespaces.
-            manifest_contents = Path(manifest_path).read_text()
-            lines = manifest_contents.splitlines()
+            lines = contents.splitlines()
             output = StringIO()
             for line in lines:
                 matcher = startup_initializer_pattern.match(line)
