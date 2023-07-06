@@ -6556,6 +6556,38 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.transition_transition-ktx-nodeps",
+    aars: ["m2repository/androidx/transition/transition-ktx/1.5.0-alpha01/transition-ktx-1.5.0-alpha01.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.transition_transition",
+    ],
+}
+
+android_library {
+    name: "androidx.transition_transition-ktx",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.transition_transition-ktx/AndroidManifest.xml",
+    static_libs: [
+        "androidx.transition_transition-ktx-nodeps",
+        "kotlin-stdlib",
+        "androidx.transition_transition",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.transition_transition-nodeps",
     aars: ["m2repository/androidx/transition/transition/1.5.0-alpha01/transition-1.5.0-alpha01.aar"],
     sdk_version: "31",
