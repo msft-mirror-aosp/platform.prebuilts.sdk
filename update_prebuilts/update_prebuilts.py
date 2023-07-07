@@ -10,16 +10,26 @@ import zipfile
 import re
 import argparse
 import subprocess
-import six
 import shlex
+import glob
+import shutil
+
+# Modules not in Android repo. Ok to ignore if they are not really used.
+try:
+    import six
+except ImportError:
+    six = None
 
 from urllib import request
 from shutil import which
 from distutils.version import LooseVersion
 from pathlib import Path
+from io import StringIO
+from typing import Iterable, Optional
+import xml.etree.ElementTree as ET
 from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
-from buildserver import fetch_and_extract, fetch_artifacts, fetch_artifact, extract_artifact, \
-    parse_build_id
+from buildserver import fetch_and_extract, extract_artifact, \
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
 from utils import print_e, append, cp, mv, rm
 
 
@@ -35,7 +45,7 @@ extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -r "{readme}" -b {bug} -f {extension_version} {build_id}' % (
+extension_sdk_finalization_cmd = 'prebuilts/build-tools/path/linux-x86/python3 %s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
     "packages/modules/common/tools/finalize_sdk.py"
 )
 temp_dir = os.path.join(os.getcwd(), 'support_tmp')
@@ -83,9 +93,15 @@ maven_to_make = {
             'androidx.collection_collection-jvm'
         }
     },
+    'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
+    'androidx.camera:camera-core': {},
+    'androidx.camera:camera-lifecycle': {},
+    'androidx.camera:camera-extensions': {},
     'androidx.collection:collection-ktx': {},
     'androidx.collection:collection-jvm': {},
     'androidx.concurrent:concurrent-futures': {},
+    'androidx.concurrent:concurrent-futures-ktx': {},
     'androidx.concurrent:concurrent-listenablefuture-callback': {},
     'androidx.concurrent:concurrent-listenablefuture': {},
     'androidx.core:core': {},
@@ -96,6 +112,13 @@ maven_to_make = {
     'androidx.core.uwb:uwb-rxjava3': {},
     'androidx.contentpaging:contentpaging': {},
     'androidx.coordinatorlayout:coordinatorlayout': {},
+    'androidx.datastore:datastore': {},
+    'androidx.datastore:datastore-core': {},
+    'androidx.datastore:datastore-core-okio': {},
+    'androidx.datastore:datastore-preferences': {},
+    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-preferences-rxjava2': {},
+    'androidx.datastore:datastore-rxjava2': {},
     'androidx.legacy:legacy-support-core-ui': {},
     'androidx.legacy:legacy-support-core-utils': {},
     'androidx.cursoradapter:cursoradapter': {},
@@ -115,6 +138,7 @@ maven_to_make = {
     'androidx.fragment:fragment': {},
     'androidx.fragment:fragment-ktx': {},
     'androidx.heifwriter:heifwriter': {},
+    'androidx.health:health-services-client': {},
     'androidx.interpolator:interpolator': {},
     'androidx.loader:loader': {},
     'androidx.media:media': {},
@@ -133,6 +157,14 @@ maven_to_make = {
     'androidx.navigation:navigation-ui-ktx': {},
     'androidx.percentlayout:percentlayout': {},
     'androidx.print:print': {},
+    'androidx.privacysandbox.ads:ads-adservices': {},
+    'androidx.privacysandbox.ads:ads-adservices-java': {},
+    'androidx.privacysandbox.ui:ui-client': {},
+    'androidx.privacysandbox.ui:ui-provider': {},
+    'androidx.privacysandbox.ui:ui-core': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
     'androidx.savedstate:savedstate': {},
@@ -188,6 +220,7 @@ maven_to_make = {
     'androidx.window.extensions:extensions': {},
     'androidx.window.extensions.core:core': {},
     'androidx.window:window-core': {},
+    'androidx.window:window-java':{},
     'androidx.resourceinspection:resourceinspection-annotation': {},
     'androidx.profileinstaller:profileinstaller': {},
     'androidx.test.uiautomator:uiautomator': {},
@@ -268,6 +301,7 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
     'androidx.paging:paging-common': {},
     'androidx.paging:paging-common-ktx': {},
+    'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
@@ -280,9 +314,13 @@ maven_to_make = {
             'guava'
         }
     },
+    'androidx.room:room-guava': {},
     'androidx.room:room-migration': {
         'host_and_device': True
     },
+    'androidx.room:room-ktx': {},
+    'androidx.room:room-paging': {},
+    'androidx.room:room-paging-guava': {},
     'androidx.room:room-runtime': {},
     'androidx.room:room-testing': {},
     'androidx.room:room-compiler-processing': {
@@ -307,6 +345,7 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
@@ -319,6 +358,7 @@ deps_rewrite = {
     'org.robolectric:robolectric': 'Robolectric_all-target',
     'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
@@ -344,6 +384,21 @@ denylist_files = [
     'AndroidManifest.xml',
     os.path.join('libs', 'noto-emoji-compat-java.jar')
 ]
+
+# Explicitly allow-listed initializers
+enabled_initializers = set([
+    'androidx.lifecycle.ProcessLifecycleInitializer',
+    'androidx.work.WorkManagerInitializer',
+    # TODO(282947321): update after http://aosp/2600447 lands
+    'androidx.compose.runtime.tracing.TracingInitializer',
+])
+
+android_manifest_namepaces = {
+    'android': 'http://schemas.android.com/apk/res/android',
+    'tools': 'http://schemas.android.com/tools'
+}
+
+startup_initializer_pattern = re.compile(r'(\s+)android:value="androidx.startup".*')
 
 artifact_pattern = re.compile(r'^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$')
 
@@ -623,7 +678,12 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
         with zipfile.ZipFile(artifact_file) as zip_file:
             manifests_dir = os.path.join(working_dir, 'manifests')
-            zip_file.extract('AndroidManifest.xml', os.path.join(manifests_dir, make_lib_name))
+            lib_path = Path(os.path.join(manifests_dir, make_lib_name))
+            manifest_path = lib_path / 'AndroidManifest.xml'
+            zip_file.extract('AndroidManifest.xml', lib_path.as_posix())
+            contents = check_startup_initializers(manifest_path)
+            if contents:
+                manifest_path.write_text(contents)
 
 
 def process_aar(artifact_file, target_dir):
@@ -700,6 +760,78 @@ def download_file_to_disk(url, filepath):
         print_e(e.__class__, 'occurred while reading', filepath)
         os.remove(os.path.dirname(filepath))
         raise
+
+
+def check_startup_initializers(manifest_path: str) -> Optional[str]:
+    try:
+        for prefix in android_manifest_namepaces:
+            ET.register_namespace(prefix, android_manifest_namepaces[prefix])
+
+        # Use ElementTree to check if we need updates.
+        # That way we avoid false positives.
+        manifest = ET.parse(manifest_path)
+        root = manifest.getroot()
+        needs_changes = _check_node(root)
+        if needs_changes:
+            # Ideally we would use ElementTree here.
+            # Instead, we are using regular expressions here so we can
+            # preserve comments and whitespaces.
+            manifest_contents = Path(manifest_path).read_text()
+            lines = manifest_contents.splitlines()
+            output = StringIO()
+            for line in lines:
+                matcher = startup_initializer_pattern.match(line)
+                if matcher:
+                    prefix = matcher.group(1)
+                    # Adding an explicit tools:node="remove" so this is still traceable
+                    # when looking at the source.
+                    output.write(f'{prefix}android:value="androidx.startup"\n')
+                    output.write(f'{prefix}tools:node="remove" />')
+                else:
+                    output.write(line)
+                output.write('\n')
+
+            output.write('\n')
+            return output.getvalue()
+    except BaseException as exception:
+        print(
+            f'Unable to parse manifest file with path {manifest_path}.\n\n Details ({exception})'
+        )
+
+def _attribute_name(namespace: str, attribute: str) -> str:
+    if not namespace in android_manifest_namepaces:
+        raise ValueError(f'Unexpected namespace {namespace}')
+
+    return f'{{{android_manifest_namepaces[namespace]}}}{attribute}'
+
+
+def _check_node(node: ET.Element) -> bool:
+    for child in node:
+        # Find the initialization provider
+        is_provider = child.tag == 'provider'
+        provider_name = child.attrib.get(_attribute_name('android', 'name'))
+        is_initialization_provider = provider_name == 'androidx.startup.InitializationProvider'
+
+        if is_provider and is_initialization_provider:
+            metadata_nodes = child.findall('meta-data', namespaces=android_manifest_namepaces)
+            return _needs_disable_initialization(metadata_nodes)
+
+        if len(child) > 0:
+            return _check_node(child)
+
+    return False
+
+
+def _needs_disable_initialization(metadata_nodes: Iterable[ET.Element]) -> bool:
+    needs_update = False
+    for node in metadata_nodes:
+        name = node.attrib.get(_attribute_name('android', 'name'))
+        value = node.attrib.get(_attribute_name('android', 'value'))
+        if value == 'androidx.startup':
+            if name not in enabled_initializers:
+                needs_update = True
+
+    return needs_update
 
 
 def update_gmaven(gmaven_artifacts_list):
@@ -819,7 +951,38 @@ def update_material(local_file):
                                  extract_res=False)
 
 
-def update_framework(target, build_id, sdk_dir, beyond_corp):
+def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
+    if not local_mode:
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
+
+    copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
+    copy_to = os.path.join('.', os.path.dirname(artifact_path))
+    print(f'Copying {copy_from} to {copy_to}...')
+    result_path = None
+    try:
+        if not os.path.exists(copy_to):
+            os.makedirs(copy_to)
+        for file in glob.glob(copy_from):
+            result_path = shutil.copy(file, copy_to)
+    except Exception as e:
+        print(f'Error: {e} occured while copying')
+        raise
+    return result_path
+
+
+def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
+    if not local_mode:
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+
+    for artifact, target_path in artifact_dict.items():
+        artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
+        if not artifact_path:
+            return False
+        mv(artifact_path, target_path)
+    return True
+
+
+def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
     api_scope_list = ['public', 'system', 'test', 'module-lib', 'system-server']
     if sdk_dir == 'current':
         api_scope_list.append('core')
@@ -839,13 +1002,13 @@ def update_framework(target, build_id, sdk_dir, beyond_corp):
                     'system-modules/' + api_scope + '/core-for-system-modules.jar'] = os.path.join(
                     target_dir, '*')
 
-        if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp):
+        if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp, local_mode):
             return False
 
         if api_scope == 'public':
             # Fetch a few artifacts from the public sdk.
-            artifact = 'sdk-repo-linux-platforms-%s.zip' % build_id.fs_id
-            artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp)
+            artifact = 'sdk-repo-linux-platforms-%s.zip' % (build_id.fs_id if not local_mode else '*')
+            artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
             if not artifact_path:
                 return False
 
@@ -871,10 +1034,7 @@ def update_framework(target, build_id, sdk_dir, beyond_corp):
         data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
         lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
         lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
-    # Filtered API DB is currently only available for these apis, public should be removed eventually, if not all of them
-    for api_scope in ['public', 'module-lib', 'system-server']:
-        lint_database_artifacts[f'api-versions-{api_scope}-filtered.xml'] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions-filtered.xml')
-    fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp)
+    fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
 
@@ -892,22 +1052,22 @@ def update_makefile(build_id):
     return True
 
 
-def finalize_sdk(target, build_id, sdk_version, beyond_corp):
+def finalize_sdk(target, build_id, sdk_version, beyond_corp, local_mode):
     target_finalize_dir = '%d' % sdk_version
 
     for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {f'apistubs/android/{api_scope}/api/*.txt': os.path.join(
             target_finalize_dir, api_scope, 'api', '*')}
 
-        if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp):
+        if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp, local_mode):
             return False
 
-    return update_framework(target, build_id, target_finalize_dir, beyond_corp) and update_makefile(
+    return update_framework(target, build_id, target_finalize_dir, beyond_corp, local_mode) and update_makefile(
         target_finalize_dir)
 
 
-def update_framework_current(target, build_id, beyond_corp):
-    return update_framework(target, build_id, current_path, beyond_corp)
+def update_framework_current(target, build_id, beyond_corp, local_mode):
+    return update_framework(target, build_id, current_path, beyond_corp, local_mode)
 
 
 def update_buildtools(target, arch, build_id, beyond_corp):
@@ -1023,7 +1183,9 @@ def main():
     parser.add_argument(
         '--beyond-corp', action='store_true',
         help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
-
+    parser.add_argument(
+        '--local_mode', action="store_true",
+        help='Local mode: use locally built artifacts and don\'t upload the result to Gerrit.')
     rm(temp_dir)
 
     args = parser.parse_args()
@@ -1038,6 +1200,9 @@ def main():
             or args.androidx or args.material or args.finalize_sdk
             or args.finalize_extension or args.constraint):
         parser.error('You must specify at least one target to update')
+        sys.exit(1)
+    if args.local_mode and not args.finalize_sdk:
+        parser.error('Local mode can only be used when finalizing an SDK.')
         sys.exit(1)
     if (args.finalize_sdk is None) != (args.finalize_extension is None):
         parser.error('Either both or neither of -e and -f must be specified.')
@@ -1066,12 +1231,12 @@ def main():
             sys.exit(1)
 
     # Validate the git status.
-    if has_uncommitted_changes():
+    if not args.local_mode and has_uncommitted_changes():
         if args.commit_first:
             subprocess.check_call(f'cd {git_dir} && git add -u', shell=True)
             subprocess.check_call(f'cd {git_dir} && git commit -m \'save working state\'',
                                   shell=True)
-    if has_uncommitted_changes():
+    if not args.local_mode and has_uncommitted_changes():
         self_file = os.path.basename(__file__)
         print_e(f'FAIL: There are uncommitted changes here. Please commit or stash before '
                 f'continuing, because {self_file} will run "git reset --hard" if execution fails')
@@ -1125,22 +1290,28 @@ def main():
                 print_e('Failed to update Jetifier, aborting...')
                 sys.exit(1)
         if args.platform or args.finalize_sdk:
-            if update_framework_current(args.sdk_target, build_id, args.beyond_corp):
+            if update_framework_current(args.sdk_target, build_id, args.beyond_corp, args.local_mode):
                 components.append('platform SDK')
             else:
                 print_e('Failed to update platform SDK, aborting...')
                 sys.exit(1)
         if args.finalize_sdk:
             n = args.finalize_sdk
-            if not finalize_sdk(args.sdk_target, build_id, n, args.beyond_corp):
+            if not finalize_sdk(args.sdk_target, build_id, n, args.beyond_corp, args.local_mode):
                 print_e('Failed to finalize SDK %d, aborting...' % n)
                 sys.exit(1)
 
-            # We commit the finalized dir separately from the current sdk update.
-            msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
-            subprocess.check_call(['git', 'add', '%d' % n])
-            subprocess.check_call(['git', 'add', 'Android.bp'])
-            subprocess.check_call(['git', 'commit', '-m', msg])
+            if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
+                # We commit the finalized dir separately from the current sdk update.
+                msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
+                subprocess.check_call(['git', 'add', '%d' % n])
+                subprocess.check_call(['git', 'add', 'Android.bp'])
+                subprocess.check_call(['git', 'commit', '-m', msg])
 
             # Finalize extension sdk level
             readme = (f'- {args.finalize_extension}: Finalized together with '
@@ -1149,7 +1320,8 @@ def main():
                 readme=readme,
                 bug=args.bug,
                 extension_version=args.finalize_extension,
-                build_id=build_id.url_id)
+                build_id=build_id.url_id,
+                local_mode='--local_mode' if args.local_mode else '')
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
         if args.buildtools:
             if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
@@ -1159,6 +1331,10 @@ def main():
             else:
                 print_e('Failed to update build tools, aborting...')
                 sys.exit(1)
+
+        if args.local_mode:
+            print('Updated prebuilts using locally built artifacts. Don\'t submit or use for anything besides local testing.')
+            sys.exit(0)
 
         # Build the git commit.
         subprocess.check_call(['git', 'add', current_path, buildtools_dir])
@@ -1185,17 +1361,23 @@ def main():
             subprocess.check_call(['git', 'log', '-1', '--oneline'])
         print('Remember to test this change before uploading it to Gerrit!')
 
+    except Exception as e:
+        print(f'ERROR: {e} occured while updating prebuilts')
+        raise
     finally:
-        # Revert all stray files, including the downloaded zip.
-        try:
-            with open(os.devnull, 'w') as bitbucket:
-                subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
-                subprocess.check_call(
-                    ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!', '--allow-empty'],
-                    stdout=bitbucket)
-                subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
-        except subprocess.CalledProcessError:
-            print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
+        if args.local_mode:
+            print('No cleaning up in local mode, manual cleanup required.')
+        else:
+            # Revert all stray files, including the downloaded zip.
+            try:
+                with open(os.devnull, 'w') as bitbucket:
+                    subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
+                    subprocess.check_call(
+                        ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!', '--allow-empty'],
+                        stdout=bitbucket)
+                    subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
+            except subprocess.CalledProcessError:
+                print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
 
 
 # Add automatic entries to maven_to_make.
