@@ -18,9 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="androidx.emoji2" >
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="31" />
+    <uses-sdk android:minSdkVersion="14" />
 
     <application>
         <provider
@@ -30,7 +28,8 @@
             tools:node="merge" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
-                android:value="androidx.startup" />
+                android:value="androidx.startup"
+                tools:node="remove" />
         </provider>
     </application>
 
