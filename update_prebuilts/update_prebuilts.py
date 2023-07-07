@@ -1,239 +1,369 @@
 #!/usr/bin/python3
 
-# This script is used to update platform SDK prebuilts, Support Library, and a variety of other
-# prebuilt libraries used by Android's Makefile builds. For details on how to use this script,
-# visit go/update-prebuilts.
-import os, sys, getopt, zipfile, re
+"""Updates prebuilt libraries used by Android builds.
+
+For details on how to use this script, visit go/update-prebuilts.
+"""
+import os
+import sys
+import zipfile
+import re
 import argparse
-import glob
 import subprocess
-from shutil import copyfile, rmtree, which, move
-from distutils.version import LooseVersion
-from functools import reduce
-from pathlib import Path
-import six
-import urllib.request, urllib.parse, urllib.error
 import shlex
+import glob
+import shutil
+
+# Modules not in Android repo. Ok to ignore if they are not really used.
+try:
+    import six
+except ImportError:
+    six = None
+
+from urllib import request
+from shutil import which
+from distutils.version import LooseVersion
+from pathlib import Path
+from io import StringIO
+from typing import Iterable, Optional
+import xml.etree.ElementTree as ET
+from maven import MavenLibraryInfo, GMavenArtifact, maven_path_for_artifact
+from buildserver import fetch_and_extract, extract_artifact, \
+    parse_build_id, fetch_artifact as buildserver_fetch_artifact, fetch_artifacts as buildserver_fetch_artifacts
+from utils import print_e, append, cp, mv, rm
+
 
 current_path = 'current'
-framework_sdk_target = 'sdk_phone_armv7-win_sdk'
+framework_sdk_target = 'sdk'
 androidx_dir = os.path.join(current_path, 'androidx')
+androidx_owners = os.path.join(androidx_dir, 'OWNERS')
+java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
+test_mapping_file = os.path.join(androidx_dir, 'TEST_MAPPING')
+compose_test_mapping_file = os.path.join(androidx_dir, 'm2repository/androidx/compose/TEST_MAPPING')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
 buildtools_dir = 'tools'
 jetifier_dir = os.path.join(buildtools_dir, 'jetifier', 'jetifier-standalone')
 repo_root_dir = Path(sys.argv[0]).resolve().parents[3]
-extension_sdk_finalization_cmd = '%s -r "{readme}" -b {bug} -f {extension_version} {build_id}' % (
+extension_sdk_finalization_cmd = 'prebuilts/build-tools/path/linux-x86/python3 %s -r "{readme}" {local_mode} -b {bug} -f {extension_version} {build_id}' % (
     "packages/modules/common/tools/finalize_sdk.py"
 )
-temp_dir = os.path.join(os.getcwd(), "support_tmp")
+temp_dir = os.path.join(os.getcwd(), 'support_tmp')
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
-
-# See go/fetch_artifact for details on this script.
-FETCH_ARTIFACT = '/google/data/ro/projects/android/fetch_artifact'
-FETCH_ARTIFACT_BEYOND_CORP = '/usr/bin/fetch_artifact'
-
-# See (https://developer.android.com/studio/build/dependencies#gmaven-access)
-GMAVEN_BASE_URL = 'https://maven.google.com'
 
 # Leave map blank to automatically populate name and path:
 # - Name format is MAVEN.replaceAll(':','_')
 # - Path format is MAVEN.replaceAll(':','/').replaceAll('.','/')
 maven_to_make = {
     # AndroidX
-    'androidx.benchmark:benchmark-macro': { },
-    'androidx.benchmark:benchmark-macro-junit4': { },
-    'androidx.benchmark:benchmark-common': { },
-    'androidx.benchmark:benchmark-junit4': { },
-    'androidx.tracing:tracing': { },
-    'androidx.tracing:tracing-ktx': { },
-    'androidx.slice:slice-builders': { },
-    'androidx.slice:slice-core': { },
-    'androidx.slice:slice-view': { },
-    'androidx.remotecallback:remotecallback': { },
-    'androidx.remotecallback:remotecallback-processor': {'host':True},
-    'androidx.versionedparcelable:versionedparcelable': { },
-    'androidx.vectordrawable:vectordrawable-animated': { },
-    'androidx.activity:activity': { },
-    'androidx.activity:activity-ktx': { },
-    'androidx.annotation:annotation': {'host_and_device':True},
-    'androidx.annotation:annotation-experimental': { },
-    'androidx.asynclayoutinflater:asynclayoutinflater': { },
-    'androidx.collection:collection': { },
-    'androidx.collection:collection-ktx': { },
-    'androidx.concurrent:concurrent-futures': { },
-    'androidx.concurrent:concurrent-listenablefuture-callback': { },
-    'androidx.concurrent:concurrent-listenablefuture': { },
-    'androidx.core:core': { },
-    'androidx.core:core-animation': { },
-    'androidx.core:core-ktx': { },
-    'androidx.contentpaging:contentpaging': { },
-    'androidx.coordinatorlayout:coordinatorlayout': { },
-    'androidx.legacy:legacy-support-core-ui': { },
-    'androidx.legacy:legacy-support-core-utils': { },
-    'androidx.cursoradapter:cursoradapter': { },
-    'androidx.browser:browser': { },
-    'androidx.customview:customview': { },
-    'androidx.documentfile:documentfile': { },
-    'androidx.drawerlayout:drawerlayout': { },
-    'androidx.dynamicanimation:dynamicanimation': { },
-    'androidx.emoji:emoji': { },
-    'androidx.emoji:emoji-appcompat': { },
-    'androidx.emoji:emoji-bundled': { },
-    'androidx.emoji2:emoji2': { },
-    'androidx.emoji2:emoji2-views-helper': { },
-    'androidx.exifinterface:exifinterface': { },
-    'androidx.fragment:fragment': { },
-    'androidx.fragment:fragment-ktx': { },
-    'androidx.heifwriter:heifwriter': { },
-    'androidx.interpolator:interpolator': { },
-    'androidx.loader:loader': { },
-    'androidx.media:media': { },
-    'androidx.media2:media2-player': { },
-    'androidx.media2:media2-session': { },
-    'androidx.media2:media2-common': { },
-    'androidx.media2:media2-exoplayer': { },
-    'androidx.media2:media2-widget': { },
-    'androidx.navigation:navigation-common': { },
-    'androidx.navigation:navigation-common-ktx': { },
-    'androidx.navigation:navigation-fragment': { },
-    'androidx.navigation:navigation-fragment-ktx': { },
-    'androidx.navigation:navigation-runtime': { },
-    'androidx.navigation:navigation-runtime-ktx': { },
-    'androidx.navigation:navigation-ui': { },
-    'androidx.navigation:navigation-ui-ktx': { },
-    'androidx.percentlayout:percentlayout': { },
-    'androidx.print:print': { },
-    'androidx.recommendation:recommendation': { },
-    'androidx.recyclerview:recyclerview-selection': { },
-    'androidx.savedstate:savedstate': { },
-    'androidx.savedstate:savedstate-ktx': { },
-    'androidx.slidingpanelayout:slidingpanelayout': { },
-    'androidx.swiperefreshlayout:swiperefreshlayout': { },
-    'androidx.textclassifier:textclassifier': { },
-    'androidx.transition:transition': { },
-    'androidx.tvprovider:tvprovider': { },
-    'androidx.legacy:legacy-support-v13': { },
-    'androidx.legacy:legacy-preference-v14': { },
-    'androidx.leanback:leanback': { },
-    'androidx.leanback:leanback-preference': { },
-    'androidx.legacy:legacy-support-v4': { },
-    'androidx.appcompat:appcompat': { },
-    'androidx.appcompat:appcompat-resources': { },
-    'androidx.cardview:cardview': { },
-    'androidx.gridlayout:gridlayout': { },
-    'androidx.mediarouter:mediarouter': { },
-    'androidx.palette:palette': { },
-    'androidx.preference:preference': { },
-    'androidx.recyclerview:recyclerview': { },
-    'androidx.vectordrawable:vectordrawable': { },
-    'androidx.viewpager:viewpager': { },
-    'androidx.viewpager2:viewpager2': { },
-    'androidx.wear:wear': { },
-    'androidx.wear:wear-ongoing': { },
-    'androidx.webkit:webkit': { },
-    'androidx.biometric:biometric': { },
-    'androidx.autofill:autofill': { },
-    'androidx.appsearch:appsearch': { },
-    'androidx.appsearch:appsearch-local-storage': {'name':'androidx.appsearch_appsearch_local_storage'},
-    'androidx.appsearch:appsearch-platform-storage': { },
-    'androidx.appsearch:appsearch-compiler': {'name':'androidx.appsearch_appsearch-compiler', 'host':True},
-    'androidx.car.app:app': { },
-    'androidx.car.app:app-automotive': { },
-    'androidx.car.app:app-testing': { },
-    'androidx.startup:startup-runtime': { },
-    'androidx.window:window': {'optional-uses-libs':{'androidx.window.extensions', 'androidx.window.sidecar'}},
-    'androidx.resourceinspection:resourceinspection-annotation': { },
-    'androidx.profileinstaller:profileinstaller': { },
+    'androidx.benchmark:benchmark-macro': {},
+    'androidx.benchmark:benchmark-macro-junit4': {},
+    'androidx.benchmark:benchmark-common': {},
+    'androidx.benchmark:benchmark-junit4': {},
+    'androidx.tracing:tracing': {},
+    'androidx.tracing:tracing-perfetto': {},
+    'androidx.tracing:tracing-perfetto-binary': {},
+    'androidx.tracing:tracing-perfetto-common': {},
+    'androidx.tracing:tracing-ktx': {},
+    'androidx.slice:slice-builders': {},
+    'androidx.slice:slice-core': {},
+    'androidx.slice:slice-view': {},
+    'androidx.remotecallback:remotecallback': {},
+    'androidx.remotecallback:remotecallback-processor': {
+        'host': True
+    },
+    'androidx.versionedparcelable:versionedparcelable': {},
+    'androidx.vectordrawable:vectordrawable-animated': {},
+    'androidx.activity:activity': {},
+    'androidx.activity:activity-ktx': {},
+    'androidx.annotation:annotation': {
+        'host_and_device': True,
+        'extra-static-libs': {
+            'androidx.annotation_annotation-jvm'
+        }
+    },
+    'androidx.annotation:annotation-jvm': {
+        'host_and_device': True
+    },
+    'androidx.annotation:annotation-experimental': {},
+    'androidx.asynclayoutinflater:asynclayoutinflater': {},
+    'androidx.collection:collection': {
+        'extra-static-libs': {
+            'androidx.collection_collection-jvm'
+        }
+    },
+    'androidx.camera:camera-viewfinder':{},
+    'androidx.camera:camera-camera2' :{},
+    'androidx.camera:camera-core': {},
+    'androidx.camera:camera-lifecycle': {},
+    'androidx.camera:camera-extensions': {},
+    'androidx.collection:collection-ktx': {},
+    'androidx.collection:collection-jvm': {},
+    'androidx.concurrent:concurrent-futures': {},
+    'androidx.concurrent:concurrent-futures-ktx': {},
+    'androidx.concurrent:concurrent-listenablefuture-callback': {},
+    'androidx.concurrent:concurrent-listenablefuture': {},
+    'androidx.core:core': {},
+    'androidx.core:core-animation': {},
+    'androidx.core:core-animation-testing': {},
+    'androidx.core:core-ktx': {},
+    'androidx.core.uwb:uwb': {},
+    'androidx.core.uwb:uwb-rxjava3': {},
+    'androidx.contentpaging:contentpaging': {},
+    'androidx.coordinatorlayout:coordinatorlayout': {},
+    'androidx.datastore:datastore': {},
+    'androidx.datastore:datastore-core': {},
+    'androidx.datastore:datastore-core-okio': {},
+    'androidx.datastore:datastore-preferences': {},
+    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-preferences-rxjava2': {},
+    'androidx.datastore:datastore-rxjava2': {},
+    'androidx.legacy:legacy-support-core-ui': {},
+    'androidx.legacy:legacy-support-core-utils': {},
+    'androidx.cursoradapter:cursoradapter': {},
+    'androidx.browser:browser': {},
+    'androidx.customview:customview': {},
+    'androidx.customview:customview-poolingcontainer': {},
+    'androidx.credentials:credentials': {},
+    'androidx.documentfile:documentfile': {},
+    'androidx.drawerlayout:drawerlayout': {},
+    'androidx.dynamicanimation:dynamicanimation': {},
+    'androidx.emoji:emoji': {},
+    'androidx.emoji:emoji-appcompat': {},
+    'androidx.emoji:emoji-bundled': {},
+    'androidx.emoji2:emoji2': {},
+    'androidx.emoji2:emoji2-views-helper': {},
+    'androidx.exifinterface:exifinterface': {},
+    'androidx.fragment:fragment': {},
+    'androidx.fragment:fragment-ktx': {},
+    'androidx.heifwriter:heifwriter': {},
+    'androidx.health:health-services-client': {},
+    'androidx.interpolator:interpolator': {},
+    'androidx.loader:loader': {},
+    'androidx.media:media': {},
+    'androidx.media2:media2-player': {},
+    'androidx.media2:media2-session': {},
+    'androidx.media2:media2-common': {},
+    'androidx.media2:media2-exoplayer': {},
+    'androidx.media2:media2-widget': {},
+    'androidx.navigation:navigation-common': {},
+    'androidx.navigation:navigation-common-ktx': {},
+    'androidx.navigation:navigation-fragment': {},
+    'androidx.navigation:navigation-fragment-ktx': {},
+    'androidx.navigation:navigation-runtime': {},
+    'androidx.navigation:navigation-runtime-ktx': {},
+    'androidx.navigation:navigation-ui': {},
+    'androidx.navigation:navigation-ui-ktx': {},
+    'androidx.percentlayout:percentlayout': {},
+    'androidx.print:print': {},
+    'androidx.privacysandbox.ads:ads-adservices': {},
+    'androidx.privacysandbox.ads:ads-adservices-java': {},
+    'androidx.privacysandbox.ui:ui-client': {},
+    'androidx.privacysandbox.ui:ui-provider': {},
+    'androidx.privacysandbox.ui:ui-core': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
+    'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.ui:ui-tests': {},
+    'androidx.recommendation:recommendation': {},
+    'androidx.recyclerview:recyclerview-selection': {},
+    'androidx.savedstate:savedstate': {},
+    'androidx.savedstate:savedstate-ktx': {},
+    'androidx.slidingpanelayout:slidingpanelayout': {},
+    'androidx.swiperefreshlayout:swiperefreshlayout': {},
+    'androidx.textclassifier:textclassifier': {},
+    'androidx.transition:transition': {},
+    'androidx.tvprovider:tvprovider': {},
+    'androidx.legacy:legacy-support-v13': {},
+    'androidx.legacy:legacy-preference-v14': {},
+    'androidx.leanback:leanback': {},
+    'androidx.leanback:leanback-grid': {},
+    'androidx.leanback:leanback-preference': {},
+    'androidx.legacy:legacy-support-v4': {},
+    'androidx.appcompat:appcompat': {},
+    'androidx.appcompat:appcompat-resources': {},
+    'androidx.cardview:cardview': {},
+    'androidx.gridlayout:gridlayout': {},
+    'androidx.mediarouter:mediarouter': {},
+    'androidx.palette:palette': {},
+    'androidx.preference:preference': {},
+    'androidx.recyclerview:recyclerview': {},
+    'androidx.vectordrawable:vectordrawable': {},
+    'androidx.viewpager:viewpager': {},
+    'androidx.viewpager2:viewpager2': {},
+    'androidx.wear:wear': {},
+    'androidx.wear:wear-ongoing': {},
+    'androidx.javascriptengine:javascriptengine': {},
+    'androidx.webkit:webkit': {},
+    'androidx.biometric:biometric': {},
+    'androidx.autofill:autofill': {},
+    'androidx.appsearch:appsearch': {},
+    'androidx.appsearch:appsearch-builtin-types': {},
+    'androidx.appsearch:appsearch-compiler': {
+        'name': 'androidx.appsearch_appsearch-compiler',
+        'host': True
+    },
+    'androidx.appsearch:appsearch-local-storage': {
+        'name': 'androidx.appsearch_appsearch_local_storage'
+    },
+    'androidx.appsearch:appsearch-platform-storage': {},
+    'androidx.car.app:app': {},
+    'androidx.car.app:app-automotive': {},
+    'androidx.car.app:app-testing': {},
+    'androidx.startup:startup-runtime': {},
+    'androidx.window:window': {
+        'optional-uses-libs': {
+            'androidx.window.extensions',
+            'androidx.window.sidecar'
+        }
+    },
+    'androidx.window.extensions:extensions': {},
+    'androidx.window.extensions.core:core': {},
+    'androidx.window:window-core': {},
+    'androidx.window:window-java':{},
+    'androidx.resourceinspection:resourceinspection-annotation': {},
+    'androidx.profileinstaller:profileinstaller': {},
+    'androidx.test.uiautomator:uiautomator': {},
 
     # AndroidX for Compose
-    'androidx.compose.compiler:compiler-hosted': { 'host':True },
-    'androidx.compose.runtime:runtime': { },
-    'androidx.compose.runtime:runtime-saveable': { },
-    'androidx.compose.foundation:foundation': { },
-    'androidx.compose.foundation:foundation-layout': { },
-    'androidx.compose.foundation:foundation-text': { },
-    'androidx.compose.ui:ui': { },
-    'androidx.compose.ui:ui-geometry': { },
-    'androidx.compose.ui:ui-graphics': { },
-    'androidx.compose.ui:ui-text': { },
-    'androidx.compose.ui:ui-unit': { },
-    'androidx.compose.ui:ui-util': { },
-    'androidx.compose.animation:animation-core': { },
-    'androidx.compose.animation:animation': { },
-    'androidx.compose.material:material-icons-core': { },
-    'androidx.compose.material:material-ripple': { },
-    'androidx.compose.material:material': { },
-    'androidx.activity:activity-compose': { },
+    'androidx.compose.compiler:compiler-hosted': {
+        'host': True
+    },
+    'androidx.compose.runtime:runtime': {},
+    'androidx.compose.runtime:runtime-saveable': {},
+    'androidx.compose.runtime:runtime-livedata': {},
+    'androidx.compose.runtime:runtime-tracing': {},
+    'androidx.compose.foundation:foundation': {},
+    'androidx.compose.foundation:foundation-layout': {},
+    'androidx.compose.foundation:foundation-text': {},
+    'androidx.compose.ui:ui': {},
+    'androidx.compose.ui:ui-geometry': {},
+    'androidx.compose.ui:ui-graphics': {},
+    'androidx.compose.ui:ui-text': {},
+    'androidx.compose.ui:ui-tooling': {},
+    'androidx.compose.ui:ui-tooling-preview': {},
+    'androidx.compose.ui:ui-tooling-data': {},
+    'androidx.compose.ui:ui-unit': {},
+    'androidx.compose.ui:ui-util': {},
+    'androidx.compose.ui:ui-test': { },
+    'androidx.compose.ui:ui-test-junit4': { },
+    'androidx.compose.ui:ui-test-manifest': { },
+    'androidx.compose.animation:animation-core': {},
+    'androidx.compose.animation:animation': {},
+    'androidx.compose.material:material-icons-core': {},
+    'androidx.compose.material:material-icons-extended': { },
+    'androidx.compose.material:material-ripple': {},
+    'androidx.compose.material:material': {},
+    'androidx.compose.material3:material3': {},
+    'androidx.compose.material3:material3-window-size-class': {},
+    'androidx.activity:activity-compose': {},
+    'androidx.navigation:navigation-compose': { },
+    'androidx.lifecycle:lifecycle-viewmodel-compose': { },
+
+    # Compose for wear
+    'androidx.wear.compose:compose-material-core': {},
+    'androidx.wear.compose:compose-foundation': {},
+    'androidx.wear.compose:compose-material': {},
+    'androidx.wear.compose:compose-navigation': {},
 
     # AndroidX for Multidex
-    'androidx.multidex:multidex': { },
-    'androidx.multidex:multidex-instrumentation': { },
+    'androidx.multidex:multidex': {},
+    'androidx.multidex:multidex-instrumentation': {},
 
     # AndroidX for Constraint Layout
-    'androidx.constraintlayout:constraintlayout': {'name':'androidx-constraintlayout_constraintlayout'},
-    'androidx.constraintlayout:constraintlayout-solver': {'name':'androidx-constraintlayout_constraintlayout-solver'},
-
+    'androidx.constraintlayout:constraintlayout': {
+        'name': 'androidx-constraintlayout_constraintlayout'
+    },
+    'androidx.constraintlayout:constraintlayout-solver': {
+        'name': 'androidx-constraintlayout_constraintlayout-solver'
+    },
+    'androidx.constraintlayout:constraintlayout-core': {},
+    'androidx.constraintlayout:constraintlayout-compose': {},
     # AndroidX for Architecture Components
-    'androidx.arch.core:core-common': { },
-    'androidx.arch.core:core-runtime': { },
-    'androidx.lifecycle:lifecycle-common': { },
-    'androidx.lifecycle:lifecycle-common-java8': { },
-    'androidx.lifecycle:lifecycle-extensions': { },
-    'androidx.lifecycle:lifecycle-livedata': { },
-    'androidx.lifecycle:lifecycle-livedata-ktx': { },
-    'androidx.lifecycle:lifecycle-livedata-core': { },
-    'androidx.lifecycle:lifecycle-livedata-core-ktx': { },
-    'androidx.lifecycle:lifecycle-process': { },
-    'androidx.lifecycle:lifecycle-runtime': { },
-    'androidx.lifecycle:lifecycle-runtime-ktx': { },
-    'androidx.lifecycle:lifecycle-service': { },
-    'androidx.lifecycle:lifecycle-viewmodel': { },
-    'androidx.lifecycle:lifecycle-viewmodel-ktx': { },
-    'androidx.lifecycle:lifecycle-viewmodel-savedstate': { },
-    'androidx.paging:paging-common': { },
-    'androidx.paging:paging-common-ktx': { },
-    'androidx.paging:paging-runtime': { },
-    'androidx.sqlite:sqlite': { },
-    'androidx.sqlite:sqlite-framework': { },
-    'androidx.room:room-common': {'host_and_device':True},
-    'androidx.room:room-compiler': {'host':True, 'extra-static-libs':{'guava-21.0'}},
-    'androidx.room:room-migration': {'host_and_device':True},
-    'androidx.room:room-runtime': { },
-    'androidx.room:room-testing': { },
-    'androidx.room:room-compiler-processing': {'host':True},
-    'androidx.work:work-runtime': { },
-    'androidx.work:work-runtime-ktx': { },
-    'androidx.work:work-testing': { },
+    'androidx.arch.core:core-common': {},
+    'androidx.arch.core:core-runtime': {},
+    'androidx.arch.core:core-testing': {},
+    'androidx.lifecycle:lifecycle-common': {},
+    'androidx.lifecycle:lifecycle-common-java8': {},
+    'androidx.lifecycle:lifecycle-extensions': {},
+    'androidx.lifecycle:lifecycle-livedata': {},
+    'androidx.lifecycle:lifecycle-livedata-ktx': {},
+    'androidx.lifecycle:lifecycle-livedata-core': {},
+    'androidx.lifecycle:lifecycle-livedata-core-ktx': {},
+    'androidx.lifecycle:lifecycle-process': {},
+    'androidx.lifecycle:lifecycle-runtime': {},
+    'androidx.lifecycle:lifecycle-runtime-ktx': {},
+    'androidx.lifecycle:lifecycle-runtime-compose': {},
+    'androidx.lifecycle:lifecycle-runtime-testing': {},
+    'androidx.lifecycle:lifecycle-service': {},
+    'androidx.lifecycle:lifecycle-viewmodel': {},
+    'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
+    'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
+    'androidx.paging:paging-common': {},
+    'androidx.paging:paging-common-ktx': {},
+    'androidx.paging:paging-guava': {},
+    'androidx.paging:paging-runtime': {},
+    'androidx.sqlite:sqlite': {},
+    'androidx.sqlite:sqlite-framework': {},
+    'androidx.room:room-common': {
+        'host_and_device': True
+    },
+    'androidx.room:room-compiler': {
+        'host': True,
+        'extra-static-libs': {
+            'guava'
+        }
+    },
+    'androidx.room:room-guava': {},
+    'androidx.room:room-migration': {
+        'host_and_device': True
+    },
+    'androidx.room:room-ktx': {},
+    'androidx.room:room-paging': {},
+    'androidx.room:room-paging-guava': {},
+    'androidx.room:room-runtime': {},
+    'androidx.room:room-testing': {},
+    'androidx.room:room-compiler-processing': {
+        'host': True
+    },
+    'androidx.work:work-runtime': {},
+    'androidx.work:work-runtime-ktx': {},
+    'androidx.work:work-testing': {},
 
     # Third-party dependencies
-    'com.google.android:flexbox': {'name':'flexbox', 'path':'flexbox'},
+    'com.google.android:flexbox': {
+        'name': 'flexbox',
+        'path': 'flexbox'
+    },
 
     # Androidx Material Design Components
-    'com.google.android.material:material': { },
+    'com.google.android.material:material': {},
 }
 
 # Mapping of POM dependencies to Soong build targets
 deps_rewrite = {
-    'auto-common':'auto_common',
-    'auto-value-annotations':'auto_value_annotations',
-    'com.google.auto.value:auto-value':'auto_value_plugin',
-    'monitor':'androidx.test.monitor',
-    'rules':'androidx.test.rules',
-    'runner':'androidx.test.runner',
-    'androidx.test:core':'androidx.test.core',
-    'com.squareup:javapoet':'javapoet',
-    'com.google.guava:listenablefuture':'guava-listenablefuture-prebuilt-jar',
-    'sqlite-jdbc':'xerial-sqlite-jdbc',
-    'gson':'gson-prebuilt-jar',
-    'com.intellij:annotations':'jetbrains-annotations',
-    'javax.annotation:javax.annotation-api':'javax-annotation-api-prebuilt-host-jar',
-    'org.robolectric:robolectric':'Robolectric_all-target',
-    'org.jetbrains.kotlin:kotlin-stdlib-common':'kotlin-stdlib',
-    'org.jetbrains.kotlinx:kotlinx-coroutines-core':'kotlinx_coroutines',
-    'org.jetbrains.kotlinx:kotlinx-coroutines-android':'kotlinx_coroutines_android',
-    'org.jetbrains.kotlinx:kotlinx-metadata-jvm':'kotlinx_metadata_jvm',
+    'auto-common': 'auto_common',
+    'auto-value-annotations': 'auto_value_annotations',
+    'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
+    'monitor': 'androidx.test.monitor',
+    'rules': 'androidx.test.rules',
+    'runner': 'androidx.test.runner',
+    'androidx.test:core': 'androidx.test.core',
+    'com.squareup:javapoet': 'javapoet',
+    'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
+    'sqlite-jdbc': 'xerial-sqlite-jdbc',
+    'com.intellij:annotations': 'jetbrains-annotations',
+    'javax.annotation:javax.annotation-api': 'javax-annotation-api-prebuilt-host-jar',
+    'org.robolectric:robolectric': 'Robolectric_all-target',
+    'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
+    'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
+    'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
+    'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
 }
 
 # List of artifacts that will be updated from GMaven
@@ -246,89 +376,84 @@ deps_rewrite = {
 # Also make sure you add `group:library`:{} to maven_to_make as well.
 gmaven_artifacts = {}
 
-def name_for_artifact(group_artifact):
-    return group_artifact.replace(':','_')
-
-
-def path_for_artifact(group_artifact):
-    return group_artifact.replace('.','/').replace(':','/')
-
-
-# Add automatic entries to maven_to_make.
-for key in maven_to_make:
-    if ('name' not in maven_to_make[key]):
-        maven_to_make[key]['name'] = name_for_artifact(key)
-    if ('path' not in maven_to_make[key]):
-        maven_to_make[key]['path'] = path_for_artifact(key)
-
 # Always remove these files.
-blacklist_files = [
+denylist_files = [
     'annotations.zip',
     'public.txt',
     'R.txt',
     'AndroidManifest.xml',
-    os.path.join('libs','noto-emoji-compat-java.jar')
+    os.path.join('libs', 'noto-emoji-compat-java.jar')
 ]
 
-artifact_pattern = re.compile(r"^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$")
+# Explicitly allow-listed initializers
+enabled_initializers = set([
+    'androidx.lifecycle.ProcessLifecycleInitializer',
+    'androidx.work.WorkManagerInitializer',
+    # TODO(282947321): update after http://aosp/2600447 lands
+    'androidx.compose.runtime.tracing.TracingInitializer',
+])
+
+android_manifest_namepaces = {
+    'android': 'http://schemas.android.com/apk/res/android',
+    'tools': 'http://schemas.android.com/tools'
+}
+
+startup_initializer_pattern = re.compile(r'(\s+)android:value="androidx.startup".*')
+
+artifact_pattern = re.compile(r'^(.+?)-(\d+\.\d+\.\d+(?:-\w+\d+)?(?:-[\d.]+)*)\.(jar|aar)$')
 
 
-class MavenLibraryInfo:
-    def __init__(self, key, group_id, artifact_id, version, dir, repo_dir, file):
-        self.key = key
-        self.group_id = group_id
-        self.artifact_id = artifact_id
-        self.version = version
-        self.dir = dir
-        self.repo_dir = repo_dir
-        self.file = file
+def name_for_artifact(group_artifact):
+    """Returns the build system target name for a given library's Maven coordinate.
+
+    Args:
+        group_artifact: an unversioned Maven artifact coordinate, ex. androidx.core:core
+    Returns:
+        The build system target name for the artifact, ex. androidx.core_core.
+    """
+    return group_artifact.replace(':', '_')
 
 
-def print_e(*args, **kwargs):
-    print(*args, file=sys.stderr, **kwargs)
+def path_for_artifact(group_artifact):
+    """Returns the file system path for a given library's Maven coordinate.
+
+    Args:
+        group_artifact: an unversioned Maven artifact coordinate, ex. androidx.core:core
+    Returns:
+        The file system path for the artifact, ex. androidx/core/core.
+    """
+    return group_artifact.replace('.', '/').replace(':', '/')
 
 
-def touch(fname, times=None):
-    with open(fname, 'a'):
-        os.utime(fname, times)
+def populate_maven_to_make(mapping):
+    """Modifies the input mapping by expanding Maven coordinate keys into build target names and
+    paths.
 
-
-def path(*path_parts):
-    return reduce((lambda x, y: os.path.join(x, y)), path_parts)
-
-
-def flatten(list):
-    return reduce((lambda x, y: "%s %s" % (x, y)), list)
-
-
-def rm(path):
-    if os.path.isdir(path):
-        rmtree(path)
-    elif os.path.exists(path):
-        os.remove(path)
-
-
-def mv(src_path, dst_path):
-    if os.path.exists(dst_path):
-        rm(dst_path)
-    if not os.path.exists(os.path.dirname(dst_path)):
-        os.makedirs(os.path.dirname(dst_path))
-    for f in (glob.glob(src_path)):
-        if '*' in dst_path:
-            dst = os.path.join(os.path.dirname(dst_path), os.path.basename(f))
-        else:
-            dst = dst_path
-        move(f, dst)
+    Args:
+        mapping: a map where the keys are Maven coordinates
+    """
+    for key in mapping:
+        if 'name' not in mapping[key]:
+            mapping[key]['name'] = name_for_artifact(key)
+        if 'path' not in maven_to_make[key]:
+            mapping[key]['path'] = path_for_artifact(key)
 
 
 def detect_artifacts(maven_repo_dirs):
+    """Parses Maven libraries from the specified directories.
+
+    Args:
+        maven_repo_dirs: a list of maven repository roots
+    Returns:
+        A map of Maven coordinate keys to MavenLibraryInfo objects parsed from POM files.
+    """
     maven_lib_info = {}
 
     # Find the latest revision for each artifact, remove others
     for repo_dir in maven_repo_dirs:
         for root, dirs, files in os.walk(repo_dir):
             for file in files:
-                if file[-4:] == ".pom":
+                if file[-4:] == '.pom':
                     # Read the POM (hack hack hack).
                     group_id = ''
                     artifact_id = ''
@@ -353,7 +478,9 @@ def detect_artifacts(maven_repo_dirs):
                     elif os.path.exists(artifact_file + '.aar'):
                         artifact_file = artifact_file + '.aar'
                     else:
-                        print_e('Failed to find artifact for ' + artifact_file)
+                        # This error only occurs for a handful of gradle.plugin artifacts that only
+                        # ship POM files, so we probably don't need to log unless we're debugging.
+                        # print_e('Failed to find artifact for ' + artifact_file)
                         continue
 
                     # Make relative to root.
@@ -379,54 +506,161 @@ def detect_artifacts(maven_repo_dirs):
     return maven_lib_info
 
 
-def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True, include_static_deps=True):
-    cwd = os.getcwd()
+def find_invalid_spec(artifact_list):
+    """Verifies whether all the artifacts in the list correspond to an entry in maven_to_make.
 
-    # Use a temporary working directory.
-    maven_lib_info = detect_artifacts(maven_repo_dirs)
+    Args:
+        artifact_list: list of group IDs or artifact coordinates
+    Returns:
+        The first invalid artifact specification in the list, or None if all specs are valid.
+    """
+    if artifact_list is None:
+        return None
+    for prefix in artifact_list:
+        has_prefix = False
+        for artifact_id in maven_to_make:
+            if artifact_id.startswith(prefix):
+                has_prefix = True
+                break
+        if not has_prefix:
+            return prefix
+    return None
+
+
+def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
+                          write_pom2bp_cmd=True, include_static_deps=True, include=None,
+                          exclude=None, prepend=None):
+    """Transforms a standard Maven repository to be compatible with the Android build system.
+
+    When using the include argument by itself, all other libraries will be excluded. When using the
+    exclude argument by itself, all other libraries will be included. When using both arguments, the
+    inclusion list will be applied followed by the exclusion list.
+
+    Args:
+        maven_repo_dirs: path to local Maven repository
+        transformed_dir: relative path for output, ex. androidx
+        extract_res: whether to extract Android resources like AndroidManifest.xml from AARs
+        write_pom2bp_cmd: whether pom2bp should write its own invocation arguments to output
+        include_static_deps: whether to pass --static-deps to pom2bp
+        include: list of Maven groupIds or unversioned artifact coordinates to include for
+                 updates, ex. androidx.core or androidx.core:core
+        exclude: list of Maven groupIds or unversioned artifact coordinates to exclude from
+                 updates, ex. androidx.core or androidx.core:core
+        prepend: Path to a file containing text to be inserted at the beginning of the generated
+                 build file
+    Returns:
+        True if successful, false otherwise.
+    """
+    if exclude is None:
+        exclude = []
+    if include is None:
+        include = []
+
+    cwd = os.getcwd()
+    local_repo = os.path.join(cwd, transformed_dir)
     working_dir = temp_dir
+
+    # Handle inclusions by stashing the remote artifacts for the inclusions, replacing the entire
+    # remote repo with the local repo, then restoring the stashed artifacts.
+    for remote_repo in maven_repo_dirs:
+        remote_repo = os.path.join(cwd, remote_repo)
+        paths_to_copy = []
+        for group_artifact in include:
+            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+            remote_path = os.path.join(remote_repo, artifact_path)
+            working_path = os.path.join(working_dir, artifact_path)
+            if os.path.exists(remote_path):
+                print(f'Included {group_artifact} in update')
+                paths_to_copy.append([remote_path, working_path])
+
+        # Move included artifacts from repo to temp.
+        for [remote_path, working_path] in paths_to_copy:
+            mv(remote_path, working_path)
+
+        # Replace all remaining artifacts in remote repo with local repo.
+        cp(local_repo, remote_repo)
+
+        # Restore included artifacts to remote repo.
+        for [remote_path, working_path] in paths_to_copy:
+            mv(working_path, remote_path)
+
+    # Handle exclusions by replacing the remote artifacts for the exclusions with local artifacts.
+    # This must happen before we parse the artifacts.
+    for remote_repo in maven_repo_dirs:
+        for group_artifact in exclude:
+            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+            remote_path = os.path.join(remote_repo, artifact_path)
+            if os.path.exists(remote_path):
+                rm(remote_path)
+                local_path = os.path.join(local_repo, artifact_path)
+                if os.path.exists(local_path):
+                    print(f'Excluded {group_artifact} from update, used local artifact')
+                    mv(local_path, remote_path)
+                else:
+                    print(f'Excluded {group_artifact} from update, no local artifact present')
+
+    # Parse artifacts.
+    maven_lib_info = detect_artifacts(maven_repo_dirs)
 
     if not maven_lib_info:
         print_e('Failed to detect artifacts')
         return False
 
-    # extract some files (for example, AndroidManifest.xml) from any relevant artifacts
+    # Move libraries into the working directory, performing any necessary transformations.
     for info in maven_lib_info.values():
         transform_maven_lib(working_dir, info, extract_res)
 
-    # generate a single Android.bp that specifies to use all of the above artifacts
+    # Generate a single Android.bp that specifies to use all of the above artifacts.
     makefile = os.path.join(working_dir, 'Android.bp')
     with open(makefile, 'w') as f:
-        args = ["pom2bp"]
-        args.extend(["-sdk-version", "31"])
-        args.extend(["-default-min-sdk-version", "24"])
+        args = ['pom2bp']
+        args.extend(['-sdk-version', '31'])
+        args.extend(['-default-min-sdk-version', '24'])
+        if not write_pom2bp_cmd:
+            args.extend(['-write-cmd=false'])
         if include_static_deps:
-            args.append("-static-deps")
-        rewriteNames = sorted([name for name in maven_to_make if ":" in name] + [name for name in maven_to_make if ":" not in name])
-        args.extend(["-rewrite=^" + name + "$=" + maven_to_make[name]['name'] for name in rewriteNames])
-        args.extend(["-rewrite=^" + key + "$=" + value for key, value in deps_rewrite.items()])
-        args.extend(["-extra-static-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['extra-static-libs'])) for name in maven_to_make if 'extra-static-libs' in maven_to_make[name]])
-        args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if 'optional-uses-libs' in maven_to_make[name]])
-        args.extend(["-host=" + name for name in maven_to_make if maven_to_make[name].get('host')])
-        args.extend(["-host-and-device=" + name for name in maven_to_make if maven_to_make[name].get('host_and_device')])
-        args.extend(["."])
+            args.append('-static-deps')
+        if prepend:
+            args.append(f'-prepend={prepend}')
+        rewrite_names = sorted(maven_to_make.keys())
+        args.extend([f'-rewrite=^{name}$={maven_to_make[name]["name"]}' for name in rewrite_names])
+        args.extend([f'-rewrite=^{key}$={value}' for key, value in deps_rewrite.items()])
+        args.extend(["-extra-static-libs=" + maven_to_make[name]['name'] + "=" + ",".join(
+            sorted(maven_to_make[name]['extra-static-libs'])) for name in maven_to_make if
+                     'extra-static-libs' in maven_to_make[name]])
+        args.extend(["-optional-uses-libs=" + maven_to_make[name]['name'] + "=" + ",".join(
+            sorted(maven_to_make[name]['optional-uses-libs'])) for name in maven_to_make if
+                     'optional-uses-libs' in maven_to_make[name]])
+        args.extend([f'-host={name}' for name in maven_to_make
+                     if maven_to_make[name].get('host')])
+        args.extend([f'-host-and-device={name}' for name in maven_to_make
+                     if maven_to_make[name].get('host_and_device')])
+        args.extend(['.'])
         subprocess.check_call(args, stdout=f, cwd=working_dir)
 
     # Replace the old directory.
-    output_dir = os.path.join(cwd, transformed_dir)
-    mv(working_dir, output_dir)
+    local_repo = os.path.join(cwd, transformed_dir)
+    mv(working_dir, local_repo)
     return True
 
-# moves <artifact_info> (of type MavenLibraryInfo) into the appropriate part of <working_dir> , and possibly unpacks any necessary included files
+
 def transform_maven_lib(working_dir, artifact_info, extract_res):
+    """Transforms the specified artifact for use in the Android build system.
+
+    Moves relevant files for the artifact represented by artifact_info of type MavenLibraryInfo into
+    the appropriate path inside working_dir, unpacking files needed by the build system from AARs.
+
+    Args:
+        working_dir: The directory into which the artifact should be moved
+        artifact_info: A MavenLibraryInfo representing the library artifact
+        extract_res: True to extract resources from AARs, false otherwise.
+    """
     # Move library into working dir
-    new_dir = os.path.normpath(os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
+    new_dir = os.path.normpath(
+        os.path.join(working_dir, os.path.relpath(artifact_info.dir, artifact_info.repo_dir)))
     mv(artifact_info.dir, new_dir)
 
-    matcher = artifact_pattern.match(artifact_info.file)
-    maven_lib_name = artifact_info.key
-    maven_lib_vers = matcher.group(2)
-    maven_lib_type = artifact_info.file[-3:]
+    maven_lib_type = os.path.splitext(artifact_info.file)[1][1:]
 
     group_artifact = artifact_info.key
     make_lib_name = maven_to_make[group_artifact]['name']
@@ -434,7 +668,7 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
     artifact_file = os.path.join(new_dir, artifact_info.file)
 
-    if maven_lib_type == "aar":
+    if maven_lib_type == 'aar':
         if extract_res:
             target_dir = os.path.join(working_dir, make_dir_name)
             if not os.path.exists(target_dir):
@@ -442,78 +676,46 @@ def transform_maven_lib(working_dir, artifact_info, extract_res):
 
             process_aar(artifact_file, target_dir)
 
-        with zipfile.ZipFile(artifact_file) as zip:
-            manifests_dir = os.path.join(working_dir, "manifests")
-            zip.extract("AndroidManifest.xml", os.path.join(manifests_dir, make_lib_name))
-
-    print(maven_lib_vers, ":", maven_lib_name, "->", make_lib_name)
+        with zipfile.ZipFile(artifact_file) as zip_file:
+            manifests_dir = os.path.join(working_dir, 'manifests')
+            lib_path = Path(os.path.join(manifests_dir, make_lib_name))
+            manifest_path = lib_path / 'AndroidManifest.xml'
+            zip_file.extract('AndroidManifest.xml', lib_path.as_posix())
+            contents = check_startup_initializers(manifest_path)
+            if contents:
+                manifest_path.write_text(contents)
 
 
 def process_aar(artifact_file, target_dir):
+    """Extracts and cleans up the contents of an AAR file to the specified directory.
+
+    Removes classes.jar, empty directories, and denylisted files.
+
+    Args:
+        artifact_file: path to the AAR to extract
+        target_dir: directory into which the contents should be extracted
+    """
     # Extract AAR file to target_dir.
-    with zipfile.ZipFile(artifact_file) as zip:
-        zip.extractall(target_dir)
+    with zipfile.ZipFile(artifact_file) as zip_file:
+        zip_file.extractall(target_dir)
 
     # Remove classes.jar
-    classes_jar = os.path.join(target_dir, "classes.jar")
+    classes_jar = os.path.join(target_dir, 'classes.jar')
     if os.path.exists(classes_jar):
         os.remove(classes_jar)
 
-    # Remove or preserve empty dirs.
-    for root, dirs, files in os.walk(target_dir):
-        for dir in dirs:
-            dir_path = os.path.join(root, dir)
+    # Remove empty dirs.
+    for root, dirs, files in os.walk(target_dir, topdown=False):
+        for dir_name in dirs:
+            dir_path = os.path.join(root, dir_name)
             if not os.listdir(dir_path):
                 os.rmdir(dir_path)
 
     # Remove top-level cruft.
-    for file in blacklist_files:
+    for file in denylist_files:
         file_path = os.path.join(target_dir, file)
         if os.path.exists(file_path):
             os.remove(file_path)
-
-
-class GMavenArtifact(object):
-    # A map from group:library to the latest available version
-    key_versions_map = {}
-    def __init__(self, artifact_glob):
-        try:
-            (group, library, version, ext) = artifact_glob.split(':')
-        except ValueError:
-            raise ValueError(f'Error in {artifact_glob} expected: group:library:version:ext')
-
-        if not group or not library or not version or not ext:
-            raise ValueError(f'Error in {artifact_glob} expected: group:library:version:ext')
-
-        self.group = group
-        self.group_path = group.replace('.', '/')
-        self.library = library
-        self.key = f'{group}:{library}'
-        self.version = version
-        self.ext = ext
-
-    def get_pom_file_url(self):
-        return f'{GMAVEN_BASE_URL}/{self.group_path}/{self.library}/{self.version}/{self.library}-{self.version}.pom'
-
-    def get_artifact_url(self):
-        return f'{GMAVEN_BASE_URL}/{self.group_path}/{self.library}/{self.version}/{self.library}-{self.version}.{self.ext}'
-
-    def get_latest_version(self):
-        latest_version = GMavenArtifact.key_versions_map[self.key] \
-                if self.key in GMavenArtifact.key_versions_map else None
-
-        if not latest_version:
-            print(f'Fetching latest version for {self.key}')
-            group_index_url = f'{GMAVEN_BASE_URL}/{self.group_path}/group-index.xml'
-            import xml.etree.ElementTree as ET
-            tree = ET.parse(urllib.request.urlopen(group_index_url))
-            root = tree.getroot()
-            libraries = root.findall('./*[@versions]')
-            for library in libraries:
-                key = f'{root.tag}:{library.tag}'
-                GMavenArtifact.key_versions_map[key] = library.get('versions').split(',')[-1]
-            latest_version = GMavenArtifact.key_versions_map[self.key]
-        return latest_version
 
 
 def fetch_gmaven_artifact(artifact):
@@ -523,17 +725,20 @@ def fetch_gmaven_artifact(artifact):
     (https://developer.android.com/studio/build/dependencies#gmaven-access)
 
     Args:
-        artifact_glob: an instance of GMavenArtifact.
+        artifact: an instance of GMavenArtifact.
     """
-    download_to = os.path.join('gmaven', artifact.group, artifact.library, artifact.version)
+    pom_path = maven_path_for_artifact(
+        'gmaven', artifact.group, artifact.library, artifact.version, 'pom')
+    artifact_path = maven_path_for_artifact(
+        'gmaven', artifact.group, artifact.library, artifact.version, artifact.ext)
 
-    _DownloadFileToDisk(artifact.get_pom_file_url(), os.path.join(download_to, f'{artifact.library}-{artifact.version}.pom'))
-    _DownloadFileToDisk(artifact.get_artifact_url(), os.path.join(download_to, f'{artifact.library}-{artifact.version}.{artifact.ext}'))
+    download_file_to_disk(artifact.get_pom_file_url(), pom_path)
+    download_file_to_disk(artifact.get_artifact_url(), artifact_path)
 
-    return download_to
+    return os.path.dirname(artifact_path)
 
 
-def _DownloadFileToDisk(url, filepath):
+def download_file_to_disk(url, filepath):
     """Download the file at URL to the location dictated by the path.
 
     Args:
@@ -541,7 +746,7 @@ def _DownloadFileToDisk(url, filepath):
         filepath: Filesystem path to write the file to.
     """
     print(f'Downloading URL: {url}')
-    file_data = urllib.request.urlopen(url)
+    file_data = request.urlopen(url)
 
     try:
         os.makedirs(os.path.dirname(filepath))
@@ -551,101 +756,157 @@ def _DownloadFileToDisk(url, filepath):
     try:
         with open(filepath, 'wb') as f:
             f.write(six.ensure_binary(file_data.read()))
-    except:
+    except Exception as e:
+        print_e(e.__class__, 'occurred while reading', filepath)
         os.remove(os.path.dirname(filepath))
         raise
 
 
-def fetch_artifact(target, build_id, artifact_path):
-    global args
-    download_to = os.path.join('.', os.path.dirname(artifact_path))
-    print('Fetching %s from %s ...' % (artifact_path, target))
-    if not os.path.exists(download_to):
-        os.makedirs(download_to)
-    if args.beyond_corp:
-        fetch_cmd = [FETCH_ARTIFACT_BEYOND_CORP, '--use_oauth2',
-                     '--bid', str(build_id), '--target', target, artifact_path, download_to]
-    else:
-        fetch_cmd = [FETCH_ARTIFACT,
-                     '--bid', str(build_id), '--target', target, artifact_path, download_to]
-    print("Running: " + ' '.join(fetch_cmd))
+def check_startup_initializers(manifest_path: str) -> Optional[str]:
     try:
-        subprocess.check_output(fetch_cmd, stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError:
-        print_e('FAIL: Unable to retrieve %s artifact for build ID %s' % (artifact_path, build_id))
-        print_e('Please make sure you are authenticated for build server access!')
-        return None
-    return artifact_path
+        for prefix in android_manifest_namepaces:
+            ET.register_namespace(prefix, android_manifest_namepaces[prefix])
+
+        # Use ElementTree to check if we need updates.
+        # That way we avoid false positives.
+        manifest = ET.parse(manifest_path)
+        root = manifest.getroot()
+        needs_changes = _check_node(root)
+        if needs_changes:
+            # Ideally we would use ElementTree here.
+            # Instead, we are using regular expressions here so we can
+            # preserve comments and whitespaces.
+            manifest_contents = Path(manifest_path).read_text()
+            lines = manifest_contents.splitlines()
+            output = StringIO()
+            for line in lines:
+                matcher = startup_initializer_pattern.match(line)
+                if matcher:
+                    prefix = matcher.group(1)
+                    # Adding an explicit tools:node="remove" so this is still traceable
+                    # when looking at the source.
+                    output.write(f'{prefix}android:value="androidx.startup"\n')
+                    output.write(f'{prefix}tools:node="remove" />')
+                else:
+                    output.write(line)
+                output.write('\n')
+
+            output.write('\n')
+            return output.getvalue()
+    except BaseException as exception:
+        print(
+            f'Unable to parse manifest file with path {manifest_path}.\n\n Details ({exception})'
+        )
+
+def _attribute_name(namespace: str, attribute: str) -> str:
+    if not namespace in android_manifest_namepaces:
+        raise ValueError(f'Unexpected namespace {namespace}')
+
+    return f'{{{android_manifest_namepaces[namespace]}}}{attribute}'
 
 
-def fetch_artifacts(target, build_id, artifact_dict):
-    for artifact, target_path in artifact_dict.items():
-        artifact_path = fetch_artifact(target, build_id.url_id, artifact)
-        if not artifact_path:
-            return False
-        mv(artifact_path, target_path)
-    return True
+def _check_node(node: ET.Element) -> bool:
+    for child in node:
+        # Find the initialization provider
+        is_provider = child.tag == 'provider'
+        provider_name = child.attrib.get(_attribute_name('android', 'name'))
+        is_initialization_provider = provider_name == 'androidx.startup.InitializationProvider'
+
+        if is_provider and is_initialization_provider:
+            metadata_nodes = child.findall('meta-data', namespaces=android_manifest_namepaces)
+            return _needs_disable_initialization(metadata_nodes)
+
+        if len(child) > 0:
+            return _check_node(child)
+
+    return False
 
 
-def extract_artifact(artifact_path):
-    # Unzip the repo archive into a separate directory.
-    repo_dir = os.path.basename(artifact_path)[:-4]
-    with zipfile.ZipFile(artifact_path) as zipFile:
-        zipFile.extractall(repo_dir)
-    return repo_dir
+def _needs_disable_initialization(metadata_nodes: Iterable[ET.Element]) -> bool:
+    needs_update = False
+    for node in metadata_nodes:
+        name = node.attrib.get(_attribute_name('android', 'name'))
+        value = node.attrib.get(_attribute_name('android', 'value'))
+        if value == 'androidx.startup':
+            if name not in enabled_initializers:
+                needs_update = True
+
+    return needs_update
 
 
-def fetch_and_extract(target, build_id, file, artifact_path=None):
-    if not artifact_path:
-        artifact_path = fetch_artifact(target, build_id, file)
-    if not artifact_path:
-        return None
-    return extract_artifact(artifact_path)
-
-
-def update_gmaven(gmaven_artifacts):
-    artifacts = [GMavenArtifact(artifact) for artifact in gmaven_artifacts]
+def update_gmaven(gmaven_artifacts_list):
+    artifacts = [GMavenArtifact(artifact) for artifact in gmaven_artifacts_list]
     for artifact in artifacts:
         if artifact.version == 'latest':
             artifact.version = artifact.get_latest_version()
 
-    artifact_dirs = [fetch_gmaven_artifact(artifact) for artifact in artifacts]
     if not transform_maven_repos(['gmaven'], gmaven_dir, extract_res=False):
         return []
     return [artifact.key for artifact in artifacts]
 
 
-def update_androidx(target, build_id, local_file):
+def update_androidx(target, build_id, local_file, include, exclude, beyond_corp):
+    """Fetches and extracts Jetpack library prebuilts.
+
+    Args:
+        target: Android build server target name, must be specified if local_file is empty
+        build_id: Optional Android build server ID, must be specified if local_file is empty
+        local_file: Optional local top-of-tree ZIP, must be specified if build_id is empty
+        include: List of Maven groupIds or unversioned artifact coordinates to include for
+                 updates, ex. android.core or androidx.core:core
+        exclude: List of Maven groupIds or unversioned artifact coordinates to exclude from
+                 updates, ex. android.core or androidx.core:core
+        beyond_corp: Whether to use BeyondCorp-compatible artifact fetcher
+    Returns:
+        True if successful, false otherwise.
+    """
     if build_id:
         repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
-        repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, None)
+        repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, beyond_corp, None)
     else:
-        repo_dir = fetch_and_extract(target, None, None, local_file)
+        repo_dir = fetch_and_extract(target, None, None, beyond_corp, local_file)
     if not repo_dir:
         print_e('Failed to extract AndroidX repository')
         return False
 
-    # Keep JavaPlugins.bp file untounched.
-    java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
-    tmp_java_plugins_bp_path = os.path.join('/tmp', 'JavaPlugins.bp')
-    mv(java_plugins_bp_path, tmp_java_plugins_bp_path)
+    prepend_path = os.path.relpath('update_prebuilts/prepend_androidx_license', start=temp_dir)
 
     # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, extract_res=False):
+    if not transform_maven_repos([repo_dir], androidx_dir, write_pom2bp_cmd=False,
+                                 extract_res=False, include=include, exclude=exclude,
+                                 prepend=prepend_path):
         return False
 
     # Import JavaPlugins.bp in Android.bp.
     makefile = os.path.join(androidx_dir, 'Android.bp')
-    with open(makefile, "a+") as f:
+    with open(makefile, 'a+') as f:
         f.write('\nbuild = ["JavaPlugins.bp"]\n')
-    mv(tmp_java_plugins_bp_path, java_plugins_bp_path)
+
+    # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
+    files_to_restore = [androidx_owners, java_plugins_bp_path, test_mapping_file,
+                        compose_test_mapping_file]
+    for file_to_restore in files_to_restore:
+        # Ignore any output or error - these files are not gauranteed to exist, but
+        # if they do, we want to restore them.
+        subprocess.call(['git', 'restore', file_to_restore],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     return True
 
 
-def update_jetifier(target, build_id):
+def update_jetifier(target, build_id, beyond_corp):
+    """
+    Fetches and extracts Jetifier tool prebuilts.
+
+    Args:
+        target: Android build server target name
+        build_id: Android build server ID
+        beyond_corp: Whether to use BeyondCorp-compatible artifact fetcher
+    Return:
+        Whether the prebuilt was successfully updated.
+    """
     repo_file = 'jetifier-standalone.zip'
-    repo_dir = fetch_and_extract(target, build_id.url_id, repo_file)
+    repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, beyond_corp)
     if not repo_dir:
         print_e('Failed to extract Jetifier')
         return False
@@ -657,48 +918,97 @@ def update_jetifier(target, build_id):
 
 
 def update_constraint(local_file):
+    """
+    Extracts ConstraintLayout library prebuilts.
+
+    Args:
+        local_file: local Maven repository ZIP containing library artifacts
+    Return:
+        Whether the prebuilts were successfully updated.
+    """
     repo_dir = extract_artifact(local_file)
     if not repo_dir:
         print_e('Failed to extract Constraint Layout')
         return False
-    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'constraint-layout-x'), extract_res=False)
+    return transform_maven_repos([repo_dir], os.path.join(extras_dir, 'constraint-layout-x'),
+                                 extract_res=False)
 
 
-def update_material(file):
-    design_dir = extract_artifact(file)
+def update_material(local_file):
+    """
+    Extracts Material Design Components library prebuilts.
+
+    Args:
+        local_file: local Maven repository ZIP containing library artifacts
+    Return:
+        Whether the prebuilts were successfully updated.
+    """
+    design_dir = extract_artifact(local_file)
     if not design_dir:
         print_e('Failed to extract Material Design Components')
         return False
+    return transform_maven_repos([design_dir], os.path.join(extras_dir, 'material-design-x'),
+                                 extract_res=False)
 
-    # Don't bother extracting resources -- this should only be used with AAPT2.
-    return transform_maven_repos([design_dir],
-                                 os.path.join(extras_dir, 'material-design-x'), extract_res=False)
 
-def update_framework(target, build_id, sdk_dir):
+def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
+    if not local_mode:
+        return buildserver_fetch_artifact(target, build_id, artifact_path, beyond_corp)
+
+    copy_from = os.path.join(repo_root_dir.resolve(), 'out/dist', artifact_path)
+    copy_to = os.path.join('.', os.path.dirname(artifact_path))
+    print(f'Copying {copy_from} to {copy_to}...')
+    result_path = None
+    try:
+        if not os.path.exists(copy_to):
+            os.makedirs(copy_to)
+        for file in glob.glob(copy_from):
+            result_path = shutil.copy(file, copy_to)
+    except Exception as e:
+        print(f'Error: {e} occured while copying')
+        raise
+    return result_path
+
+
+def fetch_artifacts(target, build_id, artifact_dict, beyond_corp, local_mode):
+    if not local_mode:
+        return buildserver_fetch_artifacts(target, build_id, artifact_dict, beyond_corp)
+
+    for artifact, target_path in artifact_dict.items():
+        artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
+        if not artifact_path:
+            return False
+        mv(artifact_path, target_path)
+    return True
+
+
+def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
     api_scope_list = ['public', 'system', 'test', 'module-lib', 'system-server']
     if sdk_dir == 'current':
         api_scope_list.append('core')
 
     for api_scope in api_scope_list:
-        target_dir = path(sdk_dir, api_scope)
+        target_dir = os.path.join(sdk_dir, api_scope)
         if api_scope == 'core':
-            artifact_to_path = {'core.current.stubs.jar': path(target_dir, 'android.jar')}
+            artifact_to_path = {'core.current.stubs.jar': os.path.join(target_dir, 'android.jar')}
         else:
             artifact_to_path = {
-                'apistubs/android/' + api_scope + '/*.jar': path(target_dir, '*'),
+                'apistubs/android/' + api_scope + '/*.jar': os.path.join(target_dir, '*'),
             }
             if api_scope == 'public' or api_scope == 'module-lib':
                 # Distinct core-for-system-modules.jar files are only provided
                 # for the public and module-lib API surfaces.
-                artifact_to_path['system-modules/' + api_scope + '/core-for-system-modules.jar'] = path(target_dir, '*')
+                artifact_to_path[
+                    'system-modules/' + api_scope + '/core-for-system-modules.jar'] = os.path.join(
+                    target_dir, '*')
 
-        if not fetch_artifacts(target, build_id, artifact_to_path):
+        if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp, local_mode):
             return False
 
         if api_scope == 'public':
             # Fetch a few artifacts from the public sdk.
-            artifact = 'sdk-repo-linux-platforms-%s.zip' % build_id.fs_id
-            artifact_path = fetch_artifact(target, build_id.url_id, artifact)
+            artifact = 'sdk-repo-linux-platforms-%s.zip' % (build_id.fs_id if not local_mode else '*')
+            artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
             if not artifact_path:
                 return False
 
@@ -706,9 +1016,7 @@ def update_framework(target, build_id, sdk_dir):
                 extra_files = [
                     'android.jar',
                     'framework.aidl',
-                    'uiautomator.jar',
-                    'data/annotations.zip',
-                    'data/api-versions.xml']
+                    'uiautomator.jar']
                 for filename in extra_files:
                     matches = list(filter(lambda path: filename in path, zipFile.namelist()))
                     if len(matches) != 1:
@@ -717,13 +1025,19 @@ def update_framework(target, build_id, sdk_dir):
                         return False
                     zip_path = matches[0]
                     src_path = zipFile.extract(zip_path)
-                    dst_path = path(target_dir, filename)
+                    dst_path = os.path.join(target_dir, filename)
                     mv(src_path, dst_path)
 
-            # Filtered API DB is currently only available for "public"
-            fetch_artifacts(target, build_id, {'api-versions-public-filtered.xml': path(target_dir, 'data/api-versions-filtered.xml')})
+    # Fetch the lint api databases
+    lint_database_artifacts = {}
+    for api_scope in ['public', 'system', 'module-lib', 'system-server']:
+        data_folder = 'data' if api_scope == 'public' else api_scope + '-data'
+        lint_database_artifacts[os.path.join(data_folder, 'api-versions.xml')] = os.path.join(sdk_dir, api_scope, 'data', 'api-versions.xml')
+        lint_database_artifacts[os.path.join(data_folder, 'annotations.zip')] = os.path.join(sdk_dir, api_scope, 'data', 'annotations.zip')
+    fetch_artifacts(target, build_id, lint_database_artifacts, beyond_corp, local_mode)
 
     return True
+
 
 def update_makefile(build_id):
     template = '"%s",\n\
@@ -737,33 +1051,35 @@ def update_makefile(build_id):
 
     return True
 
-def finalize_sdk(target, build_id, sdk_version):
+
+def finalize_sdk(target, build_id, sdk_version, beyond_corp, local_mode):
     target_finalize_dir = '%d' % sdk_version
 
     for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
-        artifact_to_path = {'apistubs/android/' + api_scope + '/api/*.txt':
-                            path(target_finalize_dir, api_scope, 'api', '*')}
+        artifact_to_path = {f'apistubs/android/{api_scope}/api/*.txt': os.path.join(
+            target_finalize_dir, api_scope, 'api', '*')}
 
-        if not fetch_artifacts(target, build_id, artifact_to_path):
+        if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp, local_mode):
             return False
 
-    return update_framework(target, build_id, target_finalize_dir) \
-            and update_makefile(target_finalize_dir)
+    return update_framework(target, build_id, target_finalize_dir, beyond_corp, local_mode) and update_makefile(
+        target_finalize_dir)
 
 
-def update_framework_current(target, build_id):
-    return update_framework(target, build_id, current_path)
+def update_framework_current(target, build_id, beyond_corp, local_mode):
+    return update_framework(target, build_id, current_path, beyond_corp, local_mode)
 
 
-def update_buildtools(target, arch, build_id):
+def update_buildtools(target, arch, build_id, beyond_corp):
     artifact_path = fetch_and_extract(target, build_id.url_id,
-                                   "sdk-repo-%s-build-tools-%s.zip" % (arch, build_id.fs_id))
+                                      f'sdk-repo-{arch}-build-tools-{build_id.fs_id}.zip',
+                                      beyond_corp)
     if not artifact_path:
         return False
 
     top_level_dir = os.listdir(artifact_path)[0]
     src_path = os.path.join(artifact_path, top_level_dir)
-    dst_path = path(buildtools_dir, arch)
+    dst_path = os.path.join(buildtools_dir, arch)
 
     # There are a few libraries that have been manually added to the
     # build tools, copy them from the destination back to the source
@@ -782,11 +1098,11 @@ def update_buildtools(target, arch, build_id):
     mv(src_path, dst_path)
 
     # Move all top-level files to /bin and make them executable
-    bin_path = path(dst_path, 'bin')
-    top_level_files = filter(lambda e: os.path.isfile(path(dst_path, e)), os.listdir(dst_path))
+    bin_path = os.path.join(dst_path, 'bin')
+    top_level_files = filter(lambda e: os.path.isfile(os.path.join(dst_path, e)), os.listdir(dst_path))
     for file in top_level_files:
-        src_file = path(dst_path, file)
-        dst_file = path(bin_path, file)
+        src_file = os.path.join(dst_path, file)
+        dst_file = os.path.join(bin_path, file)
         mv(src_file, dst_file)
         os.chmod(dst_file, 0o755)
 
@@ -796,235 +1112,276 @@ def update_buildtools(target, arch, build_id):
         os.chmod(os.path.join(dst_path, 'lld-bin', file), 0o755)
 
     # Remove renderscript
-    rm(path(dst_path, 'renderscript'))
+    rm(os.path.join(dst_path, 'renderscript'))
 
     return True
 
 
-def append(text, more_text):
-    if text:
-        return "%s, %s" % (text, more_text)
-    return more_text
-
-
-class buildId(object):
-  def __init__(self, url_id, fs_id):
-    # id when used in build server urls
-    self.url_id = url_id
-    # id when used in build commands
-    self.fs_id = fs_id
-
-def getBuildId(args):
-  # must be in the format 12345 or P12345
-  source = args.source
-  number_text = source[:]
-  presubmit = False
-  if number_text.startswith("P"):
-    presubmit = True
-    number_text = number_text[1:]
-  if not number_text.isnumeric():
-    return None
-  url_id = source
-  fs_id = url_id
-  if presubmit:
-    fs_id = "0"
-  args.file = False
-  return buildId(url_id, fs_id)
-
-def getFile(args):
-  source = args.source
-  if not source.isnumeric():
-    return args.source
-  return None
-
-
-def script_relative(rel_path):
-    return os.path.join(script_dir, rel_path)
-
-
-def uncommittedChangesExist():
+def has_uncommitted_changes():
     try:
         # Make sure we don't overwrite any pending changes.
-        diffCommand = "cd " + git_dir + " && git diff --quiet"
-        subprocess.check_call(diffCommand, shell=True)
-        subprocess.check_call(diffCommand + " --cached", shell=True)
+        diff_command = f'cd {git_dir} && git diff --quiet'
+        subprocess.check_call(diff_command, shell=True)
+        subprocess.check_call(f'{diff_command} --cached', shell=True)
         return False
     except subprocess.CalledProcessError:
         return True
 
 
-rm(temp_dir)
-parser = argparse.ArgumentParser(
-    description=('Update current prebuilts'))
-parser.add_argument(
-    'source', nargs='?',
-    help='Build server build ID or local Maven ZIP file')
-parser.add_argument(
-    '-m', '--material', action="store_true",
-    help='If specified, updates only Material Design Components')
-parser.add_argument(
-    '-c', '--constraint', action="store_true",
-    help='If specified, updates only Constraint Layout')
-parser.add_argument(
-    '-j', '--jetifier', action="store_true",
-    help='If specified, updates only Jetifier')
-parser.add_argument(
-    '-p', '--platform', action="store_true",
-    help='If specified, updates only the Android Platform')
-parser.add_argument(
-    '-f', '--finalize_sdk', type=int,
-    help='Finalize the build as the specified SDK version. Must be used together with -e')
-parser.add_argument(
-    '-e', '--finalize_extension', type=int,
-    help='Finalize the build as the specified extension SDK version. Must be used together with -f')
-parser.add_argument('--bug', type=int, help='The bug number to add to the commit message.')
-parser.add_argument(
-    '--sdk_target',
-    default=framework_sdk_target,
-    help='If specified, the name of the build target from which to retrieve the SDK when -p or -f is specified.')
-parser.add_argument(
-    '-b', '--buildtools', action="store_true",
-    help='If specified, updates only the Build Tools')
-parser.add_argument(
-    '-x', '--androidx', action="store_true",
-    help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by other arguments')
-parser.add_argument(
-    '-g', '--gmaven', action="store_true",
-    help='If specified, updates only the artifact from GMaven libraries excluding those covered by other arguments')
-parser.add_argument(
-    '--commit-first', action="store_true",
-    help='If specified, then if uncommited changes exist, commit before continuing')
-parser.add_argument(
-    '--beyond-corp', action="store_true",
-    help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
-args = parser.parse_args()
-args.file = True
+def main():
+    parser = argparse.ArgumentParser(
+        description='Update current prebuilts')
+    parser.add_argument(
+        'source', nargs='?',
+        help='Build server build ID or local Maven ZIP file')
+    parser.add_argument(
+        '-m', '--material', action='store_true',
+        help='If specified, updates only Material Design Components')
+    parser.add_argument(
+        '-c', '--constraint', action='store_true',
+        help='If specified, updates only Constraint Layout')
+    parser.add_argument(
+        '-j', '--jetifier', action='store_true',
+        help='If specified, updates only Jetifier')
+    parser.add_argument(
+        '-p', '--platform', action='store_true',
+        help='If specified, updates only the Android Platform')
+    parser.add_argument(
+        '-f', '--finalize_sdk', type=int,
+        help='Finalize the build as the specified SDK version. Must be used together with -e')
+    parser.add_argument(
+        '-e', '--finalize_extension', type=int,
+        help='Finalize the build as the specified extension SDK version. Must be used together with -f')
+    parser.add_argument('--bug', type=int, help='The bug number to add to the commit message.')
+    parser.add_argument(
+        '--sdk_target',
+        default=framework_sdk_target,
+        help='If specified, the name of the build target from which to retrieve the SDK when -p or -f '
+             'is specified.')
+    parser.add_argument(
+        '-b', '--buildtools', action='store_true',
+        help='If specified, updates only the Build Tools')
+    parser.add_argument(
+        '-x', '--androidx', action='store_true',
+        help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by '
+             'other arguments')
+    parser.add_argument(
+        '--include', action='append', default=[],
+        help='If specified with -x, includes the specified Jetpack library Maven group or artifact for '
+             'updates. Applied before exclude.')
+    parser.add_argument(
+        '--exclude', action='append', default=[],
+        help='If specified with -x, excludes the specified Jetpack library Maven group or artifact '
+             'from updates')
+    parser.add_argument(
+        '-g', '--gmaven', action='store_true',
+        help='If specified, updates only the artifact from GMaven libraries excluding those covered by '
+             'other arguments')
+    parser.add_argument(
+        '--commit-first', action='store_true',
+        help='If specified, then if uncommited changes exist, commit before continuing')
+    parser.add_argument(
+        '--beyond-corp', action='store_true',
+        help='If specified, then fetch artifacts with tooling that works on BeyondCorp devices')
+    parser.add_argument(
+        '--local_mode', action="store_true",
+        help='Local mode: use locally built artifacts and don\'t upload the result to Gerrit.')
+    rm(temp_dir)
 
-if not args.source and (args.platform or args.buildtools \
-                or args.jetifier or args.androidx or args.material \
-                or args.finalize_sdk or args.constraint):
-    parser.error("You must specify a build ID or local Maven ZIP file")
-    sys.exit(1)
-if not (args.gmaven or args.platform or args.buildtools \
-                or args.jetifier or args.androidx or args.material \
-                or args.finalize_sdk or args.finalize_extension or args.constraint):
-    parser.error("You must specify at least one target to update")
-    sys.exit(1)
-if (args.constraint or args.material or args.androidx or args.gmaven) \
-        and which('pom2bp') is None:
-    parser.error("Cannot find pom2bp in path; please run lunch to set up build environment. You may also need to run 'm pom2bp' if it hasn't been built already.")
-    sys.exit(1)
-if (args.finalize_sdk is None) != (args.finalize_extension is None):
-    parser.error("Either both or neither of -e and -f must be specified.")
-    sys.exit(1)
-if args.finalize_sdk and not args.bug:
-    parser.error("Specifying a bug ID with --bug is required when finalizing an SDK.")
-    sys.exit(1)
+    args = parser.parse_args()
 
-if uncommittedChangesExist():
-    if args.commit_first:
-        subprocess.check_call("cd " + git_dir + " && git add -u", shell=True)
-        subprocess.check_call("cd " + git_dir + " && git commit -m 'save working state'", shell=True)
+    # Validate combinations of arguments.
+    if not args.source and (args.platform or args.buildtools or args.jetifier
+                            or args.androidx or args.material or args.finalize_sdk
+                            or args.constraint):
+        parser.error('You must specify a build ID or local Maven ZIP file')
+        sys.exit(1)
+    if not (args.gmaven or args.platform or args.buildtools or args.jetifier
+            or args.androidx or args.material or args.finalize_sdk
+            or args.finalize_extension or args.constraint):
+        parser.error('You must specify at least one target to update')
+        sys.exit(1)
+    if args.local_mode and not args.finalize_sdk:
+        parser.error('Local mode can only be used when finalizing an SDK.')
+        sys.exit(1)
+    if (args.finalize_sdk is None) != (args.finalize_extension is None):
+        parser.error('Either both or neither of -e and -f must be specified.')
+        sys.exit(1)
+    if args.finalize_sdk and not args.bug:
+        parser.error('Specifying a bug ID with --bug is required when finalizing an SDK.')
+        sys.exit(1)
 
-if uncommittedChangesExist():
-    print_e('FAIL: There are uncommitted changes here. Please commit or stash before continuing, because %s will run "git reset --hard" if execution fails' % os.path.basename(__file__))
-    sys.exit(1)
+    # Validate the build environment for POM-dependent targets.
+    if (args.constraint or args.material or args.androidx or args.gmaven) \
+            and which('pom2bp') is None:
+        parser.error('Cannot find pom2bp in path; please run lunch to set up build environment. '
+                     'You may also need to run \'m pom2bp\' if it hasn\'t been built already.')
+        sys.exit(1)
 
-commit_message_suffix = ""
-if args.bug:
-    commit_message_suffix = "\n\nBug: %d" % args.bug
-
-try:
-    components = None
-    if args.constraint:
-        if update_constraint_x(getFile(args)):
-            components = append(components, 'Constraint Layout X')
-        else:
-            print_e('Failed to update Constraint Layout X, aborting...')
+    # Validate include/exclude arguments.
+    if args.exclude:
+        invalid_spec = find_invalid_spec(args.exclude)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in exclude: ' + invalid_spec)
             sys.exit(1)
-    if args.gmaven:
-        updated_artifacts = update_gmaven(gmaven_artifacts)
-        if updated_artifacts:
-            components = append(components, '\n'.join(updated_artifacts))
-        else:
-            print_e('Failed to update GMaven, aborting...')
-            sys.exit(1)
-    if args.androidx:
-        if update_androidx('androidx', \
-                           getBuildId(args), getFile(args)):
-            components = append(components, 'AndroidX')
-        else:
-            print_e('Failed to update AndroidX, aborting...')
-            sys.exit(1)
-    if args.jetifier:
-        if update_jetifier('androidx', getBuildId(args)):
-            components = append(components, 'Jetifier')
-        else:
-            print_e('Failed to update Jetifier, aborting...')
-            sys.exit(1)
-    if args.platform or args.finalize_sdk:
-        if update_framework_current(args.sdk_target, getBuildId(args)):
-            components = append(components, 'platform SDK')
-        else:
-            print_e('Failed to update platform SDK, aborting...')
-            sys.exit(1)
-    if args.finalize_sdk:
-        n = args.finalize_sdk
-        if not finalize_sdk(args.sdk_target, getBuildId(args), n):
-            print_e('Failed to finalize SDK %d, aborting...' % n)
-            sys.exit(1)
-        # We commit the finalized dir separately from the current sdk update.
-        msg = "Import final sdk version %d from build %s%s" % (n, getBuildId(args).url_id, commit_message_suffix)
-        subprocess.check_call(['git', 'add', '%d' % n])
-        subprocess.check_call(['git', 'add', 'Android.bp'])
-        subprocess.check_call(['git', 'commit', '-m', msg])
-
-        # Finalize extension sdk level
-        readme = f"- {args.finalize_extension}: Finalized together with Android {args.finalize_sdk} (all modules)"
-        cmd = extension_sdk_finalization_cmd.format(
-            readme=readme,
-            bug=args.bug,
-            extension_version=args.finalize_extension,
-            build_id=getBuildId(args).url_id)
-        subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
-    if args.material:
-        if update_material(getFile(args)):
-            components = append(components, 'intermediate-AndroidX Design Library')
-        else:
-            print_e('Failed to update intermediate-AndroidX Design Library, aborting...')
-            sys.exit(1)
-    if args.buildtools:
-        if update_buildtools('sdk_phone_armv7-sdk_mac', 'darwin', getBuildId(args)) \
-                and update_buildtools('sdk_phone_x86_64-sdk', 'linux', getBuildId(args)) \
-                and update_buildtools('sdk_phone_armv7-win_sdk', 'windows', getBuildId(args)):
-            components = append(components, 'build tools')
-        else:
-            print_e('Failed to update build tools, aborting...')
+    if args.include:
+        invalid_spec = find_invalid_spec(args.include)
+        if invalid_spec:
+            parser.error('Unknown artifact specification in include: ' + invalid_spec)
             sys.exit(1)
 
+    # Validate the git status.
+    if not args.local_mode and has_uncommitted_changes():
+        if args.commit_first:
+            subprocess.check_call(f'cd {git_dir} && git add -u', shell=True)
+            subprocess.check_call(f'cd {git_dir} && git commit -m \'save working state\'',
+                                  shell=True)
+    if not args.local_mode and has_uncommitted_changes():
+        self_file = os.path.basename(__file__)
+        print_e(f'FAIL: There are uncommitted changes here. Please commit or stash before '
+                f'continuing, because {self_file} will run "git reset --hard" if execution fails')
+        sys.exit(1)
 
-
-    subprocess.check_call(['git', 'add', current_path, buildtools_dir])
-    if not args.source and args.gmaven:
-        src_msg = "GMaven"
-    elif not args.source.isnumeric():
-        src_msg = "local Maven ZIP"
+    if args.bug:
+        commit_msg_suffix = '\n\nBug: {args.bug}'
     else:
-        src_msg = "build %s" % (getBuildId(args).url_id)
-    msg = "Import %s from %s\n\n%s%s" % (components, src_msg, flatten(sys.argv), commit_message_suffix)
-    subprocess.check_call(['git', 'commit', '-m', msg])
-    if args.finalize_sdk:
-        print('NOTE: Created three commits:')
-        subprocess.check_call(['git', 'log', '-3', '--oneline'])
-    print('Remember to test this change before uploading it to Gerrit!')
+        commit_msg_suffix = ''
 
-finally:
-    # Revert all stray files, including the downloaded zip.
+    # Are we fetching a build ID or using a local file?
+    build_id = None
+    file = None
+    if args.source:
+        build_id = parse_build_id(args.source)
+        if build_id is None:
+            file = args.source
+
     try:
-        with open(os.devnull, 'w') as bitbucket:
-            subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
-            subprocess.check_call(
-                ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!', '--allow-empty'], stdout=bitbucket)
-            subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
-    except subprocess.CalledProcessError:
-        print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
+        components = []
+        if args.constraint:
+            if update_constraint(file):
+                components.append('Constraint Layout')
+            else:
+                print_e('Failed to update Constraint Layout, aborting...')
+                sys.exit(1)
+        if args.material:
+            if update_material(file):
+                components.append('Material Design Components')
+            else:
+                print_e('Failed to update Material Design Components, aborting...')
+                sys.exit(1)
+        if args.gmaven:
+            updated_artifacts = update_gmaven(gmaven_artifacts)
+            if updated_artifacts:
+                components.append('\n'.join(updated_artifacts))
+            else:
+                print_e('Failed to update GMaven, aborting...')
+                sys.exit(1)
+        if args.androidx:
+            if update_androidx('androidx', build_id, file, args.include, args.exclude,
+                               args.beyond_corp):
+                components.append('AndroidX')
+            else:
+                print_e('Failed to update AndroidX, aborting...')
+                sys.exit(1)
+        if args.jetifier:
+            if update_jetifier('androidx', build_id, args.beyond_corp):
+                components.append('Jetifier')
+            else:
+                print_e('Failed to update Jetifier, aborting...')
+                sys.exit(1)
+        if args.platform or args.finalize_sdk:
+            if update_framework_current(args.sdk_target, build_id, args.beyond_corp, args.local_mode):
+                components.append('platform SDK')
+            else:
+                print_e('Failed to update platform SDK, aborting...')
+                sys.exit(1)
+        if args.finalize_sdk:
+            n = args.finalize_sdk
+            if not finalize_sdk(args.sdk_target, build_id, n, args.beyond_corp, args.local_mode):
+                print_e('Failed to finalize SDK %d, aborting...' % n)
+                sys.exit(1)
+
+            if not args.local_mode:
+                # HACK: extension sdk finalization will create a new branch, hiding this commit.
+                # Let's create it in advance for now.
+                # TODO(b/228451704) do a proper fix?
+                branch_name = 'finalize-%d' % args.finalize_extension
+                subprocess.check_output(['repo', 'start', branch_name])
+                # We commit the finalized dir separately from the current sdk update.
+                msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
+                subprocess.check_call(['git', 'add', '%d' % n])
+                subprocess.check_call(['git', 'add', 'Android.bp'])
+                subprocess.check_call(['git', 'commit', '-m', msg])
+
+            # Finalize extension sdk level
+            readme = (f'- {args.finalize_extension}: Finalized together with '
+                      'Android {args.finalize_sdk} (all modules)')
+            cmd = extension_sdk_finalization_cmd.format(
+                readme=readme,
+                bug=args.bug,
+                extension_version=args.finalize_extension,
+                build_id=build_id.url_id,
+                local_mode='--local_mode' if args.local_mode else '')
+            subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
+        if args.buildtools:
+            if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
+                    and update_buildtools('sdk', 'linux', build_id, args.beyond_corp) \
+                    and update_buildtools('sdk', 'windows', build_id, args.beyond_corp):
+                components.append('build tools')
+            else:
+                print_e('Failed to update build tools, aborting...')
+                sys.exit(1)
+
+        if args.local_mode:
+            print('Updated prebuilts using locally built artifacts. Don\'t submit or use for anything besides local testing.')
+            sys.exit(0)
+
+        # Build the git commit.
+        subprocess.check_call(['git', 'add', current_path, buildtools_dir])
+
+        # Build the commit message.
+        components_msg = ', '.join(components)
+        argv_msg = ' '.join(sys.argv)
+        if not args.source and args.gmaven:
+            src_msg = 'GMaven'
+        elif not args.source.isnumeric():
+            src_msg = 'local Maven ZIP'
+        else:
+            src_msg = f'build {build_id.url_id}'
+        msg = f'Import {components_msg} from {src_msg}\n\n{argv_msg}{commit_msg_suffix}'
+
+        # Create the git commit.
+        subprocess.check_call(['git', 'commit', '-q', '-m', msg])
+
+        if args.finalize_sdk:
+            print('NOTE: Created three commits:')
+            subprocess.check_call(['git', 'log', '-3', '--oneline'])
+        else:
+            print('Created commit:')
+            subprocess.check_call(['git', 'log', '-1', '--oneline'])
+        print('Remember to test this change before uploading it to Gerrit!')
+
+    except Exception as e:
+        print(f'ERROR: {e} occured while updating prebuilts')
+        raise
+    finally:
+        if args.local_mode:
+            print('No cleaning up in local mode, manual cleanup required.')
+        else:
+            # Revert all stray files, including the downloaded zip.
+            try:
+                with open(os.devnull, 'w') as bitbucket:
+                    subprocess.check_call(['git', 'add', '-Af', '.'], stdout=bitbucket)
+                    subprocess.check_call(
+                        ['git', 'commit', '-m', 'COMMIT TO REVERT - RESET ME!!!', '--allow-empty'],
+                        stdout=bitbucket)
+                    subprocess.check_call(['git', 'reset', '--hard', 'HEAD~1'], stdout=bitbucket)
+            except subprocess.CalledProcessError:
+                print_e('ERROR: Failed cleaning up, manual cleanup required!!!')
+
+
+# Add automatic entries to maven_to_make.
+populate_maven_to_make(maven_to_make)
+
+if __name__ == '__main__':
+    main()
