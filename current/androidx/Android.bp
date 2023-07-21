@@ -16,7 +16,7 @@ package {
 
 android_library_import {
     name: "androidx.activity_activity-compose-nodeps",
-    aars: ["m2repository/androidx/activity/activity-compose/1.8.0-alpha06/activity-compose-1.8.0-alpha06.aar"],
+    aars: ["m2repository/androidx/activity/activity-compose/1.7.0-alpha05/activity-compose-1.7.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -24,6 +24,7 @@ android_library_import {
     ],
     min_sdk_version: "21",
     static_libs: [
+        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
         "androidx.activity_activity-ktx",
         "androidx.compose.runtime_runtime",
@@ -44,6 +45,7 @@ android_library {
     manifest: "manifests/androidx.activity_activity-compose/AndroidManifest.xml",
     static_libs: [
         "androidx.activity_activity-compose-nodeps",
+        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
         "androidx.activity_activity-ktx",
         "androidx.compose.runtime_runtime",
@@ -56,7 +58,7 @@ android_library {
 
 android_library_import {
     name: "androidx.activity_activity-ktx-nodeps",
-    aars: ["m2repository/androidx/activity/activity-ktx/1.8.0-alpha06/activity-ktx-1.8.0-alpha06.aar"],
+    aars: ["m2repository/androidx/activity/activity-ktx/1.7.0-alpha05/activity-ktx-1.7.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -96,7 +98,7 @@ android_library {
 
 android_library_import {
     name: "androidx.activity_activity-nodeps",
-    aars: ["m2repository/androidx/activity/activity/1.8.0-alpha06/activity-1.8.0-alpha06.aar"],
+    aars: ["m2repository/androidx/activity/activity/1.7.0-alpha05/activity-1.7.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -111,7 +113,6 @@ android_library_import {
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
-        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
         "androidx.tracing_tracing",
     ],
@@ -135,7 +136,6 @@ android_library {
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
-        "androidx.profileinstaller_profileinstaller",
         "androidx.savedstate_savedstate",
         "androidx.tracing_tracing",
     ],
