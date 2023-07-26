@@ -258,6 +258,12 @@ maven_to_make = {
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
 
+    # Compose for wear
+    'androidx.wear.compose:compose-material-core': {},
+    'androidx.wear.compose:compose-foundation': {},
+    'androidx.wear.compose:compose-material': {},
+    'androidx.wear.compose:compose-navigation': {},
+
     # AndroidX for Multidex
     'androidx.multidex:multidex': {},
     'androidx.multidex:multidex-instrumentation': {},
