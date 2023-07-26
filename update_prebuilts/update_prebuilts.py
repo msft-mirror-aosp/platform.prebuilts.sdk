@@ -349,6 +349,7 @@ deps_rewrite = {
     'runner': 'androidx.test.runner',
     'androidx.test:core': 'androidx.test.core',
     'com.squareup:javapoet': 'javapoet',
+    'com.squareup:okio-jvm': 'okio-lib',
     'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
     'sqlite-jdbc': 'xerial-sqlite-jdbc',
     'com.intellij:annotations': 'jetbrains-annotations',
