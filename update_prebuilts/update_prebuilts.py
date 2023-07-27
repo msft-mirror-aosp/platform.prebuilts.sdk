@@ -108,7 +108,6 @@ maven_to_make = {
     'androidx.coordinatorlayout:coordinatorlayout': {},
     'androidx.datastore:datastore-android': {},
     'androidx.datastore:datastore-core-android': {},
-    'androidx.datastore:datastore-core-okio-jvm': {},
     'androidx.datastore:datastore-preferences-android': {},
     'androidx.datastore:datastore-preferences-core-jvm': {},
     'androidx.datastore:datastore-preferences-rxjava2': {},
