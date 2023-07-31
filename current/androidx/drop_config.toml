@@ -19,9 +19,8 @@
 "androidx.activity:activity-compose" = {}
 "androidx.activity:activity-ktx" = {}
 "androidx.activity:activity" = {}
-"androidx.annotation:annotation" = { host-and-device = true, extra-static-libs = [ "androidx.annotation_annotation-jvm" ] }
+"androidx.annotation:annotation" = { host-and-device = true }
 "androidx.annotation:annotation-experimental" = {}
-"androidx.annotation:annotation-jvm" = { host-and-device = true }
 "androidx.appcompat:appcompat-resources" = {}
 "androidx.appcompat:appcompat" = {}
 "androidx.appsearch:appsearch-builtin-types" = {}
@@ -49,38 +48,37 @@
 "androidx.car.app:app-testing" = {}
 "androidx.car.app:app" = {}
 "androidx.cardview:cardview" = {}
-"androidx.collection:collection" = { extra-static-libs = [ "androidx.collection_collection-jvm" ] }
-"androidx.collection:collection-jvm" = {}
+"androidx.collection:collection" = {}
 "androidx.collection:collection-ktx" = {}
-"androidx.compose.animation:animation-android" = {}
-"androidx.compose.animation:animation-core-android" = {}
-"androidx.compose.animation:animation-graphics-android" = {}
+"androidx.compose.animation:animation" = {}
+"androidx.compose.animation:animation-core" = {}
+"androidx.compose.animation:animation-graphics" = {}
 "androidx.compose.compiler:compiler-hosted" = { host = true }
-"androidx.compose.foundation:foundation-android" = {}
-"androidx.compose.foundation:foundation-layout-android" = {}
-"androidx.compose.foundation:foundation-text-android" = {}
-"androidx.compose.material:material-android" = {}
-"androidx.compose.material:material-icons-core-android" = {}
-"androidx.compose.material:material-icons-extended-android" = {}
-"androidx.compose.material:material-ripple-android" = {}
-"androidx.compose.material3:material3-android" = {}
-"androidx.compose.material3:material3-window-size-class-android" = {}
-"androidx.compose.runtime:runtime-android" = {}
+"androidx.compose.foundation:foundation" = {}
+"androidx.compose.foundation:foundation-layout" = {}
+"androidx.compose.foundation:foundation-text" = {}
+"androidx.compose.material:material" = {}
+"androidx.compose.material:material-icons-core" = {}
+"androidx.compose.material:material-icons-extended" = {}
+"androidx.compose.material:material-ripple" = {}
+"androidx.compose.material3:material3" = {}
+"androidx.compose.material3:material3-window-size-class" = {}
+"androidx.compose.runtime:runtime" = {}
 "androidx.compose.runtime:runtime-livedata" = {}
-"androidx.compose.runtime:runtime-saveable-android" = {}
+"androidx.compose.runtime:runtime-saveable" = {}
 "androidx.compose.runtime:runtime-tracing" = {}
-"androidx.compose.ui:ui-android" = {}
-"androidx.compose.ui:ui-geometry-android" = {}
-"androidx.compose.ui:ui-graphics-android" = {}
-"androidx.compose.ui:ui-test-android" = {}
-"androidx.compose.ui:ui-test-junit4-android" = {}
+"androidx.compose.ui:ui" = {}
+"androidx.compose.ui:ui-geometry" = {}
+"androidx.compose.ui:ui-graphics" = {}
+"androidx.compose.ui:ui-test" = {}
+"androidx.compose.ui:ui-test-junit4" = {}
 "androidx.compose.ui:ui-test-manifest" = {}
-"androidx.compose.ui:ui-text-android" = {}
-"androidx.compose.ui:ui-tooling-android" = {}
-"androidx.compose.ui:ui-tooling-data-android" = {}
-"androidx.compose.ui:ui-tooling-preview-android" = {}
-"androidx.compose.ui:ui-unit-android" = {}
-"androidx.compose.ui:ui-util-android" = {}
+"androidx.compose.ui:ui-text" = {}
+"androidx.compose.ui:ui-tooling" = {}
+"androidx.compose.ui:ui-tooling-data" = {}
+"androidx.compose.ui:ui-tooling-preview" = {}
+"androidx.compose.ui:ui-unit" = {}
+"androidx.compose.ui:ui-util" = {}
 "androidx.concurrent:concurrent-futures-ktx" = {}
 "androidx.concurrent:concurrent-futures" = {}
 "androidx.concurrent:concurrent-listenablefuture-callback" = {}
@@ -263,6 +261,7 @@
 "com.google.devtools.ksp:symbol-processing-api" = "symbol-processing-api"
 "com.google.guava:guava" = "guava"
 "com.google.guava:listenablefuture" = "guava-listenablefuture-prebuilt-jar"
+"com.google.android.material:material" = "com.google.android.material_material"
 "com.google.protobuf:protobuf-javalite" = "libprotobuf-java-lite"
 "com.intellij:annotations" = "jetbrains-annotations"
 "com.squareup:javapoet" = "javapoet"
@@ -275,11 +274,13 @@
 "org.jetbrains.kotlin:kotlin-stdlib" = "kotlin-stdlib"
 "org.jetbrains.kotlin:kotlin-stdlib-common" = "kotlin-stdlib"
 "org.jetbrains.kotlin:kotlin-stdlib-jdk8" = "kotlin-stdlib-jdk8"
+"org.jetbrains.kotlin:kotlin-stdlib-jvm" = "kotlin-stdlib-jvm"
 "org.jetbrains.kotlinx:kotlinx-coroutines-android" = "kotlinx_coroutines_android"
 "org.jetbrains.kotlinx:kotlinx-coroutines-core" = "kotlinx_coroutines"
+"org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm" = "kotlinx_coroutines"
 "org.jetbrains.kotlinx:kotlinx-coroutines-guava" = "kotlinx_coroutines_guava"
-"org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm" = "kotlinx_coroutines_test"
 "org.jetbrains.kotlinx:kotlinx-coroutines-test" = "kotlinx_coroutines_test"
+"org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm" = "kotlinx_coroutines_test"
 "org.jetbrains.kotlinx:kotlinx-metadata-jvm" = "kotlinx_metadata_jvm"
 "org.mockito:mockito-core" = "mockito-core"
 "org.robolectric:robolectric" = "Robolectric_all-target"
@@ -289,6 +290,7 @@
 [options]
 monolithic = true
 static-deps = true
+sort-deps = false
 sdk-version = "31"
 default-min-sdk-version = "24"
 prepend = "../../update_prebuilts/prepend_androidx_license"
