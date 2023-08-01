@@ -276,7 +276,7 @@ maven_to_make = {
         'name': 'androidx-constraintlayout_constraintlayout-solver'
     },
     'androidx.constraintlayout:constraintlayout-core': {},
-    'androidx.constraintlayout:constraintlayout-compose': {},
+    'androidx.constraintlayout:constraintlayout-compose-android': {},
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': {},
     'androidx.arch.core:core-runtime': {},
