@@ -5410,7 +5410,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ads_ads-adservices-java-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta04/ads-adservices-java-1.0.0-beta04.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices-java/1.1.0-alpha01/ads-adservices-java-1.1.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5454,7 +5454,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ads_ads-adservices-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta04/ads-adservices-1.0.0-beta04.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ads/ads-adservices/1.1.0-alpha01/ads-adservices-1.1.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5490,7 +5490,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-client/1.0.0-alpha04/sdkruntime-client-1.0.0-alpha04.aar"],
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-client/1.0.0-alpha08/sdkruntime-client-1.0.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5500,6 +5500,7 @@ android_library_import {
     static_libs: [
         "kotlin-stdlib",
         "kotlinx_coroutines",
+        "androidx.activity_activity",
         "androidx.core_core",
         "androidx.core_core-ktx",
         "androidx.privacysandbox.sdkruntime_sdkruntime-core",
@@ -5519,6 +5520,7 @@ android_library {
         "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
         "kotlin-stdlib",
         "kotlinx_coroutines",
+        "androidx.activity_activity",
         "androidx.core_core",
         "androidx.core_core-ktx",
         "androidx.privacysandbox.sdkruntime_sdkruntime-core",
@@ -5528,7 +5530,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-core/1.0.0-alpha04/sdkruntime-core-1.0.0-alpha04.aar"],
+    aars: ["m2repository/androidx/privacysandbox/sdkruntime/sdkruntime-core/1.0.0-alpha08/sdkruntime-core-1.0.0-alpha08.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5538,6 +5540,7 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "androidx.activity_activity",
         "androidx.core_core",
     ],
 }
@@ -5555,6 +5558,7 @@ android_library {
         "androidx.privacysandbox.sdkruntime_sdkruntime-core-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "androidx.activity_activity",
         "androidx.core_core",
     ],
     java_version: "1.7",
@@ -5562,7 +5566,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-client-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha03/ui-client-1.0.0-alpha03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha05/ui-client-1.0.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5571,7 +5575,10 @@ android_library_import {
     min_sdk_version: "14",
     static_libs: [
         "androidx.annotation_annotation",
+        "androidx.lifecycle_lifecycle-common",
         "kotlin-stdlib",
+        "androidx.core_core",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-client",
         "androidx.privacysandbox.ui_ui-core",
     ],
 }
@@ -5588,7 +5595,10 @@ android_library {
     static_libs: [
         "androidx.privacysandbox.ui_ui-client-nodeps",
         "androidx.annotation_annotation",
+        "androidx.lifecycle_lifecycle-common",
         "kotlin-stdlib",
+        "androidx.core_core",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-client",
         "androidx.privacysandbox.ui_ui-core",
     ],
     java_version: "1.7",
@@ -5596,7 +5606,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-core-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ui/ui-core/1.0.0-alpha03/ui-core-1.0.0-alpha03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-core/1.0.0-alpha05/ui-core-1.0.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5628,7 +5638,7 @@ android_library {
 
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-provider-nodeps",
-    aars: ["m2repository/androidx/privacysandbox/ui/ui-provider/1.0.0-alpha03/ui-provider-1.0.0-alpha03.aar"],
+    aars: ["m2repository/androidx/privacysandbox/ui/ui-provider/1.0.0-alpha05/ui-provider-1.0.0-alpha05.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5638,6 +5648,8 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
         "androidx.privacysandbox.ui_ui-core",
     ],
 }
@@ -5655,6 +5667,8 @@ android_library {
         "androidx.privacysandbox.ui_ui-provider-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.core_core",
         "androidx.privacysandbox.ui_ui-core",
     ],
     java_version: "1.7",
