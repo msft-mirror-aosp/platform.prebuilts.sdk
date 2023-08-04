@@ -106,11 +106,11 @@ maven_to_make = {
     'androidx.core.uwb:uwb-rxjava3': {},
     'androidx.contentpaging:contentpaging': {},
     'androidx.coordinatorlayout:coordinatorlayout': {},
-    'androidx.datastore:datastore': {},
-    'androidx.datastore:datastore-core': {},
-    'androidx.datastore:datastore-core-okio': {},
-    'androidx.datastore:datastore-preferences': {},
-    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-android': {},
+    'androidx.datastore:datastore-core-android': {},
+    'androidx.datastore:datastore-core-okio-jvm': {},
+    'androidx.datastore:datastore-preferences-android': {},
+    'androidx.datastore:datastore-preferences-core-jvm': {},
     'androidx.datastore:datastore-preferences-rxjava2': {},
     'androidx.datastore:datastore-rxjava2': {},
     'androidx.legacy:legacy-support-core-ui': {},
@@ -169,6 +169,7 @@ maven_to_make = {
     'androidx.swiperefreshlayout:swiperefreshlayout': {},
     'androidx.textclassifier:textclassifier': {},
     'androidx.transition:transition': {},
+    'androidx.transition:transition-ktx': {},
     'androidx.tvprovider:tvprovider': {},
     'androidx.legacy:legacy-support-v13': {},
     'androidx.legacy:legacy-preference-v14': {},
@@ -257,6 +258,12 @@ maven_to_make = {
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
 
+    # Compose for wear
+    'androidx.wear.compose:compose-material-core': {},
+    'androidx.wear.compose:compose-foundation': {},
+    'androidx.wear.compose:compose-material': {},
+    'androidx.wear.compose:compose-navigation': {},
+
     # AndroidX for Multidex
     'androidx.multidex:multidex': {},
     'androidx.multidex:multidex-instrumentation': {},
@@ -269,7 +276,7 @@ maven_to_make = {
         'name': 'androidx-constraintlayout_constraintlayout-solver'
     },
     'androidx.constraintlayout:constraintlayout-core': {},
-    'androidx.constraintlayout:constraintlayout-compose': {},
+    'androidx.constraintlayout:constraintlayout-compose-android': {},
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': {},
     'androidx.arch.core:core-runtime': {},
@@ -340,6 +347,7 @@ deps_rewrite = {
     'runner': 'androidx.test.runner',
     'androidx.test:core': 'androidx.test.core',
     'com.squareup:javapoet': 'javapoet',
+    'com.squareup.okio:okio-jvm': 'okio-lib',
     'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
     'sqlite-jdbc': 'xerial-sqlite-jdbc',
     'com.intellij:annotations': 'jetbrains-annotations',
@@ -351,9 +359,11 @@ deps_rewrite = {
     'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-rx2': 'kotlinx_coroutines_rx2',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
     'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
     'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
+    'androidx.datastore:datastore-core-jvm': 'androidx.datastore_datastore-core',
 }
 
 # List of artifacts that will be updated from GMaven
