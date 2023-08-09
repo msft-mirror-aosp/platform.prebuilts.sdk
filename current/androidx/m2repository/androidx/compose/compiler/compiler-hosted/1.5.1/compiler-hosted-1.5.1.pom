@@ -8,10 +8,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>androidx.compose.compiler</groupId>
   <artifactId>compiler-hosted</artifactId>
-  <version>1.4.1-dev-k1.8.10-c312d77f4cb</version>
-  <name>AndroidX Compose Hosted Compiler Plugin</name>
+  <version>1.5.1</version>
+  <name>Compose Hosted Compiler Plugin</name>
   <description>Contains the Kotlin compiler plugin for Compose used in Android Studio and IDEA</description>
-  <url>https://developer.android.com/jetpack/androidx/releases/compose-compiler#1.4.1-dev-k1.8.10-c312d77f4cb</url>
+  <url>https://developer.android.com/jetpack/androidx/releases/compose-compiler#1.5.1</url>
   <inceptionYear>2019</inceptionYear>
   <licenses>
     <license>
@@ -29,4 +29,18 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.compose.compiler</groupId>
+        <artifactId>compiler</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+      <dependency>
+        <groupId>androidx.compose.compiler</groupId>
+        <artifactId>compiler-daemon</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>
