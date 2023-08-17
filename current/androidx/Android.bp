@@ -624,7 +624,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-common-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-alpha16/benchmark-common-1.2.0-alpha16.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-common/1.2.0-beta03/benchmark-common-1.2.0-beta03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -666,7 +666,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-alpha16/benchmark-junit4-1.2.0-alpha16.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-junit4/1.2.0-beta03/benchmark-junit4-1.2.0-beta03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -708,7 +708,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-junit4-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-alpha16/benchmark-macro-junit4-1.2.0-alpha16.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro-junit4/1.2.0-beta03/benchmark-macro-junit4-1.2.0-beta03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -752,7 +752,7 @@ android_library {
 
 android_library_import {
     name: "androidx.benchmark_benchmark-macro-nodeps",
-    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-alpha16/benchmark-macro-1.2.0-alpha16.aar"],
+    aars: ["m2repository/androidx/benchmark/benchmark-macro/1.2.0-beta03/benchmark-macro-1.2.0-beta03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -762,6 +762,7 @@ android_library_import {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.test.core",
+        "androidx.tracing_tracing-perfetto-handshake",
         "wire-runtime",
         "junit",
         "kotlin-stdlib",
@@ -770,6 +771,8 @@ android_library_import {
         "androidx.profileinstaller_profileinstaller",
         "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
+        "androidx.tracing_tracing-perfetto",
+        "androidx.tracing_tracing-perfetto-binary",
     ],
 }
 
@@ -786,6 +789,7 @@ android_library {
         "androidx.benchmark_benchmark-macro-nodeps",
         "androidx.annotation_annotation",
         "androidx.test.core",
+        "androidx.tracing_tracing-perfetto-handshake",
         "wire-runtime",
         "junit",
         "kotlin-stdlib",
@@ -794,6 +798,8 @@ android_library {
         "androidx.profileinstaller_profileinstaller",
         "androidx.test.uiautomator_uiautomator",
         "androidx.tracing_tracing-ktx",
+        "androidx.tracing_tracing-perfetto",
+        "androidx.tracing_tracing-perfetto-binary",
     ],
     java_version: "1.7",
 }
