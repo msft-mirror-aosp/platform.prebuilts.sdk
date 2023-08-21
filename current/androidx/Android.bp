@@ -173,36 +173,8 @@ android_library {
 }
 
 java_import {
-    name: "androidx.annotation_annotation-jvm-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation-jvm/1.7.0-alpha03/annotation-jvm-1.7.0-alpha03.jar"],
-    sdk_version: "31",
-    host_supported: true,
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.annotation_annotation-jvm",
-    sdk_version: "31",
-    host_supported: true,
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-    static_libs: [
-        "androidx.annotation_annotation-jvm-nodeps",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-
-java_import {
     name: "androidx.annotation_annotation-nodeps",
-    jars: ["m2repository/androidx/annotation/annotation/1.7.0-alpha03/annotation-1.7.0-alpha03.jar"],
+    jars: ["m2repository/androidx/annotation/annotation-jvm/1.7.0-alpha03/annotation-jvm-1.7.0-alpha03.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -224,7 +196,6 @@ java_library_static {
     static_libs: [
         "androidx.annotation_annotation-nodeps",
         "kotlin-stdlib",
-        "androidx.annotation_annotation-jvm",
     ],
     java_version: "1.7",
 }
@@ -1296,7 +1267,7 @@ android_library {
 }
 
 java_import {
-    name: "androidx.collection_collection-jvm-nodeps",
+    name: "androidx.collection_collection-nodeps",
     jars: ["m2repository/androidx/collection/collection-jvm/1.3.0-alpha03/collection-jvm-1.3.0-alpha03.jar"],
     sdk_version: "31",
     apex_available: [
@@ -1307,7 +1278,7 @@ java_import {
 }
 
 java_library_static {
-    name: "androidx.collection_collection-jvm",
+    name: "androidx.collection_collection",
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1315,7 +1286,7 @@ java_library_static {
     ],
     min_sdk_version: "24",
     static_libs: [
-        "androidx.collection_collection-jvm-nodeps",
+        "androidx.collection_collection-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
@@ -1343,34 +1314,7 @@ java_library_static {
     min_sdk_version: "24",
     static_libs: [
         "androidx.collection_collection-ktx-nodeps",
-        "androidx.collection_collection-jvm",
-    ],
-    java_version: "1.7",
-}
-
-java_import {
-    name: "androidx.collection_collection-nodeps",
-    jars: ["m2repository/androidx/collection/collection/1.3.0-alpha03/collection-1.3.0-alpha03.jar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.collection_collection",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-    static_libs: [
-        "androidx.collection_collection-nodeps",
-        "kotlin-stdlib",
-        "androidx.collection_collection-jvm",
+        "androidx.collection_collection",
     ],
     java_version: "1.7",
 }
@@ -3388,7 +3332,7 @@ android_library {
 
 android_library_import {
     name: "androidx.emoji2_emoji2-views-helper-nodeps",
-    aars: ["m2repository/androidx/emoji2/emoji2-views-helper/1.4.0-beta05/emoji2-views-helper-1.4.0-beta05.aar"],
+    aars: ["m2repository/androidx/emoji2/emoji2-views-helper/1.5.0-alpha01/emoji2-views-helper-1.5.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -3422,7 +3366,7 @@ android_library {
 
 android_library_import {
     name: "androidx.emoji2_emoji2-nodeps",
-    aars: ["m2repository/androidx/emoji2/emoji2/1.4.0-beta05/emoji2-1.4.0-beta05.aar"],
+    aars: ["m2repository/androidx/emoji2/emoji2/1.5.0-alpha01/emoji2-1.5.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
