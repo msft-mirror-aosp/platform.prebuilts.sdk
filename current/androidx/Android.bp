@@ -1320,50 +1320,8 @@ java_library_static {
 }
 
 android_library_import {
-    name: "androidx.compose.animation_animation-core-nodeps",
-    aars: ["m2repository/androidx/compose/animation/animation-core/1.4.0-beta01/animation-core-1.4.0-beta01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.animation_animation-core",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.animation_animation-core/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.animation_animation-core-nodeps",
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.compose.animation_animation-nodeps",
-    aars: ["m2repository/androidx/compose/animation/animation/1.4.0-beta01/animation-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/animation/animation-android/1.6.0-alpha02/animation-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1405,6 +1363,96 @@ android_library {
     java_version: "1.7",
 }
 
+android_library_import {
+    name: "androidx.compose.animation_animation-core-nodeps",
+    aars: ["m2repository/androidx/compose/animation/animation-core-android/1.6.0-alpha02/animation-core-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.animation_animation-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.animation_animation-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.animation_animation-core-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.compose.animation_animation-graphics-nodeps",
+    aars: ["m2repository/androidx/compose/animation/animation-graphics-android/1.6.0-alpha02/animation-graphics-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.animation_animation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-geometry",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.animation_animation-graphics",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.animation_animation-graphics/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.animation_animation-graphics-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.animation_animation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-geometry",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
 java_import_host {
     name: "androidx.compose.compiler_compiler-hosted-nodeps",
     jars: ["m2repository/androidx/compose/compiler/compiler-hosted/1.5.1/compiler-hosted-1.5.1.jar"],
@@ -1420,52 +1468,8 @@ java_library_host {
 }
 
 android_library_import {
-    name: "androidx.compose.foundation_foundation-layout-nodeps",
-    aars: ["m2repository/androidx/compose/foundation/foundation-layout/1.4.0-beta01/foundation-layout-1.4.0-beta01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-        "androidx.compose.animation_animation-core",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.foundation_foundation-layout",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.foundation_foundation-layout/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.foundation_foundation-layout-nodeps",
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-        "androidx.compose.animation_animation-core",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.compose.foundation_foundation-nodeps",
-    aars: ["m2repository/androidx/compose/foundation/foundation/1.4.0-beta01/foundation-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/foundation/foundation-android/1.6.0-alpha02/foundation-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1479,9 +1483,9 @@ android_library_import {
         "androidx.compose.foundation_foundation-layout",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-graphics",
         "androidx.compose.ui_ui-text",
         "androidx.compose.ui_ui-util",
+        "androidx.core_core",
         "androidx.emoji2_emoji2",
     ],
 }
@@ -1503,17 +1507,117 @@ android_library {
         "androidx.compose.foundation_foundation-layout",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-graphics",
         "androidx.compose.ui_ui-text",
         "androidx.compose.ui_ui-util",
+        "androidx.core_core",
         "androidx.emoji2_emoji2",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
+    name: "androidx.compose.foundation_foundation-layout-nodeps",
+    aars: ["m2repository/androidx/compose/foundation/foundation-layout-android/1.6.0-alpha02/foundation-layout-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.foundation_foundation-layout",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.foundation_foundation-layout/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.foundation_foundation-layout-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.compose.material_material-nodeps",
+    aars: ["m2repository/androidx/compose/material/material-android/1.6.0-alpha02/material-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.animation_animation",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.material_material-icons-core",
+        "androidx.compose.material_material-ripple",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-text",
+        "androidx.compose.ui_ui-util",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.material_material",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.material_material/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.material_material-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "androidx.compose.animation_animation",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.material_material-icons-core",
+        "androidx.compose.material_material-ripple",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-text",
+        "androidx.compose.ui_ui-util",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.compose.material_material-icons-core-nodeps",
-    aars: ["m2repository/androidx/compose/material/material-icons-core/1.4.0-beta01/material-icons-core-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/material/material-icons-core-android/1.6.0-alpha02/material-icons-core-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1522,7 +1626,7 @@ android_library_import {
     min_sdk_version: "21",
     static_libs: [
         "kotlin-stdlib",
-        "androidx.compose.runtime_runtime",
+        "kotlin-stdlib",
         "androidx.compose.ui_ui",
     ],
 }
@@ -1539,7 +1643,7 @@ android_library {
     static_libs: [
         "androidx.compose.material_material-icons-core-nodeps",
         "kotlin-stdlib",
-        "androidx.compose.runtime_runtime",
+        "kotlin-stdlib",
         "androidx.compose.ui_ui",
     ],
     java_version: "1.7",
@@ -1547,7 +1651,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.material_material-icons-extended-nodeps",
-    aars: ["m2repository/androidx/compose/material/material-icons-extended/1.4.0-beta01/material-icons-extended-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/material/material-icons-extended-android/1.6.0-alpha02/material-icons-extended-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1581,7 +1685,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.material_material-ripple-nodeps",
-    aars: ["m2repository/androidx/compose/material/material-ripple/1.4.0-beta01/material-ripple-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/material/material-ripple-android/1.6.0-alpha02/material-ripple-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1618,102 +1722,8 @@ android_library {
 }
 
 android_library_import {
-    name: "androidx.compose.material_material-nodeps",
-    aars: ["m2repository/androidx/compose/material/material/1.4.0-beta01/material-1.4.0-beta01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "kotlin-stdlib",
-        "androidx.compose.animation_animation",
-        "androidx.compose.animation_animation-core",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.foundation_foundation-layout",
-        "androidx.compose.material_material-icons-core",
-        "androidx.compose.material_material-ripple",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-util",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.savedstate_savedstate",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.material_material",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.material_material/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.material_material-nodeps",
-        "kotlin-stdlib",
-        "androidx.compose.animation_animation",
-        "androidx.compose.animation_animation-core",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.foundation_foundation-layout",
-        "androidx.compose.material_material-icons-core",
-        "androidx.compose.material_material-ripple",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-util",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.savedstate_savedstate",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.compose.material3_material3-window-size-class-nodeps",
-    aars: ["m2repository/androidx/compose/material3/material3-window-size-class/1.1.0-alpha06/material3-window-size-class-1.1.0-alpha06.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "kotlin-stdlib",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.window_window",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.material3_material3-window-size-class",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.material3_material3-window-size-class/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.material3_material3-window-size-class-nodeps",
-        "kotlin-stdlib",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.window_window",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.compose.material3_material3-nodeps",
-    aars: ["m2repository/androidx/compose/material3/material3/1.1.0-alpha06/material3-1.1.0-alpha06.aar"],
+    aars: ["m2repository/androidx/compose/material3/material3-android/1.2.0-alpha04/material3-android-1.2.0-alpha04.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1721,6 +1731,8 @@ android_library_import {
     ],
     min_sdk_version: "21",
     static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
         "androidx.activity_activity-compose",
         "androidx.compose.animation_animation-core",
@@ -1729,7 +1741,6 @@ android_library_import {
         "androidx.compose.material_material-icons-core",
         "androidx.compose.material_material-ripple",
         "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
         "androidx.compose.ui_ui-graphics",
         "androidx.compose.ui_ui-text",
         "androidx.compose.ui_ui-util",
@@ -1750,6 +1761,8 @@ android_library {
     manifest: "manifests/androidx.compose.material3_material3/AndroidManifest.xml",
     static_libs: [
         "androidx.compose.material3_material3-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
         "androidx.activity_activity-compose",
         "androidx.compose.animation_animation-core",
@@ -1758,13 +1771,90 @@ android_library {
         "androidx.compose.material_material-icons-core",
         "androidx.compose.material_material-ripple",
         "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
         "androidx.compose.ui_ui-graphics",
         "androidx.compose.ui_ui-text",
         "androidx.compose.ui_ui-util",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.savedstate_savedstate-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.compose.material3_material3-window-size-class-nodeps",
+    aars: ["m2repository/androidx/compose/material3/material3-window-size-class-android/1.2.0-alpha04/material3-window-size-class-android-1.2.0-alpha04.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-unit",
+        "androidx.window_window",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.material3_material3-window-size-class",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.material3_material3-window-size-class/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.material3_material3-window-size-class-nodeps",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-unit",
+        "androidx.window_window",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.compose.runtime_runtime-nodeps",
+    aars: ["m2repository/androidx/compose/runtime/runtime-android/1.6.0-alpha02/runtime-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "kotlinx-coroutines-core-jvm",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.runtime_runtime",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.runtime_runtime/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.runtime_runtime-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "kotlinx-coroutines-core-jvm",
     ],
     java_version: "1.7",
 }
@@ -1809,7 +1899,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.runtime_runtime-saveable-nodeps",
-    aars: ["m2repository/androidx/compose/runtime/runtime-saveable/1.4.0-beta01/runtime-saveable-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/runtime/runtime-saveable-android/1.6.0-alpha02/runtime-saveable-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1818,6 +1908,7 @@ android_library_import {
     min_sdk_version: "21",
     static_libs: [
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
         "kotlin-stdlib",
         "androidx.compose.runtime_runtime",
     ],
@@ -1836,6 +1927,7 @@ android_library {
         "androidx.compose.runtime_runtime-saveable-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "kotlin-stdlib",
         "androidx.compose.runtime_runtime",
     ],
     java_version: "1.7",
@@ -1843,7 +1935,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.runtime_runtime-tracing-nodeps",
-    aars: ["m2repository/androidx/compose/runtime/runtime-tracing/1.0.0-alpha02/runtime-tracing-1.0.0-alpha02.aar"],
+    aars: ["m2repository/androidx/compose/runtime/runtime-tracing/1.0.0-alpha03/runtime-tracing-1.0.0-alpha03.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1880,8 +1972,8 @@ android_library {
 }
 
 android_library_import {
-    name: "androidx.compose.runtime_runtime-nodeps",
-    aars: ["m2repository/androidx/compose/runtime/runtime/1.4.0-beta01/runtime-1.4.0-beta01.aar"],
+    name: "androidx.compose.ui_ui-nodeps",
+    aars: ["m2repository/androidx/compose/ui/ui-android/1.6.0-alpha02/ui-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1890,32 +1982,70 @@ android_library_import {
     min_sdk_version: "21",
     static_libs: [
         "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "kotlin-stdlib",
         "kotlin-stdlib",
         "kotlinx_coroutines_android",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.activity_activity-ktx",
+        "androidx.autofill_autofill",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.runtime_runtime-saveable",
+        "androidx.compose.ui_ui-geometry",
+        "androidx.compose.ui_ui-graphics",
+        "androidx.compose.ui_ui-text",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core",
+        "androidx.customview_customview-poolingcontainer",
+        "androidx.emoji2_emoji2",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.profileinstaller_profileinstaller",
+        "androidx.savedstate_savedstate-ktx",
     ],
 }
 
 android_library {
-    name: "androidx.compose.runtime_runtime",
+    name: "androidx.compose.ui_ui",
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
     min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.runtime_runtime/AndroidManifest.xml",
+    manifest: "manifests/androidx.compose.ui_ui/AndroidManifest.xml",
     static_libs: [
-        "androidx.compose.runtime_runtime-nodeps",
+        "androidx.compose.ui_ui-nodeps",
         "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "kotlin-stdlib",
         "kotlin-stdlib",
         "kotlinx_coroutines_android",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.activity_activity-ktx",
+        "androidx.autofill_autofill",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.runtime_runtime-saveable",
+        "androidx.compose.ui_ui-geometry",
+        "androidx.compose.ui_ui-graphics",
+        "androidx.compose.ui_ui-text",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core",
+        "androidx.customview_customview-poolingcontainer",
+        "androidx.emoji2_emoji2",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.profileinstaller_profileinstaller",
+        "androidx.savedstate_savedstate-ktx",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.compose.ui_ui-geometry-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-geometry/1.4.0-beta01/ui-geometry-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-geometry-android/1.6.0-alpha02/ui-geometry-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1924,6 +2054,7 @@ android_library_import {
     min_sdk_version: "21",
     static_libs: [
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
         "kotlin-stdlib",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui-util",
@@ -1943,6 +2074,7 @@ android_library {
         "androidx.compose.ui_ui-geometry-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "kotlin-stdlib",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui-util",
     ],
@@ -1951,7 +2083,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.ui_ui-graphics-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-graphics/1.4.0-beta01/ui-graphics-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-graphics-android/1.6.0-alpha02/ui-graphics-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1988,8 +2120,64 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.compose.ui_ui-test-nodeps",
+    aars: ["m2repository/androidx/compose/ui/ui-test-android/1.6.0-alpha02/ui-test-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.test.monitor",
+        "androidx.test.espresso.core",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "kotlinx_coroutines_test",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-graphics",
+        "androidx.compose.ui_ui-text",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.ui_ui-test",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.ui_ui-test/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.ui_ui-test-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.test.monitor",
+        "androidx.test.espresso.core",
+        "kotlin-stdlib",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "kotlinx_coroutines_test",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-graphics",
+        "androidx.compose.ui_ui-text",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.compose.ui_ui-test-junit4-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-test-junit4/1.4.0-beta01/ui-test-junit4-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-test-junit4-android/1.6.0-alpha02/ui-test-junit4-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2007,7 +2195,7 @@ android_library_import {
         "junit",
         "kotlin-stdlib",
         "kotlin-stdlib",
-        "kotlinx_coroutines",
+        "kotlinx-coroutines-core-jvm",
         "kotlinx_coroutines_test",
         "androidx.activity_activity",
         "androidx.activity_activity-compose",
@@ -2038,7 +2226,7 @@ android_library {
         "junit",
         "kotlin-stdlib",
         "kotlin-stdlib",
-        "kotlinx_coroutines",
+        "kotlinx-coroutines-core-jvm",
         "kotlinx_coroutines_test",
         "androidx.activity_activity",
         "androidx.activity_activity-compose",
@@ -2051,7 +2239,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.ui_ui-test-manifest-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-test-manifest/1.4.0-beta01/ui-test-manifest-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-test-manifest/1.6.0-alpha02/ui-test-manifest-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2080,64 +2268,8 @@ android_library {
 }
 
 android_library_import {
-    name: "androidx.compose.ui_ui-test-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-test/1.4.0-beta01/ui-test-1.4.0-beta01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.test.monitor",
-        "androidx.test.espresso.core",
-        "kotlin-stdlib",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "kotlinx_coroutines_test",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-graphics",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core-ktx",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.ui_ui-test",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.ui_ui-test/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.ui_ui-test-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.test.monitor",
-        "androidx.test.espresso.core",
-        "kotlin-stdlib",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "kotlinx_coroutines_test",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-graphics",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core-ktx",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.compose.ui_ui-text-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-text/1.4.0-beta01/ui-text-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-text-android/1.6.0-alpha02/ui-text-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2149,7 +2281,7 @@ android_library_import {
         "androidx.collection_collection",
         "kotlin-stdlib",
         "kotlin-stdlib",
-        "kotlinx_coroutines",
+        "kotlinx-coroutines-core-jvm",
         "androidx.compose.runtime_runtime",
         "androidx.compose.runtime_runtime-saveable",
         "androidx.compose.ui_ui-graphics",
@@ -2175,7 +2307,7 @@ android_library {
         "androidx.collection_collection",
         "kotlin-stdlib",
         "kotlin-stdlib",
-        "kotlinx_coroutines",
+        "kotlinx-coroutines-core-jvm",
         "androidx.compose.runtime_runtime",
         "androidx.compose.runtime_runtime-saveable",
         "androidx.compose.ui_ui-graphics",
@@ -2188,8 +2320,58 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.compose.ui_ui-tooling-nodeps",
+    aars: ["m2repository/androidx/compose/ui/ui-tooling-android/1.6.0-alpha02/ui-tooling-android-1.6.0-alpha02.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.lifecycle_lifecycle-common",
+        "kotlin-stdlib",
+        "androidx.activity_activity-compose",
+        "androidx.compose.animation_animation",
+        "androidx.compose.material_material",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-tooling-data",
+        "androidx.compose.ui_ui-tooling-preview",
+        "androidx.savedstate_savedstate-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.compose.ui_ui-tooling",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.compose.ui_ui-tooling/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.ui_ui-tooling-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.lifecycle_lifecycle-common",
+        "kotlin-stdlib",
+        "androidx.activity_activity-compose",
+        "androidx.compose.animation_animation",
+        "androidx.compose.material_material",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-tooling-data",
+        "androidx.compose.ui_ui-tooling-preview",
+        "androidx.savedstate_savedstate-ktx",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.compose.ui_ui-tooling-data-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-tooling-data/1.4.0-beta01/ui-tooling-data-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-tooling-data-android/1.6.0-alpha02/ui-tooling-data-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2225,7 +2407,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.ui_ui-tooling-preview-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-tooling-preview/1.4.0-beta01/ui-tooling-preview-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-tooling-preview-android/1.6.0-alpha02/ui-tooling-preview-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2258,60 +2440,8 @@ android_library {
 }
 
 android_library_import {
-    name: "androidx.compose.ui_ui-tooling-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-tooling/1.4.0-beta01/ui-tooling-1.4.0-beta01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.lifecycle_lifecycle-common",
-        "kotlin-stdlib",
-        "androidx.activity_activity-compose",
-        "androidx.compose.animation_animation",
-        "androidx.compose.material_material",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-tooling-data",
-        "androidx.compose.ui_ui-tooling-preview",
-        "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.savedstate_savedstate-ktx",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.ui_ui-tooling",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.ui_ui-tooling/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.ui_ui-tooling-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.lifecycle_lifecycle-common",
-        "kotlin-stdlib",
-        "androidx.activity_activity-compose",
-        "androidx.compose.animation_animation",
-        "androidx.compose.material_material",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-tooling-data",
-        "androidx.compose.ui_ui-tooling-preview",
-        "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.savedstate_savedstate-ktx",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
     name: "androidx.compose.ui_ui-unit-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-unit/1.4.0-beta01/ui-unit-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-unit-android/1.6.0-alpha02/ui-unit-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2320,6 +2450,7 @@ android_library_import {
     min_sdk_version: "21",
     static_libs: [
         "androidx.annotation_annotation",
+        "kotlin-stdlib",
         "kotlin-stdlib",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui-geometry",
@@ -2340,6 +2471,7 @@ android_library {
         "androidx.compose.ui_ui-unit-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
+        "kotlin-stdlib",
         "androidx.compose.runtime_runtime",
         "androidx.compose.ui_ui-geometry",
         "androidx.compose.ui_ui-util",
@@ -2349,7 +2481,7 @@ android_library {
 
 android_library_import {
     name: "androidx.compose.ui_ui-util-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui-util/1.4.0-beta01/ui-util-1.4.0-beta01.aar"],
+    aars: ["m2repository/androidx/compose/ui/ui-util-android/1.6.0-alpha02/ui-util-android-1.6.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2357,6 +2489,7 @@ android_library_import {
     ],
     min_sdk_version: "21",
     static_libs: [
+        "kotlin-stdlib",
         "kotlin-stdlib",
     ],
 }
@@ -2373,82 +2506,7 @@ android_library {
     static_libs: [
         "androidx.compose.ui_ui-util-nodeps",
         "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-
-android_library_import {
-    name: "androidx.compose.ui_ui-nodeps",
-    aars: ["m2repository/androidx/compose/ui/ui/1.4.0-beta01/ui-1.4.0-beta01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.lifecycle_lifecycle-common-java8",
         "kotlin-stdlib",
-        "kotlin-stdlib",
-        "kotlinx_coroutines_android",
-        "kotlinx_coroutines",
-        "androidx.activity_activity",
-        "androidx.activity_activity-ktx",
-        "androidx.autofill_autofill",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.runtime_runtime-saveable",
-        "androidx.compose.ui_ui-geometry",
-        "androidx.compose.ui_ui-graphics",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core",
-        "androidx.customview_customview-poolingcontainer",
-        "androidx.emoji2_emoji2",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.profileinstaller_profileinstaller",
-        "androidx.savedstate_savedstate-ktx",
-    ],
-}
-
-android_library {
-    name: "androidx.compose.ui_ui",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifests/androidx.compose.ui_ui/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.ui_ui-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.lifecycle_lifecycle-common-java8",
-        "kotlin-stdlib",
-        "kotlin-stdlib",
-        "kotlinx_coroutines_android",
-        "kotlinx_coroutines",
-        "androidx.activity_activity",
-        "androidx.activity_activity-ktx",
-        "androidx.autofill_autofill",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.runtime_runtime-saveable",
-        "androidx.compose.ui_ui-geometry",
-        "androidx.compose.ui_ui-graphics",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core",
-        "androidx.customview_customview-poolingcontainer",
-        "androidx.emoji2_emoji2",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.lifecycle_lifecycle-viewmodel",
-        "androidx.profileinstaller_profileinstaller",
-        "androidx.savedstate_savedstate-ktx",
     ],
     java_version: "1.7",
 }
@@ -2608,7 +2666,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-animation-testing-nodeps",
-    aars: ["m2repository/androidx/core/core-animation-testing/1.0.0-beta01/core-animation-testing-1.0.0-beta01.aar"],
+    aars: ["m2repository/androidx/core/core-animation-testing/1.0.0-rc01/core-animation-testing-1.0.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2644,7 +2702,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-animation-nodeps",
-    aars: ["m2repository/androidx/core/core-animation/1.0.0-beta02/core-animation-1.0.0-beta02.aar"],
+    aars: ["m2repository/androidx/core/core-animation/1.0.0-rc01/core-animation-1.0.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2680,7 +2738,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-ktx-nodeps",
-    aars: ["m2repository/androidx/core/core-ktx/1.11.0-alpha02/core-ktx-1.11.0-alpha02.aar"],
+    aars: ["m2repository/androidx/core/core-ktx/1.13.0-alpha01/core-ktx-1.13.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2714,7 +2772,7 @@ android_library {
 
 android_library_import {
     name: "androidx.core_core-nodeps",
-    aars: ["m2repository/androidx/core/core/1.11.0-alpha02/core-1.11.0-alpha02.aar"],
+    aars: ["m2repository/androidx/core/core/1.13.0-alpha01/core-1.13.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2725,6 +2783,7 @@ android_library_import {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
+        "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
         "androidx.interpolator_interpolator",
         "androidx.lifecycle_lifecycle-runtime",
@@ -2746,6 +2805,7 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
+        "kotlin-stdlib",
         "androidx.annotation_annotation-experimental",
         "androidx.interpolator_interpolator",
         "androidx.lifecycle_lifecycle-runtime",
