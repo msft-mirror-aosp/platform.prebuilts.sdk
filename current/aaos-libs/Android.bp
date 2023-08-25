@@ -330,3 +330,49 @@ android_library_import {
         "car-ui-lib-source",
     ]
 }
+
+android_library_import {
+    name: "token-sharedlibrary-base",
+    aars: ["token-sharedlibrary.aar"],
+    min_sdk_version: "28",
+    sdk_version: "31",
+}
+
+android_app {
+    name: "token-shared-lib-prebuilt",
+    manifest: "AndroidManifest-tokenlib.xml",
+    aaptflags: ["--shared-lib"],
+    sdk_version: "current",
+    optimize: {
+        enabled: false,
+    },
+    resource_zips: [
+        "token-sharedlibrary-res.zip"
+    ],
+    static_libs:[
+        "token-sharedlibrary-base",
+    ]
+}
+
+android_library {
+    name: "oem-token-lib",
+    min_sdk_version: "28",
+    sdk_version: "31",
+    libs: ["token-shared-lib-prebuilt"],
+    static_libs:[
+        "oem-token-lib-source",
+    ],
+}
+
+android_library_import {
+    name: "oem-token-lib-source",
+    aars: ["oem-token-lib.aar"],
+    min_sdk_version: "28",
+    sdk_version: "31",
+    libs: ["token-shared-lib-prebuilt"],
+    static_libs:[
+        "androidx.annotation_annotation",
+        "androidx.appcompat_appcompat",
+    ],
+}
+
