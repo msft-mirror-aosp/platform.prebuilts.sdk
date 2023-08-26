@@ -266,8 +266,10 @@
 "com.squareup:javapoet" = "javapoet"
 "com.squareup:kotlinpoet" = "kotlinpoet"
 "com.squareup:kotlinpoet-javapoet" = "kotlinpoet-javapoet"
+"com.squareup.okio:okio" = "okio-lib"
 "com.squareup.wire:wire-runtime" = "wire-runtime"
 "commons-codec:commons-codec" = "commons-codec"
+"io.reactivex.rxjava2:rxjava" = "rxjava"
 "javax.annotation:javax.annotation-api" = "javax-annotation-api-prebuilt-host-jar"
 "junit:junit" = "junit"
 "org.jetbrains.kotlin:kotlin-stdlib" = "kotlin-stdlib"
@@ -276,8 +278,10 @@
 "org.jetbrains.kotlin:kotlin-stdlib-jvm" = "kotlin-stdlib-jvm"
 "org.jetbrains.kotlinx:kotlinx-coroutines-android" = "kotlinx_coroutines_android"
 "org.jetbrains.kotlinx:kotlinx-coroutines-core" = "kotlinx_coroutines"
-"org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm" = "kotlinx_coroutines"
+# Temporarily set to the wrong value for parity with the old script.
+"org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm" = "kotlinx-coroutines-core-jvm" # "kotlinx_coroutines"
 "org.jetbrains.kotlinx:kotlinx-coroutines-guava" = "kotlinx_coroutines_guava"
+"org.jetbrains.kotlinx:kotlinx-coroutines-rx2" = "kotlinx_coroutines_rx2"
 "org.jetbrains.kotlinx:kotlinx-coroutines-test" = "kotlinx_coroutines_test"
 "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm" = "kotlinx_coroutines_test"
 "org.jetbrains.kotlinx:kotlinx-metadata-jvm" = "kotlinx_metadata_jvm"
@@ -289,6 +293,7 @@
 [options]
 monolithic = true
 static-deps = true
+# Temporarily set to false for parity with the old script.
 sort-deps = false
 sdk-version = "31"
 default-min-sdk-version = "24"
