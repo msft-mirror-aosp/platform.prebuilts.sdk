@@ -5197,34 +5197,8 @@ android_library {
 }
 
 java_import {
-    name: "androidx.paging_paging-common-ktx-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common-ktx/3.2.0-alpha05/paging-common-ktx-3.2.0-alpha05.jar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.paging_paging-common-ktx",
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-    static_libs: [
-        "androidx.paging_paging-common-ktx-nodeps",
-        "androidx.paging_paging-common",
-    ],
-    java_version: "1.7",
-}
-
-java_import {
     name: "androidx.paging_paging-common-nodeps",
-    jars: ["m2repository/androidx/paging/paging-common/3.2.0-alpha05/paging-common-3.2.0-alpha05.jar"],
+    jars: ["m2repository/androidx/paging/paging-common-jvm/3.3.0-alpha01/paging-common-jvm-3.3.0-alpha01.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5251,9 +5225,35 @@ java_library_static {
     java_version: "1.7",
 }
 
+java_import {
+    name: "androidx.paging_paging-common-ktx-nodeps",
+    jars: ["m2repository/androidx/paging/paging-common-ktx/3.3.0-alpha01/paging-common-ktx-3.3.0-alpha01.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.paging_paging-common-ktx",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.paging_paging-common-ktx-nodeps",
+        "androidx.paging_paging-common",
+    ],
+    java_version: "1.7",
+}
+
 android_library_import {
     name: "androidx.paging_paging-guava-nodeps",
-    aars: ["m2repository/androidx/paging/paging-guava/3.2.0-alpha05/paging-guava-3.2.0-alpha05.aar"],
+    aars: ["m2repository/androidx/paging/paging-guava/3.3.0-alpha01/paging-guava-3.3.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5289,7 +5289,7 @@ android_library {
 
 android_library_import {
     name: "androidx.paging_paging-runtime-nodeps",
-    aars: ["m2repository/androidx/paging/paging-runtime/3.2.0-alpha05/paging-runtime-3.2.0-alpha05.aar"],
+    aars: ["m2repository/androidx/paging/paging-runtime/3.3.0-alpha01/paging-runtime-3.3.0-alpha01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -5955,7 +5955,7 @@ java_library_static {
 
 java_import {
     name: "androidx.room_room-common-nodeps",
-    jars: ["m2repository/androidx/room/room-common/2.6.0-alpha03/room-common-2.6.0-alpha03.jar"],
+    jars: ["m2repository/androidx/room/room-common/2.6.0-rc01/room-common-2.6.0-rc01.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -5984,7 +5984,7 @@ java_library_static {
 
 java_import_host {
     name: "androidx.room_room-compiler-processing-nodeps",
-    jars: ["m2repository/androidx/room/room-compiler-processing/2.6.0-alpha03/room-compiler-processing-2.6.0-alpha03.jar"],
+    jars: ["m2repository/androidx/room/room-compiler-processing/2.6.0-rc01/room-compiler-processing-2.6.0-rc01.jar"],
     sdk_version: "31",
 }
 
@@ -6008,7 +6008,7 @@ java_library_host {
 
 java_import_host {
     name: "androidx.room_room-compiler-nodeps",
-    jars: ["m2repository/androidx/room/room-compiler/2.6.0-alpha03/room-compiler-2.6.0-alpha03.jar"],
+    jars: ["m2repository/androidx/room/room-compiler/2.6.0-rc01/room-compiler-2.6.0-rc01.jar"],
     sdk_version: "31",
 }
 
@@ -6036,7 +6036,7 @@ java_library_host {
 
 android_library_import {
     name: "androidx.room_room-guava-nodeps",
-    aars: ["m2repository/androidx/room/room-guava/2.6.0-alpha03/room-guava-2.6.0-alpha03.aar"],
+    aars: ["m2repository/androidx/room/room-guava/2.6.0-rc01/room-guava-2.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6074,7 +6074,7 @@ android_library {
 
 android_library_import {
     name: "androidx.room_room-ktx-nodeps",
-    aars: ["m2repository/androidx/room/room-ktx/2.6.0-alpha03/room-ktx-2.6.0-alpha03.aar"],
+    aars: ["m2repository/androidx/room/room-ktx/2.6.0-rc01/room-ktx-2.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6110,7 +6110,7 @@ android_library {
 
 java_import {
     name: "androidx.room_room-migration-nodeps",
-    jars: ["m2repository/androidx/room/room-migration/2.6.0-alpha03/room-migration-2.6.0-alpha03.jar"],
+    jars: ["m2repository/androidx/room/room-migration/2.6.0-rc01/room-migration-2.6.0-rc01.jar"],
     sdk_version: "31",
     host_supported: true,
     apex_available: [
@@ -6140,7 +6140,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.room_room-paging-guava-nodeps",
-    aars: ["m2repository/androidx/room/room-paging-guava/2.6.0-alpha03/room-paging-guava-2.6.0-alpha03.aar"],
+    aars: ["m2repository/androidx/room/room-paging-guava/2.6.0-rc01/room-paging-guava-2.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6176,7 +6176,7 @@ android_library {
 
 android_library_import {
     name: "androidx.room_room-paging-nodeps",
-    aars: ["m2repository/androidx/room/room-paging/2.6.0-alpha03/room-paging-2.6.0-alpha03.aar"],
+    aars: ["m2repository/androidx/room/room-paging/2.6.0-rc01/room-paging-2.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6212,7 +6212,7 @@ android_library {
 
 android_library_import {
     name: "androidx.room_room-runtime-nodeps",
-    aars: ["m2repository/androidx/room/room-runtime/2.6.0-alpha03/room-runtime-2.6.0-alpha03.aar"],
+    aars: ["m2repository/androidx/room/room-runtime/2.6.0-rc01/room-runtime-2.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -6250,7 +6250,7 @@ android_library {
 
 android_library_import {
     name: "androidx.room_room-testing-nodeps",
-    aars: ["m2repository/androidx/room/room-testing/2.6.0-alpha03/room-testing-2.6.0-alpha03.aar"],
+    aars: ["m2repository/androidx/room/room-testing/2.6.0-rc01/room-testing-2.6.0-rc01.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
