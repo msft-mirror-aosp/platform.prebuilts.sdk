@@ -297,6 +297,7 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
     'androidx.paging:paging-common': {},
+    'androidx.paging:paging-common-jvm': {},
     'androidx.paging:paging-common-ktx': {},
     'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
