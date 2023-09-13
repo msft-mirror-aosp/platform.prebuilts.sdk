@@ -2541,9 +2541,55 @@ java_library_static {
     java_version: "1.7",
 }
 
+android_library_import {
+    name: "androidx.constraintlayout_constraintlayout-compose-nodeps",
+    aars: ["m2repository/androidx/constraintlayout/constraintlayout-compose-android/1.1.0-alpha13/constraintlayout-compose-android-1.1.0-alpha13.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.constraintlayout_constraintlayout-core",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core-ktx",
+    ],
+}
+
+android_library {
+    name: "androidx.constraintlayout_constraintlayout-compose",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifests/androidx.constraintlayout_constraintlayout-compose/AndroidManifest.xml",
+    static_libs: [
+        "androidx.constraintlayout_constraintlayout-compose-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.constraintlayout_constraintlayout-core",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-unit",
+        "androidx.compose.ui_ui-util",
+        "androidx.core_core-ktx",
+    ],
+    java_version: "1.7",
+}
+
 java_import {
     name: "androidx.constraintlayout_constraintlayout-core-nodeps",
-    jars: ["m2repository/androidx/constraintlayout/constraintlayout-core/1.1.0-alpha10/constraintlayout-core-1.1.0-alpha10.jar"],
+    jars: ["m2repository/androidx/constraintlayout/constraintlayout-core/1.1.0-alpha13/constraintlayout-core-1.1.0-alpha13.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -2569,7 +2615,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx-constraintlayout_constraintlayout-nodeps",
-    aars: ["m2repository/androidx/constraintlayout/constraintlayout/2.2.0-alpha10/constraintlayout-2.2.0-alpha10.aar"],
+    aars: ["m2repository/androidx/constraintlayout/constraintlayout/2.2.0-alpha13/constraintlayout-2.2.0-alpha13.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
