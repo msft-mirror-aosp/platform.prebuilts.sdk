@@ -1274,7 +1274,7 @@ android_library {
 
 java_import {
     name: "androidx.collection_collection-nodeps",
-    jars: ["m2repository/androidx/collection/collection-jvm/1.3.0-alpha05/collection-jvm-1.3.0-alpha05.jar"],
+    jars: ["m2repository/androidx/collection/collection-jvm/1.4.0-alpha01/collection-jvm-1.4.0-alpha01.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -1301,7 +1301,7 @@ java_library_static {
 
 java_import {
     name: "androidx.collection_collection-ktx-nodeps",
-    jars: ["m2repository/androidx/collection/collection-ktx/1.3.0-alpha05/collection-ktx-1.3.0-alpha05.jar"],
+    jars: ["m2repository/androidx/collection/collection-ktx/1.4.0-alpha01/collection-ktx-1.4.0-alpha01.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4012,7 +4012,7 @@ android_library {
 
 java_import {
     name: "androidx.lifecycle_lifecycle-common-java8-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.7.0-alpha01/lifecycle-common-java8-2.7.0-alpha01.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common-java8/2.7.0-alpha02/lifecycle-common-java8-2.7.0-alpha02.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4039,7 +4039,7 @@ java_library_static {
 
 java_import {
     name: "androidx.lifecycle_lifecycle-common-nodeps",
-    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.7.0-alpha01/lifecycle-common-2.7.0-alpha01.jar"],
+    jars: ["m2repository/androidx/lifecycle/lifecycle-common/2.7.0-alpha02/lifecycle-common-2.7.0-alpha02.jar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4068,7 +4068,7 @@ java_library_static {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-core-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core-ktx/2.7.0-alpha01/lifecycle-livedata-core-ktx-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core-ktx/2.7.0-alpha02/lifecycle-livedata-core-ktx-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4100,7 +4100,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-core-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core/2.7.0-alpha01/lifecycle-livedata-core-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-core/2.7.0-alpha02/lifecycle-livedata-core-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4136,7 +4136,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-ktx/2.7.0-alpha01/lifecycle-livedata-ktx-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata-ktx/2.7.0-alpha02/lifecycle-livedata-ktx-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4172,7 +4172,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-livedata-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata/2.7.0-alpha01/lifecycle-livedata-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-livedata/2.7.0-alpha02/lifecycle-livedata-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4182,8 +4182,10 @@ android_library_import {
     static_libs: [
         "androidx.arch.core_core-common",
         "kotlin-stdlib",
+        "kotlinx_coroutines",
         "androidx.arch.core_core-runtime",
         "androidx.lifecycle_lifecycle-livedata-core",
+        "androidx.lifecycle_lifecycle-livedata-core-ktx",
     ],
 }
 
@@ -4200,15 +4202,17 @@ android_library {
         "androidx.lifecycle_lifecycle-livedata-nodeps",
         "androidx.arch.core_core-common",
         "kotlin-stdlib",
+        "kotlinx_coroutines",
         "androidx.arch.core_core-runtime",
         "androidx.lifecycle_lifecycle-livedata-core",
+        "androidx.lifecycle_lifecycle-livedata-core-ktx",
     ],
     java_version: "1.7",
 }
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-process-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.7.0-alpha01/lifecycle-process-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-process/2.7.0-alpha02/lifecycle-process-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4244,7 +4248,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-compose-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-compose/2.7.0-alpha01/lifecycle-runtime-compose-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-compose/2.7.0-alpha02/lifecycle-runtime-compose-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4282,7 +4286,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-ktx/2.7.0-alpha01/lifecycle-runtime-ktx-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-ktx/2.7.0-alpha02/lifecycle-runtime-ktx-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4318,7 +4322,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-testing-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-testing/2.7.0-alpha01/lifecycle-runtime-testing-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime-testing/2.7.0-alpha02/lifecycle-runtime-testing-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4352,7 +4356,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-runtime-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.7.0-alpha01/lifecycle-runtime-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-runtime/2.7.0-alpha02/lifecycle-runtime-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4392,7 +4396,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-service-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.7.0-alpha01/lifecycle-service-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-service/2.7.0-alpha02/lifecycle-service-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4424,7 +4428,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-compose-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-compose/2.7.0-alpha01/lifecycle-viewmodel-compose-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-compose/2.7.0-alpha02/lifecycle-viewmodel-compose-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4466,7 +4470,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-ktx-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-ktx/2.7.0-alpha01/lifecycle-viewmodel-ktx-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-ktx/2.7.0-alpha02/lifecycle-viewmodel-ktx-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4500,7 +4504,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-savedstate-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.7.0-alpha01/lifecycle-viewmodel-savedstate-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.7.0-alpha02/lifecycle-viewmodel-savedstate-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -4542,7 +4546,7 @@ android_library {
 
 android_library_import {
     name: "androidx.lifecycle_lifecycle-viewmodel-nodeps",
-    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.7.0-alpha01/lifecycle-viewmodel-2.7.0-alpha01.aar"],
+    aars: ["m2repository/androidx/lifecycle/lifecycle-viewmodel/2.7.0-alpha02/lifecycle-viewmodel-2.7.0-alpha02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
