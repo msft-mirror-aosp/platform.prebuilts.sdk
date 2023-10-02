@@ -302,10 +302,9 @@ maven_to_make = {
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
-    'androidx.room:room-common': {
+    'androidx.room:room-common-jvm': {
         'host_and_device': True
     },
-    'androidx.room:room-common-jvm': {},
     'androidx.room:room-compiler': {
         'host': True,
         'extra-static-libs': {
