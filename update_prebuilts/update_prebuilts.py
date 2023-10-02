@@ -305,6 +305,7 @@ maven_to_make = {
     'androidx.room:room-common': {
         'host_and_device': True
     },
+    'androidx.room:room-common-jvm': {},
     'androidx.room:room-compiler': {
         'host': True,
         'extra-static-libs': {
