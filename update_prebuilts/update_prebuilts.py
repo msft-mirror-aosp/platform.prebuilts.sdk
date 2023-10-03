@@ -361,6 +361,8 @@ deps_rewrite = {
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
     'com.google.protobuf:protobuf-java': 'libprotobuf-java-full',
     'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
+    'org.ow2.asm:asm': 'ow2-asm',
+    'org.ow2.asm:asm-commons': 'ow2-asm-commons',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
