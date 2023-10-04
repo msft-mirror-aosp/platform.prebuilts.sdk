@@ -161,6 +161,21 @@ maven_to_make = {
     'androidx.privacysandbox.ui:ui-core': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.tools:tools': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apicompiler': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apigenerator': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apipackager': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-core': {
+        'host': True
+    },
     'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
@@ -304,7 +319,7 @@ maven_to_make = {
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
-    'androidx.room:room-common': {
+    'androidx.room:room-common-jvm': {
         'host_and_device': True
     },
     'androidx.room:room-compiler': {
@@ -344,7 +359,10 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-java': 'libprotobuf-java-full',
     'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
+    'org.ow2.asm:asm': 'ow2-asm',
+    'org.ow2.asm:asm-commons': 'ow2-asm-commons',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
