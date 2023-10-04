@@ -39,6 +39,7 @@ androidx_dir = os.path.join(current_path, 'androidx')
 androidx_owners = os.path.join(androidx_dir, 'OWNERS')
 java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
 test_mapping_file = os.path.join(androidx_dir, 'TEST_MAPPING')
+drop_config_toml = os.path.join(androidx_dir, 'drop_config.toml')
 compose_test_mapping_file = os.path.join(androidx_dir, 'm2repository/androidx/compose/TEST_MAPPING')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
@@ -106,11 +107,11 @@ maven_to_make = {
     'androidx.core.uwb:uwb-rxjava3': {},
     'androidx.contentpaging:contentpaging': {},
     'androidx.coordinatorlayout:coordinatorlayout': {},
-    'androidx.datastore:datastore': {},
-    'androidx.datastore:datastore-core': {},
-    'androidx.datastore:datastore-core-okio': {},
-    'androidx.datastore:datastore-preferences': {},
-    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-android': {},
+    'androidx.datastore:datastore-core-android': {},
+    'androidx.datastore:datastore-core-okio-jvm': {},
+    'androidx.datastore:datastore-preferences-android': {},
+    'androidx.datastore:datastore-preferences-core-jvm': {},
     'androidx.datastore:datastore-preferences-rxjava2': {},
     'androidx.datastore:datastore-rxjava2': {},
     'androidx.legacy:legacy-support-core-ui': {},
@@ -160,6 +161,11 @@ maven_to_make = {
     'androidx.privacysandbox.ui:ui-core': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.tools:tools': {},
+    'androidx.privacysandbox.tools:tools-apicompiler': {},
+    'androidx.privacysandbox.tools:tools-apigenerator': {},
+    'androidx.privacysandbox.tools:tools-apipackager': {},
+    'androidx.privacysandbox.tools:tools-core': {},
     'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
@@ -169,6 +175,7 @@ maven_to_make = {
     'androidx.swiperefreshlayout:swiperefreshlayout': {},
     'androidx.textclassifier:textclassifier': {},
     'androidx.transition:transition': {},
+    'androidx.transition:transition-ktx': {},
     'androidx.tvprovider:tvprovider': {},
     'androidx.legacy:legacy-support-v13': {},
     'androidx.legacy:legacy-preference-v14': {},
@@ -257,6 +264,12 @@ maven_to_make = {
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
 
+    # Compose for wear
+    'androidx.wear.compose:compose-material-core': {},
+    'androidx.wear.compose:compose-foundation': {},
+    'androidx.wear.compose:compose-material': {},
+    'androidx.wear.compose:compose-navigation': {},
+
     # AndroidX for Multidex
     'androidx.multidex:multidex': {},
     'androidx.multidex:multidex-instrumentation': {},
@@ -269,7 +282,7 @@ maven_to_make = {
         'name': 'androidx-constraintlayout_constraintlayout-solver'
     },
     'androidx.constraintlayout:constraintlayout-core': {},
-    'androidx.constraintlayout:constraintlayout-compose': {},
+    'androidx.constraintlayout:constraintlayout-compose-android': {},
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': {},
     'androidx.arch.core:core-runtime': {},
@@ -288,13 +301,13 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel': {},
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
-    'androidx.paging:paging-common': {},
+    'androidx.paging:paging-common-jvm': {},
     'androidx.paging:paging-common-ktx': {},
     'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
-    'androidx.room:room-common': {
+    'androidx.room:room-common-jvm': {
         'host_and_device': True
     },
     'androidx.room:room-compiler': {
@@ -340,6 +353,7 @@ deps_rewrite = {
     'runner': 'androidx.test.runner',
     'androidx.test:core': 'androidx.test.core',
     'com.squareup:javapoet': 'javapoet',
+    'com.squareup.okio:okio-jvm': 'okio-lib',
     'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
     'sqlite-jdbc': 'xerial-sqlite-jdbc',
     'com.intellij:annotations': 'jetbrains-annotations',
@@ -351,9 +365,11 @@ deps_rewrite = {
     'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-rx2': 'kotlinx_coroutines_rx2',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
     'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
     'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
+    'androidx.datastore:datastore-core-jvm': 'androidx.datastore_datastore-core',
 }
 
 # List of artifacts that will be updated from GMaven
@@ -894,7 +910,7 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
 
     # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
     files_to_restore = [androidx_owners, java_plugins_bp_path, test_mapping_file,
-                        compose_test_mapping_file]
+                        drop_config_toml, compose_test_mapping_file]
     for file_to_restore in files_to_restore:
         # Ignore any output or error - these files are not gauranteed to exist, but
         # if they do, we want to restore them.

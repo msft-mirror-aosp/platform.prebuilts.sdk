@@ -22,6 +22,7 @@ load("//build/bazel/rules/common:api.bzl", "api")
 load("//build/bazel/rules/common:sdk_version.bzl", "sdk_version")
 load("@soong_injection//java_toolchain:constants.bzl", "constants")
 load("//build/bazel/rules/java/sdk:config_setting_names.bzl", sdk_config_setting = "config_setting_names")
+load("//build/bazel/rules/java/errorprone:errorprone.bzl", "errorprone_global_flags")
 
 # //prebuilts/sdk/current is a package, but the numbered directories under //prebuilts/sdk/ are not.
 def _prebuilt_path_prefix(kind, api_level):
@@ -134,7 +135,7 @@ def prebuilts_toolchain(java_toolchain_name, android_sdk_toolchain_name):
         # TODO(b/218720643): Support switching between multiple JDKs.
         java_runtime = "//prebuilts/jdk/jdk17:jdk17_runtime",
         toolchain_definition = False,
-        misc = DEFAULT_JAVACOPTS + constants.CommonJdkFlags + select({
+        misc = errorprone_global_flags + DEFAULT_JAVACOPTS + constants.CommonJdkFlags + select({
             _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: ["--system=none"],
             "//conditions:default": [],
         }),
