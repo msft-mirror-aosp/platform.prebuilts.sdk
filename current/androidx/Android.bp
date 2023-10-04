@@ -5639,6 +5639,101 @@ android_library {
     java_version: "1.7",
 }
 
+java_import_host {
+    name: "androidx.privacysandbox.tools_tools-apicompiler-nodeps",
+    jars: ["m2repository/androidx/privacysandbox/tools/tools-apicompiler/1.0.0-alpha06/tools-apicompiler-1.0.0-alpha06.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools-apicompiler",
+    static_libs: [
+        "androidx.privacysandbox.tools_tools-apicompiler-nodeps",
+        "androidx.privacysandbox.tools_tools",
+        "androidx.privacysandbox.tools_tools-core",
+        "symbol-processing-api",
+        "kotlinpoet",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+java_import_host {
+    name: "androidx.privacysandbox.tools_tools-apigenerator-nodeps",
+    jars: ["m2repository/androidx/privacysandbox/tools/tools-apigenerator/1.0.0-alpha06/tools-apigenerator-1.0.0-alpha06.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools-apigenerator",
+    static_libs: [
+        "androidx.privacysandbox.tools_tools-apigenerator-nodeps",
+        "androidx.privacysandbox.tools_tools",
+        "androidx.privacysandbox.tools_tools-core",
+        "kotlinpoet",
+        "kotlin-stdlib",
+        "kotlinx_metadata_jvm",
+        "ow2-asm",
+        "ow2-asm-commons",
+    ],
+    java_version: "1.7",
+}
+
+java_import_host {
+    name: "androidx.privacysandbox.tools_tools-apipackager-nodeps",
+    jars: ["m2repository/androidx/privacysandbox/tools/tools-apipackager/1.0.0-alpha06/tools-apipackager-1.0.0-alpha06.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools-apipackager",
+    static_libs: [
+        "androidx.privacysandbox.tools_tools-apipackager-nodeps",
+        "androidx.privacysandbox.tools_tools",
+        "androidx.privacysandbox.tools_tools-core",
+        "kotlin-stdlib",
+        "kotlin-stdlib-jdk8",
+        "ow2-asm",
+        "ow2-asm-commons",
+    ],
+    java_version: "1.7",
+}
+
+java_import_host {
+    name: "androidx.privacysandbox.tools_tools-core-nodeps",
+    jars: ["m2repository/androidx/privacysandbox/tools/tools-core/1.0.0-alpha06/tools-core-1.0.0-alpha06.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools-core",
+    static_libs: [
+        "androidx.privacysandbox.tools_tools-core-nodeps",
+        "androidx.privacysandbox.tools_tools",
+        "guava",
+        "libprotobuf-java-full",
+        "kotlinpoet",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
+java_import_host {
+    name: "androidx.privacysandbox.tools_tools-nodeps",
+    jars: ["m2repository/androidx/privacysandbox/tools/tools/1.0.0-alpha06/tools-1.0.0-alpha06.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools",
+    static_libs: [
+        "androidx.privacysandbox.tools_tools-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
 android_library_import {
     name: "androidx.privacysandbox.ui_ui-client-nodeps",
     aars: ["m2repository/androidx/privacysandbox/ui/ui-client/1.0.0-alpha06/ui-client-1.0.0-alpha06.aar"],
