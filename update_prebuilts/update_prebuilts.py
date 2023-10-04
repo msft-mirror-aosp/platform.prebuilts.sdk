@@ -161,11 +161,21 @@ maven_to_make = {
     'androidx.privacysandbox.ui:ui-core': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
-    'androidx.privacysandbox.tools:tools': {},
-    'androidx.privacysandbox.tools:tools-apicompiler': {},
-    'androidx.privacysandbox.tools:tools-apigenerator': {},
-    'androidx.privacysandbox.tools:tools-apipackager': {},
-    'androidx.privacysandbox.tools:tools-core': {},
+    'androidx.privacysandbox.tools:tools': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apicompiler': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apigenerator': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apipackager': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-core': {
+        'host': True
+    },
     'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
@@ -349,6 +359,7 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-java': 'libprotobuf-java-full',
     'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
