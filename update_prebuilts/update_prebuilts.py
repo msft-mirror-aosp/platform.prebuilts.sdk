@@ -307,6 +307,8 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-process': {},
     'androidx.lifecycle:lifecycle-runtime': {},
     'androidx.lifecycle:lifecycle-runtime-ktx': {},
+    'androidx.lifecycle:lifecycle-runtime-compose': {},
+    'androidx.lifecycle:lifecycle-runtime-testing': {},
     'androidx.lifecycle:lifecycle-service': {},
     'androidx.lifecycle:lifecycle-viewmodel': {},
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
@@ -930,7 +932,6 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
         subprocess.call(['git', 'restore', file_to_restore],
                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-
     return True
 
 
@@ -1364,7 +1365,7 @@ def main():
                 local_mode='--local_mode' if args.local_mode else '')
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
         if args.buildtools:
-            if update_buildtools('sdk_mac', 'darwin', build_id, args.beyond_corp) \
+            if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'linux', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'windows', build_id, args.beyond_corp):
                 components.append('build tools')
