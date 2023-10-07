@@ -2985,6 +2985,174 @@ android_library {
 }
 
 android_library_import {
+    name: "androidx.datastore_datastore-nodeps",
+    aars: ["m2repository/androidx/datastore/datastore-android/1.1.0-alpha05/datastore-android-1.1.0-alpha05.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.datastore_datastore-core-okio",
+        "okio-lib",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.datastore_datastore-core",
+    ],
+}
+
+android_library {
+    name: "androidx.datastore_datastore",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.datastore_datastore/AndroidManifest.xml",
+    static_libs: [
+        "androidx.datastore_datastore-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.datastore_datastore-core-okio",
+        "okio-lib",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.datastore_datastore-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.datastore_datastore-core-nodeps",
+    aars: ["m2repository/androidx/datastore/datastore-core-android/1.1.0-alpha05/datastore-core-android-1.1.0-alpha05.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+    ],
+}
+
+android_library {
+    name: "androidx.datastore_datastore-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.datastore_datastore-core/AndroidManifest.xml",
+    static_libs: [
+        "androidx.datastore_datastore-core-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "androidx.datastore_datastore-core-okio-nodeps",
+    jars: ["m2repository/androidx/datastore/datastore-core-okio-jvm/1.1.0-alpha05/datastore-core-okio-jvm-1.1.0-alpha05.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.datastore_datastore-core-okio",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.datastore_datastore-core-okio-nodeps",
+        "okio-lib",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "androidx.datastore_datastore-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "androidx.datastore_datastore-preferences-nodeps",
+    aars: ["m2repository/androidx/datastore/datastore-preferences-android/1.1.0-alpha05/datastore-preferences-android-1.1.0-alpha05.aar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "androidx.datastore_datastore-preferences-core",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.datastore_datastore",
+    ],
+}
+
+android_library {
+    name: "androidx.datastore_datastore-preferences",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "manifests/androidx.datastore_datastore-preferences/AndroidManifest.xml",
+    static_libs: [
+        "androidx.datastore_datastore-preferences-nodeps",
+        "androidx.datastore_datastore-preferences-core",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-core-jvm",
+        "androidx.datastore_datastore",
+    ],
+    java_version: "1.7",
+}
+
+java_import {
+    name: "androidx.datastore_datastore-preferences-core-nodeps",
+    jars: ["m2repository/androidx/datastore/datastore-preferences-core-jvm/1.1.0-alpha05/datastore-preferences-core-jvm-1.1.0-alpha05.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.datastore_datastore-preferences-core",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.datastore_datastore-preferences-core-nodeps",
+        "androidx.datastore_datastore-core-okio",
+        "okio-lib",
+        "kotlin-stdlib",
+        "androidx.datastore_datastore-core",
+    ],
+    java_version: "1.7",
+}
+
+android_library_import {
     name: "androidx.documentfile_documentfile-nodeps",
     aars: ["m2repository/androidx/documentfile/documentfile/1.1.0-alpha02/documentfile-1.1.0-alpha02.aar"],
     sdk_version: "31",
