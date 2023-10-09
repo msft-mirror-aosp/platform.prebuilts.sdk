@@ -1,9 +1,7 @@
-load("//build/bazel/rules/java:import.bzl", "java_import")
-load("//build/bazel/rules/java:versions.bzl", "java_versions")
-load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
-load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "DEFAULT_JAVACOPTS", "default_java_toolchain")
 load("@rules_android//toolchains/android:toolchain.bzl", "android_toolchain")
 load("//build/bazel/rules/java:bootclasspath.bzl", "bootclasspath")
+load("//build/bazel/rules/java:import.bzl", "java_import")
+load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
 
 prebuilts_toolchain(
     android_sdk_toolchain_name = "android_sdk",
@@ -67,7 +65,10 @@ java_binary(
 
 android_toolchain(
     name = "android_default",
-    aapt2 = "//prebuilts/sdk/tools:linux/bin/aapt2",
+    aapt2 = select({
+        "//build/bazel/product_config/config_settings:always_use_prebuilt_sdks": "//prebuilts/sdk/tools:aapt2",
+        "//conditions:default": "//frameworks/base/tools/aapt2",
+    }),
     adb = ":fail",
     android_archive_jar_optimization_inputs_validator = ":fail",
     android_archive_packages_validator = ":fail",
