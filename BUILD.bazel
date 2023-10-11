@@ -1,8 +1,6 @@
-load("//build/bazel/rules/java:import.bzl", "java_import")
-load("//build/bazel/rules/java:versions.bzl", "java_versions")
-load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
-load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "DEFAULT_JAVACOPTS", "default_java_toolchain")
 load("@rules_android//toolchains/android:toolchain.bzl", "android_toolchain")
+load("//build/bazel/rules/java:import.bzl", "java_import")
+load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
 load("//build/bazel/rules/java:bootclasspath.bzl", "bootclasspath")
 
 prebuilts_toolchain(
@@ -118,6 +116,7 @@ genrule(
     outs = ["fail.sh"],
     cmd = "echo 'exit 1' > $@",
     executable = 1,
+    tags = ["manual"],
 )
 
 sh_binary(
@@ -129,12 +128,14 @@ genrule(
     name = "gen_failed_android_jar",
     outs = ["failed_android.jar"],
     cmd = "exit 1 > $@",
+    tags = ["manual"],
 )
 
 genrule(
     name = "gen_failed_framework_aidl",
     outs = ["failed_framework.aidl"],
     cmd = "exit 1 > $@",
+    tags = ["manual"],
 )
 
 bootclasspath(
