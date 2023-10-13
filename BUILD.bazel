@@ -1,4 +1,6 @@
 load("@rules_android//toolchains/android:toolchain.bzl", "android_toolchain")
+load("//build/bazel/rules/java:import.bzl", "java_import")
+load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
 load("//build/bazel/rules/java:bootclasspath.bzl", "bootclasspath")
 load("//build/bazel/rules/java:import.bzl", "java_import")
 load("//prebuilts/sdk:toolchains.bzl", "prebuilts_toolchain")
@@ -10,9 +12,9 @@ prebuilts_toolchain(
 
 toolchain(
     name = "device_java_toolchain_definition",
-    exec_compatible_with = ["//build/bazel/platforms/os:linux"],
+    exec_compatible_with = ["//build/bazel_common_rules/platforms/os:linux"],
     target_compatible_with = [
-        "//build/bazel/platforms/os:android",
+        "//build/bazel_common_rules/platforms/os:android",
     ],
     target_settings = [],
     toolchain = ":device_java_toolchain",
@@ -23,11 +25,11 @@ toolchain(
 toolchain(
     name = "android_sdk_toolchain_definition",
     exec_compatible_with = [
-        "//build/bazel/platforms/os:linux",
+        "//build/bazel_common_rules/platforms/os:linux",
     ],
     target_compatible_with = [
         # TODO(b/278596841): uncomment when DexArchiveAspect propagation into host/exec config is properly handled
-        # "//build/bazel/platforms/os:android",
+        # "//build/bazel_common_rules/platforms/os:android",
     ],
     toolchain = ":android_sdk",
     toolchain_type = "@rules_android//toolchains/android_sdk:toolchain_type",
@@ -40,11 +42,11 @@ toolchain(
 toolchain(
     name = "android_sdk_native_toolchain_definition",
     exec_compatible_with = [
-        "//build/bazel/platforms/os:linux",
+        "//build/bazel_common_rules/platforms/os:linux",
     ],
     target_compatible_with = [
         # TODO(b/278596841): uncomment when DexArchiveAspect propagation into host/exec config is properly handled
-        # "//build/bazel/platforms/os:android",
+        # "//build/bazel_common_rules/platforms/os:android",
     ],
     toolchain = ":android_sdk",
     toolchain_type = "@bazel_tools//tools/android:sdk_toolchain_type",
@@ -119,6 +121,7 @@ genrule(
     outs = ["fail.sh"],
     cmd = "echo 'exit 1' > $@",
     executable = 1,
+    tags = ["manual"],
 )
 
 sh_binary(
@@ -130,12 +133,14 @@ genrule(
     name = "gen_failed_android_jar",
     outs = ["failed_android.jar"],
     cmd = "exit 1 > $@",
+    tags = ["manual"],
 )
 
 genrule(
     name = "gen_failed_framework_aidl",
     outs = ["failed_framework.aidl"],
     cmd = "exit 1 > $@",
+    tags = ["manual"],
 )
 
 bootclasspath(
