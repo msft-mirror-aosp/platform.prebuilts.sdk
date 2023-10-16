@@ -161,6 +161,21 @@ maven_to_make = {
     'androidx.privacysandbox.ui:ui-core': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.tools:tools': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apicompiler': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apigenerator': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apipackager': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-core': {
+        'host': True
+    },
     'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
@@ -292,17 +307,19 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-process': {},
     'androidx.lifecycle:lifecycle-runtime': {},
     'androidx.lifecycle:lifecycle-runtime-ktx': {},
+    'androidx.lifecycle:lifecycle-runtime-compose': {},
+    'androidx.lifecycle:lifecycle-runtime-testing': {},
     'androidx.lifecycle:lifecycle-service': {},
     'androidx.lifecycle:lifecycle-viewmodel': {},
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
-    'androidx.paging:paging-common': {},
+    'androidx.paging:paging-common-jvm': {},
     'androidx.paging:paging-common-ktx': {},
     'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
-    'androidx.room:room-common': {
+    'androidx.room:room-common-jvm': {
         'host_and_device': True
     },
     'androidx.room:room-compiler': {
@@ -342,7 +359,10 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-java': 'libprotobuf-java-full',
     'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
+    'org.ow2.asm:asm': 'ow2-asm',
+    'org.ow2.asm:asm-commons': 'ow2-asm-commons',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
@@ -912,7 +932,6 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
         subprocess.call(['git', 'restore', file_to_restore],
                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-
     return True
 
 
@@ -1346,7 +1365,7 @@ def main():
                 local_mode='--local_mode' if args.local_mode else '')
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
         if args.buildtools:
-            if update_buildtools('sdk_mac', 'darwin', build_id, args.beyond_corp) \
+            if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'linux', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'windows', build_id, args.beyond_corp):
                 components.append('build tools')
