@@ -14,4 +14,27 @@ package {
     default_applicable_licenses: ["prebuilts_sdk_license"],
 }
 
-build = ["JavaPlugins.bp"]
+java_import_host {
+    name: "androidx.room_room-compiler-processing-nodeps",
+    jars: ["room-compiler-processing-2.7.0-alpha01.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.room_room-compiler-processing",
+    static_libs: [
+        "androidx.room_room-compiler-processing-nodeps",
+        "auto_common",
+        "auto_value_annotations",
+        "guava",
+        "javapoet",
+        "jetbrains-annotations",
+        "kotlin-stdlib",
+        "kotlin-stdlib-jdk8",
+        "kotlinpoet",
+        "kotlinpoet-javapoet",
+        "symbol-processing-api",
+    ],
+    java_version: "1.7",
+}
+
