@@ -104,6 +104,7 @@ android_library {
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-extensions",
         "car-apps-common-source",
+        "car-media-extensions-source",
     ]
 }
 
@@ -121,6 +122,27 @@ android_library_import {
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-extensions",
         "car-apps-common-source",
+        "car-media-extensions-source",
+    ]
+}
+
+android_library {
+    name: "car-media-extensions",
+    sdk_version: "31",
+    static_libs: [
+      "car-media-extensions-source",
+      "androidx.annotation_annotation",
+      "junit",
+    ]
+}
+
+android_library_import {
+    name: "car-media-extensions-source",
+    aars: ["car-media-extensions.aar"],
+    sdk_version: "31",
+    static_libs: [
+      "androidx.annotation_annotation",
+      "junit",
     ]
 }
 
