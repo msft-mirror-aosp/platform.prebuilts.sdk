@@ -13,4 +13,20 @@ package {
     //   SPDX-license-identifier-Unicode-DFS
     default_applicable_licenses: ["prebuilts_sdk_license"],
 }
-build = ["JavaPlugins.bp"]
+
+java_import_host {
+    name: "androidx.remotecallback_remotecallback-processor-nodeps",
+    jars: ["remotecallback-processor-1.0.0-alpha02.jar"],
+    sdk_version: "31",
+}
+
+java_library_host {
+    name: "androidx.remotecallback_remotecallback-processor",
+    static_libs: [
+        "androidx.remotecallback_remotecallback-processor-nodeps",
+        "androidx.annotation_annotation",
+        "javapoet",
+    ],
+    java_version: "1.7",
+}
+
