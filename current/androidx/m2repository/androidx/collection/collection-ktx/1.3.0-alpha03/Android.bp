@@ -13,4 +13,30 @@ package {
     //   SPDX-license-identifier-Unicode-DFS
     default_applicable_licenses: ["prebuilts_sdk_license"],
 }
-build = ["JavaPlugins.bp"]
+
+java_import {
+    name: "androidx.collection_collection-ktx-nodeps",
+    jars: ["collection-ktx-1.3.0-alpha03.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.collection_collection-ktx",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.collection_collection-ktx-nodeps",
+        "androidx.collection_collection",
+    ],
+    java_version: "1.7",
+}
+

@@ -13,4 +13,30 @@ package {
     //   SPDX-license-identifier-Unicode-DFS
     default_applicable_licenses: ["prebuilts_sdk_license"],
 }
-build = ["JavaPlugins.bp"]
+
+java_import {
+    name: "androidx.lifecycle_lifecycle-common-nodeps",
+    jars: ["lifecycle-common-2.6.0-alpha04.jar"],
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.lifecycle_lifecycle-common",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-common-nodeps",
+        "androidx.annotation_annotation",
+    ],
+    java_version: "1.7",
+}
+
