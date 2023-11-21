@@ -1002,8 +1002,13 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     try:
         if not os.path.exists(copy_to):
             os.makedirs(copy_to)
+        copied = 0
         for file in glob.glob(copy_from):
             result_path = shutil.copy(file, copy_to)
+            copied += 1
+        # Multiple files, return destination folder.
+        if copied > 1:
+            result_path = artifact_path
     except Exception as e:
         print(f'Error: {e} occured while copying')
         raise
@@ -1355,7 +1360,7 @@ def main():
 
             # Finalize extension sdk level
             readme = (f'- {args.finalize_extension}: Finalized together with '
-                      'Android {args.finalize_sdk} (all modules)')
+                      f'Android {args.finalize_sdk} (all modules)')
             cmd = extension_sdk_finalization_cmd.format(
                 readme=readme,
                 bug=args.bug,
