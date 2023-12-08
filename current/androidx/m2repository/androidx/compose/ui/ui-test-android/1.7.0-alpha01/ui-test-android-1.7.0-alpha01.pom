@@ -104,6 +104,27 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>androidx.activity</groupId>
+      <artifactId>activity-compose</artifactId>
+      <version>1.3.0</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
+      <type>aar</type>
+    </dependency>
+    <dependency>
       <groupId>androidx.annotation</groupId>
       <artifactId>annotation</artifactId>
       <version>1.1.0</version>
@@ -217,6 +238,26 @@
     <dependency>
       <groupId>androidx.test.espresso</groupId>
       <artifactId>espresso-core</artifactId>
+      <version>3.5.0</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>androidx.test.espresso</groupId>
+      <artifactId>espresso-idling-resource</artifactId>
       <version>3.5.0</version>
       <scope>runtime</scope>
       <exclusions>
