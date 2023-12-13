@@ -16,3 +16,5 @@ latest finalized version for each API surface.
 - 7: Finalized together with Android U / 34 (all modules)
 - 8: Finalized in July 2023 between U and V (adservices, mediaprovider)
 - 9: Finalized in August 2023 between U and V (adServices)
+- 10: Finalized in August 2023 (tethering, adservices, appsearch and health connect)
+- 11: Finalized in November 2023 between U and V (adservices, tethering)
