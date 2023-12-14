@@ -30,7 +30,7 @@ $CMD car-telephony-common.aar car-telephony-common.aar
 echo "Downloading car-ui-lib"
 $CMD car-ui-lib.aar car-ui-lib.aar
 echo "Downloading car-ui-lib-oem-apis"
-$CMD car-ui-lib-oem-apis-jar.jar car-ui-lib-oem-apis.jar
+$CMD car-ui-lib-oem-apis-source.jar car-ui-lib-oem-apis.jar
 echo "Downloading car-uxr-client-lib"
 $CMD car-uxr-client-lib.aar car-uxr-client-lib.aar
 echo "Downloading car-ui-lib-testing-support.aar"
