@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.5"
+      "version": "8.6-rc-1"
     }
   },
   "variants": [
@@ -23,6 +23,13 @@
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
       "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.0-rc01"
+          }
+        },
         {
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-android",
@@ -76,11 +83,11 @@
         {
           "name": "runtime-release.aar",
           "url": "runtime-android-1.7.0-alpha01.aar",
-          "size": 2433784,
-          "sha512": "ace04eeb39dbf3035f1fe74fd57b44c005031df3fdb821d931ac3323e6948ae5a0f1ff0bc3ef6e9bd2d963d23943043b1537af913ca3450a8c22e5b7a7f082bd",
-          "sha256": "3a40ae8fa0047eb341dbcd297bf78137c123463add0dcf04f27e325f66f0d295",
-          "sha1": "ce3085eb4a82a20c2293789e3144743039baa1cb",
-          "md5": "1317e0f4452b838819780702c558549d"
+          "size": 2433829,
+          "sha512": "53e40e9fab81f548e585b60bd46d9d2007aa6f73c37cdbc1ec50feefba7e4af5b7f8ef0ce6d9f6a0ddb5fbfa16f6692d03406bd1ca588c2797870e273eeb70fe",
+          "sha256": "8e37268275df98f16a8cf50964971c329449a333780e6608825d2ab2bea0d9b3",
+          "sha1": "0990dce7344c7f66e819aff0a533aab5e26d475c",
+          "md5": "34d778181b2fa65e25eb5958e2adde1d"
         }
       ]
     },
@@ -93,10 +100,31 @@
       },
       "dependencies": [
         {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.0-rc01"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0-beta02"
+            "requires": "1.5.0-alpha01"
           },
           "excludes": [
             {
@@ -236,11 +264,11 @@
         {
           "name": "runtime-release.aar",
           "url": "runtime-android-1.7.0-alpha01.aar",
-          "size": 2433784,
-          "sha512": "ace04eeb39dbf3035f1fe74fd57b44c005031df3fdb821d931ac3323e6948ae5a0f1ff0bc3ef6e9bd2d963d23943043b1537af913ca3450a8c22e5b7a7f082bd",
-          "sha256": "3a40ae8fa0047eb341dbcd297bf78137c123463add0dcf04f27e325f66f0d295",
-          "sha1": "ce3085eb4a82a20c2293789e3144743039baa1cb",
-          "md5": "1317e0f4452b838819780702c558549d"
+          "size": 2433829,
+          "sha512": "53e40e9fab81f548e585b60bd46d9d2007aa6f73c37cdbc1ec50feefba7e4af5b7f8ef0ce6d9f6a0ddb5fbfa16f6692d03406bd1ca588c2797870e273eeb70fe",
+          "sha256": "8e37268275df98f16a8cf50964971c329449a333780e6608825d2ab2bea0d9b3",
+          "sha1": "0990dce7344c7f66e819aff0a533aab5e26d475c",
+          "md5": "34d778181b2fa65e25eb5958e2adde1d"
         }
       ]
     },
@@ -292,11 +320,11 @@
         {
           "name": "runtime-android-1.7.0-alpha01-sources.jar",
           "url": "runtime-android-1.7.0-alpha01-sources.jar",
-          "size": 369906,
-          "sha512": "6146802293a86cb5e809f3179ee3c94ca810a017380a7d2949b89660fbb7c7389c8606fbc140b6d0153d9307f6e1ad69609088ef3757ec0b1ded677abec19142",
-          "sha256": "abe683e2e0e9c31283484da3a7a08da42b7741cd0563b2e218e56572b6eb46d1",
-          "sha1": "b5bd07acd9ef71b800aecd1d1aa6e3ed3c60313d",
-          "md5": "bec80c6a4d511cd15acf86bf8babfe97"
+          "size": 370038,
+          "sha512": "60ac3990189541c8b96050d6629ba31aef4b3c13da0f4d2a53ae93b1605c52c9e2b2c14a4490e1aeae0bd18324f0c3d992ebb4865fc6068f4aa9fe044e269fd6",
+          "sha256": "41f177c08f5282f7a2c927ffcf30b6be1e2ad90aebc00c02c62a7cd55f3e384d",
+          "sha1": "5cb203ef4da0e8b50ae89fcb3c444ee19020da28",
+          "md5": "a173c2e95674417e3a176e9464c74f93"
         }
       ]
     }

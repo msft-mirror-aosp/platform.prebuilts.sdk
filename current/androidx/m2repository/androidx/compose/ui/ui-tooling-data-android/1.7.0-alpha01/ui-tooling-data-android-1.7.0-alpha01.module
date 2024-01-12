@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.5"
+      "version": "8.6-rc-1"
     }
   },
   "variants": [
@@ -28,6 +28,13 @@
           "module": "annotation",
           "version": {
             "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.0-rc01"
           }
         },
         {
@@ -176,6 +183,27 @@
           "module": "annotation",
           "version": {
             "requires": "1.1.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.0-rc01"
           },
           "excludes": [
             {
