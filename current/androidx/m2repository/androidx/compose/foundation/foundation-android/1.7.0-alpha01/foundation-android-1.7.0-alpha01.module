@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.5"
+      "version": "8.6-rc-1"
     }
   },
   "variants": [
@@ -31,10 +31,17 @@
           }
         },
         {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.0-rc01"
+          }
+        },
+        {
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0-beta02"
+            "requires": "1.5.0-alpha01"
           }
         },
         {
@@ -73,11 +80,11 @@
         {
           "name": "foundation-release.aar",
           "url": "foundation-android-1.7.0-alpha01.aar",
-          "size": 4578264,
-          "sha512": "5788ca2f469957848630b86f8f6912a2d666708ccb8e578a2c97ae14d9d62262b83da14e4139f0367d8c160be8d6848699d6ca28c59c766972f142141f3d0d0b",
-          "sha256": "d05efb5821ff34059550ed2a2038b52068a09172401bfabe8f33f5d2a8cb4557",
-          "sha1": "fad9366f84e1bfa3ddc1a5b2c608cffd570a0d4f",
-          "md5": "aa6050771f86aaff4ca50c923a0ac1bc"
+          "size": 4652637,
+          "sha512": "011d7d4c826d285aba469fe59fd49e42039b77de2c4b6dc6ae5290da1bb123d926c64a5e3ede01d65bfbe502bc3af4439f80684622d5009cb6c236147ed99613",
+          "sha256": "2392dc79286b5ec6d6364fa4544305db452dba25cab6535ade599b8fcabdc1fb",
+          "sha1": "56f769edb65aa52db668897e948a1fd05c9beb34",
+          "md5": "36d091f4a0cb36670de53e6656582292"
         }
       ]
     },
@@ -111,10 +118,31 @@
           ]
         },
         {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.0-rc01"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0-beta02"
+            "requires": "1.5.0-alpha01"
           },
           "excludes": [
             {
@@ -261,7 +289,7 @@
           "group": "androidx.core",
           "module": "core",
           "version": {
-            "requires": "1.11.0"
+            "requires": "1.12.0"
           },
           "excludes": [
             {
@@ -335,11 +363,11 @@
         {
           "name": "foundation-release.aar",
           "url": "foundation-android-1.7.0-alpha01.aar",
-          "size": 4578264,
-          "sha512": "5788ca2f469957848630b86f8f6912a2d666708ccb8e578a2c97ae14d9d62262b83da14e4139f0367d8c160be8d6848699d6ca28c59c766972f142141f3d0d0b",
-          "sha256": "d05efb5821ff34059550ed2a2038b52068a09172401bfabe8f33f5d2a8cb4557",
-          "sha1": "fad9366f84e1bfa3ddc1a5b2c608cffd570a0d4f",
-          "md5": "aa6050771f86aaff4ca50c923a0ac1bc"
+          "size": 4652637,
+          "sha512": "011d7d4c826d285aba469fe59fd49e42039b77de2c4b6dc6ae5290da1bb123d926c64a5e3ede01d65bfbe502bc3af4439f80684622d5009cb6c236147ed99613",
+          "sha256": "2392dc79286b5ec6d6364fa4544305db452dba25cab6535ade599b8fcabdc1fb",
+          "sha1": "56f769edb65aa52db668897e948a1fd05c9beb34",
+          "md5": "36d091f4a0cb36670de53e6656582292"
         }
       ]
     },
@@ -367,11 +395,11 @@
         {
           "name": "foundation-android-1.7.0-alpha01-sources.jar",
           "url": "foundation-android-1.7.0-alpha01-sources.jar",
-          "size": 779636,
-          "sha512": "e1433cc077bef92aec681c4af542414712e533cd3f11355f58ebd8d93841525338aecc2a0c90da6d60d50fd39112cd6bc2948352cc805dd107451e4b7b808810",
-          "sha256": "209353320fe40f827ce9db8544eba3ab9be17ba0935813fa58c8553775d0e62c",
-          "sha1": "3cc8313f6e8c73c5906aeed73df985899b211009",
-          "md5": "f66ff67cfe5636ba16b20d12754416c8"
+          "size": 800132,
+          "sha512": "a452e813e7721ac2f36f8c3c1b362828ada01d01f1801283649514e18fba7432330058ec9e58c6869b8dffa52ed982224825961f5ca84b38a10664e47393bcba",
+          "sha256": "dcd20218d2fa744032b219f7a2260636c5fbbc0e2fadcc415c2939c518059de4",
+          "sha1": "d132f940b7059d8337b0c231a27f3a8e4688a2ed",
+          "md5": "55310caccd85348b323e4701017aba6a"
         }
       ]
     }
