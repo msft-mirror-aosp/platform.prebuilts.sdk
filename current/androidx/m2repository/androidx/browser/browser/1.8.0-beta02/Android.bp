@@ -16,7 +16,7 @@ package {
 
 android_library_import {
     name: "androidx.browser_browser-nodeps",
-    aars: ["browser-1.8.0-alpha01.aar"],
+    aars: ["browser-1.8.0-beta02.aar"],
     sdk_version: "31",
     apex_available: [
         "//apex_available:platform",
@@ -25,6 +25,7 @@ android_library_import {
     min_sdk_version: "19",
     static_libs: [
         "androidx.annotation_annotation",
+        "androidx.annotation_annotation-experimental",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
         "androidx.core_core",
@@ -45,6 +46,7 @@ android_library {
     static_libs: [
         "androidx.browser_browser-nodeps",
         "androidx.annotation_annotation",
+        "androidx.annotation_annotation-experimental",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
         "androidx.core_core",
