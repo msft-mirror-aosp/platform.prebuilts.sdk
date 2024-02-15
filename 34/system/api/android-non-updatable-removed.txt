@@ -114,20 +114,6 @@ package android.hardware.hdmi {
 
 }
 
-package android.location {
-
-  public class LocationManager {
-    method @Deprecated public boolean addGpsMeasurementListener(android.location.GpsMeasurementsEvent.Listener);
-    method @Deprecated public boolean addGpsNavigationMessageListener(android.location.GpsNavigationMessageEvent.Listener);
-    method @Deprecated @RequiresPermission(android.Manifest.permission.READ_DEVICE_CONFIG) public boolean isProviderPackage(@Nullable String, @NonNull String);
-    method @Deprecated public void removeGpsMeasurementListener(android.location.GpsMeasurementsEvent.Listener);
-    method @Deprecated public void removeGpsNavigationMessageListener(android.location.GpsNavigationMessageEvent.Listener);
-    method @Deprecated @RequiresPermission(android.Manifest.permission.LOCATION_HARDWARE) public void setLocationControllerExtraPackage(String);
-    method @Deprecated @RequiresPermission(android.Manifest.permission.LOCATION_HARDWARE) public void setLocationControllerExtraPackageEnabled(boolean);
-  }
-
-}
-
 package android.media.tv {
 
   public final class TvInputManager {
@@ -136,17 +122,6 @@ package android.media.tv {
 
   public static final class TvInputManager.Hardware {
     method public boolean dispatchKeyEventToHdmi(android.view.KeyEvent);
-  }
-
-}
-
-package android.nfc {
-
-  public final class NfcAdapter {
-    method @RequiresPermission(android.Manifest.permission.WRITE_SECURE_SETTINGS) public boolean disableNdefPush();
-    method @RequiresPermission(android.Manifest.permission.WRITE_SECURE_SETTINGS) public boolean enableNdefPush();
-    method public void setNdefPushMessage(android.nfc.NdefMessage, android.app.Activity, int);
-    field public static final int FLAG_NDEF_PUSH_NO_CONFIRM = 1; // 0x1
   }
 
 }

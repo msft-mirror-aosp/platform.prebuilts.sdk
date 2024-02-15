@@ -10,10 +10,13 @@
   <artifactId>recyclerview</artifactId>
   <version>1.4.0-alpha01</version>
   <packaging>aar</packaging>
-  <name>Android Support RecyclerView</name>
+  <name>RecyclerView</name>
   <description>Android Support RecyclerView</description>
   <url>https://developer.android.com/jetpack/androidx/releases/recyclerview#1.4.0-alpha01</url>
   <inceptionYear>2014</inceptionYear>
+  <organization>
+    <name>The Android Open Source Project</name>
+  </organization>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -30,6 +33,15 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.viewpager2</groupId>
+        <artifactId>viewpager2</artifactId>
+        <version>1.1.0-beta02</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>androidx.annotation</groupId>
@@ -46,7 +58,7 @@
     <dependency>
       <groupId>androidx.core</groupId>
       <artifactId>core</artifactId>
-      <version>1.7.0</version>
+      <version>1.13.0-alpha05</version>
       <scope>compile</scope>
       <type>aar</type>
     </dependency>

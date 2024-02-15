@@ -39,6 +39,7 @@ androidx_dir = os.path.join(current_path, 'androidx')
 androidx_owners = os.path.join(androidx_dir, 'OWNERS')
 java_plugins_bp_path = os.path.join(androidx_dir, 'JavaPlugins.bp')
 test_mapping_file = os.path.join(androidx_dir, 'TEST_MAPPING')
+drop_config_toml = os.path.join(androidx_dir, 'drop_config.toml')
 compose_test_mapping_file = os.path.join(androidx_dir, 'm2repository/androidx/compose/TEST_MAPPING')
 gmaven_dir = os.path.join(current_path, 'gmaven')
 extras_dir = os.path.join(current_path, 'extras')
@@ -52,6 +53,10 @@ temp_dir = os.path.join(os.getcwd(), 'support_tmp')
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 git_dir = os.getcwd()
 
+# Suffixes used by KMP artifacts. If an artifact in maven_to_make ends with one
+# of these, it will replace the anchor artifact.
+kmp_suffixes = ['android','jvm']
+
 # Leave map blank to automatically populate name and path:
 # - Name format is MAVEN.replaceAll(':','_')
 # - Path format is MAVEN.replaceAll(':','/').replaceAll('.','/')
@@ -64,6 +69,7 @@ maven_to_make = {
     'androidx.tracing:tracing': {},
     'androidx.tracing:tracing-perfetto': {},
     'androidx.tracing:tracing-perfetto-binary': {},
+    'androidx.tracing:tracing-perfetto-handshake': {},
     'androidx.tracing:tracing-perfetto-common': {},
     'androidx.tracing:tracing-ktx': {},
     'androidx.slice:slice-builders': {},
@@ -77,22 +83,11 @@ maven_to_make = {
     'androidx.vectordrawable:vectordrawable-animated': {},
     'androidx.activity:activity': {},
     'androidx.activity:activity-ktx': {},
-    'androidx.annotation:annotation': {
-        'host_and_device': True,
-        'extra-static-libs': {
-            'androidx.annotation_annotation-jvm'
-        }
-    },
     'androidx.annotation:annotation-jvm': {
         'host_and_device': True
     },
     'androidx.annotation:annotation-experimental': {},
     'androidx.asynclayoutinflater:asynclayoutinflater': {},
-    'androidx.collection:collection': {
-        'extra-static-libs': {
-            'androidx.collection_collection-jvm'
-        }
-    },
     'androidx.camera:camera-viewfinder':{},
     'androidx.camera:camera-camera2' :{},
     'androidx.camera:camera-core': {},
@@ -112,11 +107,11 @@ maven_to_make = {
     'androidx.core.uwb:uwb-rxjava3': {},
     'androidx.contentpaging:contentpaging': {},
     'androidx.coordinatorlayout:coordinatorlayout': {},
-    'androidx.datastore:datastore': {},
-    'androidx.datastore:datastore-core': {},
-    'androidx.datastore:datastore-core-okio': {},
-    'androidx.datastore:datastore-preferences': {},
-    'androidx.datastore:datastore-preferences-core': {},
+    'androidx.datastore:datastore-android': {},
+    'androidx.datastore:datastore-core-okio-jvm': {},
+    'androidx.datastore:datastore-core-android': {},
+    'androidx.datastore:datastore-preferences-android': {},
+    'androidx.datastore:datastore-preferences-core-jvm': {},
     'androidx.datastore:datastore-preferences-rxjava2': {},
     'androidx.datastore:datastore-rxjava2': {},
     'androidx.legacy:legacy-support-core-ui': {},
@@ -137,6 +132,8 @@ maven_to_make = {
     'androidx.exifinterface:exifinterface': {},
     'androidx.fragment:fragment': {},
     'androidx.fragment:fragment-ktx': {},
+    'androidx.fragment:fragment-testing': {},
+    'androidx.fragment:fragment-testing-manifest': {},
     'androidx.heifwriter:heifwriter': {},
     'androidx.health:health-services-client': {},
     'androidx.interpolator:interpolator': {},
@@ -164,6 +161,21 @@ maven_to_make = {
     'androidx.privacysandbox.ui:ui-core': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-client': {},
     'androidx.privacysandbox.sdkruntime:sdkruntime-core': {},
+    'androidx.privacysandbox.tools:tools': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apicompiler': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apigenerator': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-apipackager': {
+        'host': True
+    },
+    'androidx.privacysandbox.tools:tools-core': {
+        'host': True
+    },
     'androidx.privacysandbox.ui:ui-tests': {},
     'androidx.recommendation:recommendation': {},
     'androidx.recyclerview:recyclerview-selection': {},
@@ -173,6 +185,7 @@ maven_to_make = {
     'androidx.swiperefreshlayout:swiperefreshlayout': {},
     'androidx.textclassifier:textclassifier': {},
     'androidx.transition:transition': {},
+    'androidx.transition:transition-ktx': {},
     'androidx.tvprovider:tvprovider': {},
     'androidx.legacy:legacy-support-v13': {},
     'androidx.legacy:legacy-preference-v14': {},
@@ -229,33 +242,34 @@ maven_to_make = {
     'androidx.compose.compiler:compiler-hosted': {
         'host': True
     },
-    'androidx.compose.runtime:runtime': {},
-    'androidx.compose.runtime:runtime-saveable': {},
+    'androidx.compose.animation:animation-android': {},
+    'androidx.compose.animation:animation-core-android': {},
+    'androidx.compose.animation:animation-graphics-android': {},
+    'androidx.compose.foundation:foundation-android': {},
+    'androidx.compose.foundation:foundation-layout-android': {},
+    'androidx.compose.foundation:foundation-text-android': {},
+    'androidx.compose.material:material-android': {},
+    'androidx.compose.material:material-icons-core-android': {},
+    'androidx.compose.material:material-icons-extended-android': {},
+    'androidx.compose.material:material-ripple-android': {},
+    'androidx.compose.material3:material3-android': {},
+    'androidx.compose.material3:material3-window-size-class-android': {},
+    'androidx.compose.runtime:runtime-android': {},
     'androidx.compose.runtime:runtime-livedata': {},
+    'androidx.compose.runtime:runtime-saveable-android': {},
     'androidx.compose.runtime:runtime-tracing': {},
-    'androidx.compose.foundation:foundation': {},
-    'androidx.compose.foundation:foundation-layout': {},
-    'androidx.compose.foundation:foundation-text': {},
-    'androidx.compose.ui:ui': {},
-    'androidx.compose.ui:ui-geometry': {},
-    'androidx.compose.ui:ui-graphics': {},
-    'androidx.compose.ui:ui-text': {},
-    'androidx.compose.ui:ui-tooling': {},
-    'androidx.compose.ui:ui-tooling-preview': {},
-    'androidx.compose.ui:ui-tooling-data': {},
-    'androidx.compose.ui:ui-unit': {},
-    'androidx.compose.ui:ui-util': {},
-    'androidx.compose.ui:ui-test': { },
-    'androidx.compose.ui:ui-test-junit4': { },
-    'androidx.compose.ui:ui-test-manifest': { },
-    'androidx.compose.animation:animation-core': {},
-    'androidx.compose.animation:animation': {},
-    'androidx.compose.material:material-icons-core': {},
-    'androidx.compose.material:material-icons-extended': { },
-    'androidx.compose.material:material-ripple': {},
-    'androidx.compose.material:material': {},
-    'androidx.compose.material3:material3': {},
-    'androidx.compose.material3:material3-window-size-class': {},
+    'androidx.compose.ui:ui-util-android': {},
+    'androidx.compose.ui:ui-android': {},
+    'androidx.compose.ui:ui-geometry-android': {},
+    'androidx.compose.ui:ui-graphics-android': {},
+    'androidx.compose.ui:ui-test-manifest': {},
+    'androidx.compose.ui:ui-test-android': {},
+    'androidx.compose.ui:ui-test-junit4-android': {},
+    'androidx.compose.ui:ui-text-android': {},
+    'androidx.compose.ui:ui-tooling-android': {},
+    'androidx.compose.ui:ui-tooling-data-android': {},
+    'androidx.compose.ui:ui-tooling-preview-android': {},
+    'androidx.compose.ui:ui-unit-android': {},
     'androidx.activity:activity-compose': {},
     'androidx.navigation:navigation-compose': { },
     'androidx.lifecycle:lifecycle-viewmodel-compose': { },
@@ -278,7 +292,7 @@ maven_to_make = {
         'name': 'androidx-constraintlayout_constraintlayout-solver'
     },
     'androidx.constraintlayout:constraintlayout-core': {},
-    'androidx.constraintlayout:constraintlayout-compose': {},
+    'androidx.constraintlayout:constraintlayout-compose-android': {},
     # AndroidX for Architecture Components
     'androidx.arch.core:core-common': {},
     'androidx.arch.core:core-runtime': {},
@@ -299,13 +313,13 @@ maven_to_make = {
     'androidx.lifecycle:lifecycle-viewmodel': {},
     'androidx.lifecycle:lifecycle-viewmodel-ktx': {},
     'androidx.lifecycle:lifecycle-viewmodel-savedstate': {},
-    'androidx.paging:paging-common': {},
+    'androidx.paging:paging-common-jvm': {},
     'androidx.paging:paging-common-ktx': {},
     'androidx.paging:paging-guava': {},
     'androidx.paging:paging-runtime': {},
     'androidx.sqlite:sqlite': {},
     'androidx.sqlite:sqlite-framework': {},
-    'androidx.room:room-common': {
+    'androidx.room:room-common-jvm': {
         'host_and_device': True
     },
     'androidx.room:room-compiler': {
@@ -345,12 +359,16 @@ deps_rewrite = {
     'auto-common': 'auto_common',
     'auto-value-annotations': 'auto_value_annotations',
     'com.google.auto.value:auto-value': 'libauto_value_plugin',
+    'com.google.protobuf:protobuf-java': 'libprotobuf-java-full',
     'com.google.protobuf:protobuf-javalite': 'libprotobuf-java-lite',
+    'org.ow2.asm:asm': 'ow2-asm',
+    'org.ow2.asm:asm-commons': 'ow2-asm-commons',
     'monitor': 'androidx.test.monitor',
     'rules': 'androidx.test.rules',
     'runner': 'androidx.test.runner',
     'androidx.test:core': 'androidx.test.core',
     'com.squareup:javapoet': 'javapoet',
+    'com.squareup.okio:okio-jvm': 'okio-lib',
     'com.google.guava:listenablefuture': 'guava-listenablefuture-prebuilt-jar',
     'sqlite-jdbc': 'xerial-sqlite-jdbc',
     'com.intellij:annotations': 'jetbrains-annotations',
@@ -358,12 +376,15 @@ deps_rewrite = {
     'org.robolectric:robolectric': 'Robolectric_all-target',
     'org.jetbrains.kotlin:kotlin-stdlib-common': 'kotlin-stdlib',
     'org.jetbrains.kotlinx:kotlinx-coroutines-core': 'kotlinx_coroutines',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm': 'kotlinx_coroutines_test',
     'org.jetbrains.kotlinx:kotlinx-coroutines-guava': 'kotlinx_coroutines_guava',
     'org.jetbrains.kotlinx:kotlinx-coroutines-android': 'kotlinx_coroutines_android',
     'org.jetbrains.kotlinx:kotlinx-coroutines-test':'kotlinx_coroutines_test',
+    'org.jetbrains.kotlinx:kotlinx-coroutines-rx2': 'kotlinx_coroutines_rx2',
     'org.jetbrains.kotlinx:kotlinx-metadata-jvm': 'kotlinx_metadata_jvm',
     'androidx.test.espresso:espresso-core':'androidx.test.espresso.core',
     'androidx.test.espresso:espresso-idling-resource':'androidx.test.espresso.idling-resource',
+    'androidx.datastore:datastore-core-jvm': 'androidx.datastore_datastore-core',
 }
 
 # List of artifacts that will be updated from GMaven
@@ -411,6 +432,15 @@ def name_for_artifact(group_artifact):
     Returns:
         The build system target name for the artifact, ex. androidx.core_core.
     """
+    for kmp_suffix in kmp_suffixes:
+        if group_artifact.endswith("-" + kmp_suffix):
+            loc = group_artifact.rfind("-" + kmp_suffix)
+            group_artifact = group_artifact[0:loc]
+            if group_artifact in maven_to_make:
+                raise ValueError(f'Do not specify KMP anchor artifact in '
+                                 f'maven_to_make: {group_artifact}')
+            deps_rewrite[group_artifact] = group_artifact.replace(':', '_')
+            break
     return group_artifact.replace(':', '_')
 
 
@@ -551,6 +581,9 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
     Returns:
         True if successful, false otherwise.
     """
+    # If neither include nor exclude is set, fall back to legacy behavior of including everything.
+    include_all = exclude is None and include is None
+
     if exclude is None:
         exclude = []
     if include is None:
@@ -565,24 +598,32 @@ def transform_maven_repos(maven_repo_dirs, transformed_dir, extract_res=True,
     for remote_repo in maven_repo_dirs:
         remote_repo = os.path.join(cwd, remote_repo)
         paths_to_copy = []
-        for group_artifact in include:
-            artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
-            remote_path = os.path.join(remote_repo, artifact_path)
-            working_path = os.path.join(working_dir, artifact_path)
-            if os.path.exists(remote_path):
-                print(f'Included {group_artifact} in update')
-                paths_to_copy.append([remote_path, working_path])
 
-        # Move included artifacts from repo to temp.
-        for [remote_path, working_path] in paths_to_copy:
-            mv(remote_path, working_path)
+        # If we're including everything, move the entire repo to temp.
+        if include_all:
+            cp(remote_repo, working_dir)
+        else:
+            # Move included artifacts from repo to temp.
+            for group_artifact in include:
+                artifact_path = os.path.join('m2repository', path_for_artifact(group_artifact))
+                remote_path = os.path.join(remote_repo, artifact_path)
+                working_path = os.path.join(working_dir, artifact_path)
+                if os.path.exists(remote_path):
+                    print(f'Included {group_artifact} in update')
+                    paths_to_copy.append([remote_path, working_path])
+            for [remote_path, working_path] in paths_to_copy:
+                mv(remote_path, working_path)
 
         # Replace all remaining artifacts in remote repo with local repo.
         cp(local_repo, remote_repo)
 
-        # Restore included artifacts to remote repo.
-        for [remote_path, working_path] in paths_to_copy:
-            mv(working_path, remote_path)
+        # If we're including everything, restore the entire repo.
+        if include_all:
+            cp(working_dir, remote_repo)
+        else:
+            # Restore included artifacts to remote repo.
+            for [remote_path, working_path] in paths_to_copy:
+                mv(working_path, remote_path)
 
     # Handle exclusions by replacing the remote artifacts for the exclusions with local artifacts.
     # This must happen before we parse the artifacts.
@@ -762,22 +803,21 @@ def download_file_to_disk(url, filepath):
         raise
 
 
-def check_startup_initializers(manifest_path: str) -> Optional[str]:
+def check_startup_initializers(manifest_path: Path) -> Optional[str]:
     try:
         for prefix in android_manifest_namepaces:
             ET.register_namespace(prefix, android_manifest_namepaces[prefix])
 
         # Use ElementTree to check if we need updates.
         # That way we avoid false positives.
-        manifest = ET.parse(manifest_path)
-        root = manifest.getroot()
+        contents = manifest_path.read_text()
+        root = ET.fromstring(contents)
         needs_changes = _check_node(root)
         if needs_changes:
             # Ideally we would use ElementTree here.
             # Instead, we are using regular expressions here so we can
             # preserve comments and whitespaces.
-            manifest_contents = Path(manifest_path).read_text()
-            lines = manifest_contents.splitlines()
+            lines = contents.splitlines()
             output = StringIO()
             for line in lines:
                 matcher = startup_initializer_pattern.match(line)
@@ -884,7 +924,7 @@ def update_androidx(target, build_id, local_file, include, exclude, beyond_corp)
 
     # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
     files_to_restore = [androidx_owners, java_plugins_bp_path, test_mapping_file,
-                        compose_test_mapping_file]
+                        drop_config_toml, compose_test_mapping_file]
     for file_to_restore in files_to_restore:
         # Ignore any output or error - these files are not gauranteed to exist, but
         # if they do, we want to restore them.
@@ -962,8 +1002,13 @@ def fetch_artifact(target, build_id, artifact_path, beyond_corp, local_mode):
     try:
         if not os.path.exists(copy_to):
             os.makedirs(copy_to)
+        copied = 0
         for file in glob.glob(copy_from):
             result_path = shutil.copy(file, copy_to)
+            copied += 1
+        # Multiple files, return destination folder.
+        if copied > 1:
+            result_path = artifact_path
     except Exception as e:
         print(f'Error: {e} occured while copying')
         raise
@@ -1315,7 +1360,7 @@ def main():
 
             # Finalize extension sdk level
             readme = (f'- {args.finalize_extension}: Finalized together with '
-                      'Android {args.finalize_sdk} (all modules)')
+                      f'Android {args.finalize_sdk} (all modules)')
             cmd = extension_sdk_finalization_cmd.format(
                 readme=readme,
                 bug=args.bug,

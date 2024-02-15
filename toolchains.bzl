@@ -14,13 +14,15 @@
 
 load("//build/bazel/rules/java:bootclasspath.bzl", "bootclasspath")
 load("//build/bazel/rules/java:java_system_modules.bzl", "java_system_modules")
-load("//build/bazel/rules/java:rules.bzl", "java_import")
+load("//build/bazel/rules/java:import.bzl", "java_import")
 load("//build/bazel/rules/java:versions.bzl", "java_versions")
 load("//prebuilts/sdk:utils.bzl", "prebuilt_sdk_utils")
 load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "DEFAULT_JAVACOPTS", "default_java_toolchain")
 load("//build/bazel/rules/common:api.bzl", "api")
+load("//build/bazel/rules/common:sdk_version.bzl", "sdk_version")
 load("@soong_injection//java_toolchain:constants.bzl", "constants")
 load("//build/bazel/rules/java/sdk:config_setting_names.bzl", sdk_config_setting = "config_setting_names")
+load("//build/bazel/rules/java/errorprone:errorprone.bzl", "errorprone_global_flags")
 
 # //prebuilts/sdk/current is a package, but the numbered directories under //prebuilts/sdk/ are not.
 def _prebuilt_path_prefix(kind, api_level):
@@ -60,14 +62,26 @@ def prebuilts_toolchain(java_toolchain_name, android_sdk_toolchain_name):
 
     # android_jar_select_dict and framework_aidl_select_dict are only used by the android
     # toolchain. We should never be in a situation where sdk_version = "none" and we're trying to
-    # build an android_* target, however it looks like toolchain resolution currently ensures that
-    # every toolchain attribute resolves under every configuration, so we map "none" to an
-    # explicitly failing target to meet the requirement.
+    # build an android_* target, but:
+    #    1. a Bazel check enforces that every toolchain attribute resolves under every
+    #       configuration, and
+    #    2. the DexArchiveAspect can propagate to java_host_for_device dependencies, and
+    #       tries to access an android.jar from there (b/278596841).
+    # We should map "none" to an explicitly failing target to address 1, but until 2 is resolved,
+    # we point to the public current artifacts.
     android_jar_select_dict = {
-        _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: ":failed_android.jar",
+        _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: _android_jar_file_name(
+            sdk_version.KIND_PUBLIC,
+            api.FUTURE_API_LEVEL,
+        ),  # ":failed_android.jar",
     }
     framework_aidl_select_dict = {
-        _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: ":failed_framework.aidl",
+        _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: "%s/framework.aidl" % (
+            _prebuilt_path_prefix(
+                prebuilt_sdk_utils.to_aidl_kind(sdk_version.KIND_PUBLIC, api.FUTURE_API_LEVEL),
+                api.FUTURE_API_LEVEL,
+            )
+        ),  # ":failed_framework.aidl",
     }
 
     for api_level in prebuilt_sdk_utils.API_LEVELS:
@@ -121,7 +135,7 @@ def prebuilts_toolchain(java_toolchain_name, android_sdk_toolchain_name):
         # TODO(b/218720643): Support switching between multiple JDKs.
         java_runtime = "//prebuilts/jdk/jdk17:jdk17_runtime",
         toolchain_definition = False,
-        misc = DEFAULT_JAVACOPTS + constants.CommonJdkFlags + select({
+        misc = errorprone_global_flags + DEFAULT_JAVACOPTS + constants.CommonJdkFlags + select({
             _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: ["--system=none"],
             "//conditions:default": [],
         }),
