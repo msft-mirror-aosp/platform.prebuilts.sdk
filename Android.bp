@@ -48,11 +48,12 @@ filegroup {
     ],
 }
 
-filegroup {
+genrule {
     name: "current-androidx-api",
-    srcs: [
-        "current/androidx-api.txt",
-    ],
+    srcs: ["current/androidx-api.txt"],
+    out: ["androidx-api.xml"],
+    tools: ["metalava"],
+    cmd: "$(location metalava) signature-to-jdiff $(in) $(out)"
 }
 
 filegroup {
