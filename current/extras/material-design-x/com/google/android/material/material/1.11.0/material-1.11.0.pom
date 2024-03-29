@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.google.android.material</groupId>
   <artifactId>material</artifactId>
-  <version>1.7.0-alpha03</version>
+  <version>1.11.0</version>
   <packaging>aar</packaging>
   <name>Material Components for Android</name>
   <description>Material Components for Android is a static library that you can add to your Android application in order to use APIs that provide implementations of the Material Design specification. Compatible on devices running API 14 or later.</description>
@@ -31,7 +31,24 @@
     <connection>scm:git:https://github.com/material-components/material-components-android.git</connection>
     <url>https://github.com/material-components/material-components-android</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-bom</artifactId>
+        <version>1.8.22</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>androidx.activity</groupId>
+      <artifactId>activity</artifactId>
+      <version>1.8.0</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>androidx.annotation</groupId>
       <artifactId>annotation</artifactId>
@@ -41,7 +58,7 @@
     <dependency>
       <groupId>androidx.appcompat</groupId>
       <artifactId>appcompat</artifactId>
-      <version>1.5.0-beta01</version>
+      <version>1.6.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -105,6 +122,12 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>androidx.resourceinspection</groupId>
+      <artifactId>resourceinspection-annotation</artifactId>
+      <version>1.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>androidx.transition</groupId>
       <artifactId>transition</artifactId>
       <version>1.2.0</version>
@@ -121,6 +144,12 @@
       <artifactId>viewpager2</artifactId>
       <version>1.0.0</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.errorprone</groupId>
+      <artifactId>error_prone_annotations</artifactId>
+      <version>2.15.0</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 </project>
