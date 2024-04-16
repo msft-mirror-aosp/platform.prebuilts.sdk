@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.collection_collection-ktx-nodeps",
+    name: "androidx.collection_collection-ktx",
     jars: ["collection-ktx-1.4.0-alpha02.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,20 +23,7 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.collection_collection-ktx",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
     static_libs: [
-        "androidx.collection_collection-ktx-nodeps",
         "androidx.collection_collection",
     ],
-    java_version: "1.7",
 }
-

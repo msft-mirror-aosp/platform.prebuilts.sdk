@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx-constraintlayout_constraintlayout-nodeps",
+    name: "androidx-constraintlayout_constraintlayout",
     aars: ["constraintlayout-2.2.0-alpha13.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "androidx.profileinstaller_profileinstaller",
     ],
 }
-
-android_library {
-    name: "androidx-constraintlayout_constraintlayout",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx-constraintlayout_constraintlayout-nodeps",
-        "androidx.appcompat_appcompat",
-        "androidx.constraintlayout_constraintlayout-core",
-        "androidx.core_core",
-        "androidx.profileinstaller_profileinstaller",
-    ],
-    java_version: "1.7",
-}
-
