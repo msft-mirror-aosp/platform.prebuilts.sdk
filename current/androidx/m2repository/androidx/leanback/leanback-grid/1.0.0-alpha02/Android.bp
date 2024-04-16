@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.leanback_leanback-grid-nodeps",
+    name: "androidx.leanback_leanback-grid",
     aars: ["leanback-grid-1.0.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "androidx.recyclerview_recyclerview",
     ],
 }
-
-android_library {
-    name: "androidx.leanback_leanback-grid",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.leanback_leanback-grid-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
-        "androidx.recyclerview_recyclerview",
-    ],
-    java_version: "1.7",
-}
-

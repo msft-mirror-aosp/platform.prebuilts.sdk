@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.biometric_biometric-nodeps",
+    name: "androidx.biometric_biometric",
     aars: ["biometric-1.2.0-alpha06.aar"],
     sdk_version: "34",
     apex_available: [
@@ -34,27 +34,3 @@ android_library_import {
         "androidx.lifecycle_lifecycle-viewmodel",
     ],
 }
-
-android_library {
-    name: "androidx.biometric_biometric",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.biometric_biometric-nodeps",
-        "androidx.activity_activity",
-        "androidx.annotation_annotation",
-        "androidx.appcompat_appcompat",
-        "androidx.core_core",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-common-java8",
-        "androidx.lifecycle_lifecycle-livedata-core",
-        "androidx.lifecycle_lifecycle-viewmodel",
-    ],
-    java_version: "1.7",
-}
-
