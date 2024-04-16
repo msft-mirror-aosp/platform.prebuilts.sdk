@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.wear.tiles_tiles-nodeps",
+    name: "androidx.wear.tiles_tiles",
     aars: ["tiles-1.4.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -33,26 +33,3 @@ android_library_import {
         "guava-listenablefuture-prebuilt-jar",
     ],
 }
-
-android_library {
-    name: "androidx.wear.tiles_tiles",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "26",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.wear.tiles_tiles-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.wear.protolayout_protolayout",
-        "androidx.wear.protolayout_protolayout-expression",
-        "androidx.wear.tiles_tiles-proto",
-        "guava-listenablefuture-prebuilt-jar",
-    ],
-    java_version: "1.7",
-}
-
