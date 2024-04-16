@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.fragment_fragment-testing-nodeps",
+    name: "androidx.fragment_fragment-testing",
     aars: ["fragment-testing-1.8.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.fragment_fragment-testing",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.fragment_fragment-testing-nodeps",
-        "androidx.fragment_fragment-ktx",
-        "androidx.fragment_fragment-testing-manifest",
-        "androidx.test.core",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-

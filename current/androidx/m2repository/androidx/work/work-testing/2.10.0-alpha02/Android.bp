@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.work_work-testing-nodeps",
+    name: "androidx.work_work-testing",
     aars: ["work-testing-2.10.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "androidx.work_work-runtime",
     ],
 }
-
-android_library {
-    name: "androidx.work_work-testing",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.work_work-testing-nodeps",
-        "androidx.concurrent_concurrent-futures-ktx",
-        "androidx.lifecycle_lifecycle-livedata-core",
-        "androidx.room_room-runtime",
-        "androidx.work_work-runtime",
-    ],
-    java_version: "1.7",
-}
-
