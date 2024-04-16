@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.navigation_navigation-testing",
+    name: "androidx.navigation_navigation-testing-nodeps",
     aars: ["navigation-testing-2.8.0-alpha07.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,3 +28,21 @@ android_library_import {
         "androidx.navigation_navigation-runtime",
     ],
 }
+
+android_library {
+    name: "androidx.navigation_navigation-testing",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.navigation_navigation-testing-nodeps",
+        "androidx.lifecycle_lifecycle-runtime-testing",
+        "androidx.navigation_navigation-runtime",
+    ],
+    java_version: "1.7",
+}
+

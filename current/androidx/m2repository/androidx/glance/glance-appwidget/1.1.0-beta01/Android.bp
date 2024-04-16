@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.glance_glance-appwidget",
+    name: "androidx.glance_glance-appwidget-nodeps",
     aars: ["glance-appwidget-1.1.0-beta01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -38,3 +38,31 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.glance_glance-appwidget",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.glance_glance-appwidget-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui-graphics",
+        "androidx.compose.ui_ui-unit",
+        "androidx.core_core-ktx",
+        "androidx.core_core-remoteviews",
+        "androidx.datastore_datastore",
+        "androidx.datastore_datastore-core",
+        "androidx.datastore_datastore-preferences",
+        "androidx.datastore_datastore-preferences-core",
+        "androidx.glance_glance",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

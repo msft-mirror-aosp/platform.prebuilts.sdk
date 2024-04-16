@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client",
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
     aars: ["sdkruntime-client-1.0.0-alpha13.aar"],
     sdk_version: "34",
     apex_available: [
@@ -32,3 +32,25 @@ android_library_import {
         "kotlinx_coroutines",
     ],
 }
+
+android_library {
+    name: "androidx.privacysandbox.sdkruntime_sdkruntime-client",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.sdkruntime_sdkruntime-client-nodeps",
+        "androidx.activity_activity",
+        "androidx.core_core",
+        "androidx.core_core-ktx",
+        "androidx.privacysandbox.sdkruntime_sdkruntime-core",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+
