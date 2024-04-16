@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.leanback_leanback-preference-nodeps",
+    name: "androidx.leanback_leanback-preference",
     aars: ["leanback-preference-1.2.0-alpha03.aar"],
     sdk_version: "34",
     apex_available: [
@@ -32,25 +32,3 @@ android_library_import {
         "androidx.recyclerview_recyclerview",
     ],
 }
-
-android_library {
-    name: "androidx.leanback_leanback-preference",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.leanback_leanback-preference-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.appcompat_appcompat",
-        "androidx.collection_collection",
-        "androidx.leanback_leanback",
-        "androidx.preference_preference",
-        "androidx.recyclerview_recyclerview",
-    ],
-    java_version: "1.7",
-}
-

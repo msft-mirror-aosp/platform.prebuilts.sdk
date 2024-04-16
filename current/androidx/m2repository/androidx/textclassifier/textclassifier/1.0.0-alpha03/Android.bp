@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.textclassifier_textclassifier-nodeps",
+    name: "androidx.textclassifier_textclassifier",
     aars: ["textclassifier-1.0.0-alpha03.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "androidx.core_core",
     ],
 }
-
-android_library {
-    name: "androidx.textclassifier_textclassifier",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.textclassifier_textclassifier-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.appcompat_appcompat",
-        "androidx.collection_collection",
-        "androidx.core_core",
-    ],
-    java_version: "1.7",
-}
-

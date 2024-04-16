@@ -15,21 +15,13 @@ package {
 }
 
 java_import_host {
-    name: "androidx.privacysandbox.tools_tools-core-nodeps",
-    jars: ["tools-core-1.0.0-alpha08.jar"],
-    sdk_version: "34",
-}
-
-java_library_host {
     name: "androidx.privacysandbox.tools_tools-core",
+    jars: ["tools-core-1.0.0-alpha08.jar"],
     static_libs: [
-        "androidx.privacysandbox.tools_tools-core-nodeps",
         "androidx.privacysandbox.tools_tools",
         "guava",
         "kotlin-stdlib",
         "kotlinpoet",
         "libprotobuf-java-full",
     ],
-    java_version: "1.7",
 }
-

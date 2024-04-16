@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-service-nodeps",
+    name: "androidx.lifecycle_lifecycle-service",
     aars: ["lifecycle-service-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,21 +28,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.lifecycle_lifecycle-service",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.lifecycle_lifecycle-service-nodeps",
-        "androidx.lifecycle_lifecycle-runtime",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-

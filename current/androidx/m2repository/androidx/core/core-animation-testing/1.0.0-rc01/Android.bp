@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.core_core-animation-testing-nodeps",
+    name: "androidx.core_core-animation-testing",
     aars: ["core-animation-testing-1.0.0-rc01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "junit",
     ],
 }
-
-android_library {
-    name: "androidx.core_core-animation-testing",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.core_core-animation-testing-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.core_core",
-        "androidx.core_core-animation",
-        "junit",
-    ],
-    java_version: "1.7",
-}
-

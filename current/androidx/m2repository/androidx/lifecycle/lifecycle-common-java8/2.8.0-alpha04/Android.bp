@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.lifecycle_lifecycle-common-java8-nodeps",
+    name: "androidx.lifecycle_lifecycle-common-java8",
     jars: ["lifecycle-common-java8-2.8.0-alpha04.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,21 +23,8 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.lifecycle_lifecycle-common-java8",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
     static_libs: [
-        "androidx.lifecycle_lifecycle-common-java8-nodeps",
         "androidx.annotation_annotation",
         "androidx.lifecycle_lifecycle-common",
     ],
-    java_version: "1.7",
 }
-

@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.glance_glance-appwidget-testing-samples-nodeps",
+    name: "androidx.glance_glance-appwidget-testing-samples",
     aars: ["glance-appwidget-testing-samples-1.1.0-beta01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -34,27 +34,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.glance_glance-appwidget-testing-samples",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "23",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.glance_glance-appwidget-testing-samples-nodeps",
-        "androidx.core_core",
-        "androidx.core_core-ktx",
-        "androidx.glance_glance",
-        "androidx.glance_glance-appwidget-testing",
-        "androidx.glance_glance-testing",
-        "androidx.test.core",
-        "junit",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-

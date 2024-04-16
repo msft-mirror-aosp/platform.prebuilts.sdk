@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.javascriptengine_javascriptengine-nodeps",
+    name: "androidx.javascriptengine_javascriptengine",
     aars: ["javascriptengine-1.0.0-alpha06.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "guava",
     ],
 }
-
-android_library {
-    name: "androidx.javascriptengine_javascriptengine",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "26",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.javascriptengine_javascriptengine-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.core_core",
-        "guava",
-    ],
-    java_version: "1.7",
-}
-

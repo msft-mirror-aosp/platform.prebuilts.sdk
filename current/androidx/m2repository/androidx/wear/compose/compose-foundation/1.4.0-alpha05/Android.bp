@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.wear.compose_compose-foundation-nodeps",
+    name: "androidx.wear.compose_compose-foundation",
     aars: ["compose-foundation-1.4.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -35,30 +35,7 @@ android_library_import {
         "androidx.profileinstaller_profileinstaller",
         "kotlin-stdlib",
     ],
-}
-
-android_library {
-    name: "androidx.wear.compose_compose-foundation",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
+    optional_uses_libs: [
+        "wear-sdk",
     ],
-    min_sdk_version: "25",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.wear.compose_compose-foundation-nodeps",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.foundation_foundation-layout",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core",
-        "androidx.lifecycle_lifecycle-runtime-compose",
-        "androidx.profileinstaller_profileinstaller",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
 }
-

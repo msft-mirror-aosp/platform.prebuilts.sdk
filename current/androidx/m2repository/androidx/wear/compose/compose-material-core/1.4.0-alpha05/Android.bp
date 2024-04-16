@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.wear.compose_compose-material-core-nodeps",
+    name: "androidx.wear.compose_compose-material-core",
     aars: ["compose-material-core-1.4.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -37,30 +37,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.wear.compose_compose-material-core",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "25",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.wear.compose_compose-material-core-nodeps",
-        "androidx.compose.animation_animation",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.material_material-icons-core",
-        "androidx.compose.material_material-ripple",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-util",
-        "androidx.profileinstaller_profileinstaller",
-        "androidx.wear.compose_compose-foundation",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-
