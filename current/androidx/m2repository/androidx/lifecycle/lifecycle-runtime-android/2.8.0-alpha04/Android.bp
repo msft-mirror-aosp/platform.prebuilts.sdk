@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-runtime-nodeps",
+    name: "androidx.lifecycle_lifecycle-runtime",
     aars: ["lifecycle-runtime-android-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -33,26 +33,3 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
-
-android_library {
-    name: "androidx.lifecycle_lifecycle-runtime",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.lifecycle_lifecycle-runtime-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.arch.core_core-common",
-        "androidx.arch.core_core-runtime",
-        "androidx.lifecycle_lifecycle-common",
-        "androidx.profileinstaller_profileinstaller",
-        "kotlin-stdlib",
-        "kotlinx_coroutines_android",
-    ],
-    java_version: "1.7",
-}
-

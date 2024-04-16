@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.constraintlayout_constraintlayout-compose-nodeps",
+    name: "androidx.constraintlayout_constraintlayout-compose",
     aars: ["constraintlayout-compose-android-1.1.0-alpha13.aar"],
     sdk_version: "34",
     apex_available: [
@@ -35,28 +35,3 @@ android_library_import {
         "androidx.core_core-ktx",
     ],
 }
-
-android_library {
-    name: "androidx.constraintlayout_constraintlayout-compose",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.constraintlayout_constraintlayout-compose-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.foundation_foundation-layout",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.constraintlayout_constraintlayout-core",
-        "androidx.core_core-ktx",
-    ],
-    java_version: "1.7",
-}
-
