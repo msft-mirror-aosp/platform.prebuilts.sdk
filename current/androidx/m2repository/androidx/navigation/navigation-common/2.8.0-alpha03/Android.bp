@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.navigation_navigation-common",
+    name: "androidx.navigation_navigation-common-nodeps",
     aars: ["navigation-common-2.8.0-alpha03.aar"],
     sdk_version: "34",
     apex_available: [
@@ -36,3 +36,29 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.navigation_navigation-common",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.navigation_navigation-common-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.collection_collection-ktx",
+        "androidx.core_core-ktx",
+        "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.profileinstaller_profileinstaller",
+        "androidx.savedstate_savedstate-ktx",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

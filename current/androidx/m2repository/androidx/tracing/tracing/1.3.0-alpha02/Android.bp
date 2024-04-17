@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.tracing_tracing",
+    name: "androidx.tracing_tracing-nodeps",
     aars: ["tracing-1.3.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -27,3 +27,20 @@ android_library_import {
         "androidx.annotation_annotation",
     ],
 }
+
+android_library {
+    name: "androidx.tracing_tracing",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.tracing_tracing-nodeps",
+        "androidx.annotation_annotation",
+    ],
+    java_version: "1.7",
+}
+

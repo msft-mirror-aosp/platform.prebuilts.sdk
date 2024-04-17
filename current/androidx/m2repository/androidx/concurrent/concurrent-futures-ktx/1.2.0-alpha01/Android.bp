@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.concurrent_concurrent-futures-ktx",
+    name: "androidx.concurrent_concurrent-futures-ktx-nodeps",
     jars: ["concurrent-futures-ktx-1.2.0-alpha01.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,9 +23,22 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.concurrent_concurrent-futures-ktx",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
+        "androidx.concurrent_concurrent-futures-ktx-nodeps",
         "androidx.concurrent_concurrent-futures",
         "kotlin-stdlib",
         "kotlinx_coroutines",
     ],
+    java_version: "1.7",
 }
+
