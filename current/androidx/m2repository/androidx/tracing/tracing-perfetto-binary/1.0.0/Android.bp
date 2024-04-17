@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.tracing_tracing-perfetto-binary",
+    name: "androidx.tracing_tracing-perfetto-binary-nodeps",
     aars: ["tracing-perfetto-binary-1.0.0.aar"],
     sdk_version: "34",
     apex_available: [
@@ -26,3 +26,19 @@ android_library_import {
     static_libs: [
     ],
 }
+
+android_library {
+    name: "androidx.tracing_tracing-perfetto-binary",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.tracing_tracing-perfetto-binary-nodeps",
+    ],
+    java_version: "1.7",
+}
+

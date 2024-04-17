@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.graphics_graphics-path",
+    name: "androidx.graphics_graphics-path-nodeps",
     aars: ["graphics-path-1.0.0-rc01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,3 +28,21 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.graphics_graphics-path",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.graphics_graphics-path-nodeps",
+        "androidx.core_core",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

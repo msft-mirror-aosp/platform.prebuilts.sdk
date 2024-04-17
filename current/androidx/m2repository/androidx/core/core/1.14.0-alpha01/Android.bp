@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.core_core",
+    name: "androidx.core_core-nodeps",
     aars: ["core-1.14.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -34,3 +34,27 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.core_core",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.core_core-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.annotation_annotation-experimental",
+        "androidx.collection_collection",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.interpolator_interpolator",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.versionedparcelable_versionedparcelable",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

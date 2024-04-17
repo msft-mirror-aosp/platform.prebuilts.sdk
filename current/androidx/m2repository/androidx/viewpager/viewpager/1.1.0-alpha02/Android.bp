@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.viewpager_viewpager",
+    name: "androidx.viewpager_viewpager-nodeps",
     aars: ["viewpager-1.1.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -29,3 +29,22 @@ android_library_import {
         "androidx.customview_customview",
     ],
 }
+
+android_library {
+    name: "androidx.viewpager_viewpager",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.viewpager_viewpager-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.customview_customview",
+    ],
+    java_version: "1.7",
+}
+
