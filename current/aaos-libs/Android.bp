@@ -601,3 +601,22 @@ android_library_import {
         "androidx.appcompat_appcompat",
     ],
 }
+
+android_library {
+    name: "car-broadcastradio-support",
+    min_sdk_version: "33",
+    sdk_version: "33",
+    static_libs: [
+        "car-broadcastradio-support-source",
+    ],
+}
+
+android_library_import {
+    name: "car-broadcastradio-support-source",
+    aars: ["car-broadcastradio-support.aar"],
+    min_sdk_version: "33",
+    sdk_version: "33",
+    static_libs: [
+        "androidx.legacy_legacy-support-v4",
+    ],
+}
