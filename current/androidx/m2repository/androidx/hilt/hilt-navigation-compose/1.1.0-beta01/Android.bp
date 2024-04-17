@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.hilt_hilt-navigation-compose",
+    name: "androidx.hilt_hilt-navigation-compose-nodeps",
     aars: ["hilt-navigation-compose-1.1.0-beta01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -32,3 +32,25 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.hilt_hilt-navigation-compose",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.hilt_hilt-navigation-compose-nodeps",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.hilt_hilt-navigation",
+        "androidx.lifecycle_lifecycle-viewmodel-compose",
+        "androidx.navigation_navigation-compose",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

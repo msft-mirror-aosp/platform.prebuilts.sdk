@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.fragment_fragment",
+    name: "androidx.fragment_fragment-nodeps",
     aars: ["fragment-1.8.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -40,3 +40,33 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.fragment_fragment",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.fragment_fragment-nodeps",
+        "androidx.activity_activity",
+        "androidx.annotation_annotation",
+        "androidx.annotation_annotation-experimental",
+        "androidx.collection_collection",
+        "androidx.core_core-ktx",
+        "androidx.lifecycle_lifecycle-livedata-core",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "androidx.loader_loader",
+        "androidx.profileinstaller_profileinstaller",
+        "androidx.savedstate_savedstate",
+        "androidx.viewpager_viewpager",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+
