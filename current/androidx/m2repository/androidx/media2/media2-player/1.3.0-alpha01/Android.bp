@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.media2_media2-player",
+    name: "androidx.media2_media2-player-nodeps",
     aars: ["media2-player-1.3.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,3 +31,24 @@ android_library_import {
         "guava-listenablefuture-prebuilt-jar",
     ],
 }
+
+android_library {
+    name: "androidx.media2_media2-player",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.media2_media2-player-nodeps",
+        "androidx.collection_collection",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.media2_media2-common",
+        "androidx.media2_media2-exoplayer",
+        "guava-listenablefuture-prebuilt-jar",
+    ],
+    java_version: "1.7",
+}
+

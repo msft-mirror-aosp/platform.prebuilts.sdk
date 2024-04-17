@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+    name: "androidx.lifecycle_lifecycle-viewmodel-savedstate-nodeps",
     aars: ["lifecycle-viewmodel-savedstate-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -33,3 +33,26 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-viewmodel-savedstate-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core-ktx",
+        "androidx.lifecycle_lifecycle-livedata-core",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.savedstate_savedstate",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

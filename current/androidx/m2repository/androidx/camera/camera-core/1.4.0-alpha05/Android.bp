@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.camera_camera-core",
+    name: "androidx.camera_camera-core-nodeps",
     aars: ["camera-core-1.4.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -38,3 +38,31 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.camera_camera-core",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-core-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.annotation_annotation-experimental",
+        "androidx.concurrent_concurrent-futures",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "androidx.core_core",
+        "androidx.exifinterface_exifinterface",
+        "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-livedata",
+        "auto_value_annotations",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

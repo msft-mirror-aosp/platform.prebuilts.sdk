@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.core_core-remoteviews",
+    name: "androidx.core_core-remoteviews-nodeps",
     aars: ["core-remoteviews-1.1.0-beta02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -29,3 +29,22 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.core_core-remoteviews",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.core_core-remoteviews-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

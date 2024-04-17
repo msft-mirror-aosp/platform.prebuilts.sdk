@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.arch.core_core-testing",
+    name: "androidx.arch.core_core-testing-nodeps",
     aars: ["core-testing-2.2.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,3 +30,23 @@ android_library_import {
         "mockito-core",
     ],
 }
+
+android_library {
+    name: "androidx.arch.core_core-testing",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.arch.core_core-testing-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.arch.core_core-runtime",
+        "junit",
+        "mockito-core",
+    ],
+    java_version: "1.7",
+}
+

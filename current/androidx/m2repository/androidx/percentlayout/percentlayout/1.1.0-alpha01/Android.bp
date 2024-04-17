@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.percentlayout_percentlayout",
+    name: "androidx.percentlayout_percentlayout-nodeps",
     aars: ["percentlayout-1.1.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,3 +28,21 @@ android_library_import {
         "androidx.core_core",
     ],
 }
+
+android_library {
+    name: "androidx.percentlayout_percentlayout",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.percentlayout_percentlayout-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+

@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.interpolator_interpolator",
+    name: "androidx.interpolator_interpolator-nodeps",
     aars: ["interpolator-1.1.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -27,3 +27,20 @@ android_library_import {
         "androidx.annotation_annotation",
     ],
 }
+
+android_library {
+    name: "androidx.interpolator_interpolator",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.interpolator_interpolator-nodeps",
+        "androidx.annotation_annotation",
+    ],
+    java_version: "1.7",
+}
+

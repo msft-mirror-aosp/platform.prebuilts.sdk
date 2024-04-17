@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.wear.watchface_watchface-guava",
+    name: "androidx.wear.watchface_watchface-guava-nodeps",
     aars: ["watchface-guava-1.3.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,3 +28,21 @@ android_library_import {
         "guava",
     ],
 }
+
+android_library {
+    name: "androidx.wear.watchface_watchface-guava",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "26",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.wear.watchface_watchface-guava-nodeps",
+        "androidx.wear.watchface_watchface",
+        "guava",
+    ],
+    java_version: "1.7",
+}
+

@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.datastore_datastore-preferences-core",
+    name: "androidx.datastore_datastore-preferences-core-nodeps",
     jars: ["datastore-preferences-core-jvm-1.1.0-rc01.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,10 +23,23 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.datastore_datastore-preferences-core",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
+        "androidx.datastore_datastore-preferences-core-nodeps",
         "androidx.datastore_datastore-core",
         "androidx.datastore_datastore-core-okio",
         "kotlin-stdlib",
         "okio-lib",
     ],
+    java_version: "1.7",
 }
+

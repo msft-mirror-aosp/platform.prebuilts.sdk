@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.navigation_navigation-runtime",
+    name: "androidx.navigation_navigation-runtime-nodeps",
     aars: ["navigation-runtime-2.8.0-alpha07.aar"],
     sdk_version: "34",
     apex_available: [
@@ -34,3 +34,27 @@ android_library_import {
         "kotlinx_serialization_core",
     ],
 }
+
+android_library {
+    name: "androidx.navigation_navigation-runtime",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.navigation_navigation-runtime-nodeps",
+        "androidx.activity_activity-ktx",
+        "androidx.annotation_annotation-experimental",
+        "androidx.collection_collection",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-ktx",
+        "androidx.navigation_navigation-common",
+        "kotlin-stdlib",
+        "kotlinx_serialization_core",
+    ],
+    java_version: "1.7",
+}
+

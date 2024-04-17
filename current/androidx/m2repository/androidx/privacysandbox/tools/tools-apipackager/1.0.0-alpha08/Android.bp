@@ -15,9 +15,15 @@ package {
 }
 
 java_import_host {
-    name: "androidx.privacysandbox.tools_tools-apipackager",
+    name: "androidx.privacysandbox.tools_tools-apipackager-nodeps",
     jars: ["tools-apipackager-1.0.0-alpha08.jar"],
+    sdk_version: "34",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools-apipackager",
     static_libs: [
+        "androidx.privacysandbox.tools_tools-apipackager-nodeps",
         "androidx.privacysandbox.tools_tools",
         "androidx.privacysandbox.tools_tools-core",
         "kotlin-stdlib",
@@ -25,4 +31,6 @@ java_import_host {
         "ow2-asm",
         "ow2-asm-commons",
     ],
+    java_version: "1.7",
 }
+

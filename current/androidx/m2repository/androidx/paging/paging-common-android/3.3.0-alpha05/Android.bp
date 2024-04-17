@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.paging_paging-common",
+    name: "androidx.paging_paging-common-nodeps",
     aars: ["paging-common-android-3.3.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,3 +30,23 @@ android_library_import {
         "kotlinx_coroutines",
     ],
 }
+
+android_library {
+    name: "androidx.paging_paging-common",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.paging_paging-common-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.arch.core_core-common",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+

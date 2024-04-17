@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.work_work-runtime",
+    name: "androidx.work_work-runtime-nodeps",
     aars: ["work-runtime-2.10.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -37,3 +37,30 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.work_work-runtime",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.work_work-runtime-nodeps",
+        "androidx.annotation_annotation-experimental",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "androidx.core_core",
+        "androidx.lifecycle_lifecycle-livedata",
+        "androidx.lifecycle_lifecycle-service",
+        "androidx.room_room-ktx",
+        "androidx.startup_startup-runtime",
+        "androidx.tracing_tracing-ktx",
+        "guava-listenablefuture-prebuilt-jar",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-viewmodel-compose",
+    name: "androidx.lifecycle_lifecycle-viewmodel-compose-nodeps",
     aars: ["lifecycle-viewmodel-compose-android-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -33,3 +33,26 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.lifecycle_lifecycle-viewmodel-compose",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-viewmodel-compose-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.lifecycle_lifecycle-viewmodel-savedstate",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

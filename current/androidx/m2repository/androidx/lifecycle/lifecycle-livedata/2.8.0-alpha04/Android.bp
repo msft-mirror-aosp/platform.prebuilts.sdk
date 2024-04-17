@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-livedata",
+    name: "androidx.lifecycle_lifecycle-livedata-nodeps",
     aars: ["lifecycle-livedata-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -32,3 +32,25 @@ android_library_import {
         "kotlinx_coroutines",
     ],
 }
+
+android_library {
+    name: "androidx.lifecycle_lifecycle-livedata",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-livedata-nodeps",
+        "androidx.arch.core_core-common",
+        "androidx.arch.core_core-runtime",
+        "androidx.lifecycle_lifecycle-livedata-core",
+        "androidx.lifecycle_lifecycle-livedata-core-ktx",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+

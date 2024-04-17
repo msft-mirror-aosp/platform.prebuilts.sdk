@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.vectordrawable_vectordrawable-animated",
+    name: "androidx.vectordrawable_vectordrawable-animated-nodeps",
     aars: ["vectordrawable-animated-1.2.0-beta01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,3 +31,24 @@ android_library_import {
         "androidx.vectordrawable_vectordrawable",
     ],
 }
+
+android_library {
+    name: "androidx.vectordrawable_vectordrawable-animated",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.vectordrawable_vectordrawable-animated-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.core_core",
+        "androidx.interpolator_interpolator",
+        "androidx.vectordrawable_vectordrawable",
+    ],
+    java_version: "1.7",
+}
+

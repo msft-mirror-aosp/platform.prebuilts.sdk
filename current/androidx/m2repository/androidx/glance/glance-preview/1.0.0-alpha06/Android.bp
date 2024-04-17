@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.glance_glance-preview",
+    name: "androidx.glance_glance-preview-nodeps",
     aars: ["glance-preview-1.0.0-alpha06.aar"],
     sdk_version: "34",
     apex_available: [
@@ -29,3 +29,22 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
+
+android_library {
+    name: "androidx.glance_glance-preview",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.glance_glance-preview-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.compose.runtime_runtime",
+        "kotlin-stdlib",
+    ],
+    java_version: "1.7",
+}
+

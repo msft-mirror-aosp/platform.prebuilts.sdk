@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.slice_slice-view",
+    name: "androidx.slice_slice-view-nodeps",
     aars: ["slice-view-1.1.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,3 +31,24 @@ android_library_import {
         "androidx.slice_slice-core",
     ],
 }
+
+android_library {
+    name: "androidx.slice_slice-view",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.slice_slice-view-nodeps",
+        "androidx.appcompat_appcompat",
+        "androidx.collection_collection",
+        "androidx.lifecycle_lifecycle-livedata-core",
+        "androidx.recyclerview_recyclerview",
+        "androidx.slice_slice-core",
+    ],
+    java_version: "1.7",
+}
+

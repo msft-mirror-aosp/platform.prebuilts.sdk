@@ -15,9 +15,15 @@ package {
 }
 
 java_import_host {
-    name: "androidx.room_room-compiler",
+    name: "androidx.room_room-compiler-nodeps",
     jars: ["room-compiler-2.7.0-alpha01.jar"],
+    sdk_version: "34",
+}
+
+java_library_host {
+    name: "androidx.room_room-compiler",
     static_libs: [
+        "androidx.room_room-compiler-nodeps",
         "androidx.room_room-common",
         "androidx.room_room-compiler-processing",
         "androidx.room_room-migration",
@@ -33,4 +39,6 @@ java_import_host {
         "symbol-processing-api",
         "xerial-sqlite-jdbc",
     ],
+    java_version: "1.7",
 }
+
