@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.window_window-java",
+    name: "androidx.window_window-java-nodeps",
     aars: ["window-java-1.5.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,3 +31,24 @@ android_library_import {
         "kotlinx_coroutines",
     ],
 }
+
+android_library {
+    name: "androidx.window_window-java",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.window_window-java-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.window_window",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+

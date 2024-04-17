@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.media_media",
+    name: "androidx.media_media-nodeps",
     aars: ["media-1.7.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -29,3 +29,22 @@ android_library_import {
         "androidx.core_core",
     ],
 }
+
+android_library {
+    name: "androidx.media_media",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.media_media-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.core_core",
+    ],
+    java_version: "1.7",
+}
+

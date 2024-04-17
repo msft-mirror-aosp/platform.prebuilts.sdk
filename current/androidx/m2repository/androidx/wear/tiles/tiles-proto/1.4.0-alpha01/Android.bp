@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.wear.tiles_tiles-proto",
+    name: "androidx.wear.tiles_tiles-proto-nodeps",
     jars: ["tiles-proto-1.4.0-alpha01.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,8 +23,21 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.wear.tiles_tiles-proto",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
+        "androidx.wear.tiles_tiles-proto-nodeps",
         "androidx.annotation_annotation",
         "androidx.wear.protolayout_protolayout-proto",
     ],
+    java_version: "1.7",
 }
+

@@ -15,13 +15,21 @@ package {
 }
 
 java_import_host {
-    name: "androidx.privacysandbox.tools_tools-apicompiler",
+    name: "androidx.privacysandbox.tools_tools-apicompiler-nodeps",
     jars: ["tools-apicompiler-1.0.0-alpha08.jar"],
+    sdk_version: "34",
+}
+
+java_library_host {
+    name: "androidx.privacysandbox.tools_tools-apicompiler",
     static_libs: [
+        "androidx.privacysandbox.tools_tools-apicompiler-nodeps",
         "androidx.privacysandbox.tools_tools",
         "androidx.privacysandbox.tools_tools-core",
         "kotlin-stdlib",
         "kotlinpoet",
         "symbol-processing-api",
     ],
+    java_version: "1.7",
 }
+
