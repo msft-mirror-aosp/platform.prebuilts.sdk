@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.wear.protolayout_protolayout-proto",
+    name: "androidx.wear.protolayout_protolayout-proto-nodeps",
     jars: ["protolayout-proto-1.2.0-alpha01.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,7 +23,20 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.wear.protolayout_protolayout-proto",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
+        "androidx.wear.protolayout_protolayout-proto-nodeps",
         "androidx.annotation_annotation",
     ],
+    java_version: "1.7",
 }
+

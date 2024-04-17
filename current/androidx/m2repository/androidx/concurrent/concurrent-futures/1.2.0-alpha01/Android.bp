@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.concurrent_concurrent-futures",
+    name: "androidx.concurrent_concurrent-futures-nodeps",
     jars: ["concurrent-futures-1.2.0-alpha01.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,8 +23,21 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.concurrent_concurrent-futures",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
+        "androidx.concurrent_concurrent-futures-nodeps",
         "androidx.annotation_annotation",
         "guava-listenablefuture-prebuilt-jar",
     ],
+    java_version: "1.7",
 }
+
