@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.wear.watchface_watchface",
+    name: "androidx.wear.watchface_watchface-nodeps",
     aars: ["watchface-1.3.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -34,3 +34,27 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.wear.watchface_watchface",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "26",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.wear.watchface_watchface-nodeps",
+        "androidx.activity_activity",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.wear.watchface_watchface-complications-data",
+        "androidx.wear.watchface_watchface-data",
+        "androidx.wear.watchface_watchface-style",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

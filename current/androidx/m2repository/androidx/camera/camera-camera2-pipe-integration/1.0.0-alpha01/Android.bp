@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.camera_camera-camera2-pipe-integration",
+    name: "androidx.camera_camera-camera2-pipe-integration-nodeps",
     aars: ["camera-camera2-pipe-integration-1.0.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -36,3 +36,29 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.camera_camera-camera2-pipe-integration",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.camera_camera-camera2-pipe-integration-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.camera_camera-camera2-pipe",
+        "androidx.camera_camera-core",
+        "androidx.concurrent_concurrent-futures-ktx",
+        "androidx.core_core",
+        "androidx.lifecycle_lifecycle-livedata-ktx",
+        "dagger2",
+        "kotlin-stdlib",
+        "kotlinx_atomicfu",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

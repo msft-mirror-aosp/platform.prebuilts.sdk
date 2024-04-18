@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-viewmodel",
+    name: "androidx.lifecycle_lifecycle-viewmodel-nodeps",
     aars: ["lifecycle-viewmodel-android-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,3 +30,23 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.lifecycle_lifecycle-viewmodel",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.lifecycle_lifecycle-viewmodel-nodeps",
+        "androidx.annotation_annotation",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

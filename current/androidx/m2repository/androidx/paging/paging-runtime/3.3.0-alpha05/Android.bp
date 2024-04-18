@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.paging_paging-runtime",
+    name: "androidx.paging_paging-runtime-nodeps",
     aars: ["paging-runtime-3.3.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -35,3 +35,28 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
+
+android_library {
+    name: "androidx.paging_paging-runtime",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.paging_paging-runtime-nodeps",
+        "androidx.core_core-ktx",
+        "androidx.lifecycle_lifecycle-livedata-ktx",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-ktx",
+        "androidx.paging_paging-common",
+        "androidx.paging_paging-common-ktx",
+        "androidx.recyclerview_recyclerview",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+    ],
+    java_version: "1.7",
+}
+

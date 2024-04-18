@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.compose.ui_ui-test-junit4",
+    name: "androidx.compose.ui_ui-test-junit4-nodeps",
     aars: ["ui-test-junit4-android-1.7.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -40,3 +40,33 @@ android_library_import {
         "kotlinx_coroutines_test",
     ],
 }
+
+android_library {
+    name: "androidx.compose.ui_ui-test-junit4",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.compose.ui_ui-test-junit4-nodeps",
+        "androidx.activity_activity",
+        "androidx.activity_activity-compose",
+        "androidx.annotation_annotation",
+        "androidx.compose.runtime_runtime-saveable",
+        "androidx.compose.ui_ui-test",
+        "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.test.core",
+        "androidx.test.ext.junit",
+        "androidx.test.monitor",
+        "junit",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+        "kotlinx_coroutines_test",
+    ],
+    java_version: "1.7",
+}
+

@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.privacysandbox.ui_ui-provider",
+    name: "androidx.privacysandbox.ui_ui-provider-nodeps",
     aars: ["ui-provider-1.0.0-alpha07.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,3 +31,24 @@ android_library_import {
         "kotlinx_coroutines",
     ],
 }
+
+android_library {
+    name: "androidx.privacysandbox.ui_ui-provider",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.privacysandbox.ui_ui-provider-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.privacysandbox.ui_ui-core",
+        "kotlin-stdlib",
+        "kotlinx_coroutines",
+    ],
+    java_version: "1.7",
+}
+

@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.appcompat_appcompat-resources",
+    name: "androidx.appcompat_appcompat-resources-nodeps",
     aars: ["appcompat-resources-1.7.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,3 +31,24 @@ android_library_import {
         "androidx.vectordrawable_vectordrawable-animated",
     ],
 }
+
+android_library {
+    name: "androidx.appcompat_appcompat-resources",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.appcompat_appcompat-resources-nodeps",
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.core_core",
+        "androidx.vectordrawable_vectordrawable",
+        "androidx.vectordrawable_vectordrawable-animated",
+    ],
+    java_version: "1.7",
+}
+
