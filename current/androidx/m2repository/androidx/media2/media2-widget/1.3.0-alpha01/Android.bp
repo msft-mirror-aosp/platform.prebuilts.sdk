@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.media2_media2-widget",
+    name: "androidx.media2_media2-widget-nodeps",
     aars: ["media2-widget-1.3.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -29,3 +29,22 @@ android_library_import {
         "androidx.palette_palette",
     ],
 }
+
+android_library {
+    name: "androidx.media2_media2-widget",
+    sdk_version: "34",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "19",
+    manifest: "manifest/AndroidManifest.xml",
+    static_libs: [
+        "androidx.media2_media2-widget-nodeps",
+        "androidx.appcompat_appcompat",
+        "androidx.media2_media2-session",
+        "androidx.palette_palette",
+    ],
+    java_version: "1.7",
+}
+

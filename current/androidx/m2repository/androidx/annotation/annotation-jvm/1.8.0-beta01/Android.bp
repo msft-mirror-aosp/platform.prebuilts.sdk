@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.annotation_annotation",
+    name: "androidx.annotation_annotation-nodeps",
     jars: ["annotation-jvm-1.8.0-beta01.jar"],
     sdk_version: "34",
     host_supported: true,
@@ -24,7 +24,21 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
+}
+
+java_library_static {
+    name: "androidx.annotation_annotation",
+    sdk_version: "34",
+    host_supported: true,
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "24",
     static_libs: [
+        "androidx.annotation_annotation-nodeps",
         "kotlin-stdlib",
     ],
+    java_version: "1.7",
 }
+
