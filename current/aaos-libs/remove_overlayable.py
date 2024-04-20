@@ -26,14 +26,18 @@ def main():
 
     with ZipFile(args.output, mode='w', compression=ZIP_DEFLATED) as outaar, ZipFile(args.soong_aar) as soongaar:
         # Parse XML, remove <overlayable>, and write to file
-        file = soongaar.open(values_path)
-        values = ET.parse(file)
-        resources = values.getroot()
-        overlayable = resources.find('overlayable')
-        if overlayable is not None:
-            resources.remove(overlayable)
-        data = ET.tostring(resources, encoding='unicode', xml_declaration=True)
-        outaar.writestr(values_path, data)
+        # In car-apps branches, libraries are built from source and do not have the res/values/values.xml file
+        try:
+            file = soongaar.open(values_path)
+            values = ET.parse(file)
+            resources = values.getroot()
+            overlayable = resources.find('overlayable')
+            if overlayable is not None:
+                resources.remove(overlayable)
+            data = ET.tostring(resources, encoding='unicode', xml_declaration=True)
+            outaar.writestr(values_path, data)
+        except KeyError:
+            print("Could not find overlayable, skipping")
 
         # copy all the other files
         for f in soongaar.namelist():
