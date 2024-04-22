@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.compose.ui_ui-util-nodeps",
+    name: "androidx.compose.ui_ui-util",
     aars: ["ui-util-android-1.7.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,21 +28,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.compose.ui_ui-util",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.ui_ui-util-nodeps",
-        "androidx.annotation_annotation-experimental",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-

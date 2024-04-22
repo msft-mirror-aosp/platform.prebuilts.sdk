@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.datastore_datastore-core-nodeps",
+    name: "androidx.datastore_datastore-core",
     aars: ["datastore-core-android-1.1.0-rc01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "kotlinx_coroutines",
     ],
 }
-
-android_library {
-    name: "androidx.datastore_datastore-core",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.datastore_datastore-core-nodeps",
-        "androidx.annotation_annotation",
-        "kotlin-parcelize-runtime",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-    ],
-    java_version: "1.7",
-}
-

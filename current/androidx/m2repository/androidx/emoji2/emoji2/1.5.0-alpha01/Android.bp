@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.emoji2_emoji2-nodeps",
+    name: "androidx.emoji2_emoji2",
     aars: ["emoji2-1.5.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,24 +31,3 @@ android_library_import {
         "androidx.startup_startup-runtime",
     ],
 }
-
-android_library {
-    name: "androidx.emoji2_emoji2",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.emoji2_emoji2-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
-        "androidx.lifecycle_lifecycle-process",
-        "androidx.startup_startup-runtime",
-    ],
-    java_version: "1.7",
-}
-

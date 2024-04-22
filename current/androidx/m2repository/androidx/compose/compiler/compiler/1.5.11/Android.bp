@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.compose.compiler_compiler-nodeps",
+    name: "androidx.compose.compiler_compiler",
     jars: ["compiler-1.5.11.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,19 +23,6 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.compose.compiler_compiler",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
     static_libs: [
-        "androidx.compose.compiler_compiler-nodeps",
     ],
-    java_version: "1.7",
 }
-
