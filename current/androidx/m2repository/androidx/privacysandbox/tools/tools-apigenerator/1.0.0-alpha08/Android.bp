@@ -15,15 +15,9 @@ package {
 }
 
 java_import_host {
-    name: "androidx.privacysandbox.tools_tools-apigenerator-nodeps",
-    jars: ["tools-apigenerator-1.0.0-alpha08.jar"],
-    sdk_version: "34",
-}
-
-java_library_host {
     name: "androidx.privacysandbox.tools_tools-apigenerator",
+    jars: ["tools-apigenerator-1.0.0-alpha08.jar"],
     static_libs: [
-        "androidx.privacysandbox.tools_tools-apigenerator-nodeps",
         "androidx.privacysandbox.tools_tools",
         "androidx.privacysandbox.tools_tools-core",
         "kotlin-stdlib",
@@ -32,6 +26,4 @@ java_library_host {
         "ow2-asm",
         "ow2-asm-commons",
     ],
-    java_version: "1.7",
 }
-

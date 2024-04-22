@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.navigation_navigation-ui-nodeps",
+    name: "androidx.navigation_navigation-ui",
     aars: ["navigation-ui-2.8.0-alpha07.aar"],
     sdk_version: "34",
     apex_available: [
@@ -24,26 +24,6 @@ android_library_import {
     ],
     min_sdk_version: "19",
     static_libs: [
-        "androidx.annotation_annotation-experimental",
-        "androidx.customview_customview",
-        "androidx.drawerlayout_drawerlayout",
-        "androidx.navigation_navigation-runtime",
-        "androidx.transition_transition",
-        "com.google.android.material_material",
-    ],
-}
-
-android_library {
-    name: "androidx.navigation_navigation-ui",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.navigation_navigation-ui-nodeps",
         "androidx.annotation_annotation-experimental",
         "androidx.customview_customview",
         "androidx.drawerlayout_drawerlayout",

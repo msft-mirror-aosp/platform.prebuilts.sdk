@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.privacysandbox.ui_ui-core-nodeps",
+    name: "androidx.privacysandbox.ui_ui-core",
     aars: ["ui-core-1.0.0-alpha07.aar"],
     sdk_version: "34",
     apex_available: [
@@ -28,21 +28,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.privacysandbox.ui_ui-core",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.privacysandbox.ui_ui-core-nodeps",
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-
