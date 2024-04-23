@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.car.app_app-automotive-nodeps",
+    name: "androidx.car.app_app-automotive",
     aars: ["app-automotive-1.4.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -37,30 +37,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.car.app_app-automotive",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "29",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.car.app_app-automotive-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.car.app_app",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.core_core",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-common-java8",
-        "auto_value_annotations",
-        "guava",
-        "guava-listenablefuture-prebuilt-jar",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-
