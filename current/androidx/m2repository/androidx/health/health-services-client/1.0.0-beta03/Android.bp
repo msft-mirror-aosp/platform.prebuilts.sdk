@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.health_health-services-client-nodeps",
+    name: "androidx.health_health-services-client",
     aars: ["health-services-client-1.0.0-beta03.aar"],
     sdk_version: "34",
     apex_available: [
@@ -34,27 +34,3 @@ android_library_import {
         "libprotobuf-java-lite",
     ],
 }
-
-android_library {
-    name: "androidx.health_health-services-client",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "30",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.health_health-services-client-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.concurrent_concurrent-futures-ktx",
-        "androidx.core_core-ktx",
-        "guava",
-        "guava-listenablefuture-prebuilt-jar",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "libprotobuf-java-lite",
-    ],
-    java_version: "1.7",
-}
-
