@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.datastore_datastore-nodeps",
+    name: "androidx.datastore_datastore",
     aars: ["datastore-android-1.1.0-rc01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -32,25 +32,3 @@ android_library_import {
         "okio-lib",
     ],
 }
-
-android_library {
-    name: "androidx.datastore_datastore",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.datastore_datastore-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.datastore_datastore-core",
-        "androidx.datastore_datastore-core-okio",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "okio-lib",
-    ],
-    java_version: "1.7",
-}
-
