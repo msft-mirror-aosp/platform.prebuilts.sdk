@@ -15,16 +15,8 @@ package {
 }
 
 java_import_host {
-    name: "androidx.compose.compiler_compiler-hosted-nodeps",
-    jars: ["compiler-hosted-1.5.11.jar"],
-    sdk_version: "34",
-}
-
-java_library_host {
     name: "androidx.compose.compiler_compiler-hosted",
+    jars: ["compiler-hosted-1.5.11.jar"],
     static_libs: [
-        "androidx.compose.compiler_compiler-hosted-nodeps",
     ],
-    java_version: "1.7",
 }
-
