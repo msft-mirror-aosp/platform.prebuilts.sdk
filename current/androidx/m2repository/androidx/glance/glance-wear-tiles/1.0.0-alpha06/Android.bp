@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.glance_glance-wear-tiles-nodeps",
+    name: "androidx.glance_glance-wear-tiles",
     aars: ["glance-wear-tiles-1.0.0-alpha06.aar"],
     sdk_version: "34",
     apex_available: [
@@ -36,29 +36,3 @@ android_library_import {
         "kotlinx_coroutines_guava",
     ],
 }
-
-android_library {
-    name: "androidx.glance_glance-wear-tiles",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "26",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.glance_glance-wear-tiles-nodeps",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui-graphics",
-        "androidx.compose.ui_ui-unit",
-        "androidx.glance_glance",
-        "androidx.glance_glance-template",
-        "androidx.lifecycle_lifecycle-runtime-ktx",
-        "androidx.lifecycle_lifecycle-service",
-        "androidx.wear.tiles_tiles",
-        "kotlin-stdlib",
-        "kotlinx_coroutines_guava",
-    ],
-    java_version: "1.7",
-}
-

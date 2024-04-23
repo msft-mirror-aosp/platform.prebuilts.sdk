@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.datastore_datastore-rxjava2-nodeps",
+    name: "androidx.datastore_datastore-rxjava2",
     aars: ["datastore-rxjava2-1.1.0-rc01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -32,25 +32,3 @@ android_library_import {
         "rxjava",
     ],
 }
-
-android_library {
-    name: "androidx.datastore_datastore-rxjava2",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.datastore_datastore-rxjava2-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.datastore_datastore",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "kotlinx_coroutines_rx2",
-        "rxjava",
-    ],
-    java_version: "1.7",
-}
-

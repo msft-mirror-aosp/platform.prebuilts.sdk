@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.benchmark_benchmark-macro-nodeps",
+    name: "androidx.benchmark_benchmark-macro",
     aars: ["benchmark-macro-1.3.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -39,32 +39,3 @@ android_library_import {
         "wire-runtime",
     ],
 }
-
-android_library {
-    name: "androidx.benchmark_benchmark-macro",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "23",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.benchmark_benchmark-macro-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.benchmark_benchmark-common",
-        "androidx.core_core",
-        "androidx.profileinstaller_profileinstaller",
-        "androidx.test.core",
-        "androidx.test.uiautomator_uiautomator",
-        "androidx.tracing_tracing-ktx",
-        "androidx.tracing_tracing-perfetto",
-        "androidx.tracing_tracing-perfetto-binary",
-        "androidx.tracing_tracing-perfetto-handshake",
-        "junit",
-        "kotlin-stdlib",
-        "wire-runtime",
-    ],
-    java_version: "1.7",
-}
-

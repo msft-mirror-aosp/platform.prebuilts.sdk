@@ -15,15 +15,9 @@ package {
 }
 
 java_import_host {
-    name: "androidx.appsearch_appsearch-compiler-nodeps",
-    jars: ["appsearch-compiler-1.1.0-alpha04.jar"],
-    sdk_version: "34",
-}
-
-java_library_host {
     name: "androidx.appsearch_appsearch-compiler",
+    jars: ["appsearch-compiler-1.1.0-alpha04.jar"],
     static_libs: [
-        "androidx.appsearch_appsearch-compiler-nodeps",
         "androidx.annotation_annotation",
         "auto_common",
         "auto_value_annotations",
@@ -31,6 +25,4 @@ java_library_host {
         "javax-annotation-api-prebuilt-host-jar",
         "libauto_value_plugin",
     ],
-    java_version: "1.7",
 }
-

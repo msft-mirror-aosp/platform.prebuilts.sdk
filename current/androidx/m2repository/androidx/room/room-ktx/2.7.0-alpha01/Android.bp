@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.room_room-ktx-nodeps",
+    name: "androidx.room_room-ktx",
     aars: ["room-ktx-2.7.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "kotlinx_coroutines_android",
     ],
 }
-
-android_library {
-    name: "androidx.room_room-ktx",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.room_room-ktx-nodeps",
-        "androidx.room_room-common",
-        "androidx.room_room-runtime",
-        "kotlin-stdlib",
-        "kotlinx_coroutines_android",
-    ],
-    java_version: "1.7",
-}
-

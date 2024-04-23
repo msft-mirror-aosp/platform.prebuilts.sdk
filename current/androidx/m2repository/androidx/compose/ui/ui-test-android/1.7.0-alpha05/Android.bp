@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.compose.ui_ui-test-nodeps",
+    name: "androidx.compose.ui_ui-test",
     aars: ["ui-test-android-1.7.0-alpha05.aar"],
     sdk_version: "34",
     apex_available: [
@@ -41,34 +41,3 @@ android_library_import {
         "kotlinx_coroutines_test",
     ],
 }
-
-android_library {
-    name: "androidx.compose.ui_ui-test",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.ui_ui-test-nodeps",
-        "androidx.activity_activity-compose",
-        "androidx.annotation_annotation",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.compose.ui_ui-graphics",
-        "androidx.compose.ui_ui-text",
-        "androidx.compose.ui_ui-unit",
-        "androidx.compose.ui_ui-util",
-        "androidx.core_core-ktx",
-        "androidx.test.espresso.core",
-        "androidx.test.espresso.idling-resource",
-        "androidx.test.monitor",
-        "kotlin-stdlib",
-        "kotlinx_coroutines",
-        "kotlinx_coroutines_test",
-    ],
-    java_version: "1.7",
-}
-

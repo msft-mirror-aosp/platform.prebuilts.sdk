@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.hilt_hilt-navigation-nodeps",
+    name: "androidx.hilt_hilt-navigation",
     aars: ["hilt-navigation-1.1.0-beta01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.hilt_hilt-navigation",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.hilt_hilt-navigation-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.navigation_navigation-runtime",
-        "hilt_android",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-

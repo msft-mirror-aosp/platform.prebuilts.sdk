@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.slice_slice-builders-nodeps",
+    name: "androidx.slice_slice-builders",
     aars: ["slice-builders-1.1.0-alpha02.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,24 +31,3 @@ android_library_import {
         "androidx.slice_slice-core",
     ],
 }
-
-android_library {
-    name: "androidx.slice_slice-builders",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.slice_slice-builders-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
-        "androidx.remotecallback_remotecallback",
-        "androidx.slice_slice-core",
-    ],
-    java_version: "1.7",
-}
-

@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.appsearch_appsearch_local_storage-nodeps",
+    name: "androidx.appsearch_appsearch_local_storage",
     aars: ["appsearch-local-storage-1.1.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,24 +31,3 @@ android_library_import {
         "androidx.core_core",
     ],
 }
-
-android_library {
-    name: "androidx.appsearch_appsearch_local_storage",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.appsearch_appsearch_local_storage-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.appsearch_appsearch",
-        "androidx.collection_collection",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.core_core",
-    ],
-    java_version: "1.7",
-}
-

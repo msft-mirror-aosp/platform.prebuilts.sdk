@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.wear.protolayout_protolayout-expression-nodeps",
+    name: "androidx.wear.protolayout_protolayout-expression",
     aars: ["protolayout-expression-1.2.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "androidx.wear.protolayout_protolayout-proto",
     ],
 }
-
-android_library {
-    name: "androidx.wear.protolayout_protolayout-expression",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "26",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.wear.protolayout_protolayout-expression-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.collection_collection",
-        "androidx.wear.protolayout_protolayout-proto",
-    ],
-    java_version: "1.7",
-}
-

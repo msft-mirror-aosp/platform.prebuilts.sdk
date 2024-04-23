@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.test.uiautomator_uiautomator-nodeps",
+    name: "androidx.test.uiautomator_uiautomator",
     aars: ["uiautomator-2.4.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -29,22 +29,3 @@ android_library_import {
         "junit",
     ],
 }
-
-android_library {
-    name: "androidx.test.uiautomator_uiautomator",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.test.uiautomator_uiautomator-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.tracing_tracing",
-        "junit",
-    ],
-    java_version: "1.7",
-}
-

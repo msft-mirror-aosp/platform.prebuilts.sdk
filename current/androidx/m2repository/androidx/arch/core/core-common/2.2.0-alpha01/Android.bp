@@ -15,7 +15,7 @@ package {
 }
 
 java_import {
-    name: "androidx.arch.core_core-common-nodeps",
+    name: "androidx.arch.core_core-common",
     jars: ["core-common-2.2.0-alpha01.jar"],
     sdk_version: "34",
     apex_available: [
@@ -23,20 +23,7 @@ java_import {
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
-}
-
-java_library_static {
-    name: "androidx.arch.core_core-common",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
     static_libs: [
-        "androidx.arch.core_core-common-nodeps",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
-
