@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.compose.runtime_runtime-livedata-nodeps",
+    name: "androidx.compose.runtime_runtime-livedata",
     aars: ["runtime-livedata-1.4.0-beta01.aar"],
     sdk_version: "34",
     apex_available: [
@@ -31,24 +31,3 @@ android_library_import {
         "kotlin-stdlib",
     ],
 }
-
-android_library {
-    name: "androidx.compose.runtime_runtime-livedata",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.compose.runtime_runtime-livedata-nodeps",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui",
-        "androidx.lifecycle_lifecycle-livedata",
-        "androidx.lifecycle_lifecycle-runtime",
-        "kotlin-stdlib",
-    ],
-    java_version: "1.7",
-}
-
