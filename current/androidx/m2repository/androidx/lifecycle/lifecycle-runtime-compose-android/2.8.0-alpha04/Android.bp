@@ -15,7 +15,7 @@ package {
 }
 
 android_library_import {
-    name: "androidx.lifecycle_lifecycle-runtime-compose-nodeps",
+    name: "androidx.lifecycle_lifecycle-runtime-compose",
     aars: ["lifecycle-runtime-compose-android-2.8.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
@@ -30,23 +30,3 @@ android_library_import {
         "androidx.lifecycle_lifecycle-runtime-ktx",
     ],
 }
-
-android_library {
-    name: "androidx.lifecycle_lifecycle-runtime-compose",
-    sdk_version: "34",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    manifest: "manifest/AndroidManifest.xml",
-    static_libs: [
-        "androidx.lifecycle_lifecycle-runtime-compose-nodeps",
-        "androidx.annotation_annotation",
-        "androidx.compose.runtime_runtime",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.lifecycle_lifecycle-runtime-ktx",
-    ],
-    java_version: "1.7",
-}
-
