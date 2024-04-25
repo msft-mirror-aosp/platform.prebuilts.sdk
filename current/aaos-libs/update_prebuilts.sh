@@ -58,6 +58,8 @@ case $LIB_TARGET in
         downloadApp $1 "token-sharedlibrary.aar" "token-sharedlibrary.aar" "car_apps-user"
         echo "Downloading token-sharedlibrary-res"
         downloadApp $1 "token-sharedlibrary-res.zip" "token-sharedlibrary-res.zip" "car_apps-user"
+        echo "Downloading car-broadcastradio-support"
+        downloadApp $1 "car-broadcastradio-support.aar" "car-broadcastradio-support.aar" $BUILD_TARGET
         ;;
     car-apps-common)
         echo "Downloading car-apps-common"
@@ -105,6 +107,10 @@ case $LIB_TARGET in
         downloadApp $1 "token-sharedlibrary.aar" "token-sharedlibrary.aar" "car_apps-user"
         echo "Downloading token-sharedlibrary-res"
         downloadApp $1 "token-sharedlibrary-res.zip" "token-sharedlibrary-res.zip" "car_apps-user"
+        ;;
+    car-broadcastradio-support)
+        echo "Downloading car-broadcastradio-support"
+        downloadApp $1 "car-broadcastradio-support.aar" "car-broadcastradio-support.aar" $BUILD_TARGET
         ;;
     *)
         echo "Invalid application option {all|car-apps-common|car-assist-lib|car-media-common|car-messaging-models|car-uxr-client-lib|car-telephony-common|car-ui-lib|oem-token-lib}"
