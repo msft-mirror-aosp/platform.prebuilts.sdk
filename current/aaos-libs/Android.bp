@@ -19,9 +19,14 @@
 // build. Hence plain targets are added to export the AAR as well as their dependencies.
 // Clients that depend on the `*-source` targets need to add the AAR dependencies to their build as
 // well. some of the target names have the -source suffix to make it match the source target in
-// `car-apps-dev`. That way the source code will be used when buidling the apps in `car-apps-dev`
+// `car-apps-dev`. That way the source code will be used when building the apps in `car-apps-dev`
 // Note: the targets names don't have the -sdk suffix to make it easier to switch between using
 // bundled and unbundled code.
+
+// For car-apps branches, -no-overlayable genrules take in the -aar target from Car/libs as they
+// contain the res folder. For non car-apps branches, it will target the prebuilt -source{.aar}.
+// In this file, the -aar target duplicates the -source android_library_import to make sure the
+// library definition exists in both car-apps and non car-apps branches.
 
 package {
     // See: http://go/android-license-faq
@@ -77,14 +82,17 @@ java_genrule {
     name: "car-apps-common-no-overlayable-aar",
     srcs: [
         ":car-apps-common-source{.aar}",
+        ":car-apps-common-aar",
     ],
     out: ["car-apps-common-no-overlayable.aar"],
     tools: [
         "remove_overlayable",
     ],
-    cmd: "dir=prebuilts/sdk/current/aaos-libs && " +
-        "$(location remove_overlayable) $(out) " +
-        "$(location :car-apps-common-source{.aar})",
+    cmd: "if [[ $(location :car-apps-common-aar) == *.jar ]]; then \n" +
+         "$(location remove_overlayable) $(out) $(location :car-apps-common-source{.aar}) \n" +
+         "else \n" +
+         "$(location remove_overlayable) $(out) $(location :car-apps-common-aar) \n" +
+         "fi",
     dist: {
         targets: ["car-apps-common-no-overlayable-aar"],
     },
@@ -110,6 +118,26 @@ android_library {
 
 android_library_import {
     name: "car-apps-common-source",
+    aars: ["car-apps-common.aar"],
+    sdk_version: "31",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.cardview_cardview",
+        "androidx.interpolator_interpolator",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.lifecycle_lifecycle-extensions",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.recyclerview_recyclerview",
+        "androidx-constraintlayout_constraintlayout-solver",
+        "car-ui-lib-source",
+        "junit",
+    ],
+}
+
+// Only used in -no-overlayable genrule to not crash when building in non car-apps branches.
+// This lib is NOT directly used.
+android_library_import {
+    name: "car-apps-common-aar",
     aars: ["car-apps-common.aar"],
     sdk_version: "31",
     static_libs: [
@@ -188,14 +216,17 @@ java_genrule {
     name: "car-media-common-no-overlayable-aar",
     srcs: [
         ":car-media-common-source{.aar}",
+        ":car-media-common-aar",
     ],
     out: ["car-media-common-no-overlayable.aar"],
     tools: [
         "remove_overlayable",
     ],
-    cmd: "dir=prebuilts/sdk/current/aaos-libs && " +
-        "$(location remove_overlayable) $(out) " +
-        "$(location :car-media-common-source{.aar})",
+    cmd: "if [[ $(location :car-media-common-aar) == *.jar ]]; then \n" +
+         "$(location remove_overlayable) $(out) $(location :car-media-common-source{.aar}) \n" +
+         "else \n" +
+         "$(location remove_overlayable) $(out) $(location :car-media-common-aar) \n" +
+         "fi",
     dist: {
         targets: ["car-media-common-no-overlayable-aar"],
     },
@@ -221,6 +252,26 @@ android_library {
 
 android_library_import {
     name: "car-media-common-source",
+    aars: ["car-media-common.aar"],
+    sdk_version: "31",
+    static_libs: [
+        "androidx.cardview_cardview",
+        "androidx.legacy_legacy-support-v4",
+        "androidx.recyclerview_recyclerview",
+        "androidx.mediarouter_mediarouter",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx-constraintlayout_constraintlayout-solver",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.lifecycle_lifecycle-extensions",
+        "car-apps-common-source",
+        "car-media-extensions-source",
+    ],
+}
+
+// Only used in -no-overlayable genrule to not crash when building in non car-apps branches.
+// This lib is NOT directly used.
+android_library_import {
+    name: "car-media-common-aar",
     aars: ["car-media-common.aar"],
     sdk_version: "31",
     static_libs: [
@@ -319,14 +370,17 @@ java_genrule {
     name: "car-telephony-common-no-overlayable-aar",
     srcs: [
         ":car-telephony-common-source{.aar}",
+        ":car-telephony-common-aar",
     ],
     out: ["car-telephony-common-no-overlayable.aar"],
     tools: [
         "remove_overlayable",
     ],
-    cmd: "dir=prebuilts/sdk/current/aaos-libs && " +
-        "$(location remove_overlayable) $(out) " +
-        "$(location :car-telephony-common-source{.aar})",
+    cmd: "if [[ $(location :car-telephony-common-aar) == *.jar ]]; then \n" +
+         "$(location remove_overlayable) $(out) $(location :car-telephony-common-source{.aar}) \n" +
+         "else \n" +
+         "$(location remove_overlayable) $(out) $(location :car-telephony-common-aar) \n" +
+         "fi",
     dist: {
         targets: ["car-telephony-common-no-overlayable-aar"],
     },
@@ -353,6 +407,27 @@ android_library {
 
 android_library_import {
     name: "car-telephony-common-source",
+    aars: ["car-telephony-common.aar"],
+    sdk_version: "31",
+    static_libs: [
+        "androidx.exifinterface_exifinterface",
+        "androidx.legacy_legacy-support-v4",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.lifecycle_lifecycle-extensions",
+        "car-apps-common-source",
+        "glide-prebuilt",
+        "glide-gifdecoder-prebuilt",
+        "glide-disklrucache-prebuilt",
+        "glide-annotation-and-compiler-prebuilt",
+        "guava",
+        "libphonenumber",
+    ],
+}
+
+// Only used in -no-overlayable genrule to not crash when building in non car-apps branches.
+// This lib is NOT directly used.
+android_library_import {
+    name: "car-telephony-common-aar",
     aars: ["car-telephony-common.aar"],
     sdk_version: "31",
     static_libs: [
@@ -522,14 +597,17 @@ java_genrule {
     name: "car-uxr-client-lib-no-overlayable-aar",
     srcs: [
         ":car-uxr-client-lib-source{.aar}",
+        ":car-uxr-client-lib-aar",
     ],
     out: ["car-uxr-client-lib-no-overlayable.aar"],
     tools: [
         "remove_overlayable",
     ],
-    cmd: "dir=prebuilts/sdk/current/aaos-libs && " +
-        "$(location remove_overlayable) $(out) " +
-        "$(location :car-uxr-client-lib-source{.aar})",
+    cmd: "if [[ $(location :car-uxr-client-lib-aar) == *.jar ]]; then \n" +
+         "$(location remove_overlayable) $(out) $(location :car-uxr-client-lib-source{.aar}) \n" +
+         "else \n" +
+         "$(location remove_overlayable) $(out) $(location :car-uxr-client-lib-aar) \n" +
+         "fi",
     dist: {
         targets: ["car-uxr-client-no-overlayable-aar"],
     },
@@ -548,6 +626,19 @@ android_library {
 
 android_library_import {
     name: "car-uxr-client-lib-source",
+    aars: ["car-uxr-client-lib.aar"],
+    sdk_version: "31",
+    static_libs: [
+        "androidx.recyclerview_recyclerview",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "car-ui-lib-source",
+    ],
+}
+
+// Only used in -no-overlayable genrule to not crash when building in non car-apps branches.
+// This lib is NOT directly used.
+android_library_import {
+    name: "car-uxr-client-lib-aar",
     aars: ["car-uxr-client-lib.aar"],
     sdk_version: "31",
     static_libs: [
