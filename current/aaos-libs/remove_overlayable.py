@@ -23,10 +23,10 @@ def main():
     parser.add_argument('soong_aar')
     args = parser.parse_args()
     values_path = 'res/values/values.xml'
+    print("input aar: " + args.soong_aar)
 
     with ZipFile(args.output, mode='w', compression=ZIP_DEFLATED) as outaar, ZipFile(args.soong_aar) as soongaar:
         # Parse XML, remove <overlayable>, and write to file
-        # In car-apps branches, libraries are built from source and do not have the res/values/values.xml file
         try:
             file = soongaar.open(values_path)
             values = ET.parse(file)
@@ -37,7 +37,7 @@ def main():
             data = ET.tostring(resources, encoding='unicode', xml_declaration=True)
             outaar.writestr(values_path, data)
         except KeyError:
-            print("Could not find overlayable, skipping")
+            print("Could not find values.xml, skipping removal of overlayables")
 
         # copy all the other files
         for f in soongaar.namelist():
