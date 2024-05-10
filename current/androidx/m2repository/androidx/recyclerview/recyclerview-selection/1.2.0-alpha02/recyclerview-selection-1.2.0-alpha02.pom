@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <!-- This module was also published with a richer model, Gradle metadata,  -->
   <!-- which should be used instead. Do not delete the following line which  -->
   <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
@@ -10,10 +10,13 @@
   <artifactId>recyclerview-selection</artifactId>
   <version>1.2.0-alpha02</version>
   <packaging>aar</packaging>
-  <name>Android RecyclerView Selection</name>
+  <name>RecyclerView Selection</name>
   <description>Library providing item selection framework for RecyclerView. Support for touch based and band selection is provided.</description>
   <url>https://developer.android.com/jetpack/androidx/releases/recyclerview#1.2.0-alpha02</url>
   <inceptionYear>2017</inceptionYear>
+  <organization>
+    <name>The Android Open Source Project</name>
+  </organization>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -32,17 +35,16 @@
   </scm>
   <dependencies>
     <dependency>
-      <groupId>androidx.recyclerview</groupId>
-      <artifactId>recyclerview</artifactId>
-      <version>1.2.0</version>
-      <scope>compile</scope>
-      <type>aar</type>
-    </dependency>
-    <dependency>
       <groupId>androidx.annotation</groupId>
       <artifactId>annotation</artifactId>
       <version>1.1.0</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.collection</groupId>
+      <artifactId>collection</artifactId>
+      <version>1.1.0</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>androidx.core</groupId>
@@ -52,10 +54,11 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>androidx.collection</groupId>
-      <artifactId>collection</artifactId>
-      <version>1.1.0</version>
-      <scope>runtime</scope>
+      <groupId>androidx.recyclerview</groupId>
+      <artifactId>recyclerview</artifactId>
+      <version>1.2.0</version>
+      <scope>compile</scope>
+      <type>aar</type>
     </dependency>
   </dependencies>
 </project>

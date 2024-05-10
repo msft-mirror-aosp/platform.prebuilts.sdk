@@ -39,7 +39,7 @@ license {
     ],
 }
 
-subdirs=["tools"]
+subdirs = ["tools"]
 
 filegroup {
     name: "current-support-api",
@@ -48,11 +48,12 @@ filegroup {
     ],
 }
 
-filegroup {
+genrule {
     name: "current-androidx-api",
-    srcs: [
-        "current/androidx-api.txt",
-    ],
+    srcs: ["current/androidx-api.txt"],
+    out: ["androidx-api.xml"],
+    tools: ["metalava"],
+    cmd: "$(location metalava) signature-to-jdiff $(in) $(out)"
 }
 
 filegroup {
@@ -125,10 +126,11 @@ prebuilt_apis {
         "31",
         "32",
         "33",
+        "34",
         "current",
     ],
     extensions_dir: "extensions",
-    next_api_dir: "34",
+    next_api_dir: "35",
     imports_sdk_version: "none",
     imports_compile_dex: true,
 }
@@ -138,12 +140,19 @@ filegroup {
     srcs: [
         "*/system/api/*.txt",
         "*/public/api/*.txt",
-    ]
+    ],
 }
 
 filegroup {
     name: "prebuilt_sdk_system_api_android_txt",
     srcs: [
         "*/system/api/android.txt",
+    ],
+}
+
+filegroup {
+    name: "android27.txt",
+    srcs: [
+        "27/public/api/android.txt",
     ],
 }
