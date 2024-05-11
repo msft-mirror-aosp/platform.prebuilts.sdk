@@ -721,3 +721,59 @@ android_library_import {
         "androidx.legacy_legacy-support-v4",
     ],
 }
+
+android_library {
+    name: "car-app-card",
+    min_sdk_version: "31",
+    sdk_version: "current",
+    static_libs: [
+        "car-app-card-source",
+        "androidx.annotation_annotation",
+        "androidx.legacy_legacy-support-v4",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-android",
+    ],
+}
+
+android_library_import {
+    name: "car-app-card-source",
+    aars: ["car-app-card/car-app-card-lib.aar"],
+    min_sdk_version: "31",
+    sdk_version: "current",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.legacy_legacy-support-v4",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-android",
+    ],
+}
+
+android_library {
+    name: "car-app-card-host",
+    min_sdk_version: "31",
+    sdk_version: "current",
+    static_libs: [
+        "car-app-card-host-source",
+        "androidx.annotation_annotation",
+        "androidx.legacy_legacy-support-v4",
+        "car-app-card",
+        "guava",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-android",
+    ],
+}
+
+android_library_import {
+    name: "car-app-card-host-source",
+    aars: ["car-app-card-host/car-app-card-host-lib.aar"],
+    min_sdk_version: "31",
+    sdk_version: "current",
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.legacy_legacy-support-v4",
+        "car-app-card",
+        "guava",
+        "kotlin-stdlib",
+        "kotlinx-coroutines-android",
+    ],
+}
