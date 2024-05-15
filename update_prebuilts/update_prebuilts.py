@@ -1359,7 +1359,7 @@ def main():
                 subprocess.check_call(['git', 'commit', '-m', msg])
 
             # Finalize extension sdk level
-            readme = (f'- {args.finalize_extension}: Finalized together with '
+            readme = (f'Finalized together with '
                       f'Android {args.finalize_sdk} (all modules)')
             cmd = extension_sdk_finalization_cmd.format(
                 readme=readme,
