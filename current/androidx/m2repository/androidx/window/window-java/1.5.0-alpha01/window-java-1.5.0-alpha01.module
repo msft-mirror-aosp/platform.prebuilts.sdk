@@ -10,10 +10,72 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7"
+      "version": "8.8-rc-1"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.window",
+          "module": "window",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window-java is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-core",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window-java is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-rxjava2",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window-java is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-rxjava3",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window-java is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-testing",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window-java is in atomic group androidx.window"
+        }
+      ],
+      "files": [
+        {
+          "name": "window-java-1.5.0-alpha01-sources.jar",
+          "url": "window-java-1.5.0-alpha01-sources.jar",
+          "size": 9233,
+          "sha512": "f12f21702ed145b7b8de0b65a07362363f83666ece119bd60edbf12e8e8b2b4d79039e9e111b0530ef59c989262eafdb6a9d83ec8b074b5f3489d1359cf08843",
+          "sha256": "3bc69498de8552e8690d513c5263be5a8e40657fe436a735ab33eb2965df5085",
+          "sha1": "72a28eccdb101d0d3be6e221fe86c27ac0593a88",
+          "md5": "b474759be6d44e2cce2cdc5263c27e34"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -256,68 +318,6 @@
           "sha256": "58079bf4798ccff97c541184de052b622162fd31ffd2d59c0a2d102d150ed9fe",
           "sha1": "7450a80910419d4cff08d83784e27e41cf7118c3",
           "md5": "52958897a1534ca7871749fefe5e3216"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.window",
-          "module": "window",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window-java is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-core",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window-java is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-rxjava2",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window-java is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-rxjava3",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window-java is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-testing",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window-java is in atomic group androidx.window"
-        }
-      ],
-      "files": [
-        {
-          "name": "window-java-1.5.0-alpha01-sources.jar",
-          "url": "window-java-1.5.0-alpha01-sources.jar",
-          "size": 9233,
-          "sha512": "f12f21702ed145b7b8de0b65a07362363f83666ece119bd60edbf12e8e8b2b4d79039e9e111b0530ef59c989262eafdb6a9d83ec8b074b5f3489d1359cf08843",
-          "sha256": "3bc69498de8552e8690d513c5263be5a8e40657fe436a735ab33eb2965df5085",
-          "sha1": "72a28eccdb101d0d3be6e221fe86c27ac0593a88",
-          "md5": "b474759be6d44e2cce2cdc5263c27e34"
         }
       ]
     }
