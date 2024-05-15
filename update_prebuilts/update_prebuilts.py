@@ -1288,7 +1288,7 @@ def main():
         sys.exit(1)
 
     if args.bug:
-        commit_msg_suffix = '\n\nBug: {args.bug}'
+        commit_msg_suffix = f'\n\nBug: {args.bug}'
     else:
         commit_msg_suffix = ''
 
