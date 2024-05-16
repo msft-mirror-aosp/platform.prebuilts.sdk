@@ -1288,7 +1288,7 @@ def main():
         sys.exit(1)
 
     if args.bug:
-        commit_msg_suffix = '\n\nBug: {args.bug}'
+        commit_msg_suffix = f'\n\nBug: {args.bug}'
     else:
         commit_msg_suffix = ''
 
@@ -1359,7 +1359,7 @@ def main():
                 subprocess.check_call(['git', 'commit', '-m', msg])
 
             # Finalize extension sdk level
-            readme = (f'- {args.finalize_extension}: Finalized together with '
+            readme = (f'Finalized together with '
                       f'Android {args.finalize_sdk} (all modules)')
             cmd = extension_sdk_finalization_cmd.format(
                 readme=readme,
