@@ -10,10 +10,81 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7"
+      "version": "8.8-rc-1"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.window",
+          "module": "window-java",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-core",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-rxjava2",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-rxjava3",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window is in atomic group androidx.window"
+        },
+        {
+          "group": "androidx.window",
+          "module": "window-testing",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "window is in atomic group androidx.window"
+        }
+      ],
+      "files": [
+        {
+          "name": "window-1.5.0-alpha01-sources.jar",
+          "url": "window-1.5.0-alpha01-sources.jar",
+          "size": 199904,
+          "sha512": "eec2829ecf895ebc01e436f5b48cff0329884af574fff3290538f499a92755e8525da4dd2c587359aebdc6f774d2ce5be69331c3100f9c3f9e11c8c52bd43495",
+          "sha256": "a48a83ab61346ea21d34f6b286bb95e73311553ff88bb9334bb0358974451552",
+          "sha1": "b2237fdd42694b3111e10850c6d4d11911ba8d4f",
+          "md5": "129af0d891a7b181cfcd574993eee2b7"
+        },
+        {
+          "name": "window-1.5.0-alpha01-samples-sources.jar",
+          "url": "window-1.5.0-alpha01-samples-sources.jar",
+          "size": 6814,
+          "sha512": "ef2f2a48a166e61e17c3448e2620f6a1976e81f805f2bce8e409259c0e9b7f0fcf6a124ab4f06de76905c51ff2c536758f9dda635946ab2febd994bdbfa049e0",
+          "sha256": "b35b3787f4b3b15bb3ab9ebd87ed7014f38369d00d6ec815f953ad61cbf7d6c5",
+          "sha1": "52318e4c8e1401b9683ab48a6d8e06afa6bd7d75",
+          "md5": "949e259014ea32a46c6cfbad0e29a614"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -84,11 +155,11 @@
         {
           "name": "window-1.5.0-alpha01.aar",
           "url": "window-1.5.0-alpha01.aar",
-          "size": 470937,
-          "sha512": "16c4cf64e302b307860d4e60f55bc47d7c5310ccf4124e693659be1f56bf4cc6046fb14a21e930ab8f8d4c04afafaf02f47f77c7f261db6d3251f96d2f66fd26",
-          "sha256": "79d15949ad73628b75db4959422b6b1e46a6b5b85a304420629c2a4c4bad69b1",
-          "sha1": "224e638253b5093920cc75b4828111b24a705d37",
-          "md5": "a2119ef9ce1524ede95388adb6590bb2"
+          "size": 527637,
+          "sha512": "3237e93ad9dffb4201c40021c51650b1b791a0bdfda390ce7e20963f77714d0b9745267357df28ee91a1cfff6642fc53d3de9ed1ddfd35127aadcd178dc9a8f9",
+          "sha256": "810cf79c5f9e74ca3464879e78a4d59586cbd006bcd999f5574adae673483c53",
+          "sha1": "ed4173fda885c6ef725f89712d0456cc1cdd8690",
+          "md5": "4ba1ad66c61a4b42e7080423fbe141d0"
         }
       ]
     },
@@ -120,13 +191,6 @@
           "module": "core",
           "version": {
             "requires": "1.8.0"
-          }
-        },
-        {
-          "group": "androidx.window.extensions.core",
-          "module": "core",
-          "version": {
-            "requires": "1.0.0"
           }
         },
         {
@@ -190,11 +254,11 @@
         {
           "name": "window-1.5.0-alpha01.aar",
           "url": "window-1.5.0-alpha01.aar",
-          "size": 470937,
-          "sha512": "16c4cf64e302b307860d4e60f55bc47d7c5310ccf4124e693659be1f56bf4cc6046fb14a21e930ab8f8d4c04afafaf02f47f77c7f261db6d3251f96d2f66fd26",
-          "sha256": "79d15949ad73628b75db4959422b6b1e46a6b5b85a304420629c2a4c4bad69b1",
-          "sha1": "224e638253b5093920cc75b4828111b24a705d37",
-          "md5": "a2119ef9ce1524ede95388adb6590bb2"
+          "size": 527637,
+          "sha512": "3237e93ad9dffb4201c40021c51650b1b791a0bdfda390ce7e20963f77714d0b9745267357df28ee91a1cfff6642fc53d3de9ed1ddfd35127aadcd178dc9a8f9",
+          "sha256": "810cf79c5f9e74ca3464879e78a4d59586cbd006bcd999f5574adae673483c53",
+          "sha1": "ed4173fda885c6ef725f89712d0456cc1cdd8690",
+          "md5": "4ba1ad66c61a4b42e7080423fbe141d0"
         }
       ]
     },
@@ -251,82 +315,11 @@
         {
           "name": "window-1.5.0-alpha01-versionMetadata.json",
           "url": "window-1.5.0-alpha01-versionMetadata.json",
-          "size": 31835,
-          "sha512": "f226d10785ed2e3edd47da5ea41b6938419eb4fda4c482bd73e71b50c4a4d736c002d9cad3922cd6b4dae63b7471d87dda039aeaa1a2e79eeea1d5e269e5e057",
-          "sha256": "03755a5c74e350274a6fc4e76a53e53dbedb67452357cdef9b26cb426c27c854",
-          "sha1": "eaca6979b61c6fd0d75378b3f4d05d45ec915ff6",
-          "md5": "9b09d59bd9b9fc8cdf95d5f3c714e2f2"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.window",
-          "module": "window-java",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-core",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-rxjava2",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-rxjava3",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window is in atomic group androidx.window"
-        },
-        {
-          "group": "androidx.window",
-          "module": "window-testing",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "window is in atomic group androidx.window"
-        }
-      ],
-      "files": [
-        {
-          "name": "window-1.5.0-alpha01-sources.jar",
-          "url": "window-1.5.0-alpha01-sources.jar",
-          "size": 191393,
-          "sha512": "16ac8be06bd8dd5d1081f4af2717e7eb712013c66684b11a5914f17b1257f7f2221fbff5dd189dc90e7d30cade6bb866959876f2f559fc9a58f5465f41d27f5e",
-          "sha256": "eedbeb911ec6d4dab0fab538c65b99961daf16400dcde28fedff2b2c48de2b6a",
-          "sha1": "85c28cff098f14032f38fc7cf448c4bf96bd73f7",
-          "md5": "9814ba0d93545340ecb142b07f561027"
-        },
-        {
-          "name": "window-1.5.0-alpha01-samples-sources.jar",
-          "url": "window-1.5.0-alpha01-samples-sources.jar",
-          "size": 6846,
-          "sha512": "80fd35de3e5712a009a76fbd1c794b31ef52245cbdb0f39cc8fe85cb4e5a60d4102e6256a173d0c9d7d630a18183a651627a79f49611cada062d2013a122558f",
-          "sha256": "3977c10d311cbd24abb970b335b0279b31e4e07c756c63b65d57da4f9bf284f9",
-          "sha1": "63e5a7c792bd1b9409f888cc4b00f10e9ae44ee7",
-          "md5": "b30a888eee11232f1a85d6421243a316"
+          "size": 34812,
+          "sha512": "97a29db73b8049dbe65ca64aab5fc8d656406528cb767c11bcab9ac16066c1a5956c36eba317a7edca7480b65216bbfae4b4db207e24959e839dc44bd8732848",
+          "sha256": "5d15768b3aecb8e2b40963d9de68e4ebf70edfce55262ad6b94013927193d076",
+          "sha1": "20bb69e94344369a34bb486a0ffeb32a44bddffc",
+          "md5": "57cce71215dc6d171598316516fbf294"
         }
       ]
     }
