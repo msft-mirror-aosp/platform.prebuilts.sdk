@@ -531,6 +531,7 @@ parcelable android.health.connect.changelog.ChangeLogsRequest;
 parcelable android.health.connect.changelog.ChangeLogsResponse;
 parcelable android.health.connect.datatypes.ExerciseRoute.Location;
 parcelable android.health.connect.datatypes.ExerciseRoute;
+parcelable android.health.connect.datatypes.MedicalDataSource;
 parcelable android.health.connect.migration.AppInfoMigrationPayload;
 parcelable android.health.connect.migration.MetadataMigrationPayload;
 parcelable android.health.connect.migration.MigrationEntity;
