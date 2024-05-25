@@ -3639,6 +3639,7 @@
 		<field name="packageNames"/>
 	</class>
 	<class name="android/accessibilityservice/BrailleDisplayController" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="connect(Landroid/bluetooth/BluetoothDevice;Landroid/accessibilityservice/BrailleDisplayController$BrailleDisplayCallback;)V"/>
 		<method name="connect(Landroid/bluetooth/BluetoothDevice;Ljava/util/concurrent/Executor;Landroid/accessibilityservice/BrailleDisplayController$BrailleDisplayCallback;)V"/>
 		<method name="connect(Landroid/hardware/usb/UsbDevice;Landroid/accessibilityservice/BrailleDisplayController$BrailleDisplayCallback;)V"/>
@@ -3648,6 +3649,7 @@
 		<method name="write([B)V"/>
 	</class>
 	<class name="android/accessibilityservice/BrailleDisplayController$BrailleDisplayCallback" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onConnected([B)V"/>
 		<method name="onConnectionFailed(I)V"/>
 		<method name="onDisconnected()V"/>
@@ -4266,7 +4268,7 @@
 		<field name="EMPTY"/>
 	</class>
 	<class name="android/adservices/common/AdServicesOutcomeReceiver" module="framework-adservices" since="35" sdks="1000000:10,0:35">
-		<extends name="java/lang/Object" since="36"/>
+		<extends name="java/lang/Object"/>
 		<method name="onError(Ljava/lang/Throwable;)V"/>
 		<method name="onResult(Ljava/lang/Object;)V"/>
 	</class>
@@ -4752,6 +4754,7 @@
 		<method name="&lt;init>(I)V"/>
 	</class>
 	<class name="android/adservices/ondevicepersonalization/IsolatedWorker" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onDownloadCompleted(Landroid/adservices/ondevicepersonalization/DownloadCompletedInput;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="onEvent(Landroid/adservices/ondevicepersonalization/EventInput;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="onExecute(Landroid/adservices/ondevicepersonalization/ExecuteInput;Landroid/os/OutcomeReceiver;)V"/>
@@ -4760,6 +4763,7 @@
 		<method name="onWebTrigger(Landroid/adservices/ondevicepersonalization/WebTriggerInput;Landroid/os/OutcomeReceiver;)V"/>
 	</class>
 	<class name="android/adservices/ondevicepersonalization/KeyValueStore" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="get(Ljava/lang/String;)[B"/>
 		<method name="keySet()Ljava/util/Set;"/>
 	</class>
@@ -4773,6 +4777,7 @@
 		<method name="run(Landroid/adservices/ondevicepersonalization/InferenceInput;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 	</class>
 	<class name="android/adservices/ondevicepersonalization/MutableKeyValueStore" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="android/adservices/ondevicepersonalization/KeyValueStore"/>
 		<method name="put(Ljava/lang/String;[B)[B"/>
 		<method name="remove(Ljava/lang/String;)[B"/>
@@ -9666,7 +9671,7 @@
 	</class>
 	<class name="android/app/appsearch/AppSearchManager" since="31">
 		<extends name="java/lang/Object"/>
-		<method name="createEnterpriseGlobalSearchSession(Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="35" removed="36"/>
+		<method name="createEnterpriseGlobalSearchSession(Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="35"/>
 		<method name="createGlobalSearchSession(Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 		<method name="createSearchSession(Landroid/app/appsearch/AppSearchManager$SearchContext;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 	</class>
@@ -9699,11 +9704,11 @@
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
-		<method name="getParentTypes()Ljava/util/List;" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
+		<method name="getParentTypes()Ljava/util/List;" since="35"/>
 		<method name="getProperties()Ljava/util/List;"/>
 		<method name="getSchemaType()Ljava/lang/String;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$BooleanPropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
@@ -9732,7 +9737,7 @@
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$DocumentPropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
-		<method name="getIndexableNestedProperties()Ljava/util/List;" since="35" removed="36"/>
+		<method name="getIndexableNestedProperties()Ljava/util/List;" since="35"/>
 		<method name="getSchemaType()Ljava/lang/String;"/>
 		<method name="shouldIndexNestedProperties()Z"/>
 	</class>
@@ -9740,9 +9745,9 @@
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;)V"/>
 		<method name="addIndexableNestedProperties(Ljava/util/Collection;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35"/>
-		<method name="addIndexableNestedProperties([Ljava/lang/String;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35" removed="36"/>
-		<method name="addIndexableNestedPropertyPaths(Ljava/util/Collection;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35" removed="36"/>
-		<method name="addIndexableNestedPropertyPaths([Landroid/app/appsearch/PropertyPath;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35" removed="36"/>
+		<method name="addIndexableNestedProperties([Ljava/lang/String;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35"/>
+		<method name="addIndexableNestedPropertyPaths(Ljava/util/Collection;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35"/>
+		<method name="addIndexableNestedPropertyPaths([Landroid/app/appsearch/PropertyPath;)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;" since="35"/>
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig;"/>
 		<method name="setCardinality(I)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;"/>
 		<method name="setShouldIndexNestedProperties(Z)Landroid/app/appsearch/AppSearchSchema$DocumentPropertyConfig$Builder;"/>
@@ -9854,31 +9859,31 @@
 	</class>
 	<class name="android/app/appsearch/GenericDocument$Builder" since="31">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Landroid/app/appsearch/GenericDocument;)V" since="35" removed="36"/>
+		<method name="&lt;init>(Landroid/app/appsearch/GenericDocument;)V" since="35"/>
 		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"/>
 		<method name="build()Landroid/app/appsearch/GenericDocument;"/>
-		<method name="clearProperty(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" removed="36"/>
+		<method name="clearProperty(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35"/>
 		<method name="setCreationTimestampMillis(J)Landroid/app/appsearch/GenericDocument$Builder;"/>
-		<method name="setId(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" removed="36"/>
-		<method name="setNamespace(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" removed="36"/>
+		<method name="setId(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35"/>
+		<method name="setNamespace(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35"/>
 		<method name="setPropertyBoolean(Ljava/lang/String;[Z)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyBytes(Ljava/lang/String;[[B)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyDocument(Ljava/lang/String;[Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyDouble(Ljava/lang/String;[D)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyLong(Ljava/lang/String;[J)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyString(Ljava/lang/String;[Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;"/>
-		<method name="setSchemaType(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" removed="36"/>
+		<method name="setSchemaType(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35"/>
 		<method name="setScore(I)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setTtlMillis(J)Landroid/app/appsearch/GenericDocument$Builder;"/>
 	</class>
 	<class name="android/app/appsearch/GetByDocumentIdRequest" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getIds()Ljava/util/Set;"/>
 		<method name="getNamespace()Ljava/lang/String;"/>
 		<method name="getProjectionPaths()Ljava/util/Map;" since="34"/>
 		<method name="getProjections()Ljava/util/Map;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 		<field name="PROJECTION_SCHEMA_TYPE_WILDCARD"/>
 	</class>
 	<class name="android/app/appsearch/GetByDocumentIdRequest$Builder" since="31">
@@ -9892,15 +9897,15 @@
 	</class>
 	<class name="android/app/appsearch/GetSchemaResponse" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
-		<method name="getPubliclyVisibleSchemas()Ljava/util/Map;" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
+		<method name="getPubliclyVisibleSchemas()Ljava/util/Map;" since="35"/>
 		<method name="getRequiredPermissionsForSchemaTypeVisibility()Ljava/util/Map;" since="33"/>
 		<method name="getSchemaTypesNotDisplayedBySystem()Ljava/util/Set;" since="33"/>
-		<method name="getSchemaTypesVisibleToConfigs()Ljava/util/Map;" since="35" removed="36"/>
+		<method name="getSchemaTypesVisibleToConfigs()Ljava/util/Map;" since="35"/>
 		<method name="getSchemaTypesVisibleToPackages()Ljava/util/Map;" since="33"/>
 		<method name="getSchemas()Ljava/util/Set;"/>
 		<method name="getVersion()I"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/GetSchemaResponse$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -9908,9 +9913,9 @@
 		<method name="addSchema(Landroid/app/appsearch/AppSearchSchema;)Landroid/app/appsearch/GetSchemaResponse$Builder;"/>
 		<method name="addSchemaTypeNotDisplayedBySystem(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="33"/>
 		<method name="build()Landroid/app/appsearch/GetSchemaResponse;"/>
-		<method name="setPubliclyVisibleSchema(Ljava/lang/String;Landroid/app/appsearch/PackageIdentifier;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="35" removed="36"/>
+		<method name="setPubliclyVisibleSchema(Ljava/lang/String;Landroid/app/appsearch/PackageIdentifier;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="35"/>
 		<method name="setRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="33"/>
-		<method name="setSchemaTypeVisibleToConfigs(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="35" removed="36"/>
+		<method name="setSchemaTypeVisibleToConfigs(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="35"/>
 		<method name="setSchemaTypeVisibleToPackages(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="33"/>
 		<method name="setVersion(I)Landroid/app/appsearch/GetSchemaResponse$Builder;"/>
 	</class>
@@ -9926,7 +9931,7 @@
 	</class>
 	<class name="android/app/appsearch/JoinSpec" since="34">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getAggregationScoringStrategy()I"/>
 		<method name="getChildPropertyExpression()Ljava/lang/String;"/>
 		<method name="getMaxJoinedResultCount()I"/>
@@ -9938,7 +9943,7 @@
 		<field name="AGGREGATION_SCORING_OUTER_RESULT_RANKING_SIGNAL"/>
 		<field name="AGGREGATION_SCORING_RESULT_COUNT"/>
 		<field name="AGGREGATION_SCORING_SUM_RANKING_SIGNAL"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/JoinSpec$Builder" since="34">
 		<extends name="java/lang/Object"/>
@@ -9980,23 +9985,23 @@
 	<class name="android/app/appsearch/PutDocumentsRequest" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="getGenericDocuments()Ljava/util/List;"/>
-		<method name="getTakenActionGenericDocuments()Ljava/util/List;" since="35" removed="36"/>
+		<method name="getTakenActionGenericDocuments()Ljava/util/List;" since="35"/>
 	</class>
 	<class name="android/app/appsearch/PutDocumentsRequest$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="addGenericDocuments(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;"/>
 		<method name="addGenericDocuments([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;"/>
-		<method name="addTakenActionGenericDocuments(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;" since="35" removed="36"/>
-		<method name="addTakenActionGenericDocuments([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;" since="35" removed="36"/>
+		<method name="addTakenActionGenericDocuments(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;" since="35"/>
+		<method name="addTakenActionGenericDocuments([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;" since="35"/>
 		<method name="build()Landroid/app/appsearch/PutDocumentsRequest;"/>
 	</class>
 	<class name="android/app/appsearch/RemoveByDocumentIdRequest" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getIds()Ljava/util/Set;"/>
 		<method name="getNamespace()Ljava/lang/String;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/RemoveByDocumentIdRequest$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -10021,11 +10026,11 @@
 	</class>
 	<class name="android/app/appsearch/ReportUsageRequest" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getDocumentId()Ljava/lang/String;"/>
 		<method name="getNamespace()Ljava/lang/String;"/>
 		<method name="getUsageTimestampMillis()J"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/ReportUsageRequest$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -10053,14 +10058,14 @@
 	</class>
 	<class name="android/app/appsearch/SearchResult" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getDatabaseName()Ljava/lang/String;"/>
 		<method name="getGenericDocument()Landroid/app/appsearch/GenericDocument;"/>
 		<method name="getJoinedResults()Ljava/util/List;" since="34"/>
 		<method name="getMatchInfos()Ljava/util/List;"/>
 		<method name="getPackageName()Ljava/lang/String;"/>
 		<method name="getRankingSignal()D"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/SearchResult$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -10073,7 +10078,7 @@
 	</class>
 	<class name="android/app/appsearch/SearchResult$MatchInfo" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getExactMatch()Ljava/lang/CharSequence;"/>
 		<method name="getExactMatchRange()Landroid/app/appsearch/SearchResult$MatchRange;"/>
 		<method name="getFullText()Ljava/lang/String;"/>
@@ -10083,7 +10088,7 @@
 		<method name="getSnippetRange()Landroid/app/appsearch/SearchResult$MatchRange;"/>
 		<method name="getSubmatch()Ljava/lang/CharSequence;" since="33"/>
 		<method name="getSubmatchRange()Landroid/app/appsearch/SearchResult$MatchRange;" since="33"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/SearchResult$MatchInfo$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -10106,11 +10111,11 @@
 	</class>
 	<class name="android/app/appsearch/SearchSpec" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getAdvancedRankingExpression()Ljava/lang/String;" since="34"/>
 		<method name="getFilterNamespaces()Ljava/util/List;"/>
 		<method name="getFilterPackageNames()Ljava/util/List;"/>
-		<method name="getFilterProperties()Ljava/util/Map;" since="35" removed="36"/>
+		<method name="getFilterProperties()Ljava/util/Map;" since="35"/>
 		<method name="getFilterSchemas()Ljava/util/List;"/>
 		<method name="getJoinSpec()Landroid/app/appsearch/JoinSpec;" since="34"/>
 		<method name="getMaxSnippetSize()I"/>
@@ -10123,18 +10128,18 @@
 		<method name="getResultCountPerPage()I"/>
 		<method name="getResultGroupingLimit()I"/>
 		<method name="getResultGroupingTypeFlags()I"/>
-		<method name="getSearchSourceLogTag()Ljava/lang/String;" since="35" removed="36"/>
+		<method name="getSearchSourceLogTag()Ljava/lang/String;" since="35"/>
 		<method name="getSnippetCount()I"/>
 		<method name="getSnippetCountPerProperty()I"/>
 		<method name="getTermMatch()I"/>
-		<method name="isListFilterHasPropertyFunctionEnabled()Z" since="35" removed="36"/>
+		<method name="isListFilterHasPropertyFunctionEnabled()Z" since="35"/>
 		<method name="isListFilterQueryLanguageEnabled()Z" since="34"/>
 		<method name="isNumericSearchEnabled()Z" since="34"/>
 		<method name="isVerbatimSearchEnabled()Z" since="34"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 		<field name="GROUPING_TYPE_PER_NAMESPACE"/>
 		<field name="GROUPING_TYPE_PER_PACKAGE"/>
-		<field name="GROUPING_TYPE_PER_SCHEMA" since="35" removed="36"/>
+		<field name="GROUPING_TYPE_PER_SCHEMA" since="35"/>
 		<field name="ORDER_ASCENDING"/>
 		<field name="ORDER_DESCENDING"/>
 		<field name="PROJECTION_SCHEMA_TYPE_WILDCARD" deprecated="35"/>
@@ -10148,7 +10153,7 @@
 		<field name="RANKING_STRATEGY_SYSTEM_USAGE_LAST_USED_TIMESTAMP"/>
 		<field name="RANKING_STRATEGY_USAGE_COUNT"/>
 		<field name="RANKING_STRATEGY_USAGE_LAST_USED_TIMESTAMP"/>
-		<field name="SCHEMA_TYPE_WILDCARD" since="35" removed="36"/>
+		<field name="SCHEMA_TYPE_WILDCARD" since="35"/>
 		<field name="TERM_MATCH_EXACT_ONLY"/>
 		<field name="TERM_MATCH_PREFIX"/>
 	</class>
@@ -10159,15 +10164,15 @@
 		<method name="addFilterNamespaces([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addFilterPackageNames(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addFilterPackageNames([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;"/>
-		<method name="addFilterProperties(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="35" removed="36"/>
-		<method name="addFilterPropertyPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="35" removed="36"/>
+		<method name="addFilterProperties(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="35"/>
+		<method name="addFilterPropertyPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="35"/>
 		<method name="addFilterSchemas(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addFilterSchemas([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addProjection(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addProjectionPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="34"/>
 		<method name="build()Landroid/app/appsearch/SearchSpec;"/>
 		<method name="setJoinSpec(Landroid/app/appsearch/JoinSpec;)Landroid/app/appsearch/SearchSpec$Builder;" since="34"/>
-		<method name="setListFilterHasPropertyFunctionEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="35" removed="36"/>
+		<method name="setListFilterHasPropertyFunctionEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="35"/>
 		<method name="setListFilterQueryLanguageEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="34"/>
 		<method name="setMaxSnippetSize(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setNumericSearchEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="34"/>
@@ -10178,7 +10183,7 @@
 		<method name="setRankingStrategy(Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="34"/>
 		<method name="setResultCountPerPage(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setResultGrouping(II)Landroid/app/appsearch/SearchSpec$Builder;"/>
-		<method name="setSearchSourceLogTag(Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="35" removed="36"/>
+		<method name="setSearchSourceLogTag(Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="35"/>
 		<method name="setSnippetCount(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setSnippetCountPerProperty(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setTermMatch(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
@@ -10186,9 +10191,9 @@
 	</class>
 	<class name="android/app/appsearch/SearchSuggestionResult" since="34">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getSuggestedResult()Ljava/lang/String;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/SearchSuggestionResult$Builder" since="34">
 		<extends name="java/lang/Object"/>
@@ -10198,14 +10203,14 @@
 	</class>
 	<class name="android/app/appsearch/SearchSuggestionSpec" since="34">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getFilterDocumentIds()Ljava/util/Map;"/>
 		<method name="getFilterNamespaces()Ljava/util/List;"/>
-		<method name="getFilterProperties()Ljava/util/Map;" since="35" removed="36"/>
+		<method name="getFilterProperties()Ljava/util/Map;" since="35"/>
 		<method name="getFilterSchemas()Ljava/util/List;"/>
 		<method name="getMaximumResultCount()I"/>
 		<method name="getRankingStrategy()I"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 		<field name="SUGGESTION_RANKING_STRATEGY_DOCUMENT_COUNT"/>
 		<field name="SUGGESTION_RANKING_STRATEGY_NONE"/>
 		<field name="SUGGESTION_RANKING_STRATEGY_TERM_FREQUENCY"/>
@@ -10217,8 +10222,8 @@
 		<method name="addFilterDocumentIds(Ljava/lang/String;[Ljava/lang/String;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
 		<method name="addFilterNamespaces(Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
 		<method name="addFilterNamespaces([Ljava/lang/String;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
-		<method name="addFilterProperties(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="35" removed="36"/>
-		<method name="addFilterPropertyPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="35" removed="36"/>
+		<method name="addFilterProperties(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="35"/>
+		<method name="addFilterPropertyPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="35"/>
 		<method name="addFilterSchemas(Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
 		<method name="addFilterSchemas([Ljava/lang/String;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
 		<method name="build()Landroid/app/appsearch/SearchSuggestionSpec;"/>
@@ -10227,11 +10232,11 @@
 	<class name="android/app/appsearch/SetSchemaRequest" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="getMigrators()Ljava/util/Map;"/>
-		<method name="getPubliclyVisibleSchemas()Ljava/util/Map;" since="35" removed="36"/>
+		<method name="getPubliclyVisibleSchemas()Ljava/util/Map;" since="35"/>
 		<method name="getRequiredPermissionsForSchemaTypeVisibility()Ljava/util/Map;" since="33"/>
 		<method name="getSchemas()Ljava/util/Set;"/>
 		<method name="getSchemasNotDisplayedBySystem()Ljava/util/Set;"/>
-		<method name="getSchemasVisibleToConfigs()Ljava/util/Map;" since="35" removed="36"/>
+		<method name="getSchemasVisibleToConfigs()Ljava/util/Map;" since="35"/>
 		<method name="getSchemasVisibleToPackages()Ljava/util/Map;"/>
 		<method name="getVersion()I"/>
 		<method name="isForceOverride()Z"/>
@@ -10246,28 +10251,28 @@
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="addRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="33"/>
-		<method name="addSchemaTypeVisibleToConfig(Ljava/lang/String;Landroid/app/appsearch/SchemaVisibilityConfig;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35" removed="36"/>
+		<method name="addSchemaTypeVisibleToConfig(Ljava/lang/String;Landroid/app/appsearch/SchemaVisibilityConfig;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35"/>
 		<method name="addSchemas(Ljava/util/Collection;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="addSchemas([Landroid/app/appsearch/AppSearchSchema;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="build()Landroid/app/appsearch/SetSchemaRequest;"/>
 		<method name="clearRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="33"/>
-		<method name="clearSchemaTypeVisibleToConfigs(Ljava/lang/String;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35" removed="36"/>
+		<method name="clearSchemaTypeVisibleToConfigs(Ljava/lang/String;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35"/>
 		<method name="setForceOverride(Z)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="setMigrator(Ljava/lang/String;Landroid/app/appsearch/Migrator;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="setMigrators(Ljava/util/Map;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
-		<method name="setPubliclyVisibleSchema(Ljava/lang/String;Landroid/app/appsearch/PackageIdentifier;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35" removed="36"/>
+		<method name="setPubliclyVisibleSchema(Ljava/lang/String;Landroid/app/appsearch/PackageIdentifier;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35"/>
 		<method name="setSchemaTypeDisplayedBySystem(Ljava/lang/String;Z)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="setSchemaTypeVisibilityForPackage(Ljava/lang/String;ZLandroid/app/appsearch/PackageIdentifier;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="setVersion(I)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 	</class>
 	<class name="android/app/appsearch/SetSchemaResponse" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getDeletedTypes()Ljava/util/Set;"/>
 		<method name="getIncompatibleTypes()Ljava/util/Set;"/>
 		<method name="getMigratedTypes()Ljava/util/Set;"/>
 		<method name="getMigrationFailures()Ljava/util/List;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/SetSchemaResponse$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -10284,21 +10289,21 @@
 	</class>
 	<class name="android/app/appsearch/SetSchemaResponse$MigrationFailure" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/appsearch/AppSearchResult;)V"/>
 		<method name="getAppSearchResult()Landroid/app/appsearch/AppSearchResult;"/>
 		<method name="getDocumentId()Ljava/lang/String;"/>
 		<method name="getNamespace()Ljava/lang/String;"/>
 		<method name="getSchemaType()Ljava/lang/String;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/StorageInfo" since="31">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getAliveDocumentsCount()I"/>
 		<method name="getAliveNamespacesCount()I"/>
 		<method name="getSizeBytes()J"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/StorageInfo$Builder" since="31">
 		<extends name="java/lang/Object"/>
@@ -10332,9 +10337,9 @@
 	</class>
 	<class name="android/app/appsearch/observer/ObserverSpec" since="33">
 		<extends name="java/lang/Object"/>
-		<implements name="android/os/Parcelable" since="35" removed="36"/>
+		<implements name="android/os/Parcelable" since="35"/>
 		<method name="getFilterSchemas()Ljava/util/Set;"/>
-		<field name="CREATOR" since="35" removed="36"/>
+		<field name="CREATOR" since="35"/>
 	</class>
 	<class name="android/app/appsearch/observer/ObserverSpec$Builder" since="33">
 		<extends name="java/lang/Object"/>
@@ -13072,6 +13077,7 @@
 		<method name="unregisterVirtualDeviceListener(Landroid/companion/virtual/VirtualDeviceManager$VirtualDeviceListener;)V" since="35"/>
 	</class>
 	<class name="android/companion/virtual/VirtualDeviceManager$VirtualDeviceListener" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onVirtualDeviceClosed(I)V"/>
 		<method name="onVirtualDeviceCreated(I)V"/>
 	</class>
@@ -16900,6 +16906,7 @@
 		<field name="uiMode" since="8"/>
 	</class>
 	<class name="android/content/res/FontScaleConverter" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="convertDpToSp(F)F"/>
 		<method name="convertSpToDp(F)F"/>
 		<method name="forScale(F)Landroid/content/res/FontScaleConverter;"/>
@@ -17237,6 +17244,7 @@
 		<field name="CREATOR"/>
 	</class>
 	<class name="android/crypto/hpke/HpkeSpi" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="engineExport(I[B)[B"/>
 		<method name="engineInitRecipient([BLjava/security/PrivateKey;[BLjava/security/PublicKey;[B[B)V"/>
 		<method name="engineInitSender(Ljava/security/PublicKey;[BLjava/security/PrivateKey;[B[B)V"/>
@@ -20940,11 +20948,11 @@
 		<extends name="java/lang/Object"/>
 		<method name="getAvailableFonts()Ljava/util/Set;"/>
 	</class>
-	<class name="android/graphics/pdf/LoadParams" since="35">
+	<class name="android/graphics/pdf/LoadParams" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<method name="getPassword()Ljava/lang/String;"/>
 	</class>
-	<class name="android/graphics/pdf/LoadParams$Builder" since="35">
+	<class name="android/graphics/pdf/LoadParams$Builder" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/graphics/pdf/LoadParams;"/>
@@ -21017,7 +21025,7 @@
 		<field name="RENDER_MODE_FOR_DISPLAY"/>
 		<field name="RENDER_MODE_FOR_PRINT"/>
 	</class>
-	<class name="android/graphics/pdf/PdfRendererPreV" since="35">
+	<class name="android/graphics/pdf/PdfRendererPreV" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/AutoCloseable"/>
 		<method name="&lt;init>(Landroid/os/ParcelFileDescriptor;)V"/>
@@ -21034,7 +21042,7 @@
 		<field name="PDF_FORM_TYPE_XFA_FOREGROUND"/>
 		<field name="PDF_FORM_TYPE_XFA_FULL"/>
 	</class>
-	<class name="android/graphics/pdf/PdfRendererPreV$Page" since="35">
+	<class name="android/graphics/pdf/PdfRendererPreV$Page" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/AutoCloseable"/>
 		<method name="applyEdit(Landroid/graphics/pdf/models/FormEditRecord;)Ljava/util/List;"/>
@@ -21053,7 +21061,7 @@
 		<method name="searchText(Ljava/lang/String;)Ljava/util/List;"/>
 		<method name="selectContent(Landroid/graphics/pdf/models/selection/SelectionBoundary;Landroid/graphics/pdf/models/selection/SelectionBoundary;)Landroid/graphics/pdf/models/selection/PageSelection;"/>
 	</class>
-	<class name="android/graphics/pdf/RenderParams" since="35">
+	<class name="android/graphics/pdf/RenderParams" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<method name="getRenderFlags()I"/>
 		<method name="getRenderMode()I"/>
@@ -21062,14 +21070,14 @@
 		<field name="RENDER_MODE_FOR_DISPLAY"/>
 		<field name="RENDER_MODE_FOR_PRINT"/>
 	</class>
-	<class name="android/graphics/pdf/RenderParams$Builder" since="35">
+	<class name="android/graphics/pdf/RenderParams$Builder" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(I)V"/>
 		<method name="build()Landroid/graphics/pdf/RenderParams;"/>
 		<method name="setRenderFlags(I)Landroid/graphics/pdf/RenderParams$Builder;"/>
 		<method name="setRenderFlags(II)Landroid/graphics/pdf/RenderParams$Builder;"/>
 	</class>
-	<class name="android/graphics/pdf/content/PdfPageGotoLinkContent" since="35">
+	<class name="android/graphics/pdf/content/PdfPageGotoLinkContent" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/util/List;Landroid/graphics/pdf/content/PdfPageGotoLinkContent$Destination;)V"/>
@@ -21077,7 +21085,7 @@
 		<method name="getDestination()Landroid/graphics/pdf/content/PdfPageGotoLinkContent$Destination;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/content/PdfPageGotoLinkContent$Destination" since="35">
+	<class name="android/graphics/pdf/content/PdfPageGotoLinkContent$Destination" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(IFFF)V"/>
@@ -21087,14 +21095,14 @@
 		<method name="getZoom()F"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/content/PdfPageImageContent" since="35">
+	<class name="android/graphics/pdf/content/PdfPageImageContent" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="getAltText()Ljava/lang/String;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/content/PdfPageLinkContent" since="35">
+	<class name="android/graphics/pdf/content/PdfPageLinkContent" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/util/List;Landroid/net/Uri;)V"/>
@@ -21102,7 +21110,7 @@
 		<method name="getUri()Landroid/net/Uri;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/content/PdfPageTextContent" since="35">
+	<class name="android/graphics/pdf/content/PdfPageTextContent" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
@@ -21111,7 +21119,7 @@
 		<method name="getText()Ljava/lang/String;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/models/FormEditRecord" since="35">
+	<class name="android/graphics/pdf/models/FormEditRecord" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getClickPoint()Landroid/graphics/Point;"/>
@@ -21125,7 +21133,7 @@
 		<field name="EDIT_TYPE_SET_INDICES"/>
 		<field name="EDIT_TYPE_SET_TEXT"/>
 	</class>
-	<class name="android/graphics/pdf/models/FormEditRecord$Builder" since="35">
+	<class name="android/graphics/pdf/models/FormEditRecord$Builder" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(III)V"/>
 		<method name="build()Landroid/graphics/pdf/models/FormEditRecord;"/>
@@ -21133,7 +21141,7 @@
 		<method name="setSelectedIndices([I)Landroid/graphics/pdf/models/FormEditRecord$Builder;"/>
 		<method name="setText(Ljava/lang/String;)Landroid/graphics/pdf/models/FormEditRecord$Builder;"/>
 	</class>
-	<class name="android/graphics/pdf/models/FormWidgetInfo" since="35">
+	<class name="android/graphics/pdf/models/FormWidgetInfo" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getAccessibilityLabel()Ljava/lang/String;"/>
@@ -21158,7 +21166,7 @@
 		<field name="WIDGET_TYPE_TEXTFIELD"/>
 		<field name="WIDGET_TYPE_UNKNOWN"/>
 	</class>
-	<class name="android/graphics/pdf/models/FormWidgetInfo$Builder" since="35">
+	<class name="android/graphics/pdf/models/FormWidgetInfo$Builder" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(IILandroid/graphics/Rect;Ljava/lang/String;Ljava/lang/String;)V"/>
 		<method name="build()Landroid/graphics/pdf/models/FormWidgetInfo;"/>
@@ -21170,7 +21178,7 @@
 		<method name="setMultiSelect(Z)Landroid/graphics/pdf/models/FormWidgetInfo$Builder;"/>
 		<method name="setReadOnly(Z)Landroid/graphics/pdf/models/FormWidgetInfo$Builder;"/>
 	</class>
-	<class name="android/graphics/pdf/models/ListItem" since="35">
+	<class name="android/graphics/pdf/models/ListItem" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/lang/String;Z)V"/>
@@ -21178,7 +21186,7 @@
 		<method name="isSelected()Z"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/models/PageMatchBounds" since="35">
+	<class name="android/graphics/pdf/models/PageMatchBounds" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/util/List;I)V"/>
@@ -21186,7 +21194,7 @@
 		<method name="getTextStartIndex()I"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/models/selection/PageSelection" since="35">
+	<class name="android/graphics/pdf/models/selection/PageSelection" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(ILandroid/graphics/pdf/models/selection/SelectionBoundary;Landroid/graphics/pdf/models/selection/SelectionBoundary;Ljava/util/List;)V"/>
@@ -21196,7 +21204,7 @@
 		<method name="getStop()Landroid/graphics/pdf/models/selection/SelectionBoundary;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/graphics/pdf/models/selection/SelectionBoundary" since="35">
+	<class name="android/graphics/pdf/models/selection/SelectionBoundary" module="framework-pdf" since="35" sdks="31:13,33:13,34:13,35:13,0:35">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(I)V"/>
@@ -22116,6 +22124,7 @@
 		<method name="getSignature()Ljava/security/Signature;"/>
 	</class>
 	<class name="android/hardware/biometrics/PromptContentItem" since="35">
+		<extends name="java/lang/Object"/>
 	</class>
 	<class name="android/hardware/biometrics/PromptContentItemBulletedText" since="35">
 		<extends name="java/lang/Object"/>
@@ -22132,6 +22141,7 @@
 		<field name="CREATOR"/>
 	</class>
 	<class name="android/hardware/biometrics/PromptContentView" since="35">
+		<extends name="java/lang/Object"/>
 	</class>
 	<class name="android/hardware/biometrics/PromptContentViewWithMoreOptionsButton" since="35">
 		<extends name="java/lang/Object"/>
@@ -23883,8 +23893,8 @@
 		<field name="READ_EXERCISE"/>
 		<field name="READ_EXERCISE_ROUTES" since="35"/>
 		<field name="READ_FLOORS_CLIMBED"/>
-		<field name="READ_HEALTH_DATA_HISTORY" since="35" removed="36"/>
-		<field name="READ_HEALTH_DATA_IN_BACKGROUND" since="35" removed="36"/>
+		<field name="READ_HEALTH_DATA_HISTORY" since="35"/>
+		<field name="READ_HEALTH_DATA_IN_BACKGROUND" since="35"/>
 		<field name="READ_HEART_RATE"/>
 		<field name="READ_HEART_RATE_VARIABILITY"/>
 		<field name="READ_HEIGHT"/>
@@ -23895,12 +23905,12 @@
 		<field name="READ_NUTRITION"/>
 		<field name="READ_OVULATION_TEST"/>
 		<field name="READ_OXYGEN_SATURATION"/>
-		<field name="READ_PLANNED_EXERCISE" since="35" removed="36"/>
+		<field name="READ_PLANNED_EXERCISE" since="35"/>
 		<field name="READ_POWER"/>
 		<field name="READ_RESPIRATORY_RATE"/>
 		<field name="READ_RESTING_HEART_RATE"/>
 		<field name="READ_SEXUAL_ACTIVITY"/>
-		<field name="READ_SKIN_TEMPERATURE" since="35" removed="36"/>
+		<field name="READ_SKIN_TEMPERATURE" since="35"/>
 		<field name="READ_SLEEP"/>
 		<field name="READ_SPEED"/>
 		<field name="READ_STEPS"/>
@@ -23933,12 +23943,12 @@
 		<field name="WRITE_NUTRITION"/>
 		<field name="WRITE_OVULATION_TEST"/>
 		<field name="WRITE_OXYGEN_SATURATION"/>
-		<field name="WRITE_PLANNED_EXERCISE" since="35" removed="36"/>
+		<field name="WRITE_PLANNED_EXERCISE" since="35"/>
 		<field name="WRITE_POWER"/>
 		<field name="WRITE_RESPIRATORY_RATE"/>
 		<field name="WRITE_RESTING_HEART_RATE"/>
 		<field name="WRITE_SEXUAL_ACTIVITY"/>
-		<field name="WRITE_SKIN_TEMPERATURE" since="35" removed="36"/>
+		<field name="WRITE_SKIN_TEMPERATURE" since="35"/>
 		<field name="WRITE_SLEEP"/>
 		<field name="WRITE_SPEED"/>
 		<field name="WRITE_STEPS"/>
@@ -24581,7 +24591,7 @@
 		<method name="getExerciseType()I"/>
 		<method name="getLaps()Ljava/util/List;"/>
 		<method name="getNotes()Ljava/lang/CharSequence;"/>
-		<method name="getPlannedExerciseSessionId()Ljava/lang/String;" since="35" removed="36"/>
+		<method name="getPlannedExerciseSessionId()Ljava/lang/String;" since="35"/>
 		<method name="getRoute()Landroid/health/connect/datatypes/ExerciseRoute;"/>
 		<method name="getSegments()Ljava/util/List;"/>
 		<method name="getTitle()Ljava/lang/CharSequence;"/>
@@ -24597,7 +24607,7 @@
 		<method name="setEndZoneOffset(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;"/>
 		<method name="setLaps(Ljava/util/List;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;"/>
 		<method name="setNotes(Ljava/lang/CharSequence;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;"/>
-		<method name="setPlannedExerciseSessionId(Ljava/lang/String;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;" since="35" removed="36"/>
+		<method name="setPlannedExerciseSessionId(Ljava/lang/String;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;" since="35"/>
 		<method name="setRoute(Landroid/health/connect/datatypes/ExerciseRoute;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;"/>
 		<method name="setSegments(Ljava/util/List;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;"/>
 		<method name="setStartZoneOffset(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/ExerciseSessionRecord$Builder;"/>
@@ -33061,6 +33071,7 @@
 		<method name="removeMediaCodec(Landroid/media/MediaCodec;)V"/>
 	</class>
 	<class name="android/media/LoudnessCodecController$OnLoudnessCodecUpdateListener" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onLoudnessCodecUpdate(Landroid/media/MediaCodec;Landroid/os/Bundle;)Landroid/os/Bundle;"/>
 	</class>
 	<class name="android/media/MediaActionSound" since="16">
@@ -34008,7 +34019,7 @@
 		<field name="ERROR_UNSUPPORTED_OPERATION"/>
 		<field name="ERROR_ZERO_SUBSAMPLES"/>
 	</class>
-	<class name="android/media/MediaDrm$HdcpLevel" since="28" deprecated="29">
+	<class name="android/media/MediaDrm$HdcpLevel" since="28" deprecated="29" removed="35">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
@@ -34111,7 +34122,7 @@
 		<method name="getData()[B"/>
 		<method name="getDefaultUrl()Ljava/lang/String;"/>
 	</class>
-	<class name="android/media/MediaDrm$SecurityLevel" since="28" deprecated="29">
+	<class name="android/media/MediaDrm$SecurityLevel" since="28" deprecated="29" removed="35">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
@@ -39473,7 +39484,7 @@
 	<class name="android/net/IpSecTransform" since="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/AutoCloseable"/>
-		<method name="requestIpSecTransformState(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="35" removed="36"/>
+		<method name="requestIpSecTransformState(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="35"/>
 	</class>
 	<class name="android/net/IpSecTransform$Builder" since="28">
 		<extends name="java/lang/Object"/>
@@ -42933,6 +42944,7 @@
 		<method name="onUpnpServiceAvailable(Ljava/util/List;Landroid/net/wifi/p2p/WifiP2pDevice;)V"/>
 	</class>
 	<class name="android/net/wifi/p2p/WifiP2pManager$WifiP2pListener" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onDeviceConfigurationChanged(Landroid/net/wifi/p2p/WifiP2pDevice;)V"/>
 		<method name="onDiscoveryStateChanged(I)V"/>
 		<method name="onFrequencyChanged(Landroid/net/wifi/p2p/WifiP2pInfo;Landroid/net/wifi/p2p/WifiP2pGroup;)V"/>
@@ -55784,14 +55796,18 @@
 		<field name="CREATOR"/>
 	</class>
 	<class name="android/service/chooser/AdditionalContentContract" since="35">
+		<extends name="java/lang/Object"/>
 	</class>
 	<class name="android/service/chooser/AdditionalContentContract$Columns" since="35">
+		<extends name="java/lang/Object"/>
 		<field name="URI"/>
 	</class>
 	<class name="android/service/chooser/AdditionalContentContract$CursorExtraKeys" since="35">
+		<extends name="java/lang/Object"/>
 		<field name="POSITION"/>
 	</class>
 	<class name="android/service/chooser/AdditionalContentContract$MethodNames" since="35">
+		<extends name="java/lang/Object"/>
 		<field name="ON_SELECTION_CHANGED"/>
 	</class>
 	<class name="android/service/chooser/ChooserAction" since="34">
@@ -63216,209 +63232,199 @@
 		<implements name="android/os/Parcelable"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/test/ActivityInstrumentationTestCase" since="1" deprecated="3">
+	<class name="android/test/ActivityInstrumentationTestCase" since="1" deprecated="3" removed="28">
 		<extends name="android/test/ActivityTestCase"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;Z)V" deprecated="35"/>
-		<method name="testActivityTestCaseSetUpProperly()V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;Z)V"/>
+		<method name="testActivityTestCaseSetUpProperly()V"/>
 	</class>
-	<class name="android/test/ActivityInstrumentationTestCase2" since="3" deprecated="24">
+	<class name="android/test/ActivityInstrumentationTestCase2" since="3" deprecated="24" removed="28">
 		<extends name="android/test/ActivityTestCase"/>
-		<method name="&lt;init>(Ljava/lang/Class;)V" since="8" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Class;)V" since="8"/>
 		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V" deprecated="15"/>
-		<method name="setActivityInitialTouchMode(Z)V" deprecated="35"/>
-		<method name="setActivityIntent(Landroid/content/Intent;)V" deprecated="35"/>
+		<method name="setActivityInitialTouchMode(Z)V"/>
+		<method name="setActivityIntent(Landroid/content/Intent;)V"/>
 	</class>
-	<class name="android/test/ActivityTestCase" since="1" deprecated="24">
+	<class name="android/test/ActivityTestCase" since="1" deprecated="24" removed="28">
 		<extends name="android/test/InstrumentationTestCase"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="getActivity()Landroid/app/Activity;" deprecated="35"/>
-		<method name="scrubClass(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="setActivity(Landroid/app/Activity;)V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="getActivity()Landroid/app/Activity;"/>
+		<method name="scrubClass(Ljava/lang/Class;)V"/>
+		<method name="setActivity(Landroid/app/Activity;)V"/>
 	</class>
-	<class name="android/test/ActivityUnitTestCase" since="1" deprecated="24">
+	<class name="android/test/ActivityUnitTestCase" since="1" deprecated="24" removed="28">
 		<extends name="android/test/ActivityTestCase"/>
-		<method name="&lt;init>(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="getFinishedActivityRequest()I" deprecated="35"/>
-		<method name="getRequestedOrientation()I" deprecated="35"/>
-		<method name="getStartedActivityIntent()Landroid/content/Intent;" deprecated="35"/>
-		<method name="getStartedActivityRequest()I" deprecated="35"/>
-		<method name="isFinishCalled()Z" deprecated="35"/>
-		<method name="setActivityContext(Landroid/content/Context;)V" deprecated="35"/>
-		<method name="setApplication(Landroid/app/Application;)V" deprecated="35"/>
-		<method name="startActivity(Landroid/content/Intent;Landroid/os/Bundle;Ljava/lang/Object;)Landroid/app/Activity;" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Class;)V"/>
+		<method name="getFinishedActivityRequest()I"/>
+		<method name="getRequestedOrientation()I"/>
+		<method name="getStartedActivityIntent()Landroid/content/Intent;"/>
+		<method name="getStartedActivityRequest()I"/>
+		<method name="isFinishCalled()Z"/>
+		<method name="setActivityContext(Landroid/content/Context;)V"/>
+		<method name="setApplication(Landroid/app/Application;)V"/>
+		<method name="startActivity(Landroid/content/Intent;Landroid/os/Bundle;Ljava/lang/Object;)Landroid/app/Activity;"/>
 	</class>
-	<class name="android/test/AndroidTestCase" since="1" deprecated="24">
+	<class name="android/test/AndroidTestCase" since="1" deprecated="24" removed="28">
 		<extends name="junit/framework/TestCase"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="assertActivityRequiresPermission(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" since="4" deprecated="35"/>
-		<method name="assertReadingContentUriRequiresPermission(Landroid/net/Uri;Ljava/lang/String;)V" since="4" deprecated="35"/>
-		<method name="assertWritingContentUriRequiresPermission(Landroid/net/Uri;Ljava/lang/String;)V" since="4" deprecated="35"/>
-		<method name="getContext()Landroid/content/Context;" deprecated="35"/>
-		<method name="getTestContext()Landroid/content/Context;" since="35" deprecated="35"/>
-		<method name="scrubClass(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="setContext(Landroid/content/Context;)V" deprecated="35"/>
-		<method name="setTestContext(Landroid/content/Context;)V" since="35" deprecated="35"/>
-		<method name="testAndroidTestCaseSetupProperly()V" deprecated="35"/>
-		<field name="mContext" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="assertActivityRequiresPermission(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" since="4"/>
+		<method name="assertReadingContentUriRequiresPermission(Landroid/net/Uri;Ljava/lang/String;)V" since="4"/>
+		<method name="assertWritingContentUriRequiresPermission(Landroid/net/Uri;Ljava/lang/String;)V" since="4"/>
+		<method name="getContext()Landroid/content/Context;"/>
+		<method name="scrubClass(Ljava/lang/Class;)V"/>
+		<method name="setContext(Landroid/content/Context;)V"/>
+		<method name="testAndroidTestCaseSetupProperly()V"/>
+		<field name="mContext"/>
 	</class>
-	<class name="android/test/AndroidTestRunner" since="1" deprecated="24">
+	<class name="android/test/AndroidTestRunner" since="1" deprecated="24" removed="28">
 		<extends name="junit/runner/BaseTestRunner"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="addTestListener(Ljunit/framework/TestListener;)V" deprecated="35"/>
-		<method name="clearTestListeners()V" deprecated="35"/>
-		<method name="createTestResult()Ljunit/framework/TestResult;" deprecated="35"/>
-		<method name="getTestCases()Ljava/util/List;" deprecated="35"/>
-		<method name="getTestClassName()Ljava/lang/String;" deprecated="35"/>
-		<method name="getTestResult()Ljunit/framework/TestResult;" deprecated="35"/>
-		<method name="runTest()V" deprecated="35"/>
-		<method name="runTest(Ljunit/framework/TestResult;)V" deprecated="35"/>
-		<method name="setContext(Landroid/content/Context;)V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="addTestListener(Ljunit/framework/TestListener;)V"/>
+		<method name="clearTestListeners()V"/>
+		<method name="createTestResult()Ljunit/framework/TestResult;"/>
+		<method name="getTestCases()Ljava/util/List;"/>
+		<method name="getTestClassName()Ljava/lang/String;"/>
+		<method name="getTestResult()Ljunit/framework/TestResult;"/>
+		<method name="runTest()V"/>
+		<method name="runTest(Ljunit/framework/TestResult;)V"/>
+		<method name="setContext(Landroid/content/Context;)V"/>
 		<method name="setInstrumentaiton(Landroid/app/Instrumentation;)V" deprecated="15"/>
-		<method name="setInstrumentation(Landroid/app/Instrumentation;)V" since="5" deprecated="35"/>
-		<method name="setTest(Ljunit/framework/Test;)V" deprecated="35"/>
-		<method name="setTestClassName(Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
+		<method name="setInstrumentation(Landroid/app/Instrumentation;)V" since="5"/>
+		<method name="setTest(Ljunit/framework/Test;)V"/>
+		<method name="setTestClassName(Ljava/lang/String;Ljava/lang/String;)V"/>
 	</class>
-	<class name="android/test/ApplicationTestCase" since="1" deprecated="24">
+	<class name="android/test/ApplicationTestCase" since="1" deprecated="24" removed="28">
 		<extends name="android/test/AndroidTestCase"/>
-		<method name="&lt;init>(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="createApplication()V" deprecated="35"/>
-		<method name="getApplication()Landroid/app/Application;" deprecated="35"/>
-		<method name="getSystemContext()Landroid/content/Context;" deprecated="35"/>
-		<method name="terminateApplication()V" deprecated="35"/>
-		<method name="testApplicationTestCaseSetUpProperly()V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Class;)V"/>
+		<method name="createApplication()V"/>
+		<method name="getApplication()Landroid/app/Application;"/>
+		<method name="getSystemContext()Landroid/content/Context;"/>
+		<method name="terminateApplication()V"/>
+		<method name="testApplicationTestCaseSetUpProperly()V"/>
 	</class>
-	<class name="android/test/AssertionFailedError" since="1" deprecated="16">
+	<class name="android/test/AssertionFailedError" since="1" deprecated="16" removed="28">
 		<extends name="java/lang/Error"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/String;)V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="&lt;init>(Ljava/lang/String;)V"/>
 	</class>
-	<class name="android/test/ComparisonFailure" since="1" deprecated="16">
+	<class name="android/test/ComparisonFailure" since="1" deprecated="16" removed="28">
 		<extends name="android/test/AssertionFailedError"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"/>
 	</class>
-	<class name="android/test/FlakyTest" since="1" deprecated="24">
+	<class name="android/test/FlakyTest" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
-		<method name="tolerance()I" deprecated="35"/>
+		<method name="tolerance()I"/>
 	</class>
-	<class name="android/test/InstrumentationTestCase" since="1" deprecated="24">
+	<class name="android/test/InstrumentationTestCase" since="1" deprecated="24" removed="28">
 		<extends name="junit/framework/TestCase"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="getInstrumentation()Landroid/app/Instrumentation;" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="getInstrumentation()Landroid/app/Instrumentation;"/>
 		<method name="injectInsrumentation(Landroid/app/Instrumentation;)V" deprecated="15"/>
-		<method name="injectInstrumentation(Landroid/app/Instrumentation;)V" since="5" deprecated="35"/>
-		<method name="launchActivity(Ljava/lang/String;Ljava/lang/Class;Landroid/os/Bundle;)Landroid/app/Activity;" deprecated="35"/>
-		<method name="launchActivityWithIntent(Ljava/lang/String;Ljava/lang/Class;Landroid/content/Intent;)Landroid/app/Activity;" since="3" deprecated="35"/>
-		<method name="runTestOnUiThread(Ljava/lang/Runnable;)V" since="3" deprecated="35"/>
-		<method name="sendKeys(Ljava/lang/String;)V" deprecated="35"/>
-		<method name="sendKeys([I)V" deprecated="35"/>
-		<method name="sendRepeatedKeys([I)V" deprecated="35"/>
+		<method name="injectInstrumentation(Landroid/app/Instrumentation;)V" since="5"/>
+		<method name="launchActivity(Ljava/lang/String;Ljava/lang/Class;Landroid/os/Bundle;)Landroid/app/Activity;"/>
+		<method name="launchActivityWithIntent(Ljava/lang/String;Ljava/lang/Class;Landroid/content/Intent;)Landroid/app/Activity;" since="3"/>
+		<method name="runTestOnUiThread(Ljava/lang/Runnable;)V" since="3"/>
+		<method name="sendKeys(Ljava/lang/String;)V"/>
+		<method name="sendKeys([I)V"/>
+		<method name="sendRepeatedKeys([I)V"/>
 	</class>
-	<class name="android/test/InstrumentationTestRunner" since="1" deprecated="24">
+	<class name="android/test/InstrumentationTestRunner" since="1" deprecated="24" removed="28">
 		<extends name="android/app/Instrumentation"/>
 		<implements name="android/test/TestSuiteProvider"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="addTestListener(Ljunit/framework/TestListener;)V" since="35" deprecated="35"/>
-		<method name="getAllTests()Ljunit/framework/TestSuite;" deprecated="35"/>
-		<method name="getAndroidTestRunner()Landroid/test/AndroidTestRunner;" deprecated="35"/>
-		<method name="getArguments()Landroid/os/Bundle;" since="18" deprecated="35"/>
-		<method name="getLoader()Ljava/lang/ClassLoader;" deprecated="35"/>
-		<field name="REPORT_KEY_NAME_CLASS" deprecated="35"/>
-		<field name="REPORT_KEY_NAME_TEST" deprecated="35"/>
-		<field name="REPORT_KEY_NUM_CURRENT" deprecated="35"/>
-		<field name="REPORT_KEY_NUM_TOTAL" deprecated="35"/>
-		<field name="REPORT_KEY_STACK" deprecated="35"/>
-		<field name="REPORT_VALUE_ID" deprecated="35"/>
-		<field name="REPORT_VALUE_RESULT_ERROR" deprecated="35"/>
-		<field name="REPORT_VALUE_RESULT_FAILURE" deprecated="35"/>
-		<field name="REPORT_VALUE_RESULT_OK" deprecated="35"/>
-		<field name="REPORT_VALUE_RESULT_START" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="getAllTests()Ljunit/framework/TestSuite;"/>
+		<method name="getAndroidTestRunner()Landroid/test/AndroidTestRunner;"/>
+		<method name="getArguments()Landroid/os/Bundle;" since="18"/>
+		<method name="getLoader()Ljava/lang/ClassLoader;"/>
+		<field name="REPORT_KEY_NAME_CLASS"/>
+		<field name="REPORT_KEY_NAME_TEST"/>
+		<field name="REPORT_KEY_NUM_CURRENT"/>
+		<field name="REPORT_KEY_NUM_TOTAL"/>
+		<field name="REPORT_KEY_STACK"/>
+		<field name="REPORT_VALUE_ID"/>
+		<field name="REPORT_VALUE_RESULT_ERROR"/>
+		<field name="REPORT_VALUE_RESULT_FAILURE"/>
+		<field name="REPORT_VALUE_RESULT_OK"/>
+		<field name="REPORT_VALUE_RESULT_START"/>
 	</class>
-	<class name="android/test/InstrumentationTestSuite" since="1" deprecated="24">
+	<class name="android/test/InstrumentationTestSuite" since="1" deprecated="24" removed="28">
 		<extends name="junit/framework/TestSuite"/>
-		<method name="&lt;init>(Landroid/app/Instrumentation;)V" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/Class;Landroid/app/Instrumentation;)V" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/String;Landroid/app/Instrumentation;)V" deprecated="35"/>
+		<method name="&lt;init>(Landroid/app/Instrumentation;)V"/>
+		<method name="&lt;init>(Ljava/lang/Class;Landroid/app/Instrumentation;)V"/>
+		<method name="&lt;init>(Ljava/lang/String;Landroid/app/Instrumentation;)V"/>
 	</class>
-	<class name="android/test/IsolatedContext" since="1" deprecated="24">
+	<class name="android/test/IsolatedContext" since="1" deprecated="24" removed="28">
 		<extends name="android/content/ContextWrapper"/>
-		<method name="&lt;init>(Landroid/content/ContentResolver;Landroid/content/Context;)V" deprecated="35"/>
-		<method name="getAndClearBroadcastIntents()Ljava/util/List;" deprecated="35"/>
+		<method name="&lt;init>(Landroid/content/ContentResolver;Landroid/content/Context;)V"/>
+		<method name="getAndClearBroadcastIntents()Ljava/util/List;"/>
 	</class>
-	<class name="android/test/LaunchPerformanceBase" since="35" deprecated="35">
-		<extends name="android/app/Instrumentation"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="LaunchApp()V" deprecated="35"/>
-		<field name="mIntent" deprecated="35"/>
-		<field name="mResults" deprecated="35"/>
-	</class>
-	<class name="android/test/LoaderTestCase" since="11">
+	<class name="android/test/LoaderTestCase" since="11" removed="28">
 		<extends name="android/test/AndroidTestCase"/>
 		<method name="&lt;init>()V"/>
 		<method name="getLoaderResultSynchronously(Landroid/content/Loader;)Ljava/lang/Object;"/>
 	</class>
-	<class name="android/test/MoreAsserts" since="1" deprecated="24">
+	<class name="android/test/MoreAsserts" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="assertAssignableFrom(Ljava/lang/Class;Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="assertAssignableFrom(Ljava/lang/Class;Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertContainsRegex(Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;" deprecated="35"/>
-		<method name="assertContainsRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;" deprecated="35"/>
-		<method name="assertContentsInAnyOrder(Ljava/lang/Iterable;[Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertContentsInAnyOrder(Ljava/lang/String;Ljava/lang/Iterable;[Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertContentsInOrder(Ljava/lang/Iterable;[Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertContentsInOrder(Ljava/lang/String;Ljava/lang/Iterable;[Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertEmpty(Ljava/lang/Iterable;)V" deprecated="35"/>
-		<method name="assertEmpty(Ljava/lang/String;Ljava/lang/Iterable;)V" deprecated="35"/>
-		<method name="assertEmpty(Ljava/lang/String;Ljava/util/Map;)V" deprecated="35"/>
-		<method name="assertEmpty(Ljava/util/Map;)V" deprecated="35"/>
-		<method name="assertEquals(Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;)V" deprecated="35"/>
-		<method name="assertEquals(Ljava/lang/String;[B[B)V" deprecated="35"/>
-		<method name="assertEquals(Ljava/lang/String;[D[D)V" deprecated="35"/>
-		<method name="assertEquals(Ljava/lang/String;[I[I)V" deprecated="35"/>
-		<method name="assertEquals(Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertEquals(Ljava/util/Set;Ljava/util/Set;)V" deprecated="35"/>
-		<method name="assertEquals([B[B)V" deprecated="35"/>
-		<method name="assertEquals([D[D)V" deprecated="35"/>
-		<method name="assertEquals([I[I)V" deprecated="35"/>
-		<method name="assertEquals([Ljava/lang/Object;[Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertMatchesRegex(Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;" deprecated="35"/>
-		<method name="assertMatchesRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;" deprecated="35"/>
-		<method name="assertNotContainsRegex(Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="assertNotContainsRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="assertNotEmpty(Ljava/lang/Iterable;)V" deprecated="35"/>
-		<method name="assertNotEmpty(Ljava/lang/String;Ljava/lang/Iterable;)V" deprecated="35"/>
-		<method name="assertNotEmpty(Ljava/lang/String;Ljava/util/Map;)V" deprecated="35"/>
-		<method name="assertNotEmpty(Ljava/util/Map;)V" deprecated="35"/>
-		<method name="assertNotEqual(Ljava/lang/Object;Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertNotEqual(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V" deprecated="35"/>
-		<method name="assertNotMatchesRegex(Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="assertNotMatchesRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="checkEqualsAndHashCodeMethods(Ljava/lang/Object;Ljava/lang/Object;Z)V" deprecated="35"/>
-		<method name="checkEqualsAndHashCodeMethods(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Z)V" deprecated="35"/>
+		<method name="assertAssignableFrom(Ljava/lang/Class;Ljava/lang/Class;)V"/>
+		<method name="assertAssignableFrom(Ljava/lang/Class;Ljava/lang/Object;)V"/>
+		<method name="assertContainsRegex(Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;"/>
+		<method name="assertContainsRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;"/>
+		<method name="assertContentsInAnyOrder(Ljava/lang/Iterable;[Ljava/lang/Object;)V"/>
+		<method name="assertContentsInAnyOrder(Ljava/lang/String;Ljava/lang/Iterable;[Ljava/lang/Object;)V"/>
+		<method name="assertContentsInOrder(Ljava/lang/Iterable;[Ljava/lang/Object;)V"/>
+		<method name="assertContentsInOrder(Ljava/lang/String;Ljava/lang/Iterable;[Ljava/lang/Object;)V"/>
+		<method name="assertEmpty(Ljava/lang/Iterable;)V"/>
+		<method name="assertEmpty(Ljava/lang/String;Ljava/lang/Iterable;)V"/>
+		<method name="assertEmpty(Ljava/lang/String;Ljava/util/Map;)V"/>
+		<method name="assertEmpty(Ljava/util/Map;)V"/>
+		<method name="assertEquals(Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;)V"/>
+		<method name="assertEquals(Ljava/lang/String;[B[B)V"/>
+		<method name="assertEquals(Ljava/lang/String;[D[D)V"/>
+		<method name="assertEquals(Ljava/lang/String;[I[I)V"/>
+		<method name="assertEquals(Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)V"/>
+		<method name="assertEquals(Ljava/util/Set;Ljava/util/Set;)V"/>
+		<method name="assertEquals([B[B)V"/>
+		<method name="assertEquals([D[D)V"/>
+		<method name="assertEquals([I[I)V"/>
+		<method name="assertEquals([Ljava/lang/Object;[Ljava/lang/Object;)V"/>
+		<method name="assertMatchesRegex(Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;"/>
+		<method name="assertMatchesRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/util/regex/MatchResult;"/>
+		<method name="assertNotContainsRegex(Ljava/lang/String;Ljava/lang/String;)V"/>
+		<method name="assertNotContainsRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"/>
+		<method name="assertNotEmpty(Ljava/lang/Iterable;)V"/>
+		<method name="assertNotEmpty(Ljava/lang/String;Ljava/lang/Iterable;)V"/>
+		<method name="assertNotEmpty(Ljava/lang/String;Ljava/util/Map;)V"/>
+		<method name="assertNotEmpty(Ljava/util/Map;)V"/>
+		<method name="assertNotEqual(Ljava/lang/Object;Ljava/lang/Object;)V"/>
+		<method name="assertNotEqual(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V"/>
+		<method name="assertNotMatchesRegex(Ljava/lang/String;Ljava/lang/String;)V"/>
+		<method name="assertNotMatchesRegex(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"/>
+		<method name="checkEqualsAndHashCodeMethods(Ljava/lang/Object;Ljava/lang/Object;Z)V"/>
+		<method name="checkEqualsAndHashCodeMethods(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Z)V"/>
 	</class>
-	<class name="android/test/PerformanceTestCase" since="1" deprecated="24">
+	<class name="android/test/PerformanceTestCase" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="isPerformanceOnly()Z" deprecated="35"/>
-		<method name="startPerformance(Landroid/test/PerformanceTestCase$Intermediates;)I" deprecated="35"/>
+		<method name="isPerformanceOnly()Z"/>
+		<method name="startPerformance(Landroid/test/PerformanceTestCase$Intermediates;)I"/>
 	</class>
-	<class name="android/test/PerformanceTestCase$Intermediates" since="1" deprecated="35">
+	<class name="android/test/PerformanceTestCase$Intermediates" since="1" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="addIntermediate(Ljava/lang/String;)V" deprecated="35"/>
-		<method name="addIntermediate(Ljava/lang/String;J)V" deprecated="35"/>
-		<method name="finishTiming(Z)V" deprecated="35"/>
-		<method name="setInternalIterations(I)V" deprecated="35"/>
-		<method name="startTiming(Z)V" deprecated="35"/>
+		<method name="addIntermediate(Ljava/lang/String;)V"/>
+		<method name="addIntermediate(Ljava/lang/String;J)V"/>
+		<method name="finishTiming(Z)V"/>
+		<method name="setInternalIterations(I)V"/>
+		<method name="startTiming(Z)V"/>
 	</class>
-	<class name="android/test/ProviderTestCase" since="1" deprecated="5">
+	<class name="android/test/ProviderTestCase" since="1" deprecated="5" removed="28">
 		<extends name="android/test/InstrumentationTestCase"/>
-		<method name="&lt;init>(Ljava/lang/Class;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="getMockContentResolver()Landroid/test/mock/MockContentResolver;" deprecated="35"/>
-		<method name="getMockContext()Landroid/test/IsolatedContext;" deprecated="35"/>
-		<method name="getProvider()Landroid/content/ContentProvider;" deprecated="35"/>
-		<method name="newResolverWithContentProviderFromSql(Landroid/content/Context;Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)Landroid/content/ContentResolver;" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Class;Ljava/lang/String;)V"/>
+		<method name="getMockContentResolver()Landroid/test/mock/MockContentResolver;"/>
+		<method name="getMockContext()Landroid/test/IsolatedContext;"/>
+		<method name="getProvider()Landroid/content/ContentProvider;"/>
+		<method name="newResolverWithContentProviderFromSql(Landroid/content/Context;Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)Landroid/content/ContentResolver;"/>
 	</class>
-	<class name="android/test/ProviderTestCase2" since="3">
+	<class name="android/test/ProviderTestCase2" since="3" removed="28">
 		<extends name="android/test/AndroidTestCase"/>
 		<method name="&lt;init>(Ljava/lang/Class;Ljava/lang/String;)V"/>
 		<method name="getMockContentResolver()Landroid/test/mock/MockContentResolver;"/>
@@ -63426,140 +63432,130 @@
 		<method name="getProvider()Landroid/content/ContentProvider;"/>
 		<method name="newResolverWithContentProviderFromSql(Landroid/content/Context;Ljava/lang/String;Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)Landroid/content/ContentResolver;"/>
 	</class>
-	<class name="android/test/RenamingDelegatingContext" since="1" deprecated="24">
+	<class name="android/test/RenamingDelegatingContext" since="1" deprecated="24" removed="28">
 		<extends name="android/content/ContextWrapper"/>
-		<method name="&lt;init>(Landroid/content/Context;Landroid/content/Context;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="&lt;init>(Landroid/content/Context;Ljava/lang/String;)V" deprecated="35"/>
-		<method name="getDatabasePrefix()Ljava/lang/String;" deprecated="35"/>
-		<method name="makeExistingFilesAndDbsAccessible()V" deprecated="35"/>
-		<method name="providerWithRenamedContext(Ljava/lang/Class;Landroid/content/Context;Ljava/lang/String;)Landroid/content/ContentProvider;" deprecated="35"/>
-		<method name="providerWithRenamedContext(Ljava/lang/Class;Landroid/content/Context;Ljava/lang/String;Z)Landroid/content/ContentProvider;" deprecated="35"/>
+		<method name="&lt;init>(Landroid/content/Context;Landroid/content/Context;Ljava/lang/String;)V"/>
+		<method name="&lt;init>(Landroid/content/Context;Ljava/lang/String;)V"/>
+		<method name="getDatabasePrefix()Ljava/lang/String;"/>
+		<method name="makeExistingFilesAndDbsAccessible()V"/>
+		<method name="providerWithRenamedContext(Ljava/lang/Class;Landroid/content/Context;Ljava/lang/String;)Landroid/content/ContentProvider;"/>
+		<method name="providerWithRenamedContext(Ljava/lang/Class;Landroid/content/Context;Ljava/lang/String;Z)Landroid/content/ContentProvider;"/>
 	</class>
-	<class name="android/test/RepetitiveTest" since="35" deprecated="35">
-		<extends name="java/lang/Object"/>
-		<implements name="java/lang/annotation/Annotation"/>
-		<method name="numIterations()I" deprecated="35"/>
-	</class>
-	<class name="android/test/ServiceTestCase" since="1" deprecated="24">
+	<class name="android/test/ServiceTestCase" since="1" deprecated="24" removed="28">
 		<extends name="android/test/AndroidTestCase"/>
-		<method name="&lt;init>(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="bindService(Landroid/content/Intent;)Landroid/os/IBinder;" deprecated="35"/>
-		<method name="getApplication()Landroid/app/Application;" deprecated="35"/>
-		<method name="getService()Landroid/app/Service;" deprecated="35"/>
-		<method name="getSystemContext()Landroid/content/Context;" deprecated="35"/>
-		<method name="setApplication(Landroid/app/Application;)V" deprecated="35"/>
-		<method name="setupService()V" deprecated="35"/>
-		<method name="shutdownService()V" deprecated="35"/>
-		<method name="startService(Landroid/content/Intent;)V" deprecated="35"/>
-		<method name="testServiceTestCaseSetUpProperly()V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Class;)V"/>
+		<method name="bindService(Landroid/content/Intent;)Landroid/os/IBinder;"/>
+		<method name="getApplication()Landroid/app/Application;"/>
+		<method name="getService()Landroid/app/Service;"/>
+		<method name="getSystemContext()Landroid/content/Context;"/>
+		<method name="setApplication(Landroid/app/Application;)V"/>
+		<method name="setupService()V"/>
+		<method name="shutdownService()V"/>
+		<method name="startService(Landroid/content/Intent;)V"/>
+		<method name="testServiceTestCaseSetUpProperly()V"/>
 	</class>
-	<class name="android/test/SingleLaunchActivityTestCase" since="1" deprecated="24">
+	<class name="android/test/SingleLaunchActivityTestCase" since="1" deprecated="24" removed="28">
 		<extends name="android/test/InstrumentationTestCase"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="getActivity()Landroid/app/Activity;" deprecated="35"/>
-		<method name="testActivityTestCaseSetUpProperly()V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V"/>
+		<method name="getActivity()Landroid/app/Activity;"/>
+		<method name="testActivityTestCaseSetUpProperly()V"/>
 	</class>
-	<class name="android/test/SyncBaseInstrumentation" since="1" deprecated="24">
+	<class name="android/test/SyncBaseInstrumentation" since="1" deprecated="24" removed="28">
 		<extends name="android/test/InstrumentationTestCase"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="cancelSyncsandDisableAutoSync()V" deprecated="35"/>
-		<method name="syncProvider(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="cancelSyncsandDisableAutoSync()V"/>
+		<method name="syncProvider(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)V"/>
 	</class>
-	<class name="android/test/TestSuiteProvider" since="1" deprecated="24">
+	<class name="android/test/TestSuiteProvider" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="getTestSuite()Ljunit/framework/TestSuite;" deprecated="35"/>
+		<method name="getTestSuite()Ljunit/framework/TestSuite;"/>
 	</class>
-	<class name="android/test/TouchUtils" since="1" deprecated="24">
+	<class name="android/test/TouchUtils" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="clickView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="clickView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V"/>
 		<method name="drag(Landroid/test/ActivityInstrumentationTestCase;FFFFI)V" deprecated="15"/>
-		<method name="drag(Landroid/test/InstrumentationTestCase;FFFFI)V" since="3" deprecated="35"/>
+		<method name="drag(Landroid/test/InstrumentationTestCase;FFFFI)V" since="3"/>
 		<method name="dragQuarterScreenDown(Landroid/test/ActivityInstrumentationTestCase;)V" deprecated="15"/>
-		<method name="dragQuarterScreenDown(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;)V" since="3" deprecated="35"/>
+		<method name="dragQuarterScreenDown(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;)V" since="3"/>
 		<method name="dragQuarterScreenUp(Landroid/test/ActivityInstrumentationTestCase;)V" deprecated="15"/>
-		<method name="dragQuarterScreenUp(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;)V" since="3" deprecated="35"/>
+		<method name="dragQuarterScreenUp(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;)V" since="3"/>
 		<method name="dragViewBy(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;III)I" deprecated="15"/>
 		<method name="dragViewBy(Landroid/test/InstrumentationTestCase;Landroid/view/View;III)I" since="3" deprecated="15"/>
 		<method name="dragViewTo(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;III)I" deprecated="15"/>
-		<method name="dragViewTo(Landroid/test/InstrumentationTestCase;Landroid/view/View;III)I" since="3" deprecated="35"/>
+		<method name="dragViewTo(Landroid/test/InstrumentationTestCase;Landroid/view/View;III)I" since="3"/>
 		<method name="dragViewToBottom(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;)V" deprecated="15"/>
 		<method name="dragViewToBottom(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;I)V" deprecated="15"/>
-		<method name="dragViewToBottom(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/View;)V" since="3" deprecated="35"/>
-		<method name="dragViewToBottom(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/View;I)V" since="3" deprecated="35"/>
+		<method name="dragViewToBottom(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/View;)V" since="3"/>
+		<method name="dragViewToBottom(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/View;I)V" since="3"/>
 		<method name="dragViewToTop(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;)V" deprecated="15"/>
 		<method name="dragViewToTop(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;I)V" deprecated="15"/>
-		<method name="dragViewToTop(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" since="3" deprecated="35"/>
-		<method name="dragViewToTop(Landroid/test/InstrumentationTestCase;Landroid/view/View;I)V" since="3" deprecated="35"/>
+		<method name="dragViewToTop(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" since="3"/>
+		<method name="dragViewToTop(Landroid/test/InstrumentationTestCase;Landroid/view/View;I)V" since="3"/>
 		<method name="dragViewToX(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;II)I" deprecated="15"/>
-		<method name="dragViewToX(Landroid/test/InstrumentationTestCase;Landroid/view/View;II)I" since="3" deprecated="35"/>
+		<method name="dragViewToX(Landroid/test/InstrumentationTestCase;Landroid/view/View;II)I" since="3"/>
 		<method name="dragViewToY(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;II)I" deprecated="15"/>
-		<method name="dragViewToY(Landroid/test/InstrumentationTestCase;Landroid/view/View;II)I" since="3" deprecated="35"/>
+		<method name="dragViewToY(Landroid/test/InstrumentationTestCase;Landroid/view/View;II)I" since="3"/>
 		<method name="longClickView(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/View;)V" deprecated="15"/>
-		<method name="longClickView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" since="3" deprecated="35"/>
+		<method name="longClickView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" since="3"/>
 		<method name="scrollToBottom(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/ViewGroup;)V" deprecated="15"/>
-		<method name="scrollToBottom(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/ViewGroup;)V" since="3" deprecated="35"/>
+		<method name="scrollToBottom(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/ViewGroup;)V" since="3"/>
 		<method name="scrollToTop(Landroid/test/ActivityInstrumentationTestCase;Landroid/view/ViewGroup;)V" deprecated="15"/>
-		<method name="scrollToTop(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/ViewGroup;)V" since="3" deprecated="35"/>
-		<method name="tapView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" deprecated="35"/>
-		<method name="touchAndCancelView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V" deprecated="35"/>
+		<method name="scrollToTop(Landroid/test/InstrumentationTestCase;Landroid/app/Activity;Landroid/view/ViewGroup;)V" since="3"/>
+		<method name="tapView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V"/>
+		<method name="touchAndCancelView(Landroid/test/InstrumentationTestCase;Landroid/view/View;)V"/>
 	</class>
-	<class name="android/test/UiThreadTest" since="1" deprecated="24">
+	<class name="android/test/UiThreadTest" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
-	<class name="android/test/ViewAsserts" since="1" deprecated="24">
+	<class name="android/test/ViewAsserts" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="assertBaselineAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertBottomAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertBottomAligned(Landroid/view/View;Landroid/view/View;I)V" deprecated="35"/>
-		<method name="assertGroupContains(Landroid/view/ViewGroup;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertGroupIntegrity(Landroid/view/ViewGroup;)V" deprecated="35"/>
-		<method name="assertGroupNotContains(Landroid/view/ViewGroup;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertHasScreenCoordinates(Landroid/view/View;Landroid/view/View;II)V" deprecated="35"/>
-		<method name="assertHorizontalCenterAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertLeftAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertLeftAligned(Landroid/view/View;Landroid/view/View;I)V" deprecated="35"/>
-		<method name="assertOffScreenAbove(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertOffScreenBelow(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertOnScreen(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertRightAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertRightAligned(Landroid/view/View;Landroid/view/View;I)V" deprecated="35"/>
-		<method name="assertTopAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
-		<method name="assertTopAligned(Landroid/view/View;Landroid/view/View;I)V" deprecated="35"/>
-		<method name="assertVerticalCenterAligned(Landroid/view/View;Landroid/view/View;)V" deprecated="35"/>
+		<method name="assertBaselineAligned(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertBottomAligned(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertBottomAligned(Landroid/view/View;Landroid/view/View;I)V"/>
+		<method name="assertGroupContains(Landroid/view/ViewGroup;Landroid/view/View;)V"/>
+		<method name="assertGroupIntegrity(Landroid/view/ViewGroup;)V"/>
+		<method name="assertGroupNotContains(Landroid/view/ViewGroup;Landroid/view/View;)V"/>
+		<method name="assertHasScreenCoordinates(Landroid/view/View;Landroid/view/View;II)V"/>
+		<method name="assertHorizontalCenterAligned(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertLeftAligned(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertLeftAligned(Landroid/view/View;Landroid/view/View;I)V"/>
+		<method name="assertOffScreenAbove(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertOffScreenBelow(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertOnScreen(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertRightAligned(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertRightAligned(Landroid/view/View;Landroid/view/View;I)V"/>
+		<method name="assertTopAligned(Landroid/view/View;Landroid/view/View;)V"/>
+		<method name="assertTopAligned(Landroid/view/View;Landroid/view/View;I)V"/>
+		<method name="assertVerticalCenterAligned(Landroid/view/View;Landroid/view/View;)V"/>
 	</class>
-	<class name="android/test/mock/MockAccountManager" since="35" deprecated="35">
-		<extends name="java/lang/Object"/>
-		<method name="newMockAccountManager(Landroid/content/Context;)Landroid/accounts/AccountManager;" deprecated="35"/>
-	</class>
-	<class name="android/test/mock/MockApplication" since="1" deprecated="24">
+	<class name="android/test/mock/MockApplication" since="1" deprecated="24" removed="28">
 		<extends name="android/app/Application"/>
-		<method name="&lt;init>()V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
 	</class>
-	<class name="android/test/mock/MockContentProvider" since="8">
+	<class name="android/test/mock/MockContentProvider" since="8" removed="28">
 		<extends name="android/content/ContentProvider"/>
 		<method name="&lt;init>()V"/>
 		<method name="&lt;init>(Landroid/content/Context;)V"/>
 		<method name="&lt;init>(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;[Landroid/content/pm/PathPermission;)V"/>
-		<method name="attachInfoForTesting(Landroid/content/ContentProvider;Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V" since="35" deprecated="35"/>
 	</class>
-	<class name="android/test/mock/MockContentResolver" since="1">
+	<class name="android/test/mock/MockContentResolver" since="1" removed="28">
 		<extends name="android/content/ContentResolver"/>
 		<method name="&lt;init>()V"/>
 		<method name="&lt;init>(Landroid/content/Context;)V" since="18"/>
 		<method name="addProvider(Ljava/lang/String;Landroid/content/ContentProvider;)V"/>
 	</class>
-	<class name="android/test/mock/MockContext" since="1">
+	<class name="android/test/mock/MockContext" since="1" removed="28">
 		<extends name="android/content/Context"/>
 		<method name="&lt;init>()V"/>
 		<method name="getPackageCodePath()Ljava/lang/String;"/>
 		<method name="getPackageResourcePath()Ljava/lang/String;"/>
 	</class>
-	<class name="android/test/mock/MockCursor" since="8" deprecated="24">
+	<class name="android/test/mock/MockCursor" since="8" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="android/database/Cursor"/>
-		<method name="&lt;init>()V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
 		<method name="abortUpdates()V" removed="11"/>
 		<method name="commitUpdates()Z" removed="11"/>
 		<method name="commitUpdates(Ljava/util/Map;)Z" removed="11"/>
@@ -63575,80 +63571,69 @@
 		<method name="updateString(ILjava/lang/String;)Z" removed="11"/>
 		<method name="updateToNull(I)Z" removed="11"/>
 	</class>
-	<class name="android/test/mock/MockDialogInterface" since="1" deprecated="24">
+	<class name="android/test/mock/MockDialogInterface" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="android/content/DialogInterface"/>
-		<method name="&lt;init>()V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
 	</class>
-	<class name="android/test/mock/MockPackageManager" since="1" deprecated="24">
+	<class name="android/test/mock/MockPackageManager" since="1" deprecated="24" removed="28">
 		<extends name="android/content/pm/PackageManager"/>
-		<method name="&lt;init>()V" deprecated="35"/>
-		<method name="getAllIntentFilters(Ljava/lang/String;)Ljava/util/List;" since="23" deprecated="35"/>
+		<method name="&lt;init>()V"/>
+		<method name="getAllIntentFilters(Ljava/lang/String;)Ljava/util/List;" since="23"/>
 		<method name="getDefaultBrowserPackageName(I)Ljava/lang/String;" since="23" removed="24"/>
-		<method name="resolveServiceAsUser(Landroid/content/Intent;II)Landroid/content/pm/ResolveInfo;" since="35" deprecated="35"/>
 		<method name="setDefaultBrowserPackageName(Ljava/lang/String;I)Z" since="23" removed="24"/>
-		<method name="setInstantAppCookie([B)Z" since="35" deprecated="35"/>
 		<method name="setPackageObbPath(Ljava/lang/String;Ljava/lang/String;)V" since="9" removed="10"/>
 	</class>
-	<class name="android/test/mock/MockResources" since="1" deprecated="24">
+	<class name="android/test/mock/MockResources" since="1" deprecated="24" removed="28">
 		<extends name="android/content/res/Resources"/>
-		<method name="&lt;init>()V" deprecated="35"/>
+		<method name="&lt;init>()V"/>
 	</class>
-	<class name="android/test/mock/MockService" since="35" deprecated="35">
+	<class name="android/test/suitebuilder/TestMethod" since="1" deprecated="26" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="attachForTesting(Landroid/app/Service;Landroid/content/Context;Ljava/lang/String;Landroid/app/Application;)V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V" since="3"/>
+		<method name="&lt;init>(Ljava/lang/reflect/Method;Ljava/lang/Class;)V"/>
+		<method name="&lt;init>(Ljunit/framework/TestCase;)V" since="3"/>
+		<method name="createTest()Ljunit/framework/TestCase;"/>
+		<method name="getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;"/>
+		<method name="getEnclosingClass()Ljava/lang/Class;"/>
+		<method name="getEnclosingClassname()Ljava/lang/String;"/>
+		<method name="getName()Ljava/lang/String;"/>
 	</class>
-	<class name="android/test/suitebuilder/TestMethod" since="1" deprecated="26">
+	<class name="android/test/suitebuilder/TestSuiteBuilder" since="1" deprecated="26" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/Class;)V" since="3" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/reflect/Method;Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="&lt;init>(Ljunit/framework/TestCase;)V" since="3" deprecated="35"/>
-		<method name="createTest()Ljunit/framework/TestCase;" deprecated="35"/>
-		<method name="getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" deprecated="35"/>
-		<method name="getEnclosingClass()Ljava/lang/Class;" deprecated="35"/>
-		<method name="getEnclosingClassname()Ljava/lang/String;" deprecated="35"/>
-		<method name="getName()Ljava/lang/String;" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Class;)V"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/ClassLoader;)V"/>
+		<method name="addRequirements(Ljava/util/List;)Landroid/test/suitebuilder/TestSuiteBuilder;"/>
+		<method name="addRequirements([Lcom/android/internal/util/Predicate;)Landroid/test/suitebuilder/TestSuiteBuilder;"/>
+		<method name="build()Ljunit/framework/TestSuite;"/>
+		<method name="excludePackages([Ljava/lang/String;)Landroid/test/suitebuilder/TestSuiteBuilder;"/>
+		<method name="getSuiteName()Ljava/lang/String;"/>
+		<method name="includeAllPackagesUnderHere()Landroid/test/suitebuilder/TestSuiteBuilder;"/>
+		<method name="includePackages([Ljava/lang/String;)Landroid/test/suitebuilder/TestSuiteBuilder;"/>
+		<method name="named(Ljava/lang/String;)Landroid/test/suitebuilder/TestSuiteBuilder;"/>
 	</class>
-	<class name="android/test/suitebuilder/TestSuiteBuilder" since="1" deprecated="26">
-		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/ClassLoader;)V" deprecated="35"/>
-		<method name="addRequirements(Ljava/util/List;)Landroid/test/suitebuilder/TestSuiteBuilder;" removed="28"/>
-		<method name="addRequirements([Lcom/android/internal/util/Predicate;)Landroid/test/suitebuilder/TestSuiteBuilder;" removed="28"/>
-		<method name="build()Ljunit/framework/TestSuite;" deprecated="35"/>
-		<method name="excludePackages([Ljava/lang/String;)Landroid/test/suitebuilder/TestSuiteBuilder;" deprecated="35"/>
-		<method name="getSuiteName()Ljava/lang/String;" deprecated="35"/>
-		<method name="includeAllPackagesUnderHere()Landroid/test/suitebuilder/TestSuiteBuilder;" deprecated="35"/>
-		<method name="includePackages([Ljava/lang/String;)Landroid/test/suitebuilder/TestSuiteBuilder;" deprecated="35"/>
-		<method name="named(Ljava/lang/String;)Landroid/test/suitebuilder/TestSuiteBuilder;" deprecated="35"/>
-	</class>
-	<class name="android/test/suitebuilder/TestSuiteBuilder$FailedToCreateTests" since="1" deprecated="26">
+	<class name="android/test/suitebuilder/TestSuiteBuilder$FailedToCreateTests" since="1" deprecated="26" removed="28">
 		<extends name="junit/framework/TestCase"/>
-		<method name="&lt;init>(Ljava/lang/Exception;)V" deprecated="35"/>
-		<method name="testSuiteConstructionFailed()V" deprecated="35"/>
+		<method name="&lt;init>(Ljava/lang/Exception;)V"/>
+		<method name="testSuiteConstructionFailed()V"/>
 	</class>
-	<class name="android/test/suitebuilder/UnitTestSuiteBuilder" since="35" deprecated="35">
-		<extends name="android/test/suitebuilder/TestSuiteBuilder"/>
-		<method name="&lt;init>(Ljava/lang/Class;)V" deprecated="35"/>
-		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/ClassLoader;)V" deprecated="35"/>
-	</class>
-	<class name="android/test/suitebuilder/annotation/LargeTest" since="2" deprecated="24">
+	<class name="android/test/suitebuilder/annotation/LargeTest" since="2" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
-	<class name="android/test/suitebuilder/annotation/MediumTest" since="2" deprecated="24">
+	<class name="android/test/suitebuilder/annotation/MediumTest" since="2" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
-	<class name="android/test/suitebuilder/annotation/SmallTest" since="2" deprecated="24">
+	<class name="android/test/suitebuilder/annotation/SmallTest" since="2" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
-	<class name="android/test/suitebuilder/annotation/Smoke" since="1" deprecated="24">
+	<class name="android/test/suitebuilder/annotation/Smoke" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
-	<class name="android/test/suitebuilder/annotation/Suppress" since="1" deprecated="24">
+	<class name="android/test/suitebuilder/annotation/Suppress" since="1" deprecated="24" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/annotation/Annotation"/>
 	</class>
@@ -68157,6 +68142,7 @@
 		<method name="updatePositionInWindow()V"/>
 	</class>
 	<class name="android/view/ScrollFeedbackProvider" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="createProvider(Landroid/view/View;)Landroid/view/ScrollFeedbackProvider;"/>
 		<method name="onScrollLimit(IIIZ)V"/>
 		<method name="onScrollProgress(IIII)V"/>
@@ -68328,6 +68314,7 @@
 		<method name="&lt;init>(FFI)V" deprecated="35"/>
 	</class>
 	<class name="android/view/SurfaceControlInputReceiver" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onInputEvent(Landroid/view/InputEvent;)Z"/>
 	</class>
 	<class name="android/view/SurfaceControlViewHost" since="30">
@@ -71882,6 +71869,7 @@
 		<field name="CREATOR"/>
 	</class>
 	<class name="android/view/inputmethod/ConnectionlessHandwritingCallback" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="onError(I)V"/>
 		<method name="onResult(Ljava/lang/CharSequence;)V"/>
 		<field name="CONNECTIONLESS_HANDWRITING_ERROR_NO_TEXT_RECOGNIZED"/>
@@ -77384,9 +77372,9 @@
 		<method name="getStabilityRequirementMillis()I"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="com/android/internal/util/Predicate" since="1" deprecated="26">
+	<class name="com/android/internal/util/Predicate" since="1" deprecated="26" removed="28">
 		<extends name="java/lang/Object"/>
-		<method name="apply(Ljava/lang/Object;)Z" deprecated="35"/>
+		<method name="apply(Ljava/lang/Object;)Z"/>
 	</class>
 	<class name="com/google/android/maps/GeoPoint" since="1" removed="3">
 		<extends name="java/lang/Object"/>
@@ -85241,6 +85229,7 @@
 		<method name="setSeed([B)V"/>
 	</class>
 	<class name="java/security/SecureRandomParameters" since="35">
+		<extends name="java/lang/Object"/>
 	</class>
 	<class name="java/security/SecureRandomSpi" since="1">
 		<extends name="java/lang/Object"/>
@@ -91257,6 +91246,7 @@
 		<method name="useRadix(I)Ljava/util/Scanner;"/>
 	</class>
 	<class name="java/util/SequencedCollection" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/Collection"/>
 		<method name="addFirst(Ljava/lang/Object;)V"/>
 		<method name="addLast(Ljava/lang/Object;)V"/>
@@ -91267,6 +91257,7 @@
 		<method name="reversed()Ljava/util/SequencedCollection;"/>
 	</class>
 	<class name="java/util/SequencedMap" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/Map"/>
 		<method name="firstEntry()Ljava/util/Map$Entry;"/>
 		<method name="lastEntry()Ljava/util/Map$Entry;"/>
@@ -91280,6 +91271,7 @@
 		<method name="sequencedValues()Ljava/util/SequencedCollection;"/>
 	</class>
 	<class name="java/util/SequencedSet" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/SequencedCollection"/>
 		<implements name="java/util/Set"/>
 		<method name="reversed()Ljava/util/SequencedSet;"/>
@@ -91300,6 +91292,7 @@
 		<method name="stream()Ljava/util/stream/Stream;" since="35"/>
 	</class>
 	<class name="java/util/ServiceLoader$Provider" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/function/Supplier"/>
 		<method name="type()Ljava/lang/Class;"/>
 	</class>
@@ -93907,6 +93900,7 @@
 		<method name="userRoot()Ljava/util/prefs/Preferences;"/>
 	</class>
 	<class name="java/util/random/RandomGenerator" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="doubles()Ljava/util/stream/DoubleStream;"/>
 		<method name="doubles(DD)Ljava/util/stream/DoubleStream;"/>
 		<method name="doubles(J)Ljava/util/stream/DoubleStream;"/>
@@ -93941,6 +93935,7 @@
 		<method name="of(Ljava/lang/String;)Ljava/util/random/RandomGenerator;"/>
 	</class>
 	<class name="java/util/random/RandomGenerator$ArbitrarilyJumpableGenerator" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/random/RandomGenerator$LeapableGenerator"/>
 		<method name="copy()Ljava/util/random/RandomGenerator$ArbitrarilyJumpableGenerator;"/>
 		<method name="copyAndJump(D)Ljava/util/random/RandomGenerator$ArbitrarilyJumpableGenerator;"/>
@@ -93951,6 +93946,7 @@
 		<method name="of(Ljava/lang/String;)Ljava/util/random/RandomGenerator$ArbitrarilyJumpableGenerator;"/>
 	</class>
 	<class name="java/util/random/RandomGenerator$JumpableGenerator" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/random/RandomGenerator$StreamableGenerator"/>
 		<method name="copy()Ljava/util/random/RandomGenerator$JumpableGenerator;"/>
 		<method name="copyAndJump()Ljava/util/random/RandomGenerator;"/>
@@ -93961,6 +93957,7 @@
 		<method name="of(Ljava/lang/String;)Ljava/util/random/RandomGenerator$JumpableGenerator;"/>
 	</class>
 	<class name="java/util/random/RandomGenerator$LeapableGenerator" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/random/RandomGenerator$JumpableGenerator"/>
 		<method name="copy()Ljava/util/random/RandomGenerator$LeapableGenerator;"/>
 		<method name="copyAndLeap()Ljava/util/random/RandomGenerator$JumpableGenerator;"/>
@@ -93971,6 +93968,7 @@
 		<method name="of(Ljava/lang/String;)Ljava/util/random/RandomGenerator$LeapableGenerator;"/>
 	</class>
 	<class name="java/util/random/RandomGenerator$SplittableGenerator" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/random/RandomGenerator$StreamableGenerator"/>
 		<method name="of(Ljava/lang/String;)Ljava/util/random/RandomGenerator$SplittableGenerator;"/>
 		<method name="split()Ljava/util/random/RandomGenerator$SplittableGenerator;"/>
@@ -93981,6 +93979,7 @@
 		<method name="splits(Ljava/util/random/RandomGenerator$SplittableGenerator;)Ljava/util/stream/Stream;"/>
 	</class>
 	<class name="java/util/random/RandomGenerator$StreamableGenerator" since="35">
+		<extends name="java/lang/Object"/>
 		<implements name="java/util/random/RandomGenerator"/>
 		<method name="of(Ljava/lang/String;)Ljava/util/random/RandomGenerator$StreamableGenerator;"/>
 		<method name="rngs()Ljava/util/stream/Stream;"/>
@@ -94217,6 +94216,7 @@
 		<method name="build()Ljava/util/stream/DoubleStream;"/>
 	</class>
 	<class name="java/util/stream/DoubleStream$DoubleMapMultiConsumer" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="accept(DLjava/util/function/DoubleConsumer;)V"/>
 	</class>
 	<class name="java/util/stream/IntStream" since="24">
@@ -94278,6 +94278,7 @@
 		<method name="build()Ljava/util/stream/IntStream;"/>
 	</class>
 	<class name="java/util/stream/IntStream$IntMapMultiConsumer" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="accept(ILjava/util/function/IntConsumer;)V"/>
 	</class>
 	<class name="java/util/stream/LongStream" since="24">
@@ -94338,6 +94339,7 @@
 		<method name="build()Ljava/util/stream/LongStream;"/>
 	</class>
 	<class name="java/util/stream/LongStream$LongMapMultiConsumer" since="35">
+		<extends name="java/lang/Object"/>
 		<method name="accept(JLjava/util/function/LongConsumer;)V"/>
 	</class>
 	<class name="java/util/stream/Stream" since="24">
@@ -97627,7 +97629,7 @@
 		<extends name="java/lang/Object"/>
 		<method name="resolveVariable(Ljavax/xml/namespace/QName;)Ljava/lang/Object;"/>
 	</class>
-	<class name="junit/framework/Assert" since="1">
+	<class name="junit/framework/Assert" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="assertEquals(BB)V"/>
@@ -97669,28 +97671,28 @@
 		<method name="failSame(Ljava/lang/String;)V" since="16"/>
 		<method name="format(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/String;" since="16"/>
 	</class>
-	<class name="junit/framework/AssertionFailedError" since="1">
+	<class name="junit/framework/AssertionFailedError" since="1" removed="28">
 		<extends name="java/lang/AssertionError" since="16"/>
 		<extends name="java/lang/Error" removed="16"/>
 		<method name="&lt;init>()V"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 	</class>
-	<class name="junit/framework/ComparisonFailure" since="1">
+	<class name="junit/framework/ComparisonFailure" since="1" removed="28">
 		<extends name="junit/framework/AssertionFailedError"/>
 		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"/>
 		<method name="getActual()Ljava/lang/String;" since="16"/>
 		<method name="getExpected()Ljava/lang/String;" since="16"/>
 	</class>
-	<class name="junit/framework/Protectable" since="1">
+	<class name="junit/framework/Protectable" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="protect()V"/>
 	</class>
-	<class name="junit/framework/Test" since="1">
+	<class name="junit/framework/Test" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="countTestCases()I"/>
 		<method name="run(Ljunit/framework/TestResult;)V"/>
 	</class>
-	<class name="junit/framework/TestCase" since="1">
+	<class name="junit/framework/TestCase" since="1" removed="28">
 		<extends name="junit/framework/Assert"/>
 		<implements name="junit/framework/Test"/>
 		<method name="&lt;init>()V"/>
@@ -97704,7 +97706,7 @@
 		<method name="setUp()V"/>
 		<method name="tearDown()V"/>
 	</class>
-	<class name="junit/framework/TestFailure" since="1">
+	<class name="junit/framework/TestFailure" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljunit/framework/Test;Ljava/lang/Throwable;)V"/>
 		<method name="exceptionMessage()Ljava/lang/String;"/>
@@ -97715,14 +97717,14 @@
 		<field name="fFailedTest"/>
 		<field name="fThrownException"/>
 	</class>
-	<class name="junit/framework/TestListener" since="1">
+	<class name="junit/framework/TestListener" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="addError(Ljunit/framework/Test;Ljava/lang/Throwable;)V"/>
 		<method name="addFailure(Ljunit/framework/Test;Ljunit/framework/AssertionFailedError;)V"/>
 		<method name="endTest(Ljunit/framework/Test;)V"/>
 		<method name="startTest(Ljunit/framework/Test;)V"/>
 	</class>
-	<class name="junit/framework/TestResult" since="1">
+	<class name="junit/framework/TestResult" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="addError(Ljunit/framework/Test;Ljava/lang/Throwable;)V"/>
@@ -97746,7 +97748,7 @@
 		<field name="fListeners"/>
 		<field name="fRunTests"/>
 	</class>
-	<class name="junit/framework/TestSuite" since="1">
+	<class name="junit/framework/TestSuite" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="junit/framework/Test"/>
 		<method name="&lt;init>()V"/>
@@ -97767,7 +97769,7 @@
 		<method name="tests()Ljava/util/Enumeration;"/>
 		<method name="warning(Ljava/lang/String;)Ljunit/framework/Test;" since="16"/>
 	</class>
-	<class name="junit/runner/BaseTestRunner" since="1">
+	<class name="junit/runner/BaseTestRunner" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<implements name="junit/framework/TestListener"/>
 		<method name="&lt;init>()V"/>
@@ -97797,12 +97799,12 @@
 		<method name="useReloadingTestSuiteLoader()Z"/>
 		<field name="SUITE_METHODNAME"/>
 	</class>
-	<class name="junit/runner/TestSuiteLoader" since="1">
+	<class name="junit/runner/TestSuiteLoader" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="load(Ljava/lang/String;)Ljava/lang/Class;"/>
 		<method name="reload(Ljava/lang/Class;)Ljava/lang/Class;"/>
 	</class>
-	<class name="junit/runner/Version" since="1">
+	<class name="junit/runner/Version" since="1" removed="28">
 		<extends name="java/lang/Object"/>
 		<method name="id()Ljava/lang/String;"/>
 	</class>
