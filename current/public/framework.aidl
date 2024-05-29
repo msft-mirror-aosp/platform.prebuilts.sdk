@@ -140,6 +140,7 @@ parcelable android.app.admin.WifiSsidPolicy;
 parcelable android.app.ambientcontext.AmbientContextEvent;
 parcelable android.app.ambientcontext.AmbientContextEventRequest;
 parcelable android.app.appsearch.AppSearchSchema;
+parcelable android.app.appsearch.EmbeddingVector;
 parcelable android.app.appsearch.GetByDocumentIdRequest;
 parcelable android.app.appsearch.GetSchemaResponse;
 parcelable android.app.appsearch.JoinSpec;

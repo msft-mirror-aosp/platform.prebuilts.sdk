@@ -10,10 +10,80 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7"
+      "version": "8.8-rc-1"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.work",
+          "module": "work-gcm",
+          "version": {
+            "requires": "2.10.0-alpha02"
+          },
+          "reason": "work-runtime is in atomic group androidx.work"
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-multiprocess",
+          "version": {
+            "requires": "2.10.0-alpha02"
+          },
+          "reason": "work-runtime is in atomic group androidx.work"
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-runtime-ktx",
+          "version": {
+            "requires": "2.10.0-alpha02"
+          },
+          "reason": "work-runtime is in atomic group androidx.work"
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-rxjava2",
+          "version": {
+            "requires": "2.10.0-alpha02"
+          },
+          "reason": "work-runtime is in atomic group androidx.work"
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-rxjava3",
+          "version": {
+            "requires": "2.10.0-alpha02"
+          },
+          "reason": "work-runtime is in atomic group androidx.work"
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-testing",
+          "version": {
+            "requires": "2.10.0-alpha02"
+          },
+          "reason": "work-runtime is in atomic group androidx.work"
+        }
+      ],
+      "files": [
+        {
+          "name": "work-runtime-2.10.0-alpha02-sources.jar",
+          "url": "work-runtime-2.10.0-alpha02-sources.jar",
+          "size": 295335,
+          "sha512": "71b3bcf87066c1f30219747da629f2377295d544b93c770d55dca82f6f3cb2f207e1a851018b1ba98d6ec5e2f896f6942ce2e6b8c90551de967a8c019c02e22d",
+          "sha256": "bb7fa1bec302a1454667a733d36cea17db2728ac808e40c6555da04a8abee9ee",
+          "sha1": "619ae53944164bdb10c5b470c3eace0d3f655266",
+          "md5": "1f6535cbe0bd39dbb1b349b578b79526"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -120,11 +190,11 @@
         {
           "name": "work-runtime-2.10.0-alpha02.aar",
           "url": "work-runtime-2.10.0-alpha02.aar",
-          "size": 1939475,
-          "sha512": "b0fe39978dbbe274363d585f786d0d439c1a9e369bc303d6ff5baba1ca588bf17ca1abdfd426e6fd19def6483ec9c5d890cd67e99e2724bbe487069020891ef8",
-          "sha256": "8f74d45ab9dbb9235e66513629590654de7b86428d1495246ec9794a0867a930",
-          "sha1": "b5f7d60be1140a085fc4f63f09f5ae9a4dafd06d",
-          "md5": "71d79b0919995d5be9c116dc8bfd9acb"
+          "size": 1960226,
+          "sha512": "9f5bbb8bc316517ec83da4c44a0c04d81439a4f0df781a1f837824181398375fc334780a190e22070c911378cb28cec5a9302e486fe118263951a0e5f995ab8e",
+          "sha256": "6c3a49ce7ad2c9c13c8ce303c732222f51d0a3c420ad1cb14d7196730236ab20",
+          "sha1": "b347f673d04c1207a4de25cac0e86fa80278717c",
+          "md5": "8a84dc77a5b5cd8266ded5309473d4dc"
         }
       ]
     },
@@ -269,81 +339,11 @@
         {
           "name": "work-runtime-2.10.0-alpha02.aar",
           "url": "work-runtime-2.10.0-alpha02.aar",
-          "size": 1939475,
-          "sha512": "b0fe39978dbbe274363d585f786d0d439c1a9e369bc303d6ff5baba1ca588bf17ca1abdfd426e6fd19def6483ec9c5d890cd67e99e2724bbe487069020891ef8",
-          "sha256": "8f74d45ab9dbb9235e66513629590654de7b86428d1495246ec9794a0867a930",
-          "sha1": "b5f7d60be1140a085fc4f63f09f5ae9a4dafd06d",
-          "md5": "71d79b0919995d5be9c116dc8bfd9acb"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.work",
-          "module": "work-gcm",
-          "version": {
-            "requires": "2.10.0-alpha02"
-          },
-          "reason": "work-runtime is in atomic group androidx.work"
-        },
-        {
-          "group": "androidx.work",
-          "module": "work-multiprocess",
-          "version": {
-            "requires": "2.10.0-alpha02"
-          },
-          "reason": "work-runtime is in atomic group androidx.work"
-        },
-        {
-          "group": "androidx.work",
-          "module": "work-runtime-ktx",
-          "version": {
-            "requires": "2.10.0-alpha02"
-          },
-          "reason": "work-runtime is in atomic group androidx.work"
-        },
-        {
-          "group": "androidx.work",
-          "module": "work-rxjava2",
-          "version": {
-            "requires": "2.10.0-alpha02"
-          },
-          "reason": "work-runtime is in atomic group androidx.work"
-        },
-        {
-          "group": "androidx.work",
-          "module": "work-rxjava3",
-          "version": {
-            "requires": "2.10.0-alpha02"
-          },
-          "reason": "work-runtime is in atomic group androidx.work"
-        },
-        {
-          "group": "androidx.work",
-          "module": "work-testing",
-          "version": {
-            "requires": "2.10.0-alpha02"
-          },
-          "reason": "work-runtime is in atomic group androidx.work"
-        }
-      ],
-      "files": [
-        {
-          "name": "work-runtime-2.10.0-alpha02-sources.jar",
-          "url": "work-runtime-2.10.0-alpha02-sources.jar",
-          "size": 277344,
-          "sha512": "5d71278a04e876b5acbf626f07d144986b51fa1d1489a1fa2bb269771143b2a256542fe11b84872444cd423d5bc1a5bcc1f20eac77da5c237187950ec2239221",
-          "sha256": "1e9edc66e20ffe031b2d6537e2fed055d04bd96d4908d82ea9eb0bf9e8daf640",
-          "sha1": "b05e9836756dedc532f1dc2d885b265a32bc204b",
-          "md5": "22c01c057928f5c00eec62dcf9e6bde2"
+          "size": 1960226,
+          "sha512": "9f5bbb8bc316517ec83da4c44a0c04d81439a4f0df781a1f837824181398375fc334780a190e22070c911378cb28cec5a9302e486fe118263951a0e5f995ab8e",
+          "sha256": "6c3a49ce7ad2c9c13c8ce303c732222f51d0a3c420ad1cb14d7196730236ab20",
+          "sha1": "b347f673d04c1207a4de25cac0e86fa80278717c",
+          "md5": "8a84dc77a5b5cd8266ded5309473d4dc"
         }
       ]
     },
