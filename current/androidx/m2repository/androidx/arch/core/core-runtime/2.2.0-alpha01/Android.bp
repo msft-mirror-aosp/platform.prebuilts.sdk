@@ -15,23 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.arch.core_core-runtime-nodeps",
-    aars: ["core-runtime-2.2.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.arch.core_core-common",
-    ],
-}
-
-android_library {
     name: "androidx.arch.core_core-runtime",
-    sdk_version: "31",
+    aars: ["core-runtime-2.2.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -39,10 +25,7 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.arch.core_core-runtime-nodeps",
         "androidx.annotation_annotation",
         "androidx.arch.core_core-common",
     ],
-    java_version: "1.7",
 }
-

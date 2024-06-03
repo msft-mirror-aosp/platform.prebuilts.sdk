@@ -15,21 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.media2_media2-exoplayer-nodeps",
-    aars: ["media2-exoplayer-1.3.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-    ],
-}
-
-android_library {
     name: "androidx.media2_media2-exoplayer",
-    sdk_version: "31",
+    aars: ["media2-exoplayer-1.3.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -37,8 +25,5 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.media2_media2-exoplayer-nodeps",
     ],
-    java_version: "1.7",
 }
-

@@ -15,23 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.sqlite_sqlite-nodeps",
-    aars: ["sqlite-android-2.5.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-    ],
-}
-
-android_library {
     name: "androidx.sqlite_sqlite",
-    sdk_version: "31",
+    aars: ["sqlite-android-2.5.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -39,10 +25,7 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.sqlite_sqlite-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
-

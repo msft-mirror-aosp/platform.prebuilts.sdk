@@ -15,26 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.appsearch_appsearch-nodeps",
-    aars: ["appsearch-1.1.0-alpha04.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.core_core",
-        "guava-listenablefuture-prebuilt-jar",
-    ],
-}
-
-android_library {
     name: "androidx.appsearch_appsearch",
-    sdk_version: "31",
+    aars: ["appsearch-1.1.0-alpha04.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -42,13 +25,10 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.appsearch_appsearch-nodeps",
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.concurrent_concurrent-futures",
         "androidx.core_core",
         "guava-listenablefuture-prebuilt-jar",
     ],
-    java_version: "1.7",
 }
-

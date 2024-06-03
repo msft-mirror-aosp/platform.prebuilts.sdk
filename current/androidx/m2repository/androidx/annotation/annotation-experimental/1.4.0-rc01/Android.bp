@@ -15,22 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.annotation_annotation-experimental-nodeps",
-    aars: ["annotation-experimental-1.4.0-rc01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "kotlin-stdlib",
-    ],
-}
-
-android_library {
     name: "androidx.annotation_annotation-experimental",
-    sdk_version: "31",
+    aars: ["annotation-experimental-1.4.0-rc01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -38,9 +25,6 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.annotation_annotation-experimental-nodeps",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
-

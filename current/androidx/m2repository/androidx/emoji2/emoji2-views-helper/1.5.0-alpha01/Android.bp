@@ -15,36 +15,18 @@ package {
 }
 
 android_library_import {
-    name: "androidx.emoji2_emoji2-views-helper-nodeps",
-    aars: ["emoji2-views-helper-1.5.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.collection_collection",
-        "androidx.core_core",
-        "androidx.emoji2_emoji2",
-    ],
-}
-
-android_library {
     name: "androidx.emoji2_emoji2-views-helper",
-    sdk_version: "31",
+    aars: ["emoji2-views-helper-1.5.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    min_sdk_version: "19",
+    min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.emoji2_emoji2-views-helper-nodeps",
         "androidx.collection_collection",
         "androidx.core_core",
         "androidx.emoji2_emoji2",
     ],
-    java_version: "1.7",
 }
-

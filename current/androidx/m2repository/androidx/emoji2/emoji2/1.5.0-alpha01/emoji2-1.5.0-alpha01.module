@@ -10,10 +10,64 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7-rc-1"
+      "version": "8.8-rc-1"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.emoji2",
+          "module": "emoji2-emojipicker",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "emoji2 is in atomic group androidx.emoji2"
+        },
+        {
+          "group": "androidx.emoji2",
+          "module": "emoji2-bundled",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "emoji2 is in atomic group androidx.emoji2"
+        },
+        {
+          "group": "androidx.emoji2",
+          "module": "emoji2-views",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "emoji2 is in atomic group androidx.emoji2"
+        },
+        {
+          "group": "androidx.emoji2",
+          "module": "emoji2-views-helper",
+          "version": {
+            "requires": "1.5.0-alpha01"
+          },
+          "reason": "emoji2 is in atomic group androidx.emoji2"
+        }
+      ],
+      "files": [
+        {
+          "name": "emoji2-1.5.0-alpha01-sources.jar",
+          "url": "emoji2-1.5.0-alpha01-sources.jar",
+          "size": 57113,
+          "sha512": "86b29070437d3381aef04954940a66a5eea3d5627ca618ab650090ec2f3d3b92e967b1ed0906a4f2e56962ec9cfcacf5eaaaae81cbaf33437715d9c024553cc9",
+          "sha256": "01cab773170b708ac48ccc931e05ec2dcfd22f28a84dbe44959c9b44d1759dab",
+          "sha1": "67c59dd9ca68fc3caff6931341a425161bf0835c",
+          "md5": "a09a3dc24c1c506380ed5592408adb13"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -76,11 +130,11 @@
         {
           "name": "emoji2-1.5.0-alpha01.aar",
           "url": "emoji2-1.5.0-alpha01.aar",
-          "size": 141730,
-          "sha512": "38aa2ad855022824f94d4c68c3e5031fbe619456211efaa52a70914d449b58bf88030c4b2d59d922a05fbf892750e695c51dc65126bee23e495b8d329d45a53f",
-          "sha256": "cd99141b42866772df2f68b820c2f6a988fccbea878e92f907c12d9552ea8498",
-          "sha1": "49a7b9055c1858799fb07a2c517d5a4b7ed9f2e5",
-          "md5": "5eb969f8e496634681e5d8420bd79fc0"
+          "size": 141013,
+          "sha512": "e8a9b9b9bc48301ef50ae602c1083edff268dce79da4c6d7db33cdc3f43872f93f61f5c9370e45c07f9a1ca8137ae9f5f0ce4e979682508132790f0a96650d3b",
+          "sha256": "0b639b84c5e8bbc16ee938d6e4600505b117d80a6afda8da0aefb55b0b19a7f1",
+          "sha1": "cd98ea269f688406bf01a2f7652254084d43bfa4",
+          "md5": "ed55507df18aab31ef6143d82f21c255"
         }
       ]
     },
@@ -167,65 +221,11 @@
         {
           "name": "emoji2-1.5.0-alpha01.aar",
           "url": "emoji2-1.5.0-alpha01.aar",
-          "size": 141730,
-          "sha512": "38aa2ad855022824f94d4c68c3e5031fbe619456211efaa52a70914d449b58bf88030c4b2d59d922a05fbf892750e695c51dc65126bee23e495b8d329d45a53f",
-          "sha256": "cd99141b42866772df2f68b820c2f6a988fccbea878e92f907c12d9552ea8498",
-          "sha1": "49a7b9055c1858799fb07a2c517d5a4b7ed9f2e5",
-          "md5": "5eb969f8e496634681e5d8420bd79fc0"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.emoji2",
-          "module": "emoji2-emojipicker",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "emoji2 is in atomic group androidx.emoji2"
-        },
-        {
-          "group": "androidx.emoji2",
-          "module": "emoji2-bundled",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "emoji2 is in atomic group androidx.emoji2"
-        },
-        {
-          "group": "androidx.emoji2",
-          "module": "emoji2-views",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "emoji2 is in atomic group androidx.emoji2"
-        },
-        {
-          "group": "androidx.emoji2",
-          "module": "emoji2-views-helper",
-          "version": {
-            "requires": "1.5.0-alpha01"
-          },
-          "reason": "emoji2 is in atomic group androidx.emoji2"
-        }
-      ],
-      "files": [
-        {
-          "name": "emoji2-1.5.0-alpha01-sources.jar",
-          "url": "emoji2-1.5.0-alpha01-sources.jar",
-          "size": 57113,
-          "sha512": "86b29070437d3381aef04954940a66a5eea3d5627ca618ab650090ec2f3d3b92e967b1ed0906a4f2e56962ec9cfcacf5eaaaae81cbaf33437715d9c024553cc9",
-          "sha256": "01cab773170b708ac48ccc931e05ec2dcfd22f28a84dbe44959c9b44d1759dab",
-          "sha1": "67c59dd9ca68fc3caff6931341a425161bf0835c",
-          "md5": "a09a3dc24c1c506380ed5592408adb13"
+          "size": 141013,
+          "sha512": "e8a9b9b9bc48301ef50ae602c1083edff268dce79da4c6d7db33cdc3f43872f93f61f5c9370e45c07f9a1ca8137ae9f5f0ce4e979682508132790f0a96650d3b",
+          "sha256": "0b639b84c5e8bbc16ee938d6e4600505b117d80a6afda8da0aefb55b0b19a7f1",
+          "sha1": "cd98ea269f688406bf01a2f7652254084d43bfa4",
+          "md5": "ed55507df18aab31ef6143d82f21c255"
         }
       ]
     },

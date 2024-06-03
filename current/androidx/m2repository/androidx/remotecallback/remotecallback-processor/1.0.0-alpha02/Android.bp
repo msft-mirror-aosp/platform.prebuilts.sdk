@@ -15,18 +15,10 @@ package {
 }
 
 java_import_host {
-    name: "androidx.remotecallback_remotecallback-processor-nodeps",
-    jars: ["remotecallback-processor-1.0.0-alpha02.jar"],
-    sdk_version: "31",
-}
-
-java_library_host {
     name: "androidx.remotecallback_remotecallback-processor",
+    jars: ["remotecallback-processor-1.0.0-alpha02.jar"],
     static_libs: [
-        "androidx.remotecallback_remotecallback-processor-nodeps",
         "androidx.annotation_annotation",
         "javapoet",
     ],
-    java_version: "1.7",
 }
-

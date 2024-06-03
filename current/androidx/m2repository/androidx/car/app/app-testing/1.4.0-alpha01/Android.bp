@@ -15,27 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.car.app_app-testing-nodeps",
-    aars: ["app-testing-1.4.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "Robolectric_all-target_upstream",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.car.app_app",
-        "androidx.lifecycle_lifecycle-common-java8",
-        "androidx.lifecycle_lifecycle-runtime",
-    ],
-}
-
-android_library {
     name: "androidx.car.app_app-testing",
-    sdk_version: "31",
+    aars: ["app-testing-1.4.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -43,7 +25,6 @@ android_library {
     min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.car.app_app-testing-nodeps",
         "Robolectric_all-target_upstream",
         "androidx.annotation_annotation",
         "androidx.annotation_annotation-experimental",
@@ -51,6 +32,4 @@ android_library {
         "androidx.lifecycle_lifecycle-common-java8",
         "androidx.lifecycle_lifecycle-runtime",
     ],
-    java_version: "1.7",
 }
-
