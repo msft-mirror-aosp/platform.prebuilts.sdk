@@ -15,24 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.drawerlayout_drawerlayout-nodeps",
-    aars: ["drawerlayout-1.3.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.core_core",
-        "androidx.customview_customview",
-    ],
-}
-
-android_library {
     name: "androidx.drawerlayout_drawerlayout",
-    sdk_version: "31",
+    aars: ["drawerlayout-1.3.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -40,11 +25,8 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.drawerlayout_drawerlayout-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
         "androidx.customview_customview",
     ],
-    java_version: "1.7",
 }
-

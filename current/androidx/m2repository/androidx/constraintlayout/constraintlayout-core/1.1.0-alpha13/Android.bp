@@ -15,28 +15,15 @@ package {
 }
 
 java_import {
-    name: "androidx.constraintlayout_constraintlayout-core-nodeps",
-    jars: ["constraintlayout-core-1.1.0-alpha13.jar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
     name: "androidx.constraintlayout_constraintlayout-core",
-    sdk_version: "31",
+    jars: ["constraintlayout-core-1.1.0-alpha13.jar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
     static_libs: [
-        "androidx.constraintlayout_constraintlayout-core-nodeps",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
-

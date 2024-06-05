@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (C) 2007 The Android Open Source Project
+# Copyright (C) 2017 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,19 +16,17 @@
 
 # Set up prog to be the path of this script, including following symlinks,
 # and set up progdir to be the fully-qualified pathname of its directory.
-
 prog="$0"
 while [ -h "${prog}" ]; do
-    fullprog=`/bin/ls -ld "${prog}"`
-    fullprog=`expr "${fullprog}" : ".* -> \(.*\)$"`
-    if expr "x${fullprog}" : 'x/' >/dev/null; then
-        prog="${fullprog}"
+    newProg=`/bin/ls -ld "${prog}"`
+    newProg=`expr "${newProg}" : ".* -> \(.*\)$"`
+    if expr "x${newProg}" : 'x/' >/dev/null; then
+        prog="${newProg}"
     else
         progdir=`dirname "${prog}"`
-        prog="${progdir}/${fullprog}"
+        prog="${progdir}/${newProg}"
     fi
 done
-
 oldwd=`pwd`
 progdir=`dirname "${prog}"`
 cd "${progdir}"
@@ -36,23 +34,58 @@ progdir=`pwd`
 prog="${progdir}"/`basename "${prog}"`
 cd "${oldwd}"
 
-jarfile=`basename "${prog}"`.jar
-jardir="${progdir}"
+jarfile=d8.jar
+libdir="$progdir"
+mainClass="com.android.tools.r8.D8"
 
-if [ ! -r "${jardir}/${jarfile}" ]; then
-    jardir=`dirname "${progdir}"`/framework
+if [ ! -r "$libdir/$jarfile" ]; then
+    # set d8.jar location for the SDK case
+    libdir="$libdir/lib"
 fi
 
-if [ ! -r "${jardir}/${jarfile}" ]; then
-    echo `basename "${prog}"`": can't find ${jarfile}"
+
+if [ ! -r "$libdir/$jarfile" ]; then
+    # set d8.jar location for the Android tree case
+    libdir=`dirname "$progdir"`/framework
+    mainClass="com.android.tools.r8wrappers.D8Wrapper"
+fi
+
+if [ ! -r "$libdir/$jarfile" ]; then
+    echo `basename "$prog"`": can't find $jarfile"
     exit 1
 fi
 
+# By default, give d8 a max heap size of 2 gigs. This can be overridden
+# by using a "-J" option (see below).
+defaultMx="-Xmx2G"
+
+# The following will extract any initial parameters of the form
+# "-J<stuff>" from the command line and pass them to the Java
+# invocation (instead of to d8). This makes it possible for you to add
+# a command-line parameter such as "-JXmx256M" in your scripts, for
+# example. "java" (with no args) and "java -X" give a summary of
+# available options.
+
 declare -a javaOpts=()
+
 while expr "x$1" : 'x-J' >/dev/null; do
-    opt=`expr "$1" : '-J-\{0,1\}\(.*\)'`
+    opt=`expr "x$1" : 'x-J\(.*\)'`
     javaOpts+=("-${opt}")
+    if expr "x${opt}" : "xXmx[0-9]" >/dev/null; then
+        defaultMx="no"
+    fi
     shift
 done
 
-exec java "${javaOpts[@]}" -jar ${jardir}/${jarfile} "$@"
+if [ "${defaultMx}" != "no" ]; then
+    javaOpts+=("${defaultMx}")
+fi
+
+if [ "$OSTYPE" = "cygwin" ]; then
+    # For Cygwin, convert the jarfile path into native Windows style.
+    jarpath=`cygpath -w "$libdir/$jarfile"`
+else
+    jarpath="$libdir/$jarfile"
+fi
+
+exec java "${javaOpts[@]}" -cp "$jarpath" "$mainClass" "$@"

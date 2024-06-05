@@ -15,20 +15,9 @@ package {
 }
 
 java_import {
-    name: "androidx.room_room-common-nodeps",
-    jars: ["room-common-jvm-2.7.0-alpha01.jar"],
-    sdk_version: "31",
-    host_supported: true,
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
     name: "androidx.room_room-common",
-    sdk_version: "31",
+    jars: ["room-common-jvm-2.7.0-alpha01.jar"],
+    sdk_version: "34",
     host_supported: true,
     apex_available: [
         "//apex_available:platform",
@@ -36,10 +25,7 @@ java_library_static {
     ],
     min_sdk_version: "24",
     static_libs: [
-        "androidx.room_room-common-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
-

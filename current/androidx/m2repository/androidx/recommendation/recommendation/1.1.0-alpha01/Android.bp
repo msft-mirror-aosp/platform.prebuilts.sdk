@@ -15,22 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.recommendation_recommendation-nodeps",
-    aars: ["recommendation-1.1.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-    ],
-}
-
-android_library {
     name: "androidx.recommendation_recommendation",
-    sdk_version: "31",
+    aars: ["recommendation-1.1.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -38,9 +25,6 @@ android_library {
     min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.recommendation_recommendation-nodeps",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
-

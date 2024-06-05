@@ -14904,6 +14904,9 @@ package java.util {
     method @Nullable public K ceilingKey(K);
     method @NonNull public Object clone();
     method @Nullable public java.util.Comparator<? super K> comparator();
+    method @Nullable public V compute(K, @NonNull java.util.function.BiFunction<? super K,? super V,? extends V>);
+    method @Nullable public V computeIfAbsent(K, @NonNull java.util.function.Function<? super K,? extends V>);
+    method @Nullable public V computeIfPresent(K, @NonNull java.util.function.BiFunction<? super K,? super V,? extends V>);
     method @NonNull public java.util.NavigableSet<K> descendingKeySet();
     method @NonNull public java.util.NavigableMap<K,V> descendingMap();
     method @NonNull public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
@@ -14920,9 +14923,11 @@ package java.util {
     method public K lastKey();
     method @Nullable public java.util.Map.Entry<K,V> lowerEntry(K);
     method @Nullable public K lowerKey(K);
+    method @Nullable public V merge(K, @NonNull V, @NonNull java.util.function.BiFunction<? super V,? super V,? extends V>);
     method @NonNull public java.util.NavigableSet<K> navigableKeySet();
     method @Nullable public java.util.Map.Entry<K,V> pollFirstEntry();
     method @Nullable public java.util.Map.Entry<K,V> pollLastEntry();
+    method @Nullable public V putIfAbsent(K, V);
     method public boolean replace(K, @Nullable V, V);
     method public V replace(K, V);
     method public void replaceAll(@NonNull java.util.function.BiFunction<? super K,? super V,? extends V>);

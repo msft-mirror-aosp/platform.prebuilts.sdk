@@ -10,7 +10,7 @@
   <artifactId>transition</artifactId>
   <version>1.5.0-alpha01</version>
   <packaging>aar</packaging>
-  <name>Android Transition Support Library</name>
+  <name>Transition</name>
   <description>Android Transition Support Library</description>
   <url>https://developer.android.com/jetpack/androidx/releases/transition#1.5.0-alpha01</url>
   <inceptionYear>2016</inceptionYear>
@@ -30,6 +30,15 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.transition</groupId>
+        <artifactId>transition-ktx</artifactId>
+        <version>1.5.0-alpha01</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>androidx.annotation</groupId>
@@ -46,7 +55,7 @@
     <dependency>
       <groupId>androidx.core</groupId>
       <artifactId>core</artifactId>
-      <version>1.1.0</version>
+      <version>1.12.0-alpha05</version>
       <scope>compile</scope>
       <type>aar</type>
     </dependency>

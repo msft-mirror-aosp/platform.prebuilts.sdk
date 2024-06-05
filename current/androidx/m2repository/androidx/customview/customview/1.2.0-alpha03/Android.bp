@@ -15,24 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.customview_customview-nodeps",
-    aars: ["customview-1.2.0-alpha03.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
-    ],
-}
-
-android_library {
     name: "androidx.customview_customview",
-    sdk_version: "31",
+    aars: ["customview-1.2.0-alpha03.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -40,11 +25,8 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.customview_customview-nodeps",
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.core_core",
     ],
-    java_version: "1.7",
 }
-

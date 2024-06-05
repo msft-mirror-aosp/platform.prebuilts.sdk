@@ -15,29 +15,16 @@ package {
 }
 
 java_import {
-    name: "androidx.collection_collection-nodeps",
-    jars: ["collection-jvm-1.5.0-alpha01.jar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
     name: "androidx.collection_collection",
-    sdk_version: "31",
+    jars: ["collection-jvm-1.5.0-alpha01.jar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
     static_libs: [
-        "androidx.collection_collection-nodeps",
         "androidx.annotation_annotation",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
-

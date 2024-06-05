@@ -15,28 +15,15 @@ package {
 }
 
 java_import {
-    name: "androidx.resourceinspection_resourceinspection-annotation-nodeps",
-    jars: ["resourceinspection-annotation-1.1.0-alpha01.jar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "24",
-}
-
-java_library_static {
     name: "androidx.resourceinspection_resourceinspection-annotation",
-    sdk_version: "31",
+    jars: ["resourceinspection-annotation-1.1.0-alpha01.jar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
     min_sdk_version: "24",
     static_libs: [
-        "androidx.resourceinspection_resourceinspection-annotation-nodeps",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
-

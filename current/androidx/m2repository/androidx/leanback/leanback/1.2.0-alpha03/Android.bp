@@ -15,30 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.leanback_leanback-nodeps",
-    aars: ["leanback-1.2.0-alpha03.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.appcompat_appcompat",
-        "androidx.core_core",
-        "androidx.fragment_fragment",
-        "androidx.interpolator_interpolator",
-        "androidx.leanback_leanback-grid",
-        "androidx.media_media",
-        "androidx.recyclerview_recyclerview",
-        "androidx.vectordrawable_vectordrawable-animated",
-    ],
-}
-
-android_library {
     name: "androidx.leanback_leanback",
-    sdk_version: "31",
+    aars: ["leanback-1.2.0-alpha03.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -46,7 +25,6 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.leanback_leanback-nodeps",
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat",
         "androidx.core_core",
@@ -57,6 +35,4 @@ android_library {
         "androidx.recyclerview_recyclerview",
         "androidx.vectordrawable_vectordrawable-animated",
     ],
-    java_version: "1.7",
 }
-

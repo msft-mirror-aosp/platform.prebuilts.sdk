@@ -19,7 +19,7 @@ load("//build/bazel/rules/common:api.bzl", "api")
 load("//build/bazel/rules/common:sdk_version.bzl", "sdk_version")
 
 # The highest numbered directory under prebuilts/sdk that provides an android.jar
-_MAX_API_LEVEL = 33
+_MAX_API_LEVEL = 34
 
 # All api levels that have a prebuilt SDK.
 _API_LEVELS = list(range(4, _MAX_API_LEVEL + 1)) + [api.FUTURE_API_LEVEL]
