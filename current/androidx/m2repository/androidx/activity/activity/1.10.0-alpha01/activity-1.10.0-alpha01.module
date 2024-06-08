@@ -10,10 +10,48 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7"
+      "version": "8.8-rc-1"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.10.0-alpha01"
+          },
+          "reason": "activity is in atomic group androidx.activity"
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.10.0-alpha01"
+          },
+          "reason": "activity is in atomic group androidx.activity"
+        }
+      ],
+      "files": [
+        {
+          "name": "activity-1.10.0-alpha01-sources.jar",
+          "url": "activity-1.10.0-alpha01-sources.jar",
+          "size": 56953,
+          "sha512": "9d0e3403b66e548a19f6aae787b621e00e1a17c0e21ea09477399fbbc777e1e148cc8cad1ff23f97c554661a8c7c504b00c34ff847a27761b2aa3f97fb734604",
+          "sha256": "c677e184b864e81e4aea42645372d379ddd98486a71e73cda18fe97372c0e8a1",
+          "sha1": "53c942814a4463c5c4845f6bc41ca9938d01df04",
+          "md5": "dc23e53b0dab301d88134023cdf5d056"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -34,7 +72,7 @@
           "group": "androidx.core",
           "module": "core",
           "version": {
-            "requires": "1.14.0-alpha01"
+            "requires": "1.13.0"
           }
         },
         {
@@ -95,11 +133,11 @@
         {
           "name": "activity-1.10.0-alpha01.aar",
           "url": "activity-1.10.0-alpha01.aar",
-          "size": 214114,
-          "sha512": "d3f2e52d9ceaba8b96d846acfdd10b64b1f038e0bb40d22e8fb272d7c12a49f55af8c229a4ff14281831981e9c0b61793542723554295b5485f009b53afa499c",
-          "sha256": "3f96a09ac3b5fb750c438beb070a6dbb782e8867a3b0d4b4844e14259d5b23cd",
-          "sha1": "5082aba367dae2ddc01067ecbd9aba8f16b6b18c",
-          "md5": "d100b9c0137759430e289d54a1c27a8f"
+          "size": 213840,
+          "sha512": "4dae8c26ae9a4cd74f1f93a0da9c560b404f11de90e04187cbaf6cdd3327040a12acc190eac08aa6f1e7a7da130db18dd5ca554bb859e54792f3803155b06c3c",
+          "sha256": "d8f79b2e4c251d311ef29eb3ffe997b94246001ea894a83354574ecdc47391cd",
+          "sha1": "528bb727fe0c916ed9f9741ed860294a7545ce59",
+          "md5": "c55c6f7ecf7e2603042687608d91097c"
         }
       ]
     },
@@ -130,7 +168,7 @@
           "group": "androidx.core",
           "module": "core",
           "version": {
-            "requires": "1.14.0-alpha01"
+            "requires": "1.13.0"
           }
         },
         {
@@ -205,49 +243,11 @@
         {
           "name": "activity-1.10.0-alpha01.aar",
           "url": "activity-1.10.0-alpha01.aar",
-          "size": 214114,
-          "sha512": "d3f2e52d9ceaba8b96d846acfdd10b64b1f038e0bb40d22e8fb272d7c12a49f55af8c229a4ff14281831981e9c0b61793542723554295b5485f009b53afa499c",
-          "sha256": "3f96a09ac3b5fb750c438beb070a6dbb782e8867a3b0d4b4844e14259d5b23cd",
-          "sha1": "5082aba367dae2ddc01067ecbd9aba8f16b6b18c",
-          "md5": "d100b9c0137759430e289d54a1c27a8f"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.activity",
-          "module": "activity-compose",
-          "version": {
-            "requires": "1.10.0-alpha01"
-          },
-          "reason": "activity is in atomic group androidx.activity"
-        },
-        {
-          "group": "androidx.activity",
-          "module": "activity-ktx",
-          "version": {
-            "requires": "1.10.0-alpha01"
-          },
-          "reason": "activity is in atomic group androidx.activity"
-        }
-      ],
-      "files": [
-        {
-          "name": "activity-1.10.0-alpha01-sources.jar",
-          "url": "activity-1.10.0-alpha01-sources.jar",
-          "size": 56999,
-          "sha512": "1c6f77b0b3a9bbd8c59ba48cafb040342985846d6f1adeae28564fbf807213ceff919db68680554d8fc18bc5f89dfbc3175c357df152ce2637800a8272b61c49",
-          "sha256": "3b95a45ba13704e4872ba0f2755b13ab7013e7f7c08bb8a208417a2b66622e74",
-          "sha1": "f03633494401aa419966552d45ed3efb0bbd99e8",
-          "md5": "672a016a38d5af9245635f0d75d52e8d"
+          "size": 213840,
+          "sha512": "4dae8c26ae9a4cd74f1f93a0da9c560b404f11de90e04187cbaf6cdd3327040a12acc190eac08aa6f1e7a7da130db18dd5ca554bb859e54792f3803155b06c3c",
+          "sha256": "d8f79b2e4c251d311ef29eb3ffe997b94246001ea894a83354574ecdc47391cd",
+          "sha1": "528bb727fe0c916ed9f9741ed860294a7545ce59",
+          "md5": "c55c6f7ecf7e2603042687608d91097c"
         }
       ]
     },
