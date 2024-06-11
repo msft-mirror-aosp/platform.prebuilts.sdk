@@ -10,10 +10,57 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7"
+      "version": "8.8"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.activity",
+          "module": "activity",
+          "version": {
+            "requires": "1.10.0-alpha01"
+          },
+          "reason": "activity-compose is in atomic group androidx.activity"
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.10.0-alpha01"
+          },
+          "reason": "activity-compose is in atomic group androidx.activity"
+        }
+      ],
+      "files": [
+        {
+          "name": "activity-compose-1.10.0-alpha01-sources.jar",
+          "url": "activity-compose-1.10.0-alpha01-sources.jar",
+          "size": 10901,
+          "sha512": "ad4e4c015ecb44fedade74af9f4cfe9cd09cc37ab549a09d21536083c151134a1a7eabf8d9565e2eee89205341f41b68a03dd75a274a8b254229334048a38aaf",
+          "sha256": "88a0a4ffda99d707b83f71e75c6ba3c5eddfdd95457e2338564e4d3e164d3e21",
+          "sha1": "63b8e57937918d0f49e5f5eb7d35e78fd5e7c25e",
+          "md5": "85d42e1cc3c72ac04e4704bc29066cc9"
+        },
+        {
+          "name": "activity-compose-1.10.0-alpha01-samples-sources.jar",
+          "url": "activity-compose-1.10.0-alpha01-samples-sources.jar",
+          "size": 3661,
+          "sha512": "904e640aac5f92462f97083d2ecf8fafd57d41fe79a56cd17200290c770da45b8e68f93e2e47c14b6d7dd9e6c6768f87054cf16b7715144f8afdf0faf5265e14",
+          "sha256": "eb6faec8713cd98e209e12aa8298aabc93df60ca81c9f5c3e4c89b6dbc8a4292",
+          "sha1": "70d9d99b84f92f4760a59f9c7a63575f2c46c297",
+          "md5": "ff77727e192cb5918e4f2116fb9b9755"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -81,11 +128,11 @@
         {
           "name": "activity-compose-1.10.0-alpha01.aar",
           "url": "activity-compose-1.10.0-alpha01.aar",
-          "size": 1139058,
-          "sha512": "a63b86b8aa1bd785de653d2811ce52aad40c94f4df635c97ef839edf52c1a0f89b05009d383ef4d7c3748de7a457f7e1adbd175cf3b098c737132d8935678a77",
-          "sha256": "217efd6932ad38d0eec2c11d9d386020f380f52f0de1b6a2c956fb834c1201c3",
-          "sha1": "e421729a38dc9b0c84281670bf4a9de57d584784",
-          "md5": "1d17260714de3abf0e45c52213878e67"
+          "size": 1148473,
+          "sha512": "3ec4b73b5aaaaaca032dd4dd9d93d1606922ed728dbe642ea89eea9f82c5b9bf6a1f97ffdedf689f2db61e95f8de72cd512d5c0020f2cadc1b4e072c958adb74",
+          "sha256": "dcbf21a2ab299ab2240b1cde9bcbbc63e5c74b21cb725e96d043d1467620b9cd",
+          "sha1": "7e3684e7a919209b09023e9bf3aed2ba8b2a288e",
+          "md5": "df2937a27409b6873d0ce9a2467c37c2"
         }
       ]
     },
@@ -163,58 +210,11 @@
         {
           "name": "activity-compose-1.10.0-alpha01.aar",
           "url": "activity-compose-1.10.0-alpha01.aar",
-          "size": 1139058,
-          "sha512": "a63b86b8aa1bd785de653d2811ce52aad40c94f4df635c97ef839edf52c1a0f89b05009d383ef4d7c3748de7a457f7e1adbd175cf3b098c737132d8935678a77",
-          "sha256": "217efd6932ad38d0eec2c11d9d386020f380f52f0de1b6a2c956fb834c1201c3",
-          "sha1": "e421729a38dc9b0c84281670bf4a9de57d584784",
-          "md5": "1d17260714de3abf0e45c52213878e67"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.activity",
-          "module": "activity",
-          "version": {
-            "requires": "1.10.0-alpha01"
-          },
-          "reason": "activity-compose is in atomic group androidx.activity"
-        },
-        {
-          "group": "androidx.activity",
-          "module": "activity-ktx",
-          "version": {
-            "requires": "1.10.0-alpha01"
-          },
-          "reason": "activity-compose is in atomic group androidx.activity"
-        }
-      ],
-      "files": [
-        {
-          "name": "activity-compose-1.10.0-alpha01-sources.jar",
-          "url": "activity-compose-1.10.0-alpha01-sources.jar",
-          "size": 10892,
-          "sha512": "3969d8943044079ddd3ddd9f00bdbd81e2ef4712f4326f793d460dd323fe1863008b54d93416b19366fdddaa846550d3ff4e62adba0f864fcc72b2f3c4dd8674",
-          "sha256": "c2c9e1332cf08032050abfb0b034ed695ef35a76a1ee288452227324ceaaac87",
-          "sha1": "6a1a6cccc4870b9f96e4afd04a75cfce75de2ca6",
-          "md5": "7a8e5b8082c1a0ca0cac557b0146595f"
-        },
-        {
-          "name": "activity-compose-1.10.0-alpha01-samples-sources.jar",
-          "url": "activity-compose-1.10.0-alpha01-samples-sources.jar",
-          "size": 3667,
-          "sha512": "1140cf2b550b42ce26c25e6eeedbfe42c7118a3ac3610b64e838ae32f95850de5181e476bdb9826a9709498a94413dd8f1876bd00353dff39b784480cb3f6fb8",
-          "sha256": "7d865092563b2fb1c0f0714f054f97501b8d0d607d07f5fee415baa994714143",
-          "sha1": "d164345e6fcf25df9c64c75caadc53b32c9e69e2",
-          "md5": "cb8ccda1fde3e809f793104f507e3cc7"
+          "size": 1148473,
+          "sha512": "3ec4b73b5aaaaaca032dd4dd9d93d1606922ed728dbe642ea89eea9f82c5b9bf6a1f97ffdedf689f2db61e95f8de72cd512d5c0020f2cadc1b4e072c958adb74",
+          "sha256": "dcbf21a2ab299ab2240b1cde9bcbbc63e5c74b21cb725e96d043d1467620b9cd",
+          "sha1": "7e3684e7a919209b09023e9bf3aed2ba8b2a288e",
+          "md5": "df2937a27409b6873d0ce9a2467c37c2"
         }
       ]
     },
