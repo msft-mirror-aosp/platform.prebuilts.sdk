@@ -15,24 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.compose.material_material-icons-extended-nodeps",
-    aars: ["material-icons-extended-android-1.7.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.compose.material_material-icons-core",
-        "androidx.compose.runtime_runtime",
-        "kotlin-stdlib",
-    ],
-}
-
-android_library {
     name: "androidx.compose.material_material-icons-extended",
-    sdk_version: "31",
+    aars: ["material-icons-extended-android-1.7.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -40,11 +25,8 @@ android_library {
     min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.compose.material_material-icons-extended-nodeps",
         "androidx.compose.material_material-icons-core",
         "androidx.compose.runtime_runtime",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
-
