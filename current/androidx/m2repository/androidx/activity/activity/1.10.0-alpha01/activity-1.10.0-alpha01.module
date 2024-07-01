@@ -10,10 +10,48 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7"
+      "version": "8.8"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.10.0-alpha01"
+          },
+          "reason": "activity is in atomic group androidx.activity"
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.10.0-alpha01"
+          },
+          "reason": "activity is in atomic group androidx.activity"
+        }
+      ],
+      "files": [
+        {
+          "name": "activity-1.10.0-alpha01-sources.jar",
+          "url": "activity-1.10.0-alpha01-sources.jar",
+          "size": 61501,
+          "sha512": "41f2ea094783ff2bea3fcfb86275c12ac7d32ae3112c627956541dda989118c54337c5c6a1f9386e2c34bdd292aae200f284c4974f5c0937ce67a8c22bc0db7f",
+          "sha256": "f260251e8dca9324f873204c107ea4ab15c3f81ced5798dd9ac0258dd0dc4e1c",
+          "sha1": "741c2689a28e10868763b63206852d90301ee92f",
+          "md5": "aa1f385426a1c05a86ca4ce06ba42efa"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -34,7 +72,7 @@
           "group": "androidx.core",
           "module": "core",
           "version": {
-            "requires": "1.14.0-alpha01"
+            "requires": "1.13.0"
           }
         },
         {
@@ -95,11 +133,11 @@
         {
           "name": "activity-1.10.0-alpha01.aar",
           "url": "activity-1.10.0-alpha01.aar",
-          "size": 214114,
-          "sha512": "d3f2e52d9ceaba8b96d846acfdd10b64b1f038e0bb40d22e8fb272d7c12a49f55af8c229a4ff14281831981e9c0b61793542723554295b5485f009b53afa499c",
-          "sha256": "3f96a09ac3b5fb750c438beb070a6dbb782e8867a3b0d4b4844e14259d5b23cd",
-          "sha1": "5082aba367dae2ddc01067ecbd9aba8f16b6b18c",
-          "md5": "d100b9c0137759430e289d54a1c27a8f"
+          "size": 219032,
+          "sha512": "681fa39195bbe75aa0b8fbd51912914236c24b9b649e5d86ec67f086ef80b4df30c068dfbde872c5a146859e895b89f5c1cc27e89ed38b8ac3b015f7eb2c1f46",
+          "sha256": "acfcfcc796499dbb77328eba6bb9005252eab8840af4ae4640eb910868bc4cd2",
+          "sha1": "9b8cec6db17f08e6656561bbdd713cb3c1caf304",
+          "md5": "7351de0f7c9bf76173f156605f0c79bd"
         }
       ]
     },
@@ -130,7 +168,7 @@
           "group": "androidx.core",
           "module": "core",
           "version": {
-            "requires": "1.14.0-alpha01"
+            "requires": "1.13.0"
           }
         },
         {
@@ -205,49 +243,11 @@
         {
           "name": "activity-1.10.0-alpha01.aar",
           "url": "activity-1.10.0-alpha01.aar",
-          "size": 214114,
-          "sha512": "d3f2e52d9ceaba8b96d846acfdd10b64b1f038e0bb40d22e8fb272d7c12a49f55af8c229a4ff14281831981e9c0b61793542723554295b5485f009b53afa499c",
-          "sha256": "3f96a09ac3b5fb750c438beb070a6dbb782e8867a3b0d4b4844e14259d5b23cd",
-          "sha1": "5082aba367dae2ddc01067ecbd9aba8f16b6b18c",
-          "md5": "d100b9c0137759430e289d54a1c27a8f"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.activity",
-          "module": "activity-compose",
-          "version": {
-            "requires": "1.10.0-alpha01"
-          },
-          "reason": "activity is in atomic group androidx.activity"
-        },
-        {
-          "group": "androidx.activity",
-          "module": "activity-ktx",
-          "version": {
-            "requires": "1.10.0-alpha01"
-          },
-          "reason": "activity is in atomic group androidx.activity"
-        }
-      ],
-      "files": [
-        {
-          "name": "activity-1.10.0-alpha01-sources.jar",
-          "url": "activity-1.10.0-alpha01-sources.jar",
-          "size": 56999,
-          "sha512": "1c6f77b0b3a9bbd8c59ba48cafb040342985846d6f1adeae28564fbf807213ceff919db68680554d8fc18bc5f89dfbc3175c357df152ce2637800a8272b61c49",
-          "sha256": "3b95a45ba13704e4872ba0f2755b13ab7013e7f7c08bb8a208417a2b66622e74",
-          "sha1": "f03633494401aa419966552d45ed3efb0bbd99e8",
-          "md5": "672a016a38d5af9245635f0d75d52e8d"
+          "size": 219032,
+          "sha512": "681fa39195bbe75aa0b8fbd51912914236c24b9b649e5d86ec67f086ef80b4df30c068dfbde872c5a146859e895b89f5c1cc27e89ed38b8ac3b015f7eb2c1f46",
+          "sha256": "acfcfcc796499dbb77328eba6bb9005252eab8840af4ae4640eb910868bc4cd2",
+          "sha1": "9b8cec6db17f08e6656561bbdd713cb3c1caf304",
+          "md5": "7351de0f7c9bf76173f156605f0c79bd"
         }
       ]
     },
@@ -280,11 +280,11 @@
         {
           "name": "activity-1.10.0-alpha01-versionMetadata.json",
           "url": "activity-1.10.0-alpha01-versionMetadata.json",
-          "size": 29425,
-          "sha512": "3ff548ed29233e1e6689aad5578cd01720a81b0ee17d8647640d890a0b60ed7a822f17064ea39a2618259e1238adea037dda2609883f0b25d8d8bf5a38c19670",
-          "sha256": "bebfa2c0f6ed8cac193ef29614135de49f7edfd516bb912ea0726da3a8868776",
-          "sha1": "a895ade36e402dd5f3311067647a2c0fb47f7a37",
-          "md5": "66983932298ef1d4f75c3634eb4d53d5"
+          "size": 29726,
+          "sha512": "a95ad8afca18eb22945bbdd34b8b82a7ef249a9f7c53ae3d695808a3e277575bbfa3be393cfaffc15189d2dd84059150b7ee2711fab55f487ce45bfd3eeceb92",
+          "sha256": "f8dbd866d6cbf42628b5434b605fca25a8ff93a33ea9c41be88b7ae9b90fbd99",
+          "sha1": "9c4e3f19db56bd9133d5a0e257723a73227ca4ff",
+          "md5": "949f462f0a0cd7df297a849ceeff3121"
         }
       ]
     }
