@@ -133,7 +133,7 @@ def prebuilts_toolchain(java_toolchain_name, android_sdk_toolchain_name):
         source_version = select(java_version_select_dict),
         target_version = select(java_version_select_dict),
         # TODO(b/218720643): Support switching between multiple JDKs.
-        java_runtime = "//prebuilts/jdk/jdk17:jdk17_runtime",
+        java_runtime = "//prebuilts/jdk/jdk21:jdk21_runtime",
         toolchain_definition = False,
         misc = errorprone_global_flags + DEFAULT_JAVACOPTS + constants.CommonJdkFlags + select({
             _SDK_PACKAGE_PREFIX + sdk_config_setting.SDK_NONE: ["--system=none"],
