@@ -15,35 +15,16 @@ package {
 }
 
 android_library_import {
-    name: "androidx.recyclerview_recyclerview-nodeps",
-    aars: ["recyclerview-1.4.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
-        "androidx.customview_customview",
-        "androidx.customview_customview-poolingcontainer",
-        "androidx.profileinstaller_profileinstaller",
-    ],
-}
-
-android_library {
     name: "androidx.recyclerview_recyclerview",
-    sdk_version: "31",
+    aars: ["recyclerview-1.4.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    min_sdk_version: "19",
+    min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.recyclerview_recyclerview-nodeps",
         "androidx.annotation_annotation",
         "androidx.collection_collection",
         "androidx.core_core",
@@ -51,6 +32,4 @@ android_library {
         "androidx.customview_customview-poolingcontainer",
         "androidx.profileinstaller_profileinstaller",
     ],
-    java_version: "1.7",
 }
-

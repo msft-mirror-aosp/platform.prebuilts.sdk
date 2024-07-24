@@ -36,7 +36,9 @@ case $LIB_TARGET in
         downloadApp $1 "car-assist-lib.aar" "car-assist-lib.aar" $BUILD_TARGET
         echo "Downloading car-media-common"
         downloadApp $1 "car-media-common.aar" "car-media-common.aar" $BUILD_TARGET
-        echo "Downloading car-messaging-models"
+        echo "Downloading car-media-extensions"
+        downloadApp $1 "car-media-extensions.aar" "car-media-extensions.aar" $BUILD_TARGET
+	echo "Downloading car-messaging-models"
         downloadApp $1 "car-messaging-models.aar" "car-messaging-models.aar" $BUILD_TARGET
         echo "Downloading car-telephony-common"
         downloadApp $1 "car-telephony-common.aar" "car-telephony-common.aar" $BUILD_TARGET
@@ -68,6 +70,8 @@ case $LIB_TARGET in
     car-media-common)
         echo "Downloading car-media-common"
         downloadApp $1 "car-media-common.aar" "car-media-common.aar" $BUILD_TARGET
+        echo "Downloading car-media-extensions"
+        downloadApp $1 "car-media-extensions.aar" "car-media-extensions.aar" $BUILD_TARGET
         ;;
     car-messaging-models)
         echo "Downloading car-messaging-models"

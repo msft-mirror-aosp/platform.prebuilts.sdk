@@ -15,36 +15,16 @@ package {
 }
 
 android_library_import {
-    name: "androidx.browser_browser-nodeps",
-    aars: ["browser-1.9.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.collection_collection",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.core_core",
-        "androidx.interpolator_interpolator",
-        "guava-listenablefuture-prebuilt-jar",
-    ],
-}
-
-android_library {
     name: "androidx.browser_browser",
-    sdk_version: "31",
+    aars: ["browser-1.9.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    min_sdk_version: "19",
+    min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.browser_browser-nodeps",
         "androidx.annotation_annotation",
         "androidx.annotation_annotation-experimental",
         "androidx.collection_collection",
@@ -53,6 +33,4 @@ android_library {
         "androidx.interpolator_interpolator",
         "guava-listenablefuture-prebuilt-jar",
     ],
-    java_version: "1.7",
 }
-
