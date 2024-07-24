@@ -15,25 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.profileinstaller_profileinstaller-nodeps",
-    aars: ["profileinstaller-1.4.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.concurrent_concurrent-futures",
-        "androidx.startup_startup-runtime",
-        "guava-listenablefuture-prebuilt-jar",
-    ],
-}
-
-android_library {
     name: "androidx.profileinstaller_profileinstaller",
-    sdk_version: "31",
+    aars: ["profileinstaller-1.4.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -41,12 +25,9 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.profileinstaller_profileinstaller-nodeps",
         "androidx.annotation_annotation",
         "androidx.concurrent_concurrent-futures",
         "androidx.startup_startup-runtime",
         "guava-listenablefuture-prebuilt-jar",
     ],
-    java_version: "1.7",
 }
-

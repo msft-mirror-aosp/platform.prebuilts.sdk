@@ -15,23 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.tvprovider_tvprovider-nodeps",
-    aars: ["tvprovider-1.1.0-alpha02.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.annotation_annotation",
-        "androidx.core_core",
-    ],
-}
-
-android_library {
     name: "androidx.tvprovider_tvprovider",
-    sdk_version: "31",
+    aars: ["tvprovider-1.1.0-alpha02.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -39,10 +25,7 @@ android_library {
     min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.tvprovider_tvprovider-nodeps",
         "androidx.annotation_annotation",
         "androidx.core_core",
     ],
-    java_version: "1.7",
 }
-

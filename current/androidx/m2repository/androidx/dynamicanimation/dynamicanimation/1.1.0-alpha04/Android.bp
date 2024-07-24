@@ -15,23 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.dynamicanimation_dynamicanimation-nodeps",
-    aars: ["dynamicanimation-1.1.0-alpha04.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.collection_collection",
-        "androidx.core_core",
-    ],
-}
-
-android_library {
     name: "androidx.dynamicanimation_dynamicanimation",
-    sdk_version: "31",
+    aars: ["dynamicanimation-1.1.0-alpha04.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -39,10 +25,7 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.dynamicanimation_dynamicanimation-nodeps",
         "androidx.collection_collection",
         "androidx.core_core",
     ],
-    java_version: "1.7",
 }
-

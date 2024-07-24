@@ -15,28 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.mediarouter_mediarouter-nodeps",
-    aars: ["mediarouter-1.5.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "19",
-    static_libs: [
-        "androidx.appcompat_appcompat",
-        "androidx.appcompat_appcompat-resources",
-        "androidx.core_core",
-        "androidx.media_media",
-        "androidx.palette_palette",
-        "androidx.recyclerview_recyclerview",
-        "guava-listenablefuture-prebuilt-jar",
-    ],
-}
-
-android_library {
     name: "androidx.mediarouter_mediarouter",
-    sdk_version: "31",
+    aars: ["mediarouter-1.5.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -44,7 +25,6 @@ android_library {
     min_sdk_version: "19",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.mediarouter_mediarouter-nodeps",
         "androidx.appcompat_appcompat",
         "androidx.appcompat_appcompat-resources",
         "androidx.core_core",
@@ -53,6 +33,4 @@ android_library {
         "androidx.recyclerview_recyclerview",
         "guava-listenablefuture-prebuilt-jar",
     ],
-    java_version: "1.7",
 }
-
