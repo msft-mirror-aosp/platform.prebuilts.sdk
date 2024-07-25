@@ -10,10 +10,13 @@
   <artifactId>loader</artifactId>
   <version>1.2.0-alpha01</version>
   <packaging>aar</packaging>
-  <name>Android Support Library loader</name>
+  <name>loader</name>
   <description>The Support Library is a static library that you can add to your Android application in order to use APIs that are either not available for older platform versions or utility APIs that aren't a part of the framework APIs. Compatible on devices running API 14 or later.</description>
   <url>https://developer.android.com/jetpack/androidx/releases/loader#1.2.0-alpha01</url>
   <inceptionYear>2011</inceptionYear>
+  <organization>
+    <name>The Android Open Source Project</name>
+  </organization>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -30,6 +33,15 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.loader</groupId>
+        <artifactId>loader-ktx</artifactId>
+        <version>1.2.0-alpha01</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>androidx.annotation</groupId>
@@ -46,7 +58,7 @@
     <dependency>
       <groupId>androidx.core</groupId>
       <artifactId>core</artifactId>
-      <version>1.0.0</version>
+      <version>1.15.0-alpha01</version>
       <scope>runtime</scope>
       <type>aar</type>
     </dependency>
@@ -62,7 +74,6 @@
       <artifactId>lifecycle-viewmodel</artifactId>
       <version>2.0.0</version>
       <scope>compile</scope>
-      <type>aar</type>
     </dependency>
   </dependencies>
 </project>
