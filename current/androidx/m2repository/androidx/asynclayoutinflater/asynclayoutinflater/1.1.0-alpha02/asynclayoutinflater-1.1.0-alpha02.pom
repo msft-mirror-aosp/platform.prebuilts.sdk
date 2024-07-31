@@ -10,10 +10,13 @@
   <artifactId>asynclayoutinflater</artifactId>
   <version>1.1.0-alpha02</version>
   <packaging>aar</packaging>
-  <name>Android Support Library Async Layout Inflater</name>
-  <description>The Support Library is a static library that you can add to your Android application in order to use APIs that are either not available for older platform versions or utility APIs that aren't a part of the framework APIs. Compatible on devices running API 14 or later.</description>
+  <name>AsyncLayoutInflater</name>
+  <description>Provides support for inflating layouts off the UI thread.</description>
   <url>https://developer.android.com/jetpack/androidx/releases/asynclayoutinflater#1.1.0-alpha02</url>
   <inceptionYear>2018</inceptionYear>
+  <organization>
+    <name>The Android Open Source Project</name>
+  </organization>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -30,6 +33,15 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.asynclayoutinflater</groupId>
+        <artifactId>asynclayoutinflater-appcompat</artifactId>
+        <version>1.1.0-alpha02</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>androidx.annotation</groupId>
