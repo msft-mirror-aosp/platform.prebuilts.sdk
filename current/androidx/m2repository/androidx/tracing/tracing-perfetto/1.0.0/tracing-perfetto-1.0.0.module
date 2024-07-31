@@ -10,10 +10,48 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.7-rc-1"
+      "version": "8.9"
     }
   },
   "variants": [
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.tracing",
+          "module": "tracing-perfetto-binary",
+          "version": {
+            "requires": "1.0.0"
+          },
+          "reason": "tracing-perfetto is in atomic group androidx.tracing"
+        },
+        {
+          "group": "androidx.tracing",
+          "module": "tracing-perfetto-handshake",
+          "version": {
+            "requires": "1.0.0"
+          },
+          "reason": "tracing-perfetto is in atomic group androidx.tracing"
+        }
+      ],
+      "files": [
+        {
+          "name": "tracing-perfetto-1.0.0-sources.jar",
+          "url": "tracing-perfetto-1.0.0-sources.jar",
+          "size": 18682,
+          "sha512": "591d24d33a7a58d9067d3c1412df5667c6f2b3bdec299bae7d073917c35629b82b08177bb8390204d6b7586f34f143a550a7b1321ccd8c6a4d40bff1c36229c2",
+          "sha256": "bd49566e3c9cd0b46ddc68084968a79ade8e7684071d7f1814fbbe0ff35b9dbf",
+          "sha1": "a60eb4f21775cbcdc50ae65a3a1787ab3031f1f6",
+          "md5": "35c6180283b3d22e6c6b862cac1630ab"
+        }
+      ]
+    },
     {
       "name": "releaseVariantReleaseApiPublication",
       "attributes": {
@@ -53,11 +91,11 @@
         {
           "name": "tracing-perfetto-1.0.0.aar",
           "url": "tracing-perfetto-1.0.0.aar",
-          "size": 35955,
-          "sha512": "43c685bc1c6edcd001f97e4916eb859ed0951560f424ea6e1f8b95b121106786c28c100dcc830150a27b389315f8a3966cc773381c4378e385c2e572cb382f2d",
-          "sha256": "6e91032af886ceede0d38869229255211eab3bbbe6d1023dcf8df2e3456e043d",
-          "sha1": "847b3cd1e6c7c59818e332eefb29e184633c7346",
-          "md5": "d7b35443b7706ca9073ffe7a2b0b6085"
+          "size": 39380,
+          "sha512": "6969e255de0161015a59230757f8061b061c48cc716d01051813150c7e24826bb36cfb50d30c06f2202b6b86014ef5e289000d893eebcd10597d73158696071d",
+          "sha256": "48064c4b78d94f5133f556c4cbd47c9d6ad99c25f02a9186d3c3d73b8799ebde",
+          "sha1": "6ba51ea2af3e40b760e51c21985a07250fe46317",
+          "md5": "55db756d0273d2d859c402be70ef610d"
         }
       ]
     },
@@ -114,49 +152,11 @@
         {
           "name": "tracing-perfetto-1.0.0.aar",
           "url": "tracing-perfetto-1.0.0.aar",
-          "size": 35955,
-          "sha512": "43c685bc1c6edcd001f97e4916eb859ed0951560f424ea6e1f8b95b121106786c28c100dcc830150a27b389315f8a3966cc773381c4378e385c2e572cb382f2d",
-          "sha256": "6e91032af886ceede0d38869229255211eab3bbbe6d1023dcf8df2e3456e043d",
-          "sha1": "847b3cd1e6c7c59818e332eefb29e184633c7346",
-          "md5": "d7b35443b7706ca9073ffe7a2b0b6085"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.tracing",
-          "module": "tracing-perfetto-binary",
-          "version": {
-            "requires": "1.0.0"
-          },
-          "reason": "tracing-perfetto is in atomic group androidx.tracing"
-        },
-        {
-          "group": "androidx.tracing",
-          "module": "tracing-perfetto-handshake",
-          "version": {
-            "requires": "1.0.0"
-          },
-          "reason": "tracing-perfetto is in atomic group androidx.tracing"
-        }
-      ],
-      "files": [
-        {
-          "name": "tracing-perfetto-1.0.0-sources.jar",
-          "url": "tracing-perfetto-1.0.0-sources.jar",
-          "size": 14487,
-          "sha512": "9a6c015446dc683d7b896c66b42f19df67c412ff461090bad6bc43faa338fe4de7f280faa0c7656d1084fdb266f0edba926d6a9c43b7ce0006d8e2b58d4ee881",
-          "sha256": "6c655ab68b8845586046196370e14e00e4dee5a6cee5e9cb3e0c9d3ecdaba7fa",
-          "sha1": "a58a01f43aa01f543a7189d76d02dc4627c5bb73",
-          "md5": "41957a972aa538cd795a0069df445b35"
+          "size": 39380,
+          "sha512": "6969e255de0161015a59230757f8061b061c48cc716d01051813150c7e24826bb36cfb50d30c06f2202b6b86014ef5e289000d893eebcd10597d73158696071d",
+          "sha256": "48064c4b78d94f5133f556c4cbd47c9d6ad99c25f02a9186d3c3d73b8799ebde",
+          "sha1": "6ba51ea2af3e40b760e51c21985a07250fe46317",
+          "md5": "55db756d0273d2d859c402be70ef610d"
         }
       ]
     },
