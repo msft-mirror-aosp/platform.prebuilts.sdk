@@ -1,0 +1,884 @@
+// Signature format: 2.0
+package com.google.wear {
+
+  public static final class Sdk.VERSION {
+    field public static final int RELEASE;
+  }
+
+}
+
+package com.google.wear.services {
+
+  public class WearServices {
+    method public static com.google.wear.services.WearServices getInstance(android.content.Context);
+    method @Nullable public <T> T getWearManager(@NonNull Class<T>);
+  }
+
+}
+
+package com.google.wear.services.ambient {
+
+  public class AmbientComponentState {
+    method public static com.google.wear.services.ambient.AmbientComponentState.ListenerStateRegistry makeListenerRegistry();
+  }
+
+  public static final class AmbientComponentState.ListenerStateRegistry {
+    method public void startListening();
+    method public void stopListening();
+  }
+
+  public final class AmbientOptions {
+    method public boolean isSubscribedToAmbientStateChanges();
+    method public boolean isSubscribedToAmbientUpdates();
+    method public static com.google.wear.services.ambient.AmbientOptions makeAmbientUpdateListenerOptions(@NonNull android.content.ComponentName, @NonNull com.google.wear.services.ambient.AmbientComponentState.ListenerStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener);
+    method public void subscribeToAmbientStateChanges();
+    method public void subscribeToAmbientUpdates();
+    method public void unsubscribeFromAmbientStateChanges();
+    method public void unsubscribeFromAmbientUpdates();
+  }
+
+}
+
+package com.google.wear.services.companion.connectionstatus {
+
+  public class CompanionConnectionManager {
+    method public void registerCompanionConnectionStatusListener(@NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.companion.connectionstatus.CompanionConnectionManager.CompanionConnectionStatusListener);
+    method public void unregisterCompanionConnectionStatusListener(@NonNull com.google.wear.services.companion.connectionstatus.CompanionConnectionManager.CompanionConnectionStatusListener);
+    field public static final int COMPANION_DEVICE_CONNECTION_TYPE_CONNECTED_VIA_BLUETOOTH = 2; // 0x2
+    field public static final int COMPANION_DEVICE_CONNECTION_TYPE_CONNECTED_VIA_CLOUD = 3; // 0x3
+    field public static final int COMPANION_DEVICE_CONNECTION_TYPE_DISCONNECTED = 1; // 0x1
+    field public static final int COMPANION_DEVICE_CONNECTION_TYPE_UNKNOWN = 0; // 0x0
+  }
+
+  public static interface CompanionConnectionManager.CompanionConnectionStatusListener {
+    method public void onCompanionConnectionStatusUpdate(int);
+  }
+
+}
+
+package com.google.wear.services.complications {
+
+  public interface ComplicationDataProxy {
+    method public void sendComplicationDataToCurrentWatchFace(@NonNull com.google.wear.services.watchfaces.WatchFaceId, int, @Nullable android.content.ComponentName, @NonNull android.os.Bundle);
+  }
+
+  public class ComplicationDataSource {
+    method @NonNull public CharSequence getAppName();
+    method @Nullable public String getConfigAction();
+    method @Nullable public android.graphics.drawable.Icon getIcon();
+    method @NonNull public android.content.ComponentName getServiceComponentName();
+    method @NonNull public CharSequence getServiceName();
+    method @NonNull public java.util.List<java.lang.Integer> getSupportedTypes();
+  }
+
+  public static final class ComplicationDataSource.Builder {
+    ctor public ComplicationDataSource.Builder(@NonNull android.content.ComponentName, @NonNull CharSequence, @NonNull CharSequence);
+    method @NonNull public com.google.wear.services.complications.ComplicationDataSource build();
+    method @NonNull public com.google.wear.services.complications.ComplicationDataSource.Builder setConfigAction(@Nullable String);
+    method @NonNull public com.google.wear.services.complications.ComplicationDataSource.Builder setIcon(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.complications.ComplicationDataSource.Builder setSupportedTypes(@NonNull java.util.List<java.lang.Integer>);
+  }
+
+  public class ComplicationDataSourceConfig {
+    ctor public ComplicationDataSourceConfig(int, @NonNull com.google.wear.services.complications.ComplicationDataSource);
+    method @NonNull public com.google.wear.services.complications.ComplicationDataSource getComplicationDataSource();
+    method public int getSelectedType();
+  }
+
+  public class ComplicationInfo {
+    method public int getDataType();
+    method @Nullable public android.content.ComponentName getProviderComponent();
+    method public int getWatchFaceSlotId();
+  }
+
+  public static final class ComplicationInfo.Builder {
+    ctor public ComplicationInfo.Builder(int, int);
+    ctor public ComplicationInfo.Builder(com.google.wear.services.complications.ComplicationInfo);
+    method @NonNull public com.google.wear.services.complications.ComplicationInfo build();
+    method @NonNull public com.google.wear.services.complications.ComplicationInfo.Builder setDataType(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationInfo.Builder setProviderComponent(@Nullable android.content.ComponentName);
+    method @NonNull public com.google.wear.services.complications.ComplicationInfo.Builder setWatchFaceSlotId(int);
+  }
+
+  public final class ComplicationProviderInfo {
+    ctor public ComplicationProviderInfo(@NonNull CharSequence, @NonNull CharSequence, @NonNull android.graphics.drawable.Icon, int, @NonNull android.content.ComponentName);
+    method @NonNull public CharSequence getAppName();
+    method public int getComplicationType();
+    method @NonNull public android.content.ComponentName getProviderComponentName();
+    method @NonNull public android.graphics.drawable.Icon getProviderIcon();
+    method @NonNull public CharSequence getProviderName();
+  }
+
+  public class ComplicationSlotConfig {
+    method public int getDataType();
+    method public int getId();
+    method @Nullable public android.content.ComponentName getProviderComponent();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceId getWatchFaceId();
+    method public int getWatchFaceSlotId();
+  }
+
+  public static final class ComplicationSlotConfig.Builder {
+    ctor public ComplicationSlotConfig.Builder(int, @NonNull com.google.wear.services.watchfaces.WatchFaceId, int);
+    ctor public ComplicationSlotConfig.Builder(com.google.wear.services.complications.ComplicationSlotConfig);
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig build();
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig.Builder setDataType(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig.Builder setProviderComponent(@Nullable android.content.ComponentName);
+  }
+
+  public class ComplicationsManager {
+    method public void clearComplicationDataProxy();
+    method public void getComplicationSlotConfig(@NonNull com.google.wear.services.watchfaces.WatchFaceFavoriteId, int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<com.google.wear.services.complications.ComplicationSlotConfig,java.lang.Throwable>);
+    method public void getPreviewComplicationData(@NonNull android.content.ComponentName, int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<android.os.Bundle,java.lang.Throwable>);
+    method public void getProviderInfos(@NonNull com.google.wear.services.watchfaces.WatchFaceId, @NonNull int[], @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.complications.ComplicationProviderInfo>,com.google.wear.services.complications.ComplicationsManager.ComplicationsException>);
+    method @Deprecated @NonNull public java.util.List<com.google.wear.services.complications.ComplicationDataSourceConfig> getSupportedComplicationDataSources(@NonNull int[]);
+    method @NonNull public java.util.List<com.google.wear.services.complications.ComplicationDataSourceConfig> getSupportedComplicationDataSources(@NonNull int[], @NonNull com.google.wear.services.watchfaces.WatchFaceId);
+    method public java.util.Map<java.lang.Integer,android.content.ComponentName> getSystemProviders();
+    method public void setActiveWatchFaceComplicationSlots(boolean, @NonNull com.google.wear.services.watchfaces.WatchFaceId, @NonNull int[]);
+    method public void setComplicationDataProxy(@NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.complications.ComplicationDataProxy);
+    method public void setDefaultComplicationProvider(@NonNull com.google.wear.services.watchfaces.WatchFaceId, int, @NonNull java.util.List<android.content.ComponentName>, int);
+    method public void updateComplicationConfig(@NonNull com.google.wear.services.watchfaces.WatchFaceId, int, @Nullable android.content.ComponentName, int, boolean);
+    field public static final int COMPLICATIONS_ERROR_INTERNAL_ERROR = 1; // 0x1
+    field public static final int COMPLICATIONS_ERROR_INVALID_EDITING_SESSION = 2; // 0x2
+    field public static final int COMPLICATIONS_ERROR_UNKNOWN = -1; // 0xffffffff
+    field public static final int COMPLICATION_TYPE_EMPTY = 2; // 0x2
+    field public static final int COMPLICATION_TYPE_GOAL_PROGRESS = 13; // 0xd
+    field public static final int COMPLICATION_TYPE_ICON = 6; // 0x6
+    field public static final int COMPLICATION_TYPE_LARGE_IMAGE = 8; // 0x8
+    field public static final int COMPLICATION_TYPE_LONG_TEXT = 4; // 0x4
+    field public static final int COMPLICATION_TYPE_NOT_CONFIGURED = 1; // 0x1
+    field public static final int COMPLICATION_TYPE_NO_DATA = 10; // 0xa
+    field public static final int COMPLICATION_TYPE_NO_PERMISSION = 9; // 0x9
+    field public static final int COMPLICATION_TYPE_RANGED_VALUE = 5; // 0x5
+    field public static final int COMPLICATION_TYPE_SHORT_TEXT = 3; // 0x3
+    field public static final int COMPLICATION_TYPE_SMALL_IMAGE = 7; // 0x7
+    field public static final int COMPLICATION_TYPE_WEIGHTED_ELEMENTS = 14; // 0xe
+    field public static final String KEY_COMPLICATION_DATA = "com.google.wear.services.key.COMPLICATION_DATA";
+  }
+
+  public static class ComplicationsManager.ComplicationsException extends java.lang.Exception {
+    ctor public ComplicationsManager.ComplicationsException(@NonNull String, int);
+    method public int getErrorCode();
+  }
+
+}
+
+package com.google.wear.services.migration {
+
+  public class MigrationManager {
+    method @RequiresPermission(com.google.wear.services.Permissions.WEAR_SERVICES_MIGRATION) public void commitPendingState(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WEAR_SERVICES_MIGRATION) public void setPendingState(@NonNull android.os.ParcelFileDescriptor) throws java.io.IOException;
+  }
+
+}
+
+package com.google.wear.services.notification {
+
+  public final class CancelAllNotificationsRequest {
+    ctor public CancelAllNotificationsRequest(long, int);
+    method public int getReason();
+    method public long getRevision();
+  }
+
+  public final class HiddenStatusUpdatedEvent {
+    ctor public HiddenStatusUpdatedEvent(@NonNull com.google.wear.services.notification.StreamItem, int);
+    method public int getHiddenReason();
+    method @NonNull public com.google.wear.services.notification.StreamItem getUpdatedItem();
+  }
+
+  public final class ImageProvider {
+    method @Nullable public android.graphics.drawable.Icon getAppIcon();
+    method @Nullable public android.graphics.drawable.Icon getBigPicture();
+    method @Nullable public android.graphics.drawable.Icon getLargeIcon();
+    method @Nullable public android.graphics.drawable.Icon getSmallIcon();
+    method @NonNull public java.util.Map<java.lang.String,android.graphics.drawable.Icon> getSupplementalImages();
+  }
+
+  public static final class ImageProvider.Builder {
+    ctor public ImageProvider.Builder();
+    method @NonNull public com.google.wear.services.notification.ImageProvider build();
+    method @NonNull public com.google.wear.services.notification.ImageProvider.Builder setAppIcon(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.notification.ImageProvider.Builder setBigPicture(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.notification.ImageProvider.Builder setLargeIcon(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.notification.ImageProvider.Builder setSmallIcon(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.notification.ImageProvider.Builder setSupplementalImages(@NonNull java.util.Map<java.lang.String,android.graphics.drawable.Icon>);
+  }
+
+  public final class MuteAppInfo {
+    ctor public MuteAppInfo(int, @NonNull String);
+    method public int getAppLocation();
+    method @NonNull public String getPackageName();
+    field public static final int APP_LOCATION_ALL = 7; // 0x7
+    field public static final int APP_LOCATION_PHONE_PERSONAL = 1; // 0x1
+    field public static final int APP_LOCATION_PHONE_WORK_PROFILE = 2; // 0x2
+    field public static final int APP_LOCATION_UNKNOWN = 0; // 0x0
+    field public static final int APP_LOCATION_WATCH = 4; // 0x4
+  }
+
+  @Deprecated public final class NotificationCountData {
+    ctor @Deprecated public NotificationCountData(int, int);
+    method @Deprecated public int getTotalItemCount();
+    method @Deprecated public int getUnreadItemCount();
+  }
+
+  public interface NotificationEventListener {
+    method public void onHiddenStatusUpdated(@NonNull com.google.wear.services.notification.HiddenStatusUpdatedEvent);
+    method public void onInterruptionFilterChanged(int);
+    method public void onListenerHintsChanged(int);
+    method @Deprecated public void onNotificationCountDataChanged(@NonNull com.google.wear.services.notification.NotificationCountData);
+    method public void onNotificationPosted(@NonNull com.google.wear.services.notification.NotificationPostedEvent);
+    method public void onNotificationRankingUpdated(@NonNull android.service.notification.NotificationListenerService.RankingMap);
+    method public void onNotificationRemoved(@NonNull com.google.wear.services.notification.NotificationRemovedEvent);
+    method public void onNotificationsInitialized(@NonNull com.google.wear.services.notification.NotificationsInitializedEvent);
+  }
+
+  public class NotificationManager {
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void cancelAllBeforeRevision(int, long, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void cancelNotifications(@NonNull java.util.Set<com.google.wear.services.notification.StreamItemIdAndRevision>, int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void getActiveNotifications(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.notification.StreamItem>,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void getActiveNotifications(@NonNull java.util.concurrent.Executor, @NonNull java.util.List<com.google.wear.services.notification.StreamItemId>, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.notification.StreamItem>,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public int getCurrentInterruptionFilter();
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public int getCurrentListenerHints();
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public android.service.notification.NotificationListenerService.RankingMap getCurrentRankingMap();
+    method @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_MUTED_APPS}) @WorkerThread public void getMutedApps(int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.notification.MuteAppInfo>,java.lang.Throwable>);
+    method @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_MUTED_APPS}) @WorkerThread public void isAppMuted(@NonNull com.google.wear.services.notification.MuteAppInfo, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Boolean,java.lang.Throwable>);
+    method @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_MUTED_APPS}) @WorkerThread public void muteApp(@NonNull com.google.wear.services.notification.MuteAppInfo, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void registerNotificationEventListener(@NonNull com.google.wear.services.notification.NotificationEventListener);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void registerNotificationEventListener(@NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.notification.NotificationEventListener);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void requestInterruptionFilterUpdate(int);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void requestListenerHintsUpdate(int);
+    method @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_MUTED_APPS}) @WorkerThread public void unmuteApp(@NonNull com.google.wear.services.notification.MuteAppInfo, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) @WorkerThread public void unregisterNotificationEventListener(@NonNull com.google.wear.services.notification.NotificationEventListener);
+    field public static final int HIDDEN_REASON_DISMISSED_PENDING_REMOVAL = 1; // 0x1
+    field public static final int HIDDEN_REASON_EMPTY_NOTIFICATION = 2; // 0x2
+    field public static final int HIDDEN_REASON_EMPTY_SETTINGS_NOTIFICATION = 9; // 0x9
+    field public static final int HIDDEN_REASON_FOREGROUND_SERVICE = 3; // 0x3
+    field public static final int HIDDEN_REASON_FRAMEWORKS_FOREGROUND_NOTIFICATION = 10; // 0xa
+    field public static final int HIDDEN_REASON_HOME_OVER_OTHER_APPS_NOTIFICATION = 11; // 0xb
+    field public static final int HIDDEN_REASON_INVALID_WEARABLE_EXTENDER = 5; // 0x5
+    field public static final int HIDDEN_REASON_MATCHES_MANAGED_DISMISSAL = 12; // 0xc
+    field public static final int HIDDEN_REASON_MEDIA_STYLE_WITH_MEDIA_CONTROL_ACTIVITY_ENABLED = 4; // 0x4
+    field public static final int HIDDEN_REASON_MISSED_CALL_APP_PHONE_CALL_CAPABLE = 7; // 0x7
+    field public static final int HIDDEN_REASON_MISSED_CALL_APP_TWINNED = 6; // 0x6
+    field public static final int HIDDEN_REASON_NOT_HIDDEN = 0; // 0x0
+    field public static final int HIDDEN_REASON_ONGOING_ACTIVITY_TYPE = 13; // 0xd
+    field public static final int HIDDEN_REASON_SMS_APP_TWINNED = 8; // 0x8
+    field public static final int HINT_HOST_UNKNOWN = -2147483648; // 0x80000000
+    field public static final int NOTIFICATION_SOURCE_BRIDGER = 2; // 0x2
+    field public static final int NOTIFICATION_SOURCE_IOS = 4; // 0x4
+    field public static final int NOTIFICATION_SOURCE_LOCAL = 1; // 0x1
+    field public static final int NOTIFICATION_SOURCE_OFFLOAD = 3; // 0x3
+    field public static final int NOTIFICATION_SOURCE_UNKNOWN = 0; // 0x0
+  }
+
+  public final class NotificationPostedEvent {
+    ctor public NotificationPostedEvent(@NonNull com.google.wear.services.notification.StreamItem, boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItem getPostedItem();
+    method public boolean isNewItem();
+  }
+
+  public final class NotificationRemovedEvent {
+    ctor public NotificationRemovedEvent(@NonNull com.google.wear.services.notification.StreamItem);
+    method @NonNull public com.google.wear.services.notification.StreamItem getRemovedItem();
+  }
+
+  public final class NotificationsInitializedEvent {
+    ctor public NotificationsInitializedEvent(@NonNull java.util.List<com.google.wear.services.notification.StreamItem>, int);
+    method public int getNotificationSource();
+    method @NonNull public java.util.List<com.google.wear.services.notification.StreamItem> getStreamItems();
+  }
+
+  public final class StreamItem {
+    ctor public StreamItem(@NonNull com.google.wear.services.notification.StreamItemIdAndRevision, @NonNull com.google.wear.services.notification.StreamItemData);
+    method @NonNull public com.google.wear.services.notification.StreamItemData getData();
+    method @NonNull public com.google.wear.services.notification.StreamItemIdAndRevision getIdAndRevision();
+  }
+
+  public final class StreamItemData {
+    method public boolean doesContentIntentLaunchActivity();
+    method @NonNull public java.util.List<android.app.Notification.Action> getActions();
+    method @Nullable public String getAppName();
+    method @Nullable public CharSequence getBigText();
+    method @Nullable public CharSequence getBigTitle();
+    method @Nullable public String getBridgeTag();
+    method @Nullable public android.app.PendingIntent getBridgedContentIntent();
+    method @Nullable public String getBridgedContentIntentId();
+    method @Nullable public String getCategory();
+    method @Nullable public com.google.wear.services.notification.channel.Channel getChannel();
+    method @ColorInt public int getColor();
+    method public int getContentActionIndex();
+    method @Nullable public android.app.PendingIntent getContentIntent();
+    method @Nullable public CharSequence getContentText();
+    method @Nullable public String getDismissalId();
+    method public int getFlags();
+    method @Nullable public android.app.PendingIntent getFullScreenIntent();
+    method @Nullable public String getGroup();
+    method public int getGroupAlertBehavior();
+    method @Nullable public String getGroupKey();
+    method @XmlRes public int getHapticResourceId();
+    method @Nullable public String getHapticResourcePackage();
+    method public int getHiddenReason();
+    method @NonNull public com.google.wear.services.notification.ImageProvider getImageProvider();
+    method public long getLastPostedAsInterruptiveTimeMillis();
+    method @Nullable public android.view.accessibility.AccessibilityEvent getLocalAccessibilityEvent();
+    method @Nullable public com.google.wear.services.notification.style.MessagingStyle getMessagingStyle();
+    method public int getNotificationSource();
+    method public long getOriginalPostTimeMillis();
+    method @Nullable public java.util.List<java.lang.String> getPeopleUris();
+    method public long getPostTimeMillis();
+    method public int getPriority();
+    method public float getProgress();
+    method @Nullable public String getSortKey();
+    method public boolean getStartScrollBottom();
+    method @Nullable public CharSequence getSubText();
+    method @Nullable public CharSequence getSummaryText();
+    method @Nullable public android.os.Bundle getSupplementalData();
+    method @Nullable public java.util.List<java.lang.CharSequence> getTextLines();
+    method @Nullable public CharSequence getTickerText();
+    method @Nullable public CharSequence getTitle();
+    method public int getUserId();
+    method @Nullable public long[] getVibrationPattern();
+    method @NonNull public java.util.List<android.app.Notification.Action> getWearableActions();
+    method public long getWhenMillis();
+    method public boolean hasAlreadyShown();
+    method public boolean hasSound();
+    method public boolean isChronometerCountDown();
+    method public boolean isContentIntentAvailableWhenDisconnected();
+    method public boolean isEmergency();
+    method public boolean isGroupSummary();
+    method public boolean isIndeterminateProgress();
+    method public boolean isLocalOnly();
+    method public boolean isMediaNotification();
+    method public boolean isWorkProfile();
+    method public boolean matchesInterruptionFilter();
+    method public boolean shouldVibrate();
+    method public boolean showChronometer();
+    method public boolean showWhen();
+    field public static final String CUSTOM_DISPLAY_BUNDLE_KEY = "com.google.wear.services.notification.StreamItemData#CUSTOM_DISPLAY_BUNDLE_KEY";
+  }
+
+  public static class StreamItemData.Builder {
+    ctor public StreamItemData.Builder();
+    method @NonNull public com.google.wear.services.notification.StreamItemData build();
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setActions(@NonNull java.util.List<android.app.Notification.Action>);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setAppName(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBigText(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBigTitle(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBridgeTag(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBridgedContentIntent(@Nullable android.app.PendingIntent);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBridgedContentIntentId(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setCategory(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setChannel(@Nullable com.google.wear.services.notification.channel.Channel);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setChronometerCountDown(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setColor(@ColorInt int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setContentActionIndex(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setContentIntent(@Nullable android.app.PendingIntent);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setContentText(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setDismissalId(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setDoesContentIntentLaunchActivity(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setEmergency(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setFlags(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setFullScreenIntent(@Nullable android.app.PendingIntent);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setGroup(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setGroupAlertBehavior(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setGroupKey(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setHapticResourceId(@XmlRes int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setHapticResourcePackage(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setHasAlreadyShown(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setHasSound(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setHiddenReason(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setImageProvider(@NonNull com.google.wear.services.notification.ImageProvider);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setIsContentIntentAvailableWhenDisconnected(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setIsGroupSummary(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setIsIndeterminateProgress(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setIsLocalOnly(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setIsMediaNotification(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setIsWorkProfile(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setLastPostedAsInterruptiveTimeMillis(long);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setLocalAccessibilityEvent(@Nullable android.view.accessibility.AccessibilityEvent);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setMatchesInterruptionFilter(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setMessagingStyle(com.google.wear.services.notification.style.MessagingStyle);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setNotificationSource(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setOriginalPostTimeMillis(long);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setPeopleUris(@NonNull java.util.List<java.lang.String>);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setPostTimeMillis(long);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setPriority(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setProgress(float);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setShouldVibrate(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setShowChronometer(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setShowWhen(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setSortKey(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setStartScrollBottom(boolean);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setSubText(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setSummaryText(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setSupplementalData(@Nullable android.os.Bundle);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setTextLines(@Nullable java.util.List<java.lang.CharSequence>);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setTickerText(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setTitle(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setUserId(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setVibrationPattern(@Nullable long[]);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setWearableActions(@NonNull java.util.List<android.app.Notification.Action>);
+    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setWhenMillis(long);
+  }
+
+  public final class StreamItemGroupId implements java.lang.Comparable<com.google.wear.services.notification.StreamItemGroupId> {
+    ctor public StreamItemGroupId(@NonNull String, @NonNull String);
+    method public int compareTo(com.google.wear.services.notification.StreamItemGroupId);
+    method @NonNull public String getGroupKey();
+    method @NonNull public String getPackageName();
+  }
+
+  public final class StreamItemId {
+    method public int getId();
+    method @Nullable public String getNotificationKey();
+    method @NonNull public String getPackageName();
+    method @Nullable public String getTag();
+  }
+
+  public static final class StreamItemId.Builder {
+    ctor public StreamItemId.Builder(@NonNull String, int);
+    method @NonNull public com.google.wear.services.notification.StreamItemId build();
+    method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setNotificationKey(@Nullable String);
+    method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setTag(@Nullable String);
+  }
+
+  public final class StreamItemIdAndRevision {
+    method @IntRange(from=0xffffffff) public long getOriginalRevision();
+    method @IntRange(from=0xffffffff) public long getRevision();
+    method @NonNull public com.google.wear.services.notification.StreamItemId getStreamItemId();
+    method public int getUpdateCount();
+  }
+
+  public static final class StreamItemIdAndRevision.Builder {
+    ctor public StreamItemIdAndRevision.Builder(@NonNull com.google.wear.services.notification.StreamItemId);
+    method public com.google.wear.services.notification.StreamItemIdAndRevision build();
+    method public com.google.wear.services.notification.StreamItemIdAndRevision.Builder setOriginalRevision(@IntRange(from=0xffffffff) long);
+    method public com.google.wear.services.notification.StreamItemIdAndRevision.Builder setRevision(@IntRange(from=0xffffffff) long);
+    method public com.google.wear.services.notification.StreamItemIdAndRevision.Builder setUpdateCount(int);
+  }
+
+}
+
+package com.google.wear.services.notification.channel {
+
+  public final class Channel {
+    method public boolean canBypassDnd();
+    method public boolean canShowBadge();
+    method @Nullable public String getGroup();
+    method @NonNull public com.google.wear.services.notification.channel.ChannelId getId();
+    method public int getImportance();
+    method @ColorInt public int getLightColor();
+    method public int getLockscreenVisibility();
+    method public CharSequence getName();
+    method @Nullable public android.net.Uri getSoundUri();
+    method @Nullable public long[] getVibrationPattern();
+    method public boolean hasSound();
+    method public boolean isDeleted();
+    method public boolean shouldShowLights();
+    method public boolean shouldVibrate();
+  }
+
+  public static final class Channel.Builder {
+    ctor public Channel.Builder(@NonNull com.google.wear.services.notification.channel.ChannelId, CharSequence);
+    method @NonNull public com.google.wear.services.notification.channel.Channel build();
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setCanBypassDnd(boolean);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setCanShowBadge(boolean);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setDeleted(boolean);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setGroup(@Nullable String);
+    method @Deprecated @NonNull public com.google.wear.services.notification.channel.Channel.Builder setHasSound(boolean);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setImportance(int);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setLightColor(@ColorInt int);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setLockscreenVisibility(int);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setShouldShowLights(boolean);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setShouldVibrate(@NonNull boolean);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setSoundUri(@Nullable android.net.Uri);
+    method @NonNull public com.google.wear.services.notification.channel.Channel.Builder setVibrationPattern(@Nullable long[]);
+  }
+
+  public final class ChannelConstants {
+    field public static final long[] DEFAULT_VIBRATION_PATTERN;
+  }
+
+  public final class ChannelId {
+    ctor public ChannelId(@NonNull String, @NonNull String, int);
+    method @NonNull public String getId();
+    method public int getNotificationSource();
+    method @NonNull public String getPackage();
+  }
+
+}
+
+package com.google.wear.services.notification.style {
+
+  public final class MessagingStyle {
+    method @Nullable public CharSequence getConversationTitle();
+    method @Nullable public CharSequence getDisplayName();
+    method @NonNull public java.util.List<android.app.Notification.MessagingStyle.Message> getMessages();
+    method @Nullable public android.app.Person getReplyUser();
+    method public boolean isGroupConversation();
+  }
+
+  public static class MessagingStyle.Builder {
+    ctor public MessagingStyle.Builder();
+    method @NonNull public com.google.wear.services.notification.style.MessagingStyle build();
+    method @NonNull public com.google.wear.services.notification.style.MessagingStyle.Builder setConversationTitle(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.style.MessagingStyle.Builder setDisplayName(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.notification.style.MessagingStyle.Builder setGroupConversation(boolean);
+    method @NonNull public com.google.wear.services.notification.style.MessagingStyle.Builder setMessages(@Nullable java.util.List<android.app.Notification.MessagingStyle.Message>);
+    method @NonNull public com.google.wear.services.notification.style.MessagingStyle.Builder setReplyUser(@Nullable android.app.Person);
+  }
+
+}
+
+package com.google.wear.services.ongoingactivity {
+
+  public class OngoingActivityId {
+    ctor public OngoingActivityId(int, @NonNull String);
+    method public int getId();
+    method @NonNull public String getPackageName();
+  }
+
+  public class OngoingActivityItem {
+    method @NonNull public android.os.Bundle getData();
+    method @NonNull public com.google.wear.services.ongoingactivity.OngoingActivityId getOngoingActivityId();
+  }
+
+  public class OngoingActivityManager {
+    method public void registerOngoingActivityChangeListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.util.List<com.google.wear.services.ongoingactivity.OngoingActivityItem>>);
+    method public void unregisterOngoingActivityChangeListener(@NonNull java.util.function.Consumer<java.util.List<com.google.wear.services.ongoingactivity.OngoingActivityItem>>);
+  }
+
+}
+
+package com.google.wear.services.remoteevents {
+
+  public abstract class RemoteEvent {
+    ctor public RemoteEvent(int);
+    method public int getEventType();
+    method public abstract byte[] toBytes();
+  }
+
+  public class RemoteEventsManager {
+    method public void querySupportedEvents(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<java.lang.Integer>,com.google.wear.services.remoteevents.RemoteEventsManager.RemoteEventException>);
+    method public void sendRemoteEvent(@NonNull com.google.wear.services.remoteevents.RemoteEvent, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.remoteevents.RemoteEventsManager.RemoteEventException>);
+    field public static final int REMOTE_EVENT_RESPONSE_DESERIALIZATION_EXCEPTION = 9; // 0x9
+    field public static final int REMOTE_EVENT_RESPONSE_FAILURE = 1; // 0x1
+    field public static final int REMOTE_EVENT_RESPONSE_INVALID_REMOTE_EVENT_TYPE = 6; // 0x6
+    field public static final int REMOTE_EVENT_RESPONSE_MAX_REMOTE_EVENT_TRIGGERS_EXCEEDED = 8; // 0x8
+    field public static final int REMOTE_EVENT_RESPONSE_MAX_SIZE_EXCEEDED = 2; // 0x2
+    field public static final int REMOTE_EVENT_RESPONSE_REMOTE_EXECUTION_EXCEPTION = 7; // 0x7
+    field public static final int REMOTE_EVENT_RESPONSE_REMOTE_NOT_REACHABLE = 3; // 0x3
+    field public static final int REMOTE_EVENT_RESPONSE_REMOTE_NOT_SUPPORTED = 10; // 0xa
+    field public static final int REMOTE_EVENT_RESPONSE_SECURITY_EXCEPTION = 5; // 0x5
+    field public static final int REMOTE_EVENT_RESPONSE_TIMEOUT = 4; // 0x4
+  }
+
+  public static class RemoteEventsManager.RemoteEventException extends java.lang.Exception {
+    method public int getErrorCode();
+  }
+
+}
+
+package com.google.wear.services.telephony {
+
+  public class WearTelephonyManager {
+    method @NonNull @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE) public java.util.Map<java.lang.Integer,java.util.List<android.telephony.emergency.EmergencyNumber>> getEmergencyNumbers();
+    method @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE) public boolean isEmergencyNumber(@NonNull String);
+  }
+
+}
+
+package com.google.wear.services.tiles {
+
+  public class TileInstance {
+    method @Nullable public android.content.Intent getConfigIntent();
+    method public int getId();
+    method @NonNull public com.google.wear.services.tiles.TileProvider getTileProvider();
+  }
+
+  public class TileProvider {
+    method public boolean areMultipleInstancesSupported();
+    method @NonNull public String getAppLabel();
+    method @NonNull public android.content.ComponentName getComponentName();
+    method @DrawableRes public int getIconResourceId();
+    method @Nullable public android.graphics.drawable.Icon getPreviewImage();
+    method @NonNull public String getTileDescription();
+    method @NonNull public String getTileLabel();
+    method public boolean isTileSuspended();
+  }
+
+  public class TilesManager {
+    method public void addTile(@NonNull int[], @NonNull android.content.ComponentName, int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.tiles.TilesManager.TilesException>);
+    method public boolean canAddTile();
+    method public void fetchAvailableTiles(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.tiles.TileProvider>,com.google.wear.services.tiles.TilesManager.TilesException>);
+    method public void registerVisibilityListener(@NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.tiles.TilesVisibilityListener);
+    method public void removeTile(int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.tiles.TilesManager.TilesException>);
+    method public void setTilesRendererConfig(@NonNull android.content.Context, @NonNull com.google.wear.services.tiles.TilesRendererConfig);
+    method public void unregisterVisibilityListener(@NonNull com.google.wear.services.tiles.TilesVisibilityListener);
+    method public void updateTilesOrder(@NonNull int[], @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.tiles.TilesManager.TilesException>);
+    field public static final int AT_END_OF_LIST = 2147483647; // 0x7fffffff
+    field public static final String METADATA_RETAIL_MODE_SUPPORTED = "com.google.android.clockwork.tiles.RETAIL_MODE_SUPPORTED";
+    field public static final int TILES_ERROR_INTERNAL_ERROR = 6; // 0x6
+    field public static final int TILES_ERROR_INVALID_INDEX = 1; // 0x1
+    field public static final int TILES_ERROR_INVALID_TILE_COMPONENT = 5; // 0x5
+    field public static final int TILES_ERROR_INVALID_TILE_ID = 2; // 0x2
+    field public static final int TILES_ERROR_INVALID_TILE_LIST_SNAPSHOT = 7; // 0x7
+    field public static final int TILES_ERROR_INVALID_TILE_ORDER = 3; // 0x3
+    field public static final int TILES_ERROR_MAX_TILES_REACHED = 4; // 0x4
+  }
+
+  public static class TilesManager.TilesException extends java.lang.Exception {
+    ctor public TilesManager.TilesException(int);
+    method public int getErrorCode();
+  }
+
+  public class TilesRendererConfig {
+    method @NonNull public com.google.wear.services.tiles.TilesSchemaVersion getMaxSupportedSchema();
+    method @NonNull public com.google.wear.services.tiles.TilesSchemaVersion getMinSupportedSchema();
+  }
+
+  public static class TilesRendererConfig.Builder {
+    ctor public TilesRendererConfig.Builder();
+    method @NonNull public com.google.wear.services.tiles.TilesRendererConfig build();
+    method @NonNull public com.google.wear.services.tiles.TilesRendererConfig.Builder setMaxSupportedSchemaVersion(@NonNull com.google.wear.services.tiles.TilesSchemaVersion);
+    method @NonNull public com.google.wear.services.tiles.TilesRendererConfig.Builder setMinSupportedSchemaVersion(@NonNull com.google.wear.services.tiles.TilesSchemaVersion);
+  }
+
+  public class TilesSchemaVersion {
+    ctor public TilesSchemaVersion(int, int);
+    method public int getMajor();
+    method public int getMinor();
+  }
+
+  public interface TilesVisibilityListener {
+    method public void onConnectionLost();
+    method public void onVisibleTileAdded(@NonNull java.util.List<com.google.wear.services.tiles.TileInstance>, int);
+    method public void onVisibleTileRemoved(@NonNull java.util.List<com.google.wear.services.tiles.TileInstance>, int);
+    method public void onVisibleTileUpdated(@NonNull com.google.wear.services.tiles.TileInstance);
+    method public void onVisibleTilesLoaded(@NonNull java.util.List<com.google.wear.services.tiles.TileInstance>);
+    method public void onVisibleTilesOrderChanged(@NonNull java.util.List<com.google.wear.services.tiles.TileInstance>);
+  }
+
+}
+
+package com.google.wear.services.watchfaces {
+
+  public class ActiveWatchFace {
+    method @Nullable public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo getFavoriteInfo();
+    method @Nullable public String getInstanceId();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo getWatchFaceInfo();
+  }
+
+  public static final class ActiveWatchFace.Builder {
+    ctor public ActiveWatchFace.Builder(@NonNull com.google.wear.services.watchfaces.WatchFaceInfo);
+    method @NonNull public com.google.wear.services.watchfaces.ActiveWatchFace build();
+    method @NonNull public com.google.wear.services.watchfaces.ActiveWatchFace.Builder setFavoriteInfo(@Nullable com.google.wear.services.watchfaces.WatchFaceFavoriteInfo);
+    method @NonNull public com.google.wear.services.watchfaces.ActiveWatchFace.Builder setInstanceId(@Nullable String);
+  }
+
+  public interface ActiveWatchFaceChangeListener {
+    method public void onActiveWatchFaceChanged(@NonNull com.google.wear.services.watchfaces.ActiveWatchFace);
+  }
+
+  public class WatchFaceFavoriteId {
+    ctor public WatchFaceFavoriteId(@NonNull com.google.wear.services.watchfaces.WatchFaceId, int);
+    method public int getFavoriteId();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceId getWatchFaceId();
+    field public static final int WSL_FAVORITE_ID = -1; // 0xffffffff
+  }
+
+  public class WatchFaceFavoriteInfo {
+    method @NonNull public java.util.List<com.google.wear.services.complications.ComplicationInfo> getComplicationInfoList();
+    method @IntRange(from=1) public int getId();
+    method @NonNull public String getInstanceId();
+    method @NonNull public android.graphics.drawable.Icon getPreview();
+    method @NonNull public java.util.Map<java.lang.String,byte[]> getStyle();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceId getWatchFaceId();
+  }
+
+  public static final class WatchFaceFavoriteInfo.Builder {
+    ctor public WatchFaceFavoriteInfo.Builder(@IntRange(from=1) int, @NonNull com.google.wear.services.watchfaces.WatchFaceId, @NonNull android.graphics.drawable.Icon, @NonNull String);
+    ctor public WatchFaceFavoriteInfo.Builder(com.google.wear.services.watchfaces.WatchFaceFavoriteInfo);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo build();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo.Builder setComplicationInfoList(@NonNull java.util.List<com.google.wear.services.complications.ComplicationInfo>);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo.Builder setId(@IntRange(from=1) int);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo.Builder setInstanceId(@NonNull String);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo.Builder setPreview(@NonNull android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo.Builder setStyle(@NonNull java.util.Map<java.lang.String,byte[]>);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceFavoriteInfo.Builder setWatchFaceId(@NonNull com.google.wear.services.watchfaces.WatchFaceId);
+  }
+
+  public interface WatchFaceFavoritesListener {
+    method public void onDisconnected();
+    method public void onFavoriteAdded(@NonNull com.google.wear.services.watchfaces.WatchFaceFavoriteInfo);
+    method public void onFavoriteOrderChanged(@NonNull int[]);
+    method public void onFavoriteRemoved(int);
+    method public void onFavoriteUpdated(@NonNull com.google.wear.services.watchfaces.WatchFaceFavoriteInfo);
+    method public void onFavoritesLoaded(@NonNull int[]);
+  }
+
+  public final class WatchFaceId {
+    ctor public WatchFaceId(@NonNull String, @NonNull String);
+    ctor public WatchFaceId(@NonNull String);
+    method @Nullable public String getClassName();
+    method @NonNull public String getPackageName();
+  }
+
+  public class WatchFaceInfo {
+    method @NonNull public String getCategory();
+    method @Nullable public android.content.Intent getConfigurationIntent();
+    method @NonNull public String getName();
+    method @DrawableRes public int getPreviewResId();
+    method @Nullable public String getRuntimePackage();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceId getWatchFaceId();
+    method public int getWatchFaceSdkVersion();
+    method public boolean isAvailableInRetailMode();
+    method public boolean isMultipleFavoritesEnabled();
+    method public boolean isResourceOnlyWatchFace();
+    method public boolean isResourceOnlyWatchFaceEditable();
+    method public final String toString();
+    field public static final String CATEGORY_EMPTY = "empty_category_meta";
+    field public static final String CATEGORY_HIDDEN = "hidden_category_meta";
+    field public static final int WATCH_FACE_SDK_VERSION_ANDROIDX = 1; // 0x1
+    field public static final int WATCH_FACE_SDK_VERSION_WEARABLE_SUPPORT = 0; // 0x0
+  }
+
+  public static final class WatchFaceInfo.Builder {
+    ctor public WatchFaceInfo.Builder(@NonNull com.google.wear.services.watchfaces.WatchFaceId, @NonNull String);
+    ctor public WatchFaceInfo.Builder(com.google.wear.services.watchfaces.WatchFaceInfo);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo build();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setAvailableInRetailMode(boolean);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setCategory(@NonNull String);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setConfigurationIntent(@Nullable android.content.Intent);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setMultipleFavoritesEnabled(boolean);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setName(@NonNull String);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setPreviewResId(@DrawableRes int);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setResourceOnlyWatchFaceEditable(boolean);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setRuntimePackage(@Nullable String);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setWatchFaceId(@NonNull com.google.wear.services.watchfaces.WatchFaceId);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceInfo.Builder setWatchFaceSdkVersion(int);
+  }
+
+  public class WatchFaceState {
+    method public boolean isInAmbient();
+    method public boolean isWatchFaceVisible();
+  }
+
+  public static final class WatchFaceState.Builder {
+    ctor public WatchFaceState.Builder();
+    ctor public WatchFaceState.Builder(com.google.wear.services.watchfaces.WatchFaceState);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceState build();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceState.Builder setInAmbient(boolean);
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceState.Builder setWatchFaceVisible(boolean);
+  }
+
+  public class WatchFacesManager {
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void addFavorite(@NonNull com.google.wear.services.watchfaces.WatchFaceId, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void addFavorites(@NonNull java.util.List<com.google.wear.services.watchfaces.WatchFaceFavoriteInfo>, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @NonNull @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_ACTIVE_WATCHFACE}) public com.google.wear.services.watchfaces.ActiveWatchFace getActiveWatchFace();
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void getAllWatchFaces(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.watchfaces.WatchFaceInfo>,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_ACTIVE_WATCHFACE}) public void getAllWatchFacesByPackageName(@NonNull String, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.watchfaces.WatchFaceInfo>,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void getFavoritesByIds(@NonNull int[], @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.watchfaces.WatchFaceFavoriteInfo>,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void registerActiveWatchFaceChangeListener(@NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.watchfaces.ActiveWatchFaceChangeListener);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void registerWatchFaceFavoritesListener(@NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.watchfaces.WatchFaceFavoritesListener);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void removeAllFavorites(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void removeFavorite(int, int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(anyOf={com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE, com.google.wear.services.Permissions.MANAGE_ACTIVE_WATCHFACE}) public void setActiveWatchFace(@NonNull com.google.wear.services.watchfaces.WatchFaceId, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void setCurrentFavorite(int, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void setWatchFaceState(@NonNull com.google.wear.services.watchfaces.WatchFaceState);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void unregisterActiveWatchFaceChangeListener(@NonNull com.google.wear.services.watchfaces.ActiveWatchFaceChangeListener);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void unregisterWatchFaceFavoritesListener(@NonNull com.google.wear.services.watchfaces.WatchFaceFavoritesListener);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void updateFavoriteOrder(@NonNull int[], @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    method @RequiresPermission(com.google.wear.services.Permissions.ACCESS_WEAR_SYSTEM_SERVICE) public void updateFavoritePreview(int, @NonNull android.graphics.drawable.Icon, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.WatchFacesManager.WatchFacesException>);
+    field public static final int FAVORITE_ID_UNSPECIFIED = -123; // 0xffffff85
+    field public static final int RECOMMENDED_FAVORITES_TO_BE_ADDED_AT_ONCE = 50; // 0x32
+    field public static final int WATCH_FACES_MANAGER_STATUS_ERROR = 1; // 0x1
+    field public static final int WATCH_FACES_MANAGER_STATUS_EXECUTED = 0; // 0x0
+    field public static final int WATCH_FACES_MANAGER_STATUS_WATCH_FACE_FAIL_TO_RESPOND = 2; // 0x2
+  }
+
+  public static class WatchFacesManager.WatchFacesException extends java.lang.Exception {
+    ctor public WatchFacesManager.WatchFacesException(int, @Nullable String);
+    ctor public WatchFacesManager.WatchFacesException(int, @Nullable Throwable);
+    method public int getStatus();
+  }
+
+}
+
+package com.google.wear.services.watchfaces.editing {
+
+  public class WatchFaceEditingManager {
+    method public int abortSession(@NonNull String);
+    method public int endSession(@NonNull String, @NonNull com.google.wear.services.watchfaces.WatchFaceFavoriteInfo);
+    method public int startSession(@NonNull com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionRequestConfig, @NonNull java.util.concurrent.Executor, @NonNull com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionListener);
+    field public static final int WATCH_FACE_EDITING_API_STATUS_EXECUTED = 0; // 0x0
+    field public static final int WATCH_FACE_EDITING_API_STATUS_INVALID_SESSION_TOKEN = 2; // 0x2
+    field public static final int WATCH_FACE_EDITING_API_STATUS_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public interface WatchFaceEditingSessionListener {
+    method public void onSessionDied();
+    method public void onSessionFinished(String, int);
+    method public void onSessionStartFailed(int);
+    method public void onSessionStarted(String, android.os.Bundle);
+    field public static final int WATCH_FACE_EDITING_SESSION_END_STATUS_ABORTED_MANUALLY = 3; // 0x3
+    field public static final int WATCH_FACE_EDITING_SESSION_END_STATUS_ABORTED_PREEMPTED = 2; // 0x2
+    field public static final int WATCH_FACE_EDITING_SESSION_END_STATUS_ABORTED_UNKNOWN_ERROR = 1; // 0x1
+    field public static final int WATCH_FACE_EDITING_SESSION_END_STATUS_ABORTED_WATCHFACE_CRASHES = 4; // 0x4
+    field public static final int WATCH_FACE_EDITING_SESSION_END_STATUS_COMMITTED = 0; // 0x0
+    field public static final int WATCH_FACE_EDITING_SESSION_START_STATUS_COULD_NOT_BIND_TO_WATCH_FACE = 3; // 0x3
+    field public static final int WATCH_FACE_EDITING_SESSION_START_STATUS_HEADLESS_WATCH_FACE_NOT_AVAILABLE = 4; // 0x4
+    field public static final int WATCH_FACE_EDITING_SESSION_START_STATUS_INVALID_FAVORITE_ID = 2; // 0x2
+    field public static final int WATCH_FACE_EDITING_SESSION_START_STATUS_OTHER_SESSION_IN_PROGRESS = 1; // 0x1
+    field public static final int WATCH_FACE_EDITING_SESSION_START_STATUS_UNKNOWN_ERROR = 0; // 0x0
+  }
+
+  public class WatchFaceEditingSessionRequestConfig {
+    method @IntRange(from=1) public int getFavoriteId();
+    method @IntRange(from=1) @Px public int getSurfaceHeight();
+    method @IntRange(from=1) @Px public int getSurfaceWidth();
+    method public boolean shouldOverrideCurrentSession();
+  }
+
+  public static final class WatchFaceEditingSessionRequestConfig.Builder {
+    ctor public WatchFaceEditingSessionRequestConfig.Builder();
+    method @NonNull public com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionRequestConfig build();
+    method @NonNull public com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionRequestConfig.Builder setFavoriteId(@IntRange(from=1) int);
+    method @NonNull public com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionRequestConfig.Builder setShouldOverrideCurrentSession(boolean);
+    method @NonNull public com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionRequestConfig.Builder setSurfaceHeight(@IntRange(from=1) @Px int);
+    method @NonNull public com.google.wear.services.watchfaces.editing.WatchFaceEditingSessionRequestConfig.Builder setSurfaceWidth(@IntRange(from=1) @Px int);
+  }
+
+}
+
+package com.google.wear.tether {
+
+  public class TetherConfigurationClient {
+    ctor public TetherConfigurationClient(@NonNull android.content.Context);
+    ctor public TetherConfigurationClient(@NonNull android.content.Context, @NonNull android.os.Handler);
+    method @Deprecated public void addCallback(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.IntConsumer);
+    method public void addFeatureStateChangeListener(int, @NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method public void addTetherStateChangeListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.IntConsumer);
+    method @Deprecated public int getTetherConfiguration();
+    method @Deprecated public boolean removeCallback(@NonNull java.util.function.IntConsumer);
+    method public void removeFeatureStateChangeListener(int, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method public void removeTetherStateChangeListener(@NonNull java.util.function.IntConsumer);
+    field public static final int TETHER_CONFIGURATION_RESTRICTED = 3; // 0x3
+    field public static final int TETHER_CONFIGURATION_STANDALONE = 1; // 0x1
+    field public static final int TETHER_CONFIGURATION_TETHERED = 2; // 0x2
+    field public static final int TETHER_CONFIGURATION_UNKNOWN = 0; // 0x0
+    field public static final int TETHER_FEATURE_CALENDAR_SYNC = 2; // 0x2
+    field public static final int TETHER_FEATURE_COMPANION_CALL_MODULE = 6; // 0x6
+    field public static final int TETHER_FEATURE_CONTACTS_SYNC = 3; // 0x3
+    field public static final int TETHER_FEATURE_FIND_MY_PHONE = 12; // 0xc
+    field public static final int TETHER_FEATURE_LANGUAGE_SYNC = 4; // 0x4
+    field public static final int TETHER_FEATURE_LICENSE_SYNC = 1; // 0x1
+    field public static final int TETHER_FEATURE_MEDIA_CONTROL = 7; // 0x7
+    field public static final int TETHER_FEATURE_NOTIFICATION_BRIDGING = 8; // 0x8
+    field public static final int TETHER_FEATURE_PHONE_SWITCHING = 11; // 0xb
+    field public static final int TETHER_FEATURE_RESTORE = 10; // 0xa
+    field public static final int TETHER_FEATURE_RE_AUTH = 9; // 0x9
+    field public static final int TETHER_FEATURE_TIME_SYNC = 5; // 0x5
+  }
+
+}
+
