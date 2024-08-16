@@ -1,0 +1,43 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+/**
+ * Note that the prebuilt APIs are added/updated automatically by
+ * running the update script at:
+ * vendor/google_clockwork/sdk/scripts/update-wear-sdk-prebuilts.sh
+ *
+ * The prebuilt_apis module provides a number of generated, prebuilt
+ * artifacts including:
+ *
+ * wear-sdk.api.<scope>.<version>
+ *
+ * where scope is one of public, system or test
+ *
+ * and version can either be a specific wear version specified by
+ * a platform SDK/QPR version scheme, e.g.
+ *
+ * wear-sdk.api.public.33.1
+ *
+ * or wear-sdk.api.public.latest to use the latest available version
+ *
+ */
+prebuilt_apis {
+    name: "wear-sdk-prebuilts",
+    allow_incremental_platform_api: true,
+    api_dirs: [
+        "33.0", // no release, empty
+        "33.1",
+        "33.2",
+        "33.3",
+        "33.4",
+        "34.1",
+        "35.1",
+        "current",
+    ],
+}
+
+droiddoc_exported_dir {
+    name: "wear-sdk-dir",
+    path: ".",
+}

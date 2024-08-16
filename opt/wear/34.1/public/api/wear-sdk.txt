@@ -1,0 +1,254 @@
+// Signature format: 2.0
+package com.google.wear {
+
+  public final class Sdk {
+    method @Deprecated @Nullable public static <T> T getWearManager(@NonNull Class<T>);
+    method @Nullable public static <T> T getWearManager(@NonNull android.content.Context, @NonNull Class<T>);
+    method public static boolean hasApiFeature(String);
+    method public static boolean isApiVersionAtLeast(@NonNull com.google.wear.WearApiVersion);
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR1_API = "com.google.wear.api.T_QPR1";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR2_API = "com.google.wear.api.T_QPR2";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR3_API = "com.google.wear.api.T_QPR3";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR4_API = "com.google.wear.api.T_QPR4";
+  }
+
+  public static final class Sdk.VERSION {
+    method public static boolean isIncrementalRelease();
+    field public static final int RELEASE;
+    field public static final int WEAR_SDK_INT;
+  }
+
+  public static final class Sdk.VERSION_CODES {
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_1;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_2;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_3;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_4;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_UDC_1;
+  }
+
+  public final class WearApiVersion implements java.lang.Comparable<com.google.wear.WearApiVersion> {
+    method public int compareTo(@NonNull com.google.wear.WearApiVersion);
+  }
+
+}
+
+package com.google.wear.input {
+
+  public final class WearHapticFeedbackConstants {
+    method public static int getScrollItemFocus();
+    method public static int getScrollLimit();
+    method public static int getScrollTick();
+  }
+
+}
+
+package com.google.wear.modes {
+
+  public class AmbientMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_DISPLAY_CONFIG) public void setConfigured(boolean);
+  }
+
+  public class BatterySaverMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public void addActiveLevelListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Integer>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public int getActiveLevel();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public int getConfiguredLevel();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public boolean isOverridden();
+    method public void removeActiveLevelListener(@NonNull java.util.function.Consumer<java.lang.Integer>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_BATTERY_SAVER) public void setConfiguredLevel(int);
+    field public static final int BATTERY_SAVER_LEVEL_NORMAL = 1; // 0x1
+    field public static final int BATTERY_SAVER_LEVEL_OFF = 0; // 0x0
+  }
+
+  public class BedtimeMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public class DoNotDisturbMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public final class ModeManager {
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public com.google.wear.modes.AmbientMode getAmbientMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public com.google.wear.modes.BatterySaverMode getBatterySaverMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.BedtimeMode getBedtimeMode();
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.DoNotDisturbMode getDoNotDisturbMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.SchoolMode getSchoolMode();
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.TheaterMode getTheaterMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public com.google.wear.modes.TiltToWake getTiltToWake() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public com.google.wear.modes.TouchLockMode getTouchLockMode() throws java.lang.SecurityException;
+    field public static final long FLAG_OVERRIDDEN_BY_BATTERY_SAVER_MODE = 8L; // 0x8L
+    field public static final long FLAG_OVERRIDDEN_BY_BEDTIME_MODE = 4L; // 0x4L
+    field public static final long FLAG_OVERRIDDEN_BY_SCHOOL_MODE = 32L; // 0x20L
+    field public static final long FLAG_OVERRIDDEN_BY_SCREEN_READER = 2L; // 0x2L
+    field public static final long FLAG_OVERRIDDEN_BY_THEATER_MODE = 16L; // 0x10L
+    field public static final long FLAG_OVERRIDDEN_BY_UNKNOWN_REASON = 1L; // 0x1L
+  }
+
+  public class SchoolMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public class TheaterMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public class TiltToWake {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_GESTURES_CONFIG) public void setConfigured(boolean);
+  }
+
+  public class TouchLockMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_TOUCH_LOCK) public void setConfigured(boolean);
+  }
+
+}
+
+package com.google.wear.services.ambient {
+
+  public class AmbientComponentState {
+    method public static com.google.wear.services.ambient.AmbientComponentState.ActivityStateRegistry makeActivityStateRegistry();
+    method public static com.google.wear.services.ambient.AmbientComponentState.WatchFaceStateRegistry makeWatchFaceStateRegistry();
+  }
+
+  public static final class AmbientComponentState.ActivityStateRegistry {
+    method public void onPause();
+    method public void onResume();
+  }
+
+  public static final class AmbientComponentState.WatchFaceStateRegistry {
+    method public void onVisibilityChanged(boolean);
+  }
+
+  public class AmbientManager {
+    method public com.google.wear.services.ambient.AmbientManager.Controller createController(@NonNull android.content.Context, @NonNull com.google.wear.services.ambient.AmbientOptions);
+  }
+
+  @MainThread public static interface AmbientManager.AmbientComponentListener {
+    method public default void onEnterAmbient(com.google.wear.services.ambient.AmbientManager.ConfigurationDetails, boolean);
+    method public default void onExitAmbient();
+    method public default void onUpdateAmbient();
+  }
+
+  public static interface AmbientManager.AmbientTransitionFinishedNotifier {
+    method @MainThread public void notifyFinished();
+  }
+
+  public static interface AmbientManager.AmbientTransitionListener {
+    method @WorkerThread public void onCancelAmbientTransition(boolean);
+    method @MainThread public void onStartAmbientTransition(com.google.wear.services.ambient.AmbientManager.TransitionDetails, com.google.wear.services.ambient.AmbientManager.AmbientTransitionFinishedNotifier);
+  }
+
+  public static interface AmbientManager.ConfigurationDetails {
+    method public boolean isBurnInProtectionEnabled();
+    method public boolean isLowBitDepthEnabled();
+  }
+
+  public static final class AmbientManager.Controller {
+    method public void destroy();
+    method public int getAmbientSupportLevel();
+    method public boolean isAmbientSupportEnabled();
+    method public boolean isAutoResumeEnabled();
+    method public boolean isComponentInAmbient();
+    method public boolean isSystemInAmbient();
+    method public void setAmbientSupportLevel(int);
+  }
+
+  public static interface AmbientManager.TransitionDetails {
+    method public long getMaxTransitionDurationMillis();
+    method public int getTransitionDirection();
+    field public static final int TRANSIT_TO_AMBIENT = 1; // 0x1
+    field public static final int TRANSIT_TO_INTERACTIVE = 2; // 0x2
+  }
+
+  public final class AmbientOptions {
+    method public static com.google.wear.services.ambient.AmbientOptions makeActivityOptions(@NonNull android.app.Activity, @NonNull com.google.wear.services.ambient.AmbientComponentState.ActivityStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener, @Nullable com.google.wear.services.ambient.AmbientManager.AmbientTransitionListener);
+    method public static com.google.wear.services.ambient.AmbientOptions makeWatchFaceOptions(@NonNull android.content.ComponentName, @NonNull com.google.wear.services.ambient.AmbientComponentState.WatchFaceStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener, @Nullable com.google.wear.services.ambient.AmbientManager.AmbientTransitionListener);
+    field public static final int AMBIENT_SUPPORT_AUTORESUME_ONLY = 1; // 0x1
+    field public static final int AMBIENT_SUPPORT_NONE = 0; // 0x0
+    field public static final int AMBIENT_SUPPORT_TAKEOVER_DISPLAY = 2; // 0x2
+  }
+
+}
+
+package com.google.wear.services.remoteinteractions {
+
+  public final class RemoteInteractionsManager {
+    method public void registerRemoteActivityHelperStatusListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Integer>);
+    method public void registerRemoteAuthClientStatusListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Integer>);
+    method public void unregisterRemoteActivityHelperStatusListener(@NonNull java.util.function.Consumer<java.lang.Integer>);
+    method public void unregisterRemoteAuthClientStatusListener(@NonNull java.util.function.Consumer<java.lang.Integer>);
+    field public static final int STATUS_AVAILABLE = 3; // 0x3
+    field public static final int STATUS_TEMPORARILY_UNAVAILABLE = 2; // 0x2
+    field public static final int STATUS_UNAVAILABLE = 1; // 0x1
+    field public static final int STATUS_UNKNOWN = 0; // 0x0
+  }
+
+}
+
+package com.google.wear.services.tiles {
+
+  public class TileInstance {
+    method public int getId();
+    method @NonNull public com.google.wear.services.tiles.TileProvider getTileProvider();
+  }
+
+  public class TileProvider {
+    method @NonNull public android.content.ComponentName getComponentName();
+  }
+
+  public class TilesManager {
+    method public void getActiveTiles(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.tiles.TileInstance>,java.lang.Exception>);
+  }
+
+}
+
+package com.google.wear.settings {
+
+  public class WearSettings {
+    method public static boolean isWristDetectionAutoLockingEnabled(@NonNull android.content.Context);
+  }
+
+}
+
