@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.8"
+      "version": "8.9"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -27,7 +28,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.8.0"
+            "requires": "1.8.1"
           }
         },
         {
@@ -196,17 +197,25 @@
             "requires": "2.9.0-alpha01"
           },
           "reason": "lifecycle-runtime-compose is in atomic group androidx.lifecycle"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-testing",
+          "version": {
+            "requires": "2.9.0-alpha01"
+          },
+          "reason": "lifecycle-runtime-compose is in atomic group androidx.lifecycle"
         }
       ],
       "files": [
         {
           "name": "lifecycle-runtime-compose-release.aar",
           "url": "lifecycle-runtime-compose-android-2.9.0-alpha01.aar",
-          "size": 62748,
-          "sha512": "1de7221f55c91b6333555bdf72a3d80b2a972f58db396373483414e303a4bba3c85ed61edec37e9a9f66152b67424bc66d13e52ae6fb2ab0620d4396112480c3",
-          "sha256": "bf0a84d71b587201aede5192038a6e945228df882b888a7a117e3c04e5c89155",
-          "sha1": "f25e11909d7d8db2a2d906b9d23e988a9ad048a4",
-          "md5": "7e9a31340e943e954bcd4edaf44b6b39"
+          "size": 61199,
+          "sha512": "7a6a4f728c42a38f9b0f737876db50c4c87f19121bbe8f4b9f4490639fd06200f5a7885277e8d3bcdd521474470be93d904730a4e37e18b94387f994cd6d752b",
+          "sha256": "19f479b71fa8381d4d2b161e6a3f8cc48d014f7bfa44636b61db554f12c7ed2b",
+          "sha1": "5fa326ad3a6412f84a8d013ee61f3233b5289229",
+          "md5": "6c12a96eeae20b805073925a012cac2d"
         }
       ]
     },
@@ -214,6 +223,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -222,7 +232,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.8.0"
+            "requires": "1.8.1"
           },
           "excludes": [
             {
@@ -447,17 +457,25 @@
             "requires": "2.9.0-alpha01"
           },
           "reason": "lifecycle-runtime-compose is in atomic group androidx.lifecycle"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-testing",
+          "version": {
+            "requires": "2.9.0-alpha01"
+          },
+          "reason": "lifecycle-runtime-compose is in atomic group androidx.lifecycle"
         }
       ],
       "files": [
         {
           "name": "lifecycle-runtime-compose-release.aar",
           "url": "lifecycle-runtime-compose-android-2.9.0-alpha01.aar",
-          "size": 62748,
-          "sha512": "1de7221f55c91b6333555bdf72a3d80b2a972f58db396373483414e303a4bba3c85ed61edec37e9a9f66152b67424bc66d13e52ae6fb2ab0620d4396112480c3",
-          "sha256": "bf0a84d71b587201aede5192038a6e945228df882b888a7a117e3c04e5c89155",
-          "sha1": "f25e11909d7d8db2a2d906b9d23e988a9ad048a4",
-          "md5": "7e9a31340e943e954bcd4edaf44b6b39"
+          "size": 61199,
+          "sha512": "7a6a4f728c42a38f9b0f737876db50c4c87f19121bbe8f4b9f4490639fd06200f5a7885277e8d3bcdd521474470be93d904730a4e37e18b94387f994cd6d752b",
+          "sha256": "19f479b71fa8381d4d2b161e6a3f8cc48d014f7bfa44636b61db554f12c7ed2b",
+          "sha1": "5fa326ad3a6412f84a8d013ee61f3233b5289229",
+          "md5": "6c12a96eeae20b805073925a012cac2d"
         }
       ]
     },
@@ -467,6 +485,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -615,6 +634,14 @@
             "requires": "2.9.0-alpha01"
           },
           "reason": "lifecycle-runtime-compose is in atomic group androidx.lifecycle"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-testing",
+          "version": {
+            "requires": "2.9.0-alpha01"
+          },
+          "reason": "lifecycle-runtime-compose is in atomic group androidx.lifecycle"
         }
       ],
       "files": [
@@ -630,11 +657,11 @@
         {
           "name": "lifecycle-runtime-compose-android-2.9.0-alpha01-sources.jar",
           "url": "lifecycle-runtime-compose-android-2.9.0-alpha01-sources.jar",
-          "size": 15270,
-          "sha512": "d3aed9fdadcc19b1f720744785e31a3984062834d6c356ed84df0171b3954da158ac4da58d7b181c284e23bf9a55d7672cecad462c256ace8e9d278314c850c2",
-          "sha256": "4f0d68f7ba30bf8e8edb6880975d1bd11325447ac16348a767fe9c5180822514",
-          "sha1": "702a30f87b10a7543009ff616820bfd81bc30ee1",
-          "md5": "4202456bb044abe780c70988392e8660"
+          "size": 15285,
+          "sha512": "37e2fc1cc9e006941c00e8f6ad2f95eca8c5e9d3acd4cb6ad73194ffd7a3ec2a75d51a0d99a1b0e442b47311779b7503705d43b7a38807770cc4630d574e31ec",
+          "sha256": "453c2459d3432e2dc52cfcd29a90dbb107831bc1196385bfbe4dea4c8a9265a6",
+          "sha1": "80abf4b7b07dbf86006ebb4f33fe1f6ebff9735e",
+          "md5": "5fa2af74d2b319063fcbead004b6a8ed"
         }
       ]
     }

@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.8"
+      "version": "8.9"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -27,7 +28,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.8.0"
+            "requires": "1.8.1"
           }
         },
         {
@@ -192,6 +193,14 @@
         {
           "group": "androidx.lifecycle",
           "module": "lifecycle-viewmodel-savedstate",
+          "version": {
+            "requires": "2.9.0-alpha01"
+          },
+          "reason": "lifecycle-runtime-ktx is in atomic group androidx.lifecycle"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-testing",
           "version": {
             "requires": "2.9.0-alpha01"
           },
@@ -214,6 +223,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -222,7 +232,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.8.0"
+            "requires": "1.8.1"
           },
           "excludes": [
             {
@@ -443,6 +453,14 @@
         {
           "group": "androidx.lifecycle",
           "module": "lifecycle-viewmodel-savedstate",
+          "version": {
+            "requires": "2.9.0-alpha01"
+          },
+          "reason": "lifecycle-runtime-ktx is in atomic group androidx.lifecycle"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-testing",
           "version": {
             "requires": "2.9.0-alpha01"
           },
@@ -467,6 +485,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -611,6 +630,14 @@
         {
           "group": "androidx.lifecycle",
           "module": "lifecycle-viewmodel-savedstate",
+          "version": {
+            "requires": "2.9.0-alpha01"
+          },
+          "reason": "lifecycle-runtime-ktx is in atomic group androidx.lifecycle"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-testing",
           "version": {
             "requires": "2.9.0-alpha01"
           },
