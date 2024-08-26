@@ -145,6 +145,26 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>androidx.collection</groupId>
+      <artifactId>collection-jvm</artifactId>
+      <version>1.4.2</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>androidx.compose.runtime</groupId>
       <artifactId>runtime-android</artifactId>
       <version>1.8.0-alpha01</version>
@@ -274,6 +294,12 @@
           <artifactId>kotlin-test-annotations-common</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.google.android.apps.common.testing.accessibility.framework</groupId>
+      <artifactId>accessibility-test-framework</artifactId>
+      <version>4.1.1</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
