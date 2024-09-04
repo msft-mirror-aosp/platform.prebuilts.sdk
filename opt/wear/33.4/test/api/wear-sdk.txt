@@ -1,0 +1,17 @@
+// Signature format: 2.0
+package com.google.wear.annotation {
+
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.ANNOTATION_TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.METHOD}) public @interface ApiVersionRequirement {
+    method public abstract com.google.wear.annotation.ApiVersionRequirement.ApiConstraint constraint() default com.google.wear.annotation.ApiVersionRequirement.ApiConstraint.AT_LEAST;
+    method public abstract String value();
+  }
+
+  public enum ApiVersionRequirement.ApiConstraint {
+    enum_constant public static final com.google.wear.annotation.ApiVersionRequirement.ApiConstraint AFTER;
+    enum_constant public static final com.google.wear.annotation.ApiVersionRequirement.ApiConstraint AT_LEAST;
+    enum_constant public static final com.google.wear.annotation.ApiVersionRequirement.ApiConstraint AT_MOST;
+    enum_constant public static final com.google.wear.annotation.ApiVersionRequirement.ApiConstraint BEFORE;
+  }
+
+}
+
