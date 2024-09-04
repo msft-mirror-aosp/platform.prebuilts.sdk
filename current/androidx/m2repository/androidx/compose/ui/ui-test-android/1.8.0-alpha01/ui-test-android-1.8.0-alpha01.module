@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.9"
+      "version": "8.10"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -56,6 +57,13 @@
           "module": "ui-unit",
           "version": {
             "requires": "1.8.0-alpha01"
+          }
+        },
+        {
+          "group": "com.google.android.apps.common.testing.accessibility.framework",
+          "module": "accessibility-test-framework",
+          "version": {
+            "requires": "4.1.1"
           }
         },
         {
@@ -190,11 +198,11 @@
         {
           "name": "ui-test-release.aar",
           "url": "ui-test-android-1.8.0-alpha01.aar",
-          "size": 538449,
-          "sha512": "27f193dd4b5c155e62f967cf2810738442b81a1dde63e01c804097a7c3c69d0eeada581d7f3c599dce6b85eadf061ede175e8d0d0ba17c9950a35a94d1374b33",
-          "sha256": "d4847aedb10d62b725d300bdcdd76737ec5a45ff757fdfb20c43ef3a21b0769b",
-          "sha1": "9351c81d5b1c2cf46320b1fd19e2364ac18f7c02",
-          "md5": "a0b20518e4265e4dab9a65b165132427"
+          "size": 566912,
+          "sha512": "df1923e4fececa7a5746e867ce40e06df156a29e821e981e4979e8d3e55370abc545406058adc4f1b51eff8e22920be1bf5ae3ee46c4b4a6a7b3d63a85f6748a",
+          "sha256": "da44893430664d10e4a111ad092886504e9396f8b90c6408753e153ff546c514",
+          "sha1": "ddddeaa00c4ee540b9ac3dbc25b2f0a85c935475",
+          "md5": "e8fe23a3b4e40f5ab9c15913d37d5f93"
         }
       ]
     },
@@ -202,6 +210,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -232,6 +241,27 @@
           "module": "annotation",
           "version": {
             "requires": "1.8.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.4.2"
           },
           "excludes": [
             {
@@ -459,6 +489,27 @@
           ]
         },
         {
+          "group": "com.google.android.apps.common.testing.accessibility.framework",
+          "module": "accessibility-test-framework",
+          "version": {
+            "requires": "4.1.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
           "version": {
@@ -632,11 +683,11 @@
         {
           "name": "ui-test-release.aar",
           "url": "ui-test-android-1.8.0-alpha01.aar",
-          "size": 538449,
-          "sha512": "27f193dd4b5c155e62f967cf2810738442b81a1dde63e01c804097a7c3c69d0eeada581d7f3c599dce6b85eadf061ede175e8d0d0ba17c9950a35a94d1374b33",
-          "sha256": "d4847aedb10d62b725d300bdcdd76737ec5a45ff757fdfb20c43ef3a21b0769b",
-          "sha1": "9351c81d5b1c2cf46320b1fd19e2364ac18f7c02",
-          "md5": "a0b20518e4265e4dab9a65b165132427"
+          "size": 566912,
+          "sha512": "df1923e4fececa7a5746e867ce40e06df156a29e821e981e4979e8d3e55370abc545406058adc4f1b51eff8e22920be1bf5ae3ee46c4b4a6a7b3d63a85f6748a",
+          "sha256": "da44893430664d10e4a111ad092886504e9396f8b90c6408753e153ff546c514",
+          "sha1": "ddddeaa00c4ee540b9ac3dbc25b2f0a85c935475",
+          "md5": "e8fe23a3b4e40f5ab9c15913d37d5f93"
         }
       ]
     },
@@ -646,6 +697,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -760,20 +812,20 @@
         {
           "name": "ui-test-1.8.0-alpha01-samples-sources.jar",
           "url": "ui-test-android-1.8.0-alpha01-samples-sources.jar",
-          "size": 14610,
-          "sha512": "309dbccf1f94489dd171c1bc9b33f60ba799cf4bfb916d10b5b7c5e74aac0e3fe345e68a420e9777ea616a392990b54fefccf37e62f6a173442e94b505f52a8b",
-          "sha256": "fcaf36d9b155661c57cade2ea49e90b379cdbbf52328bf877d4bdfab01462e64",
-          "sha1": "daba193431ab765d8b6e68d8f79c03bc7a494ad2",
-          "md5": "4039f77ac2c85a35fee916db51fe9540"
+          "size": 15960,
+          "sha512": "3e63ea52d4f8ea2d57564042f08784fd9ed905851f3b0dba4290211943007a8ff2140afe55783ad783bb49b7936aa83d0f5c8e484cc73baa2d42c1d93d2c751a",
+          "sha256": "5a4192d3e0bb16d5d3cce017376cbfe6066bcfbe6e13e6aaba14d908a9aef7f5",
+          "sha1": "f926f8226342d07e7c41694fd72b6f739e4ea14d",
+          "md5": "ff31c37825406d79d4a5e73c29f3f354"
         },
         {
           "name": "ui-test-android-1.8.0-alpha01-sources.jar",
           "url": "ui-test-android-1.8.0-alpha01-sources.jar",
-          "size": 159497,
-          "sha512": "22cf73f99cb78031f75908111ca3cbb5acd94a129aa146b4e98648667e312b7f8a4c6fbe4144769ff7769f2806502a18339933d04ade833562fed16c2d5719c9",
-          "sha256": "87fd59e794a4c739d370724c4e9f71d8326f4665d0c20df6ad5e2017541f2598",
-          "sha1": "b215ec6154d04c61ce296f676d45c1f57303449c",
-          "md5": "b4a800f0d895567f01c37b521b186682"
+          "size": 163136,
+          "sha512": "47b9ddbb2ee24cd6369d11f987ce892f98dda6e555e23e23cf35f05234858af52002d3725a25612fbec3183747a7a3171b07f389e3f7905bcfff14c0305342f7",
+          "sha256": "267428af5d60c66187a135754b81673690341a3f7edb28cd1e72df782cfab7c5",
+          "sha1": "fb457b13535ba6d3a1adcdb3119442c307f82d29",
+          "md5": "a7c6d8b54501367634905ac72fe08897"
         }
       ]
     }
