@@ -294,9 +294,6 @@ package com.google.wear.services.notification {
     field public static final int NOTIFICATION_SOURCE_LOCAL = 1; // 0x1
     field public static final int NOTIFICATION_SOURCE_OFFLOAD = 3; // 0x3
     field public static final int NOTIFICATION_SOURCE_UNKNOWN = 0; // 0x0
-    field public static final int USER_PROFILE_TYPE_PERSONAL = 1; // 0x1
-    field public static final int USER_PROFILE_TYPE_UNKNOWN = 0; // 0x0
-    field public static final int USER_PROFILE_TYPE_WORK = 2; // 0x2
   }
 
   public final class NotificationPostedEvent {
@@ -314,23 +311,6 @@ package com.google.wear.services.notification {
     ctor public NotificationsInitializedEvent(@NonNull java.util.List<com.google.wear.services.notification.StreamItem>, int);
     method public int getNotificationSource();
     method @NonNull public java.util.List<com.google.wear.services.notification.StreamItem> getStreamItems();
-  }
-
-  public final class StreamAlertParams {
-    method @NonNull public com.google.wear.services.notification.StreamItemIdAndRevision getIdAndRevision();
-    method @Nullable public long[] getVibrationPattern();
-    method public boolean hasSound();
-    method public boolean isMuted();
-    method public boolean shouldVibrate();
-  }
-
-  public static final class StreamAlertParams.Builder {
-    ctor public StreamAlertParams.Builder(@NonNull com.google.wear.services.notification.StreamItemIdAndRevision);
-    method @NonNull public com.google.wear.services.notification.StreamAlertParams build();
-    method @NonNull public com.google.wear.services.notification.StreamAlertParams.Builder setHasSound(boolean);
-    method @NonNull public com.google.wear.services.notification.StreamAlertParams.Builder setMuted(boolean);
-    method @NonNull public com.google.wear.services.notification.StreamAlertParams.Builder setShouldVibrate(boolean);
-    method @NonNull public com.google.wear.services.notification.StreamAlertParams.Builder setVibrationPattern(@Nullable long[]);
   }
 
   public final class StreamItem {
@@ -406,7 +386,6 @@ package com.google.wear.services.notification {
     ctor public StreamItemData.Builder();
     method @NonNull public com.google.wear.services.notification.StreamItemData build();
     method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setActions(@NonNull java.util.List<android.app.Notification.Action>);
-    method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setAlertParams(@Nullable com.google.wear.services.notification.StreamAlertParams);
     method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setAppName(@Nullable String);
     method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBigText(@Nullable CharSequence);
     method @NonNull public com.google.wear.services.notification.StreamItemData.Builder setBigTitle(@Nullable CharSequence);
@@ -476,7 +455,7 @@ package com.google.wear.services.notification {
 
   public final class StreamItemId {
     method public int getId();
-    method @Deprecated @Nullable public String getNotificationKey();
+    method @Nullable public String getNotificationKey();
     method @NonNull public String getPackageName();
     method @Nullable public String getTag();
   }
@@ -484,10 +463,7 @@ package com.google.wear.services.notification {
   public static final class StreamItemId.Builder {
     ctor public StreamItemId.Builder(@NonNull String, int);
     method @NonNull public com.google.wear.services.notification.StreamItemId build();
-    method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setAutoGroupingSummary(boolean);
-    method @Deprecated @NonNull public com.google.wear.services.notification.StreamItemId.Builder setNotificationKey(@Nullable String);
-    method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setProfileType(int);
-    method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setSource(int);
+    method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setNotificationKey(@Nullable String);
     method @NonNull public com.google.wear.services.notification.StreamItemId.Builder setTag(@Nullable String);
   }
 
