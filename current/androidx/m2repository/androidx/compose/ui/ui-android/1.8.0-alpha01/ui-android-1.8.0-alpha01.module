@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.9"
+      "version": "8.10"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -83,7 +84,7 @@
           "group": "androidx.lifecycle",
           "module": "lifecycle-runtime-compose",
           "version": {
-            "requires": "2.8.3"
+            "requires": "2.9.0-alpha02"
           }
         }
       ],
@@ -197,11 +198,11 @@
         {
           "name": "ui-release.aar",
           "url": "ui-android-1.8.0-alpha01.aar",
-          "size": 5094479,
-          "sha512": "07de4c70213aaddab9a496ad0a64809c01333334ea84f03e5df6b147227a0264fdbb4d021489f1f36841ae88e85789a5190874f292c81fe625f8ff4e825eee0c",
-          "sha256": "e8d3eb0aae0172b5372b5e00836644bbd0a91c878edbe1742b7af0624d75c221",
-          "sha1": "5ac058f3a9c2efd6ff3dd2cd58f4349d69503559",
-          "md5": "e4efa2c69a3db48fcf6512913fc39213"
+          "size": 5307611,
+          "sha512": "306244c7078896634387414607537e7f59ddcbbc46239306a5ae23bfae7f14cff47690641e1ea0518b205764d6cfd0b9debaa3bfc75443354a828758c3913b32",
+          "sha256": "89db489af7261814197d9626f75690c868050c800f97447eb8fa720aa1cbb707",
+          "sha1": "c631a1cb991fd12df11f827c7ed31b371f4daf64",
+          "md5": "0446d10920debe6e4ba06489feb8d9df"
         }
       ]
     },
@@ -209,6 +210,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -553,7 +555,7 @@
           "group": "androidx.lifecycle",
           "module": "lifecycle-runtime-compose",
           "version": {
-            "requires": "2.8.3"
+            "requires": "2.9.0-alpha02"
           },
           "excludes": [
             {
@@ -574,7 +576,28 @@
           "group": "androidx.lifecycle",
           "module": "lifecycle-viewmodel",
           "version": {
-            "requires": "2.6.1"
+            "requires": "2.8.3"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.8.3"
           },
           "excludes": [
             {
@@ -815,11 +838,11 @@
         {
           "name": "ui-release.aar",
           "url": "ui-android-1.8.0-alpha01.aar",
-          "size": 5094479,
-          "sha512": "07de4c70213aaddab9a496ad0a64809c01333334ea84f03e5df6b147227a0264fdbb4d021489f1f36841ae88e85789a5190874f292c81fe625f8ff4e825eee0c",
-          "sha256": "e8d3eb0aae0172b5372b5e00836644bbd0a91c878edbe1742b7af0624d75c221",
-          "sha1": "5ac058f3a9c2efd6ff3dd2cd58f4349d69503559",
-          "md5": "e4efa2c69a3db48fcf6512913fc39213"
+          "size": 5307611,
+          "sha512": "306244c7078896634387414607537e7f59ddcbbc46239306a5ae23bfae7f14cff47690641e1ea0518b205764d6cfd0b9debaa3bfc75443354a828758c3913b32",
+          "sha256": "89db489af7261814197d9626f75690c868050c800f97447eb8fa720aa1cbb707",
+          "sha1": "c631a1cb991fd12df11f827c7ed31b371f4daf64",
+          "md5": "0446d10920debe6e4ba06489feb8d9df"
         }
       ]
     },
@@ -829,6 +852,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -952,11 +976,11 @@
         {
           "name": "ui-android-1.8.0-alpha01-sources.jar",
           "url": "ui-android-1.8.0-alpha01-sources.jar",
-          "size": 797522,
-          "sha512": "e68aab783876b386b26be951cacede98b5799053cf4fa30acb437c8178f08ea1679e8c08b2da2d862c838068c0c417b3c5186e3b31433ac3f3da1241d133a097",
-          "sha256": "c2504c5aff6a5c95df24924cacde3a8d4cfed97b9515e94af277ed5d0189d68b",
-          "sha1": "ba1a134ebb172c2007553cc8e20bc5205e0f25d4",
-          "md5": "532ede8710bfc56ae2e6954477f1a891"
+          "size": 813815,
+          "sha512": "f013d0cc6df5de99bc79ed885db81492fea5c464683427b8a84b5d9d45d7a0fa5f77204187551744660ae29fdf5045adece0140371afe9d2d7dcd3e5af7b9893",
+          "sha256": "ae5f869bb86c9f3d71797c5de8e7e7c21da30a54853806923898137e72d00d5b",
+          "sha1": "75709f7be869f46915103b119da2075922b235bd",
+          "md5": "39611b8ac01b02e65b71b19b6e3d7152"
         }
       ]
     }
