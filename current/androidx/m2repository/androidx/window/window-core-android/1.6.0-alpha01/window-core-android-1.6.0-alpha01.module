@@ -16,12 +16,13 @@
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "androidApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -83,23 +84,24 @@
       ],
       "files": [
         {
-          "name": "window-core-release.aar",
+          "name": "window-core.aar",
           "url": "window-core-android-1.6.0-alpha01.aar",
-          "size": 14190,
-          "sha512": "2f6cda04ea8012071a4bc52e55b096c3b765aa35e9b428677ce2df29e2a7abb5291bd51f43124884b7a760d34664f4cac53bb7b51cdc079b0f25a155f1ebbf3c",
-          "sha256": "17c6d9cd79a25139980dd5953f23265452348cd41bb7004c36a91d26be4092d7",
-          "sha1": "bba33f245114ec26c7c8be5c9a48a78525850422",
-          "md5": "fcc627f4d60273125ec0d6965b0fd3aa"
+          "size": 18381,
+          "sha512": "530d5830666f8196ee49563a1efdc13249fc36a7f22737c2bc3b1b304ef0afeef7ffb8b04415f00bd236320ab17c5333e0a7e00e06a739b95088a28f638d313e",
+          "sha256": "1590e39125e8c73707086163c0257758bc28f66545a0bcf0fd049ff7afcf5dec",
+          "sha1": "a0bfdd97b19dcd8e480fca0437749b4c4a881744",
+          "md5": "38765823e9c5c99e2d6b4904761d2229"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "androidRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -107,42 +109,14 @@
           "module": "annotation",
           "version": {
             "requires": "1.8.1"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
           "version": {
             "requires": "1.8.22"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         }
       ],
       "dependencyConstraints": [
@@ -189,26 +163,26 @@
       ],
       "files": [
         {
-          "name": "window-core-release.aar",
+          "name": "window-core.aar",
           "url": "window-core-android-1.6.0-alpha01.aar",
-          "size": 14190,
-          "sha512": "2f6cda04ea8012071a4bc52e55b096c3b765aa35e9b428677ce2df29e2a7abb5291bd51f43124884b7a760d34664f4cac53bb7b51cdc079b0f25a155f1ebbf3c",
-          "sha256": "17c6d9cd79a25139980dd5953f23265452348cd41bb7004c36a91d26be4092d7",
-          "sha1": "bba33f245114ec26c7c8be5c9a48a78525850422",
-          "md5": "fcc627f4d60273125ec0d6965b0fd3aa"
+          "size": 18381,
+          "sha512": "530d5830666f8196ee49563a1efdc13249fc36a7f22737c2bc3b1b304ef0afeef7ffb8b04415f00bd236320ab17c5333e0a7e00e06a739b95088a28f638d313e",
+          "sha256": "1590e39125e8c73707086163c0257758bc28f66545a0bcf0fd049ff7afcf5dec",
+          "sha1": "a0bfdd97b19dcd8e480fca0437749b4c4a881744",
+          "md5": "38765823e9c5c99e2d6b4904761d2229"
         }
       ]
     },
     {
-      "name": "releaseSourcesElements-published",
+      "name": "androidSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "fake-sources",
+        "org.gradle.docstype": "sources",
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencyConstraints": [
         {
@@ -256,11 +230,11 @@
         {
           "name": "window-core-android-1.6.0-alpha01-sources.jar",
           "url": "window-core-android-1.6.0-alpha01-sources.jar",
-          "size": 10762,
-          "sha512": "de29ef431add447f23b8981897f21baf89a9781893b26529392a904632b570086d4e347c4b60ac72f50f726761dc1908f732767e3221803dc86114d48ca01f1a",
-          "sha256": "459d315971e50ceb40dc814b6473f5112b1441a73a9db0db194c13202fcb4b4f",
-          "sha1": "e37c1212bee724b5fac3510a7da3e33fcc10aa6c",
-          "md5": "27f2fc987e1d650c915527ab44a7f595"
+          "size": 12553,
+          "sha512": "1457158560acd7479053b81229c595283cd1fd71627dc9c6327c85caa0f72af77a0349b61a6814ab656bfe8c882e767f1a2c174761b482b389baf21538e7d258",
+          "sha256": "3d47000b41a84cd5c31cbce5e4b7d3678a61e4823b84c04c4e37e218d4c220d9",
+          "sha1": "01139026867e6b2e2ec6eed5f33700f8e97451c1",
+          "md5": "60294da074d8310f75f9dad382d96724"
         }
       ]
     }
