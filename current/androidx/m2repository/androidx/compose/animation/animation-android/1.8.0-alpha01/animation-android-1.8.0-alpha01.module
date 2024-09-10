@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.8"
+      "version": "8.10"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -27,14 +28,14 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.1.0"
+            "requires": "1.8.1"
           }
         },
         {
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.1"
           }
         },
         {
@@ -48,7 +49,7 @@
           "group": "androidx.compose.foundation",
           "module": "foundation-layout",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
@@ -62,7 +63,7 @@
           "group": "androidx.compose.ui",
           "module": "ui-geometry",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           }
         }
       ],
@@ -96,11 +97,11 @@
         {
           "name": "animation-release.aar",
           "url": "animation-android-1.8.0-alpha01.aar",
-          "size": 1492760,
-          "sha512": "0d480cae28944edc614cd69f14bc5df5a6fc2a28f1c9d3209eefc38e9b31ce439f67406a0f2ee8abf9301ae34d99827b9b40a02e8c68995f89a0b20972b654d6",
-          "sha256": "0b8faa3c50daf48da92a3c29dbf7cfa74f722a9f48b639909ee36e8bf369e6d8",
-          "sha1": "d2810b6dfb177309954f6155ad973d0d8554b603",
-          "md5": "67df9fcbdb538f64d30bc0e677a3b1f0"
+          "size": 1547701,
+          "sha512": "0a219f17a5b88af064bfd01b2b59fecdebe6cb769da79c4b1675b190c70f3638c5287abcbac8105930d4ce7455fd9c613dad6c78ecbfab602c743f3cd5017411",
+          "sha256": "6cdde418047b8d8eff8048588bce262cbafb1ed4a704396ee020f3c3af80c876",
+          "sha1": "04cf8c069789431e214a9e81af31c74b1d811346",
+          "md5": "335320235537634852601ebf904f4f60"
         }
       ]
     },
@@ -108,6 +109,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -116,7 +118,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.1.0"
+            "requires": "1.8.1"
           },
           "excludes": [
             {
@@ -137,7 +139,7 @@
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.1"
           },
           "excludes": [
             {
@@ -158,7 +160,7 @@
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.5.0-alpha01"
           },
           "excludes": [
             {
@@ -200,7 +202,7 @@
           "group": "androidx.compose.foundation",
           "module": "foundation-layout",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -263,7 +265,7 @@
           "group": "androidx.compose.ui",
           "module": "ui-geometry",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -324,7 +326,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib-common",
+          "module": "kotlin-stdlib",
           "version": {
             "requires": "1.8.22"
           },
@@ -374,11 +376,11 @@
         {
           "name": "animation-release.aar",
           "url": "animation-android-1.8.0-alpha01.aar",
-          "size": 1492760,
-          "sha512": "0d480cae28944edc614cd69f14bc5df5a6fc2a28f1c9d3209eefc38e9b31ce439f67406a0f2ee8abf9301ae34d99827b9b40a02e8c68995f89a0b20972b654d6",
-          "sha256": "0b8faa3c50daf48da92a3c29dbf7cfa74f722a9f48b639909ee36e8bf369e6d8",
-          "sha1": "d2810b6dfb177309954f6155ad973d0d8554b603",
-          "md5": "67df9fcbdb538f64d30bc0e677a3b1f0"
+          "size": 1547701,
+          "sha512": "0a219f17a5b88af064bfd01b2b59fecdebe6cb769da79c4b1675b190c70f3638c5287abcbac8105930d4ce7455fd9c613dad6c78ecbfab602c743f3cd5017411",
+          "sha256": "6cdde418047b8d8eff8048588bce262cbafb1ed4a704396ee020f3c3af80c876",
+          "sha1": "04cf8c069789431e214a9e81af31c74b1d811346",
+          "md5": "335320235537634852601ebf904f4f60"
         }
       ]
     },
@@ -388,6 +390,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -422,20 +425,20 @@
         {
           "name": "animation-1.8.0-alpha01-samples-sources.jar",
           "url": "animation-android-1.8.0-alpha01-samples-sources.jar",
-          "size": 25849,
-          "sha512": "3bda9176a0feb25e613d9fbc624b70b052c49786d0d986d6c38f72d6f9ea260bc038b00c3ac71b3214bb3f0ad1014fa21860be62d2e990509fd83194f31cb1f8",
-          "sha256": "ecf7cd8156ead27c4df17d0a2c0615531f5227cb0299210325717186262e8816",
-          "sha1": "61d9d607d0fc1a0459ec597df08b4e39960ff4e4",
-          "md5": "f3e5576f2618595522c435d090e4aae3"
+          "size": 29600,
+          "sha512": "601ac79771ddc26bb1314fbd0e18478fcfa47628ebcec7314eebd7fbfa1d56a48b16e9ad99eeeba6c7b0fcb27e4b7867d2c7f434bfa337afb2fb436106328751",
+          "sha256": "43c34f29475a01ffdad25f3c0bfdd130f1dee8d5718992263562dfd130ef772c",
+          "sha1": "fd04d34c483dc99377b6199c1461d8649ff3deee",
+          "md5": "2e8b15c19b23bf42d542835e6b19e822"
         },
         {
           "name": "animation-android-1.8.0-alpha01-sources.jar",
           "url": "animation-android-1.8.0-alpha01-sources.jar",
-          "size": 74116,
-          "sha512": "a584d1070b544c2d0f163d500be85e251e1c0e5b119db743912be176a4bdc3b13323f9977b942ad218f1938068f10e1f0ca162080275d68a3f7e4340e07c850c",
-          "sha256": "beba068d9f3a91a987cfb7959567f1772c406a6811fb2cd1f4639142e7852a90",
-          "sha1": "f9a652723309a61dcaf4f8f0fb1d3007a486aed3",
-          "md5": "0f0520deb91e82704a5f1c764643ffc3"
+          "size": 79579,
+          "sha512": "dccfd52363609986c7e28e3ffd02a8fdda834b4d254e587e1e396b3f868700979881f017807b3ab5188b72b50d363aedcdde96ab3079dfad57c6cb5b2e13da53",
+          "sha256": "a574fc4bd3c54908c256593aa82552ab459071d85d4aba54f7bebec1d41932ba",
+          "sha1": "f3935ba075e50e84c69117de9584d837cdf05b68",
+          "md5": "8cadad403d14c7ec1bce58473b6c7ffb"
         }
       ]
     }

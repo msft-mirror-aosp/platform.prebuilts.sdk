@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.8"
+      "version": "8.10"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -27,21 +28,21 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.1.0"
+            "requires": "1.8.1"
           }
         },
         {
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.1"
           }
         },
         {
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.5.0-alpha01"
           }
         },
         {
@@ -80,11 +81,11 @@
         {
           "name": "foundation-release.aar",
           "url": "foundation-android-1.8.0-alpha01.aar",
-          "size": 4842187,
-          "sha512": "43a54e8730477d85eced96d5b672c0a6d2280327351ff138baedeb4cfa66ace69034fe8fad6bc5758c9a5eb8e7847e9009a193cdb15802c5e3c62b75f8f03c1b",
-          "sha256": "d9da5b9b1c784c380af5aea8d146b9ad2e305e4f05e6c7101d2d7b9ca061260e",
-          "sha1": "d298c353f5d7ffeb64a141748239322452a4e5f9",
-          "md5": "3a5b622759e7affe069d3094cb73c825"
+          "size": 5134726,
+          "sha512": "f5600bb92921d70af37388688a9d7ebf0c84a2e4af5cc80d282f7c7712b4c57b139e7b19fbec0395ab2e3fe32de3f020bc3815b67844ca0c229a42b3478edf63",
+          "sha256": "927431165187355650faa9f85777d3a29868bfa5401b56a6a6253b0bdfd8ff42",
+          "sha1": "bb1e628d87cdc6c3bd996607ab210d6851a2b880",
+          "md5": "896c152561297eabc96749e3932d1779"
         }
       ]
     },
@@ -92,6 +93,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -100,7 +102,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.1.0"
+            "requires": "1.8.1"
           },
           "excludes": [
             {
@@ -121,7 +123,7 @@
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.1"
           },
           "excludes": [
             {
@@ -142,7 +144,7 @@
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.5.0-alpha01"
           },
           "excludes": [
             {
@@ -247,7 +249,7 @@
           "group": "androidx.compose.ui",
           "module": "ui-text",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -268,7 +270,7 @@
           "group": "androidx.compose.ui",
           "module": "ui-util",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -329,7 +331,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib-common",
+          "module": "kotlin-stdlib",
           "version": {
             "requires": "1.8.22"
           },
@@ -363,11 +365,11 @@
         {
           "name": "foundation-release.aar",
           "url": "foundation-android-1.8.0-alpha01.aar",
-          "size": 4842187,
-          "sha512": "43a54e8730477d85eced96d5b672c0a6d2280327351ff138baedeb4cfa66ace69034fe8fad6bc5758c9a5eb8e7847e9009a193cdb15802c5e3c62b75f8f03c1b",
-          "sha256": "d9da5b9b1c784c380af5aea8d146b9ad2e305e4f05e6c7101d2d7b9ca061260e",
-          "sha1": "d298c353f5d7ffeb64a141748239322452a4e5f9",
-          "md5": "3a5b622759e7affe069d3094cb73c825"
+          "size": 5134726,
+          "sha512": "f5600bb92921d70af37388688a9d7ebf0c84a2e4af5cc80d282f7c7712b4c57b139e7b19fbec0395ab2e3fe32de3f020bc3815b67844ca0c229a42b3478edf63",
+          "sha256": "927431165187355650faa9f85777d3a29868bfa5401b56a6a6253b0bdfd8ff42",
+          "sha1": "bb1e628d87cdc6c3bd996607ab210d6851a2b880",
+          "md5": "896c152561297eabc96749e3932d1779"
         }
       ]
     },
@@ -377,6 +379,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -395,20 +398,20 @@
         {
           "name": "foundation-1.8.0-alpha01-samples-sources.jar",
           "url": "foundation-android-1.8.0-alpha01-samples-sources.jar",
-          "size": 75254,
-          "sha512": "7fd3c6d3165634bd4a74df0b57e06089059fd0013699fe9b5dad53cac5461dcf51d175c7e1b9da3cf4a7da4271ac69391dba766a0a1150a5e2ed8e85223a797d",
-          "sha256": "f184f926fe9dbc69c132b2f9adafd8c0396dbef0e1757e5db56db405fb561f7e",
-          "sha1": "6181958d824ad33b39c1bfbb2389f88509ab4b73",
-          "md5": "46a56dce51f4115ba2e1c1ae5ab9a6e7"
+          "size": 77141,
+          "sha512": "bb36f63f59af090155097214a2e9fa73f79f2ada6a1aad3dbedc5975f8b0a383e60c18acd67094cb53a3b636aa561a17903029172cde1a7f5a7455702ef7b417",
+          "sha256": "c15dd32fdb2ffdcf5fd99ef18b15ebe8f07ca9ee0071a108b76958b0d25dec9c",
+          "sha1": "9936e931183120ea69cbff5ad93e5ebeb3b31c42",
+          "md5": "b66d06317e271a0e3162b5580d979db8"
         },
         {
           "name": "foundation-android-1.8.0-alpha01-sources.jar",
           "url": "foundation-android-1.8.0-alpha01-sources.jar",
-          "size": 883623,
-          "sha512": "4a42511dd6ee078bf97c55e4c81a7afd2fcdb9f15bd4be318ef6fec7ca1b4eee230f090c15d4cb0dea421b070d61d8abe1b49071718f294df993ab6749e70507",
-          "sha256": "9d0e87c13fd1f7b8d0994f3875419f6a4b320c8a5eace369d428bf6a061872e5",
-          "sha1": "a3d70fe75f979155d28adb59de59935832e59813",
-          "md5": "2c2d603d31e5d9c4ad8fd89ddd8f82b2"
+          "size": 906510,
+          "sha512": "3b2a82ab249e8b0b5beb2c182280858c0b02fe506548f54c104fe53dc6fd0f8f75bbd6bbac43f5439431580235c3b278ce241de2e00d7a481e7f5bb9126fc415",
+          "sha256": "6e94fa4f0cb0bb3c6cec8c41fab81973028736baf0324259620c24d06695c980",
+          "sha1": "c304d0eabd0da45e7e086363dcc50ebd85768efb",
+          "md5": "b4c77292714761a0820ce714ba3fb3aa"
         }
       ]
     }

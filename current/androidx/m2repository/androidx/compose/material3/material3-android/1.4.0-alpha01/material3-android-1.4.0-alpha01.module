@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.8"
+      "version": "8.10"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -27,70 +28,63 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.1.0"
+            "requires": "1.8.1"
           }
         },
         {
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.1"
           }
         },
         {
           "group": "androidx.compose.foundation",
           "module": "foundation",
           "version": {
-            "requires": "1.7.0-beta02"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
           "group": "androidx.compose.foundation",
           "module": "foundation-layout",
           "version": {
-            "requires": "1.7.0-beta02"
-          }
-        },
-        {
-          "group": "androidx.compose.material",
-          "module": "material-icons-core",
-          "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
           "group": "androidx.compose.material",
           "module": "material-ripple",
           "version": {
-            "requires": "1.7.0-beta02"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
           "group": "androidx.compose.runtime",
           "module": "runtime",
           "version": {
-            "requires": "1.7.0-beta02"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
           "group": "androidx.compose.ui",
           "module": "ui",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
           "group": "androidx.compose.ui",
           "module": "ui-text",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           }
         },
         {
           "group": "androidx.graphics",
           "module": "graphics-shapes",
           "version": {
-            "requires": "1.0.0-beta01"
+            "requires": "1.0.0-rc01"
           }
         }
       ],
@@ -116,11 +110,11 @@
         {
           "name": "material3-release.aar",
           "url": "material3-android-1.4.0-alpha01.aar",
-          "size": 5359151,
-          "sha512": "eed6f52fe47a6b89ac1456222e40731c60978aafa809b16a162e737c77d19419398ff039877ce05a2047a4dd9df6032f335a71bc85dc0c5a8641342b187e3e80",
-          "sha256": "19d5cc6ebecda5398b98f1b38b11bf91d4c43ce439d681cbb72a01a5bb22fc09",
-          "sha1": "1a4f5a227fb5034868ed9a3fe0188913ff326ce1",
-          "md5": "a8aec5b4fa67c4fd6f7383a885238451"
+          "size": 6525391,
+          "sha512": "453bfd9ee75560819cbcf4dca2692ec8dfd64cc20c9fe2458c0c958bb3fcf20332a079624e116bea49ee5d7a2dda46f64c9ab4fd8d8ec19ad0da63f8d8d5b47d",
+          "sha256": "a2bc7dafafadced13da83d05ed37dc23a0f564af029a6228f9790decf90a5f50",
+          "sha1": "880be661f08538ec1ed5a8801f7926efd88d2696",
+          "md5": "5534a6d475f97cdc8815f47d0cf5e19e"
         }
       ]
     },
@@ -128,6 +122,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -157,7 +152,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.1.0"
+            "requires": "1.8.1"
           },
           "excludes": [
             {
@@ -178,7 +173,7 @@
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.1"
           },
           "excludes": [
             {
@@ -199,7 +194,7 @@
           "group": "androidx.collection",
           "module": "collection",
           "version": {
-            "requires": "1.4.0"
+            "requires": "1.4.2"
           },
           "excludes": [
             {
@@ -220,7 +215,7 @@
           "group": "androidx.compose.animation",
           "module": "animation-core",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -241,7 +236,7 @@
           "group": "androidx.compose.foundation",
           "module": "foundation",
           "version": {
-            "requires": "1.7.0-beta02"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -262,28 +257,7 @@
           "group": "androidx.compose.foundation",
           "module": "foundation-layout",
           "version": {
-            "requires": "1.7.0-beta02"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
-        },
-        {
-          "group": "androidx.compose.material",
-          "module": "material-icons-core",
-          "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -304,7 +278,7 @@
           "group": "androidx.compose.material",
           "module": "material-ripple",
           "version": {
-            "requires": "1.7.0-beta02"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -325,7 +299,7 @@
           "group": "androidx.compose.runtime",
           "module": "runtime",
           "version": {
-            "requires": "1.7.0-beta02"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -346,7 +320,7 @@
           "group": "androidx.compose.ui",
           "module": "ui",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -367,7 +341,7 @@
           "group": "androidx.compose.ui",
           "module": "ui-text",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -388,7 +362,7 @@
           "group": "androidx.compose.ui",
           "module": "ui-util",
           "version": {
-            "requires": "1.6.0"
+            "requires": "1.8.0-alpha01"
           },
           "excludes": [
             {
@@ -409,7 +383,7 @@
           "group": "androidx.graphics",
           "module": "graphics-shapes",
           "version": {
-            "requires": "1.0.0-beta01"
+            "requires": "1.0.0-rc01"
           },
           "excludes": [
             {
@@ -449,7 +423,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib-common",
+          "module": "kotlin-stdlib",
           "version": {
             "requires": "1.8.22"
           },
@@ -491,11 +465,11 @@
         {
           "name": "material3-release.aar",
           "url": "material3-android-1.4.0-alpha01.aar",
-          "size": 5359151,
-          "sha512": "eed6f52fe47a6b89ac1456222e40731c60978aafa809b16a162e737c77d19419398ff039877ce05a2047a4dd9df6032f335a71bc85dc0c5a8641342b187e3e80",
-          "sha256": "19d5cc6ebecda5398b98f1b38b11bf91d4c43ce439d681cbb72a01a5bb22fc09",
-          "sha1": "1a4f5a227fb5034868ed9a3fe0188913ff326ce1",
-          "md5": "a8aec5b4fa67c4fd6f7383a885238451"
+          "size": 6525391,
+          "sha512": "453bfd9ee75560819cbcf4dca2692ec8dfd64cc20c9fe2458c0c958bb3fcf20332a079624e116bea49ee5d7a2dda46f64c9ab4fd8d8ec19ad0da63f8d8d5b47d",
+          "sha256": "a2bc7dafafadced13da83d05ed37dc23a0f564af029a6228f9790decf90a5f50",
+          "sha1": "880be661f08538ec1ed5a8801f7926efd88d2696",
+          "md5": "5534a6d475f97cdc8815f47d0cf5e19e"
         }
       ]
     },
@@ -505,6 +479,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -531,20 +506,20 @@
         {
           "name": "material3-1.4.0-alpha01-samples-sources.jar",
           "url": "material3-android-1.4.0-alpha01-samples-sources.jar",
-          "size": 70394,
-          "sha512": "a01c119675c647a1669cc92c8136b1877e799805653109b8fb73586de44f8c7dcb350f367d3cce04cbe0b7c45fae724a68e96651e75c27bf5ce0e9fb972ba9d1",
-          "sha256": "89c081f992b6120c9e53692d639f020472c26fbd01d9d35c8137455e7ad8621e",
-          "sha1": "636a618c43dab564609086c53fbf215dc0107b0d",
-          "md5": "3ea1d278c883b9b2e0510a79f7416255"
+          "size": 81137,
+          "sha512": "961ee13fdaa1445f78bc2133947e4682b1a0152af0f61373cc9826cc8b120e580057641ab04cadfa1ba333f83e931195413d9beaa44dcd0d1fe9d6ad20847004",
+          "sha256": "8df0951f7b2ac654ef693e8089d3c05fb3e6bf51827e65be64d2d710ce4a74f5",
+          "sha1": "0e3a13ca591cb79a33c14b4236858db51618e55b",
+          "md5": "9bb37380ec4128bf9c8a340ca6153374"
         },
         {
           "name": "material3-android-1.4.0-alpha01-sources.jar",
           "url": "material3-android-1.4.0-alpha01-sources.jar",
-          "size": 578569,
-          "sha512": "bb102e33392b72c448dc0e33922728f527b4341349d772699161ce8c643ad061d6c0d22fda62f0bca81c1b4028b0637056dcf9fb748c5bb7cdf8f5e73ce2f99b",
-          "sha256": "b565afd07d9b9074fe04d76358d00f7b9393f2e1e8344f56d1f50a194e1c839d",
-          "sha1": "306e4ca1ee3884b48c4fbf58d378992c22cc82d7",
-          "md5": "0afda87cd485146882ed78fa7e3fdd0b"
+          "size": 684476,
+          "sha512": "2c069d2c217cb2ea533d3f88add8388fce053efb869f15ac63334a4d7d2d70d7b027254273ae0f6a2796bfcdd946918e36c5441c66af8a77a2f110f702dd16da",
+          "sha256": "065eb427fad2a105d9fe0d683738967b5e954a7d55e834ab06e6d4b8df688f18",
+          "sha1": "34e42f9e84870e9b57f932668ff6ed63ce3ac57d",
+          "md5": "98383ee98edff0df9d7d1719e2de00cc"
         }
       ]
     }
