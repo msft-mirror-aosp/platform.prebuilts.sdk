@@ -11,7 +11,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.9"
+      "version": "8.10"
     }
   },
   "variants": [
@@ -19,6 +19,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -27,7 +28,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.9.0-alpha01"
+            "requires": "1.8.1"
           }
         },
         {
@@ -57,6 +58,14 @@
         {
           "group": "androidx.datastore",
           "module": "datastore-core-okio",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          },
+          "reason": "datastore-core is in atomic group androidx.datastore"
+        },
+        {
+          "group": "androidx.datastore",
+          "module": "datastore-guava",
           "version": {
             "requires": "1.2.0-alpha01"
           },
@@ -131,11 +140,11 @@
         {
           "name": "datastore-core-release.aar",
           "url": "datastore-core-android-1.2.0-alpha01.aar",
-          "size": 212923,
-          "sha512": "edc8f50b2e1ecb0e438116ff8a515d09bfc4c1d03dfcadcc744ef98bc2026bd27ad1ae7921ae9ce11d19cc78420110129defe2fe1664e3fe2be18997e5047059",
-          "sha256": "0c3ceda247a087d7248aae439b15ade528550f922a9d9bf8d15a293c8ecc1227",
-          "sha1": "4f024e0e5a2b9383cf510e39e6659b5735bacbfa",
-          "md5": "f760c3175a0f545483a1c07340ddaccc"
+          "size": 221119,
+          "sha512": "86988f02600a8872e680dbeaefa9422a4c63bf2c78e2e104a2b7a055f371052677cdd2210d4cc09747a70f80e75a045e02c71f5ccd4acf5bbec9f961562acbd1",
+          "sha256": "60f638e845e3b733d0a49b3a9cc1e6693d7d3432d1501d1153465e5014fee9b0",
+          "sha1": "64beacb91a9c973a2d39c556c2d9a33e3310d759",
+          "md5": "21ca706703a8e423d1d237070c7ed310"
         }
       ]
     },
@@ -143,6 +152,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -151,28 +161,7 @@
           "group": "androidx.annotation",
           "module": "annotation",
           "version": {
-            "requires": "1.9.0-alpha01"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
-        },
-        {
-          "group": "org.jetbrains.kotlin",
-          "module": "kotlin-parcelize-runtime",
-          "version": {
-            "requires": "1.9.24"
+            "requires": "1.8.1"
           },
           "excludes": [
             {
@@ -251,6 +240,14 @@
         },
         {
           "group": "androidx.datastore",
+          "module": "datastore-guava",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          },
+          "reason": "datastore-core is in atomic group androidx.datastore"
+        },
+        {
+          "group": "androidx.datastore",
           "module": "datastore-preferences",
           "version": {
             "requires": "1.2.0-alpha01"
@@ -318,11 +315,11 @@
         {
           "name": "datastore-core-release.aar",
           "url": "datastore-core-android-1.2.0-alpha01.aar",
-          "size": 212923,
-          "sha512": "edc8f50b2e1ecb0e438116ff8a515d09bfc4c1d03dfcadcc744ef98bc2026bd27ad1ae7921ae9ce11d19cc78420110129defe2fe1664e3fe2be18997e5047059",
-          "sha256": "0c3ceda247a087d7248aae439b15ade528550f922a9d9bf8d15a293c8ecc1227",
-          "sha1": "4f024e0e5a2b9383cf510e39e6659b5735bacbfa",
-          "md5": "f760c3175a0f545483a1c07340ddaccc"
+          "size": 221119,
+          "sha512": "86988f02600a8872e680dbeaefa9422a4c63bf2c78e2e104a2b7a055f371052677cdd2210d4cc09747a70f80e75a045e02c71f5ccd4acf5bbec9f961562acbd1",
+          "sha256": "60f638e845e3b733d0a49b3a9cc1e6693d7d3432d1501d1153465e5014fee9b0",
+          "sha1": "64beacb91a9c973a2d39c556c2d9a33e3310d759",
+          "md5": "21ca706703a8e423d1d237070c7ed310"
         }
       ]
     },
@@ -332,6 +329,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
@@ -348,6 +346,14 @@
         {
           "group": "androidx.datastore",
           "module": "datastore-core-okio",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          },
+          "reason": "datastore-core is in atomic group androidx.datastore"
+        },
+        {
+          "group": "androidx.datastore",
+          "module": "datastore-guava",
           "version": {
             "requires": "1.2.0-alpha01"
           },
