@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-# Usage: update_prebuilts.sh BUILD_ID {all|car-apps-common|car-assist-lib|car-media-common|car-messaging-models|car-uxr-client-lib|car-telephony-common|car-ui-lib} [TARGET]
+# Usage: update_prebuilts.sh BUILD_ID {all|car-apps-common|car-assist-lib|car-media-common|car-messaging-models|car-uxr-client-lib|car-telephony-common|car-ui-lib|car-app-card-lib|car-app-card-host-lib} [TARGET]
 
 if [ -z "${1+x}" ]
 then
@@ -58,6 +58,12 @@ case $LIB_TARGET in
         downloadApp $1 "token-sharedlibrary.aar" "token-sharedlibrary.aar" "car_apps-user"
         echo "Downloading token-sharedlibrary-res"
         downloadApp $1 "token-sharedlibrary-res.zip" "token-sharedlibrary-res.zip" "car_apps-user"
+        echo "Downloading car-broadcastradio-support"
+        downloadApp $1 "car-broadcastradio-support.aar" "car-broadcastradio-support.aar" $BUILD_TARGET
+        echo "Downloading car-app-card-lib"
+        downloadApp $1 "car-app-card-lib.aar" "car-app-card-lib.aar" $BUILD_TARGET
+        echo "Downloading car-app-card-host-lib"
+        downloadApp $1 "car-app-card-host-lib.aar" "car-app-card-host-lib.aar" $BUILD_TARGET
         ;;
     car-apps-common)
         echo "Downloading car-apps-common"
@@ -106,8 +112,20 @@ case $LIB_TARGET in
         echo "Downloading token-sharedlibrary-res"
         downloadApp $1 "token-sharedlibrary-res.zip" "token-sharedlibrary-res.zip" "car_apps-user"
         ;;
+    car-broadcastradio-support)
+        echo "Downloading car-broadcastradio-support"
+        downloadApp $1 "car-broadcastradio-support.aar" "car-broadcastradio-support.aar" $BUILD_TARGET
+        ;;
+    car-app-card-lib)
+        echo "Downloading car-app-card-lib"
+        downloadApp $1 "car-app-card-lib.aar" "car-app-card-lib.aar" $BUILD_TARGET
+        ;;
+    car-app-card-host-lib)
+        echo "Downloading car-app-card-host-lib"
+        downloadApp $1 "car-app-card-host-lib.aar" "car-app-card-host-lib.aar" $BUILD_TARGET
+        ;;
     *)
-        echo "Invalid application option {all|car-apps-common|car-assist-lib|car-media-common|car-messaging-models|car-uxr-client-lib|car-telephony-common|car-ui-lib|oem-token-lib}"
+        echo "Invalid application option {all|car-apps-common|car-assist-lib|car-media-common|car-messaging-models|car-uxr-client-lib|car-telephony-common|car-ui-lib|oem-token-lib|car-app-card-lib|car-app-card-host-lib}"
         ;;
 esac
 shopt -u nocasematch
