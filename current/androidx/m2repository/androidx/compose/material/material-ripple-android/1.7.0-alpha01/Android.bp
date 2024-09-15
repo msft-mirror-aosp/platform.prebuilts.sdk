@@ -15,27 +15,9 @@ package {
 }
 
 android_library_import {
-    name: "androidx.compose.material_material-ripple-nodeps",
-    aars: ["material-ripple-android-1.7.0-alpha01.aar"],
-    sdk_version: "31",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    min_sdk_version: "21",
-    static_libs: [
-        "androidx.collection_collection",
-        "androidx.compose.animation_animation",
-        "androidx.compose.foundation_foundation",
-        "androidx.compose.runtime_runtime",
-        "androidx.compose.ui_ui-util",
-        "kotlin-stdlib",
-    ],
-}
-
-android_library {
     name: "androidx.compose.material_material-ripple",
-    sdk_version: "31",
+    aars: ["material-ripple-android-1.7.0-alpha01.aar"],
+    sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -43,7 +25,6 @@ android_library {
     min_sdk_version: "21",
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
-        "androidx.compose.material_material-ripple-nodeps",
         "androidx.collection_collection",
         "androidx.compose.animation_animation",
         "androidx.compose.foundation_foundation",
@@ -51,6 +32,4 @@ android_library {
         "androidx.compose.ui_ui-util",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
-
