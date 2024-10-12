@@ -55,15 +55,19 @@
         <artifactId>compose-ui-tooling</artifactId>
         <version>1.5.0-alpha03</version>
       </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib</artifactId>
+        <version>1.8.22</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>androidx.activity</groupId>
-      <artifactId>activity-compose</artifactId>
+      <groupId>androidx.compose.ui</groupId>
+      <artifactId>ui</artifactId>
       <version>1.7.0</version>
       <scope>compile</scope>
-      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>androidx.compose.runtime</groupId>
@@ -72,16 +76,36 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>androidx.compose.ui</groupId>
-      <artifactId>ui</artifactId>
+      <groupId>androidx.navigation</groupId>
+      <artifactId>navigation-runtime</artifactId>
+      <version>2.6.0</version>
+      <scope>compile</scope>
+      <type>aar</type>
+    </dependency>
+    <dependency>
+      <groupId>androidx.wear.compose</groupId>
+      <artifactId>compose-material</artifactId>
+      <version>[1.5.0-alpha03]</version>
+      <scope>compile</scope>
+      <type>aar</type>
+    </dependency>
+    <dependency>
+      <groupId>androidx.activity</groupId>
+      <artifactId>activity-compose</artifactId>
       <version>1.7.0</version>
       <scope>compile</scope>
+      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>androidx.lifecycle</groupId>
       <artifactId>lifecycle-viewmodel-compose</artifactId>
       <version>2.7.0</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>androidx.navigation</groupId>
@@ -98,31 +122,11 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>androidx.navigation</groupId>
-      <artifactId>navigation-runtime</artifactId>
-      <version>2.6.0</version>
-      <scope>compile</scope>
-      <type>aar</type>
-    </dependency>
-    <dependency>
       <groupId>androidx.profileinstaller</groupId>
       <artifactId>profileinstaller</artifactId>
       <version>1.4.0</version>
       <scope>runtime</scope>
       <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>androidx.wear.compose</groupId>
-      <artifactId>compose-material</artifactId>
-      <version>[1.5.0-alpha03]</version>
-      <scope>compile</scope>
-      <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib</artifactId>
-      <version>1.8.22</version>
-      <scope>runtime</scope>
     </dependency>
   </dependencies>
 </project>

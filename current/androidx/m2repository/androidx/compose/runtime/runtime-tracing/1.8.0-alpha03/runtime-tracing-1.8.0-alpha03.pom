@@ -60,6 +60,11 @@
         <artifactId>runtime-saveable</artifactId>
         <version>1.8.0-alpha03</version>
       </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib</artifactId>
+        <version>1.9.24</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -70,17 +75,15 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>androidx.compose.runtime</groupId>
       <artifactId>runtime</artifactId>
       <version>[1.3.3]</version>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.startup</groupId>
-      <artifactId>startup-runtime</artifactId>
-      <version>1.1.1</version>
-      <scope>runtime</scope>
-      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>androidx.tracing</groupId>
@@ -90,10 +93,11 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib</artifactId>
-      <version>1.9.24</version>
+      <groupId>androidx.startup</groupId>
+      <artifactId>startup-runtime</artifactId>
+      <version>1.1.1</version>
       <scope>runtime</scope>
+      <type>aar</type>
     </dependency>
   </dependencies>
 </project>
