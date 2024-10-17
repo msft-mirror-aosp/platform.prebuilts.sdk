@@ -1101,7 +1101,7 @@ def update_makefile(build_id):
 
 
 def finalize_sdk(target, build_id, sdk_version, beyond_corp, local_mode):
-    target_finalize_dir = '%d' % sdk_version
+    target_finalize_dir = sdk_version
 
     for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {f'apistubs/android/{api_scope}/api/*.txt': os.path.join(
@@ -1175,6 +1175,14 @@ def has_uncommitted_changes():
     except subprocess.CalledProcessError:
         return True
 
+def check_string_major_minor_format(s):
+    # Verify that the string follows the major.minor format:
+    # Examples of allowed strings: 1.0, 2.34
+    # Examples of disallowed strings: 0.1, 1.01
+    if not re.match(r'[1-9][0-9]*\.(0|[1-9][0-9]*)', s):
+        raise ValueError('string not a major.minor version (e.g. 1.0, 2.34, 56.7890)')
+    return s
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -1195,7 +1203,7 @@ def main():
         '-p', '--platform', action='store_true',
         help='If specified, updates only the Android Platform')
     parser.add_argument(
-        '-f', '--finalize_sdk', type=int,
+        '-f', '--finalize_sdk', type=check_string_major_minor_format,
         help='Finalize the build as the specified SDK version. Must be used together with -e')
     parser.add_argument(
         '-e', '--finalize_extension', type=int,
