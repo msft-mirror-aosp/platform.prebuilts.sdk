@@ -52,6 +52,11 @@
       </dependency>
       <dependency>
         <groupId>androidx.glance</groupId>
+        <artifactId>glance-appwidget-multiprocess</artifactId>
+        <version>1.2.0-alpha01</version>
+      </dependency>
+      <dependency>
+        <groupId>androidx.glance</groupId>
         <artifactId>glance-appwidget-proto</artifactId>
         <version>1.2.0-alpha01</version>
       </dependency>
@@ -84,16 +89,10 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>androidx.compose.runtime</groupId>
-      <artifactId>runtime</artifactId>
-      <version>1.2.1</version>
+      <groupId>androidx.glance</groupId>
+      <artifactId>glance-appwidget</artifactId>
+      <version>[1.2.0-alpha01]</version>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.core</groupId>
-      <artifactId>core</artifactId>
-      <version>1.1.0</version>
-      <scope>runtime</scope>
       <type>aar</type>
     </dependency>
     <dependency>
@@ -104,17 +103,11 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>androidx.glance</groupId>
-      <artifactId>glance-appwidget</artifactId>
-      <version>[1.2.0-alpha01]</version>
-      <scope>compile</scope>
+      <groupId>androidx.core</groupId>
+      <artifactId>core</artifactId>
+      <version>1.1.0</version>
+      <scope>runtime</scope>
       <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-reflect</artifactId>
-      <version>1.8.22</version>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
@@ -126,6 +119,18 @@
       <groupId>org.jetbrains.kotlinx</groupId>
       <artifactId>kotlinx-coroutines-android</artifactId>
       <version>1.7.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.compose.runtime</groupId>
+      <artifactId>runtime</artifactId>
+      <version>1.2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+      <version>1.8.22</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
