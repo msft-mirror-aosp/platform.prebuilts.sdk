@@ -1,0 +1,527 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../material3/1.4.0-alpha03/material3-1.4.0-alpha03.module",
+    "group": "androidx.compose.material3",
+    "module": "material3",
+    "version": "1.4.0-alpha03",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.1"
+          }
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation-layout",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-ripple",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.8.0-alpha05"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui-text",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "androidx.graphics",
+          "module": "graphics-shapes",
+          "version": {
+            "requires": "1.0.1"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3-adaptive-navigation-suite",
+          "version": {
+            "requires": "1.4.0-alpha03"
+          },
+          "reason": "material3 is in atomic group androidx.compose.material3"
+        },
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3-window-size-class",
+          "version": {
+            "requires": "1.4.0-alpha03"
+          },
+          "reason": "material3 is in atomic group androidx.compose.material3"
+        }
+      ],
+      "files": [
+        {
+          "name": "material3-release.aar",
+          "url": "material3-android-1.4.0-alpha03.aar",
+          "size": 6297469,
+          "sha512": "16cd8d92b68ba26dd5ab54cbc3019758d2a83fedce419e8e4622972294dd279ae7336de2028a0167ec4a638c1ed6d9172164113dd80b4bc301025ee2b2c674eb",
+          "sha256": "a6e0b1bc4f9d006b8dff38b258133f7508e032b6a5c1806c1d8dbc475aedc984",
+          "sha1": "7bb27d7e617645780cce67071b10c2613f5b2f82",
+          "md5": "2aaea227e9159802d35692cdd8efbaa0"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.8.2"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.4.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.4.2"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-core",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation-layout",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-ripple",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.8.0-alpha05"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui-text",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui-util",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.graphics",
+          "module": "graphics-shapes",
+          "version": {
+            "requires": "1.0.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-common-java8",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.24"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3-adaptive-navigation-suite",
+          "version": {
+            "requires": "1.4.0-alpha03"
+          },
+          "reason": "material3 is in atomic group androidx.compose.material3"
+        },
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3-window-size-class",
+          "version": {
+            "requires": "1.4.0-alpha03"
+          },
+          "reason": "material3 is in atomic group androidx.compose.material3"
+        }
+      ],
+      "files": [
+        {
+          "name": "material3-release.aar",
+          "url": "material3-android-1.4.0-alpha03.aar",
+          "size": 6297469,
+          "sha512": "16cd8d92b68ba26dd5ab54cbc3019758d2a83fedce419e8e4622972294dd279ae7336de2028a0167ec4a638c1ed6d9172164113dd80b4bc301025ee2b2c674eb",
+          "sha256": "a6e0b1bc4f9d006b8dff38b258133f7508e032b6a5c1806c1d8dbc475aedc984",
+          "sha1": "7bb27d7e617645780cce67071b10c2613f5b2f82",
+          "md5": "2aaea227e9159802d35692cdd8efbaa0"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3-adaptive-navigation-suite",
+          "version": {
+            "requires": "1.4.0-alpha03"
+          },
+          "reason": "material3 is in atomic group androidx.compose.material3"
+        },
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3-window-size-class",
+          "version": {
+            "requires": "1.4.0-alpha03"
+          },
+          "reason": "material3 is in atomic group androidx.compose.material3"
+        }
+      ],
+      "files": [
+        {
+          "name": "material3-1.4.0-alpha03-samples-sources.jar",
+          "url": "material3-android-1.4.0-alpha03-samples-sources.jar",
+          "size": 82389,
+          "sha512": "9ea45dacd07045c9d15b7148f8308724409aa5c2cb269d5d8c7d06b752efcac9e6900f62a33d32155850b5c71d0caeab0e6fe5622cce5278d051b331a193fa61",
+          "sha256": "9eb592fb65652fc7b0ff16381465e986219534093352d3fb8c7c3dbd67fe8bc9",
+          "sha1": "86a96f76ac14fc4b493ffcc227d229071d049582",
+          "md5": "8d094ecef829e9a91fdff73dfce2e003"
+        },
+        {
+          "name": "material3-android-1.4.0-alpha03-sources.jar",
+          "url": "material3-android-1.4.0-alpha03-sources.jar",
+          "size": 699999,
+          "sha512": "4b77f2469c87560eaf598f2f6971ab10e7cc91e2ae76031c7479daaed6e5452d10c17b01bd6b6834174bbe91f45003b4c93ed7bd56384d58d044eb415c741339",
+          "sha256": "0b0e9efd9542ef8f919f16f1dc39dc532250600b40cd08a516d4b2e8b202a2dc",
+          "sha1": "fe0d0b9ec4ccb2f1980e0f3545d96e576c7ca918",
+          "md5": "773258701cc2c4e2f84f91da7330087d"
+        }
+      ]
+    }
+  ]
+}
