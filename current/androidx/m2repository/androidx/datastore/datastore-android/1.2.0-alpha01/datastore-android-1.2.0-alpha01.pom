@@ -94,14 +94,26 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>androidx.datastore</groupId>
+      <artifactId>datastore-core-okio-jvm</artifactId>
+      <version>[1.2.0-alpha01]</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okio</groupId>
+      <artifactId>okio-jvm</artifactId>
+      <version>3.9.1</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>1.8.22</version>
+      <version>1.9.24</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlinx</groupId>
-      <artifactId>kotlinx-coroutines-core-jvm</artifactId>
+      <artifactId>kotlinx-coroutines-core</artifactId>
       <version>1.7.3</version>
       <scope>compile</scope>
     </dependency>
@@ -113,35 +125,10 @@
     </dependency>
     <dependency>
       <groupId>androidx.datastore</groupId>
-      <artifactId>datastore-core</artifactId>
+      <artifactId>datastore-core-android</artifactId>
       <version>[1.2.0-alpha01]</version>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.datastore</groupId>
-      <artifactId>datastore-core-okio</artifactId>
-      <version>[1.2.0-alpha01]</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.squareup.okio</groupId>
-      <artifactId>okio-jvm</artifactId>
-      <version>3.6.0</version>
-      <scope>runtime</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.jetbrains.kotlin</groupId>
-          <artifactId>kotlin-stdlib-common</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.jetbrains.kotlin</groupId>
-          <artifactId>kotlin-test-common</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.jetbrains.kotlin</groupId>
-          <artifactId>kotlin-test-annotations-common</artifactId>
-        </exclusion>
-      </exclusions>
+      <type>aar</type>
     </dependency>
   </dependencies>
 </project>
