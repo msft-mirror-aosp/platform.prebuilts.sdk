@@ -3,8 +3,8 @@ dependency_list {
   dependency {
     group_id: "androidx.annotation"
     artifact_id: "annotation"
-    version: "1.9.0"
-    is_tip_of_tree: false
+    version: "1.9.0-rc01"
+    is_tip_of_tree: true
   }
   dependency {
     group_id: "androidx.collection"
@@ -80,6 +80,12 @@ dependency_list {
   }
   dependency {
     group_id: "androidx.collection"
+    artifact_id: "collection-wasm-js"
+    version: "1.5.0-alpha05"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.collection"
     artifact_id: "collection-watchosarm32"
     version: "1.5.0-alpha05"
     is_tip_of_tree: true
@@ -115,9 +121,9 @@ build_id: "androidx.collection"
 group_id: "androidx.collection"
 artifact_id: "collection"
 path: "/collection/collection"
-sha: "15bdb72fcaacf762145cc16fe725037fca9bcee2"
+sha: "7741ca81aa0263e64ea2fd08244f2e198bcc391f"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.collection-collection-all-12550422-1.5.0-alpha05.zip"
+project_zip_path: "per-project-zips/androidx.collection-collection-all-12579763-1.5.0-alpha05.zip"
 kotlin_version: "2.0.10"
 dependency_constraint_list {
   dependency {
@@ -130,19 +136,20 @@ dependency_constraint_list {
 should_publish_docs: true
 is_kmp: true
 target: "androidx_multiplatform_mac"
-kmp_children: "jvm"
-kmp_children: "macosx64"
-kmp_children: "macosarm64"
-kmp_children: "linuxarm64"
-kmp_children: "linuxx64"
 kmp_children: "iosx64"
 kmp_children: "iosarm64"
 kmp_children: "iossimulatorarm64"
+kmp_children: "jvm"
+kmp_children: "linuxarm64"
+kmp_children: "linuxx64"
+kmp_children: "macosx64"
+kmp_children: "macosarm64"
+kmp_children: "mingwx64"
+kmp_children: "tvosx64"
+kmp_children: "tvosarm64"
+kmp_children: "tvossimulatorarm64"
+kmp_children: "wasmJs"
 kmp_children: "watchosdevicearm64"
 kmp_children: "watchosx64"
 kmp_children: "watchosarm64"
 kmp_children: "watchossimulatorarm64"
-kmp_children: "tvosx64"
-kmp_children: "tvosarm64"
-kmp_children: "tvossimulatorarm64"
-kmp_children: "mingwx64"
