@@ -3,13 +3,7 @@ dependency_list {
   dependency {
     group_id: "androidx.annotation"
     artifact_id: "annotation"
-    version: "1.9.0-alpha01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.arch.core"
-    artifact_id: "core-common"
-    version: "2.2.0"
+    version: "1.8.1"
     is_tip_of_tree: false
   }
   dependency {
@@ -66,6 +60,48 @@ dependency_list {
     version: "3.4.0-alpha01"
     is_tip_of_tree: true
   }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-tvosarm64"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-tvossimulatorarm64"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-tvosx64"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-watchosarm32"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-watchosarm64"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-watchossimulatorarm64"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.paging"
+    artifact_id: "paging-common-watchosx64"
+    version: "3.4.0-alpha01"
+    is_tip_of_tree: true
+  }
 }
 release_checklist {
 }
@@ -73,10 +109,10 @@ build_id: "androidx.paging"
 group_id: "androidx.paging"
 artifact_id: "paging-common"
 path: "/paging/paging-common"
-sha: "d3d9ab3bace349227f12e907dccb240d59e18937"
+sha: "0be31ce34a0d8c9cabbf245d3d73129ff7fb336c"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.paging-paging-common-all-12158610-3.4.0-alpha01.zip"
-kotlin_version: "1.9.24"
+project_zip_path: "per-project-zips/androidx.paging-paging-common-all-12571625-3.4.0-alpha01.zip"
+kotlin_version: "2.0.10"
 dependency_constraint_list {
   dependency {
     group_id: "androidx.paging"
@@ -135,3 +171,19 @@ dependency_constraint_list {
 }
 should_publish_docs: true
 is_kmp: true
+target: "androidx_multiplatform_mac"
+kmp_children: "jvm"
+kmp_children: "macosx64"
+kmp_children: "macosarm64"
+kmp_children: "linuxarm64"
+kmp_children: "linuxx64"
+kmp_children: "iosx64"
+kmp_children: "iosarm64"
+kmp_children: "iossimulatorarm64"
+kmp_children: "watchosx64"
+kmp_children: "watchosarm64"
+kmp_children: "watchossimulatorarm64"
+kmp_children: "tvosx64"
+kmp_children: "tvosarm64"
+kmp_children: "tvossimulatorarm64"
+kmp_children: "android"

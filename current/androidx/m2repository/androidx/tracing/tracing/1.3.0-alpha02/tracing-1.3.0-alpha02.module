@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.9"
+      "version": "8.10.2"
     }
   },
   "variants": [
@@ -36,11 +36,11 @@
         {
           "name": "tracing-1.3.0-alpha02-sources.jar",
           "url": "tracing-1.3.0-alpha02-sources.jar",
-          "size": 9440,
-          "sha512": "726d12ba190c9b9001f6c5fdb7339a745b125a85ba19919577bb1da19fb03de0bfc9c871018c7a748ed6428be62959ee6f9355172a5c31f8890c2a7a8e3e25c4",
-          "sha256": "0519c4cded0bf0b4d622ea25c37fdfd69bea7ba969d0ff5591994fbffd635137",
-          "sha1": "a9206615839120126680ddb896e4e358c9d0761c",
-          "md5": "f48504230ffc613abe41417c4ef67bf7"
+          "size": 9902,
+          "sha512": "0ad4113b90f9396e30103bd479408dda5873153ae13aa5866533e7f16aa3268a286062b888cfc012c1931613b58df65ddfdaa81ca1415485de0f75a8df2a8fb9",
+          "sha256": "fa0ea71d069611f8d7dfbc641ade82512943f69d38037dc465f13e989295fdc0",
+          "sha1": "e22555fbcf12600288644a0f805e3e53d139a8d8",
+          "md5": "e7b5dfe04dd55fe472b7b029d1148281"
         }
       ]
     },
@@ -52,42 +52,12 @@
         "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api"
       },
-      "dependencyConstraints": [
-        {
-          "group": "androidx.tracing",
-          "module": "tracing-ktx",
-          "version": {
-            "requires": "1.3.0-alpha02"
-          },
-          "reason": "tracing is in atomic group androidx.tracing"
-        }
-      ],
-      "files": [
-        {
-          "name": "tracing-1.3.0-alpha02.aar",
-          "url": "tracing-1.3.0-alpha02.aar",
-          "size": 9000,
-          "sha512": "c61ed92b3eafb388ca4e6ca40a19ef2d2a18c0dc8a339224023cb0a8466d3e4f189176210b19b5075560d983ecf0583551ea86ab2d108ce5fdf72ae222fd416f",
-          "sha256": "ed6d9ea06abab1621128fe912aae51c40d01f39b613a78f90c050fa814e292b8",
-          "sha1": "5ad05d118f8232bb37530ca4da7c7171aa249ad5",
-          "md5": "b614527c990ce3ab2df0cf9c526eb1b2"
-        }
-      ]
-    },
-    {
-      "name": "releaseVariantReleaseRuntimePublication",
-      "attributes": {
-        "org.gradle.category": "library",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.libraryelements": "aar",
-        "org.gradle.usage": "java-runtime"
-      },
       "dependencies": [
         {
-          "group": "androidx.annotation",
-          "module": "annotation",
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
           "version": {
-            "requires": "1.2.0"
+            "requires": "1.8.22"
           }
         }
       ],
@@ -105,11 +75,57 @@
         {
           "name": "tracing-1.3.0-alpha02.aar",
           "url": "tracing-1.3.0-alpha02.aar",
-          "size": 9000,
-          "sha512": "c61ed92b3eafb388ca4e6ca40a19ef2d2a18c0dc8a339224023cb0a8466d3e4f189176210b19b5075560d983ecf0583551ea86ab2d108ce5fdf72ae222fd416f",
-          "sha256": "ed6d9ea06abab1621128fe912aae51c40d01f39b613a78f90c050fa814e292b8",
-          "sha1": "5ad05d118f8232bb37530ca4da7c7171aa249ad5",
-          "md5": "b614527c990ce3ab2df0cf9c526eb1b2"
+          "size": 14203,
+          "sha512": "944495d0492251bfafa939c8d4a2c832e18a75b7e9bc3fbd2edfc8875b64ac323898176273af6a79a27c269f2ba2027df0f85e218e5748c62d09c36bb7ab907c",
+          "sha256": "c5e58c953431a1d264f0d616148607f89bd1d43b071a96f133ffaa1c943e110c",
+          "sha1": "23efdf9c051f5993ca94b26050ee0b81981ced44",
+          "md5": "a27570d452575f6fafe79a5fec38f723"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.8.22"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.tracing",
+          "module": "tracing-ktx",
+          "version": {
+            "requires": "1.3.0-alpha02"
+          },
+          "reason": "tracing is in atomic group androidx.tracing"
+        }
+      ],
+      "files": [
+        {
+          "name": "tracing-1.3.0-alpha02.aar",
+          "url": "tracing-1.3.0-alpha02.aar",
+          "size": 14203,
+          "sha512": "944495d0492251bfafa939c8d4a2c832e18a75b7e9bc3fbd2edfc8875b64ac323898176273af6a79a27c269f2ba2027df0f85e218e5748c62d09c36bb7ab907c",
+          "sha256": "c5e58c953431a1d264f0d616148607f89bd1d43b071a96f133ffaa1c943e110c",
+          "sha1": "23efdf9c051f5993ca94b26050ee0b81981ced44",
+          "md5": "a27570d452575f6fafe79a5fec38f723"
         }
       ]
     },
@@ -134,11 +150,11 @@
         {
           "name": "tracing-1.3.0-alpha02-versionMetadata.json",
           "url": "tracing-1.3.0-alpha02-versionMetadata.json",
-          "size": 486,
-          "sha512": "79982aae27cb4810b2a3ec60ba72d8cf90826fcf05a249a1fdb8d2e4178535335d51ee6c70c8741eb9cc910014f79685caa3ba72e14d34dbbdb69bd4d9e6b871",
-          "sha256": "158b9e371bff484ef0cde9d03e02896a3c31b380024948a45f881ec24407d1da",
-          "sha1": "43c9aca539d72d33534f759e73179b2d8274fbf8",
-          "md5": "e556b0f2b9f36f0bf0066524a73d390e"
+          "size": 1269,
+          "sha512": "a28921f620ac259d2a5824c2295bdcc7395f5f6468338376bb483254304aa4d94e1d8162f60f3666d232686003763f51ccf3990a24535aa9ebebd830ff53570f",
+          "sha256": "30b299a957254ec3bcb248125720a840043e0005048a01951ae6020f835dbd46",
+          "sha1": "b83d1a52392515a944f804ca477afc185139b255",
+          "md5": "7f12ca2070b8bd20cac77ab9d0936ac5"
         }
       ]
     }
