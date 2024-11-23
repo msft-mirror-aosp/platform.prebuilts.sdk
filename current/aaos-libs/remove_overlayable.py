@@ -16,6 +16,17 @@
 from argparse import ArgumentParser as AP
 from zipfile import ZipFile, ZIP_DEFLATED
 import xml.etree.ElementTree as ET
+import re
+
+# Finds the <overlayable> element in the xml file and removes it
+# Returns the pruned XML tree as a String
+def remove_overlayables(file):
+    values = ET.parse(file)
+    resources = values.getroot()
+    overlayable = resources.find('overlayable')
+    if overlayable is not None:
+        resources.remove(overlayable)
+    return ET.tostring(resources, encoding='unicode', xml_declaration=True)
 
 def main():
     parser = AP(description='This tool takes an AAR and removes the <overlayable> resources')
@@ -23,25 +34,20 @@ def main():
     parser.add_argument('soong_aar')
     args = parser.parse_args()
     values_path = 'res/values/values.xml'
+    overlayables_path = 'res\/values\/overlayable[0-9].xml'
     print("input aar: " + args.soong_aar)
 
     with ZipFile(args.output, mode='w', compression=ZIP_DEFLATED) as outaar, ZipFile(args.soong_aar) as soongaar:
-        # Parse XML, remove <overlayable>, and write to file
-        try:
-            file = soongaar.open(values_path)
-            values = ET.parse(file)
-            resources = values.getroot()
-            overlayable = resources.find('overlayable')
-            if overlayable is not None:
-                resources.remove(overlayable)
-            data = ET.tostring(resources, encoding='unicode', xml_declaration=True)
-            outaar.writestr(values_path, data)
-        except KeyError:
-            print("Could not find values.xml, skipping removal of overlayables")
-
-        # copy all the other files
         for f in soongaar.namelist():
-            if f != values_path:
+            if f == values_path or re.search(overlayables_path, f):
+                print("Found resource file " + f)
+                try:
+                    file = soongaar.open(f)
+                    xml = remove_overlayables(file)
+                    outaar.writestr(f, xml)
+                except KeyError:
+                    print("Could not find overlayables in " + f)
+            else:
                 outaar.writestr(f, soongaar.read(f))
 
 if __name__ == "__main__":
