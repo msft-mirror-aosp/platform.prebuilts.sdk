@@ -53,7 +53,7 @@ genrule {
     srcs: ["current/androidx-api.txt"],
     out: ["androidx-api.xml"],
     tools: ["metalava"],
-    cmd: "$(location metalava) signature-to-jdiff $(in) $(out)"
+    cmd: "$(location metalava) signature-to-jdiff $(in) $(out)",
 }
 
 filegroup {
@@ -128,6 +128,7 @@ prebuilt_apis {
         "33",
         "34",
         "35",
+        "36",
         "current",
     ],
     extensions_dir: "extensions",
