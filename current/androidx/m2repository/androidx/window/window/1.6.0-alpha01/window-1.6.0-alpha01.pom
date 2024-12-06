@@ -60,9 +60,26 @@
         <artifactId>window-testing</artifactId>
         <version>1.6.0-alpha01</version>
       </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib</artifactId>
+        <version>1.9.24</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>androidx.window</groupId>
+      <artifactId>window-core</artifactId>
+      <version>[1.6.0-alpha01]</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.collection</groupId>
+      <artifactId>collection</artifactId>
+      <version>1.4.2</version>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
       <groupId>androidx.core</groupId>
       <artifactId>core</artifactId>
@@ -71,15 +88,14 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>androidx.window</groupId>
-      <artifactId>window-core</artifactId>
-      <version>[1.6.0-alpha01]</version>
-      <scope>runtime</scope>
+      <groupId>org.jspecify</groupId>
+      <artifactId>jspecify</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>1.8.22</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -92,12 +108,6 @@
       <groupId>androidx.annotation</groupId>
       <artifactId>annotation</artifactId>
       <version>1.8.1</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.collection</groupId>
-      <artifactId>collection</artifactId>
-      <version>1.4.2</version>
       <scope>runtime</scope>
     </dependency>
   </dependencies>
