@@ -115,11 +115,6 @@
         <artifactId>room-rxjava3</artifactId>
         <version>2.7.0-alpha12</version>
       </dependency>
-      <dependency>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-stdlib</artifactId>
-        <version>1.9.24</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -138,7 +133,7 @@
     </dependency>
     <dependency>
       <groupId>androidx.room</groupId>
-      <artifactId>room-migration</artifactId>
+      <artifactId>room-migration-jvm</artifactId>
       <version>[2.7.0-alpha12]</version>
       <scope>runtime</scope>
     </dependency>
@@ -150,15 +145,16 @@
     </dependency>
     <dependency>
       <groupId>androidx.room</groupId>
-      <artifactId>room-common</artifactId>
+      <artifactId>room-common-jvm</artifactId>
       <version>[2.7.0-alpha12]</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>androidx.room</groupId>
-      <artifactId>room-runtime</artifactId>
+      <artifactId>room-runtime-android</artifactId>
       <version>[2.7.0-alpha12]</version>
       <scope>compile</scope>
+      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -169,8 +165,8 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
+      <version>1.9.24</version>
       <scope>compile</scope>
-      <version>unspecified</version>
     </dependency>
   </dependencies>
 </project>
