@@ -738,6 +738,7 @@ android_library {
         "car-app-card-source",
         "androidx.annotation_annotation",
         "androidx.legacy_legacy-support-v4",
+        "libprotobuf-java-lite",
         "kotlin-stdlib",
         "kotlinx-coroutines-android",
     ],
@@ -745,12 +746,13 @@ android_library {
 
 android_library_import {
     name: "car-app-card-source",
-    aars: ["car-app-card-lib.aar"],
+    aars: ["car-app-card/car-app-card-lib.aar"],
     min_sdk_version: "31",
     sdk_version: "current",
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.legacy_legacy-support-v4",
+        "libprotobuf-java-lite",
         "kotlin-stdlib",
         "kotlinx-coroutines-android",
     ],
@@ -776,7 +778,7 @@ android_library {
 
 android_library_import {
     name: "car-app-card-host-source",
-    aars: ["car-app-card-host-lib.aar"],
+    aars: ["car-app-card-host/car-app-card-host-lib.aar"],
     min_sdk_version: "31",
     sdk_version: "current",
     static_libs: [
