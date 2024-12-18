@@ -11,7 +11,8 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.9"
+      "version": "8.11.1",
+      "buildId:": "12773825"
     }
   },
   "variants": [
@@ -19,6 +20,7 @@
       "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -123,11 +125,11 @@
         {
           "name": "paging-compose-release.aar",
           "url": "paging-compose-android-3.4.0-alpha01.aar",
-          "size": 29605,
-          "sha512": "3bfe166ca02c86ed31c9364b2e42e64d664597128ac9c8c51fe369d1aee66a810a19e27c9a0bfbd20ad8cbfb663a7491202a056f3d6e2551ad81d8217360751d",
-          "sha256": "dd4dfac281425746899f6e123ac2c7e2f252df2a2770d23dc5fc84de37f4d533",
-          "sha1": "d21c713b0abde0ecb699755280fdb11be0637b7c",
-          "md5": "27da416c5797909cbdb57864d30a5881"
+          "size": 30035,
+          "sha512": "f79d6d39656eb07c91d4d4c059d2b408027a6f9e127a46099616be913eee696e72b427d8621dcf4fc1b4815c1dc968a3ada0a317c4a6d92ccfe950323115b854",
+          "sha256": "e9f4fc4556fa3d31d31967446af2f3eb6eda6a469ac3abd17dd75a8178c7d118",
+          "sha1": "ad865d5ce3ebd88897557c5aef348e3a04ed3055",
+          "md5": "b0eef5b03c054dab02d10467542981c0"
         }
       ]
     },
@@ -135,6 +137,7 @@
       "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
@@ -205,9 +208,6 @@
         {
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
-          "version": {
-            "requires": "1.8.22"
-          },
           "excludes": [
             {
               "group": "org.jetbrains.kotlin",
@@ -296,17 +296,24 @@
             "requires": "3.4.0-alpha01"
           },
           "reason": "paging-compose is in atomic group androidx.paging"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.24"
+          }
         }
       ],
       "files": [
         {
           "name": "paging-compose-release.aar",
           "url": "paging-compose-android-3.4.0-alpha01.aar",
-          "size": 29605,
-          "sha512": "3bfe166ca02c86ed31c9364b2e42e64d664597128ac9c8c51fe369d1aee66a810a19e27c9a0bfbd20ad8cbfb663a7491202a056f3d6e2551ad81d8217360751d",
-          "sha256": "dd4dfac281425746899f6e123ac2c7e2f252df2a2770d23dc5fc84de37f4d533",
-          "sha1": "d21c713b0abde0ecb699755280fdb11be0637b7c",
-          "md5": "27da416c5797909cbdb57864d30a5881"
+          "size": 30035,
+          "sha512": "f79d6d39656eb07c91d4d4c059d2b408027a6f9e127a46099616be913eee696e72b427d8621dcf4fc1b4815c1dc968a3ada0a317c4a6d92ccfe950323115b854",
+          "sha256": "e9f4fc4556fa3d31d31967446af2f3eb6eda6a469ac3abd17dd75a8178c7d118",
+          "sha1": "ad865d5ce3ebd88897557c5aef348e3a04ed3055",
+          "md5": "b0eef5b03c054dab02d10467542981c0"
         }
       ]
     },
@@ -316,6 +323,7 @@
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "androidJvm"
