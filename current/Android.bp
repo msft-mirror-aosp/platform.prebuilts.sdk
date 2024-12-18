@@ -58,8 +58,8 @@ java_sdk_library_import {
         removed_api: "placeholder-api.txt",
     },
     libs: [
-        "android.test.base",
-        "android.test.mock",
+        "android.test.base.stubs.test",
+        "android.test.mock.stubs.test",
     ],
 }
 
@@ -350,4 +350,13 @@ filegroup {
     visibility: [
         "//art/tools/veridex",
     ],
+}
+
+//Create a library to expose "prebuilts/sdk/current/support/v7/appcompat/res" to other modules.
+android_library {
+    name: "sdk_current_support_v7_appcompat_res",
+    resource_dirs: [
+        "support/v7/appcompat/res",
+    ],
+    manifest: "support/manifests/android-support-v7-appcompat/AndroidManifest.xml",
 }

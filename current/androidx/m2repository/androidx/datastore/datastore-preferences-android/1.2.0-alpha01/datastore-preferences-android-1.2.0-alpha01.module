@@ -11,17 +11,19 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "8.10"
+      "version": "8.11.1",
+      "buildId:": "12773825"
     }
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "androidApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -40,10 +42,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
-          "version": {
-            "requires": "1.9.24"
-          }
+          "module": "kotlin-stdlib"
         },
         {
           "group": "org.jetbrains.kotlinx",
@@ -141,27 +140,35 @@
             "requires": "1.2.0-alpha01"
           },
           "reason": "datastore-preferences is in atomic group androidx.datastore"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.24"
+          }
         }
       ],
       "files": [
         {
-          "name": "datastore-preferences-release.aar",
+          "name": "datastore-preferences.aar",
           "url": "datastore-preferences-android-1.2.0-alpha01.aar",
-          "size": 21581,
-          "sha512": "eb20af23a9c06f0a897d58a330e618641790b08c259973f70a7cf585aa98061936355a7c5762832475348b1dcf5a06565882189f130aca790cbbcca8ffa4cc0f",
-          "sha256": "3c78a9e578d7c56a9fb6f4e97eac41e5091f862c4daa47d43bc668c9ec49328c",
-          "sha1": "efda3c19a48615dcb9abf146e94a0163a861e41d",
-          "md5": "ae0884089672577929cd7b3fe62b7b5e"
+          "size": 20812,
+          "sha512": "eb1ef57ef4331dc8570bde6bb02881d318705b28c6608d1dd150e5571ab43e7e4ac8eb2d1e7def177a5c683272257434242bef071d0331ffb039fe3fe41a3d3a",
+          "sha256": "8aa99332ecb36324d2949817ade1dd5c05be36b3237001b9fcbc7d90ba1fd625",
+          "sha1": "178337e3da95fdf770fc7acda48c3e508eadf992",
+          "md5": "f4ecd060f410356c31ab851eb8a61001"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "androidRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -169,84 +176,25 @@
           "module": "datastore",
           "version": {
             "requires": "1.2.0-alpha01"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "androidx.datastore",
           "module": "datastore-preferences-core",
           "version": {
             "requires": "1.2.0-alpha01"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
-          "version": {
-            "requires": "1.9.24"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          "module": "kotlin-stdlib"
         },
         {
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
             "requires": "1.7.3"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         }
       ],
       "dependencyConstraints": [
@@ -337,30 +285,37 @@
             "requires": "1.2.0-alpha01"
           },
           "reason": "datastore-preferences is in atomic group androidx.datastore"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.24"
+          }
         }
       ],
       "files": [
         {
-          "name": "datastore-preferences-release.aar",
+          "name": "datastore-preferences.aar",
           "url": "datastore-preferences-android-1.2.0-alpha01.aar",
-          "size": 21581,
-          "sha512": "eb20af23a9c06f0a897d58a330e618641790b08c259973f70a7cf585aa98061936355a7c5762832475348b1dcf5a06565882189f130aca790cbbcca8ffa4cc0f",
-          "sha256": "3c78a9e578d7c56a9fb6f4e97eac41e5091f862c4daa47d43bc668c9ec49328c",
-          "sha1": "efda3c19a48615dcb9abf146e94a0163a861e41d",
-          "md5": "ae0884089672577929cd7b3fe62b7b5e"
+          "size": 20812,
+          "sha512": "eb1ef57ef4331dc8570bde6bb02881d318705b28c6608d1dd150e5571ab43e7e4ac8eb2d1e7def177a5c683272257434242bef071d0331ffb039fe3fe41a3d3a",
+          "sha256": "8aa99332ecb36324d2949817ade1dd5c05be36b3237001b9fcbc7d90ba1fd625",
+          "sha1": "178337e3da95fdf770fc7acda48c3e508eadf992",
+          "md5": "f4ecd060f410356c31ab851eb8a61001"
         }
       ]
     },
     {
-      "name": "releaseSourcesElements-published",
+      "name": "androidSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "fake-sources",
+        "org.gradle.docstype": "sources",
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencyConstraints": [
         {
