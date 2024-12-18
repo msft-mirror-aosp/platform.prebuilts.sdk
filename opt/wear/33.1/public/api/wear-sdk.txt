@@ -1,0 +1,79 @@
+// Signature format: 2.0
+package com.google.wear {
+
+  public final class Sdk {
+  }
+
+  public static final class Sdk.VERSION {
+    method public static boolean isIncrementalRelease();
+  }
+
+}
+
+package com.google.wear.services.ambient {
+
+  public class AmbientComponentState {
+    method public static com.google.wear.services.ambient.AmbientComponentState.ActivityStateRegistry makeActivityStateRegistry();
+    method public static com.google.wear.services.ambient.AmbientComponentState.WatchFaceStateRegistry makeWatchFaceStateRegistry();
+  }
+
+  public static final class AmbientComponentState.ActivityStateRegistry {
+    method public void onPause();
+    method public void onResume();
+  }
+
+  public static final class AmbientComponentState.WatchFaceStateRegistry {
+    method public void onVisibilityChanged(boolean);
+  }
+
+  public class AmbientManager {
+    method public com.google.wear.services.ambient.AmbientManager.Controller createController(@NonNull android.content.Context, @NonNull com.google.wear.services.ambient.AmbientOptions);
+  }
+
+  @MainThread public static interface AmbientManager.AmbientComponentListener {
+    method public default void onEnterAmbient(com.google.wear.services.ambient.AmbientManager.ConfigurationDetails, boolean);
+    method public default void onExitAmbient();
+    method public default void onUpdateAmbient();
+  }
+
+  public static interface AmbientManager.AmbientTransitionFinishedNotifier {
+    method @MainThread public void notifyFinished();
+  }
+
+  public static interface AmbientManager.AmbientTransitionListener {
+    method @WorkerThread public void onCancelAmbientTransition(boolean);
+    method @MainThread public void onStartAmbientTransition(com.google.wear.services.ambient.AmbientManager.TransitionDetails, com.google.wear.services.ambient.AmbientManager.AmbientTransitionFinishedNotifier);
+  }
+
+  public static interface AmbientManager.ConfigurationDetails {
+    method public boolean isBurnInProtectionEnabled();
+    method public boolean isLowBitDepthEnabled();
+  }
+
+  public static final class AmbientManager.Controller {
+    method public void destroy();
+    method public int getAmbientSupportLevel();
+    method public boolean isAmbientSupportEnabled();
+    method public boolean isAutoResumeEnabled();
+    method public boolean isComponentInAmbient();
+    method public boolean isSystemInAmbient();
+    method public void setAmbientSupportLevel(int);
+  }
+
+  public static interface AmbientManager.TransitionDetails {
+    method public long getMaxTransitionDurationMillis();
+    method public int getTransitionDirection();
+    field public static final int TRANSIT_TO_AMBIENT = 1; // 0x1
+    field public static final int TRANSIT_TO_INTERACTIVE = 2; // 0x2
+  }
+
+  public final class AmbientOptions {
+    method public static com.google.wear.services.ambient.AmbientOptions makeActivityOptions(@NonNull android.app.Activity, @NonNull com.google.wear.services.ambient.AmbientComponentState.ActivityStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener, @Nullable com.google.wear.services.ambient.AmbientManager.AmbientTransitionListener);
+    method public static com.google.wear.services.ambient.AmbientOptions makeWatchFaceOptions(@NonNull android.content.ComponentName, @NonNull com.google.wear.services.ambient.AmbientComponentState.WatchFaceStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener, @Nullable com.google.wear.services.ambient.AmbientManager.AmbientTransitionListener);
+    field public static final int AMBIENT_SUPPORT_AUTORESUME_ONLY = 1; // 0x1
+    field public static final int AMBIENT_SUPPORT_NONE = 0; // 0x0
+    field public static final int AMBIENT_SUPPORT_TAKEOVER_DISPLAY = 2; // 0x2
+  }
+
+}
+
