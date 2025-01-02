@@ -16,7 +16,7 @@ package {
 
 android_library_import {
     name: "androidx.navigation_navigation-common",
-    aars: ["navigation-common-2.9.0-alpha04.aar"],
+    aars: ["navigation-common-android-2.9.0-alpha04.aar"],
     sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
@@ -26,13 +26,16 @@ android_library_import {
     manifest: "manifest/AndroidManifest.xml",
     static_libs: [
         "androidx.annotation_annotation",
-        "androidx.collection_collection-ktx",
+        "androidx.collection_collection",
         "androidx.core_core-ktx",
         "androidx.lifecycle_lifecycle-common",
+        "androidx.lifecycle_lifecycle-runtime",
         "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel",
         "androidx.lifecycle_lifecycle-viewmodel-ktx",
         "androidx.lifecycle_lifecycle-viewmodel-savedstate",
         "androidx.profileinstaller_profileinstaller",
+        "androidx.savedstate_savedstate",
         "androidx.savedstate_savedstate-ktx",
         "kotlin-stdlib",
         "kotlinx_serialization_core",
