@@ -7,7 +7,7 @@
   <!-- do_not_remove: published-with-gradle-metadata -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>androidx.navigation</groupId>
-  <artifactId>navigation-common</artifactId>
+  <artifactId>navigation-common-android</artifactId>
   <version>2.9.0-alpha04</version>
   <packaging>aar</packaging>
   <name>Navigation Common</name>
@@ -114,23 +114,108 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>androidx.lifecycle</groupId>
+      <artifactId>lifecycle-runtime-android</artifactId>
+      <version>2.9.0-alpha07</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.lifecycle</groupId>
+      <artifactId>lifecycle-viewmodel-savedstate-android</artifactId>
+      <version>2.9.0-alpha07</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.profileinstaller</groupId>
+      <artifactId>profileinstaller</artifactId>
+      <version>1.4.0</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
+      <type>aar</type>
+    </dependency>
+    <dependency>
+      <groupId>androidx.lifecycle</groupId>
+      <artifactId>lifecycle-runtime-ktx-android</artifactId>
+      <version>2.9.0-alpha07</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>androidx.annotation</groupId>
-      <artifactId>annotation</artifactId>
+      <artifactId>annotation-jvm</artifactId>
       <version>1.8.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>androidx.lifecycle</groupId>
-      <artifactId>lifecycle-viewmodel-ktx</artifactId>
+      <artifactId>lifecycle-common-jvm</artifactId>
       <version>2.9.0-alpha07</version>
       <scope>compile</scope>
-      <type>aar</type>
     </dependency>
     <dependency>
       <groupId>androidx.lifecycle</groupId>
-      <artifactId>lifecycle-viewmodel-savedstate</artifactId>
+      <artifactId>lifecycle-viewmodel-android</artifactId>
       <version>2.9.0-alpha07</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.savedstate</groupId>
+      <artifactId>savedstate-android</artifactId>
+      <version>1.3.0-alpha05</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>androidx.core</groupId>
+      <artifactId>core-ktx</artifactId>
+      <version>1.1.0</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
+      <type>aar</type>
+    </dependency>
+    <dependency>
+      <groupId>androidx.collection</groupId>
+      <artifactId>collection-jvm</artifactId>
+      <version>1.4.2</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>androidx.savedstate</groupId>
@@ -143,44 +228,34 @@
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.collection</groupId>
-      <artifactId>collection-ktx</artifactId>
-      <version>1.4.2</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.profileinstaller</groupId>
-      <artifactId>profileinstaller</artifactId>
-      <version>1.4.0</version>
-      <scope>runtime</scope>
-      <type>aar</type>
+      <version>unspecified</version>
     </dependency>
     <dependency>
       <groupId>androidx.lifecycle</groupId>
-      <artifactId>lifecycle-runtime-ktx</artifactId>
+      <artifactId>lifecycle-viewmodel-ktx</artifactId>
       <version>2.9.0-alpha07</version>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.lifecycle</groupId>
-      <artifactId>lifecycle-common</artifactId>
-      <version>2.9.0-alpha07</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>androidx.core</groupId>
-      <artifactId>core-ktx</artifactId>
-      <version>1.1.0</version>
-      <scope>runtime</scope>
       <type>aar</type>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlinx</groupId>
-      <artifactId>kotlinx-serialization-core</artifactId>
+      <artifactId>kotlinx-serialization-core-jvm</artifactId>
       <version>1.6.3</version>
       <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test-annotations-common</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 </project>
