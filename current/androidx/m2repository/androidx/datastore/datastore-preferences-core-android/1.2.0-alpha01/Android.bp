@@ -14,15 +14,16 @@ package {
     default_applicable_licenses: ["prebuilts_sdk_license"],
 }
 
-java_import {
+android_library_import {
     name: "androidx.datastore_datastore-preferences-core",
-    jars: ["datastore-preferences-core-jvm-1.2.0-alpha01.jar"],
+    aars: ["datastore-preferences-core-android-1.2.0-alpha01.aar"],
     sdk_version: "34",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    min_sdk_version: "24",
+    min_sdk_version: "21",
+    manifest: "manifest/AndroidManifest.xml",
     static_libs: [
         "androidx.datastore_datastore-core",
         "androidx.datastore_datastore-core-okio",
