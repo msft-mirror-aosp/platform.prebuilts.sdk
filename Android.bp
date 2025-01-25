@@ -158,3 +158,12 @@ filegroup {
         "27/public/api/android.txt",
     ],
 }
+
+genrule {
+    name: "finalized-flags",
+    srcs: [
+        "*/finalized-flags.txt",
+    ],
+    out: ["latest-finalized-flags.txt"],
+    cmd: "cp `echo \"$(in)\" | sort -V | tail -n1` $(out)",
+}
