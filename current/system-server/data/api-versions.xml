@@ -73,6 +73,7 @@
 		<field name="BIND_ACCESSIBILITY_SERVICE" since="16"/>
 		<field name="BIND_AMBIENT_CONTEXT_DETECTION_SERVICE" since="33"/>
 		<field name="BIND_APPWIDGET" since="3"/>
+		<field name="BIND_APP_FUNCTION_SERVICE" since="36"/>
 		<field name="BIND_ATTENTION_SERVICE" since="29"/>
 		<field name="BIND_AUGMENTED_AUTOFILL_SERVICE" since="29"/>
 		<field name="BIND_AUTOFILL_SERVICE" since="26"/>
@@ -237,6 +238,8 @@
 		<field name="ENFORCE_UPDATE_OWNERSHIP" since="34"/>
 		<field name="ENTER_CAR_MODE_PRIORITIZED" since="30"/>
 		<field name="EXECUTE_APP_ACTION" since="34"/>
+		<field name="EXECUTE_APP_FUNCTIONS" since="36"/>
+		<field name="EXECUTE_APP_FUNCTIONS_TRUSTED" since="36"/>
 		<field name="EXEMPT_FROM_AUDIO_RECORD_RESTRICTIONS" since="30"/>
 		<field name="EXPAND_STATUS_BAR"/>
 		<field name="FACTORY_TEST"/>
@@ -2954,7 +2957,7 @@
 		<field name="config_longAnimTime"/>
 		<field name="config_mediumAnimTime"/>
 		<field name="config_shortAnimTime"/>
-		<field name="status_bar_notification_info_maxnum" since="14"/>
+		<field name="status_bar_notification_info_maxnum" since="14" deprecated="36"/>
 	</class>
 	<class name="android/R$interpolator" since="11">
 		<extends name="java/lang/Object"/>
@@ -3095,7 +3098,7 @@
 		<field name="search_go"/>
 		<field name="selectAll"/>
 		<field name="selectTextMode" since="11"/>
-		<field name="status_bar_notification_info_overflow" since="14"/>
+		<field name="status_bar_notification_info_overflow" since="14" deprecated="36"/>
 		<field name="unknownName"/>
 		<field name="untitled"/>
 		<field name="yes" deprecated="30"/>
@@ -10229,6 +10232,51 @@
 		<field name="STATUS_SUCCESS"/>
 		<field name="STATUS_UNKNOWN"/>
 	</class>
+	<class name="android/app/appfunctions/AppFunctionManager" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="executeAppFunction(Landroid/app/appfunctions/ExecuteAppFunctionRequest;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
+	</class>
+	<class name="android/app/appfunctions/AppFunctionService" since="36">
+		<extends name="android/app/Service"/>
+		<method name="&lt;init>()V"/>
+		<method name="onExecuteFunction(Landroid/app/appfunctions/ExecuteAppFunctionRequest;Ljava/util/function/Consumer;)V"/>
+		<field name="SERVICE_INTERFACE"/>
+	</class>
+	<class name="android/app/appfunctions/ExecuteAppFunctionRequest" since="36">
+		<extends name="java/lang/Object"/>
+		<implements name="android/os/Parcelable"/>
+		<method name="getExtras()Landroid/os/Bundle;"/>
+		<method name="getFunctionIdentifier()Ljava/lang/String;"/>
+		<method name="getParameters()Landroid/app/appsearch/GenericDocument;"/>
+		<method name="getTargetPackageName()Ljava/lang/String;"/>
+		<field name="CREATOR"/>
+	</class>
+	<class name="android/app/appfunctions/ExecuteAppFunctionRequest$Builder" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;)V"/>
+		<method name="build()Landroid/app/appfunctions/ExecuteAppFunctionRequest;"/>
+		<method name="setExtras(Landroid/os/Bundle;)Landroid/app/appfunctions/ExecuteAppFunctionRequest$Builder;"/>
+		<method name="setParameters(Landroid/app/appsearch/GenericDocument;)Landroid/app/appfunctions/ExecuteAppFunctionRequest$Builder;"/>
+	</class>
+	<class name="android/app/appfunctions/ExecuteAppFunctionResponse" since="36">
+		<extends name="java/lang/Object"/>
+		<implements name="android/os/Parcelable"/>
+		<method name="getErrorMessage()Ljava/lang/String;"/>
+		<method name="getExtras()Landroid/os/Bundle;"/>
+		<method name="getResultCode()I"/>
+		<method name="getResultDocument()Landroid/app/appsearch/GenericDocument;"/>
+		<method name="isSuccess()Z"/>
+		<method name="newFailure(ILjava/lang/String;Landroid/os/Bundle;)Landroid/app/appfunctions/ExecuteAppFunctionResponse;"/>
+		<method name="newSuccess(Landroid/app/appsearch/GenericDocument;Landroid/os/Bundle;)Landroid/app/appfunctions/ExecuteAppFunctionResponse;"/>
+		<field name="CREATOR"/>
+		<field name="PROPERTY_RETURN_VALUE"/>
+		<field name="RESULT_APP_UNKNOWN_ERROR"/>
+		<field name="RESULT_DENIED"/>
+		<field name="RESULT_INTERNAL_ERROR"/>
+		<field name="RESULT_INVALID_ARGUMENT"/>
+		<field name="RESULT_OK"/>
+		<field name="RESULT_TIMED_OUT"/>
+	</class>
 	<class name="android/app/assist/ActivityId" since="31">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable" since="33"/>
@@ -15457,6 +15505,7 @@
 		<field name="ALARM_SERVICE"/>
 		<field name="AMBIENT_CONTEXT_SERVICE" since="33"/>
 		<field name="APPWIDGET_SERVICE" since="21"/>
+		<field name="APP_FUNCTION_SERVICE" since="36"/>
 		<field name="APP_HIBERNATION_SERVICE" since="31"/>
 		<field name="APP_INTEGRITY_SERVICE" since="30"/>
 		<field name="APP_OPS_SERVICE" since="19"/>
@@ -16915,6 +16964,7 @@
 		<field name="COLOR_MODE_DEFAULT" since="26"/>
 		<field name="COLOR_MODE_HDR" since="26"/>
 		<field name="COLOR_MODE_WIDE_COLOR_GAMUT" since="26"/>
+		<field name="CONFIG_ASSETS_PATHS" since="36"/>
 		<field name="CONFIG_COLOR_MODE" since="26"/>
 		<field name="CONFIG_DENSITY" since="17"/>
 		<field name="CONFIG_FONT_SCALE"/>
@@ -16928,6 +16978,7 @@
 		<field name="CONFIG_MNC"/>
 		<field name="CONFIG_NAVIGATION"/>
 		<field name="CONFIG_ORIENTATION"/>
+		<field name="CONFIG_RESOURCES_UNUSED" since="36"/>
 		<field name="CONFIG_SCREEN_LAYOUT" since="4"/>
 		<field name="CONFIG_SCREEN_SIZE" since="13"/>
 		<field name="CONFIG_SMALLEST_SCREEN_SIZE" since="13"/>
@@ -19809,6 +19860,22 @@
 		<method name="getProviderId()Ljava/lang/String;"/>
 		<method name="sendUserSelectionResult(Landroid/os/ResultReceiver;Landroid/credentials/selection/UserSelectionResult;)V"/>
 	</class>
+	<class name="android/crypto/hpke/AeadParameterSpec" since="36">
+		<extends name="java/security/spec/NamedParameterSpec"/>
+		<field name="AES_128_GCM"/>
+		<field name="AES_256_GCM"/>
+		<field name="CHACHA20POLY1305"/>
+	</class>
+	<class name="android/crypto/hpke/Hpke" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="getInstance(Ljava/lang/String;)Landroid/crypto/hpke/Hpke;"/>
+		<method name="getInstance(Ljava/lang/String;Ljava/lang/String;)Landroid/crypto/hpke/Hpke;"/>
+		<method name="getInstance(Ljava/lang/String;Ljava/security/Provider;)Landroid/crypto/hpke/Hpke;"/>
+		<method name="getProvider()Ljava/security/Provider;"/>
+		<method name="getSuiteName(Landroid/crypto/hpke/KemParameterSpec;Landroid/crypto/hpke/KdfParameterSpec;Landroid/crypto/hpke/AeadParameterSpec;)Ljava/lang/String;"/>
+		<method name="open(Ljava/security/PrivateKey;[BLandroid/crypto/hpke/Message;[B)[B"/>
+		<method name="seal(Ljava/security/PublicKey;[B[B[B)Landroid/crypto/hpke/Message;"/>
+	</class>
 	<class name="android/crypto/hpke/HpkeSpi" since="35">
 		<extends name="java/lang/Object"/>
 		<method name="engineExport(I[B)[B"/>
@@ -19818,6 +19885,57 @@
 		<method name="engineOpen([B[B)[B"/>
 		<method name="engineSeal([B[B)[B"/>
 		<method name="getEncapsulated()[B"/>
+	</class>
+	<class name="android/crypto/hpke/KdfParameterSpec" since="36">
+		<extends name="java/security/spec/NamedParameterSpec"/>
+		<field name="HKDF_SHA256"/>
+		<field name="HKDF_SHA384"/>
+		<field name="HKDF_SHA512"/>
+	</class>
+	<class name="android/crypto/hpke/KemParameterSpec" since="36">
+		<extends name="java/security/spec/NamedParameterSpec"/>
+		<field name="DHKEM_P256_HKDF_SHA256"/>
+		<field name="DHKEM_P384_HKDF_SHA384"/>
+		<field name="DHKEM_P521_HKDF_SHA256"/>
+		<field name="DHKEM_X25519_HKDF_SHA256"/>
+		<field name="DHKEM_X448_HKDF_SHA512"/>
+	</class>
+	<class name="android/crypto/hpke/Message" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="&lt;init>([B[B)V"/>
+		<method name="getCiphertext()[B"/>
+		<method name="getEncapsulated()[B"/>
+	</class>
+	<class name="android/crypto/hpke/Recipient" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="export(I[B)[B"/>
+		<method name="getProvider()Ljava/security/Provider;"/>
+		<method name="getSpi()Landroid/crypto/hpke/HpkeSpi;"/>
+		<method name="open([B[B)[B"/>
+	</class>
+	<class name="android/crypto/hpke/Recipient$Builder" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="&lt;init>(Landroid/crypto/hpke/Hpke;[BLjava/security/PrivateKey;)V"/>
+		<method name="build()Landroid/crypto/hpke/Recipient;"/>
+		<method name="setApplicationInfo([B)Landroid/crypto/hpke/Recipient$Builder;"/>
+		<method name="setPsk([B[B)Landroid/crypto/hpke/Recipient$Builder;"/>
+		<method name="setSenderKey(Ljava/security/PublicKey;)Landroid/crypto/hpke/Recipient$Builder;"/>
+	</class>
+	<class name="android/crypto/hpke/Sender" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="export(I[B)[B"/>
+		<method name="getEncapsulated()[B"/>
+		<method name="getProvider()Ljava/security/Provider;"/>
+		<method name="getSpi()Landroid/crypto/hpke/HpkeSpi;"/>
+		<method name="seal([B[B)[B"/>
+	</class>
+	<class name="android/crypto/hpke/Sender$Builder" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="&lt;init>(Landroid/crypto/hpke/Hpke;Ljava/security/PublicKey;)V"/>
+		<method name="build()Landroid/crypto/hpke/Sender;"/>
+		<method name="setApplicationInfo([B)Landroid/crypto/hpke/Sender$Builder;"/>
+		<method name="setPsk([B[B)Landroid/crypto/hpke/Sender$Builder;"/>
+		<method name="setSenderKey(Ljava/security/PrivateKey;)Landroid/crypto/hpke/Sender$Builder;"/>
 	</class>
 	<class name="android/crypto/hpke/XdhKeySpec" since="35">
 		<extends name="java/security/spec/EncodedKeySpec"/>
@@ -21509,6 +21627,7 @@
 		<field name="LINEAR_EXTENDED_SRGB"/>
 		<field name="LINEAR_SRGB"/>
 		<field name="NTSC_1953"/>
+		<field name="OK_LAB" since="36"/>
 		<field name="PRO_PHOTO_RGB"/>
 		<field name="SMPTE_C"/>
 		<field name="SRGB"/>
@@ -22267,7 +22386,7 @@
 		<method name="arcTo(Landroid/graphics/RectF;FF)V"/>
 		<method name="arcTo(Landroid/graphics/RectF;FFZ)V"/>
 		<method name="close()V"/>
-		<method name="computeBounds(Landroid/graphics/RectF;Z)V" deprecated="35"/>
+		<method name="computeBounds(Landroid/graphics/RectF;Z)V"/>
 		<method name="conicTo(FFFFF)V" since="34"/>
 		<method name="cubicTo(FFFFFF)V"/>
 		<method name="getFillType()Landroid/graphics/Path$FillType;"/>
@@ -47301,7 +47420,7 @@
 		<method name="makePacketSocketAddress(II[B)Ljava/net/SocketAddress;" since="30"/>
 		<method name="makePacketSocketAddress(I[B)Ljava/net/SocketAddress;" deprecated="30"/>
 	</class>
-	<class name="android/net/vcn/VcnCellUnderlyingNetworkTemplate" since="33">
+	<class name="android/net/vcn/VcnCellUnderlyingNetworkTemplate" since="33" removed="36">
 		<extends name="android/net/vcn/VcnUnderlyingNetworkTemplate"/>
 		<method name="getCbs()I" since="34"/>
 		<method name="getDun()I" since="34"/>
@@ -47314,7 +47433,7 @@
 		<method name="getRoaming()I"/>
 		<method name="getSimSpecificCarrierIds()Ljava/util/Set;"/>
 	</class>
-	<class name="android/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder" since="33">
+	<class name="android/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder" since="33" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate;"/>
@@ -47332,21 +47451,21 @@
 		<method name="setRoaming(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;"/>
 		<method name="setSimSpecificCarrierIds(Ljava/util/Set;)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;"/>
 	</class>
-	<class name="android/net/vcn/VcnConfig" since="31">
+	<class name="android/net/vcn/VcnConfig" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getGatewayConnectionConfigs()Ljava/util/Set;"/>
 		<method name="getRestrictedUnderlyingNetworkTransports()Ljava/util/Set;" since="34"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/net/vcn/VcnConfig$Builder" since="31">
+	<class name="android/net/vcn/VcnConfig$Builder" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/content/Context;)V"/>
 		<method name="addGatewayConnectionConfig(Landroid/net/vcn/VcnGatewayConnectionConfig;)Landroid/net/vcn/VcnConfig$Builder;"/>
 		<method name="build()Landroid/net/vcn/VcnConfig;"/>
 		<method name="setRestrictedUnderlyingNetworkTransports(Ljava/util/Set;)Landroid/net/vcn/VcnConfig$Builder;" since="34"/>
 	</class>
-	<class name="android/net/vcn/VcnGatewayConnectionConfig" since="31">
+	<class name="android/net/vcn/VcnGatewayConnectionConfig" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="getExposedCapabilities()[I"/>
 		<method name="getGatewayConnectionName()Ljava/lang/String;"/>
@@ -47358,7 +47477,7 @@
 		<method name="isSafeModeEnabled()Z" since="35"/>
 		<field name="VCN_GATEWAY_OPTION_ENABLE_DATA_STALL_RECOVERY_WITH_MOBILITY" since="34"/>
 	</class>
-	<class name="android/net/vcn/VcnGatewayConnectionConfig$Builder" since="31">
+	<class name="android/net/vcn/VcnGatewayConnectionConfig$Builder" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;Landroid/net/ipsec/ike/IkeTunnelConnectionParams;)V"/>
 		<method name="addExposedCapability(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;"/>
@@ -47372,7 +47491,7 @@
 		<method name="setSafeModeEnabled(Z)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;" since="35"/>
 		<method name="setVcnUnderlyingNetworkPriorities(Ljava/util/List;)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;" since="33"/>
 	</class>
-	<class name="android/net/vcn/VcnManager" since="31">
+	<class name="android/net/vcn/VcnManager" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="addVcnNetworkPolicyChangeListener(Ljava/util/concurrent/Executor;Landroid/net/vcn/VcnManager$VcnNetworkPolicyChangeListener;)V"/>
 		<method name="applyVcnNetworkPolicy(Landroid/net/NetworkCapabilities;Landroid/net/LinkProperties;)Landroid/net/vcn/VcnNetworkPolicyResult;"/>
@@ -47390,24 +47509,24 @@
 		<field name="VCN_STATUS_CODE_NOT_CONFIGURED"/>
 		<field name="VCN_STATUS_CODE_SAFE_MODE"/>
 	</class>
-	<class name="android/net/vcn/VcnManager$VcnNetworkPolicyChangeListener" since="31">
+	<class name="android/net/vcn/VcnManager$VcnNetworkPolicyChangeListener" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="onPolicyChanged()V"/>
 	</class>
-	<class name="android/net/vcn/VcnManager$VcnStatusCallback" since="31">
+	<class name="android/net/vcn/VcnManager$VcnStatusCallback" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="onGatewayConnectionError(Ljava/lang/String;ILjava/lang/Throwable;)V"/>
 		<method name="onStatusChanged(I)V"/>
 	</class>
-	<class name="android/net/vcn/VcnNetworkPolicyResult" since="31">
+	<class name="android/net/vcn/VcnNetworkPolicyResult" since="31" removed="36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getNetworkCapabilities()Landroid/net/NetworkCapabilities;"/>
 		<method name="isTeardownRequested()Z"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/net/vcn/VcnUnderlyingNetworkTemplate" since="33">
+	<class name="android/net/vcn/VcnUnderlyingNetworkTemplate" since="33" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="getMetered()I"/>
 		<method name="getMinEntryDownstreamBandwidthKbps()I"/>
@@ -47418,11 +47537,11 @@
 		<field name="MATCH_FORBIDDEN"/>
 		<field name="MATCH_REQUIRED"/>
 	</class>
-	<class name="android/net/vcn/VcnWifiUnderlyingNetworkTemplate" since="33">
+	<class name="android/net/vcn/VcnWifiUnderlyingNetworkTemplate" since="33" removed="36">
 		<extends name="android/net/vcn/VcnUnderlyingNetworkTemplate"/>
 		<method name="getSsids()Ljava/util/Set;"/>
 	</class>
-	<class name="android/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder" since="33">
+	<class name="android/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder" since="33" removed="36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/net/vcn/VcnWifiUnderlyingNetworkTemplate;"/>
@@ -53230,6 +53349,7 @@
 		<field name="RELEASE_OR_PREVIEW_DISPLAY" since="33"/>
 		<field name="SDK" deprecated="15"/>
 		<field name="SDK_INT" since="4"/>
+		<field name="SDK_MINOR_INT" since="36"/>
 		<field name="SECURITY_PATCH" since="23"/>
 	</class>
 	<class name="android/os/Build$VERSION_CODES" since="4">
@@ -53947,6 +54067,21 @@
 	<class name="android/os/IInterface" since="1">
 		<extends name="java/lang/Object"/>
 		<method name="asBinder()Landroid/os/IBinder;"/>
+	</class>
+	<class name="android/os/IMmd" since="36">
+		<implements name="android/os/IInterface"/>
+		<method name="doZramMaintenance()V"/>
+	</class>
+	<class name="android/os/IMmd$Default" since="36">
+		<extends name="java/lang/Object"/>
+		<implements name="android/os/IMmd"/>
+		<method name="&lt;init>()V"/>
+	</class>
+	<class name="android/os/IMmd$Stub" since="36">
+		<extends name="android/os/Binder"/>
+		<implements name="android/os/IMmd"/>
+		<method name="&lt;init>()V"/>
+		<method name="asInterface(Landroid/os/IBinder;)Landroid/os/IMmd;"/>
 	</class>
 	<class name="android/os/IncidentManager" since="26">
 		<extends name="java/lang/Object"/>
@@ -55121,6 +55256,7 @@
 		<method name="resume()V"/>
 		<method name="setShouldSwitchSlotOnReboot(Ljava/lang/String;)V" since="33"/>
 		<method name="suspend()V"/>
+		<method name="triggerPostinstall(Ljava/lang/String;)V" since="36"/>
 		<method name="unbind()Z" since="27"/>
 		<method name="verifyPayloadMetadata(Ljava/lang/String;)Z" since="28"/>
 	</class>
@@ -67131,6 +67267,7 @@
 		<field name="PR_SET_DUMPABLE"/>
 		<field name="PR_SET_NO_NEW_PRIVS"/>
 		<field name="RLIMIT_NOFILE" since="31"/>
+		<field name="RLIMIT_RTPRIO" since="36"/>
 		<field name="RTMGRP_IPV4_IFADDR" since="31"/>
 		<field name="RTMGRP_NEIGH" since="29"/>
 		<field name="RT_SCOPE_HOST"/>
@@ -69794,6 +69931,7 @@
 	</class>
 	<class name="android/telephony/CarrierConfigManager$Gps" since="30">
 		<extends name="java/lang/Object"/>
+		<field name="KEY_ENABLE_NI_SUPL_MESSAGE_INJECTION_BOOL" since="36"/>
 		<field name="KEY_PERSIST_LPP_MODE_BOOL"/>
 		<field name="KEY_PREFIX"/>
 	</class>
@@ -80119,6 +80257,7 @@
 		<method name="getHdrCapabilities()Landroid/view/Display$HdrCapabilities;" since="24"/>
 		<method name="getHdrSdrRatio()F" since="34"/>
 		<method name="getHeight()I" deprecated="15"/>
+		<method name="getHighestHdrSdrRatio()F" since="36"/>
 		<method name="getMetrics(Landroid/util/DisplayMetrics;)V" deprecated="30"/>
 		<method name="getMode()Landroid/view/Display$Mode;" since="23"/>
 		<method name="getName()Ljava/lang/String;" since="17"/>
@@ -93693,6 +93832,12 @@
 		<method name="isDefined(I)Z"/>
 		<method name="isDigit(C)Z"/>
 		<method name="isDigit(I)Z"/>
+		<method name="isEmoji(I)Z" since="36"/>
+		<method name="isEmojiComponent(I)Z" since="36"/>
+		<method name="isEmojiModifier(I)Z" since="36"/>
+		<method name="isEmojiModifierBase(I)Z" since="36"/>
+		<method name="isEmojiPresentation(I)Z" since="36"/>
+		<method name="isExtendedPictographic(I)Z" since="36"/>
 		<method name="isHighSurrogate(C)Z"/>
 		<method name="isISOControl(C)Z"/>
 		<method name="isISOControl(I)Z"/>
@@ -93838,6 +93983,8 @@
 		<field name="ANCIENT_SYMBOLS" since="19"/>
 		<field name="ARABIC"/>
 		<field name="ARABIC_EXTENDED_A" since="26"/>
+		<field name="ARABIC_EXTENDED_B" since="36"/>
+		<field name="ARABIC_EXTENDED_C" since="36"/>
 		<field name="ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS" since="26"/>
 		<field name="ARABIC_PRESENTATION_FORMS_A"/>
 		<field name="ARABIC_PRESENTATION_FORMS_B"/>
@@ -93885,6 +94032,7 @@
 		<field name="CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E" since="34"/>
 		<field name="CJK_UNIFIED_IDEOGRAPHS_EXTENSION_F" since="34"/>
 		<field name="CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G" since="34"/>
+		<field name="CJK_UNIFIED_IDEOGRAPHS_EXTENSION_H" since="36"/>
 		<field name="COMBINING_DIACRITICAL_MARKS"/>
 		<field name="COMBINING_DIACRITICAL_MARKS_EXTENDED" since="34"/>
 		<field name="COMBINING_DIACRITICAL_MARKS_SUPPLEMENT" since="19"/>
@@ -93899,14 +94047,17 @@
 		<field name="CUNEIFORM_NUMBERS_AND_PUNCTUATION" since="19"/>
 		<field name="CURRENCY_SYMBOLS"/>
 		<field name="CYPRIOT_SYLLABARY"/>
+		<field name="CYPRO_MINOAN" since="36"/>
 		<field name="CYRILLIC"/>
 		<field name="CYRILLIC_EXTENDED_A" since="19"/>
 		<field name="CYRILLIC_EXTENDED_B" since="19"/>
 		<field name="CYRILLIC_EXTENDED_C" since="34"/>
+		<field name="CYRILLIC_EXTENDED_D" since="36"/>
 		<field name="CYRILLIC_SUPPLEMENTARY"/>
 		<field name="DESERET"/>
 		<field name="DEVANAGARI"/>
 		<field name="DEVANAGARI_EXTENDED" since="19"/>
+		<field name="DEVANAGARI_EXTENDED_A" since="36"/>
 		<field name="DINGBATS"/>
 		<field name="DIVES_AKURU" since="34"/>
 		<field name="DOGRA" since="34"/>
@@ -93925,6 +94076,7 @@
 		<field name="ETHIOPIC"/>
 		<field name="ETHIOPIC_EXTENDED" since="19"/>
 		<field name="ETHIOPIC_EXTENDED_A" since="19"/>
+		<field name="ETHIOPIC_EXTENDED_B" since="36"/>
 		<field name="ETHIOPIC_SUPPLEMENT" since="19"/>
 		<field name="GENERAL_PUNCTUATION"/>
 		<field name="GEOMETRIC_SHAPES"/>
@@ -93963,13 +94115,16 @@
 		<field name="IPA_EXTENSIONS"/>
 		<field name="JAVANESE" since="19"/>
 		<field name="KAITHI" since="19"/>
+		<field name="KAKTOVIK_NUMERALS" since="36"/>
 		<field name="KANA_EXTENDED_A" since="34"/>
+		<field name="KANA_EXTENDED_B" since="36"/>
 		<field name="KANA_SUPPLEMENT" since="19"/>
 		<field name="KANBUN"/>
 		<field name="KANGXI_RADICALS"/>
 		<field name="KANNADA"/>
 		<field name="KATAKANA"/>
 		<field name="KATAKANA_PHONETIC_EXTENSIONS"/>
+		<field name="KAWI" since="36"/>
 		<field name="KAYAH_LI" since="19"/>
 		<field name="KHAROSHTHI" since="19"/>
 		<field name="KHITAN_SMALL_SCRIPT" since="34"/>
@@ -93985,6 +94140,8 @@
 		<field name="LATIN_EXTENDED_C" since="19"/>
 		<field name="LATIN_EXTENDED_D" since="19"/>
 		<field name="LATIN_EXTENDED_E" since="34"/>
+		<field name="LATIN_EXTENDED_F" since="36"/>
+		<field name="LATIN_EXTENDED_G" since="36"/>
 		<field name="LEPCHA" since="19"/>
 		<field name="LETTERLIKE_SYMBOLS"/>
 		<field name="LIMBU"/>
@@ -94031,6 +94188,7 @@
 		<field name="MYANMAR_EXTENDED_A" since="19"/>
 		<field name="MYANMAR_EXTENDED_B" since="34"/>
 		<field name="NABATAEAN" since="34"/>
+		<field name="NAG_MUNDARI" since="36"/>
 		<field name="NANDINAGARI" since="34"/>
 		<field name="NEWA" since="34"/>
 		<field name="NEW_TAI_LUE" since="19"/>
@@ -94047,6 +94205,7 @@
 		<field name="OLD_SOGDIAN" since="34"/>
 		<field name="OLD_SOUTH_ARABIAN" since="19"/>
 		<field name="OLD_TURKIC" since="19"/>
+		<field name="OLD_UYGHUR" since="36"/>
 		<field name="OL_CHIKI" since="19"/>
 		<field name="OPTICAL_CHARACTER_RECOGNITION"/>
 		<field name="ORIYA"/>
@@ -94111,6 +94270,7 @@
 		<field name="TAKRI" since="26"/>
 		<field name="TAMIL"/>
 		<field name="TAMIL_SUPPLEMENT" since="34"/>
+		<field name="TANGSA" since="36"/>
 		<field name="TANGUT" since="34"/>
 		<field name="TANGUT_COMPONENTS" since="34"/>
 		<field name="TANGUT_SUPPLEMENT" since="34"/>
@@ -94120,15 +94280,18 @@
 		<field name="TIBETAN"/>
 		<field name="TIFINAGH" since="19"/>
 		<field name="TIRHUTA" since="34"/>
+		<field name="TOTO" since="36"/>
 		<field name="TRANSPORT_AND_MAP_SYMBOLS" since="19"/>
 		<field name="UGARITIC"/>
 		<field name="UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS"/>
 		<field name="UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED" since="19"/>
+		<field name="UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A" since="36"/>
 		<field name="VAI" since="19"/>
 		<field name="VARIATION_SELECTORS"/>
 		<field name="VARIATION_SELECTORS_SUPPLEMENT"/>
 		<field name="VEDIC_EXTENSIONS" since="19"/>
 		<field name="VERTICAL_FORMS" since="19"/>
+		<field name="VITHKUQI" since="36"/>
 		<field name="WANCHO" since="34"/>
 		<field name="WARANG_CITI" since="34"/>
 		<field name="YEZIDI" since="34"/>
@@ -94136,6 +94299,7 @@
 		<field name="YI_RADICALS"/>
 		<field name="YI_SYLLABLES"/>
 		<field name="ZANABAZAR_SQUARE" since="34"/>
+		<field name="ZNAMENNY_MUSICAL_NOTATION" since="36"/>
 	</class>
 	<class name="java/lang/Character$UnicodeScript" since="24">
 		<extends name="java/lang/Enum"/>
@@ -94171,6 +94335,7 @@
 		<field name="COPTIC"/>
 		<field name="CUNEIFORM"/>
 		<field name="CYPRIOT"/>
+		<field name="CYPRO_MINOAN" since="36"/>
 		<field name="CYRILLIC"/>
 		<field name="DESERET"/>
 		<field name="DEVANAGARI"/>
@@ -94204,6 +94369,7 @@
 		<field name="KAITHI"/>
 		<field name="KANNADA"/>
 		<field name="KATAKANA"/>
+		<field name="KAWI" since="36"/>
 		<field name="KAYAH_LI"/>
 		<field name="KHAROSHTHI"/>
 		<field name="KHITAN_SMALL_SCRIPT" since="34"/>
@@ -94238,6 +94404,7 @@
 		<field name="MULTANI" since="34"/>
 		<field name="MYANMAR"/>
 		<field name="NABATAEAN" since="34"/>
+		<field name="NAG_MUNDARI" since="36"/>
 		<field name="NANDINAGARI" since="34"/>
 		<field name="NEWA" since="34"/>
 		<field name="NEW_TAI_LUE"/>
@@ -94253,6 +94420,7 @@
 		<field name="OLD_SOGDIAN" since="34"/>
 		<field name="OLD_SOUTH_ARABIAN"/>
 		<field name="OLD_TURKIC"/>
+		<field name="OLD_UYGHUR" since="36"/>
 		<field name="OL_CHIKI"/>
 		<field name="ORIYA"/>
 		<field name="OSAGE" since="34"/>
@@ -94285,6 +94453,7 @@
 		<field name="TAI_VIET"/>
 		<field name="TAKRI" since="26"/>
 		<field name="TAMIL"/>
+		<field name="TANGSA" since="36"/>
 		<field name="TANGUT" since="34"/>
 		<field name="TELUGU"/>
 		<field name="THAANA"/>
@@ -94292,9 +94461,11 @@
 		<field name="TIBETAN"/>
 		<field name="TIFINAGH"/>
 		<field name="TIRHUTA" since="34"/>
+		<field name="TOTO" since="36"/>
 		<field name="UGARITIC"/>
 		<field name="UNKNOWN"/>
 		<field name="VAI"/>
+		<field name="VITHKUQI" since="36"/>
 		<field name="WANCHO" since="34"/>
 		<field name="WARANG_CITI" since="34"/>
 		<field name="YEZIDI" since="34"/>
@@ -94548,6 +94719,8 @@
 		<method name="&lt;init>(Ljava/lang/String;)V" deprecated="33"/>
 		<method name="compare(FF)I"/>
 		<method name="compareTo(Ljava/lang/Float;)I"/>
+		<method name="float16ToFloat(S)F" since="36"/>
+		<method name="floatToFloat16(F)S" since="36"/>
 		<method name="floatToIntBits(F)I"/>
 		<method name="floatToRawIntBits(F)I"/>
 		<method name="hashCode(F)I" since="24"/>
@@ -94654,8 +94827,10 @@
 		<method name="compare(II)I" since="19"/>
 		<method name="compareTo(Ljava/lang/Integer;)I"/>
 		<method name="compareUnsigned(II)I" since="26"/>
+		<method name="compress(II)I" since="36"/>
 		<method name="decode(Ljava/lang/String;)Ljava/lang/Integer;"/>
 		<method name="divideUnsigned(II)I" since="26"/>
+		<method name="expand(II)I" since="36"/>
 		<method name="getInteger(Ljava/lang/String;)Ljava/lang/Integer;"/>
 		<method name="getInteger(Ljava/lang/String;I)Ljava/lang/Integer;"/>
 		<method name="getInteger(Ljava/lang/String;Ljava/lang/Integer;)Ljava/lang/Integer;"/>
@@ -94729,8 +94904,10 @@
 		<method name="compare(JJ)I" since="19"/>
 		<method name="compareTo(Ljava/lang/Long;)I"/>
 		<method name="compareUnsigned(JJ)I" since="26"/>
+		<method name="compress(JJ)J" since="36"/>
 		<method name="decode(Ljava/lang/String;)Ljava/lang/Long;"/>
 		<method name="divideUnsigned(JJ)J" since="26"/>
+		<method name="expand(JJ)J" since="36"/>
 		<method name="getLong(Ljava/lang/String;)Ljava/lang/Long;"/>
 		<method name="getLong(Ljava/lang/String;J)Ljava/lang/Long;"/>
 		<method name="getLong(Ljava/lang/String;Ljava/lang/Long;)Ljava/lang/Long;"/>
@@ -95555,16 +95732,16 @@
 		<method name="&lt;init>(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;Ljava/lang/String;JZ)V" since="33"/>
 		<method name="&lt;init>(Ljava/lang/ThreadGroup;Ljava/lang/String;)V"/>
 		<method name="activeCount()I"/>
-		<method name="checkAccess()V"/>
-		<method name="countStackFrames()I" deprecated="15"/>
+		<method name="checkAccess()V" deprecated="36"/>
+		<method name="countStackFrames()I" deprecated="15" removed="36"/>
 		<method name="currentThread()Ljava/lang/Thread;"/>
-		<method name="destroy()V" deprecated="15"/>
+		<method name="destroy()V" deprecated="15" removed="36"/>
 		<method name="dumpStack()V"/>
 		<method name="enumerate([Ljava/lang/Thread;)I"/>
 		<method name="getAllStackTraces()Ljava/util/Map;"/>
 		<method name="getContextClassLoader()Ljava/lang/ClassLoader;"/>
 		<method name="getDefaultUncaughtExceptionHandler()Ljava/lang/Thread$UncaughtExceptionHandler;"/>
-		<method name="getId()J"/>
+		<method name="getId()J" deprecated="36"/>
 		<method name="getName()Ljava/lang/String;"/>
 		<method name="getPriority()I"/>
 		<method name="getStackTrace()[Ljava/lang/StackTraceElement;"/>
@@ -95578,11 +95755,12 @@
 		<method name="isAlive()Z"/>
 		<method name="isDaemon()Z"/>
 		<method name="isInterrupted()Z"/>
+		<method name="isVirtual()Z" since="36"/>
 		<method name="join()V"/>
 		<method name="join(J)V"/>
 		<method name="join(JI)V"/>
 		<method name="onSpinWait()V" since="33"/>
-		<method name="resume()V" deprecated="15"/>
+		<method name="resume()V" deprecated="15" removed="36"/>
 		<method name="setContextClassLoader(Ljava/lang/ClassLoader;)V"/>
 		<method name="setDaemon(Z)V"/>
 		<method name="setDefaultUncaughtExceptionHandler(Ljava/lang/Thread$UncaughtExceptionHandler;)V"/>
@@ -95594,8 +95772,9 @@
 		<method name="sleep(JI)V"/>
 		<method name="start()V"/>
 		<method name="stop()V" deprecated="15"/>
-		<method name="stop(Ljava/lang/Throwable;)V" deprecated="15"/>
-		<method name="suspend()V" deprecated="15"/>
+		<method name="stop(Ljava/lang/Throwable;)V" deprecated="15" removed="36"/>
+		<method name="suspend()V" deprecated="15" removed="36"/>
+		<method name="threadId()J" since="36"/>
 		<method name="yield()V"/>
 		<field name="MAX_PRIORITY"/>
 		<field name="MIN_PRIORITY"/>
@@ -96394,6 +96573,11 @@
 	<class name="java/lang/runtime/ObjectMethods" since="34">
 		<extends name="java/lang/Object"/>
 		<method name="bootstrap(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/TypeDescriptor;Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/Object;"/>
+	</class>
+	<class name="java/lang/runtime/SwitchBootstraps" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="enumSwitch(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"/>
+		<method name="typeSwitch(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"/>
 	</class>
 	<class name="java/math/BigDecimal" since="1">
 		<extends name="java/lang/Number"/>
