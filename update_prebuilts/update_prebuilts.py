@@ -885,55 +885,6 @@ def update_gmaven(gmaven_artifacts_list):
     return [artifact.key for artifact in artifacts]
 
 
-def update_androidx(target, build_id, local_file, include, exclude, beyond_corp):
-    """Fetches and extracts Jetpack library prebuilts.
-
-    Args:
-        target: Android build server target name, must be specified if local_file is empty
-        build_id: Optional Android build server ID, must be specified if local_file is empty
-        local_file: Optional local top-of-tree ZIP, must be specified if build_id is empty
-        include: List of Maven groupIds or unversioned artifact coordinates to include for
-                 updates, ex. android.core or androidx.core:core
-        exclude: List of Maven groupIds or unversioned artifact coordinates to exclude from
-                 updates, ex. android.core or androidx.core:core
-        beyond_corp: Whether to use BeyondCorp-compatible artifact fetcher
-    Returns:
-        True if successful, false otherwise.
-    """
-    if build_id:
-        repo_file = 'top-of-tree-m2repository-all-%s.zip' % build_id.fs_id
-        repo_dir = fetch_and_extract(target, build_id.url_id, repo_file, beyond_corp, None)
-    else:
-        repo_dir = fetch_and_extract(target, None, None, beyond_corp, local_file)
-    if not repo_dir:
-        print_e('Failed to extract AndroidX repository')
-        return False
-
-    prepend_path = os.path.relpath('update_prebuilts/prepend_androidx_license', start=temp_dir)
-
-    # Transform the repo archive into a Makefile-compatible format.
-    if not transform_maven_repos([repo_dir], androidx_dir, write_pom2bp_cmd=False,
-                                 extract_res=False, include=include, exclude=exclude,
-                                 prepend=prepend_path):
-        return False
-
-    # Import JavaPlugins.bp in Android.bp.
-    makefile = os.path.join(androidx_dir, 'Android.bp')
-    with open(makefile, 'a+') as f:
-        f.write('\nbuild = ["JavaPlugins.bp"]\n')
-
-    # Keep OWNERs file, JavaPlugins.bp file, and TEST_MAPPING files untouched.
-    files_to_restore = [androidx_owners, java_plugins_bp_path, test_mapping_file,
-                        drop_config_toml, compose_test_mapping_file]
-    for file_to_restore in files_to_restore:
-        # Ignore any output or error - these files are not gauranteed to exist, but
-        # if they do, we want to restore them.
-        subprocess.call(['git', 'restore', file_to_restore],
-                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-    return True
-
-
 def update_jetifier(target, build_id, beyond_corp):
     """
     Fetches and extracts Jetifier tool prebuilts.
@@ -1208,10 +1159,6 @@ def main():
         '-b', '--buildtools', action='store_true',
         help='If specified, updates only the Build Tools')
     parser.add_argument(
-        '-x', '--androidx', action='store_true',
-        help='If specified, updates only the Jetpack (androidx) libraries excluding those covered by '
-             'other arguments')
-    parser.add_argument(
         '--include', action='append', default=[],
         help='If specified with -x, includes the specified Jetpack library Maven group or artifact for '
              'updates. Applied before exclude.')
@@ -1238,12 +1185,12 @@ def main():
 
     # Validate combinations of arguments.
     if not args.source and (args.platform or args.buildtools or args.jetifier
-                            or args.androidx or args.material or args.finalize_sdk
+                            or args.material or args.finalize_sdk
                             or args.constraint):
         parser.error('You must specify a build ID or local Maven ZIP file')
         sys.exit(1)
     if not (args.gmaven or args.platform or args.buildtools or args.jetifier
-            or args.androidx or args.material or args.finalize_sdk
+            or args.material or args.finalize_sdk
             or args.finalize_extension or args.constraint):
         parser.error('You must specify at least one target to update')
         sys.exit(1)
@@ -1258,7 +1205,7 @@ def main():
         sys.exit(1)
 
     # Validate the build environment for POM-dependent targets.
-    if (args.constraint or args.material or args.androidx or args.gmaven) \
+    if (args.constraint or args.material or args.gmaven) \
             and which('pom2bp') is None:
         parser.error('Cannot find pom2bp in path; please run lunch to set up build environment. '
                      'You may also need to run \'m pom2bp\' if it hasn\'t been built already.')
@@ -1321,13 +1268,6 @@ def main():
                 components.append('\n'.join(updated_artifacts))
             else:
                 print_e('Failed to update GMaven, aborting...')
-                sys.exit(1)
-        if args.androidx:
-            if update_androidx('androidx', build_id, file, args.include, args.exclude,
-                               args.beyond_corp):
-                components.append('AndroidX')
-            else:
-                print_e('Failed to update AndroidX, aborting...')
                 sys.exit(1)
         if args.jetifier:
             if update_jetifier('androidx', build_id, args.beyond_corp):
