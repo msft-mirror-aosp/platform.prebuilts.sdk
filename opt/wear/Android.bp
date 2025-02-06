@@ -33,6 +33,7 @@ prebuilt_apis {
         "33.4",
         "34.1",
         "35.1",
+        "36.0",
         "current",
     ],
 }
@@ -40,4 +41,13 @@ prebuilt_apis {
 droiddoc_exported_dir {
     name: "wear-sdk-dir",
     path: ".",
+}
+
+genrule {
+    name: "latest-finalized-wear-flags",
+    srcs: [
+        "*/finalized-flags.txt",
+    ],
+    out: ["latest-finalized-flags.txt"],
+    cmd: "cp `echo \"$(in)\" | sort -V | tail -n1` $(out)",
 }
