@@ -1,0 +1,28 @@
+// Signature format: 2.0
+package android.net {
+
+  public final class ConnectivityFrameworkInitializerBaklava {
+    method public static void registerServiceWrappers();
+  }
+
+}
+
+package android.net.vcn {
+
+  public final class VcnTransportInfo implements android.os.Parcelable android.net.TransportInfo {
+    method public int describeContents();
+    method public long getApplicableRedactions();
+    method public int getMinUdpPort4500NatTimeoutSeconds();
+    method @NonNull public android.net.TransportInfo makeCopy(long);
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.net.vcn.VcnTransportInfo> CREATOR;
+  }
+
+  public static final class VcnTransportInfo.Builder {
+    ctor public VcnTransportInfo.Builder();
+    method @NonNull public android.net.vcn.VcnTransportInfo build();
+    method @NonNull public android.net.vcn.VcnTransportInfo.Builder setMinUdpPort4500NatTimeoutSeconds(@IntRange(from=0x78) int);
+  }
+
+}
+
