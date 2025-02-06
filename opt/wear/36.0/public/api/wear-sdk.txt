@@ -1,0 +1,610 @@
+// Signature format: 2.0
+package com.google.wear {
+
+  public final class Sdk {
+    method @Deprecated @Nullable public static <T> T getWearManager(@NonNull Class<T>);
+    method @Nullable public static <T> T getWearManager(@NonNull android.content.Context, @NonNull Class<T>);
+    method public static boolean hasApiFeature(String);
+    method public static boolean isApiVersionAtLeast(@NonNull com.google.wear.WearApiVersion);
+    field public static final String FEATURE_WEAR_GESTURE_DETECTION = "com.google.wear.feature.GESTURE_DETECTION";
+    field public static final String FEATURE_WEAR_MATERIAL_3 = "com.google.wear.feature.MATERIAL_3";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR1_API = "com.google.wear.api.T_QPR1";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR2_API = "com.google.wear.api.T_QPR2";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR3_API = "com.google.wear.api.T_QPR3";
+    field @Deprecated public static final String FEATURE_WEAR_TIRAMISU_QPR4_API = "com.google.wear.api.T_QPR4";
+  }
+
+  public static final class Sdk.VERSION {
+    method public static boolean isIncrementalRelease();
+    field public static final int RELEASE;
+    field public static final int WEAR_SDK_INT;
+  }
+
+  public static final class Sdk.VERSION_CODES {
+    method @Nullable public static com.google.wear.WearApiVersion lookup(@NonNull String);
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_BAKLAVA_0;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_1;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_2;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_3;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_TIRAMISU_4;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_UDC_1;
+    field @NonNull public static final com.google.wear.WearApiVersion WEAR_VIC_1;
+  }
+
+  public final class WearApiVersion implements java.lang.Comparable<com.google.wear.WearApiVersion> {
+    method public int compareTo(@NonNull com.google.wear.WearApiVersion);
+  }
+
+}
+
+package com.google.wear.expression {
+
+  public final class ProtoLayoutDynamicFloat implements android.os.Parcelable {
+    method public int describeContents();
+    method @NonNull public static com.google.wear.expression.ProtoLayoutDynamicFloat fromBytes(@NonNull byte[]);
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<com.google.wear.expression.ProtoLayoutDynamicFloat> CREATOR;
+  }
+
+  public final class ProtoLayoutDynamicString implements android.os.Parcelable {
+    method public int describeContents();
+    method @NonNull public static com.google.wear.expression.ProtoLayoutDynamicString fromBytes(@NonNull byte[]);
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<com.google.wear.expression.ProtoLayoutDynamicString> CREATOR;
+  }
+
+}
+
+package com.google.wear.input {
+
+  public final class WearHapticFeedbackConstants {
+    method public static int getScrollItemFocus();
+    method public static int getScrollLimit();
+    method public static int getScrollTick();
+  }
+
+}
+
+package com.google.wear.modes {
+
+  public class AmbientMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_DISPLAY_CONFIG) public void setConfigured(boolean);
+  }
+
+  public class BatterySaverMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public void addActiveLevelListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Integer>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public int getActiveLevel();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public int getConfiguredLevel();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public boolean isOverridden();
+    method public void removeActiveLevelListener(@NonNull java.util.function.Consumer<java.lang.Integer>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_BATTERY_SAVER) public void setConfiguredLevel(int);
+    field public static final int BATTERY_SAVER_LEVEL_NORMAL = 1; // 0x1
+    field public static final int BATTERY_SAVER_LEVEL_OFF = 0; // 0x0
+  }
+
+  public class BedtimeMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public class DoNotDisturbMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public final class ModeManager {
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_DISPLAY_CONFIG) public com.google.wear.modes.AmbientMode getAmbientMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_BATTERY_SAVER) public com.google.wear.modes.BatterySaverMode getBatterySaverMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.BedtimeMode getBedtimeMode();
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.DoNotDisturbMode getDoNotDisturbMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.SchoolMode getSchoolMode();
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public com.google.wear.modes.TheaterMode getTheaterMode() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public com.google.wear.modes.TiltToWake getTiltToWake() throws java.lang.SecurityException;
+    method @Nullable @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public com.google.wear.modes.TouchLockMode getTouchLockMode() throws java.lang.SecurityException;
+    field public static final long FLAG_OVERRIDDEN_BY_BATTERY_SAVER_MODE = 8L; // 0x8L
+    field public static final long FLAG_OVERRIDDEN_BY_BEDTIME_MODE = 4L; // 0x4L
+    field public static final long FLAG_OVERRIDDEN_BY_SCHOOL_MODE = 32L; // 0x20L
+    field public static final long FLAG_OVERRIDDEN_BY_SCREEN_READER = 2L; // 0x2L
+    field public static final long FLAG_OVERRIDDEN_BY_THEATER_MODE = 16L; // 0x10L
+    field public static final long FLAG_OVERRIDDEN_BY_UNKNOWN_REASON = 1L; // 0x1L
+  }
+
+  public class SchoolMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public class TheaterMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_FOCUS_MODES) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_FOCUS_MODES) public void setConfigured(boolean);
+  }
+
+  public class TiltToWake {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_GESTURES_CONFIG) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_GESTURES_CONFIG) public void setConfigured(boolean);
+  }
+
+  public class TouchLockMode {
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public void addIsActiveListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public long getOverriddenReasons();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public boolean isActive();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public boolean isConfigured();
+    method @RequiresPermission(com.google.wear.services.Permissions.READ_TOUCH_LOCK) public boolean isOverridden();
+    method public void removeIsActiveListener(@NonNull java.util.function.Consumer<java.lang.Boolean>);
+    method @RequiresPermission(com.google.wear.services.Permissions.WRITE_TOUCH_LOCK) public void setConfigured(boolean);
+  }
+
+}
+
+package com.google.wear.services.ambient {
+
+  public class AmbientComponentState {
+    method public static com.google.wear.services.ambient.AmbientComponentState.ActivityStateRegistry makeActivityStateRegistry();
+    method public static com.google.wear.services.ambient.AmbientComponentState.WatchFaceStateRegistry makeWatchFaceStateRegistry();
+  }
+
+  public static final class AmbientComponentState.ActivityStateRegistry {
+    method public void onPause();
+    method public void onResume();
+  }
+
+  public static final class AmbientComponentState.WatchFaceStateRegistry {
+    method public void onVisibilityChanged(boolean);
+  }
+
+  public class AmbientManager {
+    method public com.google.wear.services.ambient.AmbientManager.Controller createController(@NonNull android.content.Context, @NonNull com.google.wear.services.ambient.AmbientOptions);
+  }
+
+  @MainThread public static interface AmbientManager.AmbientComponentListener {
+    method public default void onEnterAmbient(com.google.wear.services.ambient.AmbientManager.ConfigurationDetails, boolean);
+    method public default void onExitAmbient();
+    method public default void onUpdateAmbient();
+  }
+
+  public static interface AmbientManager.AmbientTransitionFinishedNotifier {
+    method @MainThread public void notifyFinished();
+  }
+
+  public static interface AmbientManager.AmbientTransitionListener {
+    method @WorkerThread public void onCancelAmbientTransition(boolean);
+    method @MainThread public void onStartAmbientTransition(com.google.wear.services.ambient.AmbientManager.TransitionDetails, com.google.wear.services.ambient.AmbientManager.AmbientTransitionFinishedNotifier);
+  }
+
+  public static interface AmbientManager.ConfigurationDetails {
+    method public boolean isBurnInProtectionEnabled();
+    method public boolean isLowBitDepthEnabled();
+  }
+
+  public static final class AmbientManager.Controller {
+    method public void destroy();
+    method public int getAmbientSupportLevel();
+    method public boolean isAmbientSupportEnabled();
+    method public boolean isAutoResumeEnabled();
+    method public boolean isComponentInAmbient();
+    method public boolean isSystemInAmbient();
+    method public void setAmbientSupportLevel(int);
+  }
+
+  public static interface AmbientManager.TransitionDetails {
+    method public long getMaxTransitionDurationMillis();
+    method public int getTransitionDirection();
+    field public static final int TRANSIT_TO_AMBIENT = 1; // 0x1
+    field public static final int TRANSIT_TO_INTERACTIVE = 2; // 0x2
+  }
+
+  public final class AmbientOptions {
+    method public static com.google.wear.services.ambient.AmbientOptions makeActivityOptions(@NonNull android.app.Activity, @NonNull com.google.wear.services.ambient.AmbientComponentState.ActivityStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener, @Nullable com.google.wear.services.ambient.AmbientManager.AmbientTransitionListener);
+    method public static com.google.wear.services.ambient.AmbientOptions makeWatchFaceOptions(@NonNull android.content.ComponentName, @NonNull com.google.wear.services.ambient.AmbientComponentState.WatchFaceStateRegistry, @NonNull com.google.wear.services.ambient.AmbientManager.AmbientComponentListener, @Nullable com.google.wear.services.ambient.AmbientManager.AmbientTransitionListener);
+    field public static final int AMBIENT_SUPPORT_AUTORESUME_ONLY = 1; // 0x1
+    field public static final int AMBIENT_SUPPORT_NONE = 0; // 0x0
+    field public static final int AMBIENT_SUPPORT_TAKEOVER_DISPLAY = 2; // 0x2
+  }
+
+}
+
+package com.google.wear.services.complications {
+
+  public final class ActiveComplicationConfig {
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig getConfig();
+    method public int getTargetWatchFaceSafety();
+  }
+
+  public final class ComplicationData implements android.os.Parcelable {
+    method public void clearTimelineEndEpochSecond();
+    method public void clearTimelineStartEpochSecond();
+    method public int describeContents();
+    method @Nullable public android.graphics.drawable.Icon getBurnInProtectionIcon();
+    method @Nullable public android.graphics.drawable.Icon getBurnInProtectionSmallImage();
+    method @ColorInt @NonNull public int[] getColorRamp();
+    method @Nullable public com.google.wear.services.complications.ComplicationText getContentDescription();
+    method @Nullable public android.content.ComponentName getDataSource();
+    method public int getDisplayPolicy();
+    method @ColorInt public int getElementBackgroundColor();
+    method @NonNull public int[] getElementColors();
+    method @NonNull public float[] getElementWeights();
+    method public long getEndDateTimeMillis();
+    method @NonNull public android.os.PersistableBundle getExtras();
+    method @Nullable public android.graphics.drawable.Icon getIcon();
+    method @Nullable public com.google.wear.services.complications.ComplicationData getInvalidatedData();
+    method @Nullable public android.graphics.drawable.Icon getLargeImage();
+    method @Nullable public com.google.wear.services.complications.ComplicationText getLongText();
+    method @Nullable public com.google.wear.services.complications.ComplicationText getLongTitle();
+    method public int getPersistencePolicy();
+    method @Nullable public com.google.wear.services.complications.ComplicationData getPlaceholder();
+    method @Nullable public com.google.wear.expression.ProtoLayoutDynamicFloat getRangedDynamicValue();
+    method public float getRangedMaxValue();
+    method public float getRangedMinValue();
+    method public float getRangedValue();
+    method public int getRangedValueType();
+    method @Nullable public com.google.wear.services.complications.ComplicationText getShortText();
+    method @Nullable public com.google.wear.services.complications.ComplicationText getShortTitle();
+    method @Nullable public android.graphics.drawable.Icon getSmallImage();
+    method public int getSmallImageStyle();
+    method public long getStartDateTimeMillis();
+    method @Nullable public android.app.PendingIntent getTapAction();
+    method public float getTargetValue();
+    method public long getTimelineEndEpochSecond();
+    method @NonNull public java.util.List<com.google.wear.services.complications.ComplicationData> getTimelineEntries();
+    method public long getTimelineStartEpochSecond();
+    method public int getType();
+    method public boolean hasBurnInProtectionIcon();
+    method public boolean hasBurnInProtectionSmallImage();
+    method public boolean hasColorRamp();
+    method public boolean hasContentDescription();
+    method public boolean hasDynamicValues();
+    method public boolean hasElementBackgroundColor();
+    method public boolean hasElementColors();
+    method public boolean hasElementWeights();
+    method public boolean hasExtras();
+    method public boolean hasIcon();
+    method public boolean hasInvalidatedData();
+    method public boolean hasIsColorRampInterpolated();
+    method public boolean hasLargeImage();
+    method public boolean hasLongText();
+    method public boolean hasLongTitle();
+    method public boolean hasPlaceholder();
+    method public boolean hasRangedDynamicValue();
+    method public boolean hasRangedMaxValue();
+    method public boolean hasRangedMinValue();
+    method public boolean hasRangedValue();
+    method public boolean hasRangedValueType();
+    method public boolean hasShortText();
+    method public boolean hasShortTitle();
+    method public boolean hasSmallImage();
+    method public boolean hasTapAction();
+    method public boolean hasTargetValue();
+    method public boolean hasTimelineEntries();
+    method public boolean isActiveAtMillis(long);
+    method public boolean isColorRampInterpolated();
+    method public boolean isTapActionLostDueToSerialization();
+    method public boolean isTimeDependent();
+    method public void stripExtras();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<com.google.wear.services.complications.ComplicationData> CREATOR;
+    field public static final int IMAGE_STYLE_ICON = 2; // 0x2
+    field public static final int IMAGE_STYLE_PHOTO = 1; // 0x1
+  }
+
+  public static final class ComplicationData.Builder {
+    ctor public ComplicationData.Builder(int, @NonNull java.util.Map<java.lang.String,java.lang.Object>);
+    ctor public ComplicationData.Builder(@NonNull com.google.wear.services.complications.ComplicationData);
+    ctor public ComplicationData.Builder(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationData build();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearColorRampInterpolated();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearEndDateTime();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearRangedMaxValue();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearRangedMinValue();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearRangedValue();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearStartDateTime();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder clearTargetValue();
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setBurnInProtectionIcon(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setBurnInProtectionSmallImage(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setColorRamp(@NonNull int[]);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setColorRampInterpolated(boolean);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setContentDescription(@Nullable com.google.wear.services.complications.ComplicationText);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setDataSource(@Nullable android.content.ComponentName);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setDisplayPolicy(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setElementBackgroundColor(@ColorInt int);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setElementColors(@NonNull int[]);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setElementWeights(@NonNull float[]);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setEndDateTimeMillis(long);
+    method @NonNull @RequiresPermission("com.google.wear.permission.SET_COMPLICATION_EXTRAS") public com.google.wear.services.complications.ComplicationData.Builder setExtras(@Nullable android.os.PersistableBundle);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setIcon(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setInvalidatedData(@Nullable com.google.wear.services.complications.ComplicationData);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setLargeImage(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setLongText(@Nullable com.google.wear.services.complications.ComplicationText);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setLongTitle(@Nullable com.google.wear.services.complications.ComplicationText);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setPersistencePolicy(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setPlaceholder(@Nullable com.google.wear.services.complications.ComplicationData);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setRangedDynamicValue(@NonNull com.google.wear.expression.ProtoLayoutDynamicFloat);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setRangedMaxValue(float);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setRangedMinValue(float);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setRangedValue(float);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setRangedValueType(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setShortText(@Nullable com.google.wear.services.complications.ComplicationText);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setShortTitle(@Nullable com.google.wear.services.complications.ComplicationText);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setSmallImage(@Nullable android.graphics.drawable.Icon);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setSmallImageStyle(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setStartDateTimeMillis(long);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setTapAction(@Nullable android.app.PendingIntent);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setTapActionLostDueToSerialization(boolean);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setTargetValue(@NonNull float);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setTimelineEndEpochSecond(long);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setTimelineEntries(@Nullable java.util.Collection<com.google.wear.services.complications.ComplicationData>);
+    method @NonNull public com.google.wear.services.complications.ComplicationData.Builder setTimelineStartEpochSecond(long);
+  }
+
+  public final class ComplicationSlotConfig {
+    method public int getDataType();
+    method public int getId();
+    method @Nullable public android.content.ComponentName getProviderComponent();
+    method @NonNull public com.google.wear.services.watchfaces.WatchFaceId getWatchFaceId();
+    method public int getWatchFaceSlotId();
+  }
+
+  public static final class ComplicationSlotConfig.Builder {
+    ctor public ComplicationSlotConfig.Builder(int, @NonNull com.google.wear.services.watchfaces.WatchFaceId, int);
+    ctor public ComplicationSlotConfig.Builder(@NonNull com.google.wear.services.complications.ComplicationSlotConfig);
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig build();
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig.Builder setDataType(int);
+    method @NonNull public com.google.wear.services.complications.ComplicationSlotConfig.Builder setProviderComponent(@Nullable android.content.ComponentName);
+  }
+
+  public interface ComplicationText {
+    method public default boolean isPlaceholder();
+  }
+
+  public final class ComplicationsManager {
+    method public void getActiveComplicationConfigsAsync(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.complications.ActiveComplicationConfig>,java.lang.Throwable>);
+    method public void updateComplication(int, @NonNull com.google.wear.services.complications.ComplicationData, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+  }
+
+  public class DynamicComplicationText implements com.google.wear.services.complications.ComplicationText {
+    ctor public DynamicComplicationText(@NonNull com.google.wear.expression.ProtoLayoutDynamicString);
+    method @NonNull public com.google.wear.expression.ProtoLayoutDynamicString getDynamicString();
+  }
+
+  public class PlainComplicationText implements com.google.wear.services.complications.ComplicationText {
+    ctor public PlainComplicationText(@NonNull CharSequence);
+    method @NonNull public static com.google.wear.services.complications.PlainComplicationText createPlaceholder();
+    method @NonNull public CharSequence getText();
+    method public boolean isAlwaysEmpty();
+    method public boolean isPlaceholder();
+  }
+
+  public final class TargetWatchFaceSafety {
+    field public static final int SAFE = 1; // 0x1
+    field public static final int UNKNOWN = 0; // 0x0
+    field public static final int UNSAFE = 2; // 0x2
+  }
+
+  public interface TimeDependentText extends com.google.wear.services.complications.ComplicationText {
+    method public long getNextChangeTimeMillis(long);
+    method public boolean returnsSameTextAt(long, long);
+  }
+
+  public final class TimeDifferenceComplicationText implements com.google.wear.services.complications.TimeDependentText {
+    method @Nullable public java.util.concurrent.TimeUnit getMinimumUnit();
+    method public long getNextChangeTimeMillis(long);
+    method public long getPrecisionMillis();
+    method public long getReferencePeriodEndMillis();
+    method public long getReferencePeriodStartMillis();
+    method public int getStyle();
+    method @Nullable public CharSequence getSurroundingText();
+    method public boolean isShowNowText();
+    method public boolean returnsSameTextAt(long, long);
+    field public static final int STYLE_SHORT_DUAL_UNIT = 3; // 0x3
+    field public static final int STYLE_SHORT_SINGLE_UNIT = 2; // 0x2
+    field public static final int STYLE_SHORT_WORDS_SINGLE_UNIT = 5; // 0x5
+    field public static final int STYLE_STOPWATCH = 1; // 0x1
+    field public static final int STYLE_WORDS_SINGLE_UNIT = 4; // 0x4
+  }
+
+  public static final class TimeDifferenceComplicationText.Builder {
+    ctor public TimeDifferenceComplicationText.Builder();
+    ctor public TimeDifferenceComplicationText.Builder(long, long);
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText build();
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText.Builder setMinimumUnit(@Nullable java.util.concurrent.TimeUnit);
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText.Builder setReferencePeriodEndMillis(long);
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText.Builder setReferencePeriodStartMillis(long);
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText.Builder setShowNowText(boolean);
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText.Builder setStyle(int);
+    method @NonNull public com.google.wear.services.complications.TimeDifferenceComplicationText.Builder setSurroundingText(@Nullable CharSequence);
+  }
+
+  public final class TimeFormatComplicationText implements com.google.wear.services.complications.TimeDependentText {
+    ctor public TimeFormatComplicationText(@Nullable CharSequence, @NonNull String, int, @Nullable android.icu.util.TimeZone);
+    method @NonNull public android.icu.text.SimpleDateFormat getFormat();
+    method @NonNull public String getFormatString();
+    method public long getNextChangeTimeMillis(long);
+    method public long getPrecisionMillis();
+    method public int getStyle();
+    method @Nullable public CharSequence getSurroundingText();
+    method @Nullable public android.icu.util.TimeZone getTimeZone();
+    method public boolean returnsSameTextAt(long, long);
+    field public static final int STYLE_DEFAULT = 1; // 0x1
+    field public static final int STYLE_LOWER_CASE = 3; // 0x3
+    field public static final int STYLE_UPPER_CASE = 2; // 0x2
+  }
+
+  public static final class TimeFormatComplicationText.Builder {
+    ctor public TimeFormatComplicationText.Builder();
+    method @NonNull public com.google.wear.services.complications.TimeFormatComplicationText build();
+    method @NonNull public com.google.wear.services.complications.TimeFormatComplicationText.Builder setFormat(@Nullable String);
+    method @NonNull public com.google.wear.services.complications.TimeFormatComplicationText.Builder setStyle(int);
+    method @NonNull public com.google.wear.services.complications.TimeFormatComplicationText.Builder setSurroundingText(@Nullable CharSequence);
+    method @NonNull public com.google.wear.services.complications.TimeFormatComplicationText.Builder setTimeZone(@Nullable android.icu.util.TimeZone);
+  }
+
+}
+
+package com.google.wear.services.remoteinteractions {
+
+  public final class RemoteInteractionsManager {
+    method public void registerRemoteActivityHelperStatusListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Integer>);
+    method public void registerRemoteAuthClientStatusListener(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Integer>);
+    method public void startRemoteActivity(@NonNull android.net.Uri, @NonNull java.util.List<java.lang.String>, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,java.lang.Throwable>);
+    method public void unregisterRemoteActivityHelperStatusListener(@NonNull java.util.function.Consumer<java.lang.Integer>);
+    method public void unregisterRemoteAuthClientStatusListener(@NonNull java.util.function.Consumer<java.lang.Integer>);
+    field public static final int STATUS_AVAILABLE = 3; // 0x3
+    field public static final int STATUS_TEMPORARILY_UNAVAILABLE = 2; // 0x2
+    field public static final int STATUS_UNAVAILABLE = 1; // 0x1
+    field public static final int STATUS_UNKNOWN = 0; // 0x0
+  }
+
+}
+
+package com.google.wear.services.tiles {
+
+  public class TileInstance {
+    method public int getId();
+    method @NonNull public com.google.wear.services.tiles.TileProvider getTileProvider();
+  }
+
+  public class TileProvider {
+    method @NonNull public android.content.ComponentName getComponentName();
+  }
+
+  public class TilesManager {
+    method public void getActiveTiles(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.util.List<com.google.wear.services.tiles.TileInstance>,java.lang.Exception>);
+  }
+
+}
+
+package com.google.wear.services.watchfaces {
+
+  public final class WatchFaceId {
+    ctor public WatchFaceId(@NonNull String, @NonNull String);
+    ctor public WatchFaceId(@NonNull String);
+    method @Nullable public String getClassName();
+    method @NonNull public String getPackageName();
+  }
+
+}
+
+package com.google.wear.services.watchfaces.watchfacepush {
+
+  public class ListWatchFaceSlotsResponse {
+    method public int getAvailableSlotCount();
+    method @NonNull public java.util.List<com.google.wear.services.watchfaces.watchfacepush.WatchFaceSlot> getInstalledWatchFaceSlots();
+  }
+
+  public final class WatchFacePushManager {
+    method @RequiresPermission("com.google.wear.permission.PUSH_WATCH_FACES") public void addWatchFace(@NonNull android.os.ParcelFileDescriptor, @NonNull String, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<com.google.wear.services.watchfaces.watchfacepush.WatchFaceSlot,com.google.wear.services.watchfaces.watchfacepush.WatchFacePushManager.AddException>);
+    method @RequiresPermission("com.google.wear.permission.PUSH_WATCH_FACES") public void isWatchFaceActive(@NonNull String, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Boolean,com.google.wear.services.watchfaces.watchfacepush.WatchFacePushManager.IsActiveException>);
+    method @RequiresPermission("com.google.wear.permission.PUSH_WATCH_FACES") public void listWatchFaceSlots(@NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<com.google.wear.services.watchfaces.watchfacepush.ListWatchFaceSlotsResponse,com.google.wear.services.watchfaces.watchfacepush.WatchFacePushManager.ListException>);
+    method @RequiresPermission("com.google.wear.permission.PUSH_WATCH_FACES") public void removeWatchFace(@NonNull String, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.watchfacepush.WatchFacePushManager.RemoveException>);
+    method @RequiresPermission(allOf={"com.google.wear.permission.PUSH_WATCH_FACES", "com.google.wear.permission.SET_PUSHED_WATCH_FACE_AS_ACTIVE"}) public void setWatchFaceAsActive(@NonNull String, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<java.lang.Void,com.google.wear.services.watchfaces.watchfacepush.WatchFacePushManager.SetActiveException>);
+    method @RequiresPermission("com.google.wear.permission.PUSH_WATCH_FACES") public void updateWatchFace(@NonNull String, @NonNull android.os.ParcelFileDescriptor, @NonNull String, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<com.google.wear.services.watchfaces.watchfacepush.WatchFaceSlot,com.google.wear.services.watchfaces.watchfacepush.WatchFacePushManager.UpdateException>);
+  }
+
+  public static class WatchFacePushManager.AddException extends java.lang.RuntimeException {
+    ctor public WatchFacePushManager.AddException(int);
+    ctor public WatchFacePushManager.AddException(@Nullable Throwable);
+    method public int getErrorCode();
+    field public static final int ADD_INVALID_CONTENT_ERROR = 4; // 0x4
+    field public static final int ADD_INVALID_PACKAGE_NAME_ERROR = 3; // 0x3
+    field public static final int ADD_INVALID_VALIDATION_TOKEN_ERROR = 6; // 0x6
+    field public static final int ADD_SECURITY_ERROR = 2; // 0x2
+    field public static final int ADD_SLOT_LIMIT_REACHED_ERROR = 5; // 0x5
+    field public static final int ADD_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public static class WatchFacePushManager.IsActiveException extends java.lang.RuntimeException {
+    ctor public WatchFacePushManager.IsActiveException(int);
+    ctor public WatchFacePushManager.IsActiveException(@Nullable Throwable);
+    method public int getErrorCode();
+    field public static final int IS_ACTIVE_FORBIDDEN_ERROR = 2; // 0x2
+    field public static final int IS_ACTIVE_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public static class WatchFacePushManager.ListException extends java.lang.RuntimeException {
+    ctor public WatchFacePushManager.ListException(int);
+    ctor public WatchFacePushManager.ListException(@Nullable Throwable);
+    method public int getErrorCode();
+    field public static final int LIST_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public static final class WatchFacePushManager.ReceiverConnectionException extends java.lang.RuntimeException {
+  }
+
+  public static class WatchFacePushManager.RemoveException extends java.lang.RuntimeException {
+    ctor public WatchFacePushManager.RemoveException(int);
+    ctor public WatchFacePushManager.RemoveException(@Nullable Throwable);
+    method public int getErrorCode();
+    field public static final int REMOVE_INVALID_SLOT_ID_ERROR = 2; // 0x2
+    field public static final int REMOVE_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public static class WatchFacePushManager.SetActiveException extends java.lang.RuntimeException {
+    ctor public WatchFacePushManager.SetActiveException(int);
+    ctor public WatchFacePushManager.SetActiveException(@Nullable Throwable);
+    method public int getErrorCode();
+    field public static final int SET_ACTIVE_INVALID_SLOT_ID_ERROR = 3; // 0x3
+    field public static final int SET_ACTIVE_MAXIMUM_ATTEMPTS_REACHED_ERROR = 2; // 0x2
+    field public static final int SET_ACTIVE_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public static class WatchFacePushManager.UpdateException extends java.lang.RuntimeException {
+    ctor public WatchFacePushManager.UpdateException(int);
+    ctor public WatchFacePushManager.UpdateException(@Nullable Throwable);
+    method public int getErrorCode();
+    field public static final int UPDATE_INVALID_CONTENT_ERROR = 4; // 0x4
+    field public static final int UPDATE_INVALID_PACKAGE_NAME_ERROR = 3; // 0x3
+    field public static final int UPDATE_INVALID_SLOT_ID_ERROR = 5; // 0x5
+    field public static final int UPDATE_INVALID_VALIDATION_TOKEN_ERROR = 6; // 0x6
+    field public static final int UPDATE_SECURITY_ERROR = 2; // 0x2
+    field public static final int UPDATE_UNKNOWN_ERROR = 1; // 0x1
+  }
+
+  public final class WatchFaceSlot {
+    method @NonNull public java.util.List<java.lang.String> getMetaDataValues(@NonNull String);
+    method @NonNull public String getPackageName();
+    method @NonNull public String getSlotId();
+    method public long getVersionCode();
+  }
+
+}
+
+package com.google.wear.settings {
+
+  public class WearSettings {
+    method public static boolean isDynamicColorThemingEnabled(@NonNull android.content.Context);
+    method public static boolean isWristDetectionAutoLockingEnabled(@NonNull android.content.Context);
+  }
+
+}
+
