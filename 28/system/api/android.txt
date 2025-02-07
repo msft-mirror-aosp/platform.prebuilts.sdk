@@ -1125,7 +1125,7 @@ package android.content.pm {
     method public abstract void onPermissionsChanged(int);
   }
 
-  public static abstract class PackageManager.PermissionFlags implements java.lang.annotation.Annotation {
+  public static @interface PackageManager.PermissionFlags {
   }
 
   public class PermissionGroupInfo extends android.content.pm.PackageItemInfo implements android.os.Parcelable {
@@ -1985,7 +1985,7 @@ package android.hardware.radio {
     field public static final android.os.Parcelable.Creator<android.hardware.radio.ProgramSelector.Identifier> CREATOR;
   }
 
-  public static abstract class ProgramSelector.IdentifierType implements java.lang.annotation.Annotation {
+  public static @interface ProgramSelector.IdentifierType {
   }
 
   public static abstract deprecated class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
@@ -2046,7 +2046,7 @@ package android.hardware.radio {
     field public static final android.os.Parcelable.Creator<android.hardware.radio.RadioManager.AmBandDescriptor> CREATOR;
   }
 
-  public static abstract class RadioManager.Band implements java.lang.annotation.Annotation {
+  public static @interface RadioManager.Band {
   }
 
   public static class RadioManager.BandConfig implements android.os.Parcelable {
@@ -3786,7 +3786,7 @@ package android.os {
     field public static final int STATUS_SUCCESS = 0; // 0x0
   }
 
-  public static abstract class HwParcel.Status implements java.lang.annotation.Annotation {
+  public static @interface HwParcel.Status {
   }
 
   public abstract interface IHwBinder {
@@ -3987,7 +3987,7 @@ package android.os {
     field public static final android.os.Parcelable.Creator<android.os.UserManager.EnforcingUser> CREATOR;
   }
 
-  public static abstract class UserManager.UserRestrictionSource implements java.lang.annotation.Annotation {
+  public static @interface UserManager.UserRestrictionSource {
   }
 
   public class WorkSource implements android.os.Parcelable {
@@ -4463,13 +4463,13 @@ package android.service.euicc {
     method public android.service.euicc.EuiccProfileInfo.Builder setUiccAccessRule(java.util.List<android.telephony.UiccAccessRule>);
   }
 
-  public static abstract class EuiccProfileInfo.PolicyRule implements java.lang.annotation.Annotation {
+  public static @interface EuiccProfileInfo.PolicyRule {
   }
 
-  public static abstract class EuiccProfileInfo.ProfileClass implements java.lang.annotation.Annotation {
+  public static @interface EuiccProfileInfo.ProfileClass {
   }
 
-  public static abstract class EuiccProfileInfo.ProfileState implements java.lang.annotation.Annotation {
+  public static @interface EuiccProfileInfo.ProfileState {
   }
 
   public abstract class EuiccService extends android.app.Service {
@@ -4658,7 +4658,7 @@ package android.service.persistentdata {
     field public static final int FLASH_LOCK_UNLOCKED = 0; // 0x0
   }
 
-  public static abstract class PersistentDataBlockManager.FlashLockState implements java.lang.annotation.Annotation {
+  public static @interface PersistentDataBlockManager.FlashLockState {
   }
 
 }
@@ -5310,10 +5310,10 @@ package android.telephony.euicc {
     field public static final int RESULT_UNKNOWN_ERROR = -1; // 0xffffffff
   }
 
-  public static abstract class EuiccCardManager.CancelReason implements java.lang.annotation.Annotation {
+  public static @interface EuiccCardManager.CancelReason {
   }
 
-  public static abstract class EuiccCardManager.ResetOption implements java.lang.annotation.Annotation {
+  public static @interface EuiccCardManager.ResetOption {
   }
 
   public static abstract interface EuiccCardManager.ResultCallback<T> {
@@ -5336,7 +5336,7 @@ package android.telephony.euicc {
     field public static final java.lang.String EXTRA_EMBEDDED_SUBSCRIPTION_DOWNLOADABLE_SUBSCRIPTIONS = "android.telephony.euicc.extra.EMBEDDED_SUBSCRIPTION_DOWNLOADABLE_SUBSCRIPTIONS";
   }
 
-  public static abstract class EuiccManager.OtaStatus implements java.lang.annotation.Annotation {
+  public static @interface EuiccManager.OtaStatus {
   }
 
   public final class EuiccNotification implements android.os.Parcelable {
@@ -5355,7 +5355,7 @@ package android.telephony.euicc {
     field public static final int EVENT_INSTALL = 1; // 0x1
   }
 
-  public static abstract class EuiccNotification.Event implements java.lang.annotation.Annotation {
+  public static @interface EuiccNotification.Event {
   }
 
   public final class EuiccRulesAuthTable implements android.os.Parcelable {
@@ -5373,7 +5373,7 @@ package android.telephony.euicc {
     method public android.telephony.euicc.EuiccRulesAuthTable build();
   }
 
-  public static abstract class EuiccRulesAuthTable.PolicyRuleFlag implements java.lang.annotation.Annotation {
+  public static @interface EuiccRulesAuthTable.PolicyRuleFlag {
   }
 
 }
@@ -5927,10 +5927,10 @@ package android.telephony.ims.feature {
     field public static final int CAPABILITY_TYPE_VOICE = 1; // 0x1
   }
 
-  public static abstract class MmTelFeature.MmTelCapabilities.MmTelCapability implements java.lang.annotation.Annotation {
+  public static @interface MmTelFeature.MmTelCapabilities.MmTelCapability {
   }
 
-  public static abstract class MmTelFeature.ProcessCallResult implements java.lang.annotation.Annotation {
+  public static @interface MmTelFeature.ProcessCallResult {
   }
 
   public class RcsFeature extends android.telephony.ims.feature.ImsFeature {
