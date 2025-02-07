@@ -3421,10 +3421,10 @@ package android.animation {
 
 package android.annotation {
 
-  public abstract class SuppressLint implements java.lang.annotation.Annotation {
+  public @interface SuppressLint {
   }
 
-  public abstract class TargetApi implements java.lang.annotation.Annotation {
+  public @interface TargetApi {
   }
 
 }
@@ -10357,7 +10357,7 @@ package android.content.pm {
     method public abstract void onPermissionsChanged(int);
   }
 
-  public static abstract class PackageManager.PermissionFlags implements java.lang.annotation.Annotation {
+  public static @interface PackageManager.PermissionFlags {
   }
 
   public class PackageStats implements android.os.Parcelable {
@@ -31994,7 +31994,7 @@ package android.os {
     field public static final int USER_CREATION_FAILED_NO_MORE_USERS = 2; // 0x2
   }
 
-  public static abstract class UserManager.UserRestrictionSource implements java.lang.annotation.Annotation {
+  public static @interface UserManager.UserRestrictionSource {
   }
 
   public abstract class Vibrator {
@@ -37647,7 +37647,7 @@ package android.service.persistentdata {
     field public static final int FLASH_LOCK_UNLOCKED = 0; // 0x0
   }
 
-  public static abstract class PersistentDataBlockManager.FlashLockState implements java.lang.annotation.Annotation {
+  public static @interface PersistentDataBlockManager.FlashLockState {
   }
 
 }
@@ -46293,13 +46293,13 @@ package android.view {
     field public static final deprecated boolean TRACE_RECYCLER = false;
   }
 
-  public static abstract class ViewDebug.CapturedViewProperty implements java.lang.annotation.Annotation {
+  public static @interface ViewDebug.CapturedViewProperty {
   }
 
-  public static abstract class ViewDebug.ExportedProperty implements java.lang.annotation.Annotation {
+  public static @interface ViewDebug.ExportedProperty {
   }
 
-  public static abstract class ViewDebug.FlagToString implements java.lang.annotation.Annotation {
+  public static @interface ViewDebug.FlagToString {
   }
 
   public static final deprecated class ViewDebug.HierarchyTraceType extends java.lang.Enum {
@@ -46315,7 +46315,7 @@ package android.view {
     enum_constant public static final android.view.ViewDebug.HierarchyTraceType REQUEST_LAYOUT;
   }
 
-  public static abstract class ViewDebug.IntToString implements java.lang.annotation.Annotation {
+  public static @interface ViewDebug.IntToString {
   }
 
   public static final deprecated class ViewDebug.RecyclerTraceType extends java.lang.Enum {
@@ -48481,7 +48481,7 @@ package android.webkit {
     method public boolean useHttpAuthUsernamePassword();
   }
 
-  public abstract class JavascriptInterface implements java.lang.annotation.Annotation {
+  public @interface JavascriptInterface {
   }
 
   public class JsDialogHelper {
@@ -51094,7 +51094,7 @@ package android.widget {
     ctor public RemoteViews.ActionException(java.lang.String);
   }
 
-  public static abstract class RemoteViews.RemoteView implements java.lang.annotation.Annotation {
+  public static @interface RemoteViews.RemoteView {
   }
 
   public abstract class RemoteViewsService extends android.app.Service {
@@ -54272,7 +54272,7 @@ package java.lang {
     method public static void enable();
   }
 
-  public abstract class Deprecated implements java.lang.annotation.Annotation {
+  public @interface Deprecated {
   }
 
   public final class Double extends java.lang.Number implements java.lang.Comparable {
@@ -54396,7 +54396,7 @@ package java.lang {
     field public static final java.lang.Class<java.lang.Float> TYPE;
   }
 
-  public abstract class FunctionalInterface implements java.lang.annotation.Annotation {
+  public @interface FunctionalInterface {
   }
 
   public class IllegalAccessError extends java.lang.IncompatibleClassChangeError {
@@ -54718,7 +54718,7 @@ package java.lang {
     ctor public OutOfMemoryError(java.lang.String);
   }
 
-  public abstract class Override implements java.lang.annotation.Annotation {
+  public @interface Override {
   }
 
   public class Package implements java.lang.reflect.AnnotatedElement {
@@ -54821,7 +54821,7 @@ package java.lang {
     ctor public RuntimePermission(java.lang.String, java.lang.String);
   }
 
-  public abstract class SafeVarargs implements java.lang.annotation.Annotation {
+  public @interface SafeVarargs {
   }
 
   public class SecurityException extends java.lang.RuntimeException {
@@ -55149,7 +55149,7 @@ package java.lang {
     ctor public StringIndexOutOfBoundsException(int);
   }
 
-  public abstract class SuppressWarnings implements java.lang.annotation.Annotation {
+  public @interface SuppressWarnings {
   }
 
   public final class System {
@@ -55381,7 +55381,7 @@ package java.lang.annotation {
     method public java.lang.String foundType();
   }
 
-  public abstract class Documented implements java.lang.annotation.Annotation {
+  public @interface Documented {
   }
 
   public final class ElementType extends java.lang.Enum {
@@ -55403,13 +55403,13 @@ package java.lang.annotation {
     method public java.lang.String elementName();
   }
 
-  public abstract class Inherited implements java.lang.annotation.Annotation {
+  public @interface Inherited {
   }
 
-  public abstract class Repeatable implements java.lang.annotation.Annotation {
+  public @interface Repeatable {
   }
 
-  public abstract class Retention implements java.lang.annotation.Annotation {
+  public @interface Retention {
   }
 
   public final class RetentionPolicy extends java.lang.Enum {
@@ -55420,7 +55420,7 @@ package java.lang.annotation {
     enum_constant public static final java.lang.annotation.RetentionPolicy SOURCE;
   }
 
-  public abstract class Target implements java.lang.annotation.Annotation {
+  public @interface Target {
   }
 
 }
