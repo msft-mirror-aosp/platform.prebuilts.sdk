@@ -23,3 +23,4 @@ latest finalized version for each API surface.
 - 14: Finalized in June 2024 between V and B (adServices)
 - 15: Finalized in September 2024 between V and B (HealthFitness, AdServices, Media Provider, AppSearch, Connectivity, ODP)
 - 16: M-2024-02: Finalized in December 2024 between V and B (HealthFitness, MediaProvider, Tethering, AppSearch, AdServices, ODP)
+- 17: Finalize all extensions for Baklava
