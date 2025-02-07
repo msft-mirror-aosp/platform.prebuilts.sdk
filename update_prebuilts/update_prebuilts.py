@@ -1354,7 +1354,7 @@ def main():
                 subprocess.check_output(['repo', 'start', branch_name])
                 # We commit the finalized dir separately from the current sdk update.
                 msg = f'Import final sdk version {n} from build {build_id.url_id}{commit_msg_suffix}'
-                subprocess.check_call(['git', 'add', '%d' % n])
+                subprocess.check_call(['git', 'add', '%s' % n])
                 subprocess.check_call(['git', 'add', 'Android.bp'])
                 subprocess.check_call(['git', 'commit', '-m', msg])
 
