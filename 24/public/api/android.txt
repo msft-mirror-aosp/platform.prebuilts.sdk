@@ -3291,11 +3291,11 @@ package android.animation {
 
 package android.annotation {
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.CLASS) public @interface SuppressLint {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.CLASS) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) public @interface SuppressLint {
     method public abstract String[] value();
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.CONSTRUCTOR}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.CLASS) public @interface TargetApi {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.CLASS) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.CONSTRUCTOR}) public @interface TargetApi {
     method public abstract int value();
   }
 
@@ -42862,11 +42862,11 @@ package android.view {
     field @Deprecated public static final boolean TRACE_RECYCLER = false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.CapturedViewProperty {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) public static @interface ViewDebug.CapturedViewProperty {
     method public abstract boolean retrieveReturn() default false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.ExportedProperty {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) public static @interface ViewDebug.ExportedProperty {
     method public abstract String category() default "";
     method public abstract boolean deepExport() default false;
     method public abstract android.view.ViewDebug.FlagToString[] flagMapping() default {};
@@ -42878,7 +42878,7 @@ package android.view {
     method public abstract boolean resolveId() default false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.FlagToString {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface ViewDebug.FlagToString {
     method public abstract int equals();
     method public abstract int mask();
     method public abstract String name();
@@ -42896,7 +42896,7 @@ package android.view {
     enum_constant public static final android.view.ViewDebug.HierarchyTraceType REQUEST_LAYOUT;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.IntToString {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface ViewDebug.IntToString {
     method public abstract int from();
     method public abstract String to();
   }
@@ -47290,7 +47290,7 @@ package android.widget {
     ctor public RemoteViews.ActionException(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface RemoteViews.RemoteView {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface RemoteViews.RemoteView {
   }
 
   public abstract class RemoteViewsService extends android.app.Service {
@@ -50924,7 +50924,7 @@ package java.lang {
     ctor public OutOfMemoryError(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) public @interface Override {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface Override {
   }
 
   public class Package implements java.lang.reflect.AnnotatedElement {
@@ -51393,7 +51393,7 @@ package java.lang {
     ctor public StringIndexOutOfBoundsException(int);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) public @interface SuppressWarnings {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) public @interface SuppressWarnings {
     method public abstract String[] value();
   }
 

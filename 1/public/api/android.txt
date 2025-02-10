@@ -8125,7 +8125,7 @@ package android.test {
     ctor public ComparisonFailure(String, String, String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public @interface FlakyTest {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface FlakyTest {
     method public abstract int tolerance() default 1;
   }
 
@@ -8287,7 +8287,7 @@ package android.test {
     method public static void touchAndCancelView(android.test.InstrumentationTestCase, android.view.View);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public @interface UiThreadTest {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface UiThreadTest {
   }
 
   public class ViewAsserts {
@@ -10645,7 +10645,7 @@ package android.view {
     field public static final boolean TRACE_RECYCLER = false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.ExportedProperty {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) public static @interface ViewDebug.ExportedProperty {
     method public abstract boolean deepExport() default false;
     method public abstract android.view.ViewDebug.IntToString[] mapping() default {};
     method public abstract String prefix() default "";
@@ -10663,7 +10663,7 @@ package android.view {
     enum_constant public static final android.view.ViewDebug.HierarchyTraceType REQUEST_LAYOUT;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.IntToString {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface ViewDebug.IntToString {
     method public abstract int from();
     method public abstract String to();
   }
@@ -12696,7 +12696,7 @@ package android.widget {
     ctor public RemoteViews.ActionException(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface RemoteViews.RemoteView {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface RemoteViews.RemoteView {
   }
 
   public abstract class ResourceCursorAdapter extends android.widget.CursorAdapter {
@@ -16124,7 +16124,7 @@ package java.lang {
     ctor public StringIndexOutOfBoundsException(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) public @interface SuppressWarnings {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) public @interface SuppressWarnings {
     method public abstract String[] value();
   }
 
