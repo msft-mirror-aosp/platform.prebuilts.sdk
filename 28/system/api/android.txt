@@ -1634,21 +1634,21 @@ package android.hardware.location {
   }
 
   @Deprecated public abstract static class ContextHubManager.Callback {
-    ctor protected ContextHubManager.Callback();
-    method public abstract void onMessageReceipt(int, int, android.hardware.location.ContextHubMessage);
+    ctor @Deprecated protected ContextHubManager.Callback();
+    method @Deprecated public abstract void onMessageReceipt(int, int, android.hardware.location.ContextHubMessage);
   }
 
   @Deprecated public class ContextHubMessage implements android.os.Parcelable {
-    ctor public ContextHubMessage(int, int, byte[]);
-    method public int describeContents();
-    method public byte[] getData();
-    method public int getMsgType();
-    method public int getVersion();
-    method public void setMsgData(byte[]);
-    method public void setMsgType(int);
-    method public void setVersion(int);
-    method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.hardware.location.ContextHubMessage> CREATOR;
+    ctor @Deprecated public ContextHubMessage(int, int, byte[]);
+    method @Deprecated public int describeContents();
+    method @Deprecated public byte[] getData();
+    method @Deprecated public int getMsgType();
+    method @Deprecated public int getVersion();
+    method @Deprecated public void setMsgData(byte[]);
+    method @Deprecated public void setMsgType(int);
+    method @Deprecated public void setVersion(int);
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
+    field @Deprecated public static final android.os.Parcelable.Creator<android.hardware.location.ContextHubMessage> CREATOR;
   }
 
   public class ContextHubTransaction<T> {
@@ -1770,32 +1770,32 @@ package android.hardware.location {
   }
 
   @Deprecated public class NanoApp implements android.os.Parcelable {
-    ctor public NanoApp();
+    ctor @Deprecated public NanoApp();
     ctor @Deprecated public NanoApp(int, byte[]);
-    ctor public NanoApp(long, byte[]);
-    method public int describeContents();
-    method public byte[] getAppBinary();
-    method public long getAppId();
-    method public int getAppVersion();
-    method public java.lang.String getName();
-    method public int getNeededExecMemBytes();
-    method public int getNeededReadMemBytes();
-    method public int[] getNeededSensors();
-    method public int getNeededWriteMemBytes();
-    method public int[] getOutputEvents();
-    method public java.lang.String getPublisher();
-    method public void setAppBinary(byte[]);
-    method public void setAppId(long);
-    method public void setAppVersion(int);
-    method public void setName(java.lang.String);
-    method public void setNeededExecMemBytes(int);
-    method public void setNeededReadMemBytes(int);
-    method public void setNeededSensors(int[]);
-    method public void setNeededWriteMemBytes(int);
-    method public void setOutputEvents(int[]);
-    method public void setPublisher(java.lang.String);
-    method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.hardware.location.NanoApp> CREATOR;
+    ctor @Deprecated public NanoApp(long, byte[]);
+    method @Deprecated public int describeContents();
+    method @Deprecated public byte[] getAppBinary();
+    method @Deprecated public long getAppId();
+    method @Deprecated public int getAppVersion();
+    method @Deprecated public java.lang.String getName();
+    method @Deprecated public int getNeededExecMemBytes();
+    method @Deprecated public int getNeededReadMemBytes();
+    method @Deprecated public int[] getNeededSensors();
+    method @Deprecated public int getNeededWriteMemBytes();
+    method @Deprecated public int[] getOutputEvents();
+    method @Deprecated public java.lang.String getPublisher();
+    method @Deprecated public void setAppBinary(byte[]);
+    method @Deprecated public void setAppId(long);
+    method @Deprecated public void setAppVersion(int);
+    method @Deprecated public void setName(java.lang.String);
+    method @Deprecated public void setNeededExecMemBytes(int);
+    method @Deprecated public void setNeededReadMemBytes(int);
+    method @Deprecated public void setNeededSensors(int[]);
+    method @Deprecated public void setNeededWriteMemBytes(int);
+    method @Deprecated public void setOutputEvents(int[]);
+    method @Deprecated public void setPublisher(java.lang.String);
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
+    field @Deprecated public static final android.os.Parcelable.Creator<android.hardware.location.NanoApp> CREATOR;
   }
 
   public final class NanoAppBinary implements android.os.Parcelable {
@@ -1818,36 +1818,36 @@ package android.hardware.location {
   }
 
   @Deprecated public class NanoAppFilter implements android.os.Parcelable {
-    ctor public NanoAppFilter(long, int, int, long);
-    method public int describeContents();
-    method public boolean testMatch(android.hardware.location.NanoAppInstanceInfo);
-    method public void writeToParcel(android.os.Parcel, int);
-    field public static final int APP_ANY = -1; // 0xffffffff
-    field public static final android.os.Parcelable.Creator<android.hardware.location.NanoAppFilter> CREATOR;
-    field public static final int FLAGS_VERSION_ANY = -1; // 0xffffffff
-    field public static final int FLAGS_VERSION_GREAT_THAN = 2; // 0x2
-    field public static final int FLAGS_VERSION_LESS_THAN = 4; // 0x4
-    field public static final int FLAGS_VERSION_STRICTLY_EQUAL = 8; // 0x8
-    field public static final int HUB_ANY = -1; // 0xffffffff
-    field public static final int VENDOR_ANY = -1; // 0xffffffff
+    ctor @Deprecated public NanoAppFilter(long, int, int, long);
+    method @Deprecated public int describeContents();
+    method @Deprecated public boolean testMatch(android.hardware.location.NanoAppInstanceInfo);
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
+    field @Deprecated public static final int APP_ANY = -1; // 0xffffffff
+    field @Deprecated public static final android.os.Parcelable.Creator<android.hardware.location.NanoAppFilter> CREATOR;
+    field @Deprecated public static final int FLAGS_VERSION_ANY = -1; // 0xffffffff
+    field @Deprecated public static final int FLAGS_VERSION_GREAT_THAN = 2; // 0x2
+    field @Deprecated public static final int FLAGS_VERSION_LESS_THAN = 4; // 0x4
+    field @Deprecated public static final int FLAGS_VERSION_STRICTLY_EQUAL = 8; // 0x8
+    field @Deprecated public static final int HUB_ANY = -1; // 0xffffffff
+    field @Deprecated public static final int VENDOR_ANY = -1; // 0xffffffff
   }
 
   @Deprecated public class NanoAppInstanceInfo implements android.os.Parcelable {
-    ctor public NanoAppInstanceInfo();
-    method public int describeContents();
-    method public long getAppId();
-    method public int getAppVersion();
-    method public int getContexthubId();
-    method public int getHandle();
-    method public java.lang.String getName();
-    method public int getNeededExecMemBytes();
-    method public int getNeededReadMemBytes();
-    method public int[] getNeededSensors();
-    method public int getNeededWriteMemBytes();
-    method public int[] getOutputEvents();
-    method public java.lang.String getPublisher();
-    method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.hardware.location.NanoAppInstanceInfo> CREATOR;
+    ctor @Deprecated public NanoAppInstanceInfo();
+    method @Deprecated public int describeContents();
+    method @Deprecated public long getAppId();
+    method @Deprecated public int getAppVersion();
+    method @Deprecated public int getContexthubId();
+    method @Deprecated public int getHandle();
+    method @Deprecated public java.lang.String getName();
+    method @Deprecated public int getNeededExecMemBytes();
+    method @Deprecated public int getNeededReadMemBytes();
+    method @Deprecated public int[] getNeededSensors();
+    method @Deprecated public int getNeededWriteMemBytes();
+    method @Deprecated public int[] getOutputEvents();
+    method @Deprecated public java.lang.String getPublisher();
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
+    field @Deprecated public static final android.os.Parcelable.Creator<android.hardware.location.NanoAppInstanceInfo> CREATOR;
   }
 
   public final class NanoAppMessage implements android.os.Parcelable {
@@ -3194,38 +3194,38 @@ package android.net.http {
 package android.net.wifi {
 
   @Deprecated public class RttManager {
-    method public void disableResponder(android.net.wifi.RttManager.ResponderCallback);
-    method public void enableResponder(android.net.wifi.RttManager.ResponderCallback);
+    method @Deprecated public void disableResponder(android.net.wifi.RttManager.ResponderCallback);
+    method @Deprecated public void enableResponder(android.net.wifi.RttManager.ResponderCallback);
     method @Deprecated public android.net.wifi.RttManager.Capabilities getCapabilities();
-    method public android.net.wifi.RttManager.RttCapabilities getRttCapabilities();
-    method public void startRanging(android.net.wifi.RttManager.RttParams[], android.net.wifi.RttManager.RttListener);
-    method public void stopRanging(android.net.wifi.RttManager.RttListener);
-    field public static final int BASE = 160256; // 0x27200
-    field public static final int CMD_OP_ABORTED = 160260; // 0x27204
-    field public static final int CMD_OP_DISABLE_RESPONDER = 160262; // 0x27206
-    field public static final int CMD_OP_ENABLE_RESPONDER = 160261; // 0x27205
-    field public static final int CMD_OP_ENALBE_RESPONDER_FAILED = 160264; // 0x27208
-    field public static final int CMD_OP_ENALBE_RESPONDER_SUCCEEDED = 160263; // 0x27207
-    field public static final int CMD_OP_FAILED = 160258; // 0x27202
-    field public static final int CMD_OP_START_RANGING = 160256; // 0x27200
-    field public static final int CMD_OP_STOP_RANGING = 160257; // 0x27201
-    field public static final int CMD_OP_SUCCEEDED = 160259; // 0x27203
-    field public static final java.lang.String DESCRIPTION_KEY = "android.net.wifi.RttManager.Description";
-    field public static final int PREAMBLE_HT = 2; // 0x2
-    field public static final int PREAMBLE_LEGACY = 1; // 0x1
-    field public static final int PREAMBLE_VHT = 4; // 0x4
-    field public static final int REASON_INITIATOR_NOT_ALLOWED_WHEN_RESPONDER_ON = -6; // 0xfffffffa
-    field public static final int REASON_INVALID_LISTENER = -3; // 0xfffffffd
-    field public static final int REASON_INVALID_REQUEST = -4; // 0xfffffffc
-    field public static final int REASON_NOT_AVAILABLE = -2; // 0xfffffffe
-    field public static final int REASON_PERMISSION_DENIED = -5; // 0xfffffffb
-    field public static final int REASON_UNSPECIFIED = -1; // 0xffffffff
-    field public static final int RTT_BW_10_SUPPORT = 2; // 0x2
-    field public static final int RTT_BW_160_SUPPORT = 32; // 0x20
-    field public static final int RTT_BW_20_SUPPORT = 4; // 0x4
-    field public static final int RTT_BW_40_SUPPORT = 8; // 0x8
-    field public static final int RTT_BW_5_SUPPORT = 1; // 0x1
-    field public static final int RTT_BW_80_SUPPORT = 16; // 0x10
+    method @Deprecated public android.net.wifi.RttManager.RttCapabilities getRttCapabilities();
+    method @Deprecated public void startRanging(android.net.wifi.RttManager.RttParams[], android.net.wifi.RttManager.RttListener);
+    method @Deprecated public void stopRanging(android.net.wifi.RttManager.RttListener);
+    field @Deprecated public static final int BASE = 160256; // 0x27200
+    field @Deprecated public static final int CMD_OP_ABORTED = 160260; // 0x27204
+    field @Deprecated public static final int CMD_OP_DISABLE_RESPONDER = 160262; // 0x27206
+    field @Deprecated public static final int CMD_OP_ENABLE_RESPONDER = 160261; // 0x27205
+    field @Deprecated public static final int CMD_OP_ENALBE_RESPONDER_FAILED = 160264; // 0x27208
+    field @Deprecated public static final int CMD_OP_ENALBE_RESPONDER_SUCCEEDED = 160263; // 0x27207
+    field @Deprecated public static final int CMD_OP_FAILED = 160258; // 0x27202
+    field @Deprecated public static final int CMD_OP_START_RANGING = 160256; // 0x27200
+    field @Deprecated public static final int CMD_OP_STOP_RANGING = 160257; // 0x27201
+    field @Deprecated public static final int CMD_OP_SUCCEEDED = 160259; // 0x27203
+    field @Deprecated public static final java.lang.String DESCRIPTION_KEY = "android.net.wifi.RttManager.Description";
+    field @Deprecated public static final int PREAMBLE_HT = 2; // 0x2
+    field @Deprecated public static final int PREAMBLE_LEGACY = 1; // 0x1
+    field @Deprecated public static final int PREAMBLE_VHT = 4; // 0x4
+    field @Deprecated public static final int REASON_INITIATOR_NOT_ALLOWED_WHEN_RESPONDER_ON = -6; // 0xfffffffa
+    field @Deprecated public static final int REASON_INVALID_LISTENER = -3; // 0xfffffffd
+    field @Deprecated public static final int REASON_INVALID_REQUEST = -4; // 0xfffffffc
+    field @Deprecated public static final int REASON_NOT_AVAILABLE = -2; // 0xfffffffe
+    field @Deprecated public static final int REASON_PERMISSION_DENIED = -5; // 0xfffffffb
+    field @Deprecated public static final int REASON_UNSPECIFIED = -1; // 0xffffffff
+    field @Deprecated public static final int RTT_BW_10_SUPPORT = 2; // 0x2
+    field @Deprecated public static final int RTT_BW_160_SUPPORT = 32; // 0x20
+    field @Deprecated public static final int RTT_BW_20_SUPPORT = 4; // 0x4
+    field @Deprecated public static final int RTT_BW_40_SUPPORT = 8; // 0x8
+    field @Deprecated public static final int RTT_BW_5_SUPPORT = 1; // 0x1
+    field @Deprecated public static final int RTT_BW_80_SUPPORT = 16; // 0x10
     field @Deprecated public static final int RTT_CHANNEL_WIDTH_10 = 6; // 0x6
     field @Deprecated public static final int RTT_CHANNEL_WIDTH_160 = 3; // 0x3
     field @Deprecated public static final int RTT_CHANNEL_WIDTH_20 = 0; // 0x0
@@ -3234,155 +3234,155 @@ package android.net.wifi {
     field @Deprecated public static final int RTT_CHANNEL_WIDTH_80 = 2; // 0x2
     field @Deprecated public static final int RTT_CHANNEL_WIDTH_80P80 = 4; // 0x4
     field @Deprecated public static final int RTT_CHANNEL_WIDTH_UNSPECIFIED = -1; // 0xffffffff
-    field public static final int RTT_PEER_NAN = 5; // 0x5
-    field public static final int RTT_PEER_P2P_CLIENT = 4; // 0x4
-    field public static final int RTT_PEER_P2P_GO = 3; // 0x3
-    field public static final int RTT_PEER_TYPE_AP = 1; // 0x1
-    field public static final int RTT_PEER_TYPE_STA = 2; // 0x2
+    field @Deprecated public static final int RTT_PEER_NAN = 5; // 0x5
+    field @Deprecated public static final int RTT_PEER_P2P_CLIENT = 4; // 0x4
+    field @Deprecated public static final int RTT_PEER_P2P_GO = 3; // 0x3
+    field @Deprecated public static final int RTT_PEER_TYPE_AP = 1; // 0x1
+    field @Deprecated public static final int RTT_PEER_TYPE_STA = 2; // 0x2
     field @Deprecated public static final int RTT_PEER_TYPE_UNSPECIFIED = 0; // 0x0
-    field public static final int RTT_STATUS_ABORTED = 8; // 0x8
-    field public static final int RTT_STATUS_FAILURE = 1; // 0x1
-    field public static final int RTT_STATUS_FAIL_AP_ON_DIFF_CHANNEL = 6; // 0x6
-    field public static final int RTT_STATUS_FAIL_BUSY_TRY_LATER = 12; // 0xc
-    field public static final int RTT_STATUS_FAIL_FTM_PARAM_OVERRIDE = 15; // 0xf
-    field public static final int RTT_STATUS_FAIL_INVALID_TS = 9; // 0x9
-    field public static final int RTT_STATUS_FAIL_NOT_SCHEDULED_YET = 4; // 0x4
-    field public static final int RTT_STATUS_FAIL_NO_CAPABILITY = 7; // 0x7
-    field public static final int RTT_STATUS_FAIL_NO_RSP = 2; // 0x2
-    field public static final int RTT_STATUS_FAIL_PROTOCOL = 10; // 0xa
-    field public static final int RTT_STATUS_FAIL_REJECTED = 3; // 0x3
-    field public static final int RTT_STATUS_FAIL_SCHEDULE = 11; // 0xb
-    field public static final int RTT_STATUS_FAIL_TM_TIMEOUT = 5; // 0x5
-    field public static final int RTT_STATUS_INVALID_REQ = 13; // 0xd
-    field public static final int RTT_STATUS_NO_WIFI = 14; // 0xe
-    field public static final int RTT_STATUS_SUCCESS = 0; // 0x0
+    field @Deprecated public static final int RTT_STATUS_ABORTED = 8; // 0x8
+    field @Deprecated public static final int RTT_STATUS_FAILURE = 1; // 0x1
+    field @Deprecated public static final int RTT_STATUS_FAIL_AP_ON_DIFF_CHANNEL = 6; // 0x6
+    field @Deprecated public static final int RTT_STATUS_FAIL_BUSY_TRY_LATER = 12; // 0xc
+    field @Deprecated public static final int RTT_STATUS_FAIL_FTM_PARAM_OVERRIDE = 15; // 0xf
+    field @Deprecated public static final int RTT_STATUS_FAIL_INVALID_TS = 9; // 0x9
+    field @Deprecated public static final int RTT_STATUS_FAIL_NOT_SCHEDULED_YET = 4; // 0x4
+    field @Deprecated public static final int RTT_STATUS_FAIL_NO_CAPABILITY = 7; // 0x7
+    field @Deprecated public static final int RTT_STATUS_FAIL_NO_RSP = 2; // 0x2
+    field @Deprecated public static final int RTT_STATUS_FAIL_PROTOCOL = 10; // 0xa
+    field @Deprecated public static final int RTT_STATUS_FAIL_REJECTED = 3; // 0x3
+    field @Deprecated public static final int RTT_STATUS_FAIL_SCHEDULE = 11; // 0xb
+    field @Deprecated public static final int RTT_STATUS_FAIL_TM_TIMEOUT = 5; // 0x5
+    field @Deprecated public static final int RTT_STATUS_INVALID_REQ = 13; // 0xd
+    field @Deprecated public static final int RTT_STATUS_NO_WIFI = 14; // 0xe
+    field @Deprecated public static final int RTT_STATUS_SUCCESS = 0; // 0x0
     field @Deprecated public static final int RTT_TYPE_11_MC = 4; // 0x4
     field @Deprecated public static final int RTT_TYPE_11_V = 2; // 0x2
-    field public static final int RTT_TYPE_ONE_SIDED = 1; // 0x1
-    field public static final int RTT_TYPE_TWO_SIDED = 2; // 0x2
+    field @Deprecated public static final int RTT_TYPE_ONE_SIDED = 1; // 0x1
+    field @Deprecated public static final int RTT_TYPE_TWO_SIDED = 2; // 0x2
     field @Deprecated public static final int RTT_TYPE_UNSPECIFIED = 0; // 0x0
   }
 
   @Deprecated public class RttManager.Capabilities {
-    ctor public RttManager.Capabilities();
-    field public int supportedPeerType;
-    field public int supportedType;
+    ctor @Deprecated public RttManager.Capabilities();
+    field @Deprecated public int supportedPeerType;
+    field @Deprecated public int supportedType;
   }
 
   @Deprecated public static class RttManager.ParcelableRttParams implements android.os.Parcelable {
-    field public android.net.wifi.RttManager.RttParams[] mParams;
+    field @Deprecated public android.net.wifi.RttManager.RttParams[] mParams;
   }
 
   @Deprecated public static class RttManager.ParcelableRttResults implements android.os.Parcelable {
-    ctor public RttManager.ParcelableRttResults(android.net.wifi.RttManager.RttResult[]);
-    field public android.net.wifi.RttManager.RttResult[] mResults;
+    ctor @Deprecated public RttManager.ParcelableRttResults(android.net.wifi.RttManager.RttResult[]);
+    field @Deprecated public android.net.wifi.RttManager.RttResult[] mResults;
   }
 
   @Deprecated public abstract static class RttManager.ResponderCallback {
-    ctor public RttManager.ResponderCallback();
-    method public abstract void onResponderEnableFailure(int);
-    method public abstract void onResponderEnabled(android.net.wifi.RttManager.ResponderConfig);
+    ctor @Deprecated public RttManager.ResponderCallback();
+    method @Deprecated public abstract void onResponderEnableFailure(int);
+    method @Deprecated public abstract void onResponderEnabled(android.net.wifi.RttManager.ResponderConfig);
   }
 
   @Deprecated public static class RttManager.ResponderConfig implements android.os.Parcelable {
-    ctor public RttManager.ResponderConfig();
-    method public int describeContents();
-    method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.net.wifi.RttManager.ResponderConfig> CREATOR;
-    field public int centerFreq0;
-    field public int centerFreq1;
-    field public int channelWidth;
-    field public int frequency;
-    field public java.lang.String macAddress;
-    field public int preamble;
+    ctor @Deprecated public RttManager.ResponderConfig();
+    method @Deprecated public int describeContents();
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
+    field @Deprecated public static final android.os.Parcelable.Creator<android.net.wifi.RttManager.ResponderConfig> CREATOR;
+    field @Deprecated public int centerFreq0;
+    field @Deprecated public int centerFreq1;
+    field @Deprecated public int channelWidth;
+    field @Deprecated public int frequency;
+    field @Deprecated public java.lang.String macAddress;
+    field @Deprecated public int preamble;
   }
 
   @Deprecated public static class RttManager.RttCapabilities implements android.os.Parcelable {
-    ctor public RttManager.RttCapabilities();
-    field public int bwSupported;
-    field public boolean lciSupported;
-    field public boolean lcrSupported;
-    field public int mcVersion;
-    field public boolean oneSidedRttSupported;
-    field public int preambleSupported;
-    field public boolean responderSupported;
-    field public boolean secureRttSupported;
+    ctor @Deprecated public RttManager.RttCapabilities();
+    field @Deprecated public int bwSupported;
+    field @Deprecated public boolean lciSupported;
+    field @Deprecated public boolean lcrSupported;
+    field @Deprecated public int mcVersion;
+    field @Deprecated public boolean oneSidedRttSupported;
+    field @Deprecated public int preambleSupported;
+    field @Deprecated public boolean responderSupported;
+    field @Deprecated public boolean secureRttSupported;
     field @Deprecated public boolean supportedPeerType;
     field @Deprecated public boolean supportedType;
-    field public boolean twoSided11McRttSupported;
+    field @Deprecated public boolean twoSided11McRttSupported;
   }
 
   @Deprecated public static interface RttManager.RttListener {
-    method public void onAborted();
-    method public void onFailure(int, java.lang.String);
-    method public void onSuccess(android.net.wifi.RttManager.RttResult[]);
+    method @Deprecated public void onAborted();
+    method @Deprecated public void onFailure(int, java.lang.String);
+    method @Deprecated public void onSuccess(android.net.wifi.RttManager.RttResult[]);
   }
 
   @Deprecated public static class RttManager.RttParams {
-    ctor public RttManager.RttParams();
-    field public boolean LCIRequest;
-    field public boolean LCRRequest;
-    field public int bandwidth;
-    field public java.lang.String bssid;
-    field public int burstTimeout;
-    field public int centerFreq0;
-    field public int centerFreq1;
-    field public int channelWidth;
-    field public int deviceType;
-    field public int frequency;
-    field public int interval;
-    field public int numRetriesPerFTMR;
-    field public int numRetriesPerMeasurementFrame;
-    field public int numSamplesPerBurst;
+    ctor @Deprecated public RttManager.RttParams();
+    field @Deprecated public boolean LCIRequest;
+    field @Deprecated public boolean LCRRequest;
+    field @Deprecated public int bandwidth;
+    field @Deprecated public java.lang.String bssid;
+    field @Deprecated public int burstTimeout;
+    field @Deprecated public int centerFreq0;
+    field @Deprecated public int centerFreq1;
+    field @Deprecated public int channelWidth;
+    field @Deprecated public int deviceType;
+    field @Deprecated public int frequency;
+    field @Deprecated public int interval;
+    field @Deprecated public int numRetriesPerFTMR;
+    field @Deprecated public int numRetriesPerMeasurementFrame;
+    field @Deprecated public int numSamplesPerBurst;
     field @Deprecated public int num_retries;
     field @Deprecated public int num_samples;
-    field public int numberBurst;
-    field public int preamble;
-    field public int requestType;
-    field public boolean secure;
+    field @Deprecated public int numberBurst;
+    field @Deprecated public int preamble;
+    field @Deprecated public int requestType;
+    field @Deprecated public boolean secure;
   }
 
   @Deprecated public static class RttManager.RttResult {
-    ctor public RttManager.RttResult();
-    field public android.net.wifi.RttManager.WifiInformationElement LCI;
-    field public android.net.wifi.RttManager.WifiInformationElement LCR;
-    field public java.lang.String bssid;
-    field public int burstDuration;
-    field public int burstNumber;
-    field public int distance;
-    field public int distanceSpread;
-    field public int distanceStandardDeviation;
+    ctor @Deprecated public RttManager.RttResult();
+    field @Deprecated public android.net.wifi.RttManager.WifiInformationElement LCI;
+    field @Deprecated public android.net.wifi.RttManager.WifiInformationElement LCR;
+    field @Deprecated public java.lang.String bssid;
+    field @Deprecated public int burstDuration;
+    field @Deprecated public int burstNumber;
+    field @Deprecated public int distance;
+    field @Deprecated public int distanceSpread;
+    field @Deprecated public int distanceStandardDeviation;
     field @Deprecated public int distance_cm;
     field @Deprecated public int distance_sd_cm;
     field @Deprecated public int distance_spread_cm;
-    field public int frameNumberPerBurstPeer;
-    field public int measurementFrameNumber;
-    field public int measurementType;
-    field public int negotiatedBurstNum;
+    field @Deprecated public int frameNumberPerBurstPeer;
+    field @Deprecated public int measurementFrameNumber;
+    field @Deprecated public int measurementType;
+    field @Deprecated public int negotiatedBurstNum;
     field @Deprecated public int requestType;
-    field public int retryAfterDuration;
-    field public int rssi;
-    field public int rssiSpread;
+    field @Deprecated public int retryAfterDuration;
+    field @Deprecated public int rssi;
+    field @Deprecated public int rssiSpread;
     field @Deprecated public int rssi_spread;
-    field public long rtt;
-    field public long rttSpread;
-    field public long rttStandardDeviation;
+    field @Deprecated public long rtt;
+    field @Deprecated public long rttSpread;
+    field @Deprecated public long rttStandardDeviation;
     field @Deprecated public long rtt_ns;
     field @Deprecated public long rtt_sd_ns;
     field @Deprecated public long rtt_spread_ns;
-    field public int rxRate;
-    field public boolean secure;
-    field public int status;
-    field public int successMeasurementFrameNumber;
-    field public long ts;
-    field public int txRate;
+    field @Deprecated public int rxRate;
+    field @Deprecated public boolean secure;
+    field @Deprecated public int status;
+    field @Deprecated public int successMeasurementFrameNumber;
+    field @Deprecated public long ts;
+    field @Deprecated public int txRate;
     field @Deprecated public int tx_rate;
   }
 
   @Deprecated public static class RttManager.WifiInformationElement {
-    ctor public RttManager.WifiInformationElement();
-    field public byte[] data;
-    field public byte id;
+    ctor @Deprecated public RttManager.WifiInformationElement();
+    field @Deprecated public byte[] data;
+    field @Deprecated public byte id;
   }
 
   public class WifiConfiguration implements android.os.Parcelable {
@@ -3495,16 +3495,16 @@ package android.net.wifi {
   }
 
   @Deprecated public static class WifiScanner.BssidInfo {
-    ctor public WifiScanner.BssidInfo();
-    field public java.lang.String bssid;
-    field public int frequencyHint;
-    field public int high;
-    field public int low;
+    ctor @Deprecated public WifiScanner.BssidInfo();
+    field @Deprecated public java.lang.String bssid;
+    field @Deprecated public int frequencyHint;
+    field @Deprecated public int high;
+    field @Deprecated public int low;
   }
 
   @Deprecated public static interface WifiScanner.BssidListener extends android.net.wifi.WifiScanner.ActionListener {
-    method public void onFound(android.net.wifi.ScanResult[]);
-    method public void onLost(android.net.wifi.ScanResult[]);
+    method @Deprecated public void onFound(android.net.wifi.ScanResult[]);
+    method @Deprecated public void onLost(android.net.wifi.ScanResult[]);
   }
 
   public static class WifiScanner.ChannelSpec {
@@ -3513,9 +3513,9 @@ package android.net.wifi {
   }
 
   @Deprecated public static class WifiScanner.HotlistSettings implements android.os.Parcelable {
-    ctor public WifiScanner.HotlistSettings();
-    field public int apLostThreshold;
-    field public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
+    ctor @Deprecated public WifiScanner.HotlistSettings();
+    field @Deprecated public int apLostThreshold;
+    field @Deprecated public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
   }
 
   public static class WifiScanner.ParcelableScanData implements android.os.Parcelable {
@@ -3557,18 +3557,18 @@ package android.net.wifi {
   }
 
   @Deprecated public static interface WifiScanner.WifiChangeListener extends android.net.wifi.WifiScanner.ActionListener {
-    method public void onChanging(android.net.wifi.ScanResult[]);
-    method public void onQuiescence(android.net.wifi.ScanResult[]);
+    method @Deprecated public void onChanging(android.net.wifi.ScanResult[]);
+    method @Deprecated public void onQuiescence(android.net.wifi.ScanResult[]);
   }
 
   @Deprecated public static class WifiScanner.WifiChangeSettings implements android.os.Parcelable {
-    ctor public WifiScanner.WifiChangeSettings();
-    field public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
-    field public int lostApSampleSize;
-    field public int minApsBreachingThreshold;
-    field public int periodInMs;
-    field public int rssiSampleSize;
-    field public int unchangedSampleSize;
+    ctor @Deprecated public WifiScanner.WifiChangeSettings();
+    field @Deprecated public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
+    field @Deprecated public int lostApSampleSize;
+    field @Deprecated public int minApsBreachingThreshold;
+    field @Deprecated public int periodInMs;
+    field @Deprecated public int rssiSampleSize;
+    field @Deprecated public int unchangedSampleSize;
   }
 
 }
@@ -4795,21 +4795,21 @@ package android.service.trust {
 package android.telecom {
 
   @Deprecated public class AudioState implements android.os.Parcelable {
-    ctor public AudioState(boolean, int, int);
-    ctor public AudioState(android.telecom.AudioState);
-    ctor public AudioState(android.telecom.CallAudioState);
-    method public static java.lang.String audioRouteToString(int);
-    method public int describeContents();
-    method public int getRoute();
-    method public int getSupportedRouteMask();
-    method public boolean isMuted();
-    method public void writeToParcel(android.os.Parcel, int);
-    field public static final android.os.Parcelable.Creator<android.telecom.AudioState> CREATOR;
-    field public static final int ROUTE_BLUETOOTH = 2; // 0x2
-    field public static final int ROUTE_EARPIECE = 1; // 0x1
-    field public static final int ROUTE_SPEAKER = 8; // 0x8
-    field public static final int ROUTE_WIRED_HEADSET = 4; // 0x4
-    field public static final int ROUTE_WIRED_OR_EARPIECE = 5; // 0x5
+    ctor @Deprecated public AudioState(boolean, int, int);
+    ctor @Deprecated public AudioState(android.telecom.AudioState);
+    ctor @Deprecated public AudioState(android.telecom.CallAudioState);
+    method @Deprecated public static java.lang.String audioRouteToString(int);
+    method @Deprecated public int describeContents();
+    method @Deprecated public int getRoute();
+    method @Deprecated public int getSupportedRouteMask();
+    method @Deprecated public boolean isMuted();
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
+    field @Deprecated public static final android.os.Parcelable.Creator<android.telecom.AudioState> CREATOR;
+    field @Deprecated public static final int ROUTE_BLUETOOTH = 2; // 0x2
+    field @Deprecated public static final int ROUTE_EARPIECE = 1; // 0x1
+    field @Deprecated public static final int ROUTE_SPEAKER = 8; // 0x8
+    field @Deprecated public static final int ROUTE_WIRED_HEADSET = 4; // 0x4
+    field @Deprecated public static final int ROUTE_WIRED_OR_EARPIECE = 5; // 0x5
   }
 
   public final class Call {
@@ -4819,7 +4819,7 @@ package android.telecom {
   }
 
   @Deprecated public abstract static class Call.Listener extends android.telecom.Call.Callback {
-    ctor public Call.Listener();
+    ctor @Deprecated public Call.Listener();
   }
 
   public abstract class Conference extends android.telecom.Conferenceable {
@@ -4940,15 +4940,15 @@ package android.telecom {
   }
 
   @Deprecated public final class Phone {
-    method public void addListener(android.telecom.Phone.Listener);
-    method public boolean canAddCall();
+    method @Deprecated public void addListener(android.telecom.Phone.Listener);
+    method @Deprecated public boolean canAddCall();
     method @Deprecated public android.telecom.AudioState getAudioState();
-    method public android.telecom.CallAudioState getCallAudioState();
-    method public java.util.List<android.telecom.Call> getCalls();
-    method public void removeListener(android.telecom.Phone.Listener);
-    method public void requestBluetoothAudio(java.lang.String);
-    method public void setAudioRoute(int);
-    method public void setMuted(boolean);
+    method @Deprecated public android.telecom.CallAudioState getCallAudioState();
+    method @Deprecated public java.util.List<android.telecom.Call> getCalls();
+    method @Deprecated public void removeListener(android.telecom.Phone.Listener);
+    method @Deprecated public void requestBluetoothAudio(java.lang.String);
+    method @Deprecated public void setAudioRoute(int);
+    method @Deprecated public void setMuted(boolean);
   }
 
   public abstract static class Phone.Listener {
@@ -6301,7 +6301,7 @@ package android.webkit {
   }
 
   @Deprecated public abstract class WebIconDatabase {
-    method public abstract void bulkRequestIconForPageUrl(android.content.ContentResolver, java.lang.String, android.webkit.WebIconDatabase.IconListener);
+    method @Deprecated public abstract void bulkRequestIconForPageUrl(android.content.ContentResolver, java.lang.String, android.webkit.WebIconDatabase.IconListener);
   }
 
   public abstract class WebMessagePort {
