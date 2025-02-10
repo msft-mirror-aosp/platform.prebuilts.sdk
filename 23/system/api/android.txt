@@ -3353,7 +3353,7 @@ package android.app {
     method public boolean onNavigationItemSelected(int, long);
   }
 
-  public static abstract deprecated class ActionBar.Tab {
+  public abstract static deprecated class ActionBar.Tab {
     ctor public ActionBar.Tab();
     method public abstract java.lang.CharSequence getContentDescription();
     method public abstract android.view.View getCustomView();
@@ -5079,7 +5079,7 @@ package android.app {
     method public android.app.Notification.MediaStyle setShowActionsInCompactView(int...);
   }
 
-  public static abstract class Notification.Style {
+  public abstract static class Notification.Style {
     ctor public Notification.Style();
     method public android.app.Notification build();
     method protected void checkBuilder();
@@ -5581,7 +5581,7 @@ package android.app {
     field public static final android.os.Parcelable.Creator<android.app.VoiceInteractor.Prompt> CREATOR;
   }
 
-  public static abstract class VoiceInteractor.Request {
+  public abstract static class VoiceInteractor.Request {
     method public void cancel();
     method public android.app.Activity getActivity();
     method public android.content.Context getContext();
@@ -9327,7 +9327,7 @@ package android.content.pm {
     method public void unregisterCallback(android.content.pm.LauncherApps.Callback);
   }
 
-  public static abstract class LauncherApps.Callback {
+  public abstract static class LauncherApps.Callback {
     ctor public LauncherApps.Callback();
     method public abstract void onPackageAdded(java.lang.String, android.os.UserHandle);
     method public abstract void onPackageChanged(java.lang.String, android.os.UserHandle);
@@ -9420,7 +9420,7 @@ package android.content.pm {
     method public void setStagingProgress(float);
   }
 
-  public static abstract class PackageInstaller.SessionCallback {
+  public abstract static class PackageInstaller.SessionCallback {
     ctor public PackageInstaller.SessionCallback();
     method public abstract void onActiveChanged(int, boolean);
     method public abstract void onBadgingChanged(int);
@@ -12441,7 +12441,7 @@ package android.graphics.drawable {
     method public boolean unregisterAnimationCallback(android.graphics.drawable.Animatable2.AnimationCallback);
   }
 
-  public static abstract class Animatable2.AnimationCallback {
+  public abstract static class Animatable2.AnimationCallback {
     ctor public Animatable2.AnimationCallback();
     method public void onAnimationEnd(android.graphics.drawable.Drawable);
     method public void onAnimationStart(android.graphics.drawable.Drawable);
@@ -12611,7 +12611,7 @@ package android.graphics.drawable {
     method public void unscheduleDrawable(android.graphics.drawable.Drawable, java.lang.Runnable);
   }
 
-  public static abstract class Drawable.ConstantState {
+  public abstract static class Drawable.ConstantState {
     ctor public Drawable.ConstantState();
     method public boolean canApplyTheme();
     method public abstract int getChangingConfigurations();
@@ -12635,7 +12635,7 @@ package android.graphics.drawable {
     method public void unscheduleDrawable(android.graphics.drawable.Drawable, java.lang.Runnable);
   }
 
-  public static abstract class DrawableContainer.DrawableContainerState extends android.graphics.drawable.Drawable.ConstantState {
+  public abstract static class DrawableContainer.DrawableContainerState extends android.graphics.drawable.Drawable.ConstantState {
     method public final int addChild(android.graphics.drawable.Drawable);
     method public boolean canConstantState();
     method protected void computeConstantSize();
@@ -12885,7 +12885,7 @@ package android.graphics.drawable {
     method public void setShape(android.graphics.drawable.shapes.Shape);
   }
 
-  public static abstract class ShapeDrawable.ShaderFactory {
+  public abstract static class ShapeDrawable.ShaderFactory {
     ctor public ShapeDrawable.ShaderFactory();
     method public abstract android.graphics.Shader resize(int, int);
   }
@@ -13499,7 +13499,7 @@ package android.hardware.camera2 {
     method public abstract void stopRepeating() throws android.hardware.camera2.CameraAccessException;
   }
 
-  public static abstract class CameraCaptureSession.CaptureCallback {
+  public abstract static class CameraCaptureSession.CaptureCallback {
     ctor public CameraCaptureSession.CaptureCallback();
     method public void onCaptureCompleted(android.hardware.camera2.CameraCaptureSession, android.hardware.camera2.CaptureRequest, android.hardware.camera2.TotalCaptureResult);
     method public void onCaptureFailed(android.hardware.camera2.CameraCaptureSession, android.hardware.camera2.CaptureRequest, android.hardware.camera2.CaptureFailure);
@@ -13509,7 +13509,7 @@ package android.hardware.camera2 {
     method public void onCaptureStarted(android.hardware.camera2.CameraCaptureSession, android.hardware.camera2.CaptureRequest, long, long);
   }
 
-  public static abstract class CameraCaptureSession.StateCallback {
+  public abstract static class CameraCaptureSession.StateCallback {
     ctor public CameraCaptureSession.StateCallback();
     method public void onActive(android.hardware.camera2.CameraCaptureSession);
     method public void onClosed(android.hardware.camera2.CameraCaptureSession);
@@ -13630,7 +13630,7 @@ package android.hardware.camera2 {
     field public static final int TEMPLATE_ZERO_SHUTTER_LAG = 5; // 0x5
   }
 
-  public static abstract class CameraDevice.StateCallback {
+  public abstract static class CameraDevice.StateCallback {
     ctor public CameraDevice.StateCallback();
     method public void onClosed(android.hardware.camera2.CameraDevice);
     method public abstract void onDisconnected(android.hardware.camera2.CameraDevice);
@@ -13654,13 +13654,13 @@ package android.hardware.camera2 {
     method public void unregisterTorchCallback(android.hardware.camera2.CameraManager.TorchCallback);
   }
 
-  public static abstract class CameraManager.AvailabilityCallback {
+  public abstract static class CameraManager.AvailabilityCallback {
     ctor public CameraManager.AvailabilityCallback();
     method public void onCameraAvailable(java.lang.String);
     method public void onCameraUnavailable(java.lang.String);
   }
 
-  public static abstract class CameraManager.TorchCallback {
+  public abstract static class CameraManager.TorchCallback {
     ctor public CameraManager.TorchCallback();
     method public void onTorchModeChanged(java.lang.String, boolean);
     method public void onTorchModeUnavailable(java.lang.String);
@@ -14198,7 +14198,7 @@ package android.hardware.display {
     method public void setSurface(android.view.Surface);
   }
 
-  public static abstract class VirtualDisplay.Callback {
+  public abstract static class VirtualDisplay.Callback {
     ctor public VirtualDisplay.Callback();
     method public void onPaused();
     method public void onResumed();
@@ -14227,7 +14227,7 @@ package android.hardware.fingerprint {
     field public static final int FINGERPRINT_ERROR_UNABLE_TO_PROCESS = 2; // 0x2
   }
 
-  public static abstract class FingerprintManager.AuthenticationCallback {
+  public abstract static class FingerprintManager.AuthenticationCallback {
     ctor public FingerprintManager.AuthenticationCallback();
     method public void onAuthenticationError(int, java.lang.CharSequence);
     method public void onAuthenticationFailed();
@@ -14476,7 +14476,7 @@ package android.hardware.hdmi {
   public static final class HdmiRecordSources.OwnSource extends android.hardware.hdmi.HdmiRecordSources.RecordSource {
   }
 
-  public static abstract class HdmiRecordSources.RecordSource {
+  public abstract static class HdmiRecordSources.RecordSource {
   }
 
   public class HdmiTimerRecordSources {
@@ -14862,7 +14862,7 @@ package android.hardware.radio {
     field public static final int ERROR_SERVER_DIED = 1; // 0x1
   }
 
-  public static abstract class RadioTuner.Callback {
+  public abstract static class RadioTuner.Callback {
     ctor public RadioTuner.Callback();
     method public void onAntennaState(boolean);
     method public void onConfigurationChanged(android.hardware.radio.RadioManager.BandConfig);
@@ -16489,7 +16489,7 @@ package android.media {
     method public void setTimestamp(long);
   }
 
-  public static abstract class Image.Plane {
+  public abstract static class Image.Plane {
     method public abstract java.nio.ByteBuffer getBuffer();
     method public abstract int getPixelStride();
     method public abstract int getRowStride();
@@ -16628,7 +16628,7 @@ package android.media {
     field public int size;
   }
 
-  public static abstract class MediaCodec.Callback {
+  public abstract static class MediaCodec.Callback {
     ctor public MediaCodec.Callback();
     method public abstract void onError(android.media.MediaCodec, android.media.MediaCodec.CodecException);
     method public abstract void onInputBufferAvailable(android.media.MediaCodec, int);
@@ -17561,7 +17561,7 @@ package android.media {
     field public static final int ROUTE_TYPE_USER = 8388608; // 0x800000
   }
 
-  public static abstract class MediaRouter.Callback {
+  public abstract static class MediaRouter.Callback {
     ctor public MediaRouter.Callback();
     method public abstract void onRouteAdded(android.media.MediaRouter, android.media.MediaRouter.RouteInfo);
     method public abstract void onRouteChanged(android.media.MediaRouter, android.media.MediaRouter.RouteInfo);
@@ -17649,7 +17649,7 @@ package android.media {
     method public void setVolumeMax(int);
   }
 
-  public static abstract class MediaRouter.VolumeCallback {
+  public abstract static class MediaRouter.VolumeCallback {
     ctor public MediaRouter.VolumeCallback();
     method public abstract void onVolumeSetRequest(android.media.MediaRouter.RouteInfo, int);
     method public abstract void onVolumeUpdateRequest(android.media.MediaRouter.RouteInfo, int);
@@ -17694,7 +17694,7 @@ package android.media {
     field public static final int MEDIASYNC_ERROR_SURFACE_FAIL = 2; // 0x2
   }
 
-  public static abstract class MediaSync.Callback {
+  public abstract static class MediaSync.Callback {
     ctor public MediaSync.Callback();
     method public abstract void onAudioBufferConsumed(android.media.MediaSync, java.nio.ByteBuffer, int);
   }
@@ -18442,13 +18442,13 @@ package android.media.audiopolicy {
     field public static final int POLICY_STATUS_UNREGISTERED = 1; // 0x1
   }
 
-  public static abstract class AudioPolicy.AudioPolicyFocusListener {
+  public abstract static class AudioPolicy.AudioPolicyFocusListener {
     ctor public AudioPolicy.AudioPolicyFocusListener();
     method public void onAudioFocusGrant(android.media.AudioFocusInfo, int);
     method public void onAudioFocusLoss(android.media.AudioFocusInfo, boolean);
   }
 
-  public static abstract class AudioPolicy.AudioPolicyStatusListener {
+  public abstract static class AudioPolicy.AudioPolicyStatusListener {
     ctor public AudioPolicy.AudioPolicyStatusListener();
     method public void onMixStateUpdate(android.media.audiopolicy.AudioMix);
     method public void onStatusChange();
@@ -18488,7 +18488,7 @@ package android.media.browse {
     method public void onConnectionSuspended();
   }
 
-  public static abstract class MediaBrowser.ItemCallback {
+  public abstract static class MediaBrowser.ItemCallback {
     ctor public MediaBrowser.ItemCallback();
     method public void onError(java.lang.String);
     method public void onItemLoaded(android.media.browse.MediaBrowser.MediaItem);
@@ -18508,7 +18508,7 @@ package android.media.browse {
     field public static final int FLAG_PLAYABLE = 2; // 0x2
   }
 
-  public static abstract class MediaBrowser.SubscriptionCallback {
+  public abstract static class MediaBrowser.SubscriptionCallback {
     ctor public MediaBrowser.SubscriptionCallback();
     method public void onChildrenLoaded(java.lang.String, java.util.List<android.media.browse.MediaBrowser.MediaItem>);
     method public void onError(java.lang.String);
@@ -18698,7 +18698,7 @@ package android.media.projection {
     method public void unregisterCallback(android.media.projection.MediaProjection.Callback);
   }
 
-  public static abstract class MediaProjection.Callback {
+  public abstract static class MediaProjection.Callback {
     ctor public MediaProjection.Callback();
     method public void onStop();
   }
@@ -18735,7 +18735,7 @@ package android.media.session {
     method public void unregisterCallback(android.media.session.MediaController.Callback);
   }
 
-  public static abstract class MediaController.Callback {
+  public abstract static class MediaController.Callback {
     ctor public MediaController.Callback();
     method public void onAudioInfoChanged(android.media.session.MediaController.PlaybackInfo);
     method public void onExtrasChanged(android.os.Bundle);
@@ -18800,7 +18800,7 @@ package android.media.session {
     field public static final int FLAG_HANDLES_TRANSPORT_CONTROLS = 2; // 0x2
   }
 
-  public static abstract class MediaSession.Callback {
+  public abstract static class MediaSession.Callback {
     ctor public MediaSession.Callback();
     method public void onCommand(java.lang.String, android.os.Bundle, android.os.ResultReceiver);
     method public void onCustomAction(java.lang.String, android.os.Bundle);
@@ -19234,7 +19234,7 @@ package android.media.tv {
     method public boolean setSurface(android.view.Surface, android.media.tv.TvStreamConfig);
   }
 
-  public static abstract class TvInputManager.HardwareCallback {
+  public abstract static class TvInputManager.HardwareCallback {
     ctor public TvInputManager.HardwareCallback();
     method public abstract void onReleased();
     method public abstract void onStreamConfigChanged(android.media.tv.TvStreamConfig[]);
@@ -19254,7 +19254,7 @@ package android.media.tv {
     method public void tune(android.net.Uri, android.os.Bundle);
   }
 
-  public static abstract class TvInputManager.SessionCallback {
+  public abstract static class TvInputManager.SessionCallback {
     ctor public TvInputManager.SessionCallback();
     method public void onChannelRetuned(android.media.tv.TvInputManager.Session, android.net.Uri);
     method public void onContentAllowed(android.media.tv.TvInputManager.Session);
@@ -19273,7 +19273,7 @@ package android.media.tv {
     method public void onVideoUnavailable(android.media.tv.TvInputManager.Session, int);
   }
 
-  public static abstract class TvInputManager.TvInputCallback {
+  public abstract static class TvInputManager.TvInputCallback {
     ctor public TvInputManager.TvInputCallback();
     method public void onInputAdded(java.lang.String);
     method public void onInputRemoved(java.lang.String);
@@ -19293,7 +19293,7 @@ package android.media.tv {
     field public static final java.lang.String SERVICE_META_DATA = "android.media.tv.input";
   }
 
-  public static abstract class TvInputService.HardwareSession extends android.media.tv.TvInputService.Session {
+  public abstract static class TvInputService.HardwareSession extends android.media.tv.TvInputService.Session {
     ctor public TvInputService.HardwareSession(android.content.Context);
     method public abstract java.lang.String getHardwareInputId();
     method public void onHardwareVideoAvailable();
@@ -19301,7 +19301,7 @@ package android.media.tv {
     method public final boolean onSetSurface(android.view.Surface);
   }
 
-  public static abstract class TvInputService.Session implements android.view.KeyEvent.Callback {
+  public abstract static class TvInputService.Session implements android.view.KeyEvent.Callback {
     ctor public TvInputService.Session(android.content.Context);
     method public void layoutSurface(int, int, int, int);
     method public void notifyChannelRetuned(android.net.Uri);
@@ -19433,13 +19433,13 @@ package android.media.tv {
     method public boolean onUnhandledInputEvent(android.view.InputEvent);
   }
 
-  public static abstract class TvView.TimeShiftPositionCallback {
+  public abstract static class TvView.TimeShiftPositionCallback {
     ctor public TvView.TimeShiftPositionCallback();
     method public void onTimeShiftCurrentPositionChanged(java.lang.String, long);
     method public void onTimeShiftStartPositionChanged(java.lang.String, long);
   }
 
-  public static abstract class TvView.TvInputCallback {
+  public abstract static class TvView.TvInputCallback {
     ctor public TvView.TvInputCallback();
     method public void onChannelRetuned(java.lang.String, android.net.Uri);
     method public void onConnectionFailed(java.lang.String);
@@ -21087,7 +21087,7 @@ package android.net.wifi {
     method public void setWorkSource(android.os.WorkSource);
   }
 
-  public static abstract class WifiManager.WpsCallback {
+  public abstract static class WifiManager.WpsCallback {
     ctor public WifiManager.WpsCallback();
     method public abstract void onFailed(int);
     method public abstract void onStarted(java.lang.String);
@@ -26176,13 +26176,13 @@ package android.print {
     field public static final java.lang.String EXTRA_PRINT_PREVIEW = "EXTRA_PRINT_PREVIEW";
   }
 
-  public static abstract class PrintDocumentAdapter.LayoutResultCallback {
+  public abstract static class PrintDocumentAdapter.LayoutResultCallback {
     method public void onLayoutCancelled();
     method public void onLayoutFailed(java.lang.CharSequence);
     method public void onLayoutFinished(android.print.PrintDocumentInfo, boolean);
   }
 
-  public static abstract class PrintDocumentAdapter.WriteResultCallback {
+  public abstract static class PrintDocumentAdapter.WriteResultCallback {
     method public void onWriteCancelled();
     method public void onWriteFailed(java.lang.CharSequence);
     method public void onWriteFinished(android.print.PageRange[]);
@@ -30819,7 +30819,7 @@ package android.service.textservice {
     field public static final java.lang.String SERVICE_INTERFACE = "android.service.textservice.SpellCheckerService";
   }
 
-  public static abstract class SpellCheckerService.Session {
+  public abstract static class SpellCheckerService.Session {
     ctor public SpellCheckerService.Session();
     method public android.os.Bundle getBundle();
     method public java.lang.String getLocale();
@@ -30874,7 +30874,7 @@ package android.service.voice {
     field public static final int STATE_KEYPHRASE_UNSUPPORTED = -1; // 0xffffffff
   }
 
-  public static abstract class AlwaysOnHotwordDetector.Callback {
+  public abstract static class AlwaysOnHotwordDetector.Callback {
     ctor public AlwaysOnHotwordDetector.Callback();
     method public abstract void onAvailabilityChanged(int);
     method public abstract void onDetected(android.service.voice.AlwaysOnHotwordDetector.EventPayload);
@@ -32044,7 +32044,7 @@ package android.telecom {
     field public static final int STATE_SELECT_PHONE_ACCOUNT = 8; // 0x8
   }
 
-  public static abstract class Call.Callback {
+  public abstract static class Call.Callback {
     ctor public Call.Callback();
     method public void onCallDestroyed(android.telecom.Call);
     method public void onCannedTextResponsesLoaded(android.telecom.Call, java.util.List<java.lang.String>);
@@ -32101,7 +32101,7 @@ package android.telecom {
     field public static final int PROPERTY_WIFI = 8; // 0x8
   }
 
-  public static abstract deprecated class Call.Listener extends android.telecom.Call.Callback {
+  public abstract static deprecated class Call.Listener extends android.telecom.Call.Callback {
     ctor public Call.Listener();
   }
 
@@ -32257,7 +32257,7 @@ package android.telecom {
     field public static final int STATE_RINGING = 2; // 0x2
   }
 
-  public static abstract class Connection.VideoProvider {
+  public abstract static class Connection.VideoProvider {
     ctor public Connection.VideoProvider();
     method public void changeCameraCapabilities(android.telecom.VideoProfile.CameraCapabilities);
     method public void changePeerDimensions(int, int);
@@ -32374,7 +32374,7 @@ package android.telecom {
     field public static final java.lang.String SERVICE_INTERFACE = "android.telecom.InCallService";
   }
 
-  public static abstract class InCallService.VideoCall {
+  public abstract static class InCallService.VideoCall {
     ctor public InCallService.VideoCall();
     method public abstract void registerCallback(android.telecom.InCallService.VideoCall.Callback);
     method public abstract void registerCallback(android.telecom.InCallService.VideoCall.Callback, android.os.Handler);
@@ -32391,7 +32391,7 @@ package android.telecom {
     method public abstract void unregisterCallback(android.telecom.InCallService.VideoCall.Callback);
   }
 
-  public static abstract class InCallService.VideoCall.Callback {
+  public abstract static class InCallService.VideoCall.Callback {
     ctor public InCallService.VideoCall.Callback();
     method public abstract void onCallDataUsageChanged(long);
     method public abstract void onCallSessionEvent(int);
@@ -32413,7 +32413,7 @@ package android.telecom {
     method public final void setMuted(boolean);
   }
 
-  public static abstract class Phone.Listener {
+  public abstract static class Phone.Listener {
     ctor public Phone.Listener();
     method public deprecated void onAudioStateChanged(android.telecom.Phone, android.telecom.AudioState);
     method public void onBringToForeground(android.telecom.Phone, boolean);
@@ -32502,7 +32502,7 @@ package android.telecom {
     method public final void unregisterCallback(android.telecom.RemoteConference.Callback);
   }
 
-  public static abstract class RemoteConference.Callback {
+  public abstract static class RemoteConference.Callback {
     ctor public RemoteConference.Callback();
     method public void onConferenceableConnectionsChanged(android.telecom.RemoteConference, java.util.List<android.telecom.RemoteConnection>);
     method public void onConnectionAdded(android.telecom.RemoteConference, android.telecom.RemoteConnection);
@@ -32546,7 +32546,7 @@ package android.telecom {
     method public void unregisterCallback(android.telecom.RemoteConnection.Callback);
   }
 
-  public static abstract class RemoteConnection.Callback {
+  public abstract static class RemoteConnection.Callback {
     ctor public RemoteConnection.Callback();
     method public void onAddressChanged(android.telecom.RemoteConnection, android.net.Uri, int);
     method public void onCallerDisplayNameChanged(android.telecom.RemoteConnection, java.lang.String, int);
@@ -32581,7 +32581,7 @@ package android.telecom {
     method public void unregisterCallback(android.telecom.RemoteConnection.VideoProvider.Callback);
   }
 
-  public static abstract class RemoteConnection.VideoProvider.Callback {
+  public abstract static class RemoteConnection.VideoProvider.Callback {
     ctor public RemoteConnection.VideoProvider.Callback();
     method public void onCallDataUsageChanged(android.telecom.RemoteConnection.VideoProvider, long);
     method public void onCallSessionEvent(android.telecom.RemoteConnection.VideoProvider, int);
@@ -35938,7 +35938,7 @@ package android.transition {
     field public static final int MATCH_NAME = 2; // 0x2
   }
 
-  public static abstract class Transition.EpicenterCallback {
+  public abstract static class Transition.EpicenterCallback {
     ctor public Transition.EpicenterCallback();
     method public abstract android.graphics.Rect onGetEpicenter(android.transition.Transition);
   }
@@ -36761,7 +36761,7 @@ package android.view {
     method public boolean onPrepareActionMode(android.view.ActionMode, android.view.Menu);
   }
 
-  public static abstract class ActionMode.Callback2 implements android.view.ActionMode.Callback {
+  public abstract static class ActionMode.Callback2 implements android.view.ActionMode.Callback {
     ctor public ActionMode.Callback2();
     method public void onGetContentRect(android.view.ActionMode, android.view.View, android.graphics.Rect);
   }
@@ -39499,7 +39499,7 @@ package android.view {
     field public static final android.os.Parcelable.Creator<android.view.WindowId> CREATOR;
   }
 
-  public static abstract class WindowId.FocusObserver {
+  public abstract static class WindowId.FocusObserver {
     ctor public WindowId.FocusObserver();
     method public abstract void onFocusGained(android.view.WindowId);
     method public abstract void onFocusLost(android.view.WindowId);
@@ -40106,7 +40106,7 @@ package android.view.accessibility {
     field public final int windowColor;
   }
 
-  public static abstract class CaptioningManager.CaptioningChangeListener {
+  public abstract static class CaptioningManager.CaptioningChangeListener {
     ctor public CaptioningManager.CaptioningChangeListener();
     method public void onEnabledChanged(boolean);
     method public void onFontScaleChanged(float);
@@ -41116,7 +41116,7 @@ package android.webkit {
     method public void onCustomViewHidden();
   }
 
-  public static abstract class WebChromeClient.FileChooserParams {
+  public abstract static class WebChromeClient.FileChooserParams {
     ctor public WebChromeClient.FileChooserParams();
     method public abstract android.content.Intent createIntent();
     method public abstract java.lang.String[] getAcceptTypes();
@@ -41171,7 +41171,7 @@ package android.webkit {
     method public abstract void setWebMessageCallback(android.webkit.WebMessagePort.WebMessageCallback, android.os.Handler);
   }
 
-  public static abstract class WebMessagePort.WebMessageCallback {
+  public abstract static class WebMessagePort.WebMessageCallback {
     ctor public WebMessagePort.WebMessageCallback();
     method public void onMessage(android.webkit.WebMessagePort, android.webkit.WebMessage);
   }
@@ -41547,7 +41547,7 @@ package android.webkit {
     method public void super_setLayoutParams(android.view.ViewGroup.LayoutParams);
   }
 
-  public static abstract class WebView.VisualStateCallback {
+  public abstract static class WebView.VisualStateCallback {
     ctor public WebView.VisualStateCallback();
     method public abstract void onComplete(long);
   }
@@ -42736,7 +42736,7 @@ package android.widget {
     field public static final int VERTICAL = 1; // 0x1
   }
 
-  public static abstract class GridLayout.Alignment {
+  public abstract static class GridLayout.Alignment {
   }
 
   public static class GridLayout.LayoutParams extends android.view.ViewGroup.MarginLayoutParams {
@@ -45398,7 +45398,7 @@ package java.io {
     method public int skipBytes(int) throws java.io.IOException;
   }
 
-  public static abstract class ObjectInputStream.GetField {
+  public abstract static class ObjectInputStream.GetField {
     ctor public ObjectInputStream.GetField();
     method public abstract boolean defaulted(java.lang.String) throws java.io.IOException, java.lang.IllegalArgumentException;
     method public abstract boolean get(java.lang.String, boolean) throws java.io.IOException, java.lang.IllegalArgumentException;
@@ -45458,7 +45458,7 @@ package java.io {
     method public void writeUnshared(java.lang.Object) throws java.io.IOException;
   }
 
-  public static abstract class ObjectOutputStream.PutField {
+  public abstract static class ObjectOutputStream.PutField {
     ctor public ObjectOutputStream.PutField();
     method public abstract void put(java.lang.String, boolean);
     method public abstract void put(java.lang.String, char);
@@ -49221,12 +49221,12 @@ package java.nio.channels {
     method public abstract java.nio.channels.Pipe.SourceChannel source();
   }
 
-  public static abstract class Pipe.SinkChannel extends java.nio.channels.spi.AbstractSelectableChannel implements java.nio.channels.GatheringByteChannel java.nio.channels.WritableByteChannel {
+  public abstract static class Pipe.SinkChannel extends java.nio.channels.spi.AbstractSelectableChannel implements java.nio.channels.GatheringByteChannel java.nio.channels.WritableByteChannel {
     ctor protected Pipe.SinkChannel(java.nio.channels.spi.SelectorProvider);
     method public final int validOps();
   }
 
-  public static abstract class Pipe.SourceChannel extends java.nio.channels.spi.AbstractSelectableChannel implements java.nio.channels.ReadableByteChannel java.nio.channels.ScatteringByteChannel {
+  public abstract static class Pipe.SourceChannel extends java.nio.channels.spi.AbstractSelectableChannel implements java.nio.channels.ReadableByteChannel java.nio.channels.ScatteringByteChannel {
     ctor protected Pipe.SourceChannel(java.nio.channels.spi.SelectorProvider);
     method public final int validOps();
   }
@@ -49859,7 +49859,7 @@ package java.security {
     method public final void store(java.security.KeyStore.LoadStoreParameter) throws java.security.cert.CertificateException, java.io.IOException, java.security.KeyStoreException, java.security.NoSuchAlgorithmException;
   }
 
-  public static abstract class KeyStore.Builder {
+  public abstract static class KeyStore.Builder {
     ctor protected KeyStore.Builder();
     method public abstract java.security.KeyStore getKeyStore() throws java.security.KeyStoreException;
     method public abstract java.security.KeyStore.ProtectionParameter getProtectionParameter(java.lang.String) throws java.security.KeyStoreException;

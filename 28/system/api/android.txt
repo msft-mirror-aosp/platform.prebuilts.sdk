@@ -1116,7 +1116,7 @@ package android.content.pm {
     field public static final int MATCH_INSTANT = 8388608; // 0x800000
   }
 
-  public static abstract class PackageManager.DexModuleRegisterCallback {
+  public abstract static class PackageManager.DexModuleRegisterCallback {
     ctor public PackageManager.DexModuleRegisterCallback();
     method public abstract void onDexModuleRegistered(java.lang.String, boolean, java.lang.String);
   }
@@ -1153,7 +1153,7 @@ package android.content.pm.dex {
     field public static final int SNAPSHOT_FAILED_PACKAGE_NOT_FOUND = 0; // 0x0
   }
 
-  public static abstract class ArtManager.SnapshotRuntimeProfileCallback {
+  public abstract static class ArtManager.SnapshotRuntimeProfileCallback {
     ctor public ArtManager.SnapshotRuntimeProfileCallback();
     method public abstract void onError(int);
     method public abstract void onSuccess(android.os.ParcelFileDescriptor);
@@ -1500,7 +1500,7 @@ package android.hardware.hdmi {
   public static final class HdmiRecordSources.OwnSource extends android.hardware.hdmi.HdmiRecordSources.RecordSource {
   }
 
-  public static abstract class HdmiRecordSources.RecordSource {
+  public abstract static class HdmiRecordSources.RecordSource {
   }
 
   public class HdmiTimerRecordSources {
@@ -1633,7 +1633,7 @@ package android.hardware.location {
     method public deprecated int unregisterCallback(android.hardware.location.ContextHubManager.Callback);
   }
 
-  public static abstract deprecated class ContextHubManager.Callback {
+  public abstract static deprecated class ContextHubManager.Callback {
     ctor protected ContextHubManager.Callback();
     method public abstract void onMessageReceipt(int, int, android.hardware.location.ContextHubMessage);
   }
@@ -1920,7 +1920,7 @@ package android.hardware.radio {
     field public static final android.os.Parcelable.Creator<android.hardware.radio.ProgramList.Filter> CREATOR;
   }
 
-  public static abstract class ProgramList.ListCallback {
+  public abstract static class ProgramList.ListCallback {
     ctor public ProgramList.ListCallback();
     method public void onItemChanged(android.hardware.radio.ProgramSelector.Identifier);
     method public void onItemRemoved(android.hardware.radio.ProgramSelector.Identifier);
@@ -1988,7 +1988,7 @@ package android.hardware.radio {
   public static @interface ProgramSelector.IdentifierType {
   }
 
-  public static abstract deprecated class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
+  public abstract static deprecated class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
   }
 
   public class RadioManager {
@@ -2235,7 +2235,7 @@ package android.hardware.radio {
     field public static final deprecated int ERROR_SERVER_DIED = 1; // 0x1
   }
 
-  public static abstract class RadioTuner.Callback {
+  public abstract static class RadioTuner.Callback {
     ctor public RadioTuner.Callback();
     method public void onAntennaState(boolean);
     method public void onBackgroundScanAvailabilityChange(boolean);
@@ -2631,7 +2631,7 @@ package android.media {
     field public static final int AUDIOFOCUS_FLAG_PAUSES_ON_DUCKABLE_LOSS = 2; // 0x2
   }
 
-  public static abstract class AudioManager.AudioServerStateCallback {
+  public abstract static class AudioManager.AudioServerStateCallback {
     ctor public AudioManager.AudioServerStateCallback();
     method public void onAudioServerDown();
     method public void onAudioServerUp();
@@ -2734,7 +2734,7 @@ package android.media.audiopolicy {
     field public static final int POLICY_STATUS_UNREGISTERED = 1; // 0x1
   }
 
-  public static abstract class AudioPolicy.AudioPolicyFocusListener {
+  public abstract static class AudioPolicy.AudioPolicyFocusListener {
     ctor public AudioPolicy.AudioPolicyFocusListener();
     method public void onAudioFocusAbandon(android.media.AudioFocusInfo);
     method public void onAudioFocusGrant(android.media.AudioFocusInfo, int);
@@ -2742,13 +2742,13 @@ package android.media.audiopolicy {
     method public void onAudioFocusRequest(android.media.AudioFocusInfo, int);
   }
 
-  public static abstract class AudioPolicy.AudioPolicyStatusListener {
+  public abstract static class AudioPolicy.AudioPolicyStatusListener {
     ctor public AudioPolicy.AudioPolicyStatusListener();
     method public void onMixStateUpdate(android.media.audiopolicy.AudioMix);
     method public void onStatusChange();
   }
 
-  public static abstract class AudioPolicy.AudioPolicyVolumeCallback {
+  public abstract static class AudioPolicy.AudioPolicyVolumeCallback {
     method public void onVolumeAdjustment(int);
   }
 
@@ -2801,7 +2801,7 @@ package android.media.soundtrigger {
     field public static final int RECOGNITION_FLAG_CAPTURE_TRIGGER_AUDIO = 1; // 0x1
   }
 
-  public static abstract class SoundTriggerDetector.Callback {
+  public abstract static class SoundTriggerDetector.Callback {
     ctor public SoundTriggerDetector.Callback();
     method public abstract void onAvailabilityChanged(int);
     method public abstract void onDetected(android.media.soundtrigger.SoundTriggerDetector.EventPayload);
@@ -2966,7 +2966,7 @@ package android.media.tv {
     method public boolean setSurface(android.view.Surface, android.media.tv.TvStreamConfig);
   }
 
-  public static abstract class TvInputManager.HardwareCallback {
+  public abstract static class TvInputManager.HardwareCallback {
     ctor public TvInputManager.HardwareCallback();
     method public abstract void onReleased();
     method public abstract void onStreamConfigChanged(android.media.tv.TvStreamConfig[]);
@@ -2979,16 +2979,16 @@ package android.media.tv {
     method public java.lang.String onHdmiDeviceRemoved(android.hardware.hdmi.HdmiDeviceInfo);
   }
 
-  public static abstract class TvInputService.RecordingSession {
+  public abstract static class TvInputService.RecordingSession {
     method public void notifySessionEvent(java.lang.String, android.os.Bundle);
   }
 
-  public static abstract class TvInputService.Session implements android.view.KeyEvent.Callback {
+  public abstract static class TvInputService.Session implements android.view.KeyEvent.Callback {
     method public void notifySessionEvent(java.lang.String, android.os.Bundle);
     method public void onSetMain(boolean);
   }
 
-  public static abstract class TvRecordingClient.RecordingCallback {
+  public abstract static class TvRecordingClient.RecordingCallback {
     method public void onEvent(java.lang.String, java.lang.String, android.os.Bundle);
   }
 
@@ -3020,7 +3020,7 @@ package android.media.tv {
     method public void unblockContent(android.media.tv.TvContentRating);
   }
 
-  public static abstract class TvView.TvInputCallback {
+  public abstract static class TvView.TvInputCallback {
     method public void onEvent(java.lang.String, java.lang.String, android.os.Bundle);
   }
 
@@ -3083,7 +3083,7 @@ package android.net {
     field public static final int TETHERING_WIFI = 0; // 0x0
   }
 
-  public static abstract class ConnectivityManager.OnStartTetheringCallback {
+  public abstract static class ConnectivityManager.OnStartTetheringCallback {
     ctor public ConnectivityManager.OnStartTetheringCallback();
     method public void onTetheringFailed();
     method public void onTetheringStarted();
@@ -3278,7 +3278,7 @@ package android.net.wifi {
     field public android.net.wifi.RttManager.RttResult[] mResults;
   }
 
-  public static abstract deprecated class RttManager.ResponderCallback {
+  public abstract static deprecated class RttManager.ResponderCallback {
     ctor public RttManager.ResponderCallback();
     method public abstract void onResponderEnableFailure(int);
     method public abstract void onResponderEnabled(android.net.wifi.RttManager.ResponderConfig);
@@ -4505,7 +4505,7 @@ package android.service.euicc {
     field public static final int RESULT_OK = 0; // 0x0
   }
 
-  public static abstract class EuiccService.OtaStatusChangedCallback {
+  public abstract static class EuiccService.OtaStatusChangedCallback {
     ctor public EuiccService.OtaStatusChangedCallback();
     method public abstract void onOtaStatusChanged(int);
   }
@@ -4818,7 +4818,7 @@ package android.telecom {
     field public static final deprecated int STATE_PRE_DIAL_WAIT = 8; // 0x8
   }
 
-  public static abstract deprecated class Call.Listener extends android.telecom.Call.Callback {
+  public abstract static deprecated class Call.Listener extends android.telecom.Call.Callback {
     ctor public Call.Listener();
   }
 
@@ -4951,7 +4951,7 @@ package android.telecom {
     method public void setMuted(boolean);
   }
 
-  public static abstract class Phone.Listener {
+  public abstract static class Phone.Listener {
     ctor public Phone.Listener();
     method public deprecated void onAudioStateChanged(android.telecom.Phone, android.telecom.AudioState);
     method public void onBringToForeground(android.telecom.Phone, boolean);
