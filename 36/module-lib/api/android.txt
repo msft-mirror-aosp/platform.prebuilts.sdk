@@ -89,9 +89,26 @@ package android.app.admin {
 
 }
 
+package android.app.appsearch {
+
+  public class GenericDocument {
+    method @NonNull public static android.app.appsearch.GenericDocument createFromParcel(@NonNull android.os.Parcel);
+    method public final void writeToParcel(@NonNull android.os.Parcel, int);
+  }
+
+}
+
 package android.app.ecm {
 
   public class EnhancedConfirmationFrameworkInitializer {
+    method public static void registerServiceWrappers();
+  }
+
+}
+
+package android.app.ondeviceintelligence {
+
+  public class OnDeviceIntelligenceFrameworkInitializer {
     method public static void registerServiceWrappers();
   }
 
@@ -226,6 +243,7 @@ package android.content {
     method @NonNull public android.os.UserHandle getUser();
     field public static final String PAC_PROXY_SERVICE = "pac_proxy";
     field public static final String TEST_NETWORK_SERVICE = "test_network";
+    field public static final String VCN_MANAGEMENT_SERVICE = "vcn_management";
   }
 
   public class Intent implements java.lang.Cloneable android.os.Parcelable {
@@ -274,21 +292,12 @@ package android.hardware.usb {
 
   public class UsbManager {
     method @RequiresPermission(android.Manifest.permission.MANAGE_USB) public int getGadgetHalVersion();
-    method @RequiresPermission(android.Manifest.permission.MANAGE_USB) public int getUsbBandwidthMbps();
     method @RequiresPermission(android.Manifest.permission.MANAGE_USB) public int getUsbHalVersion();
     field public static final int GADGET_HAL_NOT_SUPPORTED = -1; // 0xffffffff
     field public static final int GADGET_HAL_V1_0 = 10; // 0xa
     field public static final int GADGET_HAL_V1_1 = 11; // 0xb
     field public static final int GADGET_HAL_V1_2 = 12; // 0xc
     field public static final int GADGET_HAL_V2_0 = 20; // 0x14
-    field public static final int USB_DATA_TRANSFER_RATE_10G = 10240; // 0x2800
-    field public static final int USB_DATA_TRANSFER_RATE_20G = 20480; // 0x5000
-    field public static final int USB_DATA_TRANSFER_RATE_40G = 40960; // 0xa000
-    field public static final int USB_DATA_TRANSFER_RATE_5G = 5120; // 0x1400
-    field public static final int USB_DATA_TRANSFER_RATE_FULL_SPEED = 12; // 0xc
-    field public static final int USB_DATA_TRANSFER_RATE_HIGH_SPEED = 480; // 0x1e0
-    field public static final int USB_DATA_TRANSFER_RATE_LOW_SPEED = 2; // 0x2
-    field public static final int USB_DATA_TRANSFER_RATE_UNKNOWN = -1; // 0xffffffff
     field public static final int USB_HAL_NOT_SUPPORTED = -1; // 0xffffffff
     field public static final int USB_HAL_RETRY = -2; // 0xfffffffe
     field public static final int USB_HAL_V1_0 = 10; // 0xa
@@ -442,6 +451,10 @@ package android.nearby {
 package android.net {
 
   public final class ConnectivityFrameworkInitializer {
+    method public static void registerServiceWrappers();
+  }
+
+  public final class ConnectivityFrameworkInitializerBaklava {
     method public static void registerServiceWrappers();
   }
 
@@ -683,12 +696,12 @@ package android.net {
     method @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public boolean isUidRestrictedOnMeteredNetworks(int);
     method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_STACK}) public void notifyStatsProviderLimitReached();
     method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_STACK}) public void notifyStatsProviderWarningReached();
-    method @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public void registerNetworkPolicyCallback(@Nullable java.util.concurrent.Executor, @NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
-    method @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public void unregisterNetworkPolicyCallback(@NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
+    method @Deprecated @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public void registerNetworkPolicyCallback(@Nullable java.util.concurrent.Executor, @NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
+    method @Deprecated @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public void unregisterNetworkPolicyCallback(@NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
   }
 
-  public static interface NetworkPolicyManager.NetworkPolicyCallback {
-    method public default void onUidBlockedReasonChanged(int, int);
+  @Deprecated public static interface NetworkPolicyManager.NetworkPolicyCallback {
+    method @Deprecated public default void onUidBlockedReasonChanged(int, int);
   }
 
   public class NetworkRequest implements android.os.Parcelable {
@@ -879,7 +892,7 @@ package android.net {
     method public boolean isTetheringSupported(@NonNull String);
     method public void requestLatestTetheringEntitlementResult(int, @NonNull android.os.ResultReceiver, boolean);
     method @Deprecated public int setUsbTethering(boolean);
-    method @RequiresPermission(anyOf={android.Manifest.permission.TETHER_PRIVILEGED, android.Manifest.permission.WRITE_SETTINGS}) public void startTethering(int, @NonNull java.util.concurrent.Executor, @NonNull android.net.TetheringManager.StartTetheringCallback);
+    method @RequiresPermission(android.Manifest.permission.TETHER_PRIVILEGED) public void startTethering(int, @NonNull java.util.concurrent.Executor, @NonNull android.net.TetheringManager.StartTetheringCallback);
     method @Deprecated public int tether(@NonNull String);
     method @Deprecated public int untether(@NonNull String);
   }
@@ -901,6 +914,16 @@ package android.net {
     method @Deprecated @NonNull public java.util.List<java.lang.String> getTetherableBluetoothRegexs();
     method @Deprecated @NonNull public java.util.List<java.lang.String> getTetherableUsbRegexs();
     method @Deprecated @NonNull public java.util.List<java.lang.String> getTetherableWifiRegexs();
+  }
+
+  public static final class TetheringManager.TetheringRequest implements android.os.Parcelable {
+    method @Nullable public String getInterfaceName();
+    method @Nullable public String getPackageName();
+    method public int getUid();
+  }
+
+  public static class TetheringManager.TetheringRequest.Builder {
+    method @NonNull @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_SETTINGS, android.Manifest.permission.NETWORK_STACK, android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK}) public android.net.TetheringManager.TetheringRequest.Builder setInterfaceName(@Nullable String);
   }
 
   public class TrafficStats {
@@ -937,6 +960,14 @@ package android.net {
     method public long getApplicableRedactions();
     method @Nullable public String getSessionId();
     method @NonNull public android.net.VpnTransportInfo makeCopy(long);
+  }
+
+}
+
+package android.net.http {
+
+  public abstract class HttpEngine {
+    method public static void preload();
   }
 
 }
@@ -978,11 +1009,37 @@ package android.net.netstats {
 
 }
 
+package android.net.vcn {
+
+  public final class VcnTransportInfo implements android.os.Parcelable android.net.TransportInfo {
+    method public int describeContents();
+    method public long getApplicableRedactions();
+    method public int getMinUdpPort4500NatTimeoutSeconds();
+    method @NonNull public android.net.TransportInfo makeCopy(long);
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.net.vcn.VcnTransportInfo> CREATOR;
+  }
+
+  public static final class VcnTransportInfo.Builder {
+    ctor public VcnTransportInfo.Builder();
+    method @NonNull public android.net.vcn.VcnTransportInfo build();
+    method @NonNull public android.net.vcn.VcnTransportInfo.Builder setMinUdpPort4500NatTimeoutSeconds(@IntRange(from=0x78) int);
+  }
+
+}
+
 package android.net.wifi {
 
   public class WifiManager {
     method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_SETTINGS, android.Manifest.permission.OVERRIDE_WIFI_CONFIG}) public void addCustomDhcpOptions(@NonNull android.net.wifi.WifiSsid, @NonNull byte[], @NonNull java.util.List<android.net.DhcpOption>);
     method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_SETTINGS, android.Manifest.permission.OVERRIDE_WIFI_CONFIG}) public void removeCustomDhcpOptions(@NonNull android.net.wifi.WifiSsid, @NonNull byte[]);
+  }
+
+  public final class WifiMigration {
+    method public static void migrateLegacyKeystoreToWifiBlobstore(@NonNull java.util.concurrent.Executor, @NonNull java.util.function.IntConsumer);
+    field public static final int KEYSTORE_MIGRATION_FAILURE_ENCOUNTERED_EXCEPTION = 2; // 0x2
+    field public static final int KEYSTORE_MIGRATION_SUCCESS_MIGRATION_COMPLETE = 0; // 0x0
+    field public static final int KEYSTORE_MIGRATION_SUCCESS_MIGRATION_NOT_NEEDED = 1; // 0x1
   }
 
 }
@@ -1058,6 +1115,12 @@ package android.os {
     field public static final int DEVICE_INITIAL_SDK_INT;
   }
 
+  public class Handler {
+    method public final boolean hasMessagesOrCallbacks();
+    method public final void removeCallbacksAndEqualMessages(@Nullable Object);
+    method public final void removeEqualMessages(int, @Nullable Object);
+  }
+
   public class IpcDataCache<Query, Result> {
     ctor public IpcDataCache(int, @NonNull String, @NonNull String, @NonNull String, @NonNull android.os.IpcDataCache.QueryHandler<Query,Result>);
     method public void disableForCurrentProcess();
@@ -1083,6 +1146,11 @@ package android.os {
   public class ProfilingFrameworkInitializer {
     method public static void registerServiceWrappers();
     method public static void setProfilingServiceManager(@NonNull android.os.ProfilingServiceManager);
+  }
+
+  public class ProfilingServiceHelper {
+    method @NonNull public static android.os.ProfilingServiceHelper getInstance();
+    method public void onProfilingTriggerOccurred(int, @NonNull String, int);
   }
 
   public class ProfilingServiceManager {
@@ -1142,6 +1210,18 @@ package android.os {
     method public static void traceCounter(long, @NonNull String, int);
     method public static void traceEnd(long);
     field public static final long TRACE_TAG_NETWORK = 2097152L; // 0x200000L
+  }
+
+  public class UpdateEngine {
+    method public void triggerPostinstall(@NonNull String);
+  }
+
+}
+
+package android.os.flagging {
+
+  public final class ConfigInfrastructureFrameworkInitializer {
+    method public static void registerServiceWrappers();
   }
 
 }
@@ -1272,6 +1352,14 @@ package android.provider {
 
 }
 
+package android.ranging {
+
+  public final class RangingFrameworkInitializer {
+    method public static void registerServiceWrappers();
+  }
+
+}
+
 package android.safetycenter {
 
   public final class SafetyCenterFrameworkInitializer {
@@ -1349,6 +1437,7 @@ package android.system {
     field public static final int PR_CAP_AMBIENT;
     field public static final int PR_CAP_AMBIENT_RAISE;
     field public static final int RLIMIT_NOFILE;
+    field public static final int RLIMIT_RTPRIO;
     field public static final int RTMGRP_IPV4_IFADDR;
     field public static final int SPLICE_F_MORE;
     field public static final int SPLICE_F_MOVE;
@@ -1424,6 +1513,7 @@ package android.telephony {
 
   public class TelephonyManager {
     method @NonNull public static int[] getAllNetworkTypes();
+    method @NonNull @RequiresPermission(android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE) public java.util.Set<java.lang.String> getPackagesWithCarrierPrivileges();
   }
 
 }
@@ -1646,6 +1736,7 @@ package dalvik.system {
     method public static void dumpHprofDataDdms();
     method public static void dumpReferenceTables();
     method public static int getAllocCount(int);
+    method @Nullable public static dalvik.system.VMDebug.ExecutableMethodFileOffsets getExecutableMethodFileOffsets(@NonNull java.lang.reflect.Method);
     method public static int getLoadedClassCount();
     method public static int getMethodTracingMode();
     method public static String getRuntimeStat(String);
@@ -1679,7 +1770,14 @@ package dalvik.system {
     field public static final int TRACE_COUNT_ALLOCS = 1; // 0x1
   }
 
+  public static class VMDebug.ExecutableMethodFileOffsets {
+    method public long getContainerOffset();
+    method @NonNull public String getContainerPath();
+    method public long getMethodOffset();
+  }
+
   public final class VMRuntime {
+    method public static void addPostCleanupCallback(@NonNull Runnable);
     method public long addressOf(Object);
     method public static void bootCompleted();
     method public void clampGrowthLimit();
@@ -1704,6 +1802,7 @@ package dalvik.system {
     method @Deprecated public void registerNativeFree(int);
     method public void registerNativeFree(long);
     method public static void registerSensitiveThread();
+    method public static void removePostCleanupCallback(@NonNull Runnable);
     method public void requestConcurrentGC();
     method public static void resetJitCounters();
     method public static void setDedupeHiddenApiWarnings(boolean);
@@ -2133,10 +2232,22 @@ package libcore.util {
   public class NativeAllocationRegistry {
     ctor public NativeAllocationRegistry(@NonNull ClassLoader, long, long);
     method public static void applyFreeFunction(long, long);
-    method public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long);
-    method public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long, long);
-    method public static libcore.util.NativeAllocationRegistry createNonmalloced(@NonNull ClassLoader, long, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull Class, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull Class, long, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createNonmalloced(@NonNull Class, long, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createNonmalloced(@NonNull ClassLoader, long, long);
+    method @NonNull public static java.util.Collection<libcore.util.NativeAllocationRegistry.Metrics> getMetrics();
     method @NonNull public Runnable registerNativeAllocation(@NonNull Object, long);
+  }
+
+  public static final class NativeAllocationRegistry.Metrics {
+    method @NonNull public String getClassName();
+    method public long getMallocedBytes();
+    method public long getMallocedCount();
+    method public long getNonmallocedBytes();
+    method public long getNonmallocedCount();
   }
 
   public class SneakyThrow {
