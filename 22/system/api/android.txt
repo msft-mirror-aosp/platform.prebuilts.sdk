@@ -7077,7 +7077,7 @@ package android.content {
     method public void onLowMemory();
   }
 
-  public interface ComponentCallbacks2 implements android.content.ComponentCallbacks {
+  public interface ComponentCallbacks2 extends android.content.ComponentCallbacks {
     method public void onTrimMemory(int);
     field public static final int TRIM_MEMORY_BACKGROUND = 40; // 0x28
     field public static final int TRIM_MEMORY_COMPLETE = 80; // 0x50
@@ -7692,7 +7692,7 @@ package android.content {
     field public final android.content.ContentValues values;
   }
 
-  public interface EntityIterator implements java.util.Iterator {
+  public interface EntityIterator extends java.util.Iterator {
     method public void close();
     method public void reset();
   }
@@ -9604,7 +9604,7 @@ package android.content.res {
     method public void recycle();
   }
 
-  public interface XmlResourceParser implements android.util.AttributeSet java.lang.AutoCloseable org.xmlpull.v1.XmlPullParser {
+  public interface XmlResourceParser extends android.util.AttributeSet java.lang.AutoCloseable org.xmlpull.v1.XmlPullParser {
     method public void close();
   }
 
@@ -9715,7 +9715,7 @@ package android.database {
     method public void onChange(boolean, android.net.Uri);
   }
 
-  public interface CrossProcessCursor implements android.database.Cursor {
+  public interface CrossProcessCursor extends android.database.Cursor {
     method public void fillWindow(int, android.database.CursorWindow);
     method public android.database.CursorWindow getWindow();
     method public boolean onMove(int, int);
@@ -9728,7 +9728,7 @@ package android.database {
     method public boolean onMove(int, int);
   }
 
-  public interface Cursor implements java.io.Closeable {
+  public interface Cursor extends java.io.Closeable {
     method public void close();
     method public void copyStringToBuffer(int, android.database.CharArrayBuffer);
     method public deprecated void deactivate();
@@ -12702,7 +12702,7 @@ package android.hardware {
     method public void onSensorChanged(android.hardware.SensorEvent);
   }
 
-  public interface SensorEventListener2 implements android.hardware.SensorEventListener {
+  public interface SensorEventListener2 extends android.hardware.SensorEventListener {
     method public void onFlushCompleted(android.hardware.Sensor);
   }
 
@@ -13878,7 +13878,7 @@ package android.hardware.location {
     field public static final android.os.Parcelable.Creator<android.hardware.location.GeofenceHardwareRequestParcelable> CREATOR;
   }
 
-  public interface IGeofenceHardware implements android.os.IInterface {
+  public interface IGeofenceHardware extends android.os.IInterface {
     method public boolean addCircularFence(int, android.hardware.location.GeofenceHardwareRequestParcelable, android.hardware.location.IGeofenceHardwareCallback) throws android.os.RemoteException;
     method public int[] getMonitoringTypes() throws android.os.RemoteException;
     method public int getStatusOfMonitoringType(int) throws android.os.RemoteException;
@@ -13891,7 +13891,7 @@ package android.hardware.location {
     method public boolean unregisterForMonitorStateChangeCallback(int, android.hardware.location.IGeofenceHardwareMonitorCallback) throws android.os.RemoteException;
   }
 
-  public interface IGeofenceHardwareCallback implements android.os.IInterface {
+  public interface IGeofenceHardwareCallback extends android.os.IInterface {
     method public void onGeofenceAdd(int, int) throws android.os.RemoteException;
     method public void onGeofencePause(int, int) throws android.os.RemoteException;
     method public void onGeofenceRemove(int, int) throws android.os.RemoteException;
@@ -13899,7 +13899,7 @@ package android.hardware.location {
     method public void onGeofenceTransition(int, int, android.location.Location, long, int) throws android.os.RemoteException;
   }
 
-  public interface IGeofenceHardwareMonitorCallback implements android.os.IInterface {
+  public interface IGeofenceHardwareMonitorCallback extends android.os.IInterface {
     method public void onMonitoringSystemChange(android.hardware.location.GeofenceHardwareMonitorEvent) throws android.os.RemoteException;
   }
 
@@ -14683,7 +14683,7 @@ package android.location {
     method public void onNmeaReceived(long, java.lang.String);
   }
 
-  public interface IFusedGeofenceHardware implements android.os.IInterface {
+  public interface IFusedGeofenceHardware extends android.os.IInterface {
     method public void addGeofences(android.hardware.location.GeofenceHardwareRequestParcelable[]) throws android.os.RemoteException;
     method public boolean isSupported() throws android.os.RemoteException;
     method public void modifyGeofenceOptions(int, int, int, int, int, int) throws android.os.RemoteException;
@@ -14692,7 +14692,7 @@ package android.location {
     method public void resumeMonitoringGeofence(int, int) throws android.os.RemoteException;
   }
 
-  public interface IGpsGeofenceHardware implements android.os.IInterface {
+  public interface IGpsGeofenceHardware extends android.os.IInterface {
     method public boolean addCircularHardwareGeofence(int, double, double, double, int, int, int, int) throws android.os.RemoteException;
     method public boolean isHardwareGeofenceSupported() throws android.os.RemoteException;
     method public boolean pauseHardwareGeofence(int) throws android.os.RemoteException;
@@ -16459,7 +16459,7 @@ package android.media {
     method public static void scanFile(android.content.Context, java.lang.String[], java.lang.String[], android.media.MediaScannerConnection.OnScanCompletedListener);
   }
 
-  public static interface MediaScannerConnection.MediaScannerConnectionClient implements android.media.MediaScannerConnection.OnScanCompletedListener {
+  public static interface MediaScannerConnection.MediaScannerConnectionClient extends android.media.MediaScannerConnection.OnScanCompletedListener {
     method public void onMediaScannerConnected();
     method public void onScanCompleted(java.lang.String, android.net.Uri);
   }
@@ -17547,7 +17547,7 @@ package android.media.tv {
     field public static final java.lang.String AUTHORITY = "android.media.tv";
   }
 
-  public static interface TvContract.BaseTvColumns implements android.provider.BaseColumns {
+  public static interface TvContract.BaseTvColumns extends android.provider.BaseColumns {
     field public static final java.lang.String COLUMN_PACKAGE_NAME = "package_name";
   }
 
@@ -19577,7 +19577,7 @@ package android.net.wifi {
     field public int low;
   }
 
-  public static interface WifiScanner.BssidListener implements android.net.wifi.WifiScanner.ActionListener {
+  public static interface WifiScanner.BssidListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onFound(android.net.wifi.ScanResult[]);
   }
 
@@ -19594,7 +19594,7 @@ package android.net.wifi {
     field public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
   }
 
-  public static interface WifiScanner.ScanListener implements android.net.wifi.WifiScanner.ActionListener {
+  public static interface WifiScanner.ScanListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onFullResult(android.net.wifi.ScanResult);
     method public void onPeriodChanged(int);
     method public void onResults(android.net.wifi.ScanResult[]);
@@ -19611,7 +19611,7 @@ package android.net.wifi {
     field public int reportEvents;
   }
 
-  public static interface WifiScanner.WifiChangeListener implements android.net.wifi.WifiScanner.ActionListener {
+  public static interface WifiScanner.WifiChangeListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onChanging(android.net.wifi.ScanResult[]);
     method public void onQuiescence(android.net.wifi.ScanResult[]);
   }
@@ -20169,7 +20169,7 @@ package android.nfc.tech {
     method public byte[] transceive(byte[]) throws java.io.IOException;
   }
 
-  public interface TagTechnology implements java.io.Closeable {
+  public interface TagTechnology extends java.io.Closeable {
     method public void close() throws java.io.IOException;
     method public void connect() throws java.io.IOException;
     method public android.nfc.Tag getTag();
@@ -23638,7 +23638,7 @@ package android.os {
     field public static final int PARCELABLE_WRITE_RETURN_VALUE = 1; // 0x1
   }
 
-  public static interface Parcelable.ClassLoaderCreator implements android.os.Parcelable.Creator {
+  public static interface Parcelable.ClassLoaderCreator extends android.os.Parcelable.Creator {
     method public T createFromParcel(android.os.Parcel, java.lang.ClassLoader);
   }
 
@@ -24955,7 +24955,7 @@ package android.provider {
     field public static final android.net.Uri CONTENT_URI;
   }
 
-  protected static interface CalendarContract.ColorsColumns implements android.provider.SyncStateContract.Columns {
+  protected static interface CalendarContract.ColorsColumns extends android.provider.SyncStateContract.Columns {
     field public static final java.lang.String COLOR = "color";
     field public static final java.lang.String COLOR_KEY = "color_index";
     field public static final java.lang.String COLOR_TYPE = "color_type";
@@ -25089,7 +25089,7 @@ package android.provider {
     field public static final int MINUTES_DEFAULT = -1; // 0xffffffff
   }
 
-  protected static interface CalendarContract.SyncColumns implements android.provider.CalendarContract.CalendarSyncColumns {
+  protected static interface CalendarContract.SyncColumns extends android.provider.CalendarContract.CalendarSyncColumns {
     field public static final java.lang.String ACCOUNT_NAME = "account_name";
     field public static final java.lang.String ACCOUNT_TYPE = "account_type";
     field public static final java.lang.String CAN_PARTIALLY_UPDATE = "canPartiallyUpdate";
@@ -25500,7 +25500,7 @@ package android.provider {
     field public static final java.lang.String EXTRA_ADDRESS_BOOK_INDEX_TITLES = "android.provider.extra.ADDRESS_BOOK_INDEX_TITLES";
   }
 
-  protected static interface ContactsContract.CommonDataKinds.CommonColumns implements android.provider.ContactsContract.CommonDataKinds.BaseTypes {
+  protected static interface ContactsContract.CommonDataKinds.CommonColumns extends android.provider.ContactsContract.CommonDataKinds.BaseTypes {
     field public static final java.lang.String DATA = "data1";
     field public static final java.lang.String LABEL = "data3";
     field public static final java.lang.String TYPE = "data2";
@@ -25901,7 +25901,7 @@ package android.provider {
     field public static final java.lang.String SYNC4 = "data_sync4";
   }
 
-  protected static interface ContactsContract.DataColumnsWithJoins implements android.provider.BaseColumns android.provider.ContactsContract.ContactNameColumns android.provider.ContactsContract.ContactOptionsColumns android.provider.ContactsContract.ContactStatusColumns android.provider.ContactsContract.ContactsColumns android.provider.ContactsContract.DataColumns android.provider.ContactsContract.DataUsageStatColumns android.provider.ContactsContract.RawContactsColumns android.provider.ContactsContract.StatusColumns {
+  protected static interface ContactsContract.DataColumnsWithJoins extends android.provider.BaseColumns android.provider.ContactsContract.ContactNameColumns android.provider.ContactsContract.ContactOptionsColumns android.provider.ContactsContract.ContactStatusColumns android.provider.ContactsContract.ContactsColumns android.provider.ContactsContract.DataColumns android.provider.ContactsContract.DataUsageStatColumns android.provider.ContactsContract.RawContactsColumns android.provider.ContactsContract.StatusColumns {
   }
 
   public static final class ContactsContract.DataUsageFeedback {
@@ -26268,7 +26268,7 @@ package android.provider {
     field public static final deprecated java.lang.String TIMESTAMP = "timestamp";
   }
 
-  protected static interface ContactsContract.SyncColumns implements android.provider.ContactsContract.BaseSyncColumns {
+  protected static interface ContactsContract.SyncColumns extends android.provider.ContactsContract.BaseSyncColumns {
     field public static final java.lang.String ACCOUNT_NAME = "account_name";
     field public static final java.lang.String ACCOUNT_TYPE = "account_type";
     field public static final java.lang.String DIRTY = "dirty";
@@ -26474,7 +26474,7 @@ package android.provider {
     method public static final android.net.Uri getContentUri(java.lang.String, long);
   }
 
-  public static interface MediaStore.Audio.AudioColumns implements android.provider.MediaStore.MediaColumns {
+  public static interface MediaStore.Audio.AudioColumns extends android.provider.MediaStore.MediaColumns {
     field public static final java.lang.String ALBUM = "album";
     field public static final java.lang.String ALBUM_ID = "album_id";
     field public static final java.lang.String ALBUM_KEY = "album_key";
@@ -26570,7 +26570,7 @@ package android.provider {
     method public static final android.net.Uri getContentUri(java.lang.String, long);
   }
 
-  public static interface MediaStore.Files.FileColumns implements android.provider.MediaStore.MediaColumns {
+  public static interface MediaStore.Files.FileColumns extends android.provider.MediaStore.MediaColumns {
     field public static final java.lang.String MEDIA_TYPE = "media_type";
     field public static final int MEDIA_TYPE_AUDIO = 2; // 0x2
     field public static final int MEDIA_TYPE_IMAGE = 1; // 0x1
@@ -26586,7 +26586,7 @@ package android.provider {
     ctor public MediaStore.Images();
   }
 
-  public static interface MediaStore.Images.ImageColumns implements android.provider.MediaStore.MediaColumns {
+  public static interface MediaStore.Images.ImageColumns extends android.provider.MediaStore.MediaColumns {
     field public static final java.lang.String BUCKET_DISPLAY_NAME = "bucket_display_name";
     field public static final java.lang.String BUCKET_ID = "bucket_id";
     field public static final java.lang.String DATE_TAKEN = "datetaken";
@@ -26638,7 +26638,7 @@ package android.provider {
     field public static final java.lang.String WIDTH = "width";
   }
 
-  public static interface MediaStore.MediaColumns implements android.provider.BaseColumns {
+  public static interface MediaStore.MediaColumns extends android.provider.BaseColumns {
     field public static final java.lang.String DATA = "_data";
     field public static final java.lang.String DATE_ADDED = "date_added";
     field public static final java.lang.String DATE_MODIFIED = "date_modified";
@@ -26685,7 +26685,7 @@ package android.provider {
     field public static final java.lang.String WIDTH = "width";
   }
 
-  public static interface MediaStore.Video.VideoColumns implements android.provider.MediaStore.MediaColumns {
+  public static interface MediaStore.Video.VideoColumns extends android.provider.MediaStore.MediaColumns {
     field public static final java.lang.String ALBUM = "album";
     field public static final java.lang.String ARTIST = "artist";
     field public static final java.lang.String BOOKMARK = "bookmark";
@@ -27062,7 +27062,7 @@ package android.provider {
     ctor public SyncStateContract();
   }
 
-  public static interface SyncStateContract.Columns implements android.provider.BaseColumns {
+  public static interface SyncStateContract.Columns extends android.provider.BaseColumns {
     field public static final java.lang.String ACCOUNT_NAME = "account_name";
     field public static final java.lang.String ACCOUNT_TYPE = "account_type";
     field public static final java.lang.String DATA = "data";
@@ -27087,7 +27087,7 @@ package android.provider {
   public final class Telephony {
   }
 
-  public static interface Telephony.BaseMmsColumns implements android.provider.BaseColumns {
+  public static interface Telephony.BaseMmsColumns extends android.provider.BaseColumns {
     field public static final java.lang.String CONTENT_CLASS = "ct_cls";
     field public static final java.lang.String CONTENT_LOCATION = "ct_l";
     field public static final java.lang.String CONTENT_TYPE = "ct_t";
@@ -27130,7 +27130,7 @@ package android.provider {
     field public static final java.lang.String TRANSACTION_ID = "tr_id";
   }
 
-  public static interface Telephony.CanonicalAddressesColumns implements android.provider.BaseColumns {
+  public static interface Telephony.CanonicalAddressesColumns extends android.provider.BaseColumns {
     field public static final java.lang.String ADDRESS = "address";
   }
 
@@ -27350,7 +27350,7 @@ package android.provider {
     field public static final android.net.Uri OBSOLETE_THREADS_URI;
   }
 
-  public static interface Telephony.ThreadsColumns implements android.provider.BaseColumns {
+  public static interface Telephony.ThreadsColumns extends android.provider.BaseColumns {
     field public static final java.lang.String ARCHIVED = "archived";
     field public static final java.lang.String DATE = "date";
     field public static final java.lang.String ERROR = "error";
@@ -28336,7 +28336,7 @@ package android.sax {
     method public void setTextElementListener(android.sax.TextElementListener);
   }
 
-  public interface ElementListener implements android.sax.EndElementListener android.sax.StartElementListener {
+  public interface ElementListener extends android.sax.EndElementListener android.sax.StartElementListener {
   }
 
   public interface EndElementListener {
@@ -28357,7 +28357,7 @@ package android.sax {
     method public void start(org.xml.sax.Attributes);
   }
 
-  public interface TextElementListener implements android.sax.EndTextElementListener android.sax.StartElementListener {
+  public interface TextElementListener extends android.sax.EndTextElementListener android.sax.StartElementListener {
   }
 
 }
@@ -28673,7 +28673,7 @@ package android.service.notification {
 
 package android.service.persistentdata {
 
-  public interface IPersistentDataBlockService implements android.os.IInterface {
+  public interface IPersistentDataBlockService extends android.os.IInterface {
     method public int getDataBlockSize() throws android.os.RemoteException;
     method public long getMaximumDataBlockSize() throws android.os.RemoteException;
     method public boolean getOemUnlockEnabled() throws android.os.RemoteException;
@@ -31734,7 +31734,7 @@ package android.text {
     method public int getTopPadding();
   }
 
-  public interface Editable implements java.lang.Appendable java.lang.CharSequence android.text.GetChars android.text.Spannable {
+  public interface Editable extends java.lang.Appendable java.lang.CharSequence android.text.GetChars android.text.Spannable {
     method public android.text.Editable append(java.lang.CharSequence);
     method public android.text.Editable append(java.lang.CharSequence, int, int);
     method public android.text.Editable append(char);
@@ -31755,7 +31755,7 @@ package android.text {
     method public android.text.Editable newEditable(java.lang.CharSequence);
   }
 
-  public interface GetChars implements java.lang.CharSequence {
+  public interface GetChars extends java.lang.CharSequence {
     method public void getChars(int, int, char[], int);
   }
 
@@ -31926,7 +31926,7 @@ package android.text {
     ctor public NoCopySpan.Concrete();
   }
 
-  public interface ParcelableSpan implements android.os.Parcelable {
+  public interface ParcelableSpan extends android.os.Parcelable {
     method public int getSpanTypeId();
   }
 
@@ -31954,13 +31954,13 @@ package android.text {
     field public static final java.lang.Object SELECTION_START;
   }
 
-  public interface SpanWatcher implements android.text.NoCopySpan {
+  public interface SpanWatcher extends android.text.NoCopySpan {
     method public void onSpanAdded(android.text.Spannable, java.lang.Object, int, int);
     method public void onSpanChanged(android.text.Spannable, java.lang.Object, int, int, int, int);
     method public void onSpanRemoved(android.text.Spannable, java.lang.Object, int, int);
   }
 
-  public interface Spannable implements android.text.Spanned {
+  public interface Spannable extends android.text.Spanned {
     method public void removeSpan(java.lang.Object);
     method public void setSpan(java.lang.Object, int, int, int);
   }
@@ -32023,7 +32023,7 @@ package android.text {
     method public final java.lang.String toString();
   }
 
-  public interface Spanned implements java.lang.CharSequence {
+  public interface Spanned extends java.lang.CharSequence {
     method public int getSpanEnd(java.lang.Object);
     method public int getSpanFlags(java.lang.Object);
     method public int getSpanStart(java.lang.Object);
@@ -32155,7 +32155,7 @@ package android.text {
     method public void setString(java.lang.String);
   }
 
-  public static interface TextUtils.StringSplitter implements java.lang.Iterable {
+  public static interface TextUtils.StringSplitter extends java.lang.Iterable {
     method public void setString(java.lang.String);
   }
 
@@ -32166,7 +32166,7 @@ package android.text {
     enum_constant public static final android.text.TextUtils.TruncateAt START;
   }
 
-  public interface TextWatcher implements android.text.NoCopySpan {
+  public interface TextWatcher extends android.text.NoCopySpan {
     method public void afterTextChanged(android.text.Editable);
     method public void beforeTextChanged(java.lang.CharSequence, int, int, int);
     method public void onTextChanged(java.lang.CharSequence, int, int, int);
@@ -32581,7 +32581,7 @@ package android.text.style {
     method public void writeToParcel(android.os.Parcel, int);
   }
 
-  public interface AlignmentSpan implements android.text.style.ParagraphStyle {
+  public interface AlignmentSpan extends android.text.style.ParagraphStyle {
     method public android.text.Layout.Alignment getAlignment();
   }
 
@@ -32697,12 +32697,12 @@ package android.text.style {
     method public java.lang.String getSource();
   }
 
-  public interface LeadingMarginSpan implements android.text.style.ParagraphStyle {
+  public interface LeadingMarginSpan extends android.text.style.ParagraphStyle {
     method public void drawLeadingMargin(android.graphics.Canvas, android.graphics.Paint, int, int, int, int, int, java.lang.CharSequence, int, int, boolean, android.text.Layout);
     method public int getLeadingMargin(boolean);
   }
 
-  public static interface LeadingMarginSpan.LeadingMarginSpan2 implements android.text.style.LeadingMarginSpan android.text.style.WrapTogetherSpan {
+  public static interface LeadingMarginSpan.LeadingMarginSpan2 extends android.text.style.LeadingMarginSpan android.text.style.WrapTogetherSpan {
     method public int getLeadingMarginLineCount();
   }
 
@@ -32717,15 +32717,15 @@ package android.text.style {
     method public void writeToParcel(android.os.Parcel, int);
   }
 
-  public interface LineBackgroundSpan implements android.text.style.ParagraphStyle {
+  public interface LineBackgroundSpan extends android.text.style.ParagraphStyle {
     method public void drawBackground(android.graphics.Canvas, android.graphics.Paint, int, int, int, int, int, java.lang.CharSequence, int, int, int);
   }
 
-  public interface LineHeightSpan implements android.text.style.ParagraphStyle android.text.style.WrapTogetherSpan {
+  public interface LineHeightSpan extends android.text.style.ParagraphStyle android.text.style.WrapTogetherSpan {
     method public void chooseHeight(java.lang.CharSequence, int, int, int, int, android.graphics.Paint.FontMetricsInt);
   }
 
-  public static interface LineHeightSpan.WithDensity implements android.text.style.LineHeightSpan {
+  public static interface LineHeightSpan.WithDensity extends android.text.style.LineHeightSpan {
     method public void chooseHeight(java.lang.CharSequence, int, int, int, int, android.graphics.Paint.FontMetricsInt, android.text.TextPaint);
   }
 
@@ -32866,7 +32866,7 @@ package android.text.style {
     method public void writeToParcel(android.os.Parcel, int);
   }
 
-  public interface TabStopSpan implements android.text.style.ParagraphStyle {
+  public interface TabStopSpan extends android.text.style.ParagraphStyle {
     method public int getTabStop();
   }
 
@@ -33146,10 +33146,10 @@ package android.text.style {
   public interface UpdateAppearance {
   }
 
-  public interface UpdateLayout implements android.text.style.UpdateAppearance {
+  public interface UpdateLayout extends android.text.style.UpdateAppearance {
   }
 
-  public interface WrapTogetherSpan implements android.text.style.ParagraphStyle {
+  public interface WrapTogetherSpan extends android.text.style.ParagraphStyle {
   }
 
 }
@@ -34200,7 +34200,7 @@ package android.view {
     method public void onActionViewExpanded();
   }
 
-  public interface ContextMenu implements android.view.Menu {
+  public interface ContextMenu extends android.view.Menu {
     method public void clearHeader();
     method public android.view.ContextMenu setHeaderIcon(int);
     method public android.view.ContextMenu setHeaderIcon(android.graphics.drawable.Drawable);
@@ -34921,7 +34921,7 @@ package android.view {
     method public android.view.View onCreateView(java.lang.String, android.content.Context, android.util.AttributeSet);
   }
 
-  public static interface LayoutInflater.Factory2 implements android.view.LayoutInflater.Factory {
+  public static interface LayoutInflater.Factory2 extends android.view.LayoutInflater.Factory {
     method public android.view.View onCreateView(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet);
   }
 
@@ -35287,7 +35287,7 @@ package android.view {
     field public static final int NAVIGATION_UP = 2; // 0x2
   }
 
-  public interface SubMenu implements android.view.Menu {
+  public interface SubMenu extends android.view.Menu {
     method public void clearHeader();
     method public android.view.MenuItem getItem();
     method public android.view.SubMenu setHeaderIcon(int);
@@ -35352,7 +35352,7 @@ package android.view {
     method public void surfaceDestroyed(android.view.SurfaceHolder);
   }
 
-  public static interface SurfaceHolder.Callback2 implements android.view.SurfaceHolder.Callback {
+  public static interface SurfaceHolder.Callback2 extends android.view.SurfaceHolder.Callback {
     method public void surfaceRedrawNeeded(android.view.SurfaceHolder);
   }
 
@@ -36793,7 +36793,7 @@ package android.view {
     method public android.view.WindowInsets replaceSystemWindowInsets(android.graphics.Rect);
   }
 
-  public interface WindowManager implements android.view.ViewManager {
+  public interface WindowManager extends android.view.ViewManager {
     method public android.view.Display getDefaultDisplay();
     method public void removeViewImmediate(android.view.View);
   }
@@ -37546,7 +37546,7 @@ package android.view.animation {
     field public int rowsCount;
   }
 
-  public interface Interpolator implements android.animation.TimeInterpolator {
+  public interface Interpolator extends android.animation.TimeInterpolator {
   }
 
   public class LayoutAnimationController {
@@ -39117,7 +39117,7 @@ package android.widget {
     ctor public AbsListView.LayoutParams(android.view.ViewGroup.LayoutParams);
   }
 
-  public static interface AbsListView.MultiChoiceModeListener implements android.view.ActionMode.Callback {
+  public static interface AbsListView.MultiChoiceModeListener extends android.view.ActionMode.Callback {
     method public void onItemCheckedStateChanged(android.view.ActionMode, int, long, boolean);
   }
 
@@ -40144,7 +40144,7 @@ package android.widget {
     field public float weight;
   }
 
-  public interface ListAdapter implements android.widget.Adapter {
+  public interface ListAdapter extends android.widget.Adapter {
     method public boolean areAllItemsEnabled();
     method public boolean isEnabled(int);
   }
@@ -40991,7 +40991,7 @@ package android.widget {
     field public static final int MODE_DROPDOWN = 1; // 0x1
   }
 
-  public interface SpinnerAdapter implements android.widget.Adapter {
+  public interface SpinnerAdapter extends android.widget.Adapter {
     method public android.view.View getDropDownView(int, android.view.View, android.view.ViewGroup);
   }
 
@@ -41566,7 +41566,7 @@ package android.widget {
     method public android.view.View makeView();
   }
 
-  public interface WrapperListAdapter implements android.widget.ListAdapter {
+  public interface WrapperListAdapter extends android.widget.ListAdapter {
     method public android.widget.ListAdapter getWrappedAdapter();
   }
 
@@ -42062,7 +42062,7 @@ package java.beans {
     method public void setPropagationId(java.lang.Object);
   }
 
-  public interface PropertyChangeListener implements java.util.EventListener {
+  public interface PropertyChangeListener extends java.util.EventListener {
     method public void propertyChange(java.beans.PropertyChangeEvent);
   }
 
@@ -42182,7 +42182,7 @@ package java.io {
     ctor public CharConversionException(java.lang.String);
   }
 
-  public interface Closeable implements java.lang.AutoCloseable {
+  public interface Closeable extends java.lang.AutoCloseable {
     method public void close() throws java.io.IOException;
   }
 
@@ -42277,7 +42277,7 @@ package java.io {
     ctor public EOFException(java.lang.String);
   }
 
-  public interface Externalizable implements java.io.Serializable {
+  public interface Externalizable extends java.io.Serializable {
     method public void readExternal(java.io.ObjectInput) throws java.lang.ClassNotFoundException, java.io.IOException;
     method public void writeExternal(java.io.ObjectOutput) throws java.io.IOException;
   }
@@ -42505,7 +42505,7 @@ package java.io {
     ctor public NotSerializableException(java.lang.String);
   }
 
-  public interface ObjectInput implements java.lang.AutoCloseable java.io.DataInput {
+  public interface ObjectInput extends java.lang.AutoCloseable java.io.DataInput {
     method public int available() throws java.io.IOException;
     method public void close() throws java.io.IOException;
     method public int read() throws java.io.IOException;
@@ -42567,7 +42567,7 @@ package java.io {
     method public void validateObject() throws java.io.InvalidObjectException;
   }
 
-  public interface ObjectOutput implements java.lang.AutoCloseable java.io.DataOutput {
+  public interface ObjectOutput extends java.lang.AutoCloseable java.io.DataOutput {
     method public void close() throws java.io.IOException;
     method public void flush() throws java.io.IOException;
     method public void write(byte[]) throws java.io.IOException;
@@ -44831,7 +44831,7 @@ package java.lang.reflect {
     method public java.lang.String toGenericString();
   }
 
-  public interface GenericArrayType implements java.lang.reflect.Type {
+  public interface GenericArrayType extends java.lang.reflect.Type {
     method public java.lang.reflect.Type getGenericComponentType();
   }
 
@@ -44922,7 +44922,7 @@ package java.lang.reflect {
     field public static final int VOLATILE = 64; // 0x40
   }
 
-  public interface ParameterizedType implements java.lang.reflect.Type {
+  public interface ParameterizedType extends java.lang.reflect.Type {
     method public java.lang.reflect.Type[] getActualTypeArguments();
     method public java.lang.reflect.Type getOwnerType();
     method public java.lang.reflect.Type getRawType();
@@ -44945,7 +44945,7 @@ package java.lang.reflect {
   public interface Type {
   }
 
-  public interface TypeVariable implements java.lang.reflect.Type {
+  public interface TypeVariable extends java.lang.reflect.Type {
     method public java.lang.reflect.Type[] getBounds();
     method public D getGenericDeclaration();
     method public java.lang.String getName();
@@ -44957,7 +44957,7 @@ package java.lang.reflect {
     method public java.lang.Throwable getUndeclaredThrowable();
   }
 
-  public interface WildcardType implements java.lang.reflect.Type {
+  public interface WildcardType extends java.lang.reflect.Type {
     method public java.lang.reflect.Type[] getLowerBounds();
     method public java.lang.reflect.Type[] getUpperBounds();
   }
@@ -46219,14 +46219,14 @@ package java.nio.channels {
     ctor public AsynchronousCloseException();
   }
 
-  public interface ByteChannel implements java.nio.channels.ReadableByteChannel java.nio.channels.WritableByteChannel {
+  public interface ByteChannel extends java.nio.channels.ReadableByteChannel java.nio.channels.WritableByteChannel {
   }
 
   public class CancelledKeyException extends java.lang.IllegalStateException {
     ctor public CancelledKeyException();
   }
 
-  public interface Channel implements java.io.Closeable {
+  public interface Channel extends java.io.Closeable {
     method public void close() throws java.io.IOException;
     method public boolean isOpen();
   }
@@ -46323,7 +46323,7 @@ package java.nio.channels {
     ctor public FileLockInterruptionException();
   }
 
-  public interface GatheringByteChannel implements java.nio.channels.WritableByteChannel {
+  public interface GatheringByteChannel extends java.nio.channels.WritableByteChannel {
     method public long write(java.nio.ByteBuffer[]) throws java.io.IOException;
     method public long write(java.nio.ByteBuffer[], int, int) throws java.io.IOException;
   }
@@ -46336,7 +46336,7 @@ package java.nio.channels {
     ctor public IllegalSelectorException();
   }
 
-  public interface InterruptibleChannel implements java.nio.channels.Channel {
+  public interface InterruptibleChannel extends java.nio.channels.Channel {
     method public void close() throws java.io.IOException;
   }
 
@@ -46381,11 +46381,11 @@ package java.nio.channels {
     method public final int validOps();
   }
 
-  public interface ReadableByteChannel implements java.nio.channels.Channel {
+  public interface ReadableByteChannel extends java.nio.channels.Channel {
     method public int read(java.nio.ByteBuffer) throws java.io.IOException;
   }
 
-  public interface ScatteringByteChannel implements java.nio.channels.ReadableByteChannel {
+  public interface ScatteringByteChannel extends java.nio.channels.ReadableByteChannel {
     method public long read(java.nio.ByteBuffer[]) throws java.io.IOException;
     method public long read(java.nio.ByteBuffer[], int, int) throws java.io.IOException;
   }
@@ -46472,7 +46472,7 @@ package java.nio.channels {
     ctor public UnsupportedAddressTypeException();
   }
 
-  public interface WritableByteChannel implements java.nio.channels.Channel {
+  public interface WritableByteChannel extends java.nio.channels.Channel {
     method public int write(java.nio.ByteBuffer) throws java.io.IOException;
   }
 
@@ -46898,7 +46898,7 @@ package java.security {
     ctor public InvalidParameterException();
   }
 
-  public interface Key implements java.io.Serializable {
+  public interface Key extends java.io.Serializable {
     method public java.lang.String getAlgorithm();
     method public byte[] getEncoded();
     method public java.lang.String getFormat();
@@ -47192,7 +47192,7 @@ package java.security {
     method public java.lang.String toString();
   }
 
-  public interface PrivateKey implements java.security.Key {
+  public interface PrivateKey extends java.security.Key {
     field public static final long serialVersionUID = 6034044314589513430L; // 0x53bd3b559a12c6d6L
   }
 
@@ -47250,7 +47250,7 @@ package java.security {
     ctor public ProviderException(java.lang.Throwable);
   }
 
-  public interface PublicKey implements java.security.Key {
+  public interface PublicKey extends java.security.Key {
     field public static final long serialVersionUID = 7187392471159151072L; // 0x63bebf5f40c219e0L
   }
 
@@ -47405,7 +47405,7 @@ package java.security {
 
 package java.security.acl {
 
-  public interface Acl implements java.security.acl.Owner {
+  public interface Acl extends java.security.acl.Owner {
     method public boolean addEntry(java.security.Principal, java.security.acl.AclEntry) throws java.security.acl.NotOwnerException;
     method public boolean checkPermission(java.security.Principal, java.security.acl.Permission);
     method public java.util.Enumeration<java.security.acl.AclEntry> entries();
@@ -47416,7 +47416,7 @@ package java.security.acl {
     method public java.lang.String toString();
   }
 
-  public interface AclEntry implements java.lang.Cloneable {
+  public interface AclEntry extends java.lang.Cloneable {
     method public boolean addPermission(java.security.acl.Permission);
     method public boolean checkPermission(java.security.acl.Permission);
     method public java.lang.Object clone();
@@ -47433,7 +47433,7 @@ package java.security.acl {
     ctor public AclNotFoundException();
   }
 
-  public interface Group implements java.security.Principal {
+  public interface Group extends java.security.Principal {
     method public boolean addMember(java.security.Principal);
     method public boolean isMember(java.security.Principal);
     method public java.util.Enumeration<? extends java.security.Principal> members();
@@ -47477,7 +47477,7 @@ package java.security.cert {
     ctor public CRLException(java.lang.Throwable);
   }
 
-  public interface CRLSelector implements java.lang.Cloneable {
+  public interface CRLSelector extends java.lang.Cloneable {
     method public java.lang.Object clone();
     method public boolean match(java.security.cert.CRL);
   }
@@ -47515,7 +47515,7 @@ package java.security.cert {
     ctor public CertPathBuilderException();
   }
 
-  public interface CertPathBuilderResult implements java.lang.Cloneable {
+  public interface CertPathBuilderResult extends java.lang.Cloneable {
     method public java.lang.Object clone();
     method public java.security.cert.CertPath getCertPath();
   }
@@ -47525,7 +47525,7 @@ package java.security.cert {
     method public abstract java.security.cert.CertPathBuilderResult engineBuild(java.security.cert.CertPathParameters) throws java.security.cert.CertPathBuilderException, java.security.InvalidAlgorithmParameterException;
   }
 
-  public interface CertPathParameters implements java.lang.Cloneable {
+  public interface CertPathParameters extends java.lang.Cloneable {
     method public java.lang.Object clone();
   }
 
@@ -47550,7 +47550,7 @@ package java.security.cert {
     method public int getIndex();
   }
 
-  public interface CertPathValidatorResult implements java.lang.Cloneable {
+  public interface CertPathValidatorResult extends java.lang.Cloneable {
     method public java.lang.Object clone();
   }
 
@@ -47559,7 +47559,7 @@ package java.security.cert {
     method public abstract java.security.cert.CertPathValidatorResult engineValidate(java.security.cert.CertPath, java.security.cert.CertPathParameters) throws java.security.cert.CertPathValidatorException, java.security.InvalidAlgorithmParameterException;
   }
 
-  public interface CertSelector implements java.lang.Cloneable {
+  public interface CertSelector extends java.lang.Cloneable {
     method public java.lang.Object clone();
     method public boolean match(java.security.cert.Certificate);
   }
@@ -47584,7 +47584,7 @@ package java.security.cert {
     ctor public CertStoreException();
   }
 
-  public interface CertStoreParameters implements java.lang.Cloneable {
+  public interface CertStoreParameters extends java.lang.Cloneable {
     method public java.lang.Object clone();
   }
 
@@ -47933,12 +47933,12 @@ package java.security.interfaces {
     method public java.math.BigInteger getQ();
   }
 
-  public interface DSAPrivateKey implements java.security.interfaces.DSAKey java.security.PrivateKey {
+  public interface DSAPrivateKey extends java.security.interfaces.DSAKey java.security.PrivateKey {
     method public java.math.BigInteger getX();
     field public static final long serialVersionUID = 7776497482533790279L; // 0x6bebab423b256247L
   }
 
-  public interface DSAPublicKey implements java.security.interfaces.DSAKey java.security.PublicKey {
+  public interface DSAPublicKey extends java.security.interfaces.DSAKey java.security.PublicKey {
     method public java.math.BigInteger getY();
     field public static final long serialVersionUID = 1234526332779022332L; // 0x1121eb28ab28c7fcL
   }
@@ -47947,12 +47947,12 @@ package java.security.interfaces {
     method public java.security.spec.ECParameterSpec getParams();
   }
 
-  public interface ECPrivateKey implements java.security.interfaces.ECKey java.security.PrivateKey {
+  public interface ECPrivateKey extends java.security.interfaces.ECKey java.security.PrivateKey {
     method public java.math.BigInteger getS();
     field public static final long serialVersionUID = -7896394956925609184L; // 0x926a5e9fa2435b20L
   }
 
-  public interface ECPublicKey implements java.security.interfaces.ECKey java.security.PublicKey {
+  public interface ECPublicKey extends java.security.interfaces.ECKey java.security.PublicKey {
     method public java.security.spec.ECPoint getW();
     field public static final long serialVersionUID = -3314988629879632826L; // 0xd1fecb679990cc46L
   }
@@ -47961,7 +47961,7 @@ package java.security.interfaces {
     method public java.math.BigInteger getModulus();
   }
 
-  public interface RSAMultiPrimePrivateCrtKey implements java.security.interfaces.RSAPrivateKey {
+  public interface RSAMultiPrimePrivateCrtKey extends java.security.interfaces.RSAPrivateKey {
     method public java.math.BigInteger getCrtCoefficient();
     method public java.security.spec.RSAOtherPrimeInfo[] getOtherPrimeInfo();
     method public java.math.BigInteger getPrimeExponentP();
@@ -47972,7 +47972,7 @@ package java.security.interfaces {
     field public static final long serialVersionUID = 618058533534628008L; // 0x893c8f62dbaf8a8L
   }
 
-  public interface RSAPrivateCrtKey implements java.security.interfaces.RSAPrivateKey {
+  public interface RSAPrivateCrtKey extends java.security.interfaces.RSAPrivateKey {
     method public java.math.BigInteger getCrtCoefficient();
     method public java.math.BigInteger getPrimeExponentP();
     method public java.math.BigInteger getPrimeExponentQ();
@@ -47982,12 +47982,12 @@ package java.security.interfaces {
     field public static final long serialVersionUID = -5682214253527700368L; // 0xb124b83df8d1ec70L
   }
 
-  public interface RSAPrivateKey implements java.security.PrivateKey java.security.interfaces.RSAKey {
+  public interface RSAPrivateKey extends java.security.PrivateKey java.security.interfaces.RSAKey {
     method public java.math.BigInteger getPrivateExponent();
     field public static final long serialVersionUID = 5187144804936595022L; // 0x47fc70b7a8c2364eL
   }
 
-  public interface RSAPublicKey implements java.security.PublicKey java.security.interfaces.RSAKey {
+  public interface RSAPublicKey extends java.security.PublicKey java.security.interfaces.RSAKey {
     method public java.math.BigInteger getPublicExponent();
     field public static final long serialVersionUID = -8727434096241101194L; // 0x86e1ecedeceab676L
   }
@@ -48228,7 +48228,7 @@ package java.sql {
     method public void truncate(long) throws java.sql.SQLException;
   }
 
-  public interface CallableStatement implements java.sql.PreparedStatement {
+  public interface CallableStatement extends java.sql.PreparedStatement {
     method public java.sql.Array getArray(int) throws java.sql.SQLException;
     method public java.sql.Array getArray(java.lang.String) throws java.sql.SQLException;
     method public java.math.BigDecimal getBigDecimal(int) throws java.sql.SQLException;
@@ -48365,7 +48365,7 @@ package java.sql {
     method public void truncate(long) throws java.sql.SQLException;
   }
 
-  public interface Connection implements java.lang.AutoCloseable java.sql.Wrapper {
+  public interface Connection extends java.lang.AutoCloseable java.sql.Wrapper {
     method public void clearWarnings() throws java.sql.SQLException;
     method public void close() throws java.sql.SQLException;
     method public void commit() throws java.sql.SQLException;
@@ -48430,7 +48430,7 @@ package java.sql {
     method public int getTransferSize();
   }
 
-  public interface DatabaseMetaData implements java.sql.Wrapper {
+  public interface DatabaseMetaData extends java.sql.Wrapper {
     method public boolean allProceduresAreCallable() throws java.sql.SQLException;
     method public boolean allTablesAreSelectable() throws java.sql.SQLException;
     method public boolean autoCommitFailureClosesAllResultSets() throws java.sql.SQLException;
@@ -48707,10 +48707,10 @@ package java.sql {
     field public java.lang.String value;
   }
 
-  public interface NClob implements java.sql.Clob {
+  public interface NClob extends java.sql.Clob {
   }
 
-  public interface ParameterMetaData implements java.sql.Wrapper {
+  public interface ParameterMetaData extends java.sql.Wrapper {
     method public java.lang.String getParameterClassName(int) throws java.sql.SQLException;
     method public int getParameterCount() throws java.sql.SQLException;
     method public int getParameterMode(int) throws java.sql.SQLException;
@@ -48729,7 +48729,7 @@ package java.sql {
     field public static final int parameterNullableUnknown = 2; // 0x2
   }
 
-  public interface PreparedStatement implements java.sql.Statement {
+  public interface PreparedStatement extends java.sql.Statement {
     method public void addBatch() throws java.sql.SQLException;
     method public void clearParameters() throws java.sql.SQLException;
     method public boolean execute() throws java.sql.SQLException;
@@ -48794,7 +48794,7 @@ package java.sql {
     method public void setObject(java.lang.Object) throws java.sql.SQLException;
   }
 
-  public interface ResultSet implements java.lang.AutoCloseable java.sql.Wrapper {
+  public interface ResultSet extends java.lang.AutoCloseable java.sql.Wrapper {
     method public boolean absolute(int) throws java.sql.SQLException;
     method public void afterLast() throws java.sql.SQLException;
     method public void beforeFirst() throws java.sql.SQLException;
@@ -48994,7 +48994,7 @@ package java.sql {
     field public static final int TYPE_SCROLL_SENSITIVE = 1005; // 0x3ed
   }
 
-  public interface ResultSetMetaData implements java.sql.Wrapper {
+  public interface ResultSetMetaData extends java.sql.Wrapper {
     method public java.lang.String getCatalogName(int) throws java.sql.SQLException;
     method public java.lang.String getColumnClassName(int) throws java.sql.SQLException;
     method public int getColumnCount() throws java.sql.SQLException;
@@ -49298,7 +49298,7 @@ package java.sql {
     method public java.lang.String getSavepointName() throws java.sql.SQLException;
   }
 
-  public interface Statement implements java.lang.AutoCloseable java.sql.Wrapper {
+  public interface Statement extends java.lang.AutoCloseable java.sql.Wrapper {
     method public void addBatch(java.lang.String) throws java.sql.SQLException;
     method public void cancel() throws java.sql.SQLException;
     method public void clearBatch() throws java.sql.SQLException;
@@ -49425,7 +49425,7 @@ package java.text {
     method public java.lang.Object getValue();
   }
 
-  public interface AttributedCharacterIterator implements java.text.CharacterIterator {
+  public interface AttributedCharacterIterator extends java.text.CharacterIterator {
     method public java.util.Set<java.text.AttributedCharacterIterator.Attribute> getAllAttributeKeys();
     method public java.lang.Object getAttribute(java.text.AttributedCharacterIterator.Attribute);
     method public java.util.Map<java.text.AttributedCharacterIterator.Attribute, java.lang.Object> getAttributes();
@@ -49513,7 +49513,7 @@ package java.text {
     field public static final int DONE = -1; // 0xffffffff
   }
 
-  public interface CharacterIterator implements java.lang.Cloneable {
+  public interface CharacterIterator extends java.lang.Cloneable {
     method public java.lang.Object clone();
     method public char current();
     method public char first();
@@ -50310,7 +50310,7 @@ package java.util {
     field protected long time;
   }
 
-  public interface Collection implements java.lang.Iterable {
+  public interface Collection extends java.lang.Iterable {
     method public boolean add(E);
     method public boolean addAll(java.util.Collection<? extends E>);
     method public void clear();
@@ -50446,7 +50446,7 @@ package java.util {
     method public deprecated java.lang.String toLocaleString();
   }
 
-  public interface Deque implements java.util.Queue {
+  public interface Deque extends java.util.Queue {
     method public boolean add(E);
     method public void addFirst(E);
     method public void addLast(E);
@@ -50760,7 +50760,7 @@ package java.util {
     method public int size();
   }
 
-  public interface List implements java.util.Collection {
+  public interface List extends java.util.Collection {
     method public void add(int, E);
     method public boolean add(E);
     method public boolean addAll(int, java.util.Collection<? extends E>);
@@ -50788,7 +50788,7 @@ package java.util {
     method public T[] toArray(T[]);
   }
 
-  public interface ListIterator implements java.util.Iterator {
+  public interface ListIterator extends java.util.Iterator {
     method public void add(E);
     method public boolean hasNext();
     method public boolean hasPrevious();
@@ -50925,7 +50925,7 @@ package java.util {
     method public java.lang.String getKey();
   }
 
-  public interface NavigableMap implements java.util.SortedMap {
+  public interface NavigableMap extends java.util.SortedMap {
     method public java.util.Map.Entry<K, V> ceilingEntry(K);
     method public K ceilingKey(K);
     method public java.util.NavigableSet<K> descendingKeySet();
@@ -50949,7 +50949,7 @@ package java.util {
     method public java.util.SortedMap<K, V> tailMap(K);
   }
 
-  public interface NavigableSet implements java.util.SortedSet {
+  public interface NavigableSet extends java.util.SortedSet {
     method public E ceiling(E);
     method public java.util.Iterator<E> descendingIterator();
     method public java.util.NavigableSet<E> descendingSet();
@@ -51048,7 +51048,7 @@ package java.util {
     method public java.lang.Object handleGetObject(java.lang.String);
   }
 
-  public interface Queue implements java.util.Collection {
+  public interface Queue extends java.util.Collection {
     method public boolean add(E);
     method public E element();
     method public boolean offer(E);
@@ -51195,7 +51195,7 @@ package java.util {
     method public void reload();
   }
 
-  public interface Set implements java.util.Collection {
+  public interface Set extends java.util.Collection {
     method public boolean add(E);
     method public boolean addAll(java.util.Collection<? extends E>);
     method public void clear();
@@ -51236,7 +51236,7 @@ package java.util {
     field public static final int WALL_TIME = 0; // 0x0
   }
 
-  public interface SortedMap implements java.util.Map {
+  public interface SortedMap extends java.util.Map {
     method public java.util.Comparator<? super K> comparator();
     method public K firstKey();
     method public java.util.SortedMap<K, V> headMap(K);
@@ -51245,7 +51245,7 @@ package java.util {
     method public java.util.SortedMap<K, V> tailMap(K);
   }
 
-  public interface SortedSet implements java.util.Set {
+  public interface SortedSet extends java.util.Set {
     method public java.util.Comparator<? super E> comparator();
     method public E first();
     method public java.util.SortedSet<E> headSet(E);
@@ -51486,7 +51486,7 @@ package java.util.concurrent {
     method public E take() throws java.lang.InterruptedException;
   }
 
-  public interface BlockingDeque implements java.util.concurrent.BlockingQueue java.util.Deque {
+  public interface BlockingDeque extends java.util.concurrent.BlockingQueue java.util.Deque {
     method public boolean add(E);
     method public void addFirst(E);
     method public void addLast(E);
@@ -51518,7 +51518,7 @@ package java.util.concurrent {
     method public E takeLast() throws java.lang.InterruptedException;
   }
 
-  public interface BlockingQueue implements java.util.Queue {
+  public interface BlockingQueue extends java.util.Queue {
     method public boolean add(E);
     method public boolean contains(java.lang.Object);
     method public int drainTo(java.util.Collection<? super E>);
@@ -51609,14 +51609,14 @@ package java.util.concurrent {
     method public int size();
   }
 
-  public interface ConcurrentMap implements java.util.Map {
+  public interface ConcurrentMap extends java.util.Map {
     method public V putIfAbsent(K, V);
     method public boolean remove(java.lang.Object, java.lang.Object);
     method public boolean replace(K, V, V);
     method public V replace(K, V);
   }
 
-  public interface ConcurrentNavigableMap implements java.util.concurrent.ConcurrentMap java.util.NavigableMap {
+  public interface ConcurrentNavigableMap extends java.util.concurrent.ConcurrentMap java.util.NavigableMap {
     method public java.util.NavigableSet<K> descendingKeySet();
     method public java.util.concurrent.ConcurrentNavigableMap<K, V> descendingMap();
     method public java.util.concurrent.ConcurrentNavigableMap<K, V> headMap(K, boolean);
@@ -51770,7 +51770,7 @@ package java.util.concurrent {
     method public E take() throws java.lang.InterruptedException;
   }
 
-  public interface Delayed implements java.lang.Comparable {
+  public interface Delayed extends java.lang.Comparable {
     method public long getDelay(java.util.concurrent.TimeUnit);
   }
 
@@ -51801,7 +51801,7 @@ package java.util.concurrent {
     method public java.util.concurrent.Future<V> take() throws java.lang.InterruptedException;
   }
 
-  public interface ExecutorService implements java.util.concurrent.Executor {
+  public interface ExecutorService extends java.util.concurrent.Executor {
     method public boolean awaitTermination(long, java.util.concurrent.TimeUnit) throws java.lang.InterruptedException;
     method public java.util.List<java.util.concurrent.Future<T>> invokeAll(java.util.Collection<? extends java.util.concurrent.Callable<T>>) throws java.lang.InterruptedException;
     method public java.util.List<java.util.concurrent.Future<T>> invokeAll(java.util.Collection<? extends java.util.concurrent.Callable<T>>, long, java.util.concurrent.TimeUnit) throws java.lang.InterruptedException;
@@ -52104,22 +52104,22 @@ package java.util.concurrent {
     method public void rejectedExecution(java.lang.Runnable, java.util.concurrent.ThreadPoolExecutor);
   }
 
-  public interface RunnableFuture implements java.util.concurrent.Future java.lang.Runnable {
+  public interface RunnableFuture extends java.util.concurrent.Future java.lang.Runnable {
     method public void run();
   }
 
-  public interface RunnableScheduledFuture implements java.util.concurrent.RunnableFuture java.util.concurrent.ScheduledFuture {
+  public interface RunnableScheduledFuture extends java.util.concurrent.RunnableFuture java.util.concurrent.ScheduledFuture {
     method public boolean isPeriodic();
   }
 
-  public interface ScheduledExecutorService implements java.util.concurrent.ExecutorService {
+  public interface ScheduledExecutorService extends java.util.concurrent.ExecutorService {
     method public java.util.concurrent.ScheduledFuture<?> schedule(java.lang.Runnable, long, java.util.concurrent.TimeUnit);
     method public java.util.concurrent.ScheduledFuture<V> schedule(java.util.concurrent.Callable<V>, long, java.util.concurrent.TimeUnit);
     method public java.util.concurrent.ScheduledFuture<?> scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit);
     method public java.util.concurrent.ScheduledFuture<?> scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit);
   }
 
-  public interface ScheduledFuture implements java.util.concurrent.Delayed java.util.concurrent.Future {
+  public interface ScheduledFuture extends java.util.concurrent.Delayed java.util.concurrent.Future {
   }
 
   public class ScheduledThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor implements java.util.concurrent.ScheduledExecutorService {
@@ -52278,7 +52278,7 @@ package java.util.concurrent {
     ctor public TimeoutException(java.lang.String);
   }
 
-  public interface TransferQueue implements java.util.concurrent.BlockingQueue {
+  public interface TransferQueue extends java.util.concurrent.BlockingQueue {
     method public int getWaitingConsumerCount();
     method public boolean hasWaitingConsumer();
     method public void transfer(E) throws java.lang.InterruptedException;
@@ -53113,7 +53113,7 @@ package java.util.prefs {
     method public java.util.prefs.Preferences getParent();
   }
 
-  public interface NodeChangeListener implements java.util.EventListener {
+  public interface NodeChangeListener extends java.util.EventListener {
     method public void childAdded(java.util.prefs.NodeChangeEvent);
     method public void childRemoved(java.util.prefs.NodeChangeEvent);
   }
@@ -53125,7 +53125,7 @@ package java.util.prefs {
     method public java.util.prefs.Preferences getNode();
   }
 
-  public interface PreferenceChangeListener implements java.util.EventListener {
+  public interface PreferenceChangeListener extends java.util.EventListener {
     method public void preferenceChange(java.util.prefs.PreferenceChangeEvent);
   }
 
@@ -53887,7 +53887,7 @@ package javax.crypto {
     field protected byte[] encodedParams;
   }
 
-  public interface SecretKey implements java.security.Key {
+  public interface SecretKey extends java.security.Key {
     field public static final long serialVersionUID = -4795878709595146952L; // 0xbd719db928b8f538L
   }
 
@@ -53923,17 +53923,17 @@ package javax.crypto.interfaces {
     method public javax.crypto.spec.DHParameterSpec getParams();
   }
 
-  public interface DHPrivateKey implements javax.crypto.interfaces.DHKey java.security.PrivateKey {
+  public interface DHPrivateKey extends javax.crypto.interfaces.DHKey java.security.PrivateKey {
     method public java.math.BigInteger getX();
     field public static final long serialVersionUID = 2211791113380396553L; // 0x1eb1dc4c8e677e09L
   }
 
-  public interface DHPublicKey implements javax.crypto.interfaces.DHKey java.security.PublicKey {
+  public interface DHPublicKey extends javax.crypto.interfaces.DHKey java.security.PublicKey {
     method public java.math.BigInteger getY();
     field public static final long serialVersionUID = -6628103563352519193L; // 0xa4043eed23df4de7L
   }
 
-  public interface PBEKey implements javax.crypto.SecretKey {
+  public interface PBEKey extends javax.crypto.SecretKey {
     method public int getIterationCount();
     method public char[] getPassword();
     method public byte[] getSalt();
@@ -54072,7 +54072,7 @@ package javax.microedition.khronos.egl {
   public interface EGL {
   }
 
-  public interface EGL10 implements javax.microedition.khronos.egl.EGL {
+  public interface EGL10 extends javax.microedition.khronos.egl.EGL {
     method public boolean eglChooseConfig(javax.microedition.khronos.egl.EGLDisplay, int[], javax.microedition.khronos.egl.EGLConfig[], int, int[]);
     method public boolean eglCopyBuffers(javax.microedition.khronos.egl.EGLDisplay, javax.microedition.khronos.egl.EGLSurface, java.lang.Object);
     method public javax.microedition.khronos.egl.EGLContext eglCreateContext(javax.microedition.khronos.egl.EGLDisplay, javax.microedition.khronos.egl.EGLConfig, javax.microedition.khronos.egl.EGLContext, int[]);
@@ -54170,7 +54170,7 @@ package javax.microedition.khronos.egl {
     field public static final int EGL_WINDOW_BIT = 4; // 0x4
   }
 
-  public interface EGL11 implements javax.microedition.khronos.egl.EGL10 {
+  public interface EGL11 extends javax.microedition.khronos.egl.EGL10 {
     field public static final int EGL_CONTEXT_LOST = 12302; // 0x300e
   }
 
@@ -54199,7 +54199,7 @@ package javax.microedition.khronos.opengles {
   public interface GL {
   }
 
-  public interface GL10 implements javax.microedition.khronos.opengles.GL {
+  public interface GL10 extends javax.microedition.khronos.opengles.GL {
     method public void glActiveTexture(int);
     method public void glAlphaFunc(int, float);
     method public void glAlphaFuncx(int, int);
@@ -54562,12 +54562,12 @@ package javax.microedition.khronos.opengles {
     field public static final int GL_ZERO = 0; // 0x0
   }
 
-  public interface GL10Ext implements javax.microedition.khronos.opengles.GL {
+  public interface GL10Ext extends javax.microedition.khronos.opengles.GL {
     method public int glQueryMatrixxOES(int[], int, int[], int);
     method public int glQueryMatrixxOES(java.nio.IntBuffer, java.nio.IntBuffer);
   }
 
-  public interface GL11 implements javax.microedition.khronos.opengles.GL10 {
+  public interface GL11 extends javax.microedition.khronos.opengles.GL10 {
     method public void glBindBuffer(int, int);
     method public void glBufferData(int, int, java.nio.Buffer, int);
     method public void glBufferSubData(int, int, int, java.nio.Buffer);
@@ -54760,7 +54760,7 @@ package javax.microedition.khronos.opengles {
     field public static final int GL_WRITE_ONLY = 35001; // 0x88b9
   }
 
-  public interface GL11Ext implements javax.microedition.khronos.opengles.GL {
+  public interface GL11Ext extends javax.microedition.khronos.opengles.GL {
     method public void glCurrentPaletteMatrixOES(int);
     method public void glDrawTexfOES(float, float, float, float, float);
     method public void glDrawTexfvOES(float[], int);
@@ -54800,7 +54800,7 @@ package javax.microedition.khronos.opengles {
     field public static final int GL_WEIGHT_ARRAY_TYPE_OES = 34473; // 0x86a9
   }
 
-  public interface GL11ExtensionPack implements javax.microedition.khronos.opengles.GL {
+  public interface GL11ExtensionPack extends javax.microedition.khronos.opengles.GL {
     method public void glBindFramebufferOES(int, int);
     method public void glBindRenderbufferOES(int, int);
     method public void glBindTexture(int, int);
@@ -54986,7 +54986,7 @@ package javax.net.ssl {
     method public javax.net.ssl.SSLSocket getSocket();
   }
 
-  public interface HandshakeCompletedListener implements java.util.EventListener {
+  public interface HandshakeCompletedListener extends java.util.EventListener {
     method public void handshakeCompleted(javax.net.ssl.HandshakeCompletedEvent);
   }
 
@@ -55236,7 +55236,7 @@ package javax.net.ssl {
     method public javax.net.ssl.SSLSession getSession();
   }
 
-  public interface SSLSessionBindingListener implements java.util.EventListener {
+  public interface SSLSessionBindingListener extends java.util.EventListener {
     method public void valueBound(javax.net.ssl.SSLSessionBindingEvent);
     method public void valueUnbound(javax.net.ssl.SSLSessionBindingEvent);
   }
@@ -55315,7 +55315,7 @@ package javax.net.ssl {
     method public java.lang.String chooseEngineServerAlias(java.lang.String, java.security.Principal[], javax.net.ssl.SSLEngine);
   }
 
-  public interface X509KeyManager implements javax.net.ssl.KeyManager {
+  public interface X509KeyManager extends javax.net.ssl.KeyManager {
     method public java.lang.String chooseClientAlias(java.lang.String[], java.security.Principal[], java.net.Socket);
     method public java.lang.String chooseServerAlias(java.lang.String, java.security.Principal[], java.net.Socket);
     method public java.security.cert.X509Certificate[] getCertificateChain(java.lang.String);
@@ -55324,7 +55324,7 @@ package javax.net.ssl {
     method public java.lang.String[] getServerAliases(java.lang.String, java.security.Principal[]);
   }
 
-  public interface X509TrustManager implements javax.net.ssl.TrustManager {
+  public interface X509TrustManager extends javax.net.ssl.TrustManager {
     method public void checkClientTrusted(java.security.cert.X509Certificate[], java.lang.String) throws java.security.cert.CertificateException;
     method public void checkServerTrusted(java.security.cert.X509Certificate[], java.lang.String) throws java.security.cert.CertificateException;
     method public java.security.cert.X509Certificate[] getAcceptedIssuers();
@@ -55506,17 +55506,17 @@ package javax.sql {
     method public java.sql.SQLException getSQLException();
   }
 
-  public interface ConnectionEventListener implements java.util.EventListener {
+  public interface ConnectionEventListener extends java.util.EventListener {
     method public void connectionClosed(javax.sql.ConnectionEvent);
     method public void connectionErrorOccurred(javax.sql.ConnectionEvent);
   }
 
-  public interface ConnectionPoolDataSource implements javax.sql.CommonDataSource {
+  public interface ConnectionPoolDataSource extends javax.sql.CommonDataSource {
     method public javax.sql.PooledConnection getPooledConnection() throws java.sql.SQLException;
     method public javax.sql.PooledConnection getPooledConnection(java.lang.String, java.lang.String) throws java.sql.SQLException;
   }
 
-  public interface DataSource implements javax.sql.CommonDataSource java.sql.Wrapper {
+  public interface DataSource extends javax.sql.CommonDataSource java.sql.Wrapper {
     method public java.sql.Connection getConnection() throws java.sql.SQLException;
     method public java.sql.Connection getConnection(java.lang.String, java.lang.String) throws java.sql.SQLException;
   }
@@ -55530,7 +55530,7 @@ package javax.sql {
     method public void removeStatementEventListener(javax.sql.StatementEventListener);
   }
 
-  public interface RowSet implements java.sql.ResultSet {
+  public interface RowSet extends java.sql.ResultSet {
     method public void addRowSetListener(javax.sql.RowSetListener);
     method public void clearParameters() throws java.sql.SQLException;
     method public void execute() throws java.sql.SQLException;
@@ -55660,13 +55660,13 @@ package javax.sql {
     method public void setMetaData(javax.sql.RowSetMetaData) throws java.sql.SQLException;
   }
 
-  public interface RowSetListener implements java.util.EventListener {
+  public interface RowSetListener extends java.util.EventListener {
     method public void cursorMoved(javax.sql.RowSetEvent);
     method public void rowChanged(javax.sql.RowSetEvent);
     method public void rowSetChanged(javax.sql.RowSetEvent);
   }
 
-  public interface RowSetMetaData implements java.sql.ResultSetMetaData {
+  public interface RowSetMetaData extends java.sql.ResultSetMetaData {
     method public void setAutoIncrement(int, boolean) throws java.sql.SQLException;
     method public void setCaseSensitive(int, boolean) throws java.sql.SQLException;
     method public void setCatalogName(int, java.lang.String) throws java.sql.SQLException;
@@ -55701,7 +55701,7 @@ package javax.sql {
     method public java.sql.PreparedStatement getStatement();
   }
 
-  public interface StatementEventListener implements java.util.EventListener {
+  public interface StatementEventListener extends java.util.EventListener {
     method public void statementClosed(javax.sql.StatementEvent);
     method public void statementErrorOccurred(javax.sql.StatementEvent);
   }
@@ -56120,7 +56120,7 @@ package javax.xml.transform {
 
 package javax.xml.transform.dom {
 
-  public interface DOMLocator implements javax.xml.transform.SourceLocator {
+  public interface DOMLocator extends javax.xml.transform.SourceLocator {
     method public org.w3c.dom.Node getOriginatingNode();
   }
 
@@ -56192,13 +56192,13 @@ package javax.xml.transform.sax {
     field public static final java.lang.String FEATURE_XMLFILTER = "http://javax.xml.transform.sax.SAXTransformerFactory/feature/xmlfilter";
   }
 
-  public interface TemplatesHandler implements org.xml.sax.ContentHandler {
+  public interface TemplatesHandler extends org.xml.sax.ContentHandler {
     method public java.lang.String getSystemId();
     method public javax.xml.transform.Templates getTemplates();
     method public void setSystemId(java.lang.String);
   }
 
-  public interface TransformerHandler implements org.xml.sax.ContentHandler org.xml.sax.DTDHandler org.xml.sax.ext.LexicalHandler {
+  public interface TransformerHandler extends org.xml.sax.ContentHandler org.xml.sax.DTDHandler org.xml.sax.ext.LexicalHandler {
     method public java.lang.String getSystemId();
     method public javax.xml.transform.Transformer getTransformer();
     method public void setResult(javax.xml.transform.Result) throws java.lang.IllegalArgumentException;
@@ -56628,7 +56628,7 @@ package org.apache.http {
     method public boolean keepAlive(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext);
   }
 
-  public deprecated interface FormattedHeader implements org.apache.http.Header {
+  public deprecated interface FormattedHeader extends org.apache.http.Header {
     method public org.apache.http.util.CharArrayBuffer getBuffer();
     method public int getValuePos();
   }
@@ -56648,17 +56648,17 @@ package org.apache.http {
     method public java.lang.String getValue();
   }
 
-  public deprecated interface HeaderElementIterator implements java.util.Iterator {
+  public deprecated interface HeaderElementIterator extends java.util.Iterator {
     method public boolean hasNext();
     method public org.apache.http.HeaderElement nextElement();
   }
 
-  public deprecated interface HeaderIterator implements java.util.Iterator {
+  public deprecated interface HeaderIterator extends java.util.Iterator {
     method public boolean hasNext();
     method public org.apache.http.Header nextHeader();
   }
 
-  public deprecated interface HttpClientConnection implements org.apache.http.HttpConnection {
+  public deprecated interface HttpClientConnection extends org.apache.http.HttpConnection {
     method public void flush() throws java.io.IOException;
     method public boolean isResponseAvailable(int) throws java.io.IOException;
     method public void receiveResponseEntity(org.apache.http.HttpResponse) throws org.apache.http.HttpException, java.io.IOException;
@@ -56698,7 +56698,7 @@ package org.apache.http {
     method public void writeTo(java.io.OutputStream) throws java.io.IOException;
   }
 
-  public deprecated interface HttpEntityEnclosingRequest implements org.apache.http.HttpRequest {
+  public deprecated interface HttpEntityEnclosingRequest extends org.apache.http.HttpRequest {
     method public boolean expectContinue();
     method public org.apache.http.HttpEntity getEntity();
     method public void setEntity(org.apache.http.HttpEntity);
@@ -56728,7 +56728,7 @@ package org.apache.http {
     field protected final java.lang.String schemeName;
   }
 
-  public deprecated interface HttpInetConnection implements org.apache.http.HttpConnection {
+  public deprecated interface HttpInetConnection extends org.apache.http.HttpConnection {
     method public java.net.InetAddress getLocalAddress();
     method public int getLocalPort();
     method public java.net.InetAddress getRemoteAddress();
@@ -56755,7 +56755,7 @@ package org.apache.http {
     method public void setParams(org.apache.http.params.HttpParams);
   }
 
-  public deprecated interface HttpRequest implements org.apache.http.HttpMessage {
+  public deprecated interface HttpRequest extends org.apache.http.HttpMessage {
     method public org.apache.http.RequestLine getRequestLine();
   }
 
@@ -56768,7 +56768,7 @@ package org.apache.http {
     method public void process(org.apache.http.HttpRequest, org.apache.http.protocol.HttpContext) throws org.apache.http.HttpException, java.io.IOException;
   }
 
-  public deprecated interface HttpResponse implements org.apache.http.HttpMessage {
+  public deprecated interface HttpResponse extends org.apache.http.HttpMessage {
     method public org.apache.http.HttpEntity getEntity();
     method public java.util.Locale getLocale();
     method public org.apache.http.StatusLine getStatusLine();
@@ -56790,7 +56790,7 @@ package org.apache.http {
     method public void process(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.HttpException, java.io.IOException;
   }
 
-  public deprecated interface HttpServerConnection implements org.apache.http.HttpConnection {
+  public deprecated interface HttpServerConnection extends org.apache.http.HttpConnection {
     method public void flush() throws java.io.IOException;
     method public void receiveRequestEntity(org.apache.http.HttpEntityEnclosingRequest) throws org.apache.http.HttpException, java.io.IOException;
     method public org.apache.http.HttpRequest receiveRequestHeader() throws org.apache.http.HttpException, java.io.IOException;
@@ -56921,7 +56921,7 @@ package org.apache.http {
     method public int getStatusCode();
   }
 
-  public deprecated interface TokenIterator implements java.util.Iterator {
+  public deprecated interface TokenIterator extends java.util.Iterator {
     method public boolean hasNext();
     method public java.lang.String nextToken();
   }
@@ -57248,7 +57248,7 @@ package org.apache.http.client.methods {
     field public static final java.lang.String METHOD_NAME = "TRACE";
   }
 
-  public deprecated interface HttpUriRequest implements org.apache.http.HttpRequest {
+  public deprecated interface HttpUriRequest extends org.apache.http.HttpRequest {
     method public void abort() throws java.lang.UnsupportedOperationException;
     method public java.lang.String getMethod();
     method public java.net.URI getURI();
@@ -57259,7 +57259,7 @@ package org.apache.http.client.methods {
 
 package org.apache.http.client.params {
 
-  public deprecated interface AllClientPNames implements org.apache.http.auth.params.AuthPNames org.apache.http.client.params.ClientPNames org.apache.http.conn.params.ConnConnectionPNames org.apache.http.conn.params.ConnManagerPNames org.apache.http.conn.params.ConnRoutePNames org.apache.http.cookie.params.CookieSpecPNames org.apache.http.params.CoreConnectionPNames org.apache.http.params.CoreProtocolPNames {
+  public deprecated interface AllClientPNames extends org.apache.http.auth.params.AuthPNames org.apache.http.client.params.ClientPNames org.apache.http.conn.params.ConnConnectionPNames org.apache.http.conn.params.ConnManagerPNames org.apache.http.conn.params.ConnRoutePNames org.apache.http.cookie.params.CookieSpecPNames org.apache.http.params.CoreConnectionPNames org.apache.http.params.CoreProtocolPNames {
   }
 
   public final deprecated class AuthPolicy {
@@ -57482,7 +57482,7 @@ package org.apache.http.conn {
     method public org.apache.http.HttpHost getHost();
   }
 
-  public deprecated interface ManagedClientConnection implements org.apache.http.conn.ConnectionReleaseTrigger org.apache.http.HttpClientConnection org.apache.http.HttpInetConnection {
+  public deprecated interface ManagedClientConnection extends org.apache.http.conn.ConnectionReleaseTrigger org.apache.http.HttpClientConnection org.apache.http.HttpInetConnection {
     method public org.apache.http.conn.routing.HttpRoute getRoute();
     method public javax.net.ssl.SSLSession getSSLSession();
     method public java.lang.Object getState();
@@ -57505,7 +57505,7 @@ package org.apache.http.conn {
     method public final boolean isSecure(java.net.Socket) throws java.lang.IllegalArgumentException;
   }
 
-  public deprecated interface OperatedClientConnection implements org.apache.http.HttpClientConnection org.apache.http.HttpInetConnection {
+  public deprecated interface OperatedClientConnection extends org.apache.http.HttpClientConnection org.apache.http.HttpInetConnection {
     method public java.net.Socket getSocket();
     method public org.apache.http.HttpHost getTargetHost();
     method public boolean isSecure();
@@ -57696,7 +57696,7 @@ package org.apache.http.conn.scheme {
     method public java.net.InetAddress resolve(java.lang.String) throws java.io.IOException;
   }
 
-  public deprecated interface LayeredSocketFactory implements org.apache.http.conn.scheme.SocketFactory {
+  public deprecated interface LayeredSocketFactory extends org.apache.http.conn.scheme.SocketFactory {
     method public java.net.Socket createSocket(java.net.Socket, java.lang.String, int, boolean) throws java.io.IOException, java.net.UnknownHostException;
   }
 
@@ -57791,7 +57791,7 @@ package org.apache.http.conn.ssl {
     method public final void verify(java.lang.String, java.lang.String[], java.lang.String[]) throws javax.net.ssl.SSLException;
   }
 
-  public deprecated interface X509HostnameVerifier implements javax.net.ssl.HostnameVerifier {
+  public deprecated interface X509HostnameVerifier extends javax.net.ssl.HostnameVerifier {
     method public boolean verify(java.lang.String, javax.net.ssl.SSLSession);
     method public void verify(java.lang.String, javax.net.ssl.SSLSocket) throws java.io.IOException;
     method public void verify(java.lang.String, java.security.cert.X509Certificate) throws javax.net.ssl.SSLException;
@@ -57813,7 +57813,7 @@ package org.apache.http.conn.util {
 
 package org.apache.http.cookie {
 
-  public deprecated interface ClientCookie implements org.apache.http.cookie.Cookie {
+  public deprecated interface ClientCookie extends org.apache.http.cookie.Cookie {
     method public boolean containsAttribute(java.lang.String);
     method public java.lang.String getAttribute(java.lang.String);
     field public static final java.lang.String COMMENTURL_ATTR = "commenturl";
@@ -57903,7 +57903,7 @@ package org.apache.http.cookie {
     field public static final java.lang.String SET_COOKIE2 = "Set-Cookie2";
   }
 
-  public deprecated interface SetCookie implements org.apache.http.cookie.Cookie {
+  public deprecated interface SetCookie extends org.apache.http.cookie.Cookie {
     method public void setComment(java.lang.String);
     method public void setDomain(java.lang.String);
     method public void setExpiryDate(java.util.Date);
@@ -57913,7 +57913,7 @@ package org.apache.http.cookie {
     method public void setVersion(int);
   }
 
-  public deprecated interface SetCookie2 implements org.apache.http.cookie.SetCookie {
+  public deprecated interface SetCookie2 extends org.apache.http.cookie.SetCookie {
     method public void setCommentURL(java.lang.String);
     method public void setDiscard(boolean);
     method public void setPorts(int[]);
@@ -59822,7 +59822,7 @@ package org.apache.http.protocol {
     method public void verify(org.apache.http.HttpRequest, org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.HttpException;
   }
 
-  public deprecated interface HttpProcessor implements org.apache.http.HttpRequestInterceptor org.apache.http.HttpResponseInterceptor {
+  public deprecated interface HttpProcessor extends org.apache.http.HttpRequestInterceptor org.apache.http.HttpResponseInterceptor {
   }
 
   public deprecated class HttpRequestExecutor {
@@ -60179,7 +60179,7 @@ package org.json {
 
 package org.w3c.dom {
 
-  public interface Attr implements org.w3c.dom.Node {
+  public interface Attr extends org.w3c.dom.Node {
     method public java.lang.String getName();
     method public org.w3c.dom.Element getOwnerElement();
     method public org.w3c.dom.TypeInfo getSchemaTypeInfo();
@@ -60189,10 +60189,10 @@ package org.w3c.dom {
     method public void setValue(java.lang.String) throws org.w3c.dom.DOMException;
   }
 
-  public interface CDATASection implements org.w3c.dom.Text {
+  public interface CDATASection extends org.w3c.dom.Text {
   }
 
-  public interface CharacterData implements org.w3c.dom.Node {
+  public interface CharacterData extends org.w3c.dom.Node {
     method public void appendData(java.lang.String) throws org.w3c.dom.DOMException;
     method public void deleteData(int, int) throws org.w3c.dom.DOMException;
     method public java.lang.String getData() throws org.w3c.dom.DOMException;
@@ -60203,7 +60203,7 @@ package org.w3c.dom {
     method public java.lang.String substringData(int, int) throws org.w3c.dom.DOMException;
   }
 
-  public interface Comment implements org.w3c.dom.CharacterData {
+  public interface Comment extends org.w3c.dom.CharacterData {
   }
 
   public interface DOMConfiguration {
@@ -60283,7 +60283,7 @@ package org.w3c.dom {
     method public java.lang.String item(int);
   }
 
-  public interface Document implements org.w3c.dom.Node {
+  public interface Document extends org.w3c.dom.Node {
     method public org.w3c.dom.Node adoptNode(org.w3c.dom.Node) throws org.w3c.dom.DOMException;
     method public org.w3c.dom.Attr createAttribute(java.lang.String) throws org.w3c.dom.DOMException;
     method public org.w3c.dom.Attr createAttributeNS(java.lang.String, java.lang.String) throws org.w3c.dom.DOMException;
@@ -60317,10 +60317,10 @@ package org.w3c.dom {
     method public void setXmlVersion(java.lang.String) throws org.w3c.dom.DOMException;
   }
 
-  public interface DocumentFragment implements org.w3c.dom.Node {
+  public interface DocumentFragment extends org.w3c.dom.Node {
   }
 
-  public interface DocumentType implements org.w3c.dom.Node {
+  public interface DocumentType extends org.w3c.dom.Node {
     method public org.w3c.dom.NamedNodeMap getEntities();
     method public java.lang.String getInternalSubset();
     method public java.lang.String getName();
@@ -60329,7 +60329,7 @@ package org.w3c.dom {
     method public java.lang.String getSystemId();
   }
 
-  public interface Element implements org.w3c.dom.Node {
+  public interface Element extends org.w3c.dom.Node {
     method public java.lang.String getAttribute(java.lang.String);
     method public java.lang.String getAttributeNS(java.lang.String, java.lang.String) throws org.w3c.dom.DOMException;
     method public org.w3c.dom.Attr getAttributeNode(java.lang.String);
@@ -60352,7 +60352,7 @@ package org.w3c.dom {
     method public void setIdAttributeNode(org.w3c.dom.Attr, boolean) throws org.w3c.dom.DOMException;
   }
 
-  public interface Entity implements org.w3c.dom.Node {
+  public interface Entity extends org.w3c.dom.Node {
     method public java.lang.String getInputEncoding();
     method public java.lang.String getNotationName();
     method public java.lang.String getPublicId();
@@ -60361,7 +60361,7 @@ package org.w3c.dom {
     method public java.lang.String getXmlVersion();
   }
 
-  public interface EntityReference implements org.w3c.dom.Node {
+  public interface EntityReference extends org.w3c.dom.Node {
   }
 
   public interface NameList {
@@ -60446,18 +60446,18 @@ package org.w3c.dom {
     method public org.w3c.dom.Node item(int);
   }
 
-  public interface Notation implements org.w3c.dom.Node {
+  public interface Notation extends org.w3c.dom.Node {
     method public java.lang.String getPublicId();
     method public java.lang.String getSystemId();
   }
 
-  public interface ProcessingInstruction implements org.w3c.dom.Node {
+  public interface ProcessingInstruction extends org.w3c.dom.Node {
     method public java.lang.String getData();
     method public java.lang.String getTarget();
     method public void setData(java.lang.String) throws org.w3c.dom.DOMException;
   }
 
-  public interface Text implements org.w3c.dom.CharacterData {
+  public interface Text extends org.w3c.dom.CharacterData {
     method public java.lang.String getWholeText();
     method public boolean isElementContentWhitespace();
     method public org.w3c.dom.Text replaceWholeText(java.lang.String) throws org.w3c.dom.DOMException;
@@ -60722,7 +60722,7 @@ package org.xml.sax {
     method public java.lang.String getSystemId();
   }
 
-  public interface XMLFilter implements org.xml.sax.XMLReader {
+  public interface XMLFilter extends org.xml.sax.XMLReader {
     method public org.xml.sax.XMLReader getParent();
     method public void setParent(org.xml.sax.XMLReader);
   }
@@ -60748,7 +60748,7 @@ package org.xml.sax {
 
 package org.xml.sax.ext {
 
-  public interface Attributes2 implements org.xml.sax.Attributes {
+  public interface Attributes2 extends org.xml.sax.Attributes {
     method public boolean isDeclared(int);
     method public boolean isDeclared(java.lang.String);
     method public boolean isDeclared(java.lang.String, java.lang.String);
@@ -60794,7 +60794,7 @@ package org.xml.sax.ext {
     method public void startEntity(java.lang.String) throws org.xml.sax.SAXException;
   }
 
-  public interface EntityResolver2 implements org.xml.sax.EntityResolver {
+  public interface EntityResolver2 extends org.xml.sax.EntityResolver {
     method public org.xml.sax.InputSource getExternalSubset(java.lang.String, java.lang.String) throws java.io.IOException, org.xml.sax.SAXException;
     method public org.xml.sax.InputSource resolveEntity(java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws java.io.IOException, org.xml.sax.SAXException;
   }
@@ -60809,7 +60809,7 @@ package org.xml.sax.ext {
     method public void startEntity(java.lang.String) throws org.xml.sax.SAXException;
   }
 
-  public interface Locator2 implements org.xml.sax.Locator {
+  public interface Locator2 extends org.xml.sax.Locator {
     method public java.lang.String getEncoding();
     method public java.lang.String getXMLVersion();
   }

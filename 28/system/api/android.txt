@@ -3502,7 +3502,7 @@ package android.net.wifi {
     field public int low;
   }
 
-  public static deprecated interface WifiScanner.BssidListener implements android.net.wifi.WifiScanner.ActionListener {
+  public static deprecated interface WifiScanner.BssidListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onFound(android.net.wifi.ScanResult[]);
     method public void onLost(android.net.wifi.ScanResult[]);
   }
@@ -3538,7 +3538,7 @@ package android.net.wifi {
     method public android.net.wifi.ScanResult[] getResults();
   }
 
-  public static interface WifiScanner.ScanListener implements android.net.wifi.WifiScanner.ActionListener {
+  public static interface WifiScanner.ScanListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onFullResult(android.net.wifi.ScanResult);
     method public void onPeriodChanged(int);
     method public void onResults(android.net.wifi.WifiScanner.ScanData[]);
@@ -3556,7 +3556,7 @@ package android.net.wifi {
     field public int stepCount;
   }
 
-  public static deprecated interface WifiScanner.WifiChangeListener implements android.net.wifi.WifiScanner.ActionListener {
+  public static deprecated interface WifiScanner.WifiChangeListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onChanging(android.net.wifi.ScanResult[]);
     method public void onQuiescence(android.net.wifi.ScanResult[]);
   }
@@ -6202,7 +6202,7 @@ package android.util {
 
 package android.view {
 
-  public interface WindowManager implements android.view.ViewManager {
+  public interface WindowManager extends android.view.ViewManager {
     method public android.graphics.Region getCurrentImeTouchRegion();
   }
 
