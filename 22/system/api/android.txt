@@ -6026,7 +6026,7 @@ package android.bluetooth {
     method public android.bluetooth.le.BluetoothLeAdvertiser getBluetoothLeAdvertiser();
     method public android.bluetooth.le.BluetoothLeScanner getBluetoothLeScanner();
     method public java.util.Set<android.bluetooth.BluetoothDevice> getBondedDevices();
-    method public static synchronized android.bluetooth.BluetoothAdapter getDefaultAdapter();
+    method public static android.bluetooth.BluetoothAdapter getDefaultAdapter();
     method public java.lang.String getName();
     method public int getProfileConnectionState(int);
     method public boolean getProfileProxy(android.content.Context, android.bluetooth.BluetoothProfile.ServiceListener, int);
@@ -7218,9 +7218,9 @@ package android.content {
 
   public class ContentQueryMap extends java.util.Observable {
     ctor public ContentQueryMap(android.database.Cursor, java.lang.String, boolean, android.os.Handler);
-    method public synchronized void close();
-    method public synchronized java.util.Map<java.lang.String, android.content.ContentValues> getRows();
-    method public synchronized android.content.ContentValues getValues(java.lang.String);
+    method public void close();
+    method public java.util.Map<java.lang.String, android.content.ContentValues> getRows();
+    method public android.content.ContentValues getValues(java.lang.String);
     method public void requery();
     method public void setKeepUpdated(boolean);
   }
@@ -10221,7 +10221,7 @@ package android.database.sqlite {
   public abstract class SQLiteOpenHelper {
     ctor public SQLiteOpenHelper(android.content.Context, java.lang.String, android.database.sqlite.SQLiteDatabase.CursorFactory, int);
     ctor public SQLiteOpenHelper(android.content.Context, java.lang.String, android.database.sqlite.SQLiteDatabase.CursorFactory, int, android.database.DatabaseErrorHandler);
-    method public synchronized void close();
+    method public void close();
     method public java.lang.String getDatabaseName();
     method public android.database.sqlite.SQLiteDatabase getReadableDatabase();
     method public android.database.sqlite.SQLiteDatabase getWritableDatabase();
@@ -10417,9 +10417,9 @@ package android.drm {
     method public int removeRights(java.lang.String);
     method public int removeRights(android.net.Uri);
     method public int saveRights(android.drm.DrmRights, java.lang.String, java.lang.String) throws java.io.IOException;
-    method public synchronized void setOnErrorListener(android.drm.DrmManagerClient.OnErrorListener);
-    method public synchronized void setOnEventListener(android.drm.DrmManagerClient.OnEventListener);
-    method public synchronized void setOnInfoListener(android.drm.DrmManagerClient.OnInfoListener);
+    method public void setOnErrorListener(android.drm.DrmManagerClient.OnErrorListener);
+    method public void setOnEventListener(android.drm.DrmManagerClient.OnEventListener);
+    method public void setOnInfoListener(android.drm.DrmManagerClient.OnInfoListener);
     field public static final int ERROR_NONE = 0; // 0x0
     field public static final int ERROR_UNKNOWN = -2000; // 0xfffff830
   }
@@ -12029,7 +12029,7 @@ package android.graphics.drawable {
 
   public static abstract class DrawableContainer.DrawableContainerState extends android.graphics.drawable.Drawable.ConstantState {
     method public final int addChild(android.graphics.drawable.Drawable);
-    method public synchronized boolean canConstantState();
+    method public boolean canConstantState();
     method protected void computeConstantSize();
     method public int getChangingConfigurations();
     method public final android.graphics.drawable.Drawable getChild(int);
@@ -15442,8 +15442,8 @@ package android.media {
 
   public class MediaActionSound {
     ctor public MediaActionSound();
-    method public synchronized void load(int);
-    method public synchronized void play(int);
+    method public void load(int);
+    method public void play(int);
     method public void release();
     field public static final int FOCUS_COMPLETE = 1; // 0x1
     field public static final int SHUTTER_CLICK = 0; // 0x0
@@ -16036,19 +16036,19 @@ package android.media {
   }
 
   public abstract deprecated class MediaMetadataEditor {
-    method public synchronized void addEditableKey(int);
+    method public void addEditableKey(int);
     method public abstract void apply();
-    method public synchronized void clear();
-    method public synchronized android.graphics.Bitmap getBitmap(int, android.graphics.Bitmap) throws java.lang.IllegalArgumentException;
-    method public synchronized int[] getEditableKeys();
-    method public synchronized long getLong(int, long) throws java.lang.IllegalArgumentException;
-    method public synchronized java.lang.Object getObject(int, java.lang.Object) throws java.lang.IllegalArgumentException;
-    method public synchronized java.lang.String getString(int, java.lang.String) throws java.lang.IllegalArgumentException;
-    method public synchronized android.media.MediaMetadataEditor putBitmap(int, android.graphics.Bitmap) throws java.lang.IllegalArgumentException;
-    method public synchronized android.media.MediaMetadataEditor putLong(int, long) throws java.lang.IllegalArgumentException;
-    method public synchronized android.media.MediaMetadataEditor putObject(int, java.lang.Object) throws java.lang.IllegalArgumentException;
-    method public synchronized android.media.MediaMetadataEditor putString(int, java.lang.String) throws java.lang.IllegalArgumentException;
-    method public synchronized void removeEditableKeys();
+    method public void clear();
+    method public android.graphics.Bitmap getBitmap(int, android.graphics.Bitmap) throws java.lang.IllegalArgumentException;
+    method public int[] getEditableKeys();
+    method public long getLong(int, long) throws java.lang.IllegalArgumentException;
+    method public java.lang.Object getObject(int, java.lang.Object) throws java.lang.IllegalArgumentException;
+    method public java.lang.String getString(int, java.lang.String) throws java.lang.IllegalArgumentException;
+    method public android.media.MediaMetadataEditor putBitmap(int, android.graphics.Bitmap) throws java.lang.IllegalArgumentException;
+    method public android.media.MediaMetadataEditor putLong(int, long) throws java.lang.IllegalArgumentException;
+    method public android.media.MediaMetadataEditor putObject(int, java.lang.Object) throws java.lang.IllegalArgumentException;
+    method public android.media.MediaMetadataEditor putString(int, java.lang.String) throws java.lang.IllegalArgumentException;
+    method public void removeEditableKeys();
     field public static final int BITMAP_KEY_ARTWORK = 100; // 0x64
     field public static final int RATING_KEY_BY_OTHERS = 101; // 0x65
     field public static final int RATING_KEY_BY_USER = 268435457; // 0x10000001
@@ -16452,7 +16452,7 @@ package android.media {
     ctor public MediaScannerConnection(android.content.Context, android.media.MediaScannerConnection.MediaScannerConnectionClient);
     method public void connect();
     method public void disconnect();
-    method public synchronized boolean isConnected();
+    method public boolean isConnected();
     method public void onServiceConnected(android.content.ComponentName, android.os.IBinder);
     method public void onServiceDisconnected(android.content.ComponentName);
     method public void scanFile(java.lang.String, java.lang.String);
@@ -16538,7 +16538,7 @@ package android.media {
   }
 
   public deprecated class RemoteControlClient.MetadataEditor extends android.media.MediaMetadataEditor {
-    method public synchronized void apply();
+    method public void apply();
     field public static final int BITMAP_KEY_ARTWORK = 100; // 0x64
   }
 
@@ -16569,7 +16569,7 @@ package android.media {
   }
 
   public class RemoteController.MetadataEditor extends android.media.MediaMetadataEditor {
-    method public synchronized void apply();
+    method public void apply();
   }
 
   public static abstract interface RemoteController.OnClientUpdateListener {
@@ -18262,9 +18262,9 @@ package android.net {
     method public android.net.LocalSocketAddress getRemoteSocketAddress();
     method public int getSendBufferSize() throws java.io.IOException;
     method public int getSoTimeout() throws java.io.IOException;
-    method public synchronized boolean isBound();
+    method public boolean isBound();
     method public boolean isClosed();
-    method public synchronized boolean isConnected();
+    method public boolean isConnected();
     method public boolean isInputShutdown();
     method public boolean isOutputShutdown();
     method public void setFileDescriptorsForSend(java.io.FileDescriptor[]);
@@ -19991,7 +19991,7 @@ package android.nfc.cardemulation {
   public final class CardEmulation {
     method public boolean categoryAllowsForegroundPreference(java.lang.String);
     method public java.util.List<java.lang.String> getAidsForService(android.content.ComponentName, java.lang.String);
-    method public static synchronized android.nfc.cardemulation.CardEmulation getInstance(android.nfc.NfcAdapter);
+    method public static android.nfc.cardemulation.CardEmulation getInstance(android.nfc.NfcAdapter);
     method public int getSelectionModeForCategory(java.lang.String);
     method public boolean isDefaultServiceForAid(android.content.ComponentName, java.lang.String);
     method public boolean isDefaultServiceForCategory(android.content.ComponentName, java.lang.String);
@@ -23086,10 +23086,10 @@ package android.os {
 
   public abstract class CountDownTimer {
     ctor public CountDownTimer(long, long);
-    method public final synchronized void cancel();
+    method public final void cancel();
     method public abstract void onFinish();
     method public abstract void onTick(long);
-    method public final synchronized android.os.CountDownTimer start();
+    method public final android.os.CountDownTimer start();
   }
 
   public class DeadObjectException extends android.os.RemoteException {
@@ -23382,7 +23382,7 @@ package android.os {
 
   public class MemoryFile {
     ctor public MemoryFile(java.lang.String, int) throws java.io.IOException;
-    method public synchronized boolean allowPurging(boolean) throws java.io.IOException;
+    method public boolean allowPurging(boolean) throws java.io.IOException;
     method public void close();
     method public java.io.InputStream getInputStream();
     method public java.io.OutputStream getOutputStream();
@@ -27496,7 +27496,7 @@ package android.renderscript {
     method public int getUsage();
     method public void ioReceive();
     method public void ioSend();
-    method public deprecated synchronized void resize(int);
+    method public deprecated void resize(int);
     method public void setFromFieldPacker(int, android.renderscript.FieldPacker);
     method public void setFromFieldPacker(int, int, android.renderscript.FieldPacker);
     method public void setOnBufferAvailableListener(android.renderscript.Allocation.OnBufferAvailableListener);
@@ -30493,7 +30493,7 @@ package android.telephony {
   public class PhoneNumberFormattingTextWatcher implements android.text.TextWatcher {
     ctor public PhoneNumberFormattingTextWatcher();
     ctor public PhoneNumberFormattingTextWatcher(java.lang.String);
-    method public synchronized void afterTextChanged(android.text.Editable);
+    method public void afterTextChanged(android.text.Editable);
     method public void beforeTextChanged(java.lang.CharSequence, int, int, int);
     method public void onTextChanged(java.lang.CharSequence, int, int, int);
   }
@@ -33614,7 +33614,7 @@ package android.util {
   }
 
   public static final class EventLog.Event {
-    method public synchronized java.lang.Object getData();
+    method public java.lang.Object getData();
     method public int getProcessId();
     method public int getTag();
     method public int getThreadId();
@@ -33759,22 +33759,22 @@ package android.util {
   public class LruCache {
     ctor public LruCache(int);
     method protected V create(K);
-    method public final synchronized int createCount();
+    method public final int createCount();
     method protected void entryRemoved(boolean, K, V, V);
     method public final void evictAll();
-    method public final synchronized int evictionCount();
+    method public final int evictionCount();
     method public final V get(K);
-    method public final synchronized int hitCount();
-    method public final synchronized int maxSize();
-    method public final synchronized int missCount();
+    method public final int hitCount();
+    method public final int maxSize();
+    method public final int missCount();
     method public final V put(K, V);
-    method public final synchronized int putCount();
+    method public final int putCount();
     method public final V remove(K);
     method public void resize(int);
-    method public final synchronized int size();
+    method public final int size();
     method protected int sizeOf(K, V);
-    method public final synchronized java.util.Map<K, V> snapshot();
-    method public final synchronized java.lang.String toString();
+    method public final java.util.Map<K, V> snapshot();
+    method public final java.lang.String toString();
     method public void trimToSize(int);
   }
 
@@ -38148,8 +38148,8 @@ package android.webkit {
     method public abstract void flush();
     method public abstract java.lang.String getCookie(java.lang.String);
     method public abstract java.lang.String getCookie(java.lang.String, boolean);
-    method public synchronized java.lang.String getCookie(android.net.WebAddress);
-    method public static synchronized android.webkit.CookieManager getInstance();
+    method public java.lang.String getCookie(android.net.WebAddress);
+    method public static android.webkit.CookieManager getInstance();
     method public abstract boolean hasCookies();
     method public abstract boolean hasCookies(boolean);
     method public abstract deprecated void removeAllCookie();
@@ -38166,8 +38166,8 @@ package android.webkit {
   }
 
   public final deprecated class CookieSyncManager extends android.webkit.WebSyncManager {
-    method public static synchronized android.webkit.CookieSyncManager createInstance(android.content.Context);
-    method public static synchronized android.webkit.CookieSyncManager getInstance();
+    method public static android.webkit.CookieSyncManager createInstance(android.content.Context);
+    method public static android.webkit.CookieSyncManager getInstance();
     method protected deprecated void syncFromRamToFlash();
     field protected static final java.lang.String LOGTAG = "websync";
     field protected android.webkit.WebViewDatabase mDataBase;
@@ -38472,7 +38472,7 @@ package android.webkit {
     method public abstract deprecated boolean getSavePassword();
     method public abstract java.lang.String getSerifFontFamily();
     method public abstract java.lang.String getStandardFontFamily();
-    method public deprecated synchronized android.webkit.WebSettings.TextSize getTextSize();
+    method public deprecated android.webkit.WebSettings.TextSize getTextSize();
     method public abstract int getTextZoom();
     method public abstract deprecated boolean getUseWebViewBackgroundForOverscrollBackground();
     method public abstract boolean getUseWideViewPort();
@@ -38527,7 +38527,7 @@ package android.webkit {
     method public abstract void setStandardFontFamily(java.lang.String);
     method public abstract void setSupportMultipleWindows(boolean);
     method public abstract void setSupportZoom(boolean);
-    method public deprecated synchronized void setTextSize(android.webkit.WebSettings.TextSize);
+    method public deprecated void setTextSize(android.webkit.WebSettings.TextSize);
     method public abstract void setTextZoom(int);
     method public abstract deprecated void setUseWebViewBackgroundForOverscrollBackground(boolean);
     method public abstract void setUseWideViewPort(boolean);
@@ -38767,8 +38767,8 @@ package android.webkit {
 
   public class WebView.WebViewTransport {
     ctor public WebView.WebViewTransport();
-    method public synchronized android.webkit.WebView getWebView();
-    method public synchronized void setWebView(android.webkit.WebView);
+    method public android.webkit.WebView getWebView();
+    method public void setWebView(android.webkit.WebView);
   }
 
   public class WebViewClient {
@@ -40464,37 +40464,37 @@ package android.widget {
     method public android.content.res.ColorStateList getIndeterminateTintList();
     method public android.graphics.PorterDuff.Mode getIndeterminateTintMode();
     method public android.view.animation.Interpolator getInterpolator();
-    method public synchronized int getMax();
-    method public synchronized int getProgress();
+    method public int getMax();
+    method public int getProgress();
     method public android.content.res.ColorStateList getProgressBackgroundTintList();
     method public android.graphics.PorterDuff.Mode getProgressBackgroundTintMode();
     method public android.graphics.drawable.Drawable getProgressDrawable();
     method public android.content.res.ColorStateList getProgressTintList();
     method public android.graphics.PorterDuff.Mode getProgressTintMode();
-    method public synchronized int getSecondaryProgress();
+    method public int getSecondaryProgress();
     method public android.content.res.ColorStateList getSecondaryProgressTintList();
     method public android.graphics.PorterDuff.Mode getSecondaryProgressTintMode();
-    method public final synchronized void incrementProgressBy(int);
-    method public final synchronized void incrementSecondaryProgressBy(int);
-    method public synchronized boolean isIndeterminate();
+    method public final void incrementProgressBy(int);
+    method public final void incrementSecondaryProgressBy(int);
+    method public boolean isIndeterminate();
     method public void onRestoreInstanceState(android.os.Parcelable);
     method public android.os.Parcelable onSaveInstanceState();
-    method public synchronized void setIndeterminate(boolean);
+    method public void setIndeterminate(boolean);
     method public void setIndeterminateDrawable(android.graphics.drawable.Drawable);
     method public void setIndeterminateDrawableTiled(android.graphics.drawable.Drawable);
     method public void setIndeterminateTintList(android.content.res.ColorStateList);
     method public void setIndeterminateTintMode(android.graphics.PorterDuff.Mode);
     method public void setInterpolator(android.content.Context, int);
     method public void setInterpolator(android.view.animation.Interpolator);
-    method public synchronized void setMax(int);
-    method public synchronized void setProgress(int);
+    method public void setMax(int);
+    method public void setProgress(int);
     method public void setProgressBackgroundTintList(android.content.res.ColorStateList);
     method public void setProgressBackgroundTintMode(android.graphics.PorterDuff.Mode);
     method public void setProgressDrawable(android.graphics.drawable.Drawable);
     method public void setProgressDrawableTiled(android.graphics.drawable.Drawable);
     method public void setProgressTintList(android.content.res.ColorStateList);
     method public void setProgressTintMode(android.graphics.PorterDuff.Mode);
-    method public synchronized void setSecondaryProgress(int);
+    method public void setSecondaryProgress(int);
     method public void setSecondaryProgressTintList(android.content.res.ColorStateList);
     method public void setSecondaryProgressTintMode(android.graphics.PorterDuff.Mode);
   }
@@ -42131,7 +42131,7 @@ package java.io {
   public class ByteArrayInputStream extends java.io.InputStream {
     ctor public ByteArrayInputStream(byte[]);
     ctor public ByteArrayInputStream(byte[], int, int);
-    method public synchronized int read();
+    method public int read();
     field protected byte[] buf;
     field protected int count;
     field protected int mark;
@@ -42141,13 +42141,13 @@ package java.io {
   public class ByteArrayOutputStream extends java.io.OutputStream {
     ctor public ByteArrayOutputStream();
     ctor public ByteArrayOutputStream(int);
-    method public synchronized void reset();
+    method public void reset();
     method public int size();
-    method public synchronized byte[] toByteArray();
+    method public byte[] toByteArray();
     method public deprecated java.lang.String toString(int);
     method public java.lang.String toString(java.lang.String) throws java.io.UnsupportedEncodingException;
-    method public synchronized void write(int);
-    method public synchronized void writeTo(java.io.OutputStream) throws java.io.IOException;
+    method public void write(int);
+    method public void writeTo(java.io.OutputStream) throws java.io.IOException;
     field protected byte[] buf;
     field protected int count;
   }
@@ -42452,7 +42452,7 @@ package java.io {
     method public abstract int read() throws java.io.IOException;
     method public int read(byte[]) throws java.io.IOException;
     method public int read(byte[], int, int) throws java.io.IOException;
-    method public synchronized void reset() throws java.io.IOException;
+    method public void reset() throws java.io.IOException;
     method public long skip(long) throws java.io.IOException;
   }
 
@@ -42541,7 +42541,7 @@ package java.io {
     method public java.lang.Object readUnshared() throws java.lang.ClassNotFoundException, java.io.IOException;
     method public int readUnsignedByte() throws java.io.IOException;
     method public int readUnsignedShort() throws java.io.IOException;
-    method public synchronized void registerValidation(java.io.ObjectInputValidation, int) throws java.io.InvalidObjectException, java.io.NotActiveException;
+    method public void registerValidation(java.io.ObjectInputValidation, int) throws java.io.InvalidObjectException, java.io.NotActiveException;
     method protected java.lang.Class<?> resolveClass(java.io.ObjectStreamClass) throws java.lang.ClassNotFoundException, java.io.IOException;
     method protected java.lang.Object resolveObject(java.lang.Object) throws java.io.IOException;
     method protected java.lang.Class<?> resolveProxyClass(java.lang.String[]) throws java.lang.ClassNotFoundException, java.io.IOException;
@@ -42715,8 +42715,8 @@ package java.io {
     ctor public PipedInputStream(int);
     ctor public PipedInputStream(java.io.PipedOutputStream, int) throws java.io.IOException;
     method public void connect(java.io.PipedOutputStream) throws java.io.IOException;
-    method public synchronized int read() throws java.io.IOException;
-    method protected synchronized void receive(int) throws java.io.IOException;
+    method public int read() throws java.io.IOException;
+    method protected void receive(int) throws java.io.IOException;
     field protected static final int PIPE_SIZE = 1024; // 0x400
     field protected byte[] buffer;
     field protected int in;
@@ -42735,9 +42735,9 @@ package java.io {
     ctor public PipedReader(java.io.PipedWriter) throws java.io.IOException;
     ctor public PipedReader(int);
     ctor public PipedReader(java.io.PipedWriter, int) throws java.io.IOException;
-    method public synchronized void close() throws java.io.IOException;
+    method public void close() throws java.io.IOException;
     method public void connect(java.io.PipedWriter) throws java.io.IOException;
-    method public synchronized int read(char[], int, int) throws java.io.IOException;
+    method public int read(char[], int, int) throws java.io.IOException;
   }
 
   public class PipedWriter extends java.io.Writer {
@@ -42771,7 +42771,7 @@ package java.io {
     method public void print(int);
     method public void print(long);
     method public void print(java.lang.Object);
-    method public synchronized void print(java.lang.String);
+    method public void print(java.lang.String);
     method public void print(boolean);
     method public java.io.PrintStream printf(java.lang.String, java.lang.Object...);
     method public java.io.PrintStream printf(java.util.Locale, java.lang.String, java.lang.Object...);
@@ -42783,7 +42783,7 @@ package java.io {
     method public void println(int);
     method public void println(long);
     method public void println(java.lang.Object);
-    method public synchronized void println(java.lang.String);
+    method public void println(java.lang.String);
     method public void println(boolean);
     method protected void setError();
   }
@@ -42851,7 +42851,7 @@ package java.io {
     ctor public RandomAccessFile(java.io.File, java.lang.String) throws java.io.FileNotFoundException;
     ctor public RandomAccessFile(java.lang.String, java.lang.String) throws java.io.FileNotFoundException;
     method public void close() throws java.io.IOException;
-    method public final synchronized java.nio.channels.FileChannel getChannel();
+    method public final java.nio.channels.FileChannel getChannel();
     method public final java.io.FileDescriptor getFD() throws java.io.IOException;
     method public long getFilePointer() throws java.io.IOException;
     method public long length() throws java.io.IOException;
@@ -42955,7 +42955,7 @@ package java.io {
 
   public deprecated class StringBufferInputStream extends java.io.InputStream {
     ctor public StringBufferInputStream(java.lang.String);
-    method public synchronized int read();
+    method public int read();
     field protected java.lang.String buffer;
     field protected int count;
     field protected int pos;
@@ -43542,7 +43542,7 @@ package java.lang {
     method public java.lang.Object[] getSigners();
     method public java.lang.String getSimpleName();
     method public java.lang.Class<? super T> getSuperclass();
-    method public synchronized java.lang.reflect.TypeVariable<java.lang.Class<T>>[] getTypeParameters();
+    method public java.lang.reflect.TypeVariable<java.lang.Class<T>>[] getTypeParameters();
     method public boolean isAnnotation();
     method public boolean isAnnotationPresent(java.lang.Class<? extends java.lang.annotation.Annotation>);
     method public boolean isAnonymousClass();
@@ -43939,7 +43939,7 @@ package java.lang {
     method public static double nextUp(double);
     method public static float nextUp(float);
     method public static double pow(double, double);
-    method public static synchronized double random();
+    method public static double random();
     method public static double rint(double);
     method public static long round(double);
     method public static int round(float);
@@ -44369,35 +44369,35 @@ package java.lang {
     ctor public StringBuffer(java.lang.String);
     ctor public StringBuffer(java.lang.CharSequence);
     method public java.lang.StringBuffer append(boolean);
-    method public synchronized java.lang.StringBuffer append(char);
+    method public java.lang.StringBuffer append(char);
     method public java.lang.StringBuffer append(double);
     method public java.lang.StringBuffer append(float);
     method public java.lang.StringBuffer append(int);
     method public java.lang.StringBuffer append(long);
-    method public synchronized java.lang.StringBuffer append(java.lang.Object);
-    method public synchronized java.lang.StringBuffer append(java.lang.String);
-    method public synchronized java.lang.StringBuffer append(java.lang.StringBuffer);
-    method public synchronized java.lang.StringBuffer append(char[]);
-    method public synchronized java.lang.StringBuffer append(char[], int, int);
-    method public synchronized java.lang.StringBuffer append(java.lang.CharSequence);
-    method public synchronized java.lang.StringBuffer append(java.lang.CharSequence, int, int);
+    method public java.lang.StringBuffer append(java.lang.Object);
+    method public java.lang.StringBuffer append(java.lang.String);
+    method public java.lang.StringBuffer append(java.lang.StringBuffer);
+    method public java.lang.StringBuffer append(char[]);
+    method public java.lang.StringBuffer append(char[], int, int);
+    method public java.lang.StringBuffer append(java.lang.CharSequence);
+    method public java.lang.StringBuffer append(java.lang.CharSequence, int, int);
     method public java.lang.StringBuffer appendCodePoint(int);
-    method public synchronized java.lang.StringBuffer delete(int, int);
-    method public synchronized java.lang.StringBuffer deleteCharAt(int);
-    method public synchronized java.lang.StringBuffer insert(int, char);
+    method public java.lang.StringBuffer delete(int, int);
+    method public java.lang.StringBuffer deleteCharAt(int);
+    method public java.lang.StringBuffer insert(int, char);
     method public java.lang.StringBuffer insert(int, boolean);
     method public java.lang.StringBuffer insert(int, int);
     method public java.lang.StringBuffer insert(int, long);
     method public java.lang.StringBuffer insert(int, double);
     method public java.lang.StringBuffer insert(int, float);
     method public java.lang.StringBuffer insert(int, java.lang.Object);
-    method public synchronized java.lang.StringBuffer insert(int, java.lang.String);
-    method public synchronized java.lang.StringBuffer insert(int, char[]);
-    method public synchronized java.lang.StringBuffer insert(int, char[], int, int);
-    method public synchronized java.lang.StringBuffer insert(int, java.lang.CharSequence);
-    method public synchronized java.lang.StringBuffer insert(int, java.lang.CharSequence, int, int);
-    method public synchronized java.lang.StringBuffer replace(int, int, java.lang.String);
-    method public synchronized java.lang.StringBuffer reverse();
+    method public java.lang.StringBuffer insert(int, java.lang.String);
+    method public java.lang.StringBuffer insert(int, char[]);
+    method public java.lang.StringBuffer insert(int, char[], int, int);
+    method public java.lang.StringBuffer insert(int, java.lang.CharSequence);
+    method public java.lang.StringBuffer insert(int, java.lang.CharSequence, int, int);
+    method public java.lang.StringBuffer replace(int, int, java.lang.String);
+    method public java.lang.StringBuffer reverse();
   }
 
   public final class StringBuilder extends java.lang.AbstractStringBuilder implements java.lang.Appendable java.lang.CharSequence java.io.Serializable {
@@ -44524,9 +44524,9 @@ package java.lang {
     method public void setUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler);
     method public static void sleep(long) throws java.lang.InterruptedException;
     method public static void sleep(long, int) throws java.lang.InterruptedException;
-    method public synchronized void start();
+    method public void start();
     method public final deprecated void stop();
-    method public final deprecated synchronized void stop(java.lang.Throwable);
+    method public final deprecated void stop(java.lang.Throwable);
     method public final deprecated void suspend();
     method public static void yield();
     field public static final int MAX_PRIORITY = 10; // 0xa
@@ -44568,7 +44568,7 @@ package java.lang {
     method public final java.lang.ThreadGroup getParent();
     method public final void interrupt();
     method public final boolean isDaemon();
-    method public synchronized boolean isDestroyed();
+    method public boolean isDestroyed();
     method public void list();
     method public final boolean parentOf(java.lang.ThreadGroup);
     method public final deprecated void resume();
@@ -44723,9 +44723,9 @@ package java.lang.ref {
 
   public class ReferenceQueue {
     ctor public ReferenceQueue();
-    method public synchronized java.lang.ref.Reference<? extends T> poll();
+    method public java.lang.ref.Reference<? extends T> poll();
     method public java.lang.ref.Reference<? extends T> remove() throws java.lang.InterruptedException;
-    method public synchronized java.lang.ref.Reference<? extends T> remove(long) throws java.lang.InterruptedException;
+    method public java.lang.ref.Reference<? extends T> remove(long) throws java.lang.InterruptedException;
   }
 
   public class SoftReference extends java.lang.ref.Reference {
@@ -45145,8 +45145,8 @@ package java.net {
     method protected final java.net.InetAddress getRequestingSite();
     method protected java.net.URL getRequestingURL();
     method protected java.net.Authenticator.RequestorType getRequestorType();
-    method public static synchronized java.net.PasswordAuthentication requestPasswordAuthentication(java.net.InetAddress, int, java.lang.String, java.lang.String, java.lang.String);
-    method public static synchronized java.net.PasswordAuthentication requestPasswordAuthentication(java.lang.String, java.net.InetAddress, int, java.lang.String, java.lang.String, java.lang.String);
+    method public static java.net.PasswordAuthentication requestPasswordAuthentication(java.net.InetAddress, int, java.lang.String, java.lang.String, java.lang.String);
+    method public static java.net.PasswordAuthentication requestPasswordAuthentication(java.lang.String, java.net.InetAddress, int, java.lang.String, java.lang.String, java.lang.String);
     method public static java.net.PasswordAuthentication requestPasswordAuthentication(java.lang.String, java.net.InetAddress, int, java.lang.String, java.lang.String, java.lang.String, java.net.URL, java.net.Authenticator.RequestorType);
     method public static void setDefault(java.net.Authenticator);
   }
@@ -45228,18 +45228,18 @@ package java.net {
     ctor public DatagramPacket(byte[], int, java.net.InetAddress, int);
     ctor public DatagramPacket(byte[], int, java.net.SocketAddress) throws java.net.SocketException;
     ctor public DatagramPacket(byte[], int, int, java.net.SocketAddress) throws java.net.SocketException;
-    method public synchronized java.net.InetAddress getAddress();
-    method public synchronized byte[] getData();
-    method public synchronized int getLength();
-    method public synchronized int getOffset();
-    method public synchronized int getPort();
-    method public synchronized java.net.SocketAddress getSocketAddress();
-    method public synchronized void setAddress(java.net.InetAddress);
-    method public synchronized void setData(byte[], int, int);
-    method public synchronized void setData(byte[]);
-    method public synchronized void setLength(int);
-    method public synchronized void setPort(int);
-    method public synchronized void setSocketAddress(java.net.SocketAddress);
+    method public java.net.InetAddress getAddress();
+    method public byte[] getData();
+    method public int getLength();
+    method public int getOffset();
+    method public int getPort();
+    method public java.net.SocketAddress getSocketAddress();
+    method public void setAddress(java.net.InetAddress);
+    method public void setData(byte[], int, int);
+    method public void setData(byte[]);
+    method public void setLength(int);
+    method public void setPort(int);
+    method public void setSocketAddress(java.net.SocketAddress);
   }
 
   public class DatagramSocket implements java.io.Closeable {
@@ -45260,23 +45260,23 @@ package java.net {
     method public int getLocalPort();
     method public java.net.SocketAddress getLocalSocketAddress();
     method public int getPort();
-    method public synchronized int getReceiveBufferSize() throws java.net.SocketException;
+    method public int getReceiveBufferSize() throws java.net.SocketException;
     method public java.net.SocketAddress getRemoteSocketAddress();
     method public boolean getReuseAddress() throws java.net.SocketException;
-    method public synchronized int getSendBufferSize() throws java.net.SocketException;
-    method public synchronized int getSoTimeout() throws java.net.SocketException;
+    method public int getSendBufferSize() throws java.net.SocketException;
+    method public int getSoTimeout() throws java.net.SocketException;
     method public int getTrafficClass() throws java.net.SocketException;
     method public boolean isBound();
     method public boolean isClosed();
     method public boolean isConnected();
-    method public synchronized void receive(java.net.DatagramPacket) throws java.io.IOException;
+    method public void receive(java.net.DatagramPacket) throws java.io.IOException;
     method public void send(java.net.DatagramPacket) throws java.io.IOException;
     method public void setBroadcast(boolean) throws java.net.SocketException;
-    method public static synchronized void setDatagramSocketImplFactory(java.net.DatagramSocketImplFactory) throws java.io.IOException;
-    method public synchronized void setReceiveBufferSize(int) throws java.net.SocketException;
+    method public static void setDatagramSocketImplFactory(java.net.DatagramSocketImplFactory) throws java.io.IOException;
+    method public void setReceiveBufferSize(int) throws java.net.SocketException;
     method public void setReuseAddress(boolean) throws java.net.SocketException;
-    method public synchronized void setSendBufferSize(int) throws java.net.SocketException;
-    method public synchronized void setSoTimeout(int) throws java.net.SocketException;
+    method public void setSendBufferSize(int) throws java.net.SocketException;
+    method public void setSoTimeout(int) throws java.net.SocketException;
     method public void setTrafficClass(int) throws java.net.SocketException;
   }
 
@@ -45617,15 +45617,15 @@ package java.net {
     method public java.net.SocketAddress getLocalSocketAddress();
     method public int getReceiveBufferSize() throws java.net.SocketException;
     method public boolean getReuseAddress() throws java.net.SocketException;
-    method public synchronized int getSoTimeout() throws java.io.IOException;
+    method public int getSoTimeout() throws java.io.IOException;
     method protected final void implAccept(java.net.Socket) throws java.io.IOException;
     method public boolean isBound();
     method public boolean isClosed();
     method public void setPerformancePreferences(int, int, int);
     method public void setReceiveBufferSize(int) throws java.net.SocketException;
     method public void setReuseAddress(boolean) throws java.net.SocketException;
-    method public synchronized void setSoTimeout(int) throws java.net.SocketException;
-    method public static synchronized void setSocketFactory(java.net.SocketImplFactory) throws java.io.IOException;
+    method public void setSoTimeout(int) throws java.net.SocketException;
+    method public static void setSocketFactory(java.net.SocketImplFactory) throws java.io.IOException;
   }
 
   public class Socket implements java.io.Closeable {
@@ -45639,7 +45639,7 @@ package java.net {
     ctor public deprecated Socket(java.net.InetAddress, int, boolean) throws java.io.IOException;
     ctor protected Socket(java.net.SocketImpl) throws java.net.SocketException;
     method public void bind(java.net.SocketAddress) throws java.io.IOException;
-    method public synchronized void close() throws java.io.IOException;
+    method public void close() throws java.io.IOException;
     method public void connect(java.net.SocketAddress) throws java.io.IOException;
     method public void connect(java.net.SocketAddress, int) throws java.io.IOException;
     method public java.nio.channels.SocketChannel getChannel();
@@ -45652,12 +45652,12 @@ package java.net {
     method public boolean getOOBInline() throws java.net.SocketException;
     method public java.io.OutputStream getOutputStream() throws java.io.IOException;
     method public int getPort();
-    method public synchronized int getReceiveBufferSize() throws java.net.SocketException;
+    method public int getReceiveBufferSize() throws java.net.SocketException;
     method public java.net.SocketAddress getRemoteSocketAddress();
     method public boolean getReuseAddress() throws java.net.SocketException;
-    method public synchronized int getSendBufferSize() throws java.net.SocketException;
+    method public int getSendBufferSize() throws java.net.SocketException;
     method public int getSoLinger() throws java.net.SocketException;
-    method public synchronized int getSoTimeout() throws java.net.SocketException;
+    method public int getSoTimeout() throws java.net.SocketException;
     method public boolean getTcpNoDelay() throws java.net.SocketException;
     method public int getTrafficClass() throws java.net.SocketException;
     method public boolean isBound();
@@ -45669,12 +45669,12 @@ package java.net {
     method public void setKeepAlive(boolean) throws java.net.SocketException;
     method public void setOOBInline(boolean) throws java.net.SocketException;
     method public void setPerformancePreferences(int, int, int);
-    method public synchronized void setReceiveBufferSize(int) throws java.net.SocketException;
+    method public void setReceiveBufferSize(int) throws java.net.SocketException;
     method public void setReuseAddress(boolean) throws java.net.SocketException;
-    method public synchronized void setSendBufferSize(int) throws java.net.SocketException;
+    method public void setSendBufferSize(int) throws java.net.SocketException;
     method public void setSoLinger(boolean, int) throws java.net.SocketException;
-    method public synchronized void setSoTimeout(int) throws java.net.SocketException;
-    method public static synchronized void setSocketImplFactory(java.net.SocketImplFactory) throws java.io.IOException;
+    method public void setSoTimeout(int) throws java.net.SocketException;
+    method public static void setSocketImplFactory(java.net.SocketImplFactory) throws java.io.IOException;
     method public void setTcpNoDelay(boolean) throws java.net.SocketException;
     method public void setTrafficClass(int) throws java.net.SocketException;
     method public void shutdownInput() throws java.io.IOException;
@@ -45819,7 +45819,7 @@ package java.net {
     method public boolean sameFile(java.net.URL);
     method protected void set(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String);
     method protected void set(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
-    method public static synchronized void setURLStreamHandlerFactory(java.net.URLStreamHandlerFactory);
+    method public static void setURLStreamHandlerFactory(java.net.URLStreamHandlerFactory);
     method public java.lang.String toExternalForm();
     method public java.net.URI toURI() throws java.net.URISyntaxException;
   }
@@ -45876,7 +45876,7 @@ package java.net {
     method public static java.lang.String guessContentTypeFromStream(java.io.InputStream) throws java.io.IOException;
     method public void setAllowUserInteraction(boolean);
     method public void setConnectTimeout(int);
-    method public static synchronized void setContentHandlerFactory(java.net.ContentHandlerFactory);
+    method public static void setContentHandlerFactory(java.net.ContentHandlerFactory);
     method public static void setDefaultAllowUserInteraction(boolean);
     method public static deprecated void setDefaultRequestProperty(java.lang.String, java.lang.String);
     method public void setDefaultUseCaches(boolean);
@@ -46266,14 +46266,14 @@ package java.nio.channels {
     method public static java.nio.channels.DatagramChannel open() throws java.io.IOException;
     method public abstract int read(java.nio.ByteBuffer) throws java.io.IOException;
     method public abstract long read(java.nio.ByteBuffer[], int, int) throws java.io.IOException;
-    method public final synchronized long read(java.nio.ByteBuffer[]) throws java.io.IOException;
+    method public final long read(java.nio.ByteBuffer[]) throws java.io.IOException;
     method public abstract java.net.SocketAddress receive(java.nio.ByteBuffer) throws java.io.IOException;
     method public abstract int send(java.nio.ByteBuffer, java.net.SocketAddress) throws java.io.IOException;
     method public abstract java.net.DatagramSocket socket();
     method public final int validOps();
     method public abstract int write(java.nio.ByteBuffer) throws java.io.IOException;
     method public abstract long write(java.nio.ByteBuffer[], int, int) throws java.io.IOException;
-    method public final synchronized long write(java.nio.ByteBuffer[]) throws java.io.IOException;
+    method public final long write(java.nio.ByteBuffer[]) throws java.io.IOException;
   }
 
   public abstract class FileChannel extends java.nio.channels.spi.AbstractInterruptibleChannel implements java.nio.channels.ByteChannel java.nio.channels.GatheringByteChannel java.nio.channels.ScatteringByteChannel {
@@ -46456,12 +46456,12 @@ package java.nio.channels {
     method public static java.nio.channels.SocketChannel open(java.net.SocketAddress) throws java.io.IOException;
     method public abstract int read(java.nio.ByteBuffer) throws java.io.IOException;
     method public abstract long read(java.nio.ByteBuffer[], int, int) throws java.io.IOException;
-    method public final synchronized long read(java.nio.ByteBuffer[]) throws java.io.IOException;
+    method public final long read(java.nio.ByteBuffer[]) throws java.io.IOException;
     method public abstract java.net.Socket socket();
     method public final int validOps();
     method public abstract int write(java.nio.ByteBuffer) throws java.io.IOException;
     method public abstract long write(java.nio.ByteBuffer[], int, int) throws java.io.IOException;
-    method public final synchronized long write(java.nio.ByteBuffer[]) throws java.io.IOException;
+    method public final long write(java.nio.ByteBuffer[]) throws java.io.IOException;
   }
 
   public class UnresolvedAddressException extends java.lang.IllegalArgumentException {
@@ -46486,19 +46486,19 @@ package java.nio.channels.spi {
     method public final void close() throws java.io.IOException;
     method protected final void end(boolean) throws java.nio.channels.AsynchronousCloseException;
     method protected abstract void implCloseChannel() throws java.io.IOException;
-    method public final synchronized boolean isOpen();
+    method public final boolean isOpen();
   }
 
   public abstract class AbstractSelectableChannel extends java.nio.channels.SelectableChannel {
     ctor protected AbstractSelectableChannel(java.nio.channels.spi.SelectorProvider);
     method public final java.lang.Object blockingLock();
     method public final java.nio.channels.SelectableChannel configureBlocking(boolean) throws java.io.IOException;
-    method protected final synchronized void implCloseChannel() throws java.io.IOException;
+    method protected final void implCloseChannel() throws java.io.IOException;
     method protected abstract void implCloseSelectableChannel() throws java.io.IOException;
     method protected abstract void implConfigureBlocking(boolean) throws java.io.IOException;
     method public final boolean isBlocking();
-    method public final synchronized boolean isRegistered();
-    method public final synchronized java.nio.channels.SelectionKey keyFor(java.nio.channels.Selector);
+    method public final boolean isRegistered();
+    method public final java.nio.channels.SelectionKey keyFor(java.nio.channels.Selector);
     method public final java.nio.channels.spi.SelectorProvider provider();
     method public final java.nio.channels.SelectionKey register(java.nio.channels.Selector, int, java.lang.Object) throws java.nio.channels.ClosedChannelException;
   }
@@ -46530,7 +46530,7 @@ package java.nio.channels.spi {
     method public abstract java.nio.channels.spi.AbstractSelector openSelector() throws java.io.IOException;
     method public abstract java.nio.channels.ServerSocketChannel openServerSocketChannel() throws java.io.IOException;
     method public abstract java.nio.channels.SocketChannel openSocketChannel() throws java.io.IOException;
-    method public static synchronized java.nio.channels.spi.SelectorProvider provider();
+    method public static java.nio.channels.spi.SelectorProvider provider();
   }
 
 }
@@ -46629,9 +46629,9 @@ package java.nio.charset {
     method public boolean isUnderflow();
     method public boolean isUnmappable();
     method public int length() throws java.lang.UnsupportedOperationException;
-    method public static synchronized java.nio.charset.CoderResult malformedForLength(int) throws java.lang.IllegalArgumentException;
+    method public static java.nio.charset.CoderResult malformedForLength(int) throws java.lang.IllegalArgumentException;
     method public void throwException() throws java.nio.BufferOverflowException, java.nio.BufferUnderflowException, java.nio.charset.CharacterCodingException, java.nio.charset.MalformedInputException, java.nio.charset.UnmappableCharacterException;
-    method public static synchronized java.nio.charset.CoderResult unmappableForLength(int) throws java.lang.IllegalArgumentException;
+    method public static java.nio.charset.CoderResult unmappableForLength(int) throws java.lang.IllegalArgumentException;
     field public static final java.nio.charset.CoderResult OVERFLOW;
     field public static final java.nio.charset.CoderResult UNDERFLOW;
   }
@@ -47032,9 +47032,9 @@ package java.security {
 
   public static class KeyStore.PasswordProtection implements javax.security.auth.Destroyable java.security.KeyStore.ProtectionParameter {
     ctor public KeyStore.PasswordProtection(char[]);
-    method public synchronized void destroy() throws javax.security.auth.DestroyFailedException;
-    method public synchronized char[] getPassword();
-    method public synchronized boolean isDestroyed();
+    method public void destroy() throws javax.security.auth.DestroyFailedException;
+    method public char[] getPassword();
+    method public boolean isDestroyed();
   }
 
   public static final class KeyStore.PrivateKeyEntry implements java.security.KeyStore.Entry {
@@ -47223,13 +47223,13 @@ package java.security {
     ctor protected Provider(java.lang.String, double, java.lang.String);
     method public java.lang.String getInfo();
     method public java.lang.String getName();
-    method public synchronized java.security.Provider.Service getService(java.lang.String, java.lang.String);
-    method public synchronized java.util.Set<java.security.Provider.Service> getServices();
+    method public java.security.Provider.Service getService(java.lang.String, java.lang.String);
+    method public java.util.Set<java.security.Provider.Service> getServices();
     method public double getVersion();
-    method public synchronized java.lang.Object put(java.lang.Object, java.lang.Object);
-    method public synchronized void putAll(java.util.Map<?, ?>);
-    method protected synchronized void putService(java.security.Provider.Service);
-    method protected synchronized void removeService(java.security.Provider.Service);
+    method public java.lang.Object put(java.lang.Object, java.lang.Object);
+    method public void putAll(java.util.Map<?, ?>);
+    method protected void putService(java.security.Provider.Service);
+    method protected void removeService(java.security.Provider.Service);
   }
 
   public static class Provider.Service {
@@ -47274,7 +47274,7 @@ package java.security {
     method public final java.security.Provider getProvider();
     method public static byte[] getSeed(int);
     method protected final int next(int);
-    method public synchronized void setSeed(byte[]);
+    method public void setSeed(byte[]);
   }
 
   public abstract class SecureRandomSpi implements java.io.Serializable {
@@ -47289,12 +47289,12 @@ package java.security {
     method public static deprecated java.lang.String getAlgorithmProperty(java.lang.String, java.lang.String);
     method public static java.util.Set<java.lang.String> getAlgorithms(java.lang.String);
     method public static java.lang.String getProperty(java.lang.String);
-    method public static synchronized java.security.Provider getProvider(java.lang.String);
-    method public static synchronized java.security.Provider[] getProviders();
+    method public static java.security.Provider getProvider(java.lang.String);
+    method public static java.security.Provider[] getProviders();
     method public static java.security.Provider[] getProviders(java.lang.String);
-    method public static synchronized java.security.Provider[] getProviders(java.util.Map<java.lang.String, java.lang.String>);
-    method public static synchronized int insertProviderAt(java.security.Provider, int);
-    method public static synchronized void removeProvider(java.lang.String);
+    method public static java.security.Provider[] getProviders(java.util.Map<java.lang.String, java.lang.String>);
+    method public static int insertProviderAt(java.security.Provider, int);
+    method public static void removeProvider(java.lang.String);
     method public static void setProperty(java.lang.String, java.lang.String);
   }
 
@@ -50228,15 +50228,15 @@ package java.util {
     method public int get(int);
     method public int getActualMaximum(int);
     method public int getActualMinimum(int);
-    method public static synchronized java.util.Locale[] getAvailableLocales();
+    method public static java.util.Locale[] getAvailableLocales();
     method public java.lang.String getDisplayName(int, int, java.util.Locale);
     method public java.util.Map<java.lang.String, java.lang.Integer> getDisplayNames(int, int, java.util.Locale);
     method public int getFirstDayOfWeek();
     method public abstract int getGreatestMinimum(int);
-    method public static synchronized java.util.Calendar getInstance();
-    method public static synchronized java.util.Calendar getInstance(java.util.Locale);
-    method public static synchronized java.util.Calendar getInstance(java.util.TimeZone);
-    method public static synchronized java.util.Calendar getInstance(java.util.TimeZone, java.util.Locale);
+    method public static java.util.Calendar getInstance();
+    method public static java.util.Calendar getInstance(java.util.Locale);
+    method public static java.util.Calendar getInstance(java.util.TimeZone);
+    method public static java.util.Calendar getInstance(java.util.TimeZone, java.util.Locale);
     method public abstract int getLeastMaximum(int);
     method public abstract int getMaximum(int);
     method public int getMinimalDaysInFirstWeek();
@@ -50635,23 +50635,23 @@ package java.util {
     ctor public Hashtable(int);
     ctor public Hashtable(int, float);
     ctor public Hashtable(java.util.Map<? extends K, ? extends V>);
-    method public synchronized void clear();
-    method public synchronized java.lang.Object clone();
+    method public void clear();
+    method public java.lang.Object clone();
     method public boolean contains(java.lang.Object);
-    method public synchronized boolean containsKey(java.lang.Object);
-    method public synchronized boolean containsValue(java.lang.Object);
-    method public synchronized java.util.Enumeration<V> elements();
-    method public synchronized java.util.Set<java.util.Map.Entry<K, V>> entrySet();
-    method public synchronized V get(java.lang.Object);
-    method public synchronized boolean isEmpty();
-    method public synchronized java.util.Set<K> keySet();
-    method public synchronized java.util.Enumeration<K> keys();
-    method public synchronized V put(K, V);
-    method public synchronized void putAll(java.util.Map<? extends K, ? extends V>);
+    method public boolean containsKey(java.lang.Object);
+    method public boolean containsValue(java.lang.Object);
+    method public java.util.Enumeration<V> elements();
+    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public V get(java.lang.Object);
+    method public boolean isEmpty();
+    method public java.util.Set<K> keySet();
+    method public java.util.Enumeration<K> keys();
+    method public V put(K, V);
+    method public void putAll(java.util.Map<? extends K, ? extends V>);
     method protected void rehash();
-    method public synchronized V remove(java.lang.Object);
-    method public synchronized int size();
-    method public synchronized java.util.Collection<V> values();
+    method public V remove(java.lang.Object);
+    method public int size();
+    method public java.util.Collection<V> values();
   }
 
   public class IdentityHashMap extends java.util.AbstractMap implements java.lang.Cloneable java.util.Map java.io.Serializable {
@@ -50838,7 +50838,7 @@ package java.util {
     method public java.util.Set<java.lang.String> getUnicodeLocaleKeys();
     method public java.lang.String getUnicodeLocaleType(java.lang.String);
     method public java.lang.String getVariant();
-    method public static synchronized void setDefault(java.util.Locale);
+    method public static void setDefault(java.util.Locale);
     method public java.lang.String toLanguageTag();
     method public final java.lang.String toString();
     field public static final java.util.Locale CANADA;
@@ -50989,8 +50989,8 @@ package java.util {
     method public void addObserver(java.util.Observer);
     method protected void clearChanged();
     method public int countObservers();
-    method public synchronized void deleteObserver(java.util.Observer);
-    method public synchronized void deleteObservers();
+    method public void deleteObserver(java.util.Observer);
+    method public void deleteObservers();
     method public boolean hasChanged();
     method public void notifyObservers();
     method public void notifyObservers(java.lang.Object);
@@ -51023,16 +51023,16 @@ package java.util {
     method public java.lang.String getProperty(java.lang.String, java.lang.String);
     method public void list(java.io.PrintStream);
     method public void list(java.io.PrintWriter);
-    method public synchronized void load(java.io.InputStream) throws java.io.IOException;
-    method public synchronized void load(java.io.Reader) throws java.io.IOException;
-    method public synchronized void loadFromXML(java.io.InputStream) throws java.io.IOException, java.util.InvalidPropertiesFormatException;
+    method public void load(java.io.InputStream) throws java.io.IOException;
+    method public void load(java.io.Reader) throws java.io.IOException;
+    method public void loadFromXML(java.io.InputStream) throws java.io.IOException, java.util.InvalidPropertiesFormatException;
     method public java.util.Enumeration<?> propertyNames();
     method public deprecated void save(java.io.OutputStream, java.lang.String);
     method public java.lang.Object setProperty(java.lang.String, java.lang.String);
-    method public synchronized void store(java.io.OutputStream, java.lang.String) throws java.io.IOException;
-    method public synchronized void store(java.io.Writer, java.lang.String) throws java.io.IOException;
+    method public void store(java.io.OutputStream, java.lang.String) throws java.io.IOException;
+    method public void store(java.io.Writer, java.lang.String) throws java.io.IOException;
     method public void storeToXML(java.io.OutputStream, java.lang.String) throws java.io.IOException;
-    method public synchronized void storeToXML(java.io.OutputStream, java.lang.String, java.lang.String) throws java.io.IOException;
+    method public void storeToXML(java.io.OutputStream, java.lang.String, java.lang.String) throws java.io.IOException;
     method public java.util.Set<java.lang.String> stringPropertyNames();
     field protected java.util.Properties defaults;
   }
@@ -51060,16 +51060,16 @@ package java.util {
   public class Random implements java.io.Serializable {
     ctor public Random();
     ctor public Random(long);
-    method protected synchronized int next(int);
+    method protected int next(int);
     method public boolean nextBoolean();
     method public void nextBytes(byte[]);
     method public double nextDouble();
     method public float nextFloat();
-    method public synchronized double nextGaussian();
+    method public double nextGaussian();
     method public int nextInt();
     method public int nextInt(int);
     method public long nextLong();
-    method public synchronized void setSeed(long);
+    method public void setSeed(long);
   }
 
   public abstract interface RandomAccess {
@@ -51257,10 +51257,10 @@ package java.util {
   public class Stack extends java.util.Vector {
     ctor public Stack();
     method public boolean empty();
-    method public synchronized E peek();
-    method public synchronized E pop();
+    method public E peek();
+    method public E pop();
     method public E push(E);
-    method public synchronized int search(java.lang.Object);
+    method public int search(java.lang.Object);
   }
 
   public class StringTokenizer implements java.util.Enumeration {
@@ -51278,10 +51278,10 @@ package java.util {
   public abstract class TimeZone implements java.lang.Cloneable java.io.Serializable {
     ctor public TimeZone();
     method public java.lang.Object clone();
-    method public static synchronized java.lang.String[] getAvailableIDs();
-    method public static synchronized java.lang.String[] getAvailableIDs(int);
+    method public static java.lang.String[] getAvailableIDs();
+    method public static java.lang.String[] getAvailableIDs(int);
     method public int getDSTSavings();
-    method public static synchronized java.util.TimeZone getDefault();
+    method public static java.util.TimeZone getDefault();
     method public final java.lang.String getDisplayName();
     method public final java.lang.String getDisplayName(java.util.Locale);
     method public final java.lang.String getDisplayName(boolean, int);
@@ -51290,10 +51290,10 @@ package java.util {
     method public int getOffset(long);
     method public abstract int getOffset(int, int, int, int, int, int);
     method public abstract int getRawOffset();
-    method public static synchronized java.util.TimeZone getTimeZone(java.lang.String);
+    method public static java.util.TimeZone getTimeZone(java.lang.String);
     method public boolean hasSameRules(java.util.TimeZone);
     method public abstract boolean inDaylightTime(java.util.Date);
-    method public static synchronized void setDefault(java.util.TimeZone);
+    method public static void setDefault(java.util.TimeZone);
     method public void setID(java.lang.String);
     method public abstract void setRawOffset(int);
     method public abstract boolean useDaylightTime();
@@ -51418,26 +51418,26 @@ package java.util {
     ctor public Vector(int);
     ctor public Vector(int, int);
     ctor public Vector(java.util.Collection<? extends E>);
-    method public synchronized void addElement(E);
-    method public synchronized int capacity();
-    method public synchronized java.lang.Object clone();
-    method public synchronized void copyInto(java.lang.Object[]);
-    method public synchronized E elementAt(int);
+    method public void addElement(E);
+    method public int capacity();
+    method public java.lang.Object clone();
+    method public void copyInto(java.lang.Object[]);
+    method public E elementAt(int);
     method public java.util.Enumeration<E> elements();
-    method public synchronized void ensureCapacity(int);
-    method public synchronized E firstElement();
+    method public void ensureCapacity(int);
+    method public E firstElement();
     method public E get(int);
-    method public synchronized int indexOf(java.lang.Object, int);
-    method public synchronized void insertElementAt(E, int);
-    method public synchronized E lastElement();
-    method public synchronized int lastIndexOf(java.lang.Object, int);
-    method public synchronized void removeAllElements();
-    method public synchronized boolean removeElement(java.lang.Object);
-    method public synchronized void removeElementAt(int);
-    method public synchronized void setElementAt(E, int);
-    method public synchronized void setSize(int);
-    method public synchronized int size();
-    method public synchronized void trimToSize();
+    method public int indexOf(java.lang.Object, int);
+    method public void insertElementAt(E, int);
+    method public E lastElement();
+    method public int lastIndexOf(java.lang.Object, int);
+    method public void removeAllElements();
+    method public boolean removeElement(java.lang.Object);
+    method public void removeElementAt(int);
+    method public void setElementAt(E, int);
+    method public void setSize(int);
+    method public int size();
+    method public void trimToSize();
     field protected int capacityIncrement;
     field protected int elementCount;
     field protected java.lang.Object[] elementData;
@@ -51697,13 +51697,13 @@ package java.util.concurrent {
     ctor public CopyOnWriteArrayList();
     ctor public CopyOnWriteArrayList(java.util.Collection<? extends E>);
     ctor public CopyOnWriteArrayList(E[]);
-    method public synchronized boolean add(E);
-    method public synchronized void add(int, E);
-    method public synchronized boolean addAll(java.util.Collection<? extends E>);
-    method public synchronized boolean addAll(int, java.util.Collection<? extends E>);
-    method public synchronized int addAllAbsent(java.util.Collection<? extends E>);
-    method public synchronized boolean addIfAbsent(E);
-    method public synchronized void clear();
+    method public boolean add(E);
+    method public void add(int, E);
+    method public boolean addAll(java.util.Collection<? extends E>);
+    method public boolean addAll(int, java.util.Collection<? extends E>);
+    method public int addAllAbsent(java.util.Collection<? extends E>);
+    method public boolean addIfAbsent(E);
+    method public void clear();
     method public java.lang.Object clone();
     method public boolean contains(java.lang.Object);
     method public boolean containsAll(java.util.Collection<?>);
@@ -51716,11 +51716,11 @@ package java.util.concurrent {
     method public int lastIndexOf(java.lang.Object);
     method public java.util.ListIterator<E> listIterator(int);
     method public java.util.ListIterator<E> listIterator();
-    method public synchronized E remove(int);
-    method public synchronized boolean remove(java.lang.Object);
-    method public synchronized boolean removeAll(java.util.Collection<?>);
-    method public synchronized boolean retainAll(java.util.Collection<?>);
-    method public synchronized E set(int, E);
+    method public E remove(int);
+    method public boolean remove(java.lang.Object);
+    method public boolean removeAll(java.util.Collection<?>);
+    method public boolean retainAll(java.util.Collection<?>);
+    method public E set(int, E);
     method public int size();
     method public java.util.List<E> subList(int, int);
     method public java.lang.Object[] toArray();
@@ -52899,18 +52899,18 @@ package java.util.logging {
 
   public class LogManager {
     ctor protected LogManager();
-    method public synchronized boolean addLogger(java.util.logging.Logger);
+    method public boolean addLogger(java.util.logging.Logger);
     method public void addPropertyChangeListener(java.beans.PropertyChangeListener);
     method public void checkAccess();
     method public static java.util.logging.LogManager getLogManager();
-    method public synchronized java.util.logging.Logger getLogger(java.lang.String);
-    method public synchronized java.util.Enumeration<java.lang.String> getLoggerNames();
+    method public java.util.logging.Logger getLogger(java.lang.String);
+    method public java.util.Enumeration<java.lang.String> getLoggerNames();
     method public static java.util.logging.LoggingMXBean getLoggingMXBean();
     method public java.lang.String getProperty(java.lang.String);
     method public void readConfiguration() throws java.io.IOException;
     method public void readConfiguration(java.io.InputStream) throws java.io.IOException;
     method public void removePropertyChangeListener(java.beans.PropertyChangeListener);
-    method public synchronized void reset();
+    method public void reset();
     field public static final java.lang.String LOGGING_MXBEAN_NAME = "java.util.logging:type=Logging";
   }
 
@@ -53011,7 +53011,7 @@ package java.util.logging {
     method public void close();
     method public void flush();
     method public java.util.logging.Level getPushLevel();
-    method public synchronized void publish(java.util.logging.LogRecord);
+    method public void publish(java.util.logging.LogRecord);
     method public void push();
     method public void setPushLevel(java.util.logging.Level);
   }
@@ -53031,7 +53031,7 @@ package java.util.logging {
     ctor public StreamHandler(java.io.OutputStream, java.util.logging.Formatter);
     method public void close();
     method public void flush();
-    method public synchronized void publish(java.util.logging.LogRecord);
+    method public void publish(java.util.logging.LogRecord);
     method protected void setOutputStream(java.io.OutputStream);
   }
 
@@ -53303,24 +53303,24 @@ package java.util.zip {
     ctor public Deflater(int);
     ctor public Deflater(int, boolean);
     method public int deflate(byte[]);
-    method public synchronized int deflate(byte[], int, int);
-    method public synchronized int deflate(byte[], int, int, int);
-    method public synchronized void end();
-    method public synchronized void finish();
-    method public synchronized boolean finished();
-    method public synchronized int getAdler();
-    method public synchronized long getBytesRead();
-    method public synchronized long getBytesWritten();
-    method public synchronized int getTotalIn();
-    method public synchronized int getTotalOut();
-    method public synchronized boolean needsInput();
-    method public synchronized void reset();
+    method public int deflate(byte[], int, int);
+    method public int deflate(byte[], int, int, int);
+    method public void end();
+    method public void finish();
+    method public boolean finished();
+    method public int getAdler();
+    method public long getBytesRead();
+    method public long getBytesWritten();
+    method public int getTotalIn();
+    method public int getTotalOut();
+    method public boolean needsInput();
+    method public void reset();
     method public void setDictionary(byte[]);
-    method public synchronized void setDictionary(byte[], int, int);
+    method public void setDictionary(byte[], int, int);
     method public void setInput(byte[]);
-    method public synchronized void setInput(byte[], int, int);
-    method public synchronized void setLevel(int);
-    method public synchronized void setStrategy(int);
+    method public void setInput(byte[], int, int);
+    method public void setLevel(int);
+    method public void setStrategy(int);
     field public static final int BEST_COMPRESSION = 9; // 0x9
     field public static final int BEST_SPEED = 1; // 0x1
     field public static final int DEFAULT_COMPRESSION = -1; // 0xffffffff
@@ -53374,23 +53374,23 @@ package java.util.zip {
   public class Inflater {
     ctor public Inflater();
     ctor public Inflater(boolean);
-    method public synchronized void end();
-    method public synchronized boolean finished();
-    method public synchronized int getAdler();
-    method public synchronized long getBytesRead();
-    method public synchronized long getBytesWritten();
-    method public synchronized int getRemaining();
-    method public synchronized int getTotalIn();
-    method public synchronized int getTotalOut();
+    method public void end();
+    method public boolean finished();
+    method public int getAdler();
+    method public long getBytesRead();
+    method public long getBytesWritten();
+    method public int getRemaining();
+    method public int getTotalIn();
+    method public int getTotalOut();
     method public int inflate(byte[]) throws java.util.zip.DataFormatException;
-    method public synchronized int inflate(byte[], int, int) throws java.util.zip.DataFormatException;
-    method public synchronized boolean needsDictionary();
-    method public synchronized boolean needsInput();
-    method public synchronized void reset();
-    method public synchronized void setDictionary(byte[]);
-    method public synchronized void setDictionary(byte[], int, int);
-    method public synchronized void setInput(byte[]);
-    method public synchronized void setInput(byte[], int, int);
+    method public int inflate(byte[], int, int) throws java.util.zip.DataFormatException;
+    method public boolean needsDictionary();
+    method public boolean needsInput();
+    method public void reset();
+    method public void setDictionary(byte[]);
+    method public void setDictionary(byte[], int, int);
+    method public void setInput(byte[]);
+    method public void setInput(byte[], int, int);
   }
 
   public class InflaterInputStream extends java.io.FilterInputStream {
@@ -54952,7 +54952,7 @@ package javax.net {
     method public abstract java.net.ServerSocket createServerSocket(int) throws java.io.IOException;
     method public abstract java.net.ServerSocket createServerSocket(int, int) throws java.io.IOException;
     method public abstract java.net.ServerSocket createServerSocket(int, int, java.net.InetAddress) throws java.io.IOException;
-    method public static synchronized javax.net.ServerSocketFactory getDefault();
+    method public static javax.net.ServerSocketFactory getDefault();
   }
 
   public abstract class SocketFactory {
@@ -54962,7 +54962,7 @@ package javax.net {
     method public abstract java.net.Socket createSocket(java.lang.String, int, java.net.InetAddress, int) throws java.io.IOException, java.net.UnknownHostException;
     method public abstract java.net.Socket createSocket(java.net.InetAddress, int) throws java.io.IOException;
     method public abstract java.net.Socket createSocket(java.net.InetAddress, int, java.net.InetAddress, int) throws java.io.IOException;
-    method public static synchronized javax.net.SocketFactory getDefault();
+    method public static javax.net.SocketFactory getDefault();
   }
 
 }
@@ -55201,7 +55201,7 @@ package javax.net.ssl {
 
   public abstract class SSLServerSocketFactory extends javax.net.ServerSocketFactory {
     ctor protected SSLServerSocketFactory();
-    method public static synchronized javax.net.ServerSocketFactory getDefault();
+    method public static javax.net.ServerSocketFactory getDefault();
     method public abstract java.lang.String[] getDefaultCipherSuites();
     method public abstract java.lang.String[] getSupportedCipherSuites();
   }
@@ -55281,7 +55281,7 @@ package javax.net.ssl {
   public abstract class SSLSocketFactory extends javax.net.SocketFactory {
     ctor public SSLSocketFactory();
     method public abstract java.net.Socket createSocket(java.net.Socket, java.lang.String, int, boolean) throws java.io.IOException;
-    method public static synchronized javax.net.SocketFactory getDefault();
+    method public static javax.net.SocketFactory getDefault();
     method public abstract java.lang.String[] getDefaultCipherSuites();
     method public abstract java.lang.String[] getSupportedCipherSuites();
   }
@@ -56501,22 +56501,22 @@ package junit.framework {
 
   public class TestResult {
     ctor public TestResult();
-    method public synchronized void addError(junit.framework.Test, java.lang.Throwable);
-    method public synchronized void addFailure(junit.framework.Test, junit.framework.AssertionFailedError);
-    method public synchronized void addListener(junit.framework.TestListener);
+    method public void addError(junit.framework.Test, java.lang.Throwable);
+    method public void addFailure(junit.framework.Test, junit.framework.AssertionFailedError);
+    method public void addListener(junit.framework.TestListener);
     method public void endTest(junit.framework.Test);
-    method public synchronized int errorCount();
-    method public synchronized java.util.Enumeration<junit.framework.TestFailure> errors();
-    method public synchronized int failureCount();
-    method public synchronized java.util.Enumeration<junit.framework.TestFailure> failures();
-    method public synchronized void removeListener(junit.framework.TestListener);
+    method public int errorCount();
+    method public java.util.Enumeration<junit.framework.TestFailure> errors();
+    method public int failureCount();
+    method public java.util.Enumeration<junit.framework.TestFailure> failures();
+    method public void removeListener(junit.framework.TestListener);
     method protected void run(junit.framework.TestCase);
-    method public synchronized int runCount();
+    method public int runCount();
     method public void runProtected(junit.framework.Test, junit.framework.Protectable);
-    method public synchronized boolean shouldStop();
+    method public boolean shouldStop();
     method public void startTest(junit.framework.Test);
-    method public synchronized void stop();
-    method public synchronized boolean wasSuccessful();
+    method public void stop();
+    method public boolean wasSuccessful();
     field protected java.util.Vector<junit.framework.TestFailure> fErrors;
     field protected java.util.Vector<junit.framework.TestFailure> fFailures;
     field protected java.util.Vector<junit.framework.TestListener> fListeners;
@@ -56551,11 +56551,11 @@ package junit.runner {
 
   public abstract class BaseTestRunner implements junit.framework.TestListener {
     ctor public BaseTestRunner();
-    method public synchronized void addError(junit.framework.Test, java.lang.Throwable);
-    method public synchronized void addFailure(junit.framework.Test, junit.framework.AssertionFailedError);
+    method public void addError(junit.framework.Test, java.lang.Throwable);
+    method public void addFailure(junit.framework.Test, junit.framework.AssertionFailedError);
     method protected void clearStatus();
     method public java.lang.String elapsedTimeAsString(long);
-    method public synchronized void endTest(junit.framework.Test);
+    method public void endTest(junit.framework.Test);
     method public java.lang.String extractClassName(java.lang.String);
     method public static java.lang.String getFilteredTrace(java.lang.Throwable);
     method public static java.lang.String getFilteredTrace(java.lang.String);
@@ -56573,7 +56573,7 @@ package junit.runner {
     method public void setPreference(java.lang.String, java.lang.String);
     method protected static void setPreferences(java.util.Properties);
     method protected static boolean showStackRaw();
-    method public synchronized void startTest(junit.framework.Test);
+    method public void startTest(junit.framework.Test);
     method public abstract void testEnded(java.lang.String);
     method public abstract void testFailed(int, junit.framework.Test, java.lang.Throwable);
     method public abstract void testStarted(java.lang.String);
@@ -56958,11 +56958,11 @@ package org.apache.http.auth {
 
   public final deprecated class AuthSchemeRegistry {
     ctor public AuthSchemeRegistry();
-    method public synchronized org.apache.http.auth.AuthScheme getAuthScheme(java.lang.String, org.apache.http.params.HttpParams) throws java.lang.IllegalStateException;
-    method public synchronized java.util.List<java.lang.String> getSchemeNames();
-    method public synchronized void register(java.lang.String, org.apache.http.auth.AuthSchemeFactory);
-    method public synchronized void setItems(java.util.Map<java.lang.String, org.apache.http.auth.AuthSchemeFactory>);
-    method public synchronized void unregister(java.lang.String);
+    method public org.apache.http.auth.AuthScheme getAuthScheme(java.lang.String, org.apache.http.params.HttpParams) throws java.lang.IllegalStateException;
+    method public java.util.List<java.lang.String> getSchemeNames();
+    method public void register(java.lang.String, org.apache.http.auth.AuthSchemeFactory);
+    method public void setItems(java.util.Map<java.lang.String, org.apache.http.auth.AuthSchemeFactory>);
+    method public void unregister(java.lang.String);
   }
 
   public deprecated class AuthScope {
@@ -57722,13 +57722,13 @@ package org.apache.http.conn.scheme {
 
   public final deprecated class SchemeRegistry {
     ctor public SchemeRegistry();
-    method public final synchronized org.apache.http.conn.scheme.Scheme get(java.lang.String);
-    method public final synchronized org.apache.http.conn.scheme.Scheme getScheme(java.lang.String);
-    method public final synchronized org.apache.http.conn.scheme.Scheme getScheme(org.apache.http.HttpHost);
-    method public final synchronized java.util.List<java.lang.String> getSchemeNames();
-    method public final synchronized org.apache.http.conn.scheme.Scheme register(org.apache.http.conn.scheme.Scheme);
-    method public synchronized void setItems(java.util.Map<java.lang.String, org.apache.http.conn.scheme.Scheme>);
-    method public final synchronized org.apache.http.conn.scheme.Scheme unregister(java.lang.String);
+    method public final org.apache.http.conn.scheme.Scheme get(java.lang.String);
+    method public final org.apache.http.conn.scheme.Scheme getScheme(java.lang.String);
+    method public final org.apache.http.conn.scheme.Scheme getScheme(org.apache.http.HttpHost);
+    method public final java.util.List<java.lang.String> getSchemeNames();
+    method public final org.apache.http.conn.scheme.Scheme register(org.apache.http.conn.scheme.Scheme);
+    method public void setItems(java.util.Map<java.lang.String, org.apache.http.conn.scheme.Scheme>);
+    method public final org.apache.http.conn.scheme.Scheme unregister(java.lang.String);
   }
 
   public abstract deprecated interface SocketFactory {
@@ -57882,12 +57882,12 @@ package org.apache.http.cookie {
 
   public final deprecated class CookieSpecRegistry {
     ctor public CookieSpecRegistry();
-    method public synchronized org.apache.http.cookie.CookieSpec getCookieSpec(java.lang.String, org.apache.http.params.HttpParams) throws java.lang.IllegalStateException;
-    method public synchronized org.apache.http.cookie.CookieSpec getCookieSpec(java.lang.String) throws java.lang.IllegalStateException;
-    method public synchronized java.util.List<java.lang.String> getSpecNames();
-    method public synchronized void register(java.lang.String, org.apache.http.cookie.CookieSpecFactory);
-    method public synchronized void setItems(java.util.Map<java.lang.String, org.apache.http.cookie.CookieSpecFactory>);
-    method public synchronized void unregister(java.lang.String);
+    method public org.apache.http.cookie.CookieSpec getCookieSpec(java.lang.String, org.apache.http.params.HttpParams) throws java.lang.IllegalStateException;
+    method public org.apache.http.cookie.CookieSpec getCookieSpec(java.lang.String) throws java.lang.IllegalStateException;
+    method public java.util.List<java.lang.String> getSpecNames();
+    method public void register(java.lang.String, org.apache.http.cookie.CookieSpecFactory);
+    method public void setItems(java.util.Map<java.lang.String, org.apache.http.cookie.CookieSpecFactory>);
+    method public void unregister(java.lang.String);
   }
 
   public deprecated class MalformedCookieException extends org.apache.http.ProtocolException {
@@ -58283,12 +58283,12 @@ package org.apache.http.impl.client {
 
   public abstract deprecated class AbstractHttpClient implements org.apache.http.client.HttpClient {
     ctor protected AbstractHttpClient(org.apache.http.conn.ClientConnectionManager, org.apache.http.params.HttpParams);
-    method public synchronized void addRequestInterceptor(org.apache.http.HttpRequestInterceptor);
-    method public synchronized void addRequestInterceptor(org.apache.http.HttpRequestInterceptor, int);
-    method public synchronized void addResponseInterceptor(org.apache.http.HttpResponseInterceptor);
-    method public synchronized void addResponseInterceptor(org.apache.http.HttpResponseInterceptor, int);
-    method public synchronized void clearRequestInterceptors();
-    method public synchronized void clearResponseInterceptors();
+    method public void addRequestInterceptor(org.apache.http.HttpRequestInterceptor);
+    method public void addRequestInterceptor(org.apache.http.HttpRequestInterceptor, int);
+    method public void addResponseInterceptor(org.apache.http.HttpResponseInterceptor);
+    method public void addResponseInterceptor(org.apache.http.HttpResponseInterceptor, int);
+    method public void clearRequestInterceptors();
+    method public void clearResponseInterceptors();
     method protected abstract org.apache.http.auth.AuthSchemeRegistry createAuthSchemeRegistry();
     method protected abstract org.apache.http.conn.ClientConnectionManager createClientConnectionManager();
     method protected org.apache.http.client.RequestDirector createClientRequestDirector(org.apache.http.protocol.HttpRequestExecutor, org.apache.http.conn.ClientConnectionManager, org.apache.http.ConnectionReuseStrategy, org.apache.http.conn.ConnectionKeepAliveStrategy, org.apache.http.conn.routing.HttpRoutePlanner, org.apache.http.protocol.HttpProcessor, org.apache.http.client.HttpRequestRetryHandler, org.apache.http.client.RedirectHandler, org.apache.http.client.AuthenticationHandler, org.apache.http.client.AuthenticationHandler, org.apache.http.client.UserTokenHandler, org.apache.http.params.HttpParams);
@@ -58316,57 +58316,57 @@ package org.apache.http.impl.client {
     method public T execute(org.apache.http.client.methods.HttpUriRequest, org.apache.http.client.ResponseHandler<? extends T>, org.apache.http.protocol.HttpContext) throws org.apache.http.client.ClientProtocolException, java.io.IOException;
     method public T execute(org.apache.http.HttpHost, org.apache.http.HttpRequest, org.apache.http.client.ResponseHandler<? extends T>) throws org.apache.http.client.ClientProtocolException, java.io.IOException;
     method public T execute(org.apache.http.HttpHost, org.apache.http.HttpRequest, org.apache.http.client.ResponseHandler<? extends T>, org.apache.http.protocol.HttpContext) throws org.apache.http.client.ClientProtocolException, java.io.IOException;
-    method public final synchronized org.apache.http.auth.AuthSchemeRegistry getAuthSchemes();
-    method public final synchronized org.apache.http.conn.ConnectionKeepAliveStrategy getConnectionKeepAliveStrategy();
-    method public final synchronized org.apache.http.conn.ClientConnectionManager getConnectionManager();
-    method public final synchronized org.apache.http.ConnectionReuseStrategy getConnectionReuseStrategy();
-    method public final synchronized org.apache.http.cookie.CookieSpecRegistry getCookieSpecs();
-    method public final synchronized org.apache.http.client.CookieStore getCookieStore();
-    method public final synchronized org.apache.http.client.CredentialsProvider getCredentialsProvider();
-    method protected final synchronized org.apache.http.protocol.BasicHttpProcessor getHttpProcessor();
-    method public final synchronized org.apache.http.client.HttpRequestRetryHandler getHttpRequestRetryHandler();
-    method public final synchronized org.apache.http.params.HttpParams getParams();
-    method public final synchronized org.apache.http.client.AuthenticationHandler getProxyAuthenticationHandler();
-    method public final synchronized org.apache.http.client.RedirectHandler getRedirectHandler();
-    method public final synchronized org.apache.http.protocol.HttpRequestExecutor getRequestExecutor();
-    method public synchronized org.apache.http.HttpRequestInterceptor getRequestInterceptor(int);
-    method public synchronized int getRequestInterceptorCount();
-    method public synchronized org.apache.http.HttpResponseInterceptor getResponseInterceptor(int);
-    method public synchronized int getResponseInterceptorCount();
-    method public final synchronized org.apache.http.conn.routing.HttpRoutePlanner getRoutePlanner();
-    method public final synchronized org.apache.http.client.AuthenticationHandler getTargetAuthenticationHandler();
-    method public final synchronized org.apache.http.client.UserTokenHandler getUserTokenHandler();
+    method public final org.apache.http.auth.AuthSchemeRegistry getAuthSchemes();
+    method public final org.apache.http.conn.ConnectionKeepAliveStrategy getConnectionKeepAliveStrategy();
+    method public final org.apache.http.conn.ClientConnectionManager getConnectionManager();
+    method public final org.apache.http.ConnectionReuseStrategy getConnectionReuseStrategy();
+    method public final org.apache.http.cookie.CookieSpecRegistry getCookieSpecs();
+    method public final org.apache.http.client.CookieStore getCookieStore();
+    method public final org.apache.http.client.CredentialsProvider getCredentialsProvider();
+    method protected final org.apache.http.protocol.BasicHttpProcessor getHttpProcessor();
+    method public final org.apache.http.client.HttpRequestRetryHandler getHttpRequestRetryHandler();
+    method public final org.apache.http.params.HttpParams getParams();
+    method public final org.apache.http.client.AuthenticationHandler getProxyAuthenticationHandler();
+    method public final org.apache.http.client.RedirectHandler getRedirectHandler();
+    method public final org.apache.http.protocol.HttpRequestExecutor getRequestExecutor();
+    method public org.apache.http.HttpRequestInterceptor getRequestInterceptor(int);
+    method public int getRequestInterceptorCount();
+    method public org.apache.http.HttpResponseInterceptor getResponseInterceptor(int);
+    method public int getResponseInterceptorCount();
+    method public final org.apache.http.conn.routing.HttpRoutePlanner getRoutePlanner();
+    method public final org.apache.http.client.AuthenticationHandler getTargetAuthenticationHandler();
+    method public final org.apache.http.client.UserTokenHandler getUserTokenHandler();
     method public void removeRequestInterceptorByClass(java.lang.Class<? extends org.apache.http.HttpRequestInterceptor>);
     method public void removeResponseInterceptorByClass(java.lang.Class<? extends org.apache.http.HttpResponseInterceptor>);
-    method public synchronized void setAuthSchemes(org.apache.http.auth.AuthSchemeRegistry);
-    method public synchronized void setCookieSpecs(org.apache.http.cookie.CookieSpecRegistry);
-    method public synchronized void setCookieStore(org.apache.http.client.CookieStore);
-    method public synchronized void setCredentialsProvider(org.apache.http.client.CredentialsProvider);
-    method public synchronized void setHttpRequestRetryHandler(org.apache.http.client.HttpRequestRetryHandler);
-    method public synchronized void setKeepAliveStrategy(org.apache.http.conn.ConnectionKeepAliveStrategy);
-    method public synchronized void setParams(org.apache.http.params.HttpParams);
-    method public synchronized void setProxyAuthenticationHandler(org.apache.http.client.AuthenticationHandler);
-    method public synchronized void setRedirectHandler(org.apache.http.client.RedirectHandler);
-    method public synchronized void setReuseStrategy(org.apache.http.ConnectionReuseStrategy);
-    method public synchronized void setRoutePlanner(org.apache.http.conn.routing.HttpRoutePlanner);
-    method public synchronized void setTargetAuthenticationHandler(org.apache.http.client.AuthenticationHandler);
-    method public synchronized void setUserTokenHandler(org.apache.http.client.UserTokenHandler);
+    method public void setAuthSchemes(org.apache.http.auth.AuthSchemeRegistry);
+    method public void setCookieSpecs(org.apache.http.cookie.CookieSpecRegistry);
+    method public void setCookieStore(org.apache.http.client.CookieStore);
+    method public void setCredentialsProvider(org.apache.http.client.CredentialsProvider);
+    method public void setHttpRequestRetryHandler(org.apache.http.client.HttpRequestRetryHandler);
+    method public void setKeepAliveStrategy(org.apache.http.conn.ConnectionKeepAliveStrategy);
+    method public void setParams(org.apache.http.params.HttpParams);
+    method public void setProxyAuthenticationHandler(org.apache.http.client.AuthenticationHandler);
+    method public void setRedirectHandler(org.apache.http.client.RedirectHandler);
+    method public void setReuseStrategy(org.apache.http.ConnectionReuseStrategy);
+    method public void setRoutePlanner(org.apache.http.conn.routing.HttpRoutePlanner);
+    method public void setTargetAuthenticationHandler(org.apache.http.client.AuthenticationHandler);
+    method public void setUserTokenHandler(org.apache.http.client.UserTokenHandler);
   }
 
   public deprecated class BasicCookieStore implements org.apache.http.client.CookieStore {
     ctor public BasicCookieStore();
-    method public synchronized void addCookie(org.apache.http.cookie.Cookie);
-    method public synchronized void addCookies(org.apache.http.cookie.Cookie[]);
-    method public synchronized void clear();
-    method public synchronized boolean clearExpired(java.util.Date);
-    method public synchronized java.util.List<org.apache.http.cookie.Cookie> getCookies();
+    method public void addCookie(org.apache.http.cookie.Cookie);
+    method public void addCookies(org.apache.http.cookie.Cookie[]);
+    method public void clear();
+    method public boolean clearExpired(java.util.Date);
+    method public java.util.List<org.apache.http.cookie.Cookie> getCookies();
   }
 
   public deprecated class BasicCredentialsProvider implements org.apache.http.client.CredentialsProvider {
     ctor public BasicCredentialsProvider();
-    method public synchronized void clear();
-    method public synchronized org.apache.http.auth.Credentials getCredentials(org.apache.http.auth.AuthScope);
-    method public synchronized void setCredentials(org.apache.http.auth.AuthScope, org.apache.http.auth.Credentials);
+    method public void clear();
+    method public org.apache.http.auth.Credentials getCredentials(org.apache.http.auth.AuthScope);
+    method public void setCredentials(org.apache.http.auth.AuthScope, org.apache.http.auth.Credentials);
   }
 
   public deprecated class BasicResponseHandler implements org.apache.http.client.ResponseHandler {
@@ -59813,7 +59813,7 @@ package org.apache.http.protocol {
 
   public deprecated class HttpDateGenerator {
     ctor public HttpDateGenerator();
-    method public synchronized java.lang.String getCurrentDate();
+    method public java.lang.String getCurrentDate();
     field public static final java.util.TimeZone GMT;
     field public static final java.lang.String PATTERN_RFC1123 = "EEE, dd MMM yyyy HH:mm:ss zzz";
   }
