@@ -7,7 +7,7 @@ package android {
     field public static final java.lang.String ACCESS_CACHE_FILESYSTEM = "android.permission.ACCESS_CACHE_FILESYSTEM";
     field public static final java.lang.String ACCESS_CHECKIN_PROPERTIES = "android.permission.ACCESS_CHECKIN_PROPERTIES";
     field public static final java.lang.String ACCESS_DRM_CERTIFICATES = "android.permission.ACCESS_DRM_CERTIFICATES";
-    field public static final deprecated java.lang.String ACCESS_FM_RADIO = "android.permission.ACCESS_FM_RADIO";
+    field @Deprecated public static final java.lang.String ACCESS_FM_RADIO = "android.permission.ACCESS_FM_RADIO";
     field public static final java.lang.String ACCESS_MOCK_LOCATION = "android.permission.ACCESS_MOCK_LOCATION";
     field public static final java.lang.String ACCESS_MTP = "android.permission.ACCESS_MTP";
     field public static final java.lang.String ACCESS_NETWORK_CONDITIONS = "android.permission.ACCESS_NETWORK_CONDITIONS";
@@ -21,7 +21,7 @@ package android {
     field public static final java.lang.String BACKUP = "android.permission.BACKUP";
     field public static final java.lang.String BATTERY_STATS = "android.permission.BATTERY_STATS";
     field public static final java.lang.String BIND_APPWIDGET = "android.permission.BIND_APPWIDGET";
-    field public static final deprecated java.lang.String BIND_CONNECTION_SERVICE = "android.permission.BIND_CONNECTION_SERVICE";
+    field @Deprecated public static final java.lang.String BIND_CONNECTION_SERVICE = "android.permission.BIND_CONNECTION_SERVICE";
     field public static final java.lang.String BIND_DIRECTORY_SEARCH = "android.permission.BIND_DIRECTORY_SEARCH";
     field public static final java.lang.String BIND_EUICC_SERVICE = "android.permission.BIND_EUICC_SERVICE";
     field public static final java.lang.String BIND_IMS_SERVICE = "android.permission.BIND_IMS_SERVICE";
@@ -42,7 +42,7 @@ package android {
     field public static final java.lang.String BLUETOOTH_PRIVILEGED = "android.permission.BLUETOOTH_PRIVILEGED";
     field public static final java.lang.String BRICK = "android.permission.BRICK";
     field public static final java.lang.String BRIGHTNESS_SLIDER_USAGE = "android.permission.BRIGHTNESS_SLIDER_USAGE";
-    field public static final deprecated java.lang.String BROADCAST_NETWORK_PRIVILEGED = "android.permission.BROADCAST_NETWORK_PRIVILEGED";
+    field @Deprecated public static final java.lang.String BROADCAST_NETWORK_PRIVILEGED = "android.permission.BROADCAST_NETWORK_PRIVILEGED";
     field public static final java.lang.String CALL_PRIVILEGED = "android.permission.CALL_PRIVILEGED";
     field public static final java.lang.String CAMERA_DISABLE_TRANSMIT_LED = "android.permission.CAMERA_DISABLE_TRANSMIT_LED";
     field public static final java.lang.String CAPTURE_AUDIO_HOTWORD = "android.permission.CAPTURE_AUDIO_HOTWORD";
@@ -114,7 +114,7 @@ package android {
     field public static final java.lang.String MODIFY_AUDIO_ROUTING = "android.permission.MODIFY_AUDIO_ROUTING";
     field public static final java.lang.String MODIFY_CELL_BROADCASTS = "android.permission.MODIFY_CELL_BROADCASTS";
     field public static final java.lang.String MODIFY_DAY_NIGHT_MODE = "android.permission.MODIFY_DAY_NIGHT_MODE";
-    field public static final deprecated java.lang.String MODIFY_NETWORK_ACCOUNTING = "android.permission.MODIFY_NETWORK_ACCOUNTING";
+    field @Deprecated public static final java.lang.String MODIFY_NETWORK_ACCOUNTING = "android.permission.MODIFY_NETWORK_ACCOUNTING";
     field public static final java.lang.String MODIFY_PARENTAL_CONTROLS = "android.permission.MODIFY_PARENTAL_CONTROLS";
     field public static final java.lang.String MODIFY_PHONE_STATE = "android.permission.MODIFY_PHONE_STATE";
     field public static final java.lang.String MODIFY_QUIET_MODE = "android.permission.MODIFY_QUIET_MODE";
@@ -240,8 +240,8 @@ package android.app {
   public class Activity extends android.view.ContextThemeWrapper implements android.content.ComponentCallbacks2 android.view.KeyEvent.Callback android.view.LayoutInflater.Factory2 android.view.View.OnCreateContextMenuListener android.view.Window.Callback {
     method public void convertFromTranslucent();
     method public boolean convertToTranslucent(android.app.Activity.TranslucentConversionListener, android.app.ActivityOptions);
-    method public deprecated boolean isBackgroundVisibleBehind();
-    method public deprecated void onBackgroundVisibleBehindChanged(boolean);
+    method @Deprecated public boolean isBackgroundVisibleBehind();
+    method @Deprecated public void onBackgroundVisibleBehindChanged(boolean);
   }
 
   public static interface Activity.TranslucentConversionListener {
@@ -331,9 +331,9 @@ package android.app {
     ctor public InstantAppResolverService();
     method public final void attachBaseContext(android.content.Context);
     method public final android.os.IBinder onBind(android.content.Intent);
-    method public deprecated void onGetInstantAppIntentFilter(int[], java.lang.String, android.app.InstantAppResolverService.InstantAppResolutionCallback);
+    method @Deprecated public void onGetInstantAppIntentFilter(int[], java.lang.String, android.app.InstantAppResolverService.InstantAppResolutionCallback);
     method public void onGetInstantAppIntentFilter(android.content.Intent, int[], java.lang.String, android.app.InstantAppResolverService.InstantAppResolutionCallback);
-    method public deprecated void onGetInstantAppResolveInfo(int[], java.lang.String, android.app.InstantAppResolverService.InstantAppResolutionCallback);
+    method @Deprecated public void onGetInstantAppResolveInfo(int[], java.lang.String, android.app.InstantAppResolverService.InstantAppResolutionCallback);
     method public void onGetInstantAppResolveInfo(android.content.Intent, int[], java.lang.String, android.app.InstantAppResolverService.InstantAppResolutionCallback);
   }
 
@@ -385,16 +385,16 @@ package android.app {
 
   public final class StatsManager {
     method public void addConfig(long, byte[]) throws android.app.StatsManager.StatsUnavailableException;
-    method public deprecated boolean addConfiguration(long, byte[]);
-    method public deprecated byte[] getData(long);
-    method public deprecated byte[] getMetadata();
+    method @Deprecated public boolean addConfiguration(long, byte[]);
+    method @Deprecated public byte[] getData(long);
+    method @Deprecated public byte[] getMetadata();
     method public byte[] getReports(long) throws android.app.StatsManager.StatsUnavailableException;
     method public byte[] getStatsMetadata() throws android.app.StatsManager.StatsUnavailableException;
     method public void removeConfig(long) throws android.app.StatsManager.StatsUnavailableException;
-    method public deprecated boolean removeConfiguration(long);
+    method @Deprecated public boolean removeConfiguration(long);
     method public void setBroadcastSubscriber(android.app.PendingIntent, long, long) throws android.app.StatsManager.StatsUnavailableException;
-    method public deprecated boolean setBroadcastSubscriber(long, long, android.app.PendingIntent);
-    method public deprecated boolean setDataFetchOperation(long, android.app.PendingIntent);
+    method @Deprecated public boolean setBroadcastSubscriber(long, long, android.app.PendingIntent);
+    method @Deprecated public boolean setDataFetchOperation(long, android.app.PendingIntent);
     method public void setFetchReportsOperation(android.app.PendingIntent, long) throws android.app.StatsManager.StatsUnavailableException;
     field public static final java.lang.String ACTION_STATSD_STARTED = "android.app.action.STATSD_STARTED";
     field public static final java.lang.String EXTRA_STATS_BROADCAST_SUBSCRIBER_COOKIES = "android.app.extra.STATS_BROADCAST_SUBSCRIBER_COOKIES";
@@ -426,7 +426,7 @@ package android.app {
 package android.app.admin {
 
   public class DeviceAdminReceiver extends android.content.BroadcastReceiver {
-    method public deprecated void onReadyForUserInitialization(android.content.Context, android.content.Intent);
+    method @Deprecated public void onReadyForUserInitialization(android.content.Context, android.content.Intent);
   }
 
   public class DevicePolicyManager {
@@ -445,7 +445,7 @@ package android.app.admin {
     method public void notifyPendingSystemUpdate(long);
     method public void notifyPendingSystemUpdate(long, boolean);
     method public boolean packageHasActiveAdmins(java.lang.String);
-    method public deprecated boolean setActiveProfileOwner(android.content.ComponentName, java.lang.String) throws java.lang.IllegalArgumentException;
+    method @Deprecated public boolean setActiveProfileOwner(android.content.ComponentName, java.lang.String) throws java.lang.IllegalArgumentException;
     method public void setDeviceProvisioningConfigApplied();
     field public static final java.lang.String ACCOUNT_FEATURE_DEVICE_OR_PROFILE_OWNER_ALLOWED = "android.account.DEVICE_OR_PROFILE_OWNER_ALLOWED";
     field public static final java.lang.String ACCOUNT_FEATURE_DEVICE_OR_PROFILE_OWNER_DISALLOWED = "android.account.DEVICE_OR_PROFILE_OWNER_DISALLOWED";
@@ -507,8 +507,8 @@ package android.app.backup {
     method public java.lang.String[] listAllTransports();
     method public int requestBackup(java.lang.String[], android.app.backup.BackupObserver);
     method public int requestBackup(java.lang.String[], android.app.backup.BackupObserver, android.app.backup.BackupManagerMonitor, int);
-    method public deprecated int requestRestore(android.app.backup.RestoreObserver, android.app.backup.BackupManagerMonitor);
-    method public deprecated java.lang.String selectBackupTransport(java.lang.String);
+    method @Deprecated public int requestRestore(android.app.backup.RestoreObserver, android.app.backup.BackupManagerMonitor);
+    method @Deprecated public java.lang.String selectBackupTransport(java.lang.String);
     method public void selectBackupTransport(android.content.ComponentName, android.app.backup.SelectBackupTransportCallback);
     method public void setAutoRestore(boolean);
     method public void setBackupEnabled(boolean);
@@ -535,7 +535,7 @@ package android.app.backup {
     field public static final java.lang.String EXTRA_LOG_EVENT_ID = "android.app.backup.extra.LOG_EVENT_ID";
     field public static final java.lang.String EXTRA_LOG_EVENT_PACKAGE_LONG_VERSION = "android.app.backup.extra.LOG_EVENT_PACKAGE_FULL_VERSION";
     field public static final java.lang.String EXTRA_LOG_EVENT_PACKAGE_NAME = "android.app.backup.extra.LOG_EVENT_PACKAGE_NAME";
-    field public static final deprecated java.lang.String EXTRA_LOG_EVENT_PACKAGE_VERSION = "android.app.backup.extra.LOG_EVENT_PACKAGE_VERSION";
+    field @Deprecated public static final java.lang.String EXTRA_LOG_EVENT_PACKAGE_VERSION = "android.app.backup.extra.LOG_EVENT_PACKAGE_VERSION";
     field public static final java.lang.String EXTRA_LOG_EXCEPTION_FULL_BACKUP = "android.app.backup.extra.LOG_EXCEPTION_FULL_BACKUP";
     field public static final java.lang.String EXTRA_LOG_ILLEGAL_KEY = "android.app.backup.extra.LOG_ILLEGAL_KEY";
     field public static final java.lang.String EXTRA_LOG_MANIFEST_PACKAGE_NAME = "android.app.backup.extra.LOG_MANIFEST_PACKAGE_NAME";
@@ -862,7 +862,7 @@ package android.content {
     field public static final java.lang.String STATS_MANAGER = "stats";
     field public static final java.lang.String SYSTEM_UPDATE_SERVICE = "system_update";
     field public static final java.lang.String VR_SERVICE = "vrmanager";
-    field public static final deprecated java.lang.String WIFI_RTT_SERVICE = "rttmanager";
+    field @Deprecated public static final java.lang.String WIFI_RTT_SERVICE = "rttmanager";
     field public static final java.lang.String WIFI_SCANNING_SERVICE = "wifiscanner";
   }
 
@@ -893,7 +893,7 @@ package android.content {
     field public static final java.lang.String ACTION_RESOLVE_INSTANT_APP_PACKAGE = "android.intent.action.RESOLVE_INSTANT_APP_PACKAGE";
     field public static final java.lang.String ACTION_REVIEW_PERMISSIONS = "android.intent.action.REVIEW_PERMISSIONS";
     field public static final java.lang.String ACTION_SHOW_SUSPENDED_APP_DETAILS = "android.intent.action.SHOW_SUSPENDED_APP_DETAILS";
-    field public static final deprecated java.lang.String ACTION_SIM_STATE_CHANGED = "android.intent.action.SIM_STATE_CHANGED";
+    field @Deprecated public static final java.lang.String ACTION_SIM_STATE_CHANGED = "android.intent.action.SIM_STATE_CHANGED";
     field public static final java.lang.String ACTION_SPLIT_CONFIGURATION_CHANGED = "android.intent.action.SPLIT_CONFIGURATION_CHANGED";
     field public static final java.lang.String ACTION_UPGRADE_SETUP = "android.intent.action.UPGRADE_SETUP";
     field public static final java.lang.String ACTION_USER_REMOVED = "android.intent.action.USER_REMOVED";
@@ -969,7 +969,7 @@ package android.content.pm {
     method public java.util.List<android.content.pm.InstantAppIntentFilter> getIntentFilters();
     method public long getLongVersionCode();
     method public java.lang.String getPackageName();
-    method public deprecated int getVersionCode();
+    method @Deprecated public int getVersionCode();
     method public boolean shouldLetInstallerDecide();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator<android.content.pm.InstantAppResolveInfo> CREATOR;
@@ -1342,7 +1342,7 @@ package android.hardware.hdmi {
     field public static final int POWER_STATUS_TRANSIENT_TO_ON = 2; // 0x2
     field public static final int POWER_STATUS_TRANSIENT_TO_STANDBY = 3; // 0x3
     field public static final int POWER_STATUS_UNKNOWN = -1; // 0xffffffff
-    field public static final deprecated int RESULT_ALREADY_IN_PROGRESS = 4; // 0x4
+    field @Deprecated public static final int RESULT_ALREADY_IN_PROGRESS = 4; // 0x4
     field public static final int RESULT_COMMUNICATION_FAILED = 7; // 0x7
     field public static final int RESULT_EXCEPTION = 5; // 0x5
     field public static final int RESULT_INCORRECT_MODE = 6; // 0x6
@@ -1617,28 +1617,28 @@ package android.hardware.location {
     method public android.hardware.location.ContextHubClient createClient(android.hardware.location.ContextHubInfo, android.hardware.location.ContextHubClientCallback);
     method public android.hardware.location.ContextHubTransaction<java.lang.Void> disableNanoApp(android.hardware.location.ContextHubInfo, long);
     method public android.hardware.location.ContextHubTransaction<java.lang.Void> enableNanoApp(android.hardware.location.ContextHubInfo, long);
-    method public deprecated int[] findNanoAppOnHub(int, android.hardware.location.NanoAppFilter);
-    method public deprecated int[] getContextHubHandles();
-    method public deprecated android.hardware.location.ContextHubInfo getContextHubInfo(int);
+    method @Deprecated public int[] findNanoAppOnHub(int, android.hardware.location.NanoAppFilter);
+    method @Deprecated public int[] getContextHubHandles();
+    method @Deprecated public android.hardware.location.ContextHubInfo getContextHubInfo(int);
     method public java.util.List<android.hardware.location.ContextHubInfo> getContextHubs();
-    method public deprecated android.hardware.location.NanoAppInstanceInfo getNanoAppInstanceInfo(int);
-    method public deprecated int loadNanoApp(int, android.hardware.location.NanoApp);
+    method @Deprecated public android.hardware.location.NanoAppInstanceInfo getNanoAppInstanceInfo(int);
+    method @Deprecated public int loadNanoApp(int, android.hardware.location.NanoApp);
     method public android.hardware.location.ContextHubTransaction<java.lang.Void> loadNanoApp(android.hardware.location.ContextHubInfo, android.hardware.location.NanoAppBinary);
     method public android.hardware.location.ContextHubTransaction<java.util.List<android.hardware.location.NanoAppState>> queryNanoApps(android.hardware.location.ContextHubInfo);
-    method public deprecated int registerCallback(android.hardware.location.ContextHubManager.Callback);
-    method public deprecated int registerCallback(android.hardware.location.ContextHubManager.Callback, android.os.Handler);
-    method public deprecated int sendMessage(int, int, android.hardware.location.ContextHubMessage);
-    method public deprecated int unloadNanoApp(int);
+    method @Deprecated public int registerCallback(android.hardware.location.ContextHubManager.Callback);
+    method @Deprecated public int registerCallback(android.hardware.location.ContextHubManager.Callback, android.os.Handler);
+    method @Deprecated public int sendMessage(int, int, android.hardware.location.ContextHubMessage);
+    method @Deprecated public int unloadNanoApp(int);
     method public android.hardware.location.ContextHubTransaction<java.lang.Void> unloadNanoApp(android.hardware.location.ContextHubInfo, long);
-    method public deprecated int unregisterCallback(android.hardware.location.ContextHubManager.Callback);
+    method @Deprecated public int unregisterCallback(android.hardware.location.ContextHubManager.Callback);
   }
 
-  public abstract static deprecated class ContextHubManager.Callback {
+  @Deprecated public abstract static class ContextHubManager.Callback {
     ctor protected ContextHubManager.Callback();
     method public abstract void onMessageReceipt(int, int, android.hardware.location.ContextHubMessage);
   }
 
-  public deprecated class ContextHubMessage implements android.os.Parcelable {
+  @Deprecated public class ContextHubMessage implements android.os.Parcelable {
     ctor public ContextHubMessage(int, int, byte[]);
     method public int describeContents();
     method public byte[] getData();
@@ -1724,7 +1724,7 @@ package android.hardware.location {
 
   public abstract class GeofenceHardwareMonitorCallback {
     ctor public GeofenceHardwareMonitorCallback();
-    method public deprecated void onMonitoringSystemChange(int, boolean, android.location.Location);
+    method @Deprecated public void onMonitoringSystemChange(int, boolean, android.location.Location);
     method public void onMonitoringSystemChange(android.hardware.location.GeofenceHardwareMonitorEvent);
   }
 
@@ -1769,9 +1769,9 @@ package android.hardware.location {
     field public static final android.os.Parcelable.Creator<android.hardware.location.MemoryRegion> CREATOR;
   }
 
-  public deprecated class NanoApp implements android.os.Parcelable {
+  @Deprecated public class NanoApp implements android.os.Parcelable {
     ctor public NanoApp();
-    ctor public deprecated NanoApp(int, byte[]);
+    ctor @Deprecated public NanoApp(int, byte[]);
     ctor public NanoApp(long, byte[]);
     method public int describeContents();
     method public byte[] getAppBinary();
@@ -1817,7 +1817,7 @@ package android.hardware.location {
     field public static final android.os.Parcelable.Creator<android.hardware.location.NanoAppBinary> CREATOR;
   }
 
-  public deprecated class NanoAppFilter implements android.os.Parcelable {
+  @Deprecated public class NanoAppFilter implements android.os.Parcelable {
     ctor public NanoAppFilter(long, int, int, long);
     method public int describeContents();
     method public boolean testMatch(android.hardware.location.NanoAppInstanceInfo);
@@ -1832,7 +1832,7 @@ package android.hardware.location {
     field public static final int VENDOR_ANY = -1; // 0xffffffff
   }
 
-  public deprecated class NanoAppInstanceInfo implements android.os.Parcelable {
+  @Deprecated public class NanoAppInstanceInfo implements android.os.Parcelable {
     ctor public NanoAppInstanceInfo();
     method public int describeContents();
     method public long getAppId();
@@ -1938,9 +1938,9 @@ package android.hardware.radio {
     method public android.hardware.radio.ProgramSelector.Identifier[] getAllIds(int);
     method public long getFirstId(int);
     method public android.hardware.radio.ProgramSelector.Identifier getPrimaryId();
-    method public deprecated int getProgramType();
+    method @Deprecated public int getProgramType();
     method public android.hardware.radio.ProgramSelector.Identifier[] getSecondaryIds();
-    method public deprecated long[] getVendorIds();
+    method @Deprecated public long[] getVendorIds();
     method public android.hardware.radio.ProgramSelector withSecondaryPreferred(android.hardware.radio.ProgramSelector.Identifier);
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator<android.hardware.radio.ProgramSelector> CREATOR;
@@ -1951,29 +1951,29 @@ package android.hardware.radio {
     field public static final int IDENTIFIER_TYPE_DAB_SIDECC = 5; // 0x5
     field public static final int IDENTIFIER_TYPE_DAB_SID_EXT = 5; // 0x5
     field public static final int IDENTIFIER_TYPE_DRMO_FREQUENCY = 10; // 0xa
-    field public static final deprecated int IDENTIFIER_TYPE_DRMO_MODULATION = 11; // 0xb
+    field @Deprecated public static final int IDENTIFIER_TYPE_DRMO_MODULATION = 11; // 0xb
     field public static final int IDENTIFIER_TYPE_DRMO_SERVICE_ID = 9; // 0x9
     field public static final int IDENTIFIER_TYPE_HD_STATION_ID_EXT = 3; // 0x3
     field public static final int IDENTIFIER_TYPE_HD_STATION_NAME = 10004; // 0x2714
-    field public static final deprecated int IDENTIFIER_TYPE_HD_SUBCHANNEL = 4; // 0x4
+    field @Deprecated public static final int IDENTIFIER_TYPE_HD_SUBCHANNEL = 4; // 0x4
     field public static final int IDENTIFIER_TYPE_INVALID = 0; // 0x0
     field public static final int IDENTIFIER_TYPE_RDS_PI = 2; // 0x2
     field public static final int IDENTIFIER_TYPE_SXM_CHANNEL = 13; // 0xd
     field public static final int IDENTIFIER_TYPE_SXM_SERVICE_ID = 12; // 0xc
     field public static final int IDENTIFIER_TYPE_VENDOR_END = 1999; // 0x7cf
-    field public static final deprecated int IDENTIFIER_TYPE_VENDOR_PRIMARY_END = 1999; // 0x7cf
-    field public static final deprecated int IDENTIFIER_TYPE_VENDOR_PRIMARY_START = 1000; // 0x3e8
+    field @Deprecated public static final int IDENTIFIER_TYPE_VENDOR_PRIMARY_END = 1999; // 0x7cf
+    field @Deprecated public static final int IDENTIFIER_TYPE_VENDOR_PRIMARY_START = 1000; // 0x3e8
     field public static final int IDENTIFIER_TYPE_VENDOR_START = 1000; // 0x3e8
-    field public static final deprecated int PROGRAM_TYPE_AM = 1; // 0x1
-    field public static final deprecated int PROGRAM_TYPE_AM_HD = 3; // 0x3
-    field public static final deprecated int PROGRAM_TYPE_DAB = 5; // 0x5
-    field public static final deprecated int PROGRAM_TYPE_DRMO = 6; // 0x6
-    field public static final deprecated int PROGRAM_TYPE_FM = 2; // 0x2
-    field public static final deprecated int PROGRAM_TYPE_FM_HD = 4; // 0x4
-    field public static final deprecated int PROGRAM_TYPE_INVALID = 0; // 0x0
-    field public static final deprecated int PROGRAM_TYPE_SXM = 7; // 0x7
-    field public static final deprecated int PROGRAM_TYPE_VENDOR_END = 1999; // 0x7cf
-    field public static final deprecated int PROGRAM_TYPE_VENDOR_START = 1000; // 0x3e8
+    field @Deprecated public static final int PROGRAM_TYPE_AM = 1; // 0x1
+    field @Deprecated public static final int PROGRAM_TYPE_AM_HD = 3; // 0x3
+    field @Deprecated public static final int PROGRAM_TYPE_DAB = 5; // 0x5
+    field @Deprecated public static final int PROGRAM_TYPE_DRMO = 6; // 0x6
+    field @Deprecated public static final int PROGRAM_TYPE_FM = 2; // 0x2
+    field @Deprecated public static final int PROGRAM_TYPE_FM_HD = 4; // 0x4
+    field @Deprecated public static final int PROGRAM_TYPE_INVALID = 0; // 0x0
+    field @Deprecated public static final int PROGRAM_TYPE_SXM = 7; // 0x7
+    field @Deprecated public static final int PROGRAM_TYPE_VENDOR_END = 1999; // 0x7cf
+    field @Deprecated public static final int PROGRAM_TYPE_VENDOR_START = 1000; // 0x3e8
   }
 
   public static final class ProgramSelector.Identifier implements android.os.Parcelable {
@@ -1988,7 +1988,7 @@ package android.hardware.radio {
   public static @interface ProgramSelector.IdentifierType {
   }
 
-  public abstract static deprecated class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
+  @Deprecated public abstract static class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
   }
 
   public class RadioManager {
@@ -2127,16 +2127,16 @@ package android.hardware.radio {
 
   public static class RadioManager.ProgramInfo implements android.os.Parcelable {
     method public int describeContents();
-    method public deprecated int getChannel();
+    method @Deprecated public int getChannel();
     method public android.hardware.radio.ProgramSelector.Identifier getLogicallyTunedTo();
     method public android.hardware.radio.RadioMetadata getMetadata();
     method public android.hardware.radio.ProgramSelector.Identifier getPhysicallyTunedTo();
     method public java.util.Collection<android.hardware.radio.ProgramSelector.Identifier> getRelatedContent();
     method public android.hardware.radio.ProgramSelector getSelector();
     method public int getSignalStrength();
-    method public deprecated int getSubChannel();
+    method @Deprecated public int getSubChannel();
     method public java.util.Map<java.lang.String, java.lang.String> getVendorInfo();
-    method public deprecated boolean isDigital();
+    method @Deprecated public boolean isDigital();
     method public boolean isLive();
     method public boolean isMuted();
     method public boolean isStereo();
@@ -2150,7 +2150,7 @@ package android.hardware.radio {
   public final class RadioMetadata implements android.os.Parcelable {
     method public boolean containsKey(java.lang.String);
     method public int describeContents();
-    method public deprecated android.graphics.Bitmap getBitmap(java.lang.String);
+    method @Deprecated public android.graphics.Bitmap getBitmap(java.lang.String);
     method public android.hardware.radio.RadioMetadata.Clock getClock(java.lang.String);
     method public int getInt(java.lang.String);
     method public java.lang.String getString(java.lang.String);
@@ -2203,36 +2203,36 @@ package android.hardware.radio {
     method public abstract int cancel();
     method public abstract void cancelAnnouncement();
     method public abstract void close();
-    method public abstract deprecated int getConfiguration(android.hardware.radio.RadioManager.BandConfig[]);
+    method @Deprecated public abstract int getConfiguration(android.hardware.radio.RadioManager.BandConfig[]);
     method public android.hardware.radio.ProgramList getDynamicProgramList(android.hardware.radio.ProgramList.Filter);
     method public abstract boolean getMute();
     method public java.util.Map<java.lang.String, java.lang.String> getParameters(java.util.List<java.lang.String>);
-    method public abstract deprecated int getProgramInformation(android.hardware.radio.RadioManager.ProgramInfo[]);
-    method public abstract deprecated java.util.List<android.hardware.radio.RadioManager.ProgramInfo> getProgramList(java.util.Map<java.lang.String, java.lang.String>);
+    method @Deprecated public abstract int getProgramInformation(android.hardware.radio.RadioManager.ProgramInfo[]);
+    method @Deprecated public abstract java.util.List<android.hardware.radio.RadioManager.ProgramInfo> getProgramList(java.util.Map<java.lang.String, java.lang.String>);
     method public abstract boolean hasControl();
-    method public abstract deprecated boolean isAnalogForced();
-    method public abstract deprecated boolean isAntennaConnected();
+    method @Deprecated public abstract boolean isAnalogForced();
+    method @Deprecated public abstract boolean isAntennaConnected();
     method public boolean isConfigFlagSet(int);
     method public boolean isConfigFlagSupported(int);
     method public abstract int scan(int, boolean);
-    method public abstract deprecated void setAnalogForced(boolean);
+    method @Deprecated public abstract void setAnalogForced(boolean);
     method public void setConfigFlag(int, boolean);
-    method public abstract deprecated int setConfiguration(android.hardware.radio.RadioManager.BandConfig);
+    method @Deprecated public abstract int setConfiguration(android.hardware.radio.RadioManager.BandConfig);
     method public abstract int setMute(boolean);
     method public java.util.Map<java.lang.String, java.lang.String> setParameters(java.util.Map<java.lang.String, java.lang.String>);
     method public abstract boolean startBackgroundScan();
     method public abstract int step(int, boolean);
-    method public abstract deprecated int tune(int, int);
+    method @Deprecated public abstract int tune(int, int);
     method public abstract void tune(android.hardware.radio.ProgramSelector);
     field public static final int DIRECTION_DOWN = 1; // 0x1
     field public static final int DIRECTION_UP = 0; // 0x0
-    field public static final deprecated int ERROR_BACKGROUND_SCAN_FAILED = 6; // 0x6
-    field public static final deprecated int ERROR_BACKGROUND_SCAN_UNAVAILABLE = 5; // 0x5
-    field public static final deprecated int ERROR_CANCELLED = 2; // 0x2
-    field public static final deprecated int ERROR_CONFIG = 4; // 0x4
-    field public static final deprecated int ERROR_HARDWARE_FAILURE = 0; // 0x0
-    field public static final deprecated int ERROR_SCAN_TIMEOUT = 3; // 0x3
-    field public static final deprecated int ERROR_SERVER_DIED = 1; // 0x1
+    field @Deprecated public static final int ERROR_BACKGROUND_SCAN_FAILED = 6; // 0x6
+    field @Deprecated public static final int ERROR_BACKGROUND_SCAN_UNAVAILABLE = 5; // 0x5
+    field @Deprecated public static final int ERROR_CANCELLED = 2; // 0x2
+    field @Deprecated public static final int ERROR_CONFIG = 4; // 0x4
+    field @Deprecated public static final int ERROR_HARDWARE_FAILURE = 0; // 0x0
+    field @Deprecated public static final int ERROR_SCAN_TIMEOUT = 3; // 0x3
+    field @Deprecated public static final int ERROR_SERVER_DIED = 1; // 0x1
   }
 
   public abstract static class RadioTuner.Callback {
@@ -2240,11 +2240,11 @@ package android.hardware.radio {
     method public void onAntennaState(boolean);
     method public void onBackgroundScanAvailabilityChange(boolean);
     method public void onBackgroundScanComplete();
-    method public deprecated void onConfigurationChanged(android.hardware.radio.RadioManager.BandConfig);
+    method @Deprecated public void onConfigurationChanged(android.hardware.radio.RadioManager.BandConfig);
     method public void onControlChanged(boolean);
     method public void onEmergencyAnnouncement(boolean);
-    method public deprecated void onError(int);
-    method public deprecated void onMetadataChanged(android.hardware.radio.RadioMetadata);
+    method @Deprecated public void onError(int);
+    method @Deprecated public void onMetadataChanged(android.hardware.radio.RadioMetadata);
     method public void onParametersUpdated(java.util.Map<java.lang.String, java.lang.String>);
     method public void onProgramInfoChanged(android.hardware.radio.RadioManager.ProgramInfo);
     method public void onProgramListChanged();
@@ -2520,15 +2520,15 @@ package android.location {
   }
 
   public class LocationManager {
-    method public deprecated boolean addGpsMeasurementListener(android.location.GpsMeasurementsEvent.Listener);
-    method public deprecated boolean addGpsNavigationMessageListener(android.location.GpsNavigationMessageEvent.Listener);
+    method @Deprecated public boolean addGpsMeasurementListener(android.location.GpsMeasurementsEvent.Listener);
+    method @Deprecated public boolean addGpsNavigationMessageListener(android.location.GpsNavigationMessageEvent.Listener);
     method public void flushGnssBatch();
     method public int getGnssBatchSize();
     method public boolean isLocationEnabledForUser(android.os.UserHandle);
     method public boolean isProviderEnabledForUser(java.lang.String, android.os.UserHandle);
     method public boolean registerGnssBatchedLocationCallback(long, boolean, android.location.BatchedLocationCallback, android.os.Handler);
-    method public deprecated void removeGpsMeasurementListener(android.location.GpsMeasurementsEvent.Listener);
-    method public deprecated void removeGpsNavigationMessageListener(android.location.GpsNavigationMessageEvent.Listener);
+    method @Deprecated public void removeGpsMeasurementListener(android.location.GpsMeasurementsEvent.Listener);
+    method @Deprecated public void removeGpsNavigationMessageListener(android.location.GpsNavigationMessageEvent.Listener);
     method public void requestLocationUpdates(android.location.LocationRequest, android.location.LocationListener, android.os.Looper);
     method public void requestLocationUpdates(android.location.LocationRequest, android.app.PendingIntent);
     method public void setLocationEnabledForUser(boolean, android.os.UserHandle);
@@ -2614,14 +2614,14 @@ package android.media {
   }
 
   public class AudioManager {
-    method public deprecated int abandonAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, android.media.AudioAttributes);
+    method @Deprecated public int abandonAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, android.media.AudioAttributes);
     method public void clearAudioServerStateCallback();
     method public int dispatchAudioFocusChange(android.media.AudioFocusInfo, int, android.media.audiopolicy.AudioPolicy);
     method public boolean isAudioServerRunning();
     method public boolean isHdmiSystemAudioSupported();
     method public int registerAudioPolicy(android.media.audiopolicy.AudioPolicy);
     method public int requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, android.media.AudioAttributes, int, int) throws java.lang.IllegalArgumentException;
-    method public deprecated int requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, android.media.AudioAttributes, int, int, android.media.audiopolicy.AudioPolicy) throws java.lang.IllegalArgumentException;
+    method @Deprecated public int requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, android.media.AudioAttributes, int, int, android.media.audiopolicy.AudioPolicy) throws java.lang.IllegalArgumentException;
     method public int requestAudioFocus(android.media.AudioFocusRequest, android.media.audiopolicy.AudioPolicy);
     method public void setAudioServerStateCallback(java.util.concurrent.Executor, android.media.AudioManager.AudioServerStateCallback);
     method public void setFocusRequestResult(android.media.AudioFocusInfo, int, android.media.audiopolicy.AudioPolicy);
@@ -2916,10 +2916,10 @@ package android.media.tv {
   }
 
   public final class TvInputInfo implements android.os.Parcelable {
-    method public static deprecated android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.hardware.hdmi.HdmiDeviceInfo, java.lang.String, java.lang.String, android.net.Uri) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
-    method public static deprecated android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.hardware.hdmi.HdmiDeviceInfo, java.lang.String, int, android.graphics.drawable.Icon) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
-    method public static deprecated android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.media.tv.TvInputHardwareInfo, java.lang.String, android.net.Uri) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
-    method public static deprecated android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.media.tv.TvInputHardwareInfo, int, android.graphics.drawable.Icon) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+    method @Deprecated public static android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.hardware.hdmi.HdmiDeviceInfo, java.lang.String, java.lang.String, android.net.Uri) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+    method @Deprecated public static android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.hardware.hdmi.HdmiDeviceInfo, java.lang.String, int, android.graphics.drawable.Icon) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+    method @Deprecated public static android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.media.tv.TvInputHardwareInfo, java.lang.String, android.net.Uri) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+    method @Deprecated public static android.media.tv.TvInputInfo createTvInputInfo(android.content.Context, android.content.pm.ResolveInfo, android.media.tv.TvInputHardwareInfo, int, android.graphics.drawable.Icon) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
     method public android.hardware.hdmi.HdmiDeviceInfo getHdmiDeviceInfo();
     method public boolean isConnectedToHdmiSwitch();
     method public boolean isHardwareInput();
@@ -3193,10 +3193,10 @@ package android.net.http {
 
 package android.net.wifi {
 
-  public deprecated class RttManager {
+  @Deprecated public class RttManager {
     method public void disableResponder(android.net.wifi.RttManager.ResponderCallback);
     method public void enableResponder(android.net.wifi.RttManager.ResponderCallback);
-    method public deprecated android.net.wifi.RttManager.Capabilities getCapabilities();
+    method @Deprecated public android.net.wifi.RttManager.Capabilities getCapabilities();
     method public android.net.wifi.RttManager.RttCapabilities getRttCapabilities();
     method public void startRanging(android.net.wifi.RttManager.RttParams[], android.net.wifi.RttManager.RttListener);
     method public void stopRanging(android.net.wifi.RttManager.RttListener);
@@ -3226,20 +3226,20 @@ package android.net.wifi {
     field public static final int RTT_BW_40_SUPPORT = 8; // 0x8
     field public static final int RTT_BW_5_SUPPORT = 1; // 0x1
     field public static final int RTT_BW_80_SUPPORT = 16; // 0x10
-    field public static final deprecated int RTT_CHANNEL_WIDTH_10 = 6; // 0x6
-    field public static final deprecated int RTT_CHANNEL_WIDTH_160 = 3; // 0x3
-    field public static final deprecated int RTT_CHANNEL_WIDTH_20 = 0; // 0x0
-    field public static final deprecated int RTT_CHANNEL_WIDTH_40 = 1; // 0x1
-    field public static final deprecated int RTT_CHANNEL_WIDTH_5 = 5; // 0x5
-    field public static final deprecated int RTT_CHANNEL_WIDTH_80 = 2; // 0x2
-    field public static final deprecated int RTT_CHANNEL_WIDTH_80P80 = 4; // 0x4
-    field public static final deprecated int RTT_CHANNEL_WIDTH_UNSPECIFIED = -1; // 0xffffffff
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_10 = 6; // 0x6
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_160 = 3; // 0x3
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_20 = 0; // 0x0
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_40 = 1; // 0x1
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_5 = 5; // 0x5
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_80 = 2; // 0x2
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_80P80 = 4; // 0x4
+    field @Deprecated public static final int RTT_CHANNEL_WIDTH_UNSPECIFIED = -1; // 0xffffffff
     field public static final int RTT_PEER_NAN = 5; // 0x5
     field public static final int RTT_PEER_P2P_CLIENT = 4; // 0x4
     field public static final int RTT_PEER_P2P_GO = 3; // 0x3
     field public static final int RTT_PEER_TYPE_AP = 1; // 0x1
     field public static final int RTT_PEER_TYPE_STA = 2; // 0x2
-    field public static final deprecated int RTT_PEER_TYPE_UNSPECIFIED = 0; // 0x0
+    field @Deprecated public static final int RTT_PEER_TYPE_UNSPECIFIED = 0; // 0x0
     field public static final int RTT_STATUS_ABORTED = 8; // 0x8
     field public static final int RTT_STATUS_FAILURE = 1; // 0x1
     field public static final int RTT_STATUS_FAIL_AP_ON_DIFF_CHANNEL = 6; // 0x6
@@ -3256,35 +3256,35 @@ package android.net.wifi {
     field public static final int RTT_STATUS_INVALID_REQ = 13; // 0xd
     field public static final int RTT_STATUS_NO_WIFI = 14; // 0xe
     field public static final int RTT_STATUS_SUCCESS = 0; // 0x0
-    field public static final deprecated int RTT_TYPE_11_MC = 4; // 0x4
-    field public static final deprecated int RTT_TYPE_11_V = 2; // 0x2
+    field @Deprecated public static final int RTT_TYPE_11_MC = 4; // 0x4
+    field @Deprecated public static final int RTT_TYPE_11_V = 2; // 0x2
     field public static final int RTT_TYPE_ONE_SIDED = 1; // 0x1
     field public static final int RTT_TYPE_TWO_SIDED = 2; // 0x2
-    field public static final deprecated int RTT_TYPE_UNSPECIFIED = 0; // 0x0
+    field @Deprecated public static final int RTT_TYPE_UNSPECIFIED = 0; // 0x0
   }
 
-  public deprecated class RttManager.Capabilities {
+  @Deprecated public class RttManager.Capabilities {
     ctor public RttManager.Capabilities();
     field public int supportedPeerType;
     field public int supportedType;
   }
 
-  public static deprecated class RttManager.ParcelableRttParams implements android.os.Parcelable {
+  @Deprecated public static class RttManager.ParcelableRttParams implements android.os.Parcelable {
     field public android.net.wifi.RttManager.RttParams[] mParams;
   }
 
-  public static deprecated class RttManager.ParcelableRttResults implements android.os.Parcelable {
+  @Deprecated public static class RttManager.ParcelableRttResults implements android.os.Parcelable {
     ctor public RttManager.ParcelableRttResults(android.net.wifi.RttManager.RttResult[]);
     field public android.net.wifi.RttManager.RttResult[] mResults;
   }
 
-  public abstract static deprecated class RttManager.ResponderCallback {
+  @Deprecated public abstract static class RttManager.ResponderCallback {
     ctor public RttManager.ResponderCallback();
     method public abstract void onResponderEnableFailure(int);
     method public abstract void onResponderEnabled(android.net.wifi.RttManager.ResponderConfig);
   }
 
-  public static deprecated class RttManager.ResponderConfig implements android.os.Parcelable {
+  @Deprecated public static class RttManager.ResponderConfig implements android.os.Parcelable {
     ctor public RttManager.ResponderConfig();
     method public int describeContents();
     method public void writeToParcel(android.os.Parcel, int);
@@ -3297,7 +3297,7 @@ package android.net.wifi {
     field public int preamble;
   }
 
-  public static deprecated class RttManager.RttCapabilities implements android.os.Parcelable {
+  @Deprecated public static class RttManager.RttCapabilities implements android.os.Parcelable {
     ctor public RttManager.RttCapabilities();
     field public int bwSupported;
     field public boolean lciSupported;
@@ -3307,18 +3307,18 @@ package android.net.wifi {
     field public int preambleSupported;
     field public boolean responderSupported;
     field public boolean secureRttSupported;
-    field public deprecated boolean supportedPeerType;
-    field public deprecated boolean supportedType;
+    field @Deprecated public boolean supportedPeerType;
+    field @Deprecated public boolean supportedType;
     field public boolean twoSided11McRttSupported;
   }
 
-  public static deprecated interface RttManager.RttListener {
+  @Deprecated public static interface RttManager.RttListener {
     method public void onAborted();
     method public void onFailure(int, java.lang.String);
     method public void onSuccess(android.net.wifi.RttManager.RttResult[]);
   }
 
-  public static deprecated class RttManager.RttParams {
+  @Deprecated public static class RttManager.RttParams {
     ctor public RttManager.RttParams();
     field public boolean LCIRequest;
     field public boolean LCRRequest;
@@ -3334,15 +3334,15 @@ package android.net.wifi {
     field public int numRetriesPerFTMR;
     field public int numRetriesPerMeasurementFrame;
     field public int numSamplesPerBurst;
-    field public deprecated int num_retries;
-    field public deprecated int num_samples;
+    field @Deprecated public int num_retries;
+    field @Deprecated public int num_samples;
     field public int numberBurst;
     field public int preamble;
     field public int requestType;
     field public boolean secure;
   }
 
-  public static deprecated class RttManager.RttResult {
+  @Deprecated public static class RttManager.RttResult {
     ctor public RttManager.RttResult();
     field public android.net.wifi.RttManager.WifiInformationElement LCI;
     field public android.net.wifi.RttManager.WifiInformationElement LCR;
@@ -3352,34 +3352,34 @@ package android.net.wifi {
     field public int distance;
     field public int distanceSpread;
     field public int distanceStandardDeviation;
-    field public deprecated int distance_cm;
-    field public deprecated int distance_sd_cm;
-    field public deprecated int distance_spread_cm;
+    field @Deprecated public int distance_cm;
+    field @Deprecated public int distance_sd_cm;
+    field @Deprecated public int distance_spread_cm;
     field public int frameNumberPerBurstPeer;
     field public int measurementFrameNumber;
     field public int measurementType;
     field public int negotiatedBurstNum;
-    field public deprecated int requestType;
+    field @Deprecated public int requestType;
     field public int retryAfterDuration;
     field public int rssi;
     field public int rssiSpread;
-    field public deprecated int rssi_spread;
+    field @Deprecated public int rssi_spread;
     field public long rtt;
     field public long rttSpread;
     field public long rttStandardDeviation;
-    field public deprecated long rtt_ns;
-    field public deprecated long rtt_sd_ns;
-    field public deprecated long rtt_spread_ns;
+    field @Deprecated public long rtt_ns;
+    field @Deprecated public long rtt_sd_ns;
+    field @Deprecated public long rtt_spread_ns;
     field public int rxRate;
     field public boolean secure;
     field public int status;
     field public int successMeasurementFrameNumber;
     field public long ts;
     field public int txRate;
-    field public deprecated int tx_rate;
+    field @Deprecated public int tx_rate;
   }
 
-  public static deprecated class RttManager.WifiInformationElement {
+  @Deprecated public static class RttManager.WifiInformationElement {
     ctor public RttManager.WifiInformationElement();
     field public byte[] data;
     field public byte id;
@@ -3455,19 +3455,19 @@ package android.net.wifi {
   }
 
   public class WifiScanner {
-    method public deprecated void configureWifiChange(int, int, int, int, int, android.net.wifi.WifiScanner.BssidInfo[]);
-    method public deprecated void configureWifiChange(android.net.wifi.WifiScanner.WifiChangeSettings);
+    method @Deprecated public void configureWifiChange(int, int, int, int, int, android.net.wifi.WifiScanner.BssidInfo[]);
+    method @Deprecated public void configureWifiChange(android.net.wifi.WifiScanner.WifiChangeSettings);
     method public boolean getScanResults();
     method public void startBackgroundScan(android.net.wifi.WifiScanner.ScanSettings, android.net.wifi.WifiScanner.ScanListener);
     method public void startBackgroundScan(android.net.wifi.WifiScanner.ScanSettings, android.net.wifi.WifiScanner.ScanListener, android.os.WorkSource);
     method public void startScan(android.net.wifi.WifiScanner.ScanSettings, android.net.wifi.WifiScanner.ScanListener);
     method public void startScan(android.net.wifi.WifiScanner.ScanSettings, android.net.wifi.WifiScanner.ScanListener, android.os.WorkSource);
-    method public deprecated void startTrackingBssids(android.net.wifi.WifiScanner.BssidInfo[], int, android.net.wifi.WifiScanner.BssidListener);
-    method public deprecated void startTrackingWifiChange(android.net.wifi.WifiScanner.WifiChangeListener);
+    method @Deprecated public void startTrackingBssids(android.net.wifi.WifiScanner.BssidInfo[], int, android.net.wifi.WifiScanner.BssidListener);
+    method @Deprecated public void startTrackingWifiChange(android.net.wifi.WifiScanner.WifiChangeListener);
     method public void stopBackgroundScan(android.net.wifi.WifiScanner.ScanListener);
     method public void stopScan(android.net.wifi.WifiScanner.ScanListener);
-    method public deprecated void stopTrackingBssids(android.net.wifi.WifiScanner.BssidListener);
-    method public deprecated void stopTrackingWifiChange(android.net.wifi.WifiScanner.WifiChangeListener);
+    method @Deprecated public void stopTrackingBssids(android.net.wifi.WifiScanner.BssidListener);
+    method @Deprecated public void stopTrackingWifiChange(android.net.wifi.WifiScanner.WifiChangeListener);
     field public static final int MAX_SCAN_PERIOD_MS = 1024000; // 0xfa000
     field public static final int MIN_SCAN_PERIOD_MS = 1000; // 0x3e8
     field public static final int REASON_DUPLICATE_REQEUST = -5; // 0xfffffffb
@@ -3476,7 +3476,7 @@ package android.net.wifi {
     field public static final int REASON_NOT_AUTHORIZED = -4; // 0xfffffffc
     field public static final int REASON_SUCCEEDED = 0; // 0x0
     field public static final int REASON_UNSPECIFIED = -1; // 0xffffffff
-    field public static final deprecated int REPORT_EVENT_AFTER_BUFFER_FULL = 0; // 0x0
+    field @Deprecated public static final int REPORT_EVENT_AFTER_BUFFER_FULL = 0; // 0x0
     field public static final int REPORT_EVENT_AFTER_EACH_SCAN = 1; // 0x1
     field public static final int REPORT_EVENT_FULL_SCAN_RESULT = 2; // 0x2
     field public static final int REPORT_EVENT_NO_BATCH = 4; // 0x4
@@ -3494,7 +3494,7 @@ package android.net.wifi {
     method public void onSuccess();
   }
 
-  public static deprecated class WifiScanner.BssidInfo {
+  @Deprecated public static class WifiScanner.BssidInfo {
     ctor public WifiScanner.BssidInfo();
     field public java.lang.String bssid;
     field public int frequencyHint;
@@ -3502,7 +3502,7 @@ package android.net.wifi {
     field public int low;
   }
 
-  public static deprecated interface WifiScanner.BssidListener extends android.net.wifi.WifiScanner.ActionListener {
+  @Deprecated public static interface WifiScanner.BssidListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onFound(android.net.wifi.ScanResult[]);
     method public void onLost(android.net.wifi.ScanResult[]);
   }
@@ -3512,7 +3512,7 @@ package android.net.wifi {
     field public int frequency;
   }
 
-  public static deprecated class WifiScanner.HotlistSettings implements android.os.Parcelable {
+  @Deprecated public static class WifiScanner.HotlistSettings implements android.os.Parcelable {
     ctor public WifiScanner.HotlistSettings();
     field public int apLostThreshold;
     field public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
@@ -3556,12 +3556,12 @@ package android.net.wifi {
     field public int stepCount;
   }
 
-  public static deprecated interface WifiScanner.WifiChangeListener extends android.net.wifi.WifiScanner.ActionListener {
+  @Deprecated public static interface WifiScanner.WifiChangeListener extends android.net.wifi.WifiScanner.ActionListener {
     method public void onChanging(android.net.wifi.ScanResult[]);
     method public void onQuiescence(android.net.wifi.ScanResult[]);
   }
 
-  public static deprecated class WifiScanner.WifiChangeSettings implements android.os.Parcelable {
+  @Deprecated public static class WifiScanner.WifiChangeSettings implements android.os.Parcelable {
     ctor public WifiScanner.WifiChangeSettings();
     field public android.net.wifi.WifiScanner.BssidInfo[] bssidInfos;
     field public int lostApSampleSize;
@@ -3952,7 +3952,7 @@ package android.os {
 
   public final class UserHandle implements android.os.Parcelable {
     method public int getIdentifier();
-    method public deprecated boolean isOwner();
+    method @Deprecated public boolean isOwner();
     method public boolean isSystem();
     method public static int myUserId();
     method public static android.os.UserHandle of(int);
@@ -3964,14 +3964,14 @@ package android.os {
     method public android.os.PersistableBundle getSeedAccountOptions();
     method public java.lang.String getSeedAccountType();
     method public long[] getSerialNumbersOfUsers(boolean);
-    method public deprecated int getUserRestrictionSource(java.lang.String, android.os.UserHandle);
+    method @Deprecated public int getUserRestrictionSource(java.lang.String, android.os.UserHandle);
     method public java.util.List<android.os.UserManager.EnforcingUser> getUserRestrictionSources(java.lang.String, android.os.UserHandle);
     method public boolean hasRestrictedProfiles();
     method public boolean isManagedProfile();
     method public boolean isManagedProfile(int);
     method public boolean isRestrictedProfile();
     field public static final java.lang.String ACTION_USER_RESTRICTIONS_CHANGED = "android.os.action.USER_RESTRICTIONS_CHANGED";
-    field public static final deprecated java.lang.String DISALLOW_OEM_UNLOCK = "no_oem_unlock";
+    field @Deprecated public static final java.lang.String DISALLOW_OEM_UNLOCK = "no_oem_unlock";
     field public static final java.lang.String DISALLOW_RUN_IN_BACKGROUND = "no_run_in_background";
     field public static final int RESTRICTION_NOT_SET = 0; // 0x0
     field public static final int RESTRICTION_SOURCE_DEVICE_OWNER = 2; // 0x2
@@ -4075,7 +4075,7 @@ package android.printservice.recommendation {
 
   public final class RecommendationInfo implements android.os.Parcelable {
     ctor public RecommendationInfo(java.lang.CharSequence, java.lang.CharSequence, java.util.List<java.net.InetAddress>, boolean);
-    ctor public deprecated RecommendationInfo(java.lang.CharSequence, java.lang.CharSequence, int, boolean);
+    ctor @Deprecated public RecommendationInfo(java.lang.CharSequence, java.lang.CharSequence, int, boolean);
     method public int describeContents();
     method public java.util.List<java.net.InetAddress> getDiscoveredPrinters();
     method public java.lang.CharSequence getName();
@@ -4648,9 +4648,9 @@ package android.service.persistentdata {
     method public int getDataBlockSize();
     method public int getFlashLockState();
     method public long getMaximumDataBlockSize();
-    method public deprecated boolean getOemUnlockEnabled();
+    method @Deprecated public boolean getOemUnlockEnabled();
     method public byte[] read();
-    method public deprecated void setOemUnlockEnabled(boolean);
+    method @Deprecated public void setOemUnlockEnabled(boolean);
     method public void wipe();
     method public int write(byte[]);
     field public static final int FLASH_LOCK_LOCKED = 1; // 0x1
@@ -4764,7 +4764,7 @@ package android.service.trust {
   public class TrustAgentService extends android.app.Service {
     ctor public TrustAgentService();
     method public final void addEscrowToken(byte[], android.os.UserHandle);
-    method public final deprecated void grantTrust(java.lang.CharSequence, long, boolean);
+    method @Deprecated public final void grantTrust(java.lang.CharSequence, long, boolean);
     method public final void grantTrust(java.lang.CharSequence, long, int);
     method public final void isEscrowTokenActive(long, android.os.UserHandle);
     method public final android.os.IBinder onBind(android.content.Intent);
@@ -4794,7 +4794,7 @@ package android.service.trust {
 
 package android.telecom {
 
-  public deprecated class AudioState implements android.os.Parcelable {
+  @Deprecated public class AudioState implements android.os.Parcelable {
     ctor public AudioState(boolean, int, int);
     ctor public AudioState(android.telecom.AudioState);
     ctor public AudioState(android.telecom.CallAudioState);
@@ -4813,32 +4813,32 @@ package android.telecom {
   }
 
   public final class Call {
-    method public deprecated void addListener(android.telecom.Call.Listener);
-    method public deprecated void removeListener(android.telecom.Call.Listener);
-    field public static final deprecated int STATE_PRE_DIAL_WAIT = 8; // 0x8
+    method @Deprecated public void addListener(android.telecom.Call.Listener);
+    method @Deprecated public void removeListener(android.telecom.Call.Listener);
+    field @Deprecated public static final int STATE_PRE_DIAL_WAIT = 8; // 0x8
   }
 
-  public abstract static deprecated class Call.Listener extends android.telecom.Call.Callback {
+  @Deprecated public abstract static class Call.Listener extends android.telecom.Call.Callback {
     ctor public Call.Listener();
   }
 
   public abstract class Conference extends android.telecom.Conferenceable {
-    method public final deprecated android.telecom.AudioState getAudioState();
-    method public final deprecated long getConnectTimeMillis();
+    method @Deprecated public final android.telecom.AudioState getAudioState();
+    method @Deprecated public final long getConnectTimeMillis();
     method public android.telecom.Connection getPrimaryConnection();
-    method public deprecated void onAudioStateChanged(android.telecom.AudioState);
-    method public final deprecated void setConnectTimeMillis(long);
+    method @Deprecated public void onAudioStateChanged(android.telecom.AudioState);
+    method @Deprecated public final void setConnectTimeMillis(long);
   }
 
   public abstract class Connection extends android.telecom.Conferenceable {
-    method public final deprecated android.telecom.AudioState getAudioState();
-    method public deprecated void onAudioStateChanged(android.telecom.AudioState);
+    method @Deprecated public final android.telecom.AudioState getAudioState();
+    method @Deprecated public void onAudioStateChanged(android.telecom.AudioState);
   }
 
   public abstract class InCallService extends android.app.Service {
-    method public deprecated android.telecom.Phone getPhone();
-    method public deprecated void onPhoneCreated(android.telecom.Phone);
-    method public deprecated void onPhoneDestroyed(android.telecom.Phone);
+    method @Deprecated public android.telecom.Phone getPhone();
+    method @Deprecated public void onPhoneCreated(android.telecom.Phone);
+    method @Deprecated public void onPhoneDestroyed(android.telecom.Phone);
   }
 
   public class ParcelableCallAnalytics implements android.os.Parcelable {
@@ -4939,10 +4939,10 @@ package android.telecom {
     field public static final int UNHOLD_TIMING = 4; // 0x4
   }
 
-  public final deprecated class Phone {
+  @Deprecated public final class Phone {
     method public void addListener(android.telecom.Phone.Listener);
     method public boolean canAddCall();
-    method public deprecated android.telecom.AudioState getAudioState();
+    method @Deprecated public android.telecom.AudioState getAudioState();
     method public android.telecom.CallAudioState getCallAudioState();
     method public java.util.List<android.telecom.Call> getCalls();
     method public void removeListener(android.telecom.Phone.Listener);
@@ -4953,7 +4953,7 @@ package android.telecom {
 
   public abstract static class Phone.Listener {
     ctor public Phone.Listener();
-    method public deprecated void onAudioStateChanged(android.telecom.Phone, android.telecom.AudioState);
+    method @Deprecated public void onAudioStateChanged(android.telecom.Phone, android.telecom.AudioState);
     method public void onBringToForeground(android.telecom.Phone, boolean);
     method public void onCallAdded(android.telecom.Phone, android.telecom.Call);
     method public void onCallAudioStateChanged(android.telecom.Phone, android.telecom.CallAudioState);
@@ -4967,18 +4967,18 @@ package android.telecom {
   }
 
   public final class RemoteConference {
-    method public deprecated void setAudioState(android.telecom.AudioState);
+    method @Deprecated public void setAudioState(android.telecom.AudioState);
   }
 
   public final class RemoteConnection {
-    method public deprecated void setAudioState(android.telecom.AudioState);
+    method @Deprecated public void setAudioState(android.telecom.AudioState);
   }
 
   public final class StatusHints implements android.os.Parcelable {
-    ctor public deprecated StatusHints(android.content.ComponentName, java.lang.CharSequence, int, android.os.Bundle);
-    method public deprecated android.graphics.drawable.Drawable getIcon(android.content.Context);
-    method public deprecated int getIconResId();
-    method public deprecated android.content.ComponentName getPackageName();
+    ctor @Deprecated public StatusHints(android.content.ComponentName, java.lang.CharSequence, int, android.os.Bundle);
+    method @Deprecated public android.graphics.drawable.Drawable getIcon(android.content.Context);
+    method @Deprecated public int getIconResId();
+    method @Deprecated public android.content.ComponentName getPackageName();
   }
 
   public final class TelecomAnalytics implements android.os.Parcelable {
@@ -5018,7 +5018,7 @@ package android.telecom {
 
   public class TelecomManager {
     method public void addNewUnknownCall(android.telecom.PhoneAccountHandle, android.os.Bundle);
-    method public deprecated void clearAccounts();
+    method @Deprecated public void clearAccounts();
     method public void clearPhoneAccounts();
     method public android.telecom.TelecomAnalytics dumpAnalytics();
     method public void enablePhoneAccount(android.telecom.PhoneAccountHandle, boolean);
@@ -5028,7 +5028,7 @@ package android.telecom {
     method public int getAllPhoneAccountsCount();
     method public int getCallState();
     method public android.telecom.PhoneAccountHandle getConnectionManager();
-    method public deprecated android.content.ComponentName getDefaultPhoneApp();
+    method @Deprecated public android.content.ComponentName getDefaultPhoneApp();
     method public java.util.List<android.telecom.PhoneAccountHandle> getPhoneAccountsForPackage();
     method public java.util.List<android.telecom.PhoneAccountHandle> getPhoneAccountsSupportingScheme(java.lang.String);
     method public boolean isRinging();
@@ -5118,9 +5118,9 @@ package android.telephony {
     method public android.telephony.SubscriptionPlan build();
     method public static android.telephony.SubscriptionPlan.Builder createNonrecurring(java.time.ZonedDateTime, java.time.ZonedDateTime);
     method public static android.telephony.SubscriptionPlan.Builder createRecurring(java.time.ZonedDateTime, java.time.Period);
-    method public static deprecated android.telephony.SubscriptionPlan.Builder createRecurringDaily(java.time.ZonedDateTime);
-    method public static deprecated android.telephony.SubscriptionPlan.Builder createRecurringMonthly(java.time.ZonedDateTime);
-    method public static deprecated android.telephony.SubscriptionPlan.Builder createRecurringWeekly(java.time.ZonedDateTime);
+    method @Deprecated public static android.telephony.SubscriptionPlan.Builder createRecurringDaily(java.time.ZonedDateTime);
+    method @Deprecated public static android.telephony.SubscriptionPlan.Builder createRecurringMonthly(java.time.ZonedDateTime);
+    method @Deprecated public static android.telephony.SubscriptionPlan.Builder createRecurringWeekly(java.time.ZonedDateTime);
     method public android.telephony.SubscriptionPlan.Builder setDataLimit(long, int);
     method public android.telephony.SubscriptionPlan.Builder setDataUsage(long, long);
     method public android.telephony.SubscriptionPlan.Builder setSummary(java.lang.CharSequence);
@@ -5148,15 +5148,15 @@ package android.telephony {
   }
 
   public class TelephonyManager {
-    method public deprecated void answerRingingCall();
-    method public deprecated void call(java.lang.String, java.lang.String);
+    method @Deprecated public void answerRingingCall();
+    method @Deprecated public void call(java.lang.String, java.lang.String);
     method public int checkCarrierPrivilegesForPackage(java.lang.String);
     method public int checkCarrierPrivilegesForPackageAnyPhone(java.lang.String);
     method public void dial(java.lang.String);
     method public boolean disableDataConnectivity();
     method public boolean enableDataConnectivity();
     method public void enableVideoCalling(boolean);
-    method public deprecated boolean endCall();
+    method @Deprecated public boolean endCall();
     method public java.util.List<android.service.carrier.CarrierIdentifier> getAllowedCarriers(int);
     method public java.util.List<java.lang.String> getCarrierPackageNamesForIntent(android.content.Intent);
     method public java.util.List<java.lang.String> getCarrierPackageNamesForIntentAndPhone(android.content.Intent, int);
@@ -5168,8 +5168,8 @@ package android.telephony {
     method public int getCurrentPhoneType();
     method public int getCurrentPhoneType(int);
     method public int getDataActivationState();
-    method public deprecated boolean getDataEnabled();
-    method public deprecated boolean getDataEnabled(int);
+    method @Deprecated public boolean getDataEnabled();
+    method @Deprecated public boolean getDataEnabled(int);
     method public boolean getEmergencyCallbackMode();
     method public int getSimApplicationState();
     method public int getSimCardState();
@@ -5185,18 +5185,18 @@ package android.telephony {
     method public boolean isRadioOn();
     method public boolean isRinging();
     method public boolean isVideoCallingEnabled();
-    method public deprecated boolean isVisualVoicemailEnabled(android.telecom.PhoneAccountHandle);
+    method @Deprecated public boolean isVisualVoicemailEnabled(android.telecom.PhoneAccountHandle);
     method public boolean needsOtaServiceProvisioning();
     method public int setAllowedCarriers(int, java.util.List<android.service.carrier.CarrierIdentifier>);
     method public void setDataActivationState(int);
-    method public deprecated void setDataEnabled(int, boolean);
+    method @Deprecated public void setDataEnabled(int, boolean);
     method public boolean setRadio(boolean);
     method public boolean setRadioPower(boolean);
     method public void setSimPowerState(int);
     method public void setSimPowerStateForSlot(int, int);
-    method public deprecated void setVisualVoicemailEnabled(android.telecom.PhoneAccountHandle, boolean);
+    method @Deprecated public void setVisualVoicemailEnabled(android.telecom.PhoneAccountHandle, boolean);
     method public void setVoiceActivationState(int);
-    method public deprecated void silenceRinger();
+    method @Deprecated public void silenceRinger();
     method public boolean supplyPin(java.lang.String);
     method public int[] supplyPinReportResult(java.lang.String);
     method public boolean supplyPuk(java.lang.String, java.lang.String);
@@ -6293,14 +6293,14 @@ package android.webkit {
   }
 
   public class WebChromeClient {
-    method public deprecated void openFileChooser(android.webkit.ValueCallback<android.net.Uri>, java.lang.String, java.lang.String);
+    method @Deprecated public void openFileChooser(android.webkit.ValueCallback<android.net.Uri>, java.lang.String, java.lang.String);
   }
 
   public abstract class WebHistoryItem implements java.lang.Cloneable {
-    method public abstract deprecated int getId();
+    method @Deprecated public abstract int getId();
   }
 
-  public abstract deprecated class WebIconDatabase {
+  @Deprecated public abstract class WebIconDatabase {
     method public abstract void bulkRequestIconForPageUrl(android.content.ContentResolver, java.lang.String, android.webkit.WebIconDatabase.IconListener);
   }
 
@@ -6318,16 +6318,16 @@ package android.webkit {
 
   public abstract class WebSettings {
     method public abstract boolean getAcceptThirdPartyCookies();
-    method public abstract deprecated boolean getNavDump();
-    method public abstract deprecated boolean getPluginsEnabled();
-    method public abstract deprecated boolean getUseWebViewBackgroundForOverscrollBackground();
-    method public abstract deprecated int getUserAgent();
+    method @Deprecated public abstract boolean getNavDump();
+    method @Deprecated public abstract boolean getPluginsEnabled();
+    method @Deprecated public abstract boolean getUseWebViewBackgroundForOverscrollBackground();
+    method @Deprecated public abstract int getUserAgent();
     method public abstract boolean getVideoOverlayForEmbeddedEncryptedVideoEnabled();
     method public abstract void setAcceptThirdPartyCookies(boolean);
-    method public abstract deprecated void setNavDump(boolean);
-    method public abstract deprecated void setPluginsEnabled(boolean);
-    method public abstract deprecated void setUseWebViewBackgroundForOverscrollBackground(boolean);
-    method public abstract deprecated void setUserAgent(int);
+    method @Deprecated public abstract void setNavDump(boolean);
+    method @Deprecated public abstract void setPluginsEnabled(boolean);
+    method @Deprecated public abstract void setUseWebViewBackgroundForOverscrollBackground(boolean);
+    method @Deprecated public abstract void setUserAgent(int);
     method public abstract void setVideoOverlayForEmbeddedEncryptedVideoEnabled(boolean);
   }
 

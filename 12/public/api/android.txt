@@ -17755,7 +17755,7 @@ package android.test {
     ctor public ComparisonFailure(String, String, String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public @interface FlakyTest {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface FlakyTest {
     method public abstract int tolerance() default 1;
   }
 
@@ -17947,7 +17947,7 @@ package android.test {
     method public static void touchAndCancelView(android.test.InstrumentationTestCase, android.view.View);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public @interface UiThreadTest {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface UiThreadTest {
   }
 
   public class ViewAsserts {
@@ -18652,13 +18652,13 @@ package android.text {
 
   public final class SpannedString implements java.lang.CharSequence android.text.GetChars android.text.Spanned {
     ctor public SpannedString(CharSequence);
-    method public final char charAt(int);
-    method public final void getChars(int, int, char[], int);
+    method public char charAt(int);
+    method public void getChars(int, int, char[], int);
     method public int getSpanEnd(Object);
     method public int getSpanFlags(Object);
     method public int getSpanStart(Object);
     method public <T> T[] getSpans(int, int, Class<T>);
-    method public final int length();
+    method public int length();
     method public int nextSpanTransition(int, int, Class);
     method public CharSequence subSequence(int, int);
     method public static android.text.SpannedString valueOf(CharSequence);
@@ -21645,11 +21645,11 @@ package android.view {
     field public static final boolean TRACE_RECYCLER = false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.CapturedViewProperty {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) public static @interface ViewDebug.CapturedViewProperty {
     method public abstract boolean retrieveReturn() default false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.ExportedProperty {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD}) public static @interface ViewDebug.ExportedProperty {
     method public abstract String category() default "";
     method public abstract boolean deepExport() default false;
     method public abstract android.view.ViewDebug.FlagToString[] flagMapping() default {};
@@ -21659,7 +21659,7 @@ package android.view {
     method public abstract boolean resolveId() default false;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.FlagToString {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface ViewDebug.FlagToString {
     method public abstract int equals();
     method public abstract int mask();
     method public abstract String name();
@@ -21677,7 +21677,7 @@ package android.view {
     enum_constant public static final android.view.ViewDebug.HierarchyTraceType REQUEST_LAYOUT;
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface ViewDebug.IntToString {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface ViewDebug.IntToString {
     method public abstract int from();
     method public abstract String to();
   }
@@ -24771,7 +24771,7 @@ package android.widget {
     ctor public RemoteViews.ActionException(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) public static @interface RemoteViews.RemoteView {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface RemoteViews.RemoteView {
   }
 
   public abstract class RemoteViewsService extends android.app.Service {
@@ -27820,7 +27820,7 @@ package java.lang {
     ctor public OutOfMemoryError(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) public @interface Override {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface Override {
   }
 
   public class Package implements java.lang.reflect.AnnotatedElement {
@@ -28260,7 +28260,7 @@ package java.lang {
     ctor public StringIndexOutOfBoundsException(String);
   }
 
-  @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) public @interface SuppressWarnings {
+  @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.PARAMETER, java.lang.annotation.ElementType.CONSTRUCTOR, java.lang.annotation.ElementType.LOCAL_VARIABLE}) public @interface SuppressWarnings {
     method public abstract String[] value();
   }
 
