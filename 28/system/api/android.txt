@@ -244,8 +244,8 @@ package android.app {
     method public deprecated void onBackgroundVisibleBehindChanged(boolean);
   }
 
-  public static abstract interface Activity.TranslucentConversionListener {
-    method public abstract void onTranslucentConversionComplete(boolean);
+  public static interface Activity.TranslucentConversionListener {
+    method public void onTranslucentConversionComplete(boolean);
   }
 
   public class ActivityManager {
@@ -258,8 +258,8 @@ package android.app {
     method public void removeOnUidImportanceListener(android.app.ActivityManager.OnUidImportanceListener);
   }
 
-  public static abstract interface ActivityManager.OnUidImportanceListener {
-    method public abstract void onUidImportance(int, int);
+  public static interface ActivityManager.OnUidImportanceListener {
+    method public void onUidImportance(int, int);
   }
 
   public class AlarmManager {
@@ -798,7 +798,7 @@ package android.bluetooth {
     method public boolean setPriority(android.bluetooth.BluetoothDevice, int);
   }
 
-  public abstract interface BluetoothProfile {
+  public interface BluetoothProfile {
     field public static final int PRIORITY_OFF = 0; // 0x0
     field public static final int PRIORITY_ON = 100; // 0x64
   }
@@ -1116,13 +1116,13 @@ package android.content.pm {
     field public static final int MATCH_INSTANT = 8388608; // 0x800000
   }
 
-  public static abstract class PackageManager.DexModuleRegisterCallback {
+  public abstract static class PackageManager.DexModuleRegisterCallback {
     ctor public PackageManager.DexModuleRegisterCallback();
     method public abstract void onDexModuleRegistered(java.lang.String, boolean, java.lang.String);
   }
 
-  public static abstract interface PackageManager.OnPermissionsChangedListener {
-    method public abstract void onPermissionsChanged(int);
+  public static interface PackageManager.OnPermissionsChangedListener {
+    method public void onPermissionsChanged(int);
   }
 
   public static @interface PackageManager.PermissionFlags {
@@ -1153,7 +1153,7 @@ package android.content.pm.dex {
     field public static final int SNAPSHOT_FAILED_PACKAGE_NOT_FOUND = 0; // 0x0
   }
 
-  public static abstract class ArtManager.SnapshotRuntimeProfileCallback {
+  public abstract static class ArtManager.SnapshotRuntimeProfileCallback {
     ctor public ArtManager.SnapshotRuntimeProfileCallback();
     method public abstract void onError(int);
     method public abstract void onSuccess(android.os.ParcelFileDescriptor);
@@ -1377,13 +1377,13 @@ package android.hardware.hdmi {
     field public static final int TIMER_STATUS_PROGRAMMED_INFO_NO_MEDIA_INFO = 10; // 0xa
   }
 
-  public static abstract interface HdmiControlManager.HotplugEventListener {
-    method public abstract void onReceived(android.hardware.hdmi.HdmiHotplugEvent);
+  public static interface HdmiControlManager.HotplugEventListener {
+    method public void onReceived(android.hardware.hdmi.HdmiHotplugEvent);
   }
 
-  public static abstract interface HdmiControlManager.VendorCommandListener {
-    method public abstract void onControlStateChanged(boolean, int);
-    method public abstract void onReceived(int, int, byte[], boolean);
+  public static interface HdmiControlManager.VendorCommandListener {
+    method public void onControlStateChanged(boolean, int);
+    method public void onReceived(int, int, byte[], boolean);
   }
 
   public class HdmiDeviceInfo implements android.os.Parcelable {
@@ -1438,12 +1438,12 @@ package android.hardware.hdmi {
     method public void sendStandby();
   }
 
-  public static abstract interface HdmiPlaybackClient.DisplayStatusCallback {
-    method public abstract void onComplete(int);
+  public static interface HdmiPlaybackClient.DisplayStatusCallback {
+    method public void onComplete(int);
   }
 
-  public static abstract interface HdmiPlaybackClient.OneTouchPlayCallback {
-    method public abstract void onComplete(int);
+  public static interface HdmiPlaybackClient.OneTouchPlayCallback {
+    method public void onComplete(int);
   }
 
   public final class HdmiPortInfo implements android.os.Parcelable {
@@ -1500,7 +1500,7 @@ package android.hardware.hdmi {
   public static final class HdmiRecordSources.OwnSource extends android.hardware.hdmi.HdmiRecordSources.RecordSource {
   }
 
-  public static abstract class HdmiRecordSources.RecordSource {
+  public abstract static class HdmiRecordSources.RecordSource {
   }
 
   public class HdmiTimerRecordSources {
@@ -1554,16 +1554,16 @@ package android.hardware.hdmi {
     field public static final int VENDOR_DATA_SIZE = 16; // 0x10
   }
 
-  public static abstract interface HdmiTvClient.HdmiMhlVendorCommandListener {
-    method public abstract void onReceived(int, int, int, byte[]);
+  public static interface HdmiTvClient.HdmiMhlVendorCommandListener {
+    method public void onReceived(int, int, int, byte[]);
   }
 
-  public static abstract interface HdmiTvClient.InputChangeListener {
-    method public abstract void onChanged(android.hardware.hdmi.HdmiDeviceInfo);
+  public static interface HdmiTvClient.InputChangeListener {
+    method public void onChanged(android.hardware.hdmi.HdmiDeviceInfo);
   }
 
-  public static abstract interface HdmiTvClient.SelectCallback {
-    method public abstract void onComplete(int);
+  public static interface HdmiTvClient.SelectCallback {
+    method public void onComplete(int);
   }
 
 }
@@ -1633,7 +1633,7 @@ package android.hardware.location {
     method public deprecated int unregisterCallback(android.hardware.location.ContextHubManager.Callback);
   }
 
-  public static abstract deprecated class ContextHubManager.Callback {
+  public abstract static deprecated class ContextHubManager.Callback {
     ctor protected ContextHubManager.Callback();
     method public abstract void onMessageReceipt(int, int, android.hardware.location.ContextHubMessage);
   }
@@ -1673,8 +1673,8 @@ package android.hardware.location {
     field public static final int TYPE_UNLOAD_NANOAPP = 1; // 0x1
   }
 
-  public static abstract interface ContextHubTransaction.OnCompleteListener<L> {
-    method public abstract void onComplete(android.hardware.location.ContextHubTransaction<L>, android.hardware.location.ContextHubTransaction.Response<L>);
+  public static interface ContextHubTransaction.OnCompleteListener<L> {
+    method public void onComplete(android.hardware.location.ContextHubTransaction<L>, android.hardware.location.ContextHubTransaction.Response<L>);
   }
 
   public static class ContextHubTransaction.Response<R> {
@@ -1893,8 +1893,8 @@ package android.hardware.radio {
     field public static final int TYPE_WEATHER = 4; // 0x4
   }
 
-  public static abstract interface Announcement.OnListUpdatedListener {
-    method public abstract void onListUpdated(java.util.Collection<android.hardware.radio.Announcement>);
+  public static interface Announcement.OnListUpdatedListener {
+    method public void onListUpdated(java.util.Collection<android.hardware.radio.Announcement>);
   }
 
   public final class ProgramList implements java.lang.AutoCloseable {
@@ -1920,14 +1920,14 @@ package android.hardware.radio {
     field public static final android.os.Parcelable.Creator<android.hardware.radio.ProgramList.Filter> CREATOR;
   }
 
-  public static abstract class ProgramList.ListCallback {
+  public abstract static class ProgramList.ListCallback {
     ctor public ProgramList.ListCallback();
     method public void onItemChanged(android.hardware.radio.ProgramSelector.Identifier);
     method public void onItemRemoved(android.hardware.radio.ProgramSelector.Identifier);
   }
 
-  public static abstract interface ProgramList.OnCompleteListener {
-    method public abstract void onComplete();
+  public static interface ProgramList.OnCompleteListener {
+    method public void onComplete();
   }
 
   public final class ProgramSelector implements android.os.Parcelable {
@@ -1988,7 +1988,7 @@ package android.hardware.radio {
   public static @interface ProgramSelector.IdentifierType {
   }
 
-  public static abstract deprecated class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
+  public abstract static deprecated class ProgramSelector.ProgramType implements java.lang.annotation.Annotation {
   }
 
   public class RadioManager {
@@ -2235,7 +2235,7 @@ package android.hardware.radio {
     field public static final deprecated int ERROR_SERVER_DIED = 1; // 0x1
   }
 
-  public static abstract class RadioTuner.Callback {
+  public abstract static class RadioTuner.Callback {
     ctor public RadioTuner.Callback();
     method public void onAntennaState(boolean);
     method public void onBackgroundScanAvailabilityChange(boolean);
@@ -2464,9 +2464,9 @@ package android.location {
     field public static final int STATUS_READY = 1; // 0x1
   }
 
-  public static abstract interface GpsMeasurementsEvent.Listener {
-    method public abstract void onGpsMeasurementsReceived(android.location.GpsMeasurementsEvent);
-    method public abstract void onStatusChanged(int);
+  public static interface GpsMeasurementsEvent.Listener {
+    method public void onGpsMeasurementsReceived(android.location.GpsMeasurementsEvent);
+    method public void onStatusChanged(int);
   }
 
   public class GpsNavigationMessage implements android.os.Parcelable {
@@ -2508,9 +2508,9 @@ package android.location {
     field public static int STATUS_READY;
   }
 
-  public static abstract interface GpsNavigationMessageEvent.Listener {
-    method public abstract void onGpsNavigationMessageReceived(android.location.GpsNavigationMessageEvent);
-    method public abstract void onStatusChanged(int);
+  public static interface GpsNavigationMessageEvent.Listener {
+    method public void onGpsNavigationMessageReceived(android.location.GpsNavigationMessageEvent);
+    method public void onStatusChanged(int);
   }
 
   public class Location implements android.os.Parcelable {
@@ -2631,7 +2631,7 @@ package android.media {
     field public static final int AUDIOFOCUS_FLAG_PAUSES_ON_DUCKABLE_LOSS = 2; // 0x2
   }
 
-  public static abstract class AudioManager.AudioServerStateCallback {
+  public abstract static class AudioManager.AudioServerStateCallback {
     ctor public AudioManager.AudioServerStateCallback();
     method public void onAudioServerDown();
     method public void onAudioServerUp();
@@ -2734,7 +2734,7 @@ package android.media.audiopolicy {
     field public static final int POLICY_STATUS_UNREGISTERED = 1; // 0x1
   }
 
-  public static abstract class AudioPolicy.AudioPolicyFocusListener {
+  public abstract static class AudioPolicy.AudioPolicyFocusListener {
     ctor public AudioPolicy.AudioPolicyFocusListener();
     method public void onAudioFocusAbandon(android.media.AudioFocusInfo);
     method public void onAudioFocusGrant(android.media.AudioFocusInfo, int);
@@ -2742,13 +2742,13 @@ package android.media.audiopolicy {
     method public void onAudioFocusRequest(android.media.AudioFocusInfo, int);
   }
 
-  public static abstract class AudioPolicy.AudioPolicyStatusListener {
+  public abstract static class AudioPolicy.AudioPolicyStatusListener {
     ctor public AudioPolicy.AudioPolicyStatusListener();
     method public void onMixStateUpdate(android.media.audiopolicy.AudioMix);
     method public void onStatusChange();
   }
 
-  public static abstract class AudioPolicy.AudioPolicyVolumeCallback {
+  public abstract static class AudioPolicy.AudioPolicyVolumeCallback {
     method public void onVolumeAdjustment(int);
   }
 
@@ -2772,12 +2772,12 @@ package android.media.session {
     method public void setOnVolumeKeyLongPressListener(android.media.session.MediaSessionManager.OnVolumeKeyLongPressListener, android.os.Handler);
   }
 
-  public static abstract interface MediaSessionManager.OnMediaKeyListener {
-    method public abstract boolean onMediaKey(android.view.KeyEvent);
+  public static interface MediaSessionManager.OnMediaKeyListener {
+    method public boolean onMediaKey(android.view.KeyEvent);
   }
 
-  public static abstract interface MediaSessionManager.OnVolumeKeyLongPressListener {
-    method public abstract void onVolumeKeyLongPress(android.view.KeyEvent);
+  public static interface MediaSessionManager.OnVolumeKeyLongPressListener {
+    method public void onVolumeKeyLongPress(android.view.KeyEvent);
   }
 
 }
@@ -2801,7 +2801,7 @@ package android.media.soundtrigger {
     field public static final int RECOGNITION_FLAG_CAPTURE_TRIGGER_AUDIO = 1; // 0x1
   }
 
-  public static abstract class SoundTriggerDetector.Callback {
+  public abstract static class SoundTriggerDetector.Callback {
     ctor public SoundTriggerDetector.Callback();
     method public abstract void onAvailabilityChanged(int);
     method public abstract void onDetected(android.media.soundtrigger.SoundTriggerDetector.EventPayload);
@@ -2966,7 +2966,7 @@ package android.media.tv {
     method public boolean setSurface(android.view.Surface, android.media.tv.TvStreamConfig);
   }
 
-  public static abstract class TvInputManager.HardwareCallback {
+  public abstract static class TvInputManager.HardwareCallback {
     ctor public TvInputManager.HardwareCallback();
     method public abstract void onReleased();
     method public abstract void onStreamConfigChanged(android.media.tv.TvStreamConfig[]);
@@ -2979,16 +2979,16 @@ package android.media.tv {
     method public java.lang.String onHdmiDeviceRemoved(android.hardware.hdmi.HdmiDeviceInfo);
   }
 
-  public static abstract class TvInputService.RecordingSession {
+  public abstract static class TvInputService.RecordingSession {
     method public void notifySessionEvent(java.lang.String, android.os.Bundle);
   }
 
-  public static abstract class TvInputService.Session implements android.view.KeyEvent.Callback {
+  public abstract static class TvInputService.Session implements android.view.KeyEvent.Callback {
     method public void notifySessionEvent(java.lang.String, android.os.Bundle);
     method public void onSetMain(boolean);
   }
 
-  public static abstract class TvRecordingClient.RecordingCallback {
+  public abstract static class TvRecordingClient.RecordingCallback {
     method public void onEvent(java.lang.String, java.lang.String, android.os.Bundle);
   }
 
@@ -3020,7 +3020,7 @@ package android.media.tv {
     method public void unblockContent(android.media.tv.TvContentRating);
   }
 
-  public static abstract class TvView.TvInputCallback {
+  public abstract static class TvView.TvInputCallback {
     method public void onEvent(java.lang.String, java.lang.String, android.os.Bundle);
   }
 
@@ -3083,7 +3083,7 @@ package android.net {
     field public static final int TETHERING_WIFI = 0; // 0x0
   }
 
-  public static abstract class ConnectivityManager.OnStartTetheringCallback {
+  public abstract static class ConnectivityManager.OnStartTetheringCallback {
     ctor public ConnectivityManager.OnStartTetheringCallback();
     method public void onTetheringFailed();
     method public void onTetheringStarted();
@@ -3278,7 +3278,7 @@ package android.net.wifi {
     field public android.net.wifi.RttManager.RttResult[] mResults;
   }
 
-  public static abstract deprecated class RttManager.ResponderCallback {
+  public abstract static deprecated class RttManager.ResponderCallback {
     ctor public RttManager.ResponderCallback();
     method public abstract void onResponderEnableFailure(int);
     method public abstract void onResponderEnabled(android.net.wifi.RttManager.ResponderConfig);
@@ -3312,10 +3312,10 @@ package android.net.wifi {
     field public boolean twoSided11McRttSupported;
   }
 
-  public static abstract deprecated interface RttManager.RttListener {
-    method public abstract void onAborted();
-    method public abstract void onFailure(int, java.lang.String);
-    method public abstract void onSuccess(android.net.wifi.RttManager.RttResult[]);
+  public static deprecated interface RttManager.RttListener {
+    method public void onAborted();
+    method public void onFailure(int, java.lang.String);
+    method public void onSuccess(android.net.wifi.RttManager.RttResult[]);
   }
 
   public static deprecated class RttManager.RttParams {
@@ -3438,9 +3438,9 @@ package android.net.wifi {
     field public static final int WIFI_CREDENTIAL_SAVED = 0; // 0x0
   }
 
-  public static abstract interface WifiManager.ActionListener {
-    method public abstract void onFailure(int);
-    method public abstract void onSuccess();
+  public static interface WifiManager.ActionListener {
+    method public void onFailure(int);
+    method public void onSuccess();
   }
 
   public class WifiNetworkConnectionStatistics implements android.os.Parcelable {
@@ -3489,9 +3489,9 @@ package android.net.wifi {
     field public static final int WIFI_BAND_UNSPECIFIED = 0; // 0x0
   }
 
-  public static abstract interface WifiScanner.ActionListener {
-    method public abstract void onFailure(int, java.lang.String);
-    method public abstract void onSuccess();
+  public static interface WifiScanner.ActionListener {
+    method public void onFailure(int, java.lang.String);
+    method public void onSuccess();
   }
 
   public static deprecated class WifiScanner.BssidInfo {
@@ -3502,9 +3502,9 @@ package android.net.wifi {
     field public int low;
   }
 
-  public static abstract deprecated interface WifiScanner.BssidListener implements android.net.wifi.WifiScanner.ActionListener {
-    method public abstract void onFound(android.net.wifi.ScanResult[]);
-    method public abstract void onLost(android.net.wifi.ScanResult[]);
+  public static deprecated interface WifiScanner.BssidListener implements android.net.wifi.WifiScanner.ActionListener {
+    method public void onFound(android.net.wifi.ScanResult[]);
+    method public void onLost(android.net.wifi.ScanResult[]);
   }
 
   public static class WifiScanner.ChannelSpec {
@@ -3538,10 +3538,10 @@ package android.net.wifi {
     method public android.net.wifi.ScanResult[] getResults();
   }
 
-  public static abstract interface WifiScanner.ScanListener implements android.net.wifi.WifiScanner.ActionListener {
-    method public abstract void onFullResult(android.net.wifi.ScanResult);
-    method public abstract void onPeriodChanged(int);
-    method public abstract void onResults(android.net.wifi.WifiScanner.ScanData[]);
+  public static interface WifiScanner.ScanListener implements android.net.wifi.WifiScanner.ActionListener {
+    method public void onFullResult(android.net.wifi.ScanResult);
+    method public void onPeriodChanged(int);
+    method public void onResults(android.net.wifi.WifiScanner.ScanData[]);
   }
 
   public static class WifiScanner.ScanSettings implements android.os.Parcelable {
@@ -3556,9 +3556,9 @@ package android.net.wifi {
     field public int stepCount;
   }
 
-  public static abstract deprecated interface WifiScanner.WifiChangeListener implements android.net.wifi.WifiScanner.ActionListener {
-    method public abstract void onChanging(android.net.wifi.ScanResult[]);
-    method public abstract void onQuiescence(android.net.wifi.ScanResult[]);
+  public static deprecated interface WifiScanner.WifiChangeListener implements android.net.wifi.WifiScanner.ActionListener {
+    method public void onChanging(android.net.wifi.ScanResult[]);
+    method public void onQuiescence(android.net.wifi.ScanResult[]);
   }
 
   public static deprecated class WifiScanner.WifiChangeSettings implements android.os.Parcelable {
@@ -3650,8 +3650,8 @@ package android.nfc {
     field public static final int FLAG_NDEF_PUSH_NO_CONFIRM = 1; // 0x1
   }
 
-  public static abstract interface NfcAdapter.NfcUnlockHandler {
-    method public abstract boolean onUnlockAttempted(android.nfc.Tag);
+  public static interface NfcAdapter.NfcUnlockHandler {
+    method public boolean onUnlockAttempted(android.nfc.Tag);
   }
 
 }
@@ -3789,19 +3789,19 @@ package android.os {
   public static @interface HwParcel.Status {
   }
 
-  public abstract interface IHwBinder {
-    method public abstract boolean linkToDeath(android.os.IHwBinder.DeathRecipient, long);
-    method public abstract android.os.IHwInterface queryLocalInterface(java.lang.String);
-    method public abstract void transact(int, android.os.HwParcel, android.os.HwParcel, int) throws android.os.RemoteException;
-    method public abstract boolean unlinkToDeath(android.os.IHwBinder.DeathRecipient);
+  public interface IHwBinder {
+    method public boolean linkToDeath(android.os.IHwBinder.DeathRecipient, long);
+    method public android.os.IHwInterface queryLocalInterface(java.lang.String);
+    method public void transact(int, android.os.HwParcel, android.os.HwParcel, int) throws android.os.RemoteException;
+    method public boolean unlinkToDeath(android.os.IHwBinder.DeathRecipient);
   }
 
-  public static abstract interface IHwBinder.DeathRecipient {
-    method public abstract void serviceDied(long);
+  public static interface IHwBinder.DeathRecipient {
+    method public void serviceDied(long);
   }
 
-  public abstract interface IHwInterface {
-    method public abstract android.os.IHwBinder asBinder();
+  public interface IHwInterface {
+    method public android.os.IHwBinder asBinder();
   }
 
   public class IncidentManager {
@@ -3852,8 +3852,8 @@ package android.os {
     field public static final android.os.Parcelable.Creator<android.os.RemoteCallback> CREATOR;
   }
 
-  public static abstract interface RemoteCallback.OnResultListener {
-    method public abstract void onResult(android.os.Bundle);
+  public static interface RemoteCallback.OnResultListener {
+    method public void onResult(android.os.Bundle);
   }
 
   public final class StatsDimensionsValue implements android.os.Parcelable {
@@ -4050,12 +4050,12 @@ package android.print {
     field public static final int ENABLED_SERVICES = 1; // 0x1
   }
 
-  public static abstract interface PrintManager.PrintServiceRecommendationsChangeListener {
-    method public abstract void onPrintServiceRecommendationsChanged();
+  public static interface PrintManager.PrintServiceRecommendationsChangeListener {
+    method public void onPrintServiceRecommendationsChanged();
   }
 
-  public static abstract interface PrintManager.PrintServicesChangeListener {
-    method public abstract void onPrintServicesChanged();
+  public static interface PrintManager.PrintServicesChangeListener {
+    method public void onPrintServicesChanged();
   }
 
 }
@@ -4107,7 +4107,7 @@ package android.provider {
     field public static final android.net.Uri METADATA_AUTHORITY_URI;
   }
 
-  protected static abstract interface ContactsContract.MetadataSyncColumns {
+  protected static interface ContactsContract.MetadataSyncColumns {
     field public static final java.lang.String ACCOUNT_NAME = "account_name";
     field public static final java.lang.String ACCOUNT_TYPE = "account_type";
     field public static final java.lang.String DATA = "data";
@@ -4122,7 +4122,7 @@ package android.provider {
     field public static final android.net.Uri CONTENT_URI;
   }
 
-  protected static abstract interface ContactsContract.MetadataSyncStateColumns {
+  protected static interface ContactsContract.MetadataSyncStateColumns {
     field public static final java.lang.String ACCOUNT_NAME = "account_name";
     field public static final java.lang.String ACCOUNT_TYPE = "account_type";
     field public static final java.lang.String DATA_SET = "data_set";
@@ -4505,7 +4505,7 @@ package android.service.euicc {
     field public static final int RESULT_OK = 0; // 0x0
   }
 
-  public static abstract class EuiccService.OtaStatusChangedCallback {
+  public abstract static class EuiccService.OtaStatusChangedCallback {
     ctor public EuiccService.OtaStatusChangedCallback();
     method public abstract void onOtaStatusChanged(int);
   }
@@ -4752,9 +4752,9 @@ package android.service.textclassifier {
     field public static final java.lang.String SERVICE_INTERFACE = "android.service.textclassifier.TextClassifierService";
   }
 
-  public static abstract interface TextClassifierService.Callback<T> {
-    method public abstract void onFailure(java.lang.CharSequence);
-    method public abstract void onSuccess(T);
+  public static interface TextClassifierService.Callback<T> {
+    method public void onFailure(java.lang.CharSequence);
+    method public void onSuccess(T);
   }
 
 }
@@ -4818,7 +4818,7 @@ package android.telecom {
     field public static final deprecated int STATE_PRE_DIAL_WAIT = 8; // 0x8
   }
 
-  public static abstract deprecated class Call.Listener extends android.telecom.Call.Callback {
+  public abstract static deprecated class Call.Listener extends android.telecom.Call.Callback {
     ctor public Call.Listener();
   }
 
@@ -4951,7 +4951,7 @@ package android.telecom {
     method public void setMuted(boolean);
   }
 
-  public static abstract class Phone.Listener {
+  public abstract static class Phone.Listener {
     ctor public Phone.Listener();
     method public deprecated void onAudioStateChanged(android.telecom.Phone, android.telecom.AudioState);
     method public void onBringToForeground(android.telecom.Phone, boolean);
@@ -5316,8 +5316,8 @@ package android.telephony.euicc {
   public static @interface EuiccCardManager.ResetOption {
   }
 
-  public static abstract interface EuiccCardManager.ResultCallback<T> {
-    method public abstract void onComplete(int, T);
+  public static interface EuiccCardManager.ResultCallback<T> {
+    method public void onComplete(int, T);
   }
 
   public class EuiccManager {
@@ -6202,8 +6202,8 @@ package android.util {
 
 package android.view {
 
-  public abstract interface WindowManager implements android.view.ViewManager {
-    method public abstract android.graphics.Region getCurrentImeTouchRegion();
+  public interface WindowManager implements android.view.ViewManager {
+    method public android.graphics.Region getCurrentImeTouchRegion();
   }
 
   public static class WindowManager.LayoutParams extends android.view.ViewGroup.LayoutParams implements android.os.Parcelable {
@@ -6280,8 +6280,8 @@ package android.webkit {
     method public final boolean getResult();
   }
 
-  public static abstract interface JsResult.ResultReceiver {
-    method public abstract void onJsResultComplete(android.webkit.JsResult);
+  public static interface JsResult.ResultReceiver {
+    method public void onJsResultComplete(android.webkit.JsResult);
   }
 
   public class SslErrorHandler extends android.os.Handler {
@@ -6392,8 +6392,8 @@ package android.webkit {
     method public void setOnTraceEnabledChangeListener(android.webkit.WebViewDelegate.OnTraceEnabledChangeListener);
   }
 
-  public static abstract interface WebViewDelegate.OnTraceEnabledChangeListener {
-    method public abstract void onTraceEnabledChange(boolean);
+  public static interface WebViewDelegate.OnTraceEnabledChangeListener {
+    method public void onTraceEnabledChange(boolean);
   }
 
   public final class WebViewFactory {
@@ -6413,196 +6413,196 @@ package android.webkit {
     field public static final int LIBLOAD_WRONG_PACKAGE_NAME = 1; // 0x1
   }
 
-  public abstract interface WebViewFactoryProvider {
-    method public abstract android.webkit.WebViewProvider createWebView(android.webkit.WebView, android.webkit.WebView.PrivateAccess);
-    method public abstract android.webkit.CookieManager getCookieManager();
-    method public abstract android.webkit.GeolocationPermissions getGeolocationPermissions();
-    method public abstract android.webkit.ServiceWorkerController getServiceWorkerController();
-    method public abstract android.webkit.WebViewFactoryProvider.Statics getStatics();
-    method public abstract android.webkit.TokenBindingService getTokenBindingService();
-    method public abstract android.webkit.TracingController getTracingController();
-    method public abstract android.webkit.WebIconDatabase getWebIconDatabase();
-    method public abstract android.webkit.WebStorage getWebStorage();
-    method public abstract java.lang.ClassLoader getWebViewClassLoader();
-    method public abstract android.webkit.WebViewDatabase getWebViewDatabase(android.content.Context);
+  public interface WebViewFactoryProvider {
+    method public android.webkit.WebViewProvider createWebView(android.webkit.WebView, android.webkit.WebView.PrivateAccess);
+    method public android.webkit.CookieManager getCookieManager();
+    method public android.webkit.GeolocationPermissions getGeolocationPermissions();
+    method public android.webkit.ServiceWorkerController getServiceWorkerController();
+    method public android.webkit.WebViewFactoryProvider.Statics getStatics();
+    method public android.webkit.TokenBindingService getTokenBindingService();
+    method public android.webkit.TracingController getTracingController();
+    method public android.webkit.WebIconDatabase getWebIconDatabase();
+    method public android.webkit.WebStorage getWebStorage();
+    method public java.lang.ClassLoader getWebViewClassLoader();
+    method public android.webkit.WebViewDatabase getWebViewDatabase(android.content.Context);
   }
 
-  public static abstract interface WebViewFactoryProvider.Statics {
-    method public abstract void clearClientCertPreferences(java.lang.Runnable);
-    method public abstract void enableSlowWholeDocumentDraw();
-    method public abstract java.lang.String findAddress(java.lang.String);
-    method public abstract void freeMemoryForTests();
-    method public abstract java.lang.String getDefaultUserAgent(android.content.Context);
-    method public abstract android.net.Uri getSafeBrowsingPrivacyPolicyUrl();
-    method public abstract void initSafeBrowsing(android.content.Context, android.webkit.ValueCallback<java.lang.Boolean>);
-    method public abstract android.net.Uri[] parseFileChooserResult(int, android.content.Intent);
-    method public abstract void setSafeBrowsingWhitelist(java.util.List<java.lang.String>, android.webkit.ValueCallback<java.lang.Boolean>);
-    method public abstract void setWebContentsDebuggingEnabled(boolean);
+  public static interface WebViewFactoryProvider.Statics {
+    method public void clearClientCertPreferences(java.lang.Runnable);
+    method public void enableSlowWholeDocumentDraw();
+    method public java.lang.String findAddress(java.lang.String);
+    method public void freeMemoryForTests();
+    method public java.lang.String getDefaultUserAgent(android.content.Context);
+    method public android.net.Uri getSafeBrowsingPrivacyPolicyUrl();
+    method public void initSafeBrowsing(android.content.Context, android.webkit.ValueCallback<java.lang.Boolean>);
+    method public android.net.Uri[] parseFileChooserResult(int, android.content.Intent);
+    method public void setSafeBrowsingWhitelist(java.util.List<java.lang.String>, android.webkit.ValueCallback<java.lang.Boolean>);
+    method public void setWebContentsDebuggingEnabled(boolean);
   }
 
-  public abstract interface WebViewProvider {
-    method public abstract void addJavascriptInterface(java.lang.Object, java.lang.String);
-    method public abstract boolean canGoBack();
-    method public abstract boolean canGoBackOrForward(int);
-    method public abstract boolean canGoForward();
-    method public abstract boolean canZoomIn();
-    method public abstract boolean canZoomOut();
-    method public abstract android.graphics.Picture capturePicture();
-    method public abstract void clearCache(boolean);
-    method public abstract void clearFormData();
-    method public abstract void clearHistory();
-    method public abstract void clearMatches();
-    method public abstract void clearSslPreferences();
-    method public abstract void clearView();
-    method public abstract android.webkit.WebBackForwardList copyBackForwardList();
-    method public abstract android.print.PrintDocumentAdapter createPrintDocumentAdapter(java.lang.String);
-    method public abstract android.webkit.WebMessagePort[] createWebMessageChannel();
-    method public abstract void destroy();
-    method public abstract void documentHasImages(android.os.Message);
-    method public abstract void dumpViewHierarchyWithProperties(java.io.BufferedWriter, int);
-    method public abstract void evaluateJavaScript(java.lang.String, android.webkit.ValueCallback<java.lang.String>);
-    method public abstract int findAll(java.lang.String);
-    method public abstract void findAllAsync(java.lang.String);
-    method public abstract android.view.View findHierarchyView(java.lang.String, int);
-    method public abstract void findNext(boolean);
-    method public abstract void flingScroll(int, int);
-    method public abstract void freeMemory();
-    method public abstract android.net.http.SslCertificate getCertificate();
-    method public abstract int getContentHeight();
-    method public abstract int getContentWidth();
-    method public abstract android.graphics.Bitmap getFavicon();
-    method public abstract android.webkit.WebView.HitTestResult getHitTestResult();
-    method public abstract java.lang.String[] getHttpAuthUsernamePassword(java.lang.String, java.lang.String);
-    method public abstract java.lang.String getOriginalUrl();
-    method public abstract int getProgress();
-    method public abstract boolean getRendererPriorityWaivedWhenNotVisible();
-    method public abstract int getRendererRequestedPriority();
-    method public abstract float getScale();
-    method public abstract android.webkit.WebViewProvider.ScrollDelegate getScrollDelegate();
-    method public abstract android.webkit.WebSettings getSettings();
+  public interface WebViewProvider {
+    method public void addJavascriptInterface(java.lang.Object, java.lang.String);
+    method public boolean canGoBack();
+    method public boolean canGoBackOrForward(int);
+    method public boolean canGoForward();
+    method public boolean canZoomIn();
+    method public boolean canZoomOut();
+    method public android.graphics.Picture capturePicture();
+    method public void clearCache(boolean);
+    method public void clearFormData();
+    method public void clearHistory();
+    method public void clearMatches();
+    method public void clearSslPreferences();
+    method public void clearView();
+    method public android.webkit.WebBackForwardList copyBackForwardList();
+    method public android.print.PrintDocumentAdapter createPrintDocumentAdapter(java.lang.String);
+    method public android.webkit.WebMessagePort[] createWebMessageChannel();
+    method public void destroy();
+    method public void documentHasImages(android.os.Message);
+    method public void dumpViewHierarchyWithProperties(java.io.BufferedWriter, int);
+    method public void evaluateJavaScript(java.lang.String, android.webkit.ValueCallback<java.lang.String>);
+    method public int findAll(java.lang.String);
+    method public void findAllAsync(java.lang.String);
+    method public android.view.View findHierarchyView(java.lang.String, int);
+    method public void findNext(boolean);
+    method public void flingScroll(int, int);
+    method public void freeMemory();
+    method public android.net.http.SslCertificate getCertificate();
+    method public int getContentHeight();
+    method public int getContentWidth();
+    method public android.graphics.Bitmap getFavicon();
+    method public android.webkit.WebView.HitTestResult getHitTestResult();
+    method public java.lang.String[] getHttpAuthUsernamePassword(java.lang.String, java.lang.String);
+    method public java.lang.String getOriginalUrl();
+    method public int getProgress();
+    method public boolean getRendererPriorityWaivedWhenNotVisible();
+    method public int getRendererRequestedPriority();
+    method public float getScale();
+    method public android.webkit.WebViewProvider.ScrollDelegate getScrollDelegate();
+    method public android.webkit.WebSettings getSettings();
     method public default android.view.textclassifier.TextClassifier getTextClassifier();
-    method public abstract java.lang.String getTitle();
-    method public abstract java.lang.String getTouchIconUrl();
-    method public abstract java.lang.String getUrl();
-    method public abstract android.webkit.WebViewProvider.ViewDelegate getViewDelegate();
-    method public abstract int getVisibleTitleHeight();
-    method public abstract android.webkit.WebChromeClient getWebChromeClient();
-    method public abstract android.webkit.WebViewClient getWebViewClient();
-    method public abstract android.view.View getZoomControls();
-    method public abstract void goBack();
-    method public abstract void goBackOrForward(int);
-    method public abstract void goForward();
-    method public abstract void init(java.util.Map<java.lang.String, java.lang.Object>, boolean);
-    method public abstract void insertVisualStateCallback(long, android.webkit.WebView.VisualStateCallback);
-    method public abstract void invokeZoomPicker();
-    method public abstract boolean isPaused();
-    method public abstract boolean isPrivateBrowsingEnabled();
-    method public abstract void loadData(java.lang.String, java.lang.String, java.lang.String);
-    method public abstract void loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
-    method public abstract void loadUrl(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
-    method public abstract void loadUrl(java.lang.String);
-    method public abstract void notifyFindDialogDismissed();
-    method public abstract void onPause();
-    method public abstract void onResume();
-    method public abstract boolean overlayHorizontalScrollbar();
-    method public abstract boolean overlayVerticalScrollbar();
-    method public abstract boolean pageDown(boolean);
-    method public abstract boolean pageUp(boolean);
-    method public abstract void pauseTimers();
-    method public abstract void postMessageToMainFrame(android.webkit.WebMessage, android.net.Uri);
-    method public abstract void postUrl(java.lang.String, byte[]);
-    method public abstract void reload();
-    method public abstract void removeJavascriptInterface(java.lang.String);
-    method public abstract void requestFocusNodeHref(android.os.Message);
-    method public abstract void requestImageRef(android.os.Message);
-    method public abstract boolean restorePicture(android.os.Bundle, java.io.File);
-    method public abstract android.webkit.WebBackForwardList restoreState(android.os.Bundle);
-    method public abstract void resumeTimers();
-    method public abstract void savePassword(java.lang.String, java.lang.String, java.lang.String);
-    method public abstract boolean savePicture(android.os.Bundle, java.io.File);
-    method public abstract android.webkit.WebBackForwardList saveState(android.os.Bundle);
-    method public abstract void saveWebArchive(java.lang.String);
-    method public abstract void saveWebArchive(java.lang.String, boolean, android.webkit.ValueCallback<java.lang.String>);
-    method public abstract void setCertificate(android.net.http.SslCertificate);
-    method public abstract void setDownloadListener(android.webkit.DownloadListener);
-    method public abstract void setFindListener(android.webkit.WebView.FindListener);
-    method public abstract void setHorizontalScrollbarOverlay(boolean);
-    method public abstract void setHttpAuthUsernamePassword(java.lang.String, java.lang.String, java.lang.String, java.lang.String);
-    method public abstract void setInitialScale(int);
-    method public abstract void setMapTrackballToArrowKeys(boolean);
-    method public abstract void setNetworkAvailable(boolean);
-    method public abstract void setPictureListener(android.webkit.WebView.PictureListener);
-    method public abstract void setRendererPriorityPolicy(int, boolean);
+    method public java.lang.String getTitle();
+    method public java.lang.String getTouchIconUrl();
+    method public java.lang.String getUrl();
+    method public android.webkit.WebViewProvider.ViewDelegate getViewDelegate();
+    method public int getVisibleTitleHeight();
+    method public android.webkit.WebChromeClient getWebChromeClient();
+    method public android.webkit.WebViewClient getWebViewClient();
+    method public android.view.View getZoomControls();
+    method public void goBack();
+    method public void goBackOrForward(int);
+    method public void goForward();
+    method public void init(java.util.Map<java.lang.String, java.lang.Object>, boolean);
+    method public void insertVisualStateCallback(long, android.webkit.WebView.VisualStateCallback);
+    method public void invokeZoomPicker();
+    method public boolean isPaused();
+    method public boolean isPrivateBrowsingEnabled();
+    method public void loadData(java.lang.String, java.lang.String, java.lang.String);
+    method public void loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+    method public void loadUrl(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+    method public void loadUrl(java.lang.String);
+    method public void notifyFindDialogDismissed();
+    method public void onPause();
+    method public void onResume();
+    method public boolean overlayHorizontalScrollbar();
+    method public boolean overlayVerticalScrollbar();
+    method public boolean pageDown(boolean);
+    method public boolean pageUp(boolean);
+    method public void pauseTimers();
+    method public void postMessageToMainFrame(android.webkit.WebMessage, android.net.Uri);
+    method public void postUrl(java.lang.String, byte[]);
+    method public void reload();
+    method public void removeJavascriptInterface(java.lang.String);
+    method public void requestFocusNodeHref(android.os.Message);
+    method public void requestImageRef(android.os.Message);
+    method public boolean restorePicture(android.os.Bundle, java.io.File);
+    method public android.webkit.WebBackForwardList restoreState(android.os.Bundle);
+    method public void resumeTimers();
+    method public void savePassword(java.lang.String, java.lang.String, java.lang.String);
+    method public boolean savePicture(android.os.Bundle, java.io.File);
+    method public android.webkit.WebBackForwardList saveState(android.os.Bundle);
+    method public void saveWebArchive(java.lang.String);
+    method public void saveWebArchive(java.lang.String, boolean, android.webkit.ValueCallback<java.lang.String>);
+    method public void setCertificate(android.net.http.SslCertificate);
+    method public void setDownloadListener(android.webkit.DownloadListener);
+    method public void setFindListener(android.webkit.WebView.FindListener);
+    method public void setHorizontalScrollbarOverlay(boolean);
+    method public void setHttpAuthUsernamePassword(java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+    method public void setInitialScale(int);
+    method public void setMapTrackballToArrowKeys(boolean);
+    method public void setNetworkAvailable(boolean);
+    method public void setPictureListener(android.webkit.WebView.PictureListener);
+    method public void setRendererPriorityPolicy(int, boolean);
     method public default void setTextClassifier(android.view.textclassifier.TextClassifier);
-    method public abstract void setVerticalScrollbarOverlay(boolean);
-    method public abstract void setWebChromeClient(android.webkit.WebChromeClient);
-    method public abstract void setWebViewClient(android.webkit.WebViewClient);
-    method public abstract boolean showFindDialog(java.lang.String, boolean);
-    method public abstract void stopLoading();
-    method public abstract boolean zoomBy(float);
-    method public abstract boolean zoomIn();
-    method public abstract boolean zoomOut();
+    method public void setVerticalScrollbarOverlay(boolean);
+    method public void setWebChromeClient(android.webkit.WebChromeClient);
+    method public void setWebViewClient(android.webkit.WebViewClient);
+    method public boolean showFindDialog(java.lang.String, boolean);
+    method public void stopLoading();
+    method public boolean zoomBy(float);
+    method public boolean zoomIn();
+    method public boolean zoomOut();
   }
 
-  public static abstract interface WebViewProvider.ScrollDelegate {
-    method public abstract int computeHorizontalScrollOffset();
-    method public abstract int computeHorizontalScrollRange();
-    method public abstract void computeScroll();
-    method public abstract int computeVerticalScrollExtent();
-    method public abstract int computeVerticalScrollOffset();
-    method public abstract int computeVerticalScrollRange();
+  public static interface WebViewProvider.ScrollDelegate {
+    method public int computeHorizontalScrollOffset();
+    method public int computeHorizontalScrollRange();
+    method public void computeScroll();
+    method public int computeVerticalScrollExtent();
+    method public int computeVerticalScrollOffset();
+    method public int computeVerticalScrollRange();
   }
 
-  public static abstract interface WebViewProvider.ViewDelegate {
+  public static interface WebViewProvider.ViewDelegate {
     method public default void autofill(android.util.SparseArray<android.view.autofill.AutofillValue>);
-    method public abstract boolean dispatchKeyEvent(android.view.KeyEvent);
-    method public abstract android.view.View findFocus(android.view.View);
-    method public abstract android.view.accessibility.AccessibilityNodeProvider getAccessibilityNodeProvider();
-    method public abstract android.os.Handler getHandler(android.os.Handler);
+    method public boolean dispatchKeyEvent(android.view.KeyEvent);
+    method public android.view.View findFocus(android.view.View);
+    method public android.view.accessibility.AccessibilityNodeProvider getAccessibilityNodeProvider();
+    method public android.os.Handler getHandler(android.os.Handler);
     method public default boolean isVisibleToUserForAutofill(int);
-    method public abstract void onActivityResult(int, int, android.content.Intent);
-    method public abstract void onAttachedToWindow();
+    method public void onActivityResult(int, int, android.content.Intent);
+    method public void onAttachedToWindow();
     method public default boolean onCheckIsTextEditor();
-    method public abstract void onConfigurationChanged(android.content.res.Configuration);
-    method public abstract android.view.inputmethod.InputConnection onCreateInputConnection(android.view.inputmethod.EditorInfo);
-    method public abstract void onDetachedFromWindow();
-    method public abstract boolean onDragEvent(android.view.DragEvent);
-    method public abstract void onDraw(android.graphics.Canvas);
-    method public abstract void onDrawVerticalScrollBar(android.graphics.Canvas, android.graphics.drawable.Drawable, int, int, int, int);
-    method public abstract void onFinishTemporaryDetach();
-    method public abstract void onFocusChanged(boolean, int, android.graphics.Rect);
-    method public abstract boolean onGenericMotionEvent(android.view.MotionEvent);
-    method public abstract boolean onHoverEvent(android.view.MotionEvent);
-    method public abstract void onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent);
-    method public abstract void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo);
-    method public abstract boolean onKeyDown(int, android.view.KeyEvent);
-    method public abstract boolean onKeyMultiple(int, int, android.view.KeyEvent);
-    method public abstract boolean onKeyUp(int, android.view.KeyEvent);
-    method public abstract void onMeasure(int, int);
+    method public void onConfigurationChanged(android.content.res.Configuration);
+    method public android.view.inputmethod.InputConnection onCreateInputConnection(android.view.inputmethod.EditorInfo);
+    method public void onDetachedFromWindow();
+    method public boolean onDragEvent(android.view.DragEvent);
+    method public void onDraw(android.graphics.Canvas);
+    method public void onDrawVerticalScrollBar(android.graphics.Canvas, android.graphics.drawable.Drawable, int, int, int, int);
+    method public void onFinishTemporaryDetach();
+    method public void onFocusChanged(boolean, int, android.graphics.Rect);
+    method public boolean onGenericMotionEvent(android.view.MotionEvent);
+    method public boolean onHoverEvent(android.view.MotionEvent);
+    method public void onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent);
+    method public void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo);
+    method public boolean onKeyDown(int, android.view.KeyEvent);
+    method public boolean onKeyMultiple(int, int, android.view.KeyEvent);
+    method public boolean onKeyUp(int, android.view.KeyEvent);
+    method public void onMeasure(int, int);
     method public default void onMovedToDisplay(int, android.content.res.Configuration);
-    method public abstract void onOverScrolled(int, int, boolean, boolean);
+    method public void onOverScrolled(int, int, boolean, boolean);
     method public default void onProvideAutofillVirtualStructure(android.view.ViewStructure, int);
-    method public abstract void onProvideVirtualStructure(android.view.ViewStructure);
-    method public abstract void onScrollChanged(int, int, int, int);
-    method public abstract void onSizeChanged(int, int, int, int);
-    method public abstract void onStartTemporaryDetach();
-    method public abstract boolean onTouchEvent(android.view.MotionEvent);
-    method public abstract boolean onTrackballEvent(android.view.MotionEvent);
-    method public abstract void onVisibilityChanged(android.view.View, int);
-    method public abstract void onWindowFocusChanged(boolean);
-    method public abstract void onWindowVisibilityChanged(int);
-    method public abstract boolean performAccessibilityAction(int, android.os.Bundle);
-    method public abstract boolean performLongClick();
-    method public abstract void preDispatchDraw(android.graphics.Canvas);
-    method public abstract boolean requestChildRectangleOnScreen(android.view.View, android.graphics.Rect, boolean);
-    method public abstract boolean requestFocus(int, android.graphics.Rect);
-    method public abstract void setBackgroundColor(int);
-    method public abstract boolean setFrame(int, int, int, int);
-    method public abstract void setLayerType(int, android.graphics.Paint);
-    method public abstract void setLayoutParams(android.view.ViewGroup.LayoutParams);
-    method public abstract void setOverScrollMode(int);
-    method public abstract void setScrollBarStyle(int);
-    method public abstract boolean shouldDelayChildPressedState();
+    method public void onProvideVirtualStructure(android.view.ViewStructure);
+    method public void onScrollChanged(int, int, int, int);
+    method public void onSizeChanged(int, int, int, int);
+    method public void onStartTemporaryDetach();
+    method public boolean onTouchEvent(android.view.MotionEvent);
+    method public boolean onTrackballEvent(android.view.MotionEvent);
+    method public void onVisibilityChanged(android.view.View, int);
+    method public void onWindowFocusChanged(boolean);
+    method public void onWindowVisibilityChanged(int);
+    method public boolean performAccessibilityAction(int, android.os.Bundle);
+    method public boolean performLongClick();
+    method public void preDispatchDraw(android.graphics.Canvas);
+    method public boolean requestChildRectangleOnScreen(android.view.View, android.graphics.Rect, boolean);
+    method public boolean requestFocus(int, android.graphics.Rect);
+    method public void setBackgroundColor(int);
+    method public boolean setFrame(int, int, int, int);
+    method public void setLayerType(int, android.graphics.Paint);
+    method public void setLayoutParams(android.view.ViewGroup.LayoutParams);
+    method public void setOverScrollMode(int);
+    method public void setScrollBarStyle(int);
+    method public boolean shouldDelayChildPressedState();
   }
 
   public final class WebViewProviderInfo implements android.os.Parcelable {
