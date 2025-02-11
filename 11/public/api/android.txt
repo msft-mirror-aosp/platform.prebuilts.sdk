@@ -8791,8 +8791,8 @@ package android.hardware {
   }
 
   @Deprecated public interface SensorListener {
-    method public void onAccuracyChanged(int, int);
-    method public void onSensorChanged(int, float[]);
+    method @Deprecated public void onAccuracyChanged(int, int);
+    method @Deprecated public void onSensorChanged(int, float[]);
   }
 
   public class SensorManager {
@@ -14290,297 +14290,297 @@ package android.provider {
   }
 
   @Deprecated public class Contacts {
-    field public static final String AUTHORITY = "contacts";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final int KIND_EMAIL = 1; // 0x1
-    field public static final int KIND_IM = 3; // 0x3
-    field public static final int KIND_ORGANIZATION = 4; // 0x4
-    field public static final int KIND_PHONE = 5; // 0x5
-    field public static final int KIND_POSTAL = 2; // 0x2
+    field @Deprecated public static final String AUTHORITY = "contacts";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final int KIND_EMAIL = 1; // 0x1
+    field @Deprecated public static final int KIND_IM = 3; // 0x3
+    field @Deprecated public static final int KIND_ORGANIZATION = 4; // 0x4
+    field @Deprecated public static final int KIND_PHONE = 5; // 0x5
+    field @Deprecated public static final int KIND_POSTAL = 2; // 0x2
   }
 
   @Deprecated public static final class Contacts.ContactMethods implements android.provider.BaseColumns android.provider.Contacts.ContactMethodsColumns android.provider.Contacts.PeopleColumns {
-    method public void addPostalLocation(android.content.Context, long, double, double);
-    method public static Object decodeImProtocol(String);
-    method public static String encodeCustomImProtocol(String);
-    method public static String encodePredefinedImProtocol(int);
-    method public static CharSequence getDisplayLabel(android.content.Context, int, int, CharSequence);
-    field public static final String CONTENT_EMAIL_ITEM_TYPE = "vnd.android.cursor.item/email";
-    field public static final String CONTENT_EMAIL_TYPE = "vnd.android.cursor.dir/email";
-    field public static final android.net.Uri CONTENT_EMAIL_URI;
-    field public static final String CONTENT_IM_ITEM_TYPE = "vnd.android.cursor.item/jabber-im";
-    field public static final String CONTENT_POSTAL_ITEM_TYPE = "vnd.android.cursor.item/postal-address";
-    field public static final String CONTENT_POSTAL_TYPE = "vnd.android.cursor.dir/postal-address";
-    field public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contact-methods";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "name ASC";
-    field public static final String PERSON_ID = "person";
-    field public static final String POSTAL_LOCATION_LATITUDE = "data";
-    field public static final String POSTAL_LOCATION_LONGITUDE = "aux_data";
-    field public static final int PROTOCOL_AIM = 0; // 0x0
-    field public static final int PROTOCOL_GOOGLE_TALK = 5; // 0x5
-    field public static final int PROTOCOL_ICQ = 6; // 0x6
-    field public static final int PROTOCOL_JABBER = 7; // 0x7
-    field public static final int PROTOCOL_MSN = 1; // 0x1
-    field public static final int PROTOCOL_QQ = 4; // 0x4
-    field public static final int PROTOCOL_SKYPE = 3; // 0x3
-    field public static final int PROTOCOL_YAHOO = 2; // 0x2
+    method @Deprecated public void addPostalLocation(android.content.Context, long, double, double);
+    method @Deprecated public static Object decodeImProtocol(String);
+    method @Deprecated public static String encodeCustomImProtocol(String);
+    method @Deprecated public static String encodePredefinedImProtocol(int);
+    method @Deprecated public static CharSequence getDisplayLabel(android.content.Context, int, int, CharSequence);
+    field @Deprecated public static final String CONTENT_EMAIL_ITEM_TYPE = "vnd.android.cursor.item/email";
+    field @Deprecated public static final String CONTENT_EMAIL_TYPE = "vnd.android.cursor.dir/email";
+    field @Deprecated public static final android.net.Uri CONTENT_EMAIL_URI;
+    field @Deprecated public static final String CONTENT_IM_ITEM_TYPE = "vnd.android.cursor.item/jabber-im";
+    field @Deprecated public static final String CONTENT_POSTAL_ITEM_TYPE = "vnd.android.cursor.item/postal-address";
+    field @Deprecated public static final String CONTENT_POSTAL_TYPE = "vnd.android.cursor.dir/postal-address";
+    field @Deprecated public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contact-methods";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "name ASC";
+    field @Deprecated public static final String PERSON_ID = "person";
+    field @Deprecated public static final String POSTAL_LOCATION_LATITUDE = "data";
+    field @Deprecated public static final String POSTAL_LOCATION_LONGITUDE = "aux_data";
+    field @Deprecated public static final int PROTOCOL_AIM = 0; // 0x0
+    field @Deprecated public static final int PROTOCOL_GOOGLE_TALK = 5; // 0x5
+    field @Deprecated public static final int PROTOCOL_ICQ = 6; // 0x6
+    field @Deprecated public static final int PROTOCOL_JABBER = 7; // 0x7
+    field @Deprecated public static final int PROTOCOL_MSN = 1; // 0x1
+    field @Deprecated public static final int PROTOCOL_QQ = 4; // 0x4
+    field @Deprecated public static final int PROTOCOL_SKYPE = 3; // 0x3
+    field @Deprecated public static final int PROTOCOL_YAHOO = 2; // 0x2
   }
 
   @Deprecated public static interface Contacts.ContactMethodsColumns {
-    field public static final String AUX_DATA = "aux_data";
-    field public static final String DATA = "data";
-    field public static final String ISPRIMARY = "isprimary";
-    field public static final String KIND = "kind";
-    field public static final String LABEL = "label";
-    field public static final String TYPE = "type";
-    field public static final int TYPE_CUSTOM = 0; // 0x0
-    field public static final int TYPE_HOME = 1; // 0x1
-    field public static final int TYPE_OTHER = 3; // 0x3
-    field public static final int TYPE_WORK = 2; // 0x2
+    field @Deprecated public static final String AUX_DATA = "aux_data";
+    field @Deprecated public static final String DATA = "data";
+    field @Deprecated public static final String ISPRIMARY = "isprimary";
+    field @Deprecated public static final String KIND = "kind";
+    field @Deprecated public static final String LABEL = "label";
+    field @Deprecated public static final String TYPE = "type";
+    field @Deprecated public static final int TYPE_CUSTOM = 0; // 0x0
+    field @Deprecated public static final int TYPE_HOME = 1; // 0x1
+    field @Deprecated public static final int TYPE_OTHER = 3; // 0x3
+    field @Deprecated public static final int TYPE_WORK = 2; // 0x2
   }
 
   @Deprecated public static final class Contacts.Extensions implements android.provider.BaseColumns android.provider.Contacts.ExtensionsColumns {
-    field public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/contact_extensions";
-    field public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contact_extensions";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "person, name ASC";
-    field public static final String PERSON_ID = "person";
+    field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/contact_extensions";
+    field @Deprecated public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contact_extensions";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "person, name ASC";
+    field @Deprecated public static final String PERSON_ID = "person";
   }
 
   @Deprecated public static interface Contacts.ExtensionsColumns {
-    field public static final String NAME = "name";
-    field public static final String VALUE = "value";
+    field @Deprecated public static final String NAME = "name";
+    field @Deprecated public static final String VALUE = "value";
   }
 
   @Deprecated public static final class Contacts.GroupMembership implements android.provider.BaseColumns android.provider.Contacts.GroupsColumns {
-    field public static final String CONTENT_DIRECTORY = "groupmembership";
-    field public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/contactsgroupmembership";
-    field public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contactsgroupmembership";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "group_id ASC";
-    field public static final String GROUP_ID = "group_id";
-    field public static final String GROUP_SYNC_ACCOUNT = "group_sync_account";
-    field public static final String GROUP_SYNC_ACCOUNT_TYPE = "group_sync_account_type";
-    field public static final String GROUP_SYNC_ID = "group_sync_id";
-    field public static final String PERSON_ID = "person";
-    field public static final android.net.Uri RAW_CONTENT_URI;
+    field @Deprecated public static final String CONTENT_DIRECTORY = "groupmembership";
+    field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/contactsgroupmembership";
+    field @Deprecated public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contactsgroupmembership";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "group_id ASC";
+    field @Deprecated public static final String GROUP_ID = "group_id";
+    field @Deprecated public static final String GROUP_SYNC_ACCOUNT = "group_sync_account";
+    field @Deprecated public static final String GROUP_SYNC_ACCOUNT_TYPE = "group_sync_account_type";
+    field @Deprecated public static final String GROUP_SYNC_ID = "group_sync_id";
+    field @Deprecated public static final String PERSON_ID = "person";
+    field @Deprecated public static final android.net.Uri RAW_CONTENT_URI;
   }
 
   @Deprecated public static final class Contacts.Groups implements android.provider.BaseColumns android.provider.Contacts.GroupsColumns {
-    field public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/contactsgroup";
-    field public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contactsgroup";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "name ASC";
-    field public static final android.net.Uri DELETED_CONTENT_URI;
-    field public static final String GROUP_ANDROID_STARRED = "Starred in Android";
-    field public static final String GROUP_MY_CONTACTS = "Contacts";
+    field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/contactsgroup";
+    field @Deprecated public static final String CONTENT_TYPE = "vnd.android.cursor.dir/contactsgroup";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "name ASC";
+    field @Deprecated public static final android.net.Uri DELETED_CONTENT_URI;
+    field @Deprecated public static final String GROUP_ANDROID_STARRED = "Starred in Android";
+    field @Deprecated public static final String GROUP_MY_CONTACTS = "Contacts";
   }
 
   @Deprecated public static interface Contacts.GroupsColumns {
-    field public static final String NAME = "name";
-    field public static final String NOTES = "notes";
-    field public static final String SHOULD_SYNC = "should_sync";
-    field public static final String SYSTEM_ID = "system_id";
+    field @Deprecated public static final String NAME = "name";
+    field @Deprecated public static final String NOTES = "notes";
+    field @Deprecated public static final String SHOULD_SYNC = "should_sync";
+    field @Deprecated public static final String SYSTEM_ID = "system_id";
   }
 
   @Deprecated public static final class Contacts.Intents {
-    ctor public Contacts.Intents();
-    field public static final String ATTACH_IMAGE = "com.android.contacts.action.ATTACH_IMAGE";
-    field public static final String EXTRA_CREATE_DESCRIPTION = "com.android.contacts.action.CREATE_DESCRIPTION";
-    field public static final String EXTRA_FORCE_CREATE = "com.android.contacts.action.FORCE_CREATE";
-    field public static final String SEARCH_SUGGESTION_CLICKED = "android.provider.Contacts.SEARCH_SUGGESTION_CLICKED";
-    field public static final String SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED = "android.provider.Contacts.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED";
-    field public static final String SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED = "android.provider.Contacts.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED";
-    field public static final String SHOW_OR_CREATE_CONTACT = "com.android.contacts.action.SHOW_OR_CREATE_CONTACT";
+    ctor @Deprecated public Contacts.Intents();
+    field @Deprecated public static final String ATTACH_IMAGE = "com.android.contacts.action.ATTACH_IMAGE";
+    field @Deprecated public static final String EXTRA_CREATE_DESCRIPTION = "com.android.contacts.action.CREATE_DESCRIPTION";
+    field @Deprecated public static final String EXTRA_FORCE_CREATE = "com.android.contacts.action.FORCE_CREATE";
+    field @Deprecated public static final String SEARCH_SUGGESTION_CLICKED = "android.provider.Contacts.SEARCH_SUGGESTION_CLICKED";
+    field @Deprecated public static final String SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED = "android.provider.Contacts.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED";
+    field @Deprecated public static final String SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED = "android.provider.Contacts.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED";
+    field @Deprecated public static final String SHOW_OR_CREATE_CONTACT = "com.android.contacts.action.SHOW_OR_CREATE_CONTACT";
   }
 
   @Deprecated public static final class Contacts.Intents.Insert {
-    ctor public Contacts.Intents.Insert();
-    field public static final String ACTION = "android.intent.action.INSERT";
-    field public static final String COMPANY = "company";
-    field public static final String EMAIL = "email";
-    field public static final String EMAIL_ISPRIMARY = "email_isprimary";
-    field public static final String EMAIL_TYPE = "email_type";
-    field public static final String FULL_MODE = "full_mode";
-    field public static final String IM_HANDLE = "im_handle";
-    field public static final String IM_ISPRIMARY = "im_isprimary";
-    field public static final String IM_PROTOCOL = "im_protocol";
-    field public static final String JOB_TITLE = "job_title";
-    field public static final String NAME = "name";
-    field public static final String NOTES = "notes";
-    field public static final String PHONE = "phone";
-    field public static final String PHONETIC_NAME = "phonetic_name";
-    field public static final String PHONE_ISPRIMARY = "phone_isprimary";
-    field public static final String PHONE_TYPE = "phone_type";
-    field public static final String POSTAL = "postal";
-    field public static final String POSTAL_ISPRIMARY = "postal_isprimary";
-    field public static final String POSTAL_TYPE = "postal_type";
-    field public static final String SECONDARY_EMAIL = "secondary_email";
-    field public static final String SECONDARY_EMAIL_TYPE = "secondary_email_type";
-    field public static final String SECONDARY_PHONE = "secondary_phone";
-    field public static final String SECONDARY_PHONE_TYPE = "secondary_phone_type";
-    field public static final String TERTIARY_EMAIL = "tertiary_email";
-    field public static final String TERTIARY_EMAIL_TYPE = "tertiary_email_type";
-    field public static final String TERTIARY_PHONE = "tertiary_phone";
-    field public static final String TERTIARY_PHONE_TYPE = "tertiary_phone_type";
+    ctor @Deprecated public Contacts.Intents.Insert();
+    field @Deprecated public static final String ACTION = "android.intent.action.INSERT";
+    field @Deprecated public static final String COMPANY = "company";
+    field @Deprecated public static final String EMAIL = "email";
+    field @Deprecated public static final String EMAIL_ISPRIMARY = "email_isprimary";
+    field @Deprecated public static final String EMAIL_TYPE = "email_type";
+    field @Deprecated public static final String FULL_MODE = "full_mode";
+    field @Deprecated public static final String IM_HANDLE = "im_handle";
+    field @Deprecated public static final String IM_ISPRIMARY = "im_isprimary";
+    field @Deprecated public static final String IM_PROTOCOL = "im_protocol";
+    field @Deprecated public static final String JOB_TITLE = "job_title";
+    field @Deprecated public static final String NAME = "name";
+    field @Deprecated public static final String NOTES = "notes";
+    field @Deprecated public static final String PHONE = "phone";
+    field @Deprecated public static final String PHONETIC_NAME = "phonetic_name";
+    field @Deprecated public static final String PHONE_ISPRIMARY = "phone_isprimary";
+    field @Deprecated public static final String PHONE_TYPE = "phone_type";
+    field @Deprecated public static final String POSTAL = "postal";
+    field @Deprecated public static final String POSTAL_ISPRIMARY = "postal_isprimary";
+    field @Deprecated public static final String POSTAL_TYPE = "postal_type";
+    field @Deprecated public static final String SECONDARY_EMAIL = "secondary_email";
+    field @Deprecated public static final String SECONDARY_EMAIL_TYPE = "secondary_email_type";
+    field @Deprecated public static final String SECONDARY_PHONE = "secondary_phone";
+    field @Deprecated public static final String SECONDARY_PHONE_TYPE = "secondary_phone_type";
+    field @Deprecated public static final String TERTIARY_EMAIL = "tertiary_email";
+    field @Deprecated public static final String TERTIARY_EMAIL_TYPE = "tertiary_email_type";
+    field @Deprecated public static final String TERTIARY_PHONE = "tertiary_phone";
+    field @Deprecated public static final String TERTIARY_PHONE_TYPE = "tertiary_phone_type";
   }
 
   @Deprecated public static final class Contacts.Intents.UI {
-    ctor public Contacts.Intents.UI();
-    field public static final String FILTER_CONTACTS_ACTION = "com.android.contacts.action.FILTER_CONTACTS";
-    field public static final String FILTER_TEXT_EXTRA_KEY = "com.android.contacts.extra.FILTER_TEXT";
-    field public static final String GROUP_NAME_EXTRA_KEY = "com.android.contacts.extra.GROUP";
-    field public static final String LIST_ALL_CONTACTS_ACTION = "com.android.contacts.action.LIST_ALL_CONTACTS";
-    field public static final String LIST_CONTACTS_WITH_PHONES_ACTION = "com.android.contacts.action.LIST_CONTACTS_WITH_PHONES";
-    field public static final String LIST_DEFAULT = "com.android.contacts.action.LIST_DEFAULT";
-    field public static final String LIST_FREQUENT_ACTION = "com.android.contacts.action.LIST_FREQUENT";
-    field public static final String LIST_GROUP_ACTION = "com.android.contacts.action.LIST_GROUP";
-    field public static final String LIST_STARRED_ACTION = "com.android.contacts.action.LIST_STARRED";
-    field public static final String LIST_STREQUENT_ACTION = "com.android.contacts.action.LIST_STREQUENT";
-    field public static final String TITLE_EXTRA_KEY = "com.android.contacts.extra.TITLE_EXTRA";
+    ctor @Deprecated public Contacts.Intents.UI();
+    field @Deprecated public static final String FILTER_CONTACTS_ACTION = "com.android.contacts.action.FILTER_CONTACTS";
+    field @Deprecated public static final String FILTER_TEXT_EXTRA_KEY = "com.android.contacts.extra.FILTER_TEXT";
+    field @Deprecated public static final String GROUP_NAME_EXTRA_KEY = "com.android.contacts.extra.GROUP";
+    field @Deprecated public static final String LIST_ALL_CONTACTS_ACTION = "com.android.contacts.action.LIST_ALL_CONTACTS";
+    field @Deprecated public static final String LIST_CONTACTS_WITH_PHONES_ACTION = "com.android.contacts.action.LIST_CONTACTS_WITH_PHONES";
+    field @Deprecated public static final String LIST_DEFAULT = "com.android.contacts.action.LIST_DEFAULT";
+    field @Deprecated public static final String LIST_FREQUENT_ACTION = "com.android.contacts.action.LIST_FREQUENT";
+    field @Deprecated public static final String LIST_GROUP_ACTION = "com.android.contacts.action.LIST_GROUP";
+    field @Deprecated public static final String LIST_STARRED_ACTION = "com.android.contacts.action.LIST_STARRED";
+    field @Deprecated public static final String LIST_STREQUENT_ACTION = "com.android.contacts.action.LIST_STREQUENT";
+    field @Deprecated public static final String TITLE_EXTRA_KEY = "com.android.contacts.extra.TITLE_EXTRA";
   }
 
   @Deprecated public static interface Contacts.OrganizationColumns {
-    field public static final String COMPANY = "company";
-    field public static final String ISPRIMARY = "isprimary";
-    field public static final String LABEL = "label";
-    field public static final String PERSON_ID = "person";
-    field public static final String TITLE = "title";
-    field public static final String TYPE = "type";
-    field public static final int TYPE_CUSTOM = 0; // 0x0
-    field public static final int TYPE_OTHER = 2; // 0x2
-    field public static final int TYPE_WORK = 1; // 0x1
+    field @Deprecated public static final String COMPANY = "company";
+    field @Deprecated public static final String ISPRIMARY = "isprimary";
+    field @Deprecated public static final String LABEL = "label";
+    field @Deprecated public static final String PERSON_ID = "person";
+    field @Deprecated public static final String TITLE = "title";
+    field @Deprecated public static final String TYPE = "type";
+    field @Deprecated public static final int TYPE_CUSTOM = 0; // 0x0
+    field @Deprecated public static final int TYPE_OTHER = 2; // 0x2
+    field @Deprecated public static final int TYPE_WORK = 1; // 0x1
   }
 
   @Deprecated public static final class Contacts.Organizations implements android.provider.BaseColumns android.provider.Contacts.OrganizationColumns {
-    method public static CharSequence getDisplayLabel(android.content.Context, int, CharSequence);
-    field public static final String CONTENT_DIRECTORY = "organizations";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "company, title, isprimary ASC";
+    method @Deprecated public static CharSequence getDisplayLabel(android.content.Context, int, CharSequence);
+    field @Deprecated public static final String CONTENT_DIRECTORY = "organizations";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "company, title, isprimary ASC";
   }
 
   @Deprecated public static final class Contacts.People implements android.provider.BaseColumns android.provider.Contacts.PeopleColumns android.provider.Contacts.PhonesColumns android.provider.Contacts.PresenceColumns {
-    method public static android.net.Uri addToGroup(android.content.ContentResolver, long, String);
-    method public static android.net.Uri addToGroup(android.content.ContentResolver, long, long);
-    method public static android.net.Uri addToMyContactsGroup(android.content.ContentResolver, long);
-    method public static android.net.Uri createPersonInMyContactsGroup(android.content.ContentResolver, android.content.ContentValues);
-    method public static android.graphics.Bitmap loadContactPhoto(android.content.Context, android.net.Uri, int, android.graphics.BitmapFactory.Options);
-    method public static void markAsContacted(android.content.ContentResolver, long);
-    method public static java.io.InputStream openContactPhotoInputStream(android.content.ContentResolver, android.net.Uri);
-    method public static android.database.Cursor queryGroups(android.content.ContentResolver, long);
-    method public static void setPhotoData(android.content.ContentResolver, android.net.Uri, byte[]);
-    field public static final android.net.Uri CONTENT_FILTER_URI;
-    field public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/person";
-    field public static final String CONTENT_TYPE = "vnd.android.cursor.dir/person";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "name ASC";
-    field public static final android.net.Uri DELETED_CONTENT_URI;
-    field public static final String PRIMARY_EMAIL_ID = "primary_email";
-    field public static final String PRIMARY_ORGANIZATION_ID = "primary_organization";
-    field public static final String PRIMARY_PHONE_ID = "primary_phone";
+    method @Deprecated public static android.net.Uri addToGroup(android.content.ContentResolver, long, String);
+    method @Deprecated public static android.net.Uri addToGroup(android.content.ContentResolver, long, long);
+    method @Deprecated public static android.net.Uri addToMyContactsGroup(android.content.ContentResolver, long);
+    method @Deprecated public static android.net.Uri createPersonInMyContactsGroup(android.content.ContentResolver, android.content.ContentValues);
+    method @Deprecated public static android.graphics.Bitmap loadContactPhoto(android.content.Context, android.net.Uri, int, android.graphics.BitmapFactory.Options);
+    method @Deprecated public static void markAsContacted(android.content.ContentResolver, long);
+    method @Deprecated public static java.io.InputStream openContactPhotoInputStream(android.content.ContentResolver, android.net.Uri);
+    method @Deprecated public static android.database.Cursor queryGroups(android.content.ContentResolver, long);
+    method @Deprecated public static void setPhotoData(android.content.ContentResolver, android.net.Uri, byte[]);
+    field @Deprecated public static final android.net.Uri CONTENT_FILTER_URI;
+    field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/person";
+    field @Deprecated public static final String CONTENT_TYPE = "vnd.android.cursor.dir/person";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "name ASC";
+    field @Deprecated public static final android.net.Uri DELETED_CONTENT_URI;
+    field @Deprecated public static final String PRIMARY_EMAIL_ID = "primary_email";
+    field @Deprecated public static final String PRIMARY_ORGANIZATION_ID = "primary_organization";
+    field @Deprecated public static final String PRIMARY_PHONE_ID = "primary_phone";
   }
 
   @Deprecated public static final class Contacts.People.ContactMethods implements android.provider.BaseColumns android.provider.Contacts.ContactMethodsColumns android.provider.Contacts.PeopleColumns {
-    field public static final String CONTENT_DIRECTORY = "contact_methods";
-    field public static final String DEFAULT_SORT_ORDER = "data ASC";
+    field @Deprecated public static final String CONTENT_DIRECTORY = "contact_methods";
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "data ASC";
   }
 
   @Deprecated public static class Contacts.People.Extensions implements android.provider.BaseColumns android.provider.Contacts.ExtensionsColumns {
-    field public static final String CONTENT_DIRECTORY = "extensions";
-    field public static final String DEFAULT_SORT_ORDER = "name ASC";
-    field public static final String PERSON_ID = "person";
+    field @Deprecated public static final String CONTENT_DIRECTORY = "extensions";
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "name ASC";
+    field @Deprecated public static final String PERSON_ID = "person";
   }
 
   @Deprecated public static final class Contacts.People.Phones implements android.provider.BaseColumns android.provider.Contacts.PeopleColumns android.provider.Contacts.PhonesColumns {
-    field public static final String CONTENT_DIRECTORY = "phones";
-    field public static final String DEFAULT_SORT_ORDER = "number ASC";
+    field @Deprecated public static final String CONTENT_DIRECTORY = "phones";
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "number ASC";
   }
 
   @Deprecated public static interface Contacts.PeopleColumns {
-    field public static final String CUSTOM_RINGTONE = "custom_ringtone";
-    field public static final String DISPLAY_NAME = "display_name";
-    field public static final String LAST_TIME_CONTACTED = "last_time_contacted";
-    field public static final String NAME = "name";
-    field public static final String NOTES = "notes";
-    field public static final String PHONETIC_NAME = "phonetic_name";
-    field public static final String PHOTO_VERSION = "photo_version";
-    field public static final String SEND_TO_VOICEMAIL = "send_to_voicemail";
-    field public static final String STARRED = "starred";
-    field public static final String TIMES_CONTACTED = "times_contacted";
+    field @Deprecated public static final String CUSTOM_RINGTONE = "custom_ringtone";
+    field @Deprecated public static final String DISPLAY_NAME = "display_name";
+    field @Deprecated public static final String LAST_TIME_CONTACTED = "last_time_contacted";
+    field @Deprecated public static final String NAME = "name";
+    field @Deprecated public static final String NOTES = "notes";
+    field @Deprecated public static final String PHONETIC_NAME = "phonetic_name";
+    field @Deprecated public static final String PHOTO_VERSION = "photo_version";
+    field @Deprecated public static final String SEND_TO_VOICEMAIL = "send_to_voicemail";
+    field @Deprecated public static final String STARRED = "starred";
+    field @Deprecated public static final String TIMES_CONTACTED = "times_contacted";
   }
 
   @Deprecated public static final class Contacts.Phones implements android.provider.BaseColumns android.provider.Contacts.PeopleColumns android.provider.Contacts.PhonesColumns {
-    method public static CharSequence getDisplayLabel(android.content.Context, int, CharSequence, CharSequence[]);
-    method public static CharSequence getDisplayLabel(android.content.Context, int, CharSequence);
-    field public static final android.net.Uri CONTENT_FILTER_URL;
-    field public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/phone";
-    field public static final String CONTENT_TYPE = "vnd.android.cursor.dir/phone";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "name ASC";
-    field public static final String PERSON_ID = "person";
+    method @Deprecated public static CharSequence getDisplayLabel(android.content.Context, int, CharSequence, CharSequence[]);
+    method @Deprecated public static CharSequence getDisplayLabel(android.content.Context, int, CharSequence);
+    field @Deprecated public static final android.net.Uri CONTENT_FILTER_URL;
+    field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/phone";
+    field @Deprecated public static final String CONTENT_TYPE = "vnd.android.cursor.dir/phone";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "name ASC";
+    field @Deprecated public static final String PERSON_ID = "person";
   }
 
   @Deprecated public static interface Contacts.PhonesColumns {
-    field public static final String ISPRIMARY = "isprimary";
-    field public static final String LABEL = "label";
-    field public static final String NUMBER = "number";
-    field public static final String NUMBER_KEY = "number_key";
-    field public static final String TYPE = "type";
-    field public static final int TYPE_CUSTOM = 0; // 0x0
-    field public static final int TYPE_FAX_HOME = 5; // 0x5
-    field public static final int TYPE_FAX_WORK = 4; // 0x4
-    field public static final int TYPE_HOME = 1; // 0x1
-    field public static final int TYPE_MOBILE = 2; // 0x2
-    field public static final int TYPE_OTHER = 7; // 0x7
-    field public static final int TYPE_PAGER = 6; // 0x6
-    field public static final int TYPE_WORK = 3; // 0x3
+    field @Deprecated public static final String ISPRIMARY = "isprimary";
+    field @Deprecated public static final String LABEL = "label";
+    field @Deprecated public static final String NUMBER = "number";
+    field @Deprecated public static final String NUMBER_KEY = "number_key";
+    field @Deprecated public static final String TYPE = "type";
+    field @Deprecated public static final int TYPE_CUSTOM = 0; // 0x0
+    field @Deprecated public static final int TYPE_FAX_HOME = 5; // 0x5
+    field @Deprecated public static final int TYPE_FAX_WORK = 4; // 0x4
+    field @Deprecated public static final int TYPE_HOME = 1; // 0x1
+    field @Deprecated public static final int TYPE_MOBILE = 2; // 0x2
+    field @Deprecated public static final int TYPE_OTHER = 7; // 0x7
+    field @Deprecated public static final int TYPE_PAGER = 6; // 0x6
+    field @Deprecated public static final int TYPE_WORK = 3; // 0x3
   }
 
   @Deprecated public static final class Contacts.Photos implements android.provider.BaseColumns android.provider.Contacts.PhotosColumns {
-    field public static final String CONTENT_DIRECTORY = "photo";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "person ASC";
+    field @Deprecated public static final String CONTENT_DIRECTORY = "photo";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "person ASC";
   }
 
   @Deprecated public static interface Contacts.PhotosColumns {
-    field public static final String DATA = "data";
-    field public static final String DOWNLOAD_REQUIRED = "download_required";
-    field public static final String EXISTS_ON_SERVER = "exists_on_server";
-    field public static final String LOCAL_VERSION = "local_version";
-    field public static final String PERSON_ID = "person";
-    field public static final String SYNC_ERROR = "sync_error";
+    field @Deprecated public static final String DATA = "data";
+    field @Deprecated public static final String DOWNLOAD_REQUIRED = "download_required";
+    field @Deprecated public static final String EXISTS_ON_SERVER = "exists_on_server";
+    field @Deprecated public static final String LOCAL_VERSION = "local_version";
+    field @Deprecated public static final String PERSON_ID = "person";
+    field @Deprecated public static final String SYNC_ERROR = "sync_error";
   }
 
   @Deprecated public static interface Contacts.PresenceColumns {
-    field public static final int AVAILABLE = 5; // 0x5
-    field public static final int AWAY = 2; // 0x2
-    field public static final int DO_NOT_DISTURB = 4; // 0x4
-    field public static final int IDLE = 3; // 0x3
-    field public static final String IM_ACCOUNT = "im_account";
-    field public static final String IM_HANDLE = "im_handle";
-    field public static final String IM_PROTOCOL = "im_protocol";
-    field public static final int INVISIBLE = 1; // 0x1
-    field public static final int OFFLINE = 0; // 0x0
-    field public static final String PRESENCE_CUSTOM_STATUS = "status";
-    field public static final String PRESENCE_STATUS = "mode";
-    field public static final String PRIORITY = "priority";
+    field @Deprecated public static final int AVAILABLE = 5; // 0x5
+    field @Deprecated public static final int AWAY = 2; // 0x2
+    field @Deprecated public static final int DO_NOT_DISTURB = 4; // 0x4
+    field @Deprecated public static final int IDLE = 3; // 0x3
+    field @Deprecated public static final String IM_ACCOUNT = "im_account";
+    field @Deprecated public static final String IM_HANDLE = "im_handle";
+    field @Deprecated public static final String IM_PROTOCOL = "im_protocol";
+    field @Deprecated public static final int INVISIBLE = 1; // 0x1
+    field @Deprecated public static final int OFFLINE = 0; // 0x0
+    field @Deprecated public static final String PRESENCE_CUSTOM_STATUS = "status";
+    field @Deprecated public static final String PRESENCE_STATUS = "mode";
+    field @Deprecated public static final String PRIORITY = "priority";
   }
 
   @Deprecated public static final class Contacts.Settings implements android.provider.BaseColumns android.provider.Contacts.SettingsColumns {
-    method public static String getSetting(android.content.ContentResolver, String, String);
-    method public static void setSetting(android.content.ContentResolver, String, String, String);
-    field public static final String CONTENT_DIRECTORY = "settings";
-    field public static final android.net.Uri CONTENT_URI;
-    field public static final String DEFAULT_SORT_ORDER = "key ASC";
-    field public static final String SYNC_EVERYTHING = "syncEverything";
+    method @Deprecated public static String getSetting(android.content.ContentResolver, String, String);
+    method @Deprecated public static void setSetting(android.content.ContentResolver, String, String, String);
+    field @Deprecated public static final String CONTENT_DIRECTORY = "settings";
+    field @Deprecated public static final android.net.Uri CONTENT_URI;
+    field @Deprecated public static final String DEFAULT_SORT_ORDER = "key ASC";
+    field @Deprecated public static final String SYNC_EVERYTHING = "syncEverything";
   }
 
   @Deprecated public static interface Contacts.SettingsColumns {
-    field public static final String KEY = "key";
-    field public static final String VALUE = "value";
-    field public static final String _SYNC_ACCOUNT = "_sync_account";
-    field public static final String _SYNC_ACCOUNT_TYPE = "_sync_account_type";
+    field @Deprecated public static final String KEY = "key";
+    field @Deprecated public static final String VALUE = "value";
+    field @Deprecated public static final String _SYNC_ACCOUNT = "_sync_account";
+    field @Deprecated public static final String _SYNC_ACCOUNT_TYPE = "_sync_account_type";
   }
 
   public final class ContactsContract {
@@ -15060,7 +15060,7 @@ package android.provider {
   }
 
   @Deprecated public static final class ContactsContract.Presence extends android.provider.ContactsContract.StatusUpdates {
-    ctor public ContactsContract.Presence();
+    ctor @Deprecated public ContactsContract.Presence();
   }
 
   protected static interface ContactsContract.PresenceColumns {
@@ -17210,75 +17210,75 @@ package android.telephony.gsm {
   }
 
   @Deprecated public final class SmsManager {
-    method public java.util.ArrayList<java.lang.String> divideMessage(String);
-    method public static android.telephony.gsm.SmsManager getDefault();
-    method public void sendDataMessage(String, String, short, byte[], android.app.PendingIntent, android.app.PendingIntent);
-    method public void sendMultipartTextMessage(String, String, java.util.ArrayList<java.lang.String>, java.util.ArrayList<android.app.PendingIntent>, java.util.ArrayList<android.app.PendingIntent>);
-    method public void sendTextMessage(String, String, String, android.app.PendingIntent, android.app.PendingIntent);
-    field public static final int RESULT_ERROR_GENERIC_FAILURE = 1; // 0x1
-    field public static final int RESULT_ERROR_NO_SERVICE = 4; // 0x4
-    field public static final int RESULT_ERROR_NULL_PDU = 3; // 0x3
-    field public static final int RESULT_ERROR_RADIO_OFF = 2; // 0x2
-    field public static final int STATUS_ON_SIM_FREE = 0; // 0x0
-    field public static final int STATUS_ON_SIM_READ = 1; // 0x1
-    field public static final int STATUS_ON_SIM_SENT = 5; // 0x5
-    field public static final int STATUS_ON_SIM_UNREAD = 3; // 0x3
-    field public static final int STATUS_ON_SIM_UNSENT = 7; // 0x7
+    method @Deprecated public java.util.ArrayList<java.lang.String> divideMessage(String);
+    method @Deprecated public static android.telephony.gsm.SmsManager getDefault();
+    method @Deprecated public void sendDataMessage(String, String, short, byte[], android.app.PendingIntent, android.app.PendingIntent);
+    method @Deprecated public void sendMultipartTextMessage(String, String, java.util.ArrayList<java.lang.String>, java.util.ArrayList<android.app.PendingIntent>, java.util.ArrayList<android.app.PendingIntent>);
+    method @Deprecated public void sendTextMessage(String, String, String, android.app.PendingIntent, android.app.PendingIntent);
+    field @Deprecated public static final int RESULT_ERROR_GENERIC_FAILURE = 1; // 0x1
+    field @Deprecated public static final int RESULT_ERROR_NO_SERVICE = 4; // 0x4
+    field @Deprecated public static final int RESULT_ERROR_NULL_PDU = 3; // 0x3
+    field @Deprecated public static final int RESULT_ERROR_RADIO_OFF = 2; // 0x2
+    field @Deprecated public static final int STATUS_ON_SIM_FREE = 0; // 0x0
+    field @Deprecated public static final int STATUS_ON_SIM_READ = 1; // 0x1
+    field @Deprecated public static final int STATUS_ON_SIM_SENT = 5; // 0x5
+    field @Deprecated public static final int STATUS_ON_SIM_UNREAD = 3; // 0x3
+    field @Deprecated public static final int STATUS_ON_SIM_UNSENT = 7; // 0x7
   }
 
   @Deprecated public class SmsMessage {
-    ctor public SmsMessage();
-    method public static int[] calculateLength(CharSequence, boolean);
-    method public static int[] calculateLength(String, boolean);
-    method public static android.telephony.gsm.SmsMessage createFromPdu(byte[]);
-    method public String getDisplayMessageBody();
-    method public String getDisplayOriginatingAddress();
-    method public String getEmailBody();
-    method public String getEmailFrom();
-    method public int getIndexOnSim();
-    method public String getMessageBody();
-    method public android.telephony.gsm.SmsMessage.MessageClass getMessageClass();
-    method public String getOriginatingAddress();
-    method public byte[] getPdu();
-    method public int getProtocolIdentifier();
-    method public String getPseudoSubject();
-    method public String getServiceCenterAddress();
-    method public int getStatus();
-    method public int getStatusOnSim();
-    method public static android.telephony.gsm.SmsMessage.SubmitPdu getSubmitPdu(String, String, String, boolean);
-    method public static android.telephony.gsm.SmsMessage.SubmitPdu getSubmitPdu(String, String, short, byte[], boolean);
-    method public static int getTPLayerLengthForPDU(String);
-    method public long getTimestampMillis();
-    method public byte[] getUserData();
-    method public boolean isCphsMwiMessage();
-    method public boolean isEmail();
-    method public boolean isMWIClearMessage();
-    method public boolean isMWISetMessage();
-    method public boolean isMwiDontStore();
-    method public boolean isReplace();
-    method public boolean isReplyPathPresent();
-    method public boolean isStatusReportMessage();
-    field public static final int ENCODING_16BIT = 3; // 0x3
-    field public static final int ENCODING_7BIT = 1; // 0x1
-    field public static final int ENCODING_8BIT = 2; // 0x2
-    field public static final int ENCODING_UNKNOWN = 0; // 0x0
-    field public static final int MAX_USER_DATA_BYTES = 140; // 0x8c
-    field public static final int MAX_USER_DATA_SEPTETS = 160; // 0xa0
-    field public static final int MAX_USER_DATA_SEPTETS_WITH_HEADER = 153; // 0x99
+    ctor @Deprecated public SmsMessage();
+    method @Deprecated public static int[] calculateLength(CharSequence, boolean);
+    method @Deprecated public static int[] calculateLength(String, boolean);
+    method @Deprecated public static android.telephony.gsm.SmsMessage createFromPdu(byte[]);
+    method @Deprecated public String getDisplayMessageBody();
+    method @Deprecated public String getDisplayOriginatingAddress();
+    method @Deprecated public String getEmailBody();
+    method @Deprecated public String getEmailFrom();
+    method @Deprecated public int getIndexOnSim();
+    method @Deprecated public String getMessageBody();
+    method @Deprecated public android.telephony.gsm.SmsMessage.MessageClass getMessageClass();
+    method @Deprecated public String getOriginatingAddress();
+    method @Deprecated public byte[] getPdu();
+    method @Deprecated public int getProtocolIdentifier();
+    method @Deprecated public String getPseudoSubject();
+    method @Deprecated public String getServiceCenterAddress();
+    method @Deprecated public int getStatus();
+    method @Deprecated public int getStatusOnSim();
+    method @Deprecated public static android.telephony.gsm.SmsMessage.SubmitPdu getSubmitPdu(String, String, String, boolean);
+    method @Deprecated public static android.telephony.gsm.SmsMessage.SubmitPdu getSubmitPdu(String, String, short, byte[], boolean);
+    method @Deprecated public static int getTPLayerLengthForPDU(String);
+    method @Deprecated public long getTimestampMillis();
+    method @Deprecated public byte[] getUserData();
+    method @Deprecated public boolean isCphsMwiMessage();
+    method @Deprecated public boolean isEmail();
+    method @Deprecated public boolean isMWIClearMessage();
+    method @Deprecated public boolean isMWISetMessage();
+    method @Deprecated public boolean isMwiDontStore();
+    method @Deprecated public boolean isReplace();
+    method @Deprecated public boolean isReplyPathPresent();
+    method @Deprecated public boolean isStatusReportMessage();
+    field @Deprecated public static final int ENCODING_16BIT = 3; // 0x3
+    field @Deprecated public static final int ENCODING_7BIT = 1; // 0x1
+    field @Deprecated public static final int ENCODING_8BIT = 2; // 0x2
+    field @Deprecated public static final int ENCODING_UNKNOWN = 0; // 0x0
+    field @Deprecated public static final int MAX_USER_DATA_BYTES = 140; // 0x8c
+    field @Deprecated public static final int MAX_USER_DATA_SEPTETS = 160; // 0xa0
+    field @Deprecated public static final int MAX_USER_DATA_SEPTETS_WITH_HEADER = 153; // 0x99
   }
 
   @Deprecated public enum SmsMessage.MessageClass {
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_0;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_1;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_2;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_3;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass UNKNOWN;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_0;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_1;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_2;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_3;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass UNKNOWN;
   }
 
   @Deprecated public static class SmsMessage.SubmitPdu {
-    ctor public SmsMessage.SubmitPdu();
-    field public byte[] encodedMessage;
-    field public byte[] encodedScAddress;
+    ctor @Deprecated public SmsMessage.SubmitPdu();
+    field @Deprecated public byte[] encodedMessage;
+    field @Deprecated public byte[] encodedScAddress;
   }
 
 }
@@ -17286,10 +17286,10 @@ package android.telephony.gsm {
 package android.test {
 
   @Deprecated public abstract class ActivityInstrumentationTestCase<T extends android.app.Activity> extends android.test.ActivityTestCase {
-    ctor public ActivityInstrumentationTestCase(String, Class<T>);
-    ctor public ActivityInstrumentationTestCase(String, Class<T>, boolean);
-    method public T getActivity();
-    method public void testActivityTestCaseSetUpProperly() throws java.lang.Exception;
+    ctor @Deprecated public ActivityInstrumentationTestCase(String, Class<T>);
+    ctor @Deprecated public ActivityInstrumentationTestCase(String, Class<T>, boolean);
+    method @Deprecated public T getActivity();
+    method @Deprecated public void testActivityTestCaseSetUpProperly() throws java.lang.Exception;
   }
 
   public abstract class ActivityInstrumentationTestCase2<T extends android.app.Activity> extends android.test.ActivityTestCase {
@@ -17475,11 +17475,11 @@ package android.test {
   }
 
   @Deprecated public abstract class ProviderTestCase<T extends android.content.ContentProvider> extends android.test.InstrumentationTestCase {
-    ctor public ProviderTestCase(Class<T>, String);
-    method public android.test.mock.MockContentResolver getMockContentResolver();
-    method public android.test.IsolatedContext getMockContext();
-    method public T getProvider();
-    method public static <T extends android.content.ContentProvider> android.content.ContentResolver newResolverWithContentProviderFromSql(android.content.Context, Class<T>, String, String, int, String) throws java.lang.IllegalAccessException, java.lang.InstantiationException;
+    ctor @Deprecated public ProviderTestCase(Class<T>, String);
+    method @Deprecated public android.test.mock.MockContentResolver getMockContentResolver();
+    method @Deprecated public android.test.IsolatedContext getMockContext();
+    method @Deprecated public T getProvider();
+    method @Deprecated public static <T extends android.content.ContentProvider> android.content.ContentResolver newResolverWithContentProviderFromSql(android.content.Context, Class<T>, String, String, int, String) throws java.lang.IllegalAccessException, java.lang.InstantiationException;
   }
 
   public abstract class ProviderTestCase2<T extends android.content.ContentProvider> extends android.test.AndroidTestCase {
@@ -17937,10 +17937,10 @@ package android.text {
   }
 
   @Deprecated public abstract class ClipboardManager {
-    ctor public ClipboardManager();
-    method public abstract CharSequence getText();
-    method public abstract boolean hasText();
-    method public abstract void setText(CharSequence);
+    ctor @Deprecated public ClipboardManager();
+    method @Deprecated public abstract CharSequence getText();
+    method @Deprecated public abstract boolean hasText();
+    method @Deprecated public abstract void setText(CharSequence);
   }
 
   public class DynamicLayout extends android.text.Layout {
@@ -19280,10 +19280,10 @@ package android.util {
   }
 
   @Deprecated public class EventLogTags {
-    ctor public EventLogTags() throws java.io.IOException;
-    ctor public EventLogTags(java.io.BufferedReader) throws java.io.IOException;
-    method public android.util.EventLogTags.Description get(String);
-    method public android.util.EventLogTags.Description get(int);
+    ctor @Deprecated public EventLogTags() throws java.io.IOException;
+    ctor @Deprecated public EventLogTags(java.io.BufferedReader) throws java.io.IOException;
+    method @Deprecated public android.util.EventLogTags.Description get(String);
+    method @Deprecated public android.util.EventLogTags.Description get(int);
   }
 
   public static class EventLogTags.Description {
@@ -19881,11 +19881,11 @@ package android.view {
   }
 
   @Deprecated public static class KeyCharacterMap.KeyData {
-    ctor public KeyCharacterMap.KeyData();
-    field public static final int META_LENGTH = 4; // 0x4
-    field public char displayLabel;
-    field public char[] meta;
-    field public char number;
+    ctor @Deprecated public KeyCharacterMap.KeyData();
+    field @Deprecated public static final int META_LENGTH = 4; // 0x4
+    field @Deprecated public char displayLabel;
+    field @Deprecated public char[] meta;
+    field @Deprecated public char number;
   }
 
   public static class KeyCharacterMap.UnavailableException extends android.util.AndroidRuntimeException {
@@ -20434,14 +20434,14 @@ package android.view {
   }
 
   @Deprecated public abstract class OrientationListener implements android.hardware.SensorListener {
-    ctor public OrientationListener(android.content.Context);
-    ctor public OrientationListener(android.content.Context, int);
-    method public void disable();
-    method public void enable();
-    method public void onAccuracyChanged(int, int);
-    method public abstract void onOrientationChanged(int);
-    method public void onSensorChanged(int, float[]);
-    field public static final int ORIENTATION_UNKNOWN = -1; // 0xffffffff
+    ctor @Deprecated public OrientationListener(android.content.Context);
+    ctor @Deprecated public OrientationListener(android.content.Context, int);
+    method @Deprecated public void disable();
+    method @Deprecated public void enable();
+    method @Deprecated public void onAccuracyChanged(int, int);
+    method @Deprecated public abstract void onOrientationChanged(int);
+    method @Deprecated public void onSensorChanged(int, float[]);
+    field @Deprecated public static final int ORIENTATION_UNKNOWN = -1; // 0xffffffff
   }
 
   public class ScaleGestureDetector {
@@ -22304,32 +22304,32 @@ package android.view.inputmethod {
 package android.webkit {
 
   @Deprecated public final class CacheManager {
-    ctor public CacheManager();
-    method public static boolean cacheDisabled();
-    method public static boolean endCacheTransaction();
-    method public static android.webkit.CacheManager.CacheResult getCacheFile(String, java.util.Map<java.lang.String,java.lang.String>);
-    method public static java.io.File getCacheFileBaseDir();
-    method public static void saveCacheFile(String, android.webkit.CacheManager.CacheResult);
-    method public static boolean startCacheTransaction();
+    ctor @Deprecated public CacheManager();
+    method @Deprecated public static boolean cacheDisabled();
+    method @Deprecated public static boolean endCacheTransaction();
+    method @Deprecated public static android.webkit.CacheManager.CacheResult getCacheFile(String, java.util.Map<java.lang.String,java.lang.String>);
+    method @Deprecated public static java.io.File getCacheFileBaseDir();
+    method @Deprecated public static void saveCacheFile(String, android.webkit.CacheManager.CacheResult);
+    method @Deprecated public static boolean startCacheTransaction();
   }
 
   @Deprecated public static class CacheManager.CacheResult {
-    ctor public CacheManager.CacheResult();
-    method public String getContentDisposition();
-    method public long getContentLength();
-    method public String getETag();
-    method public String getEncoding();
-    method public long getExpires();
-    method public String getExpiresString();
-    method public int getHttpStatusCode();
-    method public java.io.InputStream getInputStream();
-    method public String getLastModified();
-    method public String getLocalPath();
-    method public String getLocation();
-    method public String getMimeType();
-    method public java.io.OutputStream getOutputStream();
-    method public void setEncoding(String);
-    method public void setInputStream(java.io.InputStream);
+    ctor @Deprecated public CacheManager.CacheResult();
+    method @Deprecated public String getContentDisposition();
+    method @Deprecated public long getContentLength();
+    method @Deprecated public String getETag();
+    method @Deprecated public String getEncoding();
+    method @Deprecated public long getExpires();
+    method @Deprecated public String getExpiresString();
+    method @Deprecated public int getHttpStatusCode();
+    method @Deprecated public java.io.InputStream getInputStream();
+    method @Deprecated public String getLastModified();
+    method @Deprecated public String getLocalPath();
+    method @Deprecated public String getLocation();
+    method @Deprecated public String getMimeType();
+    method @Deprecated public java.io.OutputStream getOutputStream();
+    method @Deprecated public void setEncoding(String);
+    method @Deprecated public void setInputStream(java.io.InputStream);
   }
 
   public class ConsoleMessage {
@@ -22424,17 +22424,17 @@ package android.webkit {
   }
 
   @Deprecated public class Plugin {
-    ctor public Plugin(String, String, String, String);
-    method public void dispatchClickEvent(android.content.Context);
-    method public String getDescription();
-    method public String getFileName();
-    method public String getName();
-    method public String getPath();
-    method public void setClickHandler(android.webkit.Plugin.PreferencesClickHandler);
-    method public void setDescription(String);
-    method public void setFileName(String);
-    method public void setName(String);
-    method public void setPath(String);
+    ctor @Deprecated public Plugin(String, String, String, String);
+    method @Deprecated public void dispatchClickEvent(android.content.Context);
+    method @Deprecated public String getDescription();
+    method @Deprecated public String getFileName();
+    method @Deprecated public String getName();
+    method @Deprecated public String getPath();
+    method @Deprecated public void setClickHandler(android.webkit.Plugin.PreferencesClickHandler);
+    method @Deprecated public void setDescription(String);
+    method @Deprecated public void setFileName(String);
+    method @Deprecated public void setName(String);
+    method @Deprecated public void setPath(String);
   }
 
   public static interface Plugin.PreferencesClickHandler {
@@ -22442,20 +22442,20 @@ package android.webkit {
   }
 
   @Deprecated public final class PluginData {
-    ctor public PluginData(java.io.InputStream, long, java.util.Map<java.lang.String,java.lang.String[]>, int);
-    method public long getContentLength();
-    method public java.util.Map<java.lang.String,java.lang.String[]> getHeaders();
-    method public java.io.InputStream getInputStream();
-    method public int getStatusCode();
+    ctor @Deprecated public PluginData(java.io.InputStream, long, java.util.Map<java.lang.String,java.lang.String[]>, int);
+    method @Deprecated public long getContentLength();
+    method @Deprecated public java.util.Map<java.lang.String,java.lang.String[]> getHeaders();
+    method @Deprecated public java.io.InputStream getInputStream();
+    method @Deprecated public int getStatusCode();
   }
 
   @Deprecated public class PluginList {
-    ctor public PluginList();
-    method public void addPlugin(android.webkit.Plugin);
-    method public void clear();
-    method public java.util.List getList();
-    method public void pluginClicked(android.content.Context, int);
-    method public void removePlugin(android.webkit.Plugin);
+    ctor @Deprecated public PluginList();
+    method @Deprecated public void addPlugin(android.webkit.Plugin);
+    method @Deprecated public void clear();
+    method @Deprecated public java.util.List getList();
+    method @Deprecated public void pluginClicked(android.content.Context, int);
+    method @Deprecated public void removePlugin(android.webkit.Plugin);
   }
 
   public interface PluginStub {
@@ -22489,18 +22489,18 @@ package android.webkit {
   }
 
   @Deprecated public interface UrlInterceptHandler {
-    method public android.webkit.PluginData getPluginData(String, java.util.Map<java.lang.String,java.lang.String>);
-    method public android.webkit.CacheManager.CacheResult service(String, java.util.Map<java.lang.String,java.lang.String>);
+    method @Deprecated public android.webkit.PluginData getPluginData(String, java.util.Map<java.lang.String,java.lang.String>);
+    method @Deprecated public android.webkit.CacheManager.CacheResult service(String, java.util.Map<java.lang.String,java.lang.String>);
   }
 
   @Deprecated public final class UrlInterceptRegistry {
-    ctor public UrlInterceptRegistry();
-    method public static android.webkit.PluginData getPluginData(String, java.util.Map<java.lang.String,java.lang.String>);
-    method public static android.webkit.CacheManager.CacheResult getSurrogate(String, java.util.Map<java.lang.String,java.lang.String>);
-    method public static boolean registerHandler(android.webkit.UrlInterceptHandler);
-    method public static void setUrlInterceptDisabled(boolean);
-    method public static boolean unregisterHandler(android.webkit.UrlInterceptHandler);
-    method public static boolean urlInterceptDisabled();
+    ctor @Deprecated public UrlInterceptRegistry();
+    method @Deprecated public static android.webkit.PluginData getPluginData(String, java.util.Map<java.lang.String,java.lang.String>);
+    method @Deprecated public static android.webkit.CacheManager.CacheResult getSurrogate(String, java.util.Map<java.lang.String,java.lang.String>);
+    method @Deprecated public static boolean registerHandler(android.webkit.UrlInterceptHandler);
+    method @Deprecated public static void setUrlInterceptDisabled(boolean);
+    method @Deprecated public static boolean unregisterHandler(android.webkit.UrlInterceptHandler);
+    method @Deprecated public static boolean urlInterceptDisabled();
   }
 
   public interface ValueCallback<T> {
@@ -23044,9 +23044,9 @@ package android.widget {
   }
 
   @Deprecated @android.widget.RemoteViews.RemoteView public class AbsoluteLayout extends android.view.ViewGroup {
-    ctor public AbsoluteLayout(android.content.Context);
-    ctor public AbsoluteLayout(android.content.Context, android.util.AttributeSet);
-    ctor public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int);
+    ctor @Deprecated public AbsoluteLayout(android.content.Context);
+    ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int);
   }
 
   public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
@@ -25893,9 +25893,9 @@ package java.io {
   }
 
   @Deprecated public class LineNumberInputStream extends java.io.FilterInputStream {
-    ctor public LineNumberInputStream(java.io.InputStream);
-    method public int getLineNumber();
-    method public void setLineNumber(int);
+    ctor @Deprecated public LineNumberInputStream(java.io.InputStream);
+    method @Deprecated public int getLineNumber();
+    method @Deprecated public void setLineNumber(int);
   }
 
   public class LineNumberReader extends java.io.BufferedReader {
@@ -26371,15 +26371,15 @@ package java.io {
   }
 
   @Deprecated public class StringBufferInputStream extends java.io.InputStream {
-    ctor public StringBufferInputStream(String);
-    method public int available();
-    method public int read();
-    method public int read(byte[], int, int);
-    method public void reset();
-    method public long skip(long);
-    field protected String buffer;
-    field protected int count;
-    field protected int pos;
+    ctor @Deprecated public StringBufferInputStream(String);
+    method @Deprecated public int available();
+    method @Deprecated public int read();
+    method @Deprecated public int read(byte[], int, int);
+    method @Deprecated public void reset();
+    method @Deprecated public long skip(long);
+    field @Deprecated protected String buffer;
+    field @Deprecated protected int count;
+    field @Deprecated protected int pos;
   }
 
   public class StringReader extends java.io.Reader {
@@ -30060,13 +30060,13 @@ package java.security {
   }
 
   @Deprecated public interface Certificate {
-    method public void decode(java.io.InputStream) throws java.io.IOException, java.security.KeyException;
-    method public void encode(java.io.OutputStream) throws java.io.IOException, java.security.KeyException;
-    method public String getFormat();
-    method public java.security.Principal getGuarantor();
-    method public java.security.Principal getPrincipal();
-    method public java.security.PublicKey getPublicKey();
-    method public String toString(boolean);
+    method @Deprecated public void decode(java.io.InputStream) throws java.io.IOException, java.security.KeyException;
+    method @Deprecated public void encode(java.io.OutputStream) throws java.io.IOException, java.security.KeyException;
+    method @Deprecated public String getFormat();
+    method @Deprecated public java.security.Principal getGuarantor();
+    method @Deprecated public java.security.Principal getPrincipal();
+    method @Deprecated public java.security.PublicKey getPublicKey();
+    method @Deprecated public String toString(boolean);
   }
 
   public final class CodeSigner implements java.io.Serializable {
@@ -30128,36 +30128,36 @@ package java.security {
   }
 
   @Deprecated public abstract class Identity implements java.security.Principal java.io.Serializable {
-    ctor protected Identity();
-    ctor public Identity(String);
-    ctor public Identity(String, java.security.IdentityScope) throws java.security.KeyManagementException;
-    method public void addCertificate(java.security.Certificate) throws java.security.KeyManagementException;
-    method public java.security.Certificate[] certificates();
-    method public final boolean equals(Object);
-    method public String getInfo();
-    method public final String getName();
-    method public java.security.PublicKey getPublicKey();
-    method public final java.security.IdentityScope getScope();
-    method protected boolean identityEquals(java.security.Identity);
-    method public void removeCertificate(java.security.Certificate) throws java.security.KeyManagementException;
-    method public void setInfo(String);
-    method public void setPublicKey(java.security.PublicKey) throws java.security.KeyManagementException;
-    method public String toString(boolean);
+    ctor @Deprecated protected Identity();
+    ctor @Deprecated public Identity(String);
+    ctor @Deprecated public Identity(String, java.security.IdentityScope) throws java.security.KeyManagementException;
+    method @Deprecated public void addCertificate(java.security.Certificate) throws java.security.KeyManagementException;
+    method @Deprecated public java.security.Certificate[] certificates();
+    method @Deprecated public final boolean equals(Object);
+    method @Deprecated public String getInfo();
+    method @Deprecated public final String getName();
+    method @Deprecated public java.security.PublicKey getPublicKey();
+    method @Deprecated public final java.security.IdentityScope getScope();
+    method @Deprecated protected boolean identityEquals(java.security.Identity);
+    method @Deprecated public void removeCertificate(java.security.Certificate) throws java.security.KeyManagementException;
+    method @Deprecated public void setInfo(String);
+    method @Deprecated public void setPublicKey(java.security.PublicKey) throws java.security.KeyManagementException;
+    method @Deprecated public String toString(boolean);
   }
 
   @Deprecated public abstract class IdentityScope extends java.security.Identity {
-    ctor protected IdentityScope();
-    ctor public IdentityScope(String);
-    ctor public IdentityScope(String, java.security.IdentityScope) throws java.security.KeyManagementException;
-    method public abstract void addIdentity(java.security.Identity) throws java.security.KeyManagementException;
-    method public abstract java.security.Identity getIdentity(String);
-    method public java.security.Identity getIdentity(java.security.Principal);
-    method public abstract java.security.Identity getIdentity(java.security.PublicKey);
-    method public static java.security.IdentityScope getSystemScope();
-    method public abstract java.util.Enumeration<java.security.Identity> identities();
-    method public abstract void removeIdentity(java.security.Identity) throws java.security.KeyManagementException;
-    method protected static void setSystemScope(java.security.IdentityScope);
-    method public abstract int size();
+    ctor @Deprecated protected IdentityScope();
+    ctor @Deprecated public IdentityScope(String);
+    ctor @Deprecated public IdentityScope(String, java.security.IdentityScope) throws java.security.KeyManagementException;
+    method @Deprecated public abstract void addIdentity(java.security.Identity) throws java.security.KeyManagementException;
+    method @Deprecated public abstract java.security.Identity getIdentity(String);
+    method @Deprecated public java.security.Identity getIdentity(java.security.Principal);
+    method @Deprecated public abstract java.security.Identity getIdentity(java.security.PublicKey);
+    method @Deprecated public static java.security.IdentityScope getSystemScope();
+    method @Deprecated public abstract java.util.Enumeration<java.security.Identity> identities();
+    method @Deprecated public abstract void removeIdentity(java.security.Identity) throws java.security.KeyManagementException;
+    method @Deprecated protected static void setSystemScope(java.security.IdentityScope);
+    method @Deprecated public abstract int size();
   }
 
   public class InvalidAlgorithmParameterException extends java.security.GeneralSecurityException {
@@ -30655,11 +30655,11 @@ package java.security {
   }
 
   @Deprecated public abstract class Signer extends java.security.Identity {
-    ctor protected Signer();
-    ctor public Signer(String);
-    ctor public Signer(String, java.security.IdentityScope) throws java.security.KeyManagementException;
-    method public java.security.PrivateKey getPrivateKey();
-    method public final void setKeyPair(java.security.KeyPair) throws java.security.InvalidParameterException, java.security.KeyException;
+    ctor @Deprecated protected Signer();
+    ctor @Deprecated public Signer(String);
+    ctor @Deprecated public Signer(String, java.security.IdentityScope) throws java.security.KeyManagementException;
+    method @Deprecated public java.security.PrivateKey getPrivateKey();
+    method @Deprecated public final void setKeyPair(java.security.KeyPair) throws java.security.InvalidParameterException, java.security.KeyException;
   }
 
   public final class Timestamp implements java.io.Serializable {
@@ -43312,12 +43312,12 @@ package org.w3c.dom.ls {
 package org.xml.sax {
 
   @Deprecated public interface AttributeList {
-    method public int getLength();
-    method public String getName(int);
-    method public String getType(int);
-    method public String getType(String);
-    method public String getValue(int);
-    method public String getValue(String);
+    method @Deprecated public int getLength();
+    method @Deprecated public String getName(int);
+    method @Deprecated public String getType(int);
+    method @Deprecated public String getType(String);
+    method @Deprecated public String getValue(int);
+    method @Deprecated public String getValue(String);
   }
 
   public interface Attributes {
@@ -43355,14 +43355,14 @@ package org.xml.sax {
   }
 
   @Deprecated public interface DocumentHandler {
-    method public void characters(char[], int, int) throws org.xml.sax.SAXException;
-    method public void endDocument() throws org.xml.sax.SAXException;
-    method public void endElement(String) throws org.xml.sax.SAXException;
-    method public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
-    method public void processingInstruction(String, String) throws org.xml.sax.SAXException;
-    method public void setDocumentLocator(org.xml.sax.Locator);
-    method public void startDocument() throws org.xml.sax.SAXException;
-    method public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
+    method @Deprecated public void characters(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void endDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void endElement(String) throws org.xml.sax.SAXException;
+    method @Deprecated public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void processingInstruction(String, String) throws org.xml.sax.SAXException;
+    method @Deprecated public void setDocumentLocator(org.xml.sax.Locator);
+    method @Deprecated public void startDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
   }
 
   public interface EntityResolver {
@@ -43376,21 +43376,21 @@ package org.xml.sax {
   }
 
   @Deprecated public class HandlerBase implements org.xml.sax.DTDHandler org.xml.sax.DocumentHandler org.xml.sax.EntityResolver org.xml.sax.ErrorHandler {
-    ctor public HandlerBase();
-    method public void characters(char[], int, int) throws org.xml.sax.SAXException;
-    method public void endDocument() throws org.xml.sax.SAXException;
-    method public void endElement(String) throws org.xml.sax.SAXException;
-    method public void error(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
-    method public void fatalError(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
-    method public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
-    method public void notationDecl(String, String, String);
-    method public void processingInstruction(String, String) throws org.xml.sax.SAXException;
-    method public org.xml.sax.InputSource resolveEntity(String, String) throws org.xml.sax.SAXException;
-    method public void setDocumentLocator(org.xml.sax.Locator);
-    method public void startDocument() throws org.xml.sax.SAXException;
-    method public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
-    method public void unparsedEntityDecl(String, String, String, String);
-    method public void warning(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
+    ctor @Deprecated public HandlerBase();
+    method @Deprecated public void characters(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void endDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void endElement(String) throws org.xml.sax.SAXException;
+    method @Deprecated public void error(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
+    method @Deprecated public void fatalError(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
+    method @Deprecated public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void notationDecl(String, String, String);
+    method @Deprecated public void processingInstruction(String, String) throws org.xml.sax.SAXException;
+    method @Deprecated public org.xml.sax.InputSource resolveEntity(String, String) throws org.xml.sax.SAXException;
+    method @Deprecated public void setDocumentLocator(org.xml.sax.Locator);
+    method @Deprecated public void startDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
+    method @Deprecated public void unparsedEntityDecl(String, String, String, String);
+    method @Deprecated public void warning(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
   }
 
   public class InputSource {
@@ -43418,13 +43418,13 @@ package org.xml.sax {
   }
 
   @Deprecated public interface Parser {
-    method public void parse(org.xml.sax.InputSource) throws java.io.IOException, org.xml.sax.SAXException;
-    method public void parse(String) throws java.io.IOException, org.xml.sax.SAXException;
-    method public void setDTDHandler(org.xml.sax.DTDHandler);
-    method public void setDocumentHandler(org.xml.sax.DocumentHandler);
-    method public void setEntityResolver(org.xml.sax.EntityResolver);
-    method public void setErrorHandler(org.xml.sax.ErrorHandler);
-    method public void setLocale(java.util.Locale) throws org.xml.sax.SAXException;
+    method @Deprecated public void parse(org.xml.sax.InputSource) throws java.io.IOException, org.xml.sax.SAXException;
+    method @Deprecated public void parse(String) throws java.io.IOException, org.xml.sax.SAXException;
+    method @Deprecated public void setDTDHandler(org.xml.sax.DTDHandler);
+    method @Deprecated public void setDocumentHandler(org.xml.sax.DocumentHandler);
+    method @Deprecated public void setEntityResolver(org.xml.sax.EntityResolver);
+    method @Deprecated public void setErrorHandler(org.xml.sax.ErrorHandler);
+    method @Deprecated public void setLocale(java.util.Locale) throws org.xml.sax.SAXException;
   }
 
   public class SAXException extends java.lang.Exception {
@@ -43562,18 +43562,18 @@ package org.xml.sax.ext {
 package org.xml.sax.helpers {
 
   @Deprecated public class AttributeListImpl implements org.xml.sax.AttributeList {
-    ctor public AttributeListImpl();
-    ctor public AttributeListImpl(org.xml.sax.AttributeList);
-    method public void addAttribute(String, String, String);
-    method public void clear();
-    method public int getLength();
-    method public String getName(int);
-    method public String getType(int);
-    method public String getType(String);
-    method public String getValue(int);
-    method public String getValue(String);
-    method public void removeAttribute(String);
-    method public void setAttributeList(org.xml.sax.AttributeList);
+    ctor @Deprecated public AttributeListImpl();
+    ctor @Deprecated public AttributeListImpl(org.xml.sax.AttributeList);
+    method @Deprecated public void addAttribute(String, String, String);
+    method @Deprecated public void clear();
+    method @Deprecated public int getLength();
+    method @Deprecated public String getName(int);
+    method @Deprecated public String getType(int);
+    method @Deprecated public String getType(String);
+    method @Deprecated public String getValue(int);
+    method @Deprecated public String getValue(String);
+    method @Deprecated public void removeAttribute(String);
+    method @Deprecated public void setAttributeList(org.xml.sax.AttributeList);
   }
 
   public class AttributesImpl implements org.xml.sax.Attributes {
@@ -43683,8 +43683,8 @@ package org.xml.sax.helpers {
   }
 
   @Deprecated public class ParserFactory {
-    method public static org.xml.sax.Parser makeParser() throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.NullPointerException;
-    method public static org.xml.sax.Parser makeParser(String) throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException;
+    method @Deprecated public static org.xml.sax.Parser makeParser() throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.NullPointerException;
+    method @Deprecated public static org.xml.sax.Parser makeParser(String) throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException;
   }
 
   public class XMLFilterImpl implements org.xml.sax.ContentHandler org.xml.sax.DTDHandler org.xml.sax.EntityResolver org.xml.sax.ErrorHandler org.xml.sax.XMLFilter {

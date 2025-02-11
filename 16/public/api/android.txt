@@ -2772,10 +2772,10 @@ package android.app {
   }
 
   @Deprecated public class ActivityGroup extends android.app.Activity {
-    ctor public ActivityGroup();
-    ctor public ActivityGroup(boolean);
-    method public android.app.Activity getCurrentActivity();
-    method public final android.app.LocalActivityManager getLocalActivityManager();
+    ctor @Deprecated public ActivityGroup();
+    ctor @Deprecated public ActivityGroup(boolean);
+    method @Deprecated public android.app.Activity getCurrentActivity();
+    method @Deprecated public final android.app.LocalActivityManager getLocalActivityManager();
   }
 
   public class ActivityManager {
@@ -3594,8 +3594,8 @@ package android.app {
   }
 
   @Deprecated public class KeyguardManager.KeyguardLock {
-    method public void disableKeyguard();
-    method public void reenableKeyguard();
+    method @Deprecated public void disableKeyguard();
+    method @Deprecated public void reenableKeyguard();
   }
 
   public static interface KeyguardManager.OnKeyguardExitResult {
@@ -3669,19 +3669,19 @@ package android.app {
   }
 
   @Deprecated public class LocalActivityManager {
-    ctor public LocalActivityManager(android.app.Activity, boolean);
-    method public android.view.Window destroyActivity(String, boolean);
-    method public void dispatchCreate(android.os.Bundle);
-    method public void dispatchDestroy(boolean);
-    method public void dispatchPause(boolean);
-    method public void dispatchResume();
-    method public void dispatchStop();
-    method public android.app.Activity getActivity(String);
-    method public android.app.Activity getCurrentActivity();
-    method public String getCurrentId();
-    method public void removeAllActivities();
-    method public android.os.Bundle saveInstanceState();
-    method public android.view.Window startActivity(String, android.content.Intent);
+    ctor @Deprecated public LocalActivityManager(android.app.Activity, boolean);
+    method @Deprecated public android.view.Window destroyActivity(String, boolean);
+    method @Deprecated public void dispatchCreate(android.os.Bundle);
+    method @Deprecated public void dispatchDestroy(boolean);
+    method @Deprecated public void dispatchPause(boolean);
+    method @Deprecated public void dispatchResume();
+    method @Deprecated public void dispatchStop();
+    method @Deprecated public android.app.Activity getActivity(String);
+    method @Deprecated public android.app.Activity getCurrentActivity();
+    method @Deprecated public String getCurrentId();
+    method @Deprecated public void removeAllActivities();
+    method @Deprecated public android.os.Bundle saveInstanceState();
+    method @Deprecated public android.view.Window startActivity(String, android.content.Intent);
   }
 
   public class MediaRouteActionProvider extends android.view.ActionProvider {
@@ -4032,11 +4032,11 @@ package android.app {
   }
 
   @Deprecated public class TabActivity extends android.app.ActivityGroup {
-    ctor public TabActivity();
-    method public android.widget.TabHost getTabHost();
-    method public android.widget.TabWidget getTabWidget();
-    method public void setDefaultTab(String);
-    method public void setDefaultTab(int);
+    ctor @Deprecated public TabActivity();
+    method @Deprecated public android.widget.TabHost getTabHost();
+    method @Deprecated public android.widget.TabWidget getTabWidget();
+    method @Deprecated public void setDefaultTab(String);
+    method @Deprecated public void setDefaultTab(int);
   }
 
   public class TaskStackBuilder {
@@ -8054,7 +8054,7 @@ package android.gesture {
 package android.graphics {
 
   @Deprecated public class AvoidXfermode extends android.graphics.Xfermode {
-    ctor public AvoidXfermode(int, int, android.graphics.AvoidXfermode.Mode);
+    ctor @Deprecated public AvoidXfermode(int, int, android.graphics.AvoidXfermode.Mode);
   }
 
   public enum AvoidXfermode.Mode {
@@ -8806,7 +8806,7 @@ package android.graphics {
   }
 
   @Deprecated public class PixelXorXfermode extends android.graphics.Xfermode {
-    ctor public PixelXorXfermode(int);
+    ctor @Deprecated public PixelXorXfermode(int);
   }
 
   public class Point implements android.os.Parcelable {
@@ -9795,8 +9795,8 @@ package android.hardware {
   }
 
   @Deprecated public interface SensorListener {
-    method public void onAccuracyChanged(int, int);
-    method public void onSensorChanged(int, float[]);
+    method @Deprecated public void onAccuracyChanged(int, int);
+    method @Deprecated public void onSensorChanged(int, float[]);
   }
 
   public abstract class SensorManager {
@@ -17213,18 +17213,18 @@ package android.provider {
   }
 
   @Deprecated public static interface Contacts.PresenceColumns {
-    field public static final int AVAILABLE = 5; // 0x5
-    field public static final int AWAY = 2; // 0x2
-    field public static final int DO_NOT_DISTURB = 4; // 0x4
-    field public static final int IDLE = 3; // 0x3
+    field @Deprecated public static final int AVAILABLE = 5; // 0x5
+    field @Deprecated public static final int AWAY = 2; // 0x2
+    field @Deprecated public static final int DO_NOT_DISTURB = 4; // 0x4
+    field @Deprecated public static final int IDLE = 3; // 0x3
     field @Deprecated public static final String IM_ACCOUNT = "im_account";
     field @Deprecated public static final String IM_HANDLE = "im_handle";
     field @Deprecated public static final String IM_PROTOCOL = "im_protocol";
-    field public static final int INVISIBLE = 1; // 0x1
-    field public static final int OFFLINE = 0; // 0x0
-    field public static final String PRESENCE_CUSTOM_STATUS = "status";
-    field public static final String PRESENCE_STATUS = "mode";
-    field public static final String PRIORITY = "priority";
+    field @Deprecated public static final int INVISIBLE = 1; // 0x1
+    field @Deprecated public static final int OFFLINE = 0; // 0x0
+    field @Deprecated public static final String PRESENCE_CUSTOM_STATUS = "status";
+    field @Deprecated public static final String PRESENCE_STATUS = "mode";
+    field @Deprecated public static final String PRIORITY = "priority";
   }
 
   @Deprecated public static final class Contacts.Settings implements android.provider.BaseColumns android.provider.Contacts.SettingsColumns {
@@ -17762,7 +17762,7 @@ package android.provider {
   }
 
   @Deprecated public static final class ContactsContract.Presence extends android.provider.ContactsContract.StatusUpdates {
-    ctor public ContactsContract.Presence();
+    ctor @Deprecated public ContactsContract.Presence();
   }
 
   protected static interface ContactsContract.PresenceColumns {
@@ -17958,19 +17958,19 @@ package android.provider {
   }
 
   @Deprecated public final class LiveFolders implements android.provider.BaseColumns {
-    field public static final String ACTION_CREATE_LIVE_FOLDER = "android.intent.action.CREATE_LIVE_FOLDER";
-    field public static final String DESCRIPTION = "description";
-    field public static final int DISPLAY_MODE_GRID = 1; // 0x1
-    field public static final int DISPLAY_MODE_LIST = 2; // 0x2
-    field public static final String EXTRA_LIVE_FOLDER_BASE_INTENT = "android.intent.extra.livefolder.BASE_INTENT";
-    field public static final String EXTRA_LIVE_FOLDER_DISPLAY_MODE = "android.intent.extra.livefolder.DISPLAY_MODE";
-    field public static final String EXTRA_LIVE_FOLDER_ICON = "android.intent.extra.livefolder.ICON";
-    field public static final String EXTRA_LIVE_FOLDER_NAME = "android.intent.extra.livefolder.NAME";
-    field public static final String ICON_BITMAP = "icon_bitmap";
-    field public static final String ICON_PACKAGE = "icon_package";
-    field public static final String ICON_RESOURCE = "icon_resource";
-    field public static final String INTENT = "intent";
-    field public static final String NAME = "name";
+    field @Deprecated public static final String ACTION_CREATE_LIVE_FOLDER = "android.intent.action.CREATE_LIVE_FOLDER";
+    field @Deprecated public static final String DESCRIPTION = "description";
+    field @Deprecated public static final int DISPLAY_MODE_GRID = 1; // 0x1
+    field @Deprecated public static final int DISPLAY_MODE_LIST = 2; // 0x2
+    field @Deprecated public static final String EXTRA_LIVE_FOLDER_BASE_INTENT = "android.intent.extra.livefolder.BASE_INTENT";
+    field @Deprecated public static final String EXTRA_LIVE_FOLDER_DISPLAY_MODE = "android.intent.extra.livefolder.DISPLAY_MODE";
+    field @Deprecated public static final String EXTRA_LIVE_FOLDER_ICON = "android.intent.extra.livefolder.ICON";
+    field @Deprecated public static final String EXTRA_LIVE_FOLDER_NAME = "android.intent.extra.livefolder.NAME";
+    field @Deprecated public static final String ICON_BITMAP = "icon_bitmap";
+    field @Deprecated public static final String ICON_PACKAGE = "icon_package";
+    field @Deprecated public static final String ICON_RESOURCE = "icon_resource";
+    field @Deprecated public static final String INTENT = "intent";
+    field @Deprecated public static final String NAME = "name";
   }
 
   public final class MediaStore {
@@ -20319,11 +20319,11 @@ package android.telephony.gsm {
   }
 
   @Deprecated public enum SmsMessage.MessageClass {
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_0;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_1;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_2;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_3;
-    enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass UNKNOWN;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_0;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_1;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_2;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_3;
+    enum_constant @Deprecated public static final android.telephony.gsm.SmsMessage.MessageClass UNKNOWN;
   }
 
   @Deprecated public static class SmsMessage.SubmitPdu {
@@ -20337,10 +20337,10 @@ package android.telephony.gsm {
 package android.test {
 
   @Deprecated public abstract class ActivityInstrumentationTestCase<T extends android.app.Activity> extends android.test.ActivityTestCase {
-    ctor public ActivityInstrumentationTestCase(String, Class<T>);
-    ctor public ActivityInstrumentationTestCase(String, Class<T>, boolean);
-    method public T getActivity();
-    method public void testActivityTestCaseSetUpProperly() throws java.lang.Exception;
+    ctor @Deprecated public ActivityInstrumentationTestCase(String, Class<T>);
+    ctor @Deprecated public ActivityInstrumentationTestCase(String, Class<T>, boolean);
+    method @Deprecated public T getActivity();
+    method @Deprecated public void testActivityTestCaseSetUpProperly() throws java.lang.Exception;
   }
 
   public abstract class ActivityInstrumentationTestCase2<T extends android.app.Activity> extends android.test.ActivityTestCase {
@@ -20415,12 +20415,12 @@ package android.test {
   }
 
   @Deprecated public class AssertionFailedError extends java.lang.Error {
-    ctor public AssertionFailedError();
-    ctor public AssertionFailedError(String);
+    ctor @Deprecated public AssertionFailedError();
+    ctor @Deprecated public AssertionFailedError(String);
   }
 
   @Deprecated public class ComparisonFailure extends android.test.AssertionFailedError {
-    ctor public ComparisonFailure(String, String, String);
+    ctor @Deprecated public ComparisonFailure(String, String, String);
   }
 
   @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.METHOD}) public @interface FlakyTest {
@@ -20528,11 +20528,11 @@ package android.test {
   }
 
   @Deprecated public abstract class ProviderTestCase<T extends android.content.ContentProvider> extends android.test.InstrumentationTestCase {
-    ctor public ProviderTestCase(Class<T>, String);
-    method public android.test.mock.MockContentResolver getMockContentResolver();
-    method public android.test.IsolatedContext getMockContext();
-    method public T getProvider();
-    method public static <T extends android.content.ContentProvider> android.content.ContentResolver newResolverWithContentProviderFromSql(android.content.Context, Class<T>, String, String, int, String) throws java.lang.IllegalAccessException, java.lang.InstantiationException;
+    ctor @Deprecated public ProviderTestCase(Class<T>, String);
+    method @Deprecated public android.test.mock.MockContentResolver getMockContentResolver();
+    method @Deprecated public android.test.IsolatedContext getMockContext();
+    method @Deprecated public T getProvider();
+    method @Deprecated public static <T extends android.content.ContentProvider> android.content.ContentResolver newResolverWithContentProviderFromSql(android.content.Context, Class<T>, String, String, int, String) throws java.lang.IllegalAccessException, java.lang.InstantiationException;
   }
 
   public abstract class ProviderTestCase2<T extends android.content.ContentProvider> extends android.test.AndroidTestCase {
@@ -20994,10 +20994,10 @@ package android.text {
   }
 
   @Deprecated public abstract class ClipboardManager {
-    ctor public ClipboardManager();
-    method public abstract CharSequence getText();
-    method public abstract boolean hasText();
-    method public abstract void setText(CharSequence);
+    ctor @Deprecated public ClipboardManager();
+    method @Deprecated public abstract CharSequence getText();
+    method @Deprecated public abstract boolean hasText();
+    method @Deprecated public abstract void setText(CharSequence);
   }
 
   public class DynamicLayout extends android.text.Layout {
@@ -22371,10 +22371,10 @@ package android.util {
   }
 
   @Deprecated public class EventLogTags {
-    ctor public EventLogTags() throws java.io.IOException;
-    ctor public EventLogTags(java.io.BufferedReader) throws java.io.IOException;
-    method public android.util.EventLogTags.Description get(String);
-    method public android.util.EventLogTags.Description get(int);
+    ctor @Deprecated public EventLogTags() throws java.io.IOException;
+    ctor @Deprecated public EventLogTags(java.io.BufferedReader) throws java.io.IOException;
+    method @Deprecated public android.util.EventLogTags.Description get(String);
+    method @Deprecated public android.util.EventLogTags.Description get(int);
   }
 
   public static class EventLogTags.Description {
@@ -23086,11 +23086,11 @@ package android.view {
   }
 
   @Deprecated public static class KeyCharacterMap.KeyData {
-    ctor public KeyCharacterMap.KeyData();
-    field public static final int META_LENGTH = 4; // 0x4
-    field public char displayLabel;
-    field public char[] meta;
-    field public char number;
+    ctor @Deprecated public KeyCharacterMap.KeyData();
+    field @Deprecated public static final int META_LENGTH = 4; // 0x4
+    field @Deprecated public char displayLabel;
+    field @Deprecated public char[] meta;
+    field @Deprecated public char number;
   }
 
   public static class KeyCharacterMap.UnavailableException extends android.util.AndroidRuntimeException {
@@ -23775,14 +23775,14 @@ package android.view {
   }
 
   @Deprecated public abstract class OrientationListener implements android.hardware.SensorListener {
-    ctor public OrientationListener(android.content.Context);
-    ctor public OrientationListener(android.content.Context, int);
-    method public void disable();
-    method public void enable();
-    method public void onAccuracyChanged(int, int);
-    method public abstract void onOrientationChanged(int);
-    method public void onSensorChanged(int, float[]);
-    field public static final int ORIENTATION_UNKNOWN = -1; // 0xffffffff
+    ctor @Deprecated public OrientationListener(android.content.Context);
+    ctor @Deprecated public OrientationListener(android.content.Context, int);
+    method @Deprecated public void disable();
+    method @Deprecated public void enable();
+    method @Deprecated public void onAccuracyChanged(int, int);
+    method @Deprecated public abstract void onOrientationChanged(int);
+    method @Deprecated public void onSensorChanged(int, float[]);
+    field @Deprecated public static final int ORIENTATION_UNKNOWN = -1; // 0xffffffff
   }
 
   public class ScaleGestureDetector {
@@ -24623,14 +24623,14 @@ package android.view {
   }
 
   @Deprecated public enum ViewDebug.HierarchyTraceType {
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType BUILD_CACHE;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType DRAW;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType INVALIDATE;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType INVALIDATE_CHILD;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType INVALIDATE_CHILD_IN_PARENT;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType ON_LAYOUT;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType ON_MEASURE;
-    enum_constant public static final android.view.ViewDebug.HierarchyTraceType REQUEST_LAYOUT;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType BUILD_CACHE;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType DRAW;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType INVALIDATE;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType INVALIDATE_CHILD;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType INVALIDATE_CHILD_IN_PARENT;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType ON_LAYOUT;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType ON_MEASURE;
+    enum_constant @Deprecated public static final android.view.ViewDebug.HierarchyTraceType REQUEST_LAYOUT;
   }
 
   @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public static @interface ViewDebug.IntToString {
@@ -24639,12 +24639,12 @@ package android.view {
   }
 
   @Deprecated public enum ViewDebug.RecyclerTraceType {
-    enum_constant public static final android.view.ViewDebug.RecyclerTraceType BIND_VIEW;
-    enum_constant public static final android.view.ViewDebug.RecyclerTraceType MOVE_FROM_ACTIVE_TO_SCRAP_HEAP;
-    enum_constant public static final android.view.ViewDebug.RecyclerTraceType MOVE_TO_SCRAP_HEAP;
-    enum_constant public static final android.view.ViewDebug.RecyclerTraceType NEW_VIEW;
-    enum_constant public static final android.view.ViewDebug.RecyclerTraceType RECYCLE_FROM_ACTIVE_HEAP;
-    enum_constant public static final android.view.ViewDebug.RecyclerTraceType RECYCLE_FROM_SCRAP_HEAP;
+    enum_constant @Deprecated public static final android.view.ViewDebug.RecyclerTraceType BIND_VIEW;
+    enum_constant @Deprecated public static final android.view.ViewDebug.RecyclerTraceType MOVE_FROM_ACTIVE_TO_SCRAP_HEAP;
+    enum_constant @Deprecated public static final android.view.ViewDebug.RecyclerTraceType MOVE_TO_SCRAP_HEAP;
+    enum_constant @Deprecated public static final android.view.ViewDebug.RecyclerTraceType NEW_VIEW;
+    enum_constant @Deprecated public static final android.view.ViewDebug.RecyclerTraceType RECYCLE_FROM_ACTIVE_HEAP;
+    enum_constant @Deprecated public static final android.view.ViewDebug.RecyclerTraceType RECYCLE_FROM_SCRAP_HEAP;
   }
 
   public abstract class ViewGroup extends android.view.View implements android.view.ViewManager android.view.ViewParent {
@@ -26074,7 +26074,7 @@ package android.view.textservice {
 package android.webkit {
 
   @Deprecated public final class CacheManager {
-    ctor public CacheManager();
+    ctor @Deprecated public CacheManager();
     method @Deprecated public static boolean cacheDisabled();
     method @Deprecated public static boolean endCacheTransaction();
     method @Deprecated public static android.webkit.CacheManager.CacheResult getCacheFile(String, java.util.Map<java.lang.String,java.lang.String>);
@@ -26084,22 +26084,22 @@ package android.webkit {
   }
 
   @Deprecated public static class CacheManager.CacheResult {
-    ctor public CacheManager.CacheResult();
-    method public String getContentDisposition();
-    method public long getContentLength();
-    method public String getETag();
-    method public String getEncoding();
-    method public long getExpires();
-    method public String getExpiresString();
-    method public int getHttpStatusCode();
-    method public java.io.InputStream getInputStream();
-    method public String getLastModified();
-    method public String getLocalPath();
-    method public String getLocation();
-    method public String getMimeType();
-    method public java.io.OutputStream getOutputStream();
-    method public void setEncoding(String);
-    method public void setInputStream(java.io.InputStream);
+    ctor @Deprecated public CacheManager.CacheResult();
+    method @Deprecated public String getContentDisposition();
+    method @Deprecated public long getContentLength();
+    method @Deprecated public String getETag();
+    method @Deprecated public String getEncoding();
+    method @Deprecated public long getExpires();
+    method @Deprecated public String getExpiresString();
+    method @Deprecated public int getHttpStatusCode();
+    method @Deprecated public java.io.InputStream getInputStream();
+    method @Deprecated public String getLastModified();
+    method @Deprecated public String getLocalPath();
+    method @Deprecated public String getLocation();
+    method @Deprecated public String getMimeType();
+    method @Deprecated public java.io.OutputStream getOutputStream();
+    method @Deprecated public void setEncoding(String);
+    method @Deprecated public void setInputStream(java.io.InputStream);
   }
 
   public class ConsoleMessage {
@@ -26425,11 +26425,11 @@ package android.webkit {
   }
 
   @Deprecated public enum WebSettings.TextSize {
-    enum_constant public static final android.webkit.WebSettings.TextSize LARGER;
-    enum_constant public static final android.webkit.WebSettings.TextSize LARGEST;
-    enum_constant public static final android.webkit.WebSettings.TextSize NORMAL;
-    enum_constant public static final android.webkit.WebSettings.TextSize SMALLER;
-    enum_constant public static final android.webkit.WebSettings.TextSize SMALLEST;
+    enum_constant @Deprecated public static final android.webkit.WebSettings.TextSize LARGER;
+    enum_constant @Deprecated public static final android.webkit.WebSettings.TextSize LARGEST;
+    enum_constant @Deprecated public static final android.webkit.WebSettings.TextSize NORMAL;
+    enum_constant @Deprecated public static final android.webkit.WebSettings.TextSize SMALLER;
+    enum_constant @Deprecated public static final android.webkit.WebSettings.TextSize SMALLEST;
   }
 
   public enum WebSettings.ZoomDensity {
@@ -26777,9 +26777,9 @@ package android.widget {
   }
 
   @Deprecated @android.widget.RemoteViews.RemoteView public class AbsoluteLayout extends android.view.ViewGroup {
-    ctor public AbsoluteLayout(android.content.Context);
-    ctor public AbsoluteLayout(android.content.Context, android.util.AttributeSet);
-    ctor public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int);
+    ctor @Deprecated public AbsoluteLayout(android.content.Context);
+    ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int);
   }
 
   public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
@@ -27403,20 +27403,20 @@ package android.widget {
   }
 
   @Deprecated public class Gallery extends android.widget.AbsSpinner implements android.view.GestureDetector.OnGestureListener {
-    ctor public Gallery(android.content.Context);
-    ctor public Gallery(android.content.Context, android.util.AttributeSet);
-    ctor public Gallery(android.content.Context, android.util.AttributeSet, int);
-    method public boolean onDown(android.view.MotionEvent);
-    method public boolean onFling(android.view.MotionEvent, android.view.MotionEvent, float, float);
-    method public void onLongPress(android.view.MotionEvent);
-    method public boolean onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float);
-    method public void onShowPress(android.view.MotionEvent);
-    method public boolean onSingleTapUp(android.view.MotionEvent);
-    method public void setAnimationDuration(int);
-    method public void setCallbackDuringFling(boolean);
-    method public void setGravity(int);
-    method public void setSpacing(int);
-    method public void setUnselectedAlpha(float);
+    ctor @Deprecated public Gallery(android.content.Context);
+    ctor @Deprecated public Gallery(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public Gallery(android.content.Context, android.util.AttributeSet, int);
+    method @Deprecated public boolean onDown(android.view.MotionEvent);
+    method @Deprecated public boolean onFling(android.view.MotionEvent, android.view.MotionEvent, float, float);
+    method @Deprecated public void onLongPress(android.view.MotionEvent);
+    method @Deprecated public boolean onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float);
+    method @Deprecated public void onShowPress(android.view.MotionEvent);
+    method @Deprecated public boolean onSingleTapUp(android.view.MotionEvent);
+    method @Deprecated public void setAnimationDuration(int);
+    method @Deprecated public void setCallbackDuringFling(boolean);
+    method @Deprecated public void setGravity(int);
+    method @Deprecated public void setSpacing(int);
+    method @Deprecated public void setUnselectedAlpha(float);
   }
 
   public static class Gallery.LayoutParams extends android.view.ViewGroup.LayoutParams {
@@ -28982,13 +28982,13 @@ package com.android.internal.util {
 package dalvik.annotation {
 
   @Deprecated @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.ANNOTATION_TYPE}) public @interface TestTarget {
-    method public abstract String conceptName() default "";
-    method public abstract Class<?>[] methodArgs() default {};
+    method @Deprecated public abstract String conceptName() default "";
+    method @Deprecated public abstract Class<?>[] methodArgs() default {};
     method public abstract String methodName() default "";
   }
 
   @Deprecated @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public @interface TestTargetClass {
-    method public abstract Class<?> value();
+    method @Deprecated public abstract Class<?> value();
   }
 
 }
@@ -29857,9 +29857,9 @@ package java.io {
   }
 
   @Deprecated public class LineNumberInputStream extends java.io.FilterInputStream {
-    ctor public LineNumberInputStream(java.io.InputStream);
-    method public int getLineNumber();
-    method public void setLineNumber(int);
+    ctor @Deprecated public LineNumberInputStream(java.io.InputStream);
+    method @Deprecated public int getLineNumber();
+    method @Deprecated public void setLineNumber(int);
   }
 
   public class LineNumberReader extends java.io.BufferedReader {
@@ -30335,15 +30335,15 @@ package java.io {
   }
 
   @Deprecated public class StringBufferInputStream extends java.io.InputStream {
-    ctor public StringBufferInputStream(String);
-    method public int available();
-    method public int read();
-    method public int read(byte[], int, int);
-    method public void reset();
-    method public long skip(long);
-    field protected String buffer;
-    field protected int count;
-    field protected int pos;
+    ctor @Deprecated public StringBufferInputStream(String);
+    method @Deprecated public int available();
+    method @Deprecated public int read();
+    method @Deprecated public int read(byte[], int, int);
+    method @Deprecated public void reset();
+    method @Deprecated public long skip(long);
+    field @Deprecated protected String buffer;
+    field @Deprecated protected int count;
+    field @Deprecated protected int pos;
   }
 
   public class StringReader extends java.io.Reader {
@@ -34027,13 +34027,13 @@ package java.security {
   }
 
   @Deprecated public interface Certificate {
-    method public void decode(java.io.InputStream) throws java.io.IOException, java.security.KeyException;
-    method public void encode(java.io.OutputStream) throws java.io.IOException, java.security.KeyException;
-    method public String getFormat();
-    method public java.security.Principal getGuarantor();
-    method public java.security.Principal getPrincipal();
-    method public java.security.PublicKey getPublicKey();
-    method public String toString(boolean);
+    method @Deprecated public void decode(java.io.InputStream) throws java.io.IOException, java.security.KeyException;
+    method @Deprecated public void encode(java.io.OutputStream) throws java.io.IOException, java.security.KeyException;
+    method @Deprecated public String getFormat();
+    method @Deprecated public java.security.Principal getGuarantor();
+    method @Deprecated public java.security.Principal getPrincipal();
+    method @Deprecated public java.security.PublicKey getPublicKey();
+    method @Deprecated public String toString(boolean);
   }
 
   public final class CodeSigner implements java.io.Serializable {
@@ -34095,36 +34095,36 @@ package java.security {
   }
 
   @Deprecated public abstract class Identity implements java.security.Principal java.io.Serializable {
-    ctor protected Identity();
-    ctor public Identity(String);
-    ctor public Identity(String, java.security.IdentityScope) throws java.security.KeyManagementException;
-    method public void addCertificate(java.security.Certificate) throws java.security.KeyManagementException;
-    method public java.security.Certificate[] certificates();
-    method public final boolean equals(Object);
-    method public String getInfo();
-    method public final String getName();
-    method public java.security.PublicKey getPublicKey();
-    method public final java.security.IdentityScope getScope();
-    method protected boolean identityEquals(java.security.Identity);
-    method public void removeCertificate(java.security.Certificate) throws java.security.KeyManagementException;
-    method public void setInfo(String);
-    method public void setPublicKey(java.security.PublicKey) throws java.security.KeyManagementException;
-    method public String toString(boolean);
+    ctor @Deprecated protected Identity();
+    ctor @Deprecated public Identity(String);
+    ctor @Deprecated public Identity(String, java.security.IdentityScope) throws java.security.KeyManagementException;
+    method @Deprecated public void addCertificate(java.security.Certificate) throws java.security.KeyManagementException;
+    method @Deprecated public java.security.Certificate[] certificates();
+    method @Deprecated public final boolean equals(Object);
+    method @Deprecated public String getInfo();
+    method @Deprecated public final String getName();
+    method @Deprecated public java.security.PublicKey getPublicKey();
+    method @Deprecated public final java.security.IdentityScope getScope();
+    method @Deprecated protected boolean identityEquals(java.security.Identity);
+    method @Deprecated public void removeCertificate(java.security.Certificate) throws java.security.KeyManagementException;
+    method @Deprecated public void setInfo(String);
+    method @Deprecated public void setPublicKey(java.security.PublicKey) throws java.security.KeyManagementException;
+    method @Deprecated public String toString(boolean);
   }
 
   @Deprecated public abstract class IdentityScope extends java.security.Identity {
-    ctor protected IdentityScope();
-    ctor public IdentityScope(String);
-    ctor public IdentityScope(String, java.security.IdentityScope) throws java.security.KeyManagementException;
-    method public abstract void addIdentity(java.security.Identity) throws java.security.KeyManagementException;
-    method public abstract java.security.Identity getIdentity(String);
-    method public java.security.Identity getIdentity(java.security.Principal);
-    method public abstract java.security.Identity getIdentity(java.security.PublicKey);
-    method public static java.security.IdentityScope getSystemScope();
-    method public abstract java.util.Enumeration<java.security.Identity> identities();
-    method public abstract void removeIdentity(java.security.Identity) throws java.security.KeyManagementException;
-    method protected static void setSystemScope(java.security.IdentityScope);
-    method public abstract int size();
+    ctor @Deprecated protected IdentityScope();
+    ctor @Deprecated public IdentityScope(String);
+    ctor @Deprecated public IdentityScope(String, java.security.IdentityScope) throws java.security.KeyManagementException;
+    method @Deprecated public abstract void addIdentity(java.security.Identity) throws java.security.KeyManagementException;
+    method @Deprecated public abstract java.security.Identity getIdentity(String);
+    method @Deprecated public java.security.Identity getIdentity(java.security.Principal);
+    method @Deprecated public abstract java.security.Identity getIdentity(java.security.PublicKey);
+    method @Deprecated public static java.security.IdentityScope getSystemScope();
+    method @Deprecated public abstract java.util.Enumeration<java.security.Identity> identities();
+    method @Deprecated public abstract void removeIdentity(java.security.Identity) throws java.security.KeyManagementException;
+    method @Deprecated protected static void setSystemScope(java.security.IdentityScope);
+    method @Deprecated public abstract int size();
   }
 
   public class InvalidAlgorithmParameterException extends java.security.GeneralSecurityException {
@@ -34620,11 +34620,11 @@ package java.security {
   }
 
   @Deprecated public abstract class Signer extends java.security.Identity {
-    ctor protected Signer();
-    ctor public Signer(String);
-    ctor public Signer(String, java.security.IdentityScope) throws java.security.KeyManagementException;
-    method public java.security.PrivateKey getPrivateKey();
-    method public final void setKeyPair(java.security.KeyPair) throws java.security.InvalidParameterException, java.security.KeyException;
+    ctor @Deprecated protected Signer();
+    ctor @Deprecated public Signer(String);
+    ctor @Deprecated public Signer(String, java.security.IdentityScope) throws java.security.KeyManagementException;
+    method @Deprecated public java.security.PrivateKey getPrivateKey();
+    method @Deprecated public final void setKeyPair(java.security.KeyPair) throws java.security.InvalidParameterException, java.security.KeyException;
   }
 
   public final class Timestamp implements java.io.Serializable {
@@ -47286,12 +47286,12 @@ package org.w3c.dom.ls {
 package org.xml.sax {
 
   @Deprecated public interface AttributeList {
-    method public int getLength();
-    method public String getName(int);
-    method public String getType(int);
-    method public String getType(String);
-    method public String getValue(int);
-    method public String getValue(String);
+    method @Deprecated public int getLength();
+    method @Deprecated public String getName(int);
+    method @Deprecated public String getType(int);
+    method @Deprecated public String getType(String);
+    method @Deprecated public String getValue(int);
+    method @Deprecated public String getValue(String);
   }
 
   public interface Attributes {
@@ -47329,14 +47329,14 @@ package org.xml.sax {
   }
 
   @Deprecated public interface DocumentHandler {
-    method public void characters(char[], int, int) throws org.xml.sax.SAXException;
-    method public void endDocument() throws org.xml.sax.SAXException;
-    method public void endElement(String) throws org.xml.sax.SAXException;
-    method public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
-    method public void processingInstruction(String, String) throws org.xml.sax.SAXException;
-    method public void setDocumentLocator(org.xml.sax.Locator);
-    method public void startDocument() throws org.xml.sax.SAXException;
-    method public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
+    method @Deprecated public void characters(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void endDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void endElement(String) throws org.xml.sax.SAXException;
+    method @Deprecated public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void processingInstruction(String, String) throws org.xml.sax.SAXException;
+    method @Deprecated public void setDocumentLocator(org.xml.sax.Locator);
+    method @Deprecated public void startDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
   }
 
   public interface EntityResolver {
@@ -47350,21 +47350,21 @@ package org.xml.sax {
   }
 
   @Deprecated public class HandlerBase implements org.xml.sax.DTDHandler org.xml.sax.DocumentHandler org.xml.sax.EntityResolver org.xml.sax.ErrorHandler {
-    ctor public HandlerBase();
-    method public void characters(char[], int, int) throws org.xml.sax.SAXException;
-    method public void endDocument() throws org.xml.sax.SAXException;
-    method public void endElement(String) throws org.xml.sax.SAXException;
-    method public void error(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
-    method public void fatalError(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
-    method public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
-    method public void notationDecl(String, String, String);
-    method public void processingInstruction(String, String) throws org.xml.sax.SAXException;
-    method public org.xml.sax.InputSource resolveEntity(String, String) throws org.xml.sax.SAXException;
-    method public void setDocumentLocator(org.xml.sax.Locator);
-    method public void startDocument() throws org.xml.sax.SAXException;
-    method public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
-    method public void unparsedEntityDecl(String, String, String, String);
-    method public void warning(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
+    ctor @Deprecated public HandlerBase();
+    method @Deprecated public void characters(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void endDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void endElement(String) throws org.xml.sax.SAXException;
+    method @Deprecated public void error(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
+    method @Deprecated public void fatalError(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
+    method @Deprecated public void ignorableWhitespace(char[], int, int) throws org.xml.sax.SAXException;
+    method @Deprecated public void notationDecl(String, String, String);
+    method @Deprecated public void processingInstruction(String, String) throws org.xml.sax.SAXException;
+    method @Deprecated public org.xml.sax.InputSource resolveEntity(String, String) throws org.xml.sax.SAXException;
+    method @Deprecated public void setDocumentLocator(org.xml.sax.Locator);
+    method @Deprecated public void startDocument() throws org.xml.sax.SAXException;
+    method @Deprecated public void startElement(String, org.xml.sax.AttributeList) throws org.xml.sax.SAXException;
+    method @Deprecated public void unparsedEntityDecl(String, String, String, String);
+    method @Deprecated public void warning(org.xml.sax.SAXParseException) throws org.xml.sax.SAXException;
   }
 
   public class InputSource {
@@ -47392,13 +47392,13 @@ package org.xml.sax {
   }
 
   @Deprecated public interface Parser {
-    method public void parse(org.xml.sax.InputSource) throws java.io.IOException, org.xml.sax.SAXException;
-    method public void parse(String) throws java.io.IOException, org.xml.sax.SAXException;
-    method public void setDTDHandler(org.xml.sax.DTDHandler);
-    method public void setDocumentHandler(org.xml.sax.DocumentHandler);
-    method public void setEntityResolver(org.xml.sax.EntityResolver);
-    method public void setErrorHandler(org.xml.sax.ErrorHandler);
-    method public void setLocale(java.util.Locale) throws org.xml.sax.SAXException;
+    method @Deprecated public void parse(org.xml.sax.InputSource) throws java.io.IOException, org.xml.sax.SAXException;
+    method @Deprecated public void parse(String) throws java.io.IOException, org.xml.sax.SAXException;
+    method @Deprecated public void setDTDHandler(org.xml.sax.DTDHandler);
+    method @Deprecated public void setDocumentHandler(org.xml.sax.DocumentHandler);
+    method @Deprecated public void setEntityResolver(org.xml.sax.EntityResolver);
+    method @Deprecated public void setErrorHandler(org.xml.sax.ErrorHandler);
+    method @Deprecated public void setLocale(java.util.Locale) throws org.xml.sax.SAXException;
   }
 
   public class SAXException extends java.lang.Exception {
@@ -47536,18 +47536,18 @@ package org.xml.sax.ext {
 package org.xml.sax.helpers {
 
   @Deprecated public class AttributeListImpl implements org.xml.sax.AttributeList {
-    ctor public AttributeListImpl();
-    ctor public AttributeListImpl(org.xml.sax.AttributeList);
-    method public void addAttribute(String, String, String);
-    method public void clear();
-    method public int getLength();
-    method public String getName(int);
-    method public String getType(int);
-    method public String getType(String);
-    method public String getValue(int);
-    method public String getValue(String);
-    method public void removeAttribute(String);
-    method public void setAttributeList(org.xml.sax.AttributeList);
+    ctor @Deprecated public AttributeListImpl();
+    ctor @Deprecated public AttributeListImpl(org.xml.sax.AttributeList);
+    method @Deprecated public void addAttribute(String, String, String);
+    method @Deprecated public void clear();
+    method @Deprecated public int getLength();
+    method @Deprecated public String getName(int);
+    method @Deprecated public String getType(int);
+    method @Deprecated public String getType(String);
+    method @Deprecated public String getValue(int);
+    method @Deprecated public String getValue(String);
+    method @Deprecated public void removeAttribute(String);
+    method @Deprecated public void setAttributeList(org.xml.sax.AttributeList);
   }
 
   public class AttributesImpl implements org.xml.sax.Attributes {
@@ -47657,8 +47657,8 @@ package org.xml.sax.helpers {
   }
 
   @Deprecated public class ParserFactory {
-    method public static org.xml.sax.Parser makeParser() throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.NullPointerException;
-    method public static org.xml.sax.Parser makeParser(String) throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException;
+    method @Deprecated public static org.xml.sax.Parser makeParser() throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.NullPointerException;
+    method @Deprecated public static org.xml.sax.Parser makeParser(String) throws java.lang.ClassCastException, java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException;
   }
 
   public class XMLFilterImpl implements org.xml.sax.ContentHandler org.xml.sax.DTDHandler org.xml.sax.EntityResolver org.xml.sax.ErrorHandler org.xml.sax.XMLFilter {
