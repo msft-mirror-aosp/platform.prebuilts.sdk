@@ -11062,7 +11062,7 @@ package android.database {
     method public android.database.CursorJoiner.Result next();
   }
 
-  public static final class CursorJoiner.Result extends java.lang.Enum {
+  public enum CursorJoiner.Result {
     method public static android.database.CursorJoiner.Result valueOf(java.lang.String);
     method public static final android.database.CursorJoiner.Result[] values();
     enum_constant public static final android.database.CursorJoiner.Result BOTH;
@@ -12049,7 +12049,7 @@ package android.graphics {
     field public static final int DENSITY_NONE = 0; // 0x0
   }
 
-  public static final class Bitmap.CompressFormat extends java.lang.Enum {
+  public enum Bitmap.CompressFormat {
     method public static android.graphics.Bitmap.CompressFormat valueOf(java.lang.String);
     method public static final android.graphics.Bitmap.CompressFormat[] values();
     enum_constant public static final android.graphics.Bitmap.CompressFormat JPEG;
@@ -12057,7 +12057,7 @@ package android.graphics {
     enum_constant public static final android.graphics.Bitmap.CompressFormat WEBP;
   }
 
-  public static final class Bitmap.Config extends java.lang.Enum {
+  public enum Bitmap.Config {
     method public static android.graphics.Bitmap.Config valueOf(java.lang.String);
     method public static final android.graphics.Bitmap.Config[] values();
     enum_constant public static final android.graphics.Bitmap.Config ALPHA_8;
@@ -12125,7 +12125,7 @@ package android.graphics {
     ctor public BlurMaskFilter(float, android.graphics.BlurMaskFilter.Blur);
   }
 
-  public static final class BlurMaskFilter.Blur extends java.lang.Enum {
+  public enum BlurMaskFilter.Blur {
     method public static android.graphics.BlurMaskFilter.Blur valueOf(java.lang.String);
     method public static final android.graphics.BlurMaskFilter.Blur[] values();
     enum_constant public static final android.graphics.BlurMaskFilter.Blur INNER;
@@ -12256,14 +12256,14 @@ package android.graphics {
     field public static final int MATRIX_SAVE_FLAG = 1; // 0x1
   }
 
-  public static final class Canvas.EdgeType extends java.lang.Enum {
+  public enum Canvas.EdgeType {
     method public static android.graphics.Canvas.EdgeType valueOf(java.lang.String);
     method public static final android.graphics.Canvas.EdgeType[] values();
     enum_constant public static final android.graphics.Canvas.EdgeType AA;
     enum_constant public static final android.graphics.Canvas.EdgeType BW;
   }
 
-  public static final class Canvas.VertexMode extends java.lang.Enum {
+  public enum Canvas.VertexMode {
     method public static android.graphics.Canvas.VertexMode valueOf(java.lang.String);
     method public static final android.graphics.Canvas.VertexMode[] values();
     enum_constant public static final android.graphics.Canvas.VertexMode TRIANGLES;
@@ -12393,7 +12393,7 @@ package android.graphics {
     method public android.graphics.Interpolator.Result timeToValues(int, float[]);
   }
 
-  public static final class Interpolator.Result extends java.lang.Enum {
+  public enum Interpolator.Result {
     method public static android.graphics.Interpolator.Result valueOf(java.lang.String);
     method public static final android.graphics.Interpolator.Result[] values();
     enum_constant public static final android.graphics.Interpolator.Result FREEZE_END;
@@ -12480,7 +12480,7 @@ package android.graphics {
     field public static final int MTRANS_Y = 5; // 0x5
   }
 
-  public static final class Matrix.ScaleToFit extends java.lang.Enum {
+  public enum Matrix.ScaleToFit {
     method public static android.graphics.Matrix.ScaleToFit valueOf(java.lang.String);
     method public static final android.graphics.Matrix.ScaleToFit[] values();
     enum_constant public static final android.graphics.Matrix.ScaleToFit CENTER;
@@ -12658,7 +12658,7 @@ package android.graphics {
     field public static final int UNDERLINE_TEXT_FLAG = 8; // 0x8
   }
 
-  public static final class Paint.Align extends java.lang.Enum {
+  public enum Paint.Align {
     method public static android.graphics.Paint.Align valueOf(java.lang.String);
     method public static final android.graphics.Paint.Align[] values();
     enum_constant public static final android.graphics.Paint.Align CENTER;
@@ -12666,7 +12666,7 @@ package android.graphics {
     enum_constant public static final android.graphics.Paint.Align RIGHT;
   }
 
-  public static final class Paint.Cap extends java.lang.Enum {
+  public enum Paint.Cap {
     method public static android.graphics.Paint.Cap valueOf(java.lang.String);
     method public static final android.graphics.Paint.Cap[] values();
     enum_constant public static final android.graphics.Paint.Cap BUTT;
@@ -12692,7 +12692,7 @@ package android.graphics {
     field public int top;
   }
 
-  public static final class Paint.Join extends java.lang.Enum {
+  public enum Paint.Join {
     method public static android.graphics.Paint.Join valueOf(java.lang.String);
     method public static final android.graphics.Paint.Join[] values();
     enum_constant public static final android.graphics.Paint.Join BEVEL;
@@ -12700,7 +12700,7 @@ package android.graphics {
     enum_constant public static final android.graphics.Paint.Join ROUND;
   }
 
-  public static final class Paint.Style extends java.lang.Enum {
+  public enum Paint.Style {
     method public static android.graphics.Paint.Style valueOf(java.lang.String);
     method public static final android.graphics.Paint.Style[] values();
     enum_constant public static final android.graphics.Paint.Style FILL;
@@ -12762,14 +12762,14 @@ package android.graphics {
     method public void transform(android.graphics.Matrix);
   }
 
-  public static final class Path.Direction extends java.lang.Enum {
+  public enum Path.Direction {
     method public static android.graphics.Path.Direction valueOf(java.lang.String);
     method public static final android.graphics.Path.Direction[] values();
     enum_constant public static final android.graphics.Path.Direction CCW;
     enum_constant public static final android.graphics.Path.Direction CW;
   }
 
-  public static final class Path.FillType extends java.lang.Enum {
+  public enum Path.FillType {
     method public static android.graphics.Path.FillType valueOf(java.lang.String);
     method public static final android.graphics.Path.FillType[] values();
     enum_constant public static final android.graphics.Path.FillType EVEN_ODD;
@@ -12778,7 +12778,7 @@ package android.graphics {
     enum_constant public static final android.graphics.Path.FillType WINDING;
   }
 
-  public static final class Path.Op extends java.lang.Enum {
+  public enum Path.Op {
     method public static android.graphics.Path.Op valueOf(java.lang.String);
     method public static final android.graphics.Path.Op[] values();
     enum_constant public static final android.graphics.Path.Op DIFFERENCE;
@@ -12792,7 +12792,7 @@ package android.graphics {
     ctor public PathDashPathEffect(android.graphics.Path, float, float, android.graphics.PathDashPathEffect.Style);
   }
 
-  public static final class PathDashPathEffect.Style extends java.lang.Enum {
+  public enum PathDashPathEffect.Style {
     method public static android.graphics.PathDashPathEffect.Style valueOf(java.lang.String);
     method public static final android.graphics.PathDashPathEffect.Style[] values();
     enum_constant public static final android.graphics.PathDashPathEffect.Style MORPH;
@@ -12895,7 +12895,7 @@ package android.graphics {
     ctor public PorterDuff();
   }
 
-  public static final class PorterDuff.Mode extends java.lang.Enum {
+  public enum PorterDuff.Mode {
     method public static android.graphics.PorterDuff.Mode valueOf(java.lang.String);
     method public static final android.graphics.PorterDuff.Mode[] values();
     enum_constant public static final android.graphics.PorterDuff.Mode ADD;
@@ -13055,7 +13055,7 @@ package android.graphics {
     field public static final android.os.Parcelable.Creator<android.graphics.Region> CREATOR;
   }
 
-  public static final class Region.Op extends java.lang.Enum {
+  public enum Region.Op {
     method public static android.graphics.Region.Op valueOf(java.lang.String);
     method public static final android.graphics.Region.Op[] values();
     enum_constant public static final android.graphics.Region.Op DIFFERENCE;
@@ -13077,7 +13077,7 @@ package android.graphics {
     method public void setLocalMatrix(android.graphics.Matrix);
   }
 
-  public static final class Shader.TileMode extends java.lang.Enum {
+  public enum Shader.TileMode {
     method public static android.graphics.Shader.TileMode valueOf(java.lang.String);
     method public static final android.graphics.Shader.TileMode[] values();
     enum_constant public static final android.graphics.Shader.TileMode CLAMP;
@@ -13444,7 +13444,7 @@ package android.graphics.drawable {
     field public static final int SWEEP_GRADIENT = 2; // 0x2
   }
 
-  public static final class GradientDrawable.Orientation extends java.lang.Enum {
+  public enum GradientDrawable.Orientation {
     method public static android.graphics.drawable.GradientDrawable.Orientation valueOf(java.lang.String);
     method public static final android.graphics.drawable.GradientDrawable.Orientation[] values();
     enum_constant public static final android.graphics.drawable.GradientDrawable.Orientation BL_TR;
@@ -17295,7 +17295,7 @@ package android.icu.lang {
     field public static final int YI = 41; // 0x29
   }
 
-  public static final class UScript.ScriptUsage extends java.lang.Enum {
+  public enum UScript.ScriptUsage {
     method public static android.icu.lang.UScript.ScriptUsage valueOf(java.lang.String);
     method public static final android.icu.lang.UScript.ScriptUsage[] values();
     enum_constant public static final android.icu.lang.UScript.ScriptUsage ASPIRATIONAL;
@@ -17445,7 +17445,7 @@ package android.icu.text {
     method public int size();
   }
 
-  public static final class AlphabeticIndex.Bucket.LabelType extends java.lang.Enum {
+  public enum AlphabeticIndex.Bucket.LabelType {
     method public static android.icu.text.AlphabeticIndex.Bucket.LabelType valueOf(java.lang.String);
     method public static final android.icu.text.AlphabeticIndex.Bucket.LabelType[] values();
     enum_constant public static final android.icu.text.AlphabeticIndex.Bucket.LabelType INFLOW;
@@ -17614,7 +17614,7 @@ package android.icu.text {
     method public static android.icu.text.CompactDecimalFormat getInstance(java.util.Locale, android.icu.text.CompactDecimalFormat.CompactStyle);
   }
 
-  public static final class CompactDecimalFormat.CompactStyle extends java.lang.Enum {
+  public enum CompactDecimalFormat.CompactStyle {
     method public static android.icu.text.CompactDecimalFormat.CompactStyle valueOf(java.lang.String);
     method public static final android.icu.text.CompactDecimalFormat.CompactStyle[] values();
     enum_constant public static final android.icu.text.CompactDecimalFormat.CompactStyle LONG;
@@ -17788,7 +17788,7 @@ package android.icu.text {
     field protected android.icu.text.NumberFormat numberFormat;
   }
 
-  public static final class DateFormat.BooleanAttribute extends java.lang.Enum {
+  public enum DateFormat.BooleanAttribute {
     method public static android.icu.text.DateFormat.BooleanAttribute valueOf(java.lang.String);
     method public static final android.icu.text.DateFormat.BooleanAttribute[] values();
     enum_constant public static final android.icu.text.DateFormat.BooleanAttribute PARSE_ALLOW_NUMERIC;
@@ -18107,7 +18107,7 @@ package android.icu.text {
     field public static final int CURRENCY_SPC_SURROUNDING_MATCH = 1; // 0x1
   }
 
-  public final class DisplayContext extends java.lang.Enum {
+  public enum DisplayContext {
     method public android.icu.text.DisplayContext.Type type();
     method public int value();
     method public static android.icu.text.DisplayContext valueOf(java.lang.String);
@@ -18123,7 +18123,7 @@ package android.icu.text {
     enum_constant public static final android.icu.text.DisplayContext STANDARD_NAMES;
   }
 
-  public static final class DisplayContext.Type extends java.lang.Enum {
+  public enum DisplayContext.Type {
     method public static android.icu.text.DisplayContext.Type valueOf(java.lang.String);
     method public static final android.icu.text.DisplayContext.Type[] values();
     enum_constant public static final android.icu.text.DisplayContext.Type CAPITALIZATION;
@@ -18146,7 +18146,7 @@ package android.icu.text {
     field public static final int USE_STD3_RULES = 2; // 0x2
   }
 
-  public static final class IDNA.Error extends java.lang.Enum {
+  public enum IDNA.Error {
     method public static android.icu.text.IDNA.Error valueOf(java.lang.String);
     method public static final android.icu.text.IDNA.Error[] values();
     enum_constant public static final android.icu.text.IDNA.Error BIDI;
@@ -18194,7 +18194,7 @@ package android.icu.text {
     method public abstract java.lang.String variantDisplayName(java.lang.String);
   }
 
-  public static final class LocaleDisplayNames.DialectHandling extends java.lang.Enum {
+  public enum LocaleDisplayNames.DialectHandling {
     method public static android.icu.text.LocaleDisplayNames.DialectHandling valueOf(java.lang.String);
     method public static final android.icu.text.LocaleDisplayNames.DialectHandling[] values();
     enum_constant public static final android.icu.text.LocaleDisplayNames.DialectHandling DIALECT_NAMES;
@@ -18220,7 +18220,7 @@ package android.icu.text {
     method public android.icu.util.Measure parseObject(java.lang.String, java.text.ParsePosition);
   }
 
-  public static final class MeasureFormat.FormatWidth extends java.lang.Enum {
+  public enum MeasureFormat.FormatWidth {
     method public static android.icu.text.MeasureFormat.FormatWidth valueOf(java.lang.String);
     method public static final android.icu.text.MeasureFormat.FormatWidth[] values();
     enum_constant public static final android.icu.text.MeasureFormat.FormatWidth NARROW;
@@ -18304,14 +18304,14 @@ package android.icu.text {
     field public static final double NO_NUMERIC_VALUE = -1.23456789E8;
   }
 
-  public static final class MessagePattern.ApostropheMode extends java.lang.Enum {
+  public enum MessagePattern.ApostropheMode {
     method public static android.icu.text.MessagePattern.ApostropheMode valueOf(java.lang.String);
     method public static final android.icu.text.MessagePattern.ApostropheMode[] values();
     enum_constant public static final android.icu.text.MessagePattern.ApostropheMode DOUBLE_OPTIONAL;
     enum_constant public static final android.icu.text.MessagePattern.ApostropheMode DOUBLE_REQUIRED;
   }
 
-  public static final class MessagePattern.ArgType extends java.lang.Enum {
+  public enum MessagePattern.ArgType {
     method public boolean hasPluralStyle();
     method public static android.icu.text.MessagePattern.ArgType valueOf(java.lang.String);
     method public static final android.icu.text.MessagePattern.ArgType[] values();
@@ -18332,7 +18332,7 @@ package android.icu.text {
     method public int getValue();
   }
 
-  public static final class MessagePattern.Part.Type extends java.lang.Enum {
+  public enum MessagePattern.Part.Type {
     method public boolean hasNumericValue();
     method public static android.icu.text.MessagePattern.Part.Type valueOf(java.lang.String);
     method public static final android.icu.text.MessagePattern.Part.Type[] values();
@@ -18395,7 +18395,7 @@ package android.icu.text {
     method public abstract int spanQuickCheckYes(java.lang.CharSequence);
   }
 
-  public static final class Normalizer2.Mode extends java.lang.Enum {
+  public enum Normalizer2.Mode {
     method public static android.icu.text.Normalizer2.Mode valueOf(java.lang.String);
     method public static final android.icu.text.Normalizer2.Mode[] values();
     enum_constant public static final android.icu.text.Normalizer2.Mode COMPOSE;
@@ -18556,7 +18556,7 @@ package android.icu.text {
     field public static final double NO_UNIQUE_VALUE = -0.00123456777;
   }
 
-  public static final class PluralRules.PluralType extends java.lang.Enum {
+  public enum PluralRules.PluralType {
     method public static android.icu.text.PluralRules.PluralType valueOf(java.lang.String);
     method public static final android.icu.text.PluralRules.PluralType[] values();
     enum_constant public static final android.icu.text.PluralRules.PluralType CARDINAL;
@@ -18578,7 +18578,7 @@ package android.icu.text {
     method public android.icu.text.NumberFormat getNumberFormat();
   }
 
-  public static final class RelativeDateTimeFormatter.AbsoluteUnit extends java.lang.Enum {
+  public enum RelativeDateTimeFormatter.AbsoluteUnit {
     method public static android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit valueOf(java.lang.String);
     method public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit[] values();
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit DAY;
@@ -18595,7 +18595,7 @@ package android.icu.text {
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit YEAR;
   }
 
-  public static final class RelativeDateTimeFormatter.Direction extends java.lang.Enum {
+  public enum RelativeDateTimeFormatter.Direction {
     method public static android.icu.text.RelativeDateTimeFormatter.Direction valueOf(java.lang.String);
     method public static final android.icu.text.RelativeDateTimeFormatter.Direction[] values();
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.Direction LAST;
@@ -18606,7 +18606,7 @@ package android.icu.text {
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.Direction THIS;
   }
 
-  public static final class RelativeDateTimeFormatter.RelativeUnit extends java.lang.Enum {
+  public enum RelativeDateTimeFormatter.RelativeUnit {
     method public static android.icu.text.RelativeDateTimeFormatter.RelativeUnit valueOf(java.lang.String);
     method public static final android.icu.text.RelativeDateTimeFormatter.RelativeUnit[] values();
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.RelativeUnit DAYS;
@@ -18618,7 +18618,7 @@ package android.icu.text {
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.RelativeUnit YEARS;
   }
 
-  public static final class RelativeDateTimeFormatter.Style extends java.lang.Enum {
+  public enum RelativeDateTimeFormatter.Style {
     method public static android.icu.text.RelativeDateTimeFormatter.Style valueOf(java.lang.String);
     method public static final android.icu.text.RelativeDateTimeFormatter.Style[] values();
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.Style LONG;
@@ -18702,7 +18702,7 @@ package android.icu.text {
     field protected java.text.CharacterIterator targetText;
   }
 
-  public static final class SearchIterator.ElementComparisonType extends java.lang.Enum {
+  public enum SearchIterator.ElementComparisonType {
     method public static android.icu.text.SearchIterator.ElementComparisonType valueOf(java.lang.String);
     method public static final android.icu.text.SearchIterator.ElementComparisonType[] values();
     enum_constant public static final android.icu.text.SearchIterator.ElementComparisonType ANY_BASE_WEIGHT_IS_WILDCARD;
@@ -18828,7 +18828,7 @@ package android.icu.text {
     method public android.icu.text.TimeZoneFormat setTimeZoneNames(android.icu.text.TimeZoneNames);
   }
 
-  public static final class TimeZoneFormat.GMTOffsetPatternType extends java.lang.Enum {
+  public enum TimeZoneFormat.GMTOffsetPatternType {
     method public static android.icu.text.TimeZoneFormat.GMTOffsetPatternType valueOf(java.lang.String);
     method public static final android.icu.text.TimeZoneFormat.GMTOffsetPatternType[] values();
     enum_constant public static final android.icu.text.TimeZoneFormat.GMTOffsetPatternType NEGATIVE_H;
@@ -18839,14 +18839,14 @@ package android.icu.text {
     enum_constant public static final android.icu.text.TimeZoneFormat.GMTOffsetPatternType POSITIVE_HMS;
   }
 
-  public static final class TimeZoneFormat.ParseOption extends java.lang.Enum {
+  public enum TimeZoneFormat.ParseOption {
     method public static android.icu.text.TimeZoneFormat.ParseOption valueOf(java.lang.String);
     method public static final android.icu.text.TimeZoneFormat.ParseOption[] values();
     enum_constant public static final android.icu.text.TimeZoneFormat.ParseOption ALL_STYLES;
     enum_constant public static final android.icu.text.TimeZoneFormat.ParseOption TZ_DATABASE_ABBREVIATIONS;
   }
 
-  public static final class TimeZoneFormat.Style extends java.lang.Enum {
+  public enum TimeZoneFormat.Style {
     method public static android.icu.text.TimeZoneFormat.Style valueOf(java.lang.String);
     method public static final android.icu.text.TimeZoneFormat.Style[] values();
     enum_constant public static final android.icu.text.TimeZoneFormat.Style EXEMPLAR_LOCATION;
@@ -18871,7 +18871,7 @@ package android.icu.text {
     enum_constant public static final android.icu.text.TimeZoneFormat.Style ZONE_ID_SHORT;
   }
 
-  public static final class TimeZoneFormat.TimeType extends java.lang.Enum {
+  public enum TimeZoneFormat.TimeType {
     method public static android.icu.text.TimeZoneFormat.TimeType valueOf(java.lang.String);
     method public static final android.icu.text.TimeZoneFormat.TimeType[] values();
     enum_constant public static final android.icu.text.TimeZoneFormat.TimeType DAYLIGHT;
@@ -18893,7 +18893,7 @@ package android.icu.text {
     method public abstract java.lang.String getTimeZoneDisplayName(java.lang.String, android.icu.text.TimeZoneNames.NameType);
   }
 
-  public static final class TimeZoneNames.NameType extends java.lang.Enum {
+  public enum TimeZoneNames.NameType {
     method public static android.icu.text.TimeZoneNames.NameType valueOf(java.lang.String);
     method public static final android.icu.text.TimeZoneNames.NameType[] values();
     enum_constant public static final android.icu.text.TimeZoneNames.NameType EXEMPLAR_LOCATION;
@@ -19056,7 +19056,7 @@ package android.icu.text {
     field public static final int MIN_VALUE = 0; // 0x0
   }
 
-  public static final class UnicodeSet.ComparisonStyle extends java.lang.Enum {
+  public enum UnicodeSet.ComparisonStyle {
     method public static android.icu.text.UnicodeSet.ComparisonStyle valueOf(java.lang.String);
     method public static final android.icu.text.UnicodeSet.ComparisonStyle[] values();
     enum_constant public static final android.icu.text.UnicodeSet.ComparisonStyle LEXICOGRAPHIC;
@@ -19069,7 +19069,7 @@ package android.icu.text {
     field public int codepointEnd;
   }
 
-  public static final class UnicodeSet.SpanCondition extends java.lang.Enum {
+  public enum UnicodeSet.SpanCondition {
     method public static android.icu.text.UnicodeSet.SpanCondition valueOf(java.lang.String);
     method public static final android.icu.text.UnicodeSet.SpanCondition[] values();
     enum_constant public static final android.icu.text.UnicodeSet.SpanCondition CONDITION_COUNT;
@@ -19108,14 +19108,14 @@ package android.icu.text {
     method public java.lang.CharSequence trim(java.lang.CharSequence, android.icu.text.UnicodeSetSpanner.TrimOption, android.icu.text.UnicodeSet.SpanCondition);
   }
 
-  public static final class UnicodeSetSpanner.CountMethod extends java.lang.Enum {
+  public enum UnicodeSetSpanner.CountMethod {
     method public static android.icu.text.UnicodeSetSpanner.CountMethod valueOf(java.lang.String);
     method public static final android.icu.text.UnicodeSetSpanner.CountMethod[] values();
     enum_constant public static final android.icu.text.UnicodeSetSpanner.CountMethod MIN_ELEMENTS;
     enum_constant public static final android.icu.text.UnicodeSetSpanner.CountMethod WHOLE_SPAN;
   }
 
-  public static final class UnicodeSetSpanner.TrimOption extends java.lang.Enum {
+  public enum UnicodeSetSpanner.TrimOption {
     method public static android.icu.text.UnicodeSetSpanner.TrimOption valueOf(java.lang.String);
     method public static final android.icu.text.UnicodeSetSpanner.TrimOption[] values();
     enum_constant public static final android.icu.text.UnicodeSetSpanner.TrimOption BOTH;
@@ -19427,7 +19427,7 @@ package android.icu.util {
     field public static final int SYMBOL_NAME = 0; // 0x0
   }
 
-  public static final class Currency.CurrencyUsage extends java.lang.Enum {
+  public enum Currency.CurrencyUsage {
     method public static android.icu.util.Currency.CurrencyUsage valueOf(java.lang.String);
     method public static final android.icu.util.Currency.CurrencyUsage[] values();
     enum_constant public static final android.icu.util.Currency.CurrencyUsage CASH;
@@ -19566,7 +19566,7 @@ package android.icu.util {
     field public static final int SHAWWAL = 9; // 0x9
   }
 
-  public static final class IslamicCalendar.CalculationType extends java.lang.Enum {
+  public enum IslamicCalendar.CalculationType {
     method public static android.icu.util.IslamicCalendar.CalculationType valueOf(java.lang.String);
     method public static final android.icu.util.IslamicCalendar.CalculationType[] values();
     enum_constant public static final android.icu.util.IslamicCalendar.CalculationType ISLAMIC;
@@ -19817,7 +19817,7 @@ package android.icu.util {
     field public static final java.lang.String UNKNOWN_ZONE_ID = "Etc/Unknown";
   }
 
-  public static final class TimeZone.SystemTimeZoneType extends java.lang.Enum {
+  public enum TimeZone.SystemTimeZoneType {
     method public static android.icu.util.TimeZone.SystemTimeZoneType valueOf(java.lang.String);
     method public static final android.icu.util.TimeZone.SystemTimeZoneType[] values();
   }
@@ -19959,7 +19959,7 @@ package android.icu.util {
     method public android.icu.util.ULocale.Builder setVariant(java.lang.String);
   }
 
-  public static final class ULocale.Category extends java.lang.Enum {
+  public enum ULocale.Category {
     method public static android.icu.util.ULocale.Category valueOf(java.lang.String);
     method public static final android.icu.util.ULocale.Category[] values();
     enum_constant public static final android.icu.util.ULocale.Category DISPLAY;
@@ -25477,7 +25477,7 @@ package android.net {
     method public android.net.LocalSocketAddress.Namespace getNamespace();
   }
 
-  public static final class LocalSocketAddress.Namespace extends java.lang.Enum {
+  public enum LocalSocketAddress.Namespace {
     method public static android.net.LocalSocketAddress.Namespace valueOf(java.lang.String);
     method public static final android.net.LocalSocketAddress.Namespace[] values();
     enum_constant public static final android.net.LocalSocketAddress.Namespace ABSTRACT;
@@ -25564,7 +25564,7 @@ package android.net {
     field public static final android.os.Parcelable.Creator<android.net.NetworkInfo> CREATOR;
   }
 
-  public static final class NetworkInfo.DetailedState extends java.lang.Enum {
+  public enum NetworkInfo.DetailedState {
     method public static android.net.NetworkInfo.DetailedState valueOf(java.lang.String);
     method public static final android.net.NetworkInfo.DetailedState[] values();
     enum_constant public static final android.net.NetworkInfo.DetailedState AUTHENTICATING;
@@ -25582,7 +25582,7 @@ package android.net {
     enum_constant public static final android.net.NetworkInfo.DetailedState VERIFYING_POOR_LINK;
   }
 
-  public static final class NetworkInfo.State extends java.lang.Enum {
+  public enum NetworkInfo.State {
     method public static android.net.NetworkInfo.State valueOf(java.lang.String);
     method public static final android.net.NetworkInfo.State[] values();
     enum_constant public static final android.net.NetworkInfo.State CONNECTED;
@@ -26718,7 +26718,7 @@ package android.net.wifi {
     field public java.lang.CharSequence venueName;
   }
 
-  public final class SupplicantState extends java.lang.Enum implements android.os.Parcelable {
+  public enum SupplicantState implements android.os.Parcelable {
     method public int describeContents();
     method public static boolean isValidState(android.net.wifi.SupplicantState);
     method public static android.net.wifi.SupplicantState valueOf(java.lang.String);
@@ -30680,7 +30680,7 @@ package android.os {
     field public static final java.util.concurrent.Executor THREAD_POOL_EXECUTOR;
   }
 
-  public static final class AsyncTask.Status extends java.lang.Enum {
+  public enum AsyncTask.Status {
     method public static android.os.AsyncTask.Status valueOf(java.lang.String);
     method public static final android.os.AsyncTask.Status[] values();
     enum_constant public static final android.os.AsyncTask.Status FINISHED;
@@ -35981,7 +35981,7 @@ package android.renderscript {
     field public static final int USAGE_SHARED = 128; // 0x80
   }
 
-  public static final class Allocation.MipmapControl extends java.lang.Enum {
+  public enum Allocation.MipmapControl {
     method public static android.renderscript.Allocation.MipmapControl valueOf(java.lang.String);
     method public static final android.renderscript.Allocation.MipmapControl[] values();
     enum_constant public static final android.renderscript.Allocation.MipmapControl MIPMAP_FULL;
@@ -36148,7 +36148,7 @@ package android.renderscript {
     method public android.renderscript.Element create();
   }
 
-  public static final class Element.DataKind extends java.lang.Enum {
+  public enum Element.DataKind {
     method public static android.renderscript.Element.DataKind valueOf(java.lang.String);
     method public static final android.renderscript.Element.DataKind[] values();
     enum_constant public static final android.renderscript.Element.DataKind PIXEL_A;
@@ -36161,7 +36161,7 @@ package android.renderscript {
     enum_constant public static final android.renderscript.Element.DataKind USER;
   }
 
-  public static final class Element.DataType extends java.lang.Enum {
+  public enum Element.DataType {
     method public static android.renderscript.Element.DataType valueOf(java.lang.String);
     method public static final android.renderscript.Element.DataType[] values();
     enum_constant public static final android.renderscript.Element.DataType BOOLEAN;
@@ -36456,7 +36456,7 @@ package android.renderscript {
     field public static final int CREATE_FLAG_NONE = 0; // 0x0
   }
 
-  public static final class RenderScript.ContextType extends java.lang.Enum {
+  public enum RenderScript.ContextType {
     method public static android.renderscript.RenderScript.ContextType valueOf(java.lang.String);
     method public static final android.renderscript.RenderScript.ContextType[] values();
     enum_constant public static final android.renderscript.RenderScript.ContextType DEBUG;
@@ -36464,7 +36464,7 @@ package android.renderscript {
     enum_constant public static final android.renderscript.RenderScript.ContextType PROFILE;
   }
 
-  public static final class RenderScript.Priority extends java.lang.Enum {
+  public enum RenderScript.Priority {
     method public static android.renderscript.RenderScript.Priority valueOf(java.lang.String);
     method public static final android.renderscript.RenderScript.Priority[] values();
     enum_constant public static final android.renderscript.RenderScript.Priority LOW;
@@ -36513,7 +36513,7 @@ package android.renderscript {
     method public void setWrapT(android.renderscript.Sampler.Value);
   }
 
-  public static final class Sampler.Value extends java.lang.Enum {
+  public enum Sampler.Value {
     method public static android.renderscript.Sampler.Value valueOf(java.lang.String);
     method public static final android.renderscript.Sampler.Value[] values();
     enum_constant public static final android.renderscript.Sampler.Value CLAMP;
@@ -36940,7 +36940,7 @@ package android.renderscript {
     method public android.renderscript.Type.Builder setZ(int);
   }
 
-  public static final class Type.CubemapFace extends java.lang.Enum {
+  public enum Type.CubemapFace {
     method public static android.renderscript.Type.CubemapFace valueOf(java.lang.String);
     method public static final android.renderscript.Type.CubemapFace[] values();
     enum_constant public static final android.renderscript.Type.CubemapFace NEGATIVE_X;
@@ -40390,7 +40390,7 @@ package android.telephony {
     field public static final int MAX_USER_DATA_SEPTETS_WITH_HEADER = 153; // 0x99
   }
 
-  public static final class SmsMessage.MessageClass extends java.lang.Enum {
+  public enum SmsMessage.MessageClass {
     method public static android.telephony.SmsMessage.MessageClass valueOf(java.lang.String);
     method public static final android.telephony.SmsMessage.MessageClass[] values();
     enum_constant public static final android.telephony.SmsMessage.MessageClass CLASS_0;
@@ -40729,7 +40729,7 @@ package android.telephony.gsm {
     field public static final deprecated int MAX_USER_DATA_SEPTETS_WITH_HEADER = 153; // 0x99
   }
 
-  public static final deprecated class SmsMessage.MessageClass extends java.lang.Enum {
+  public deprecated enum SmsMessage.MessageClass {
     method public static android.telephony.gsm.SmsMessage.MessageClass valueOf(java.lang.String);
     method public static final android.telephony.gsm.SmsMessage.MessageClass[] values();
     enum_constant public static final android.telephony.gsm.SmsMessage.MessageClass CLASS_0;
@@ -41673,7 +41673,7 @@ package android.text {
     field public static final int HYPHENATION_FREQUENCY_NORMAL = 1; // 0x1
   }
 
-  public static final class Layout.Alignment extends java.lang.Enum {
+  public enum Layout.Alignment {
     method public static android.text.Layout.Alignment valueOf(java.lang.String);
     method public static final android.text.Layout.Alignment[] values();
     enum_constant public static final android.text.Layout.Alignment ALIGN_CENTER;
@@ -41966,7 +41966,7 @@ package android.text {
     method public abstract void setString(java.lang.String);
   }
 
-  public static final class TextUtils.TruncateAt extends java.lang.Enum {
+  public enum TextUtils.TruncateAt {
     method public static android.text.TextUtils.TruncateAt valueOf(java.lang.String);
     method public static final android.text.TextUtils.TruncateAt[] values();
     enum_constant public static final android.text.TextUtils.TruncateAt END;
@@ -42346,7 +42346,7 @@ package android.text.method {
     method public static boolean shouldCap(android.text.method.TextKeyListener.Capitalize, java.lang.CharSequence, int);
   }
 
-  public static final class TextKeyListener.Capitalize extends java.lang.Enum {
+  public enum TextKeyListener.Capitalize {
     method public static android.text.method.TextKeyListener.Capitalize valueOf(java.lang.String);
     method public static final android.text.method.TextKeyListener.Capitalize[] values();
     enum_constant public static final android.text.method.TextKeyListener.Capitalize CHARACTERS;
@@ -43526,7 +43526,7 @@ package android.util {
     method public void skipValue() throws java.io.IOException;
   }
 
-  public final class JsonToken extends java.lang.Enum {
+  public enum JsonToken {
     method public static android.util.JsonToken valueOf(java.lang.String);
     method public static final android.util.JsonToken[] values();
     enum_constant public static final android.util.JsonToken BEGIN_ARRAY;
@@ -43981,7 +43981,7 @@ package android.util {
     field public static java.lang.String FEATURE_RELAXED;
   }
 
-  public static final class Xml.Encoding extends java.lang.Enum {
+  public enum Xml.Encoding {
     method public static android.util.Xml.Encoding valueOf(java.lang.String);
     method public static final android.util.Xml.Encoding[] values();
     enum_constant public static final android.util.Xml.Encoding ISO_8859_1;
@@ -46302,7 +46302,7 @@ package android.view {
   public static @interface ViewDebug.FlagToString {
   }
 
-  public static final deprecated class ViewDebug.HierarchyTraceType extends java.lang.Enum {
+  public deprecated enum ViewDebug.HierarchyTraceType {
     method public static android.view.ViewDebug.HierarchyTraceType valueOf(java.lang.String);
     method public static final android.view.ViewDebug.HierarchyTraceType[] values();
     enum_constant public static final android.view.ViewDebug.HierarchyTraceType BUILD_CACHE;
@@ -46318,7 +46318,7 @@ package android.view {
   public static @interface ViewDebug.IntToString {
   }
 
-  public static final deprecated class ViewDebug.RecyclerTraceType extends java.lang.Enum {
+  public deprecated enum ViewDebug.RecyclerTraceType {
     method public static android.view.ViewDebug.RecyclerTraceType valueOf(java.lang.String);
     method public static final android.view.ViewDebug.RecyclerTraceType[] values();
     enum_constant public static final android.view.ViewDebug.RecyclerTraceType BIND_VIEW;
@@ -48375,7 +48375,7 @@ package android.webkit {
     method public java.lang.String sourceId();
   }
 
-  public static final class ConsoleMessage.MessageLevel extends java.lang.Enum {
+  public enum ConsoleMessage.MessageLevel {
     method public static android.webkit.ConsoleMessage.MessageLevel valueOf(java.lang.String);
     method public static final android.webkit.ConsoleMessage.MessageLevel[] values();
     enum_constant public static final android.webkit.ConsoleMessage.MessageLevel DEBUG;
@@ -48871,7 +48871,7 @@ package android.webkit {
     field public static final int MIXED_CONTENT_NEVER_ALLOW = 1; // 0x1
   }
 
-  public static final class WebSettings.LayoutAlgorithm extends java.lang.Enum {
+  public enum WebSettings.LayoutAlgorithm {
     method public static android.webkit.WebSettings.LayoutAlgorithm valueOf(java.lang.String);
     method public static final android.webkit.WebSettings.LayoutAlgorithm[] values();
     enum_constant public static final deprecated android.webkit.WebSettings.LayoutAlgorithm NARROW_COLUMNS;
@@ -48880,7 +48880,7 @@ package android.webkit {
     enum_constant public static final android.webkit.WebSettings.LayoutAlgorithm TEXT_AUTOSIZING;
   }
 
-  public static final class WebSettings.PluginState extends java.lang.Enum {
+  public enum WebSettings.PluginState {
     method public static android.webkit.WebSettings.PluginState valueOf(java.lang.String);
     method public static final android.webkit.WebSettings.PluginState[] values();
     enum_constant public static final android.webkit.WebSettings.PluginState OFF;
@@ -48888,7 +48888,7 @@ package android.webkit {
     enum_constant public static final android.webkit.WebSettings.PluginState ON_DEMAND;
   }
 
-  public static final class WebSettings.RenderPriority extends java.lang.Enum {
+  public enum WebSettings.RenderPriority {
     method public static android.webkit.WebSettings.RenderPriority valueOf(java.lang.String);
     method public static final android.webkit.WebSettings.RenderPriority[] values();
     enum_constant public static final android.webkit.WebSettings.RenderPriority HIGH;
@@ -48896,7 +48896,7 @@ package android.webkit {
     enum_constant public static final android.webkit.WebSettings.RenderPriority NORMAL;
   }
 
-  public static final deprecated class WebSettings.TextSize extends java.lang.Enum {
+  public deprecated enum WebSettings.TextSize {
     method public static android.webkit.WebSettings.TextSize valueOf(java.lang.String);
     method public static final android.webkit.WebSettings.TextSize[] values();
     enum_constant public static final android.webkit.WebSettings.TextSize LARGER;
@@ -48906,7 +48906,7 @@ package android.webkit {
     enum_constant public static final android.webkit.WebSettings.TextSize SMALLEST;
   }
 
-  public static final class WebSettings.ZoomDensity extends java.lang.Enum {
+  public enum WebSettings.ZoomDensity {
     method public static android.webkit.WebSettings.ZoomDensity valueOf(java.lang.String);
     method public static final android.webkit.WebSettings.ZoomDensity[] values();
     enum_constant public static final android.webkit.WebSettings.ZoomDensity CLOSE;
@@ -50482,7 +50482,7 @@ package android.widget {
     method public void setScaleType(android.widget.ImageView.ScaleType);
   }
 
-  public static final class ImageView.ScaleType extends java.lang.Enum {
+  public enum ImageView.ScaleType {
     method public static android.widget.ImageView.ScaleType valueOf(java.lang.String);
     method public static final android.widget.ImageView.ScaleType[] values();
     enum_constant public static final android.widget.ImageView.ScaleType CENTER;
@@ -51800,7 +51800,7 @@ package android.widget {
     method public void setWidth(int);
   }
 
-  public static final class TextView.BufferType extends java.lang.Enum {
+  public enum TextView.BufferType {
     method public static android.widget.TextView.BufferType valueOf(java.lang.String);
     method public static final android.widget.TextView.BufferType[] values();
     enum_constant public static final android.widget.TextView.BufferType EDITABLE;
@@ -52460,7 +52460,7 @@ package java.awt.font {
     field public static final int TIBETAN = 16384; // 0x4000
   }
 
-  public static class NumericShaper.Range extends java.lang.Enum {
+  public enum NumericShaper.Range {
     method public static java.awt.font.NumericShaper.Range valueOf(java.lang.String);
     method public static final java.awt.font.NumericShaper.Range[] values();
     enum_constant public static final java.awt.font.NumericShaper.Range ARABIC;
@@ -54034,7 +54034,7 @@ package java.lang {
     field public static final java.lang.Character.UnicodeBlock YI_SYLLABLES;
   }
 
-  public static final class Character.UnicodeScript extends java.lang.Enum {
+  public enum Character.UnicodeScript {
     method public static final java.lang.Character.UnicodeScript forName(java.lang.String);
     method public static java.lang.Character.UnicodeScript of(int);
     method public static java.lang.Character.UnicodeScript valueOf(java.lang.String);
@@ -55240,7 +55240,7 @@ package java.lang {
     field public static final int NORM_PRIORITY = 5; // 0x5
   }
 
-  public static final class Thread.State extends java.lang.Enum {
+  public enum Thread.State {
     method public static java.lang.Thread.State valueOf(java.lang.String);
     method public static final java.lang.Thread.State[] values();
     enum_constant public static final java.lang.Thread.State BLOCKED;
@@ -55384,7 +55384,7 @@ package java.lang.annotation {
   public @interface Documented {
   }
 
-  public final class ElementType extends java.lang.Enum {
+  public enum ElementType {
     method public static java.lang.annotation.ElementType valueOf(java.lang.String);
     method public static final java.lang.annotation.ElementType[] values();
     enum_constant public static final java.lang.annotation.ElementType ANNOTATION_TYPE;
@@ -55412,7 +55412,7 @@ package java.lang.annotation {
   public @interface Retention {
   }
 
-  public final class RetentionPolicy extends java.lang.Enum {
+  public enum RetentionPolicy {
     method public static java.lang.annotation.RetentionPolicy valueOf(java.lang.String);
     method public static final java.lang.annotation.RetentionPolicy[] values();
     enum_constant public static final java.lang.annotation.RetentionPolicy CLASS;
@@ -55840,7 +55840,7 @@ package java.math {
     field public static final java.math.MathContext UNLIMITED;
   }
 
-  public final class RoundingMode extends java.lang.Enum {
+  public enum RoundingMode {
     method public static java.math.RoundingMode valueOf(java.lang.String);
     method public static java.math.RoundingMode valueOf(int);
     method public static final java.math.RoundingMode[] values();
@@ -55875,7 +55875,7 @@ package java.net {
     method public static synchronized void setDefault(java.net.Authenticator);
   }
 
-  public static final class Authenticator.RequestorType extends java.lang.Enum {
+  public enum Authenticator.RequestorType {
     method public static java.net.Authenticator.RequestorType valueOf(java.lang.String);
     method public static final java.net.Authenticator.RequestorType[] values();
     enum_constant public static final java.net.Authenticator.RequestorType PROXY;
@@ -56303,7 +56303,7 @@ package java.net {
     field public static final java.net.Proxy NO_PROXY;
   }
 
-  public static final class Proxy.Type extends java.lang.Enum {
+  public enum Proxy.Type {
     method public static java.net.Proxy.Type valueOf(java.lang.String);
     method public static final java.net.Proxy.Type[] values();
     enum_constant public static final java.net.Proxy.Type DIRECT;
@@ -56491,7 +56491,7 @@ package java.net {
     ctor public SocketTimeoutException();
   }
 
-  public final class StandardProtocolFamily extends java.lang.Enum implements java.net.ProtocolFamily {
+  public enum StandardProtocolFamily implements java.net.ProtocolFamily {
     method public static java.net.StandardProtocolFamily valueOf(java.lang.String);
     method public static final java.net.StandardProtocolFamily[] values();
     enum_constant public static final java.net.StandardProtocolFamily INET;
@@ -57608,7 +57608,7 @@ package java.security {
     method public boolean implies(java.security.CodeSource);
   }
 
-  public final class CryptoPrimitive extends java.lang.Enum {
+  public enum CryptoPrimitive {
     method public static java.security.CryptoPrimitive valueOf(java.lang.String);
     method public static final java.security.CryptoPrimitive[] values();
     enum_constant public static final java.security.CryptoPrimitive BLOCK_CIPHER;
@@ -57792,7 +57792,7 @@ package java.security {
     method protected java.lang.Object readResolve() throws java.io.ObjectStreamException;
   }
 
-  public static final class KeyRep.Type extends java.lang.Enum {
+  public enum KeyRep.Type {
     method public static java.security.KeyRep.Type valueOf(java.lang.String);
     method public static final java.security.KeyRep.Type[] values();
     enum_constant public static final java.security.KeyRep.Type PRIVATE;
@@ -58298,7 +58298,7 @@ package java.security.cert {
     ctor public CRLException(java.lang.Throwable);
   }
 
-  public final class CRLReason extends java.lang.Enum {
+  public enum CRLReason {
     method public static java.security.cert.CRLReason valueOf(java.lang.String);
     method public static final java.security.cert.CRLReason[] values();
     enum_constant public static final java.security.cert.CRLReason AA_COMPROMISE;
@@ -58398,7 +58398,7 @@ package java.security.cert {
     method public java.security.cert.CertPathValidatorException.Reason getReason();
   }
 
-  public static final class CertPathValidatorException.BasicReason extends java.lang.Enum implements java.security.cert.CertPathValidatorException.Reason {
+  public enum CertPathValidatorException.BasicReason implements java.security.cert.CertPathValidatorException.Reason {
     method public static java.security.cert.CertPathValidatorException.BasicReason valueOf(java.lang.String);
     method public static final java.security.cert.CertPathValidatorException.BasicReason[] values();
     enum_constant public static final java.security.cert.CertPathValidatorException.BasicReason ALGORITHM_CONSTRAINED;
@@ -58628,7 +58628,7 @@ package java.security.cert {
     method public void setTrustAnchors(java.util.Set<java.security.cert.TrustAnchor>) throws java.security.InvalidAlgorithmParameterException;
   }
 
-  public final class PKIXReason extends java.lang.Enum implements java.security.cert.CertPathValidatorException.Reason {
+  public enum PKIXReason implements java.security.cert.CertPathValidatorException.Reason {
     method public static java.security.cert.PKIXReason valueOf(java.lang.String);
     method public static final java.security.cert.PKIXReason[] values();
     enum_constant public static final java.security.cert.PKIXReason INVALID_KEY_USAGE;
@@ -58656,7 +58656,7 @@ package java.security.cert {
     method public void setOptions(java.util.Set<java.security.cert.PKIXRevocationChecker.Option>);
   }
 
-  public static final class PKIXRevocationChecker.Option extends java.lang.Enum {
+  public enum PKIXRevocationChecker.Option {
     method public static java.security.cert.PKIXRevocationChecker.Option valueOf(java.lang.String);
     method public static final java.security.cert.PKIXRevocationChecker.Option[] values();
     enum_constant public static final java.security.cert.PKIXRevocationChecker.Option NO_FALLBACK;
@@ -59262,7 +59262,7 @@ package java.sql {
     method public abstract boolean wasNull() throws java.sql.SQLException;
   }
 
-  public final class ClientInfoStatus extends java.lang.Enum {
+  public enum ClientInfoStatus {
     method public static java.sql.ClientInfoStatus valueOf(java.lang.String);
     method public static final java.sql.ClientInfoStatus[] values();
     enum_constant public static final java.sql.ClientInfoStatus REASON_UNKNOWN;
@@ -59950,7 +59950,7 @@ package java.sql {
     method public abstract java.lang.String toString();
   }
 
-  public final class RowIdLifetime extends java.lang.Enum {
+  public enum RowIdLifetime {
     method public static java.sql.RowIdLifetime valueOf(java.lang.String);
     method public static final java.sql.RowIdLifetime[] values();
     enum_constant public static final java.sql.RowIdLifetime ROWID_UNSUPPORTED;
@@ -60744,7 +60744,7 @@ package java.text {
     method public static java.lang.String normalize(java.lang.CharSequence, java.text.Normalizer.Form);
   }
 
-  public static final class Normalizer.Form extends java.lang.Enum {
+  public enum Normalizer.Form {
     method public static java.text.Normalizer.Form valueOf(java.lang.String);
     method public static final java.text.Normalizer.Form[] values();
     enum_constant public static final java.text.Normalizer.Form NFC;
@@ -61597,7 +61597,7 @@ package java.util {
     method public java.lang.Appendable out();
   }
 
-  public static final class Formatter.BigDecimalLayoutForm extends java.lang.Enum {
+  public enum Formatter.BigDecimalLayoutForm {
     method public static java.util.Formatter.BigDecimalLayoutForm valueOf(java.lang.String);
     method public static final java.util.Formatter.BigDecimalLayoutForm[] values();
     enum_constant public static final java.util.Formatter.BigDecimalLayoutForm DECIMAL_FLOAT;
@@ -61939,7 +61939,7 @@ package java.util {
     method public java.util.Locale.Builder setVariant(java.lang.String);
   }
 
-  public static final class Locale.Category extends java.lang.Enum {
+  public enum Locale.Category {
     method public static java.util.Locale.Category valueOf(java.lang.String);
     method public static final java.util.Locale.Category[] values();
     enum_constant public static final java.util.Locale.Category DISPLAY;
@@ -63824,7 +63824,7 @@ package java.util.concurrent {
     method public void rejectedExecution(java.lang.Runnable, java.util.concurrent.ThreadPoolExecutor);
   }
 
-  public class TimeUnit extends java.lang.Enum {
+  public enum TimeUnit {
     method public long convert(long, java.util.concurrent.TimeUnit);
     method public void sleep(long) throws java.lang.InterruptedException;
     method public void timedJoin(java.lang.Thread, long) throws java.lang.InterruptedException;
@@ -65184,7 +65184,7 @@ package java.util.stream {
     method public abstract java.util.function.Supplier<A> supplier();
   }
 
-  public static final class Collector.Characteristics extends java.lang.Enum {
+  public enum Collector.Characteristics {
     method public static java.util.stream.Collector.Characteristics valueOf(java.lang.String);
     method public static final java.util.stream.Collector.Characteristics[] values();
     enum_constant public static final java.util.stream.Collector.Characteristics CONCURRENT;
@@ -67346,7 +67346,7 @@ package javax.net.ssl {
     method public final javax.net.ssl.SSLEngineResult.Status getStatus();
   }
 
-  public static final class SSLEngineResult.HandshakeStatus extends java.lang.Enum {
+  public enum SSLEngineResult.HandshakeStatus {
     method public static javax.net.ssl.SSLEngineResult.HandshakeStatus valueOf(java.lang.String);
     method public static final javax.net.ssl.SSLEngineResult.HandshakeStatus[] values();
     enum_constant public static final javax.net.ssl.SSLEngineResult.HandshakeStatus FINISHED;
@@ -67356,7 +67356,7 @@ package javax.net.ssl {
     enum_constant public static final javax.net.ssl.SSLEngineResult.HandshakeStatus NOT_HANDSHAKING;
   }
 
-  public static final class SSLEngineResult.Status extends java.lang.Enum {
+  public enum SSLEngineResult.Status {
     method public static javax.net.ssl.SSLEngineResult.Status valueOf(java.lang.String);
     method public static final javax.net.ssl.SSLEngineResult.Status[] values();
     enum_constant public static final javax.net.ssl.SSLEngineResult.Status BUFFER_OVERFLOW;
