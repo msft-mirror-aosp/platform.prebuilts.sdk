@@ -6686,7 +6686,7 @@ package android.app {
     method @Deprecated public void onCancel(android.content.DialogInterface);
     method @Deprecated public android.app.Dialog onCreateDialog(android.os.Bundle);
     method @Deprecated public void onDismiss(android.content.DialogInterface);
-    method public android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle);
+    method @Deprecated public android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle);
     method @Deprecated public void setCancelable(boolean);
     method @Deprecated public void setShowsDialog(boolean);
     method @Deprecated public void setStyle(int, int);
@@ -9849,7 +9849,7 @@ package android.app.appsearch {
   }
 
   public final class AppSearchSchema implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.List<java.lang.String> getParentTypes();
     method @NonNull public java.util.List<android.app.appsearch.AppSearchSchema.PropertyConfig> getProperties();
     method @NonNull public String getSchemaType();
@@ -10024,7 +10024,7 @@ package android.app.appsearch {
   }
 
   public final class GetByDocumentIdRequest implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.Set<java.lang.String> getIds();
     method @NonNull public String getNamespace();
     method @NonNull public java.util.Map<java.lang.String,java.util.List<android.app.appsearch.PropertyPath>> getProjectionPaths();
@@ -10044,7 +10044,7 @@ package android.app.appsearch {
   }
 
   public final class GetSchemaResponse implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.Map<java.lang.String,android.app.appsearch.PackageIdentifier> getPubliclyVisibleSchemas();
     method @NonNull public java.util.Map<java.lang.String,java.util.Set<java.util.Set<java.lang.Integer>>> getRequiredPermissionsForSchemaTypeVisibility();
     method @NonNull public java.util.Set<java.lang.String> getSchemaTypesNotDisplayedBySystem();
@@ -10079,7 +10079,7 @@ package android.app.appsearch {
   }
 
   public final class JoinSpec implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method public int getAggregationScoringStrategy();
     method @NonNull public String getChildPropertyExpression();
     method public int getMaxJoinedResultCount();
@@ -10147,7 +10147,7 @@ package android.app.appsearch {
   }
 
   public final class RemoveByDocumentIdRequest implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.Set<java.lang.String> getIds();
     method @NonNull public String getNamespace();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
@@ -10176,7 +10176,7 @@ package android.app.appsearch {
   }
 
   public final class ReportUsageRequest implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public String getDocumentId();
     method @NonNull public String getNamespace();
     method public long getUsageTimestampMillis();
@@ -10191,7 +10191,7 @@ package android.app.appsearch {
   }
 
   public final class SchemaVisibilityConfig implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.List<android.app.appsearch.PackageIdentifier> getAllowedPackages();
     method @Nullable public android.app.appsearch.PackageIdentifier getPubliclyVisibleTargetPackage();
     method @NonNull public java.util.Set<java.util.Set<java.lang.Integer>> getRequiredPermissions();
@@ -10210,7 +10210,7 @@ package android.app.appsearch {
   }
 
   public final class SearchResult implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public String getDatabaseName();
     method @NonNull public android.app.appsearch.GenericDocument getGenericDocument();
     method @NonNull public java.util.List<android.app.appsearch.SearchResult> getJoinedResults();
@@ -10231,7 +10231,7 @@ package android.app.appsearch {
   }
 
   public static final class SearchResult.MatchInfo implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public CharSequence getExactMatch();
     method @NonNull public android.app.appsearch.SearchResult.MatchRange getExactMatchRange();
     method @NonNull public String getFullText();
@@ -10265,7 +10265,7 @@ package android.app.appsearch {
   }
 
   public final class SearchSpec implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public String getAdvancedRankingExpression();
     method @NonNull public java.util.List<java.lang.String> getFilterNamespaces();
     method @NonNull public java.util.List<java.lang.String> getFilterPackageNames();
@@ -10346,7 +10346,7 @@ package android.app.appsearch {
   }
 
   public final class SearchSuggestionResult implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public String getSuggestedResult();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.app.appsearch.SearchSuggestionResult> CREATOR;
@@ -10359,7 +10359,7 @@ package android.app.appsearch {
   }
 
   public final class SearchSuggestionSpec implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.Map<java.lang.String,java.util.List<java.lang.String>> getFilterDocumentIds();
     method @NonNull public java.util.List<java.lang.String> getFilterNamespaces();
     method @NonNull public java.util.Map<java.lang.String,java.util.List<java.lang.String>> getFilterProperties();
@@ -10424,7 +10424,7 @@ package android.app.appsearch {
   }
 
   public final class SetSchemaResponse implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.Set<java.lang.String> getDeletedTypes();
     method @NonNull public java.util.Set<java.lang.String> getIncompatibleTypes();
     method @NonNull public java.util.Set<java.lang.String> getMigratedTypes();
@@ -10458,7 +10458,7 @@ package android.app.appsearch {
   }
 
   public final class StorageInfo implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method public int getAliveDocumentsCount();
     method public int getAliveNamespacesCount();
     method public long getSizeBytes();
@@ -10505,7 +10505,7 @@ package android.app.appsearch.observer {
   }
 
   public final class ObserverSpec implements android.os.Parcelable {
-    method public final int describeContents();
+    method public int describeContents();
     method @NonNull public java.util.Set<java.lang.String> getFilterSchemas();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.app.appsearch.observer.ObserverSpec> CREATOR;
@@ -51485,9 +51485,9 @@ package android.provider {
     method @Deprecated public static int getTypeLabelResource(int);
     field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/im";
     field @Deprecated public static final String CUSTOM_PROTOCOL = "data6";
-    field public static final String EXTRA_ADDRESS_BOOK_INDEX = "android.provider.extra.ADDRESS_BOOK_INDEX";
-    field public static final String EXTRA_ADDRESS_BOOK_INDEX_COUNTS = "android.provider.extra.ADDRESS_BOOK_INDEX_COUNTS";
-    field public static final String EXTRA_ADDRESS_BOOK_INDEX_TITLES = "android.provider.extra.ADDRESS_BOOK_INDEX_TITLES";
+    field @Deprecated public static final String EXTRA_ADDRESS_BOOK_INDEX = "android.provider.extra.ADDRESS_BOOK_INDEX";
+    field @Deprecated public static final String EXTRA_ADDRESS_BOOK_INDEX_COUNTS = "android.provider.extra.ADDRESS_BOOK_INDEX_COUNTS";
+    field @Deprecated public static final String EXTRA_ADDRESS_BOOK_INDEX_TITLES = "android.provider.extra.ADDRESS_BOOK_INDEX_TITLES";
     field @Deprecated public static final String PROTOCOL = "data5";
     field @Deprecated public static final int PROTOCOL_AIM = 0; // 0x0
     field @Deprecated public static final int PROTOCOL_CUSTOM = -1; // 0xffffffff
@@ -51620,9 +51620,9 @@ package android.provider {
     method @Deprecated public static CharSequence getTypeLabel(android.content.res.Resources, int, @Nullable CharSequence);
     method @Deprecated public static int getTypeLabelResource(int);
     field @Deprecated public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/sip_address";
-    field public static final String EXTRA_ADDRESS_BOOK_INDEX = "android.provider.extra.ADDRESS_BOOK_INDEX";
-    field public static final String EXTRA_ADDRESS_BOOK_INDEX_COUNTS = "android.provider.extra.ADDRESS_BOOK_INDEX_COUNTS";
-    field public static final String EXTRA_ADDRESS_BOOK_INDEX_TITLES = "android.provider.extra.ADDRESS_BOOK_INDEX_TITLES";
+    field @Deprecated public static final String EXTRA_ADDRESS_BOOK_INDEX = "android.provider.extra.ADDRESS_BOOK_INDEX";
+    field @Deprecated public static final String EXTRA_ADDRESS_BOOK_INDEX_COUNTS = "android.provider.extra.ADDRESS_BOOK_INDEX_COUNTS";
+    field @Deprecated public static final String EXTRA_ADDRESS_BOOK_INDEX_TITLES = "android.provider.extra.ADDRESS_BOOK_INDEX_TITLES";
     field @Deprecated public static final String SIP_ADDRESS = "data1";
     field @Deprecated public static final int TYPE_HOME = 1; // 0x1
     field @Deprecated public static final int TYPE_OTHER = 3; // 0x3
@@ -64466,13 +64466,13 @@ package android.text {
 
   public final class SpannedString implements java.lang.CharSequence android.text.GetChars android.text.Spanned {
     ctor public SpannedString(CharSequence);
-    method public final char charAt(int);
-    method public final void getChars(int, int, char[], int);
+    method public char charAt(int);
+    method public void getChars(int, int, char[], int);
     method public int getSpanEnd(Object);
     method public int getSpanFlags(Object);
     method public int getSpanStart(Object);
     method public <T> T[] getSpans(int, int, Class<T>);
-    method public final int length();
+    method public int length();
     method public int nextSpanTransition(int, int, Class);
     method public CharSequence subSequence(int, int);
     method public static android.text.SpannedString valueOf(CharSequence);

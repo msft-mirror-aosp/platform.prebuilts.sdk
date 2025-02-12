@@ -4924,7 +4924,7 @@ package android.app {
     method @Deprecated public void onCancel(android.content.DialogInterface);
     method @Deprecated public android.app.Dialog onCreateDialog(android.os.Bundle);
     method @Deprecated public void onDismiss(android.content.DialogInterface);
-    method public android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle);
+    method @Deprecated public android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle);
     method @Deprecated public void setCancelable(boolean);
     method @Deprecated public void setShowsDialog(boolean);
     method @Deprecated public void setStyle(int, int);
@@ -19227,7 +19227,7 @@ package android.hardware.camera2.params {
   public final class OutputConfiguration implements android.os.Parcelable {
     ctor public OutputConfiguration(@NonNull android.view.Surface);
     ctor public OutputConfiguration(int, @NonNull android.view.Surface);
-    ctor public OutputConfiguration(@NonNull android.util.Size, @NonNull Class<T>);
+    ctor public <T> OutputConfiguration(@NonNull android.util.Size, @NonNull Class<T>);
     method public void addSensorPixelModeUsed(int);
     method public void addSurface(@NonNull android.view.Surface);
     method @NonNull public static java.util.Collection<android.hardware.camera2.params.OutputConfiguration> createInstancesForMultiResolutionOutput(@NonNull android.hardware.camera2.MultiResolutionImageReader);
@@ -24836,7 +24836,7 @@ package android.inputmethodservice {
     method @Deprecated public boolean isPreviewEnabled();
     method @Deprecated public boolean isProximityCorrectionEnabled();
     method @Deprecated public boolean isShifted();
-    method public void onClick(android.view.View);
+    method @Deprecated public void onClick(android.view.View);
     method @Deprecated public void onDetachedFromWindow();
     method @Deprecated public void onDraw(android.graphics.Canvas);
     method @Deprecated protected boolean onLongPress(android.inputmethodservice.Keyboard.Key);
@@ -29211,7 +29211,7 @@ package android.media {
 
   @Deprecated public class RemoteControlClient.MetadataEditor extends android.media.MediaMetadataEditor {
     method @Deprecated public void apply();
-    method public Object clone() throws java.lang.CloneNotSupportedException;
+    method @Deprecated public Object clone() throws java.lang.CloneNotSupportedException;
     method @Deprecated public android.media.RemoteControlClient.MetadataEditor putBitmap(int, android.graphics.Bitmap) throws java.lang.IllegalArgumentException;
     method @Deprecated public android.media.RemoteControlClient.MetadataEditor putLong(int, long) throws java.lang.IllegalArgumentException;
     method @Deprecated public android.media.RemoteControlClient.MetadataEditor putObject(int, Object) throws java.lang.IllegalArgumentException;
@@ -33834,14 +33834,14 @@ package android.net.wifi {
   @Deprecated public class WifiConfiguration implements android.os.Parcelable {
     ctor @Deprecated public WifiConfiguration();
     ctor @Deprecated public WifiConfiguration(@NonNull android.net.wifi.WifiConfiguration);
-    method public int describeContents();
+    method @Deprecated public int describeContents();
     method @Deprecated public android.net.ProxyInfo getHttpProxy();
     method @Deprecated @NonNull public String getKey();
     method @Deprecated @NonNull public android.net.MacAddress getRandomizedMacAddress();
     method @Deprecated public boolean isPasspoint();
     method @Deprecated public void setHttpProxy(android.net.ProxyInfo);
     method @Deprecated public void setSecurityParams(int);
-    method public void writeToParcel(android.os.Parcel, int);
+    method @Deprecated public void writeToParcel(android.os.Parcel, int);
     field @Deprecated public String BSSID;
     field @Deprecated public String FQDN;
     field @Deprecated public static final int SECURITY_TYPE_EAP = 3; // 0x3
@@ -53414,13 +53414,13 @@ package android.text {
 
   public final class SpannedString implements java.lang.CharSequence android.text.GetChars android.text.Spanned {
     ctor public SpannedString(CharSequence);
-    method public final char charAt(int);
-    method public final void getChars(int, int, char[], int);
+    method public char charAt(int);
+    method public void getChars(int, int, char[], int);
     method public int getSpanEnd(Object);
     method public int getSpanFlags(Object);
     method public int getSpanStart(Object);
     method public <T> T[] getSpans(int, int, Class<T>);
-    method public final int length();
+    method public int length();
     method public int nextSpanTransition(int, int, Class);
     method public CharSequence subSequence(int, int);
     method public static android.text.SpannedString valueOf(CharSequence);
@@ -65805,7 +65805,7 @@ package android.widget {
     method @Deprecated public android.view.View getZoomControls();
     method @Deprecated public boolean isAutoDismissed();
     method @Deprecated public boolean isVisible();
-    method public boolean onTouch(android.view.View, android.view.MotionEvent);
+    method @Deprecated public boolean onTouch(android.view.View, android.view.MotionEvent);
     method @Deprecated public void setAutoDismissed(boolean);
     method @Deprecated public void setFocusable(boolean);
     method @Deprecated public void setOnZoomListener(android.widget.ZoomButtonsController.OnZoomListener);
