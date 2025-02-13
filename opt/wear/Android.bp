@@ -49,5 +49,7 @@ genrule {
         "*/finalized-flags.txt",
     ],
     out: ["latest-finalized-flags.txt"],
-    cmd: "cp `echo \"$(in)\" | sort -V | tail -n1` $(out)",
+    // call to `tr` to convert the space separated single line to multiple lines, since
+    // fileglob for srcs is expanded prior to use here. List is sorted and most recent used.
+    cmd: "cp `echo \"$(in)\" | tr ' ' '\n' | grep -v -e current | sort -V | tail -n1` $(out)",
 }
