@@ -1,0 +1,22 @@
+// Signature format: 2.0
+package android.os.flagging {
+
+  public class AconfigPackage {
+    method public boolean getBooleanFlagValue(@NonNull String, boolean);
+    method @NonNull public static android.os.flagging.AconfigPackage load(@NonNull String);
+  }
+
+  public class AconfigStorageReadException extends java.lang.RuntimeException {
+    ctor public AconfigStorageReadException(int, @NonNull String);
+    ctor public AconfigStorageReadException(int, @NonNull String, @NonNull Throwable);
+    ctor public AconfigStorageReadException(int, @NonNull Throwable);
+    method public int getErrorCode();
+    field public static final int ERROR_CANNOT_READ_STORAGE_FILE = 4; // 0x4
+    field public static final int ERROR_CONTAINER_NOT_FOUND = 3; // 0x3
+    field public static final int ERROR_GENERIC = 0; // 0x0
+    field public static final int ERROR_PACKAGE_NOT_FOUND = 2; // 0x2
+    field public static final int ERROR_STORAGE_SYSTEM_NOT_FOUND = 1; // 0x1
+  }
+
+}
+

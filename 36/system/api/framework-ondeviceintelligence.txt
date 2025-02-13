@@ -36,8 +36,8 @@ package android.app.ondeviceintelligence {
   }
 
   public final class FeatureDetails implements android.os.Parcelable {
-    ctor public FeatureDetails(int);
     ctor public FeatureDetails(int, @NonNull android.os.PersistableBundle);
+    ctor public FeatureDetails(int);
     method public int describeContents();
     method @NonNull public android.os.PersistableBundle getFeatureDetailParams();
     method public int getFeatureStatus();
@@ -51,10 +51,10 @@ package android.app.ondeviceintelligence {
   }
 
   public class OnDeviceIntelligenceException extends java.lang.Exception {
-    ctor public OnDeviceIntelligenceException(int);
+    ctor public OnDeviceIntelligenceException(int, @NonNull String, @NonNull android.os.PersistableBundle);
     ctor public OnDeviceIntelligenceException(int, @NonNull android.os.PersistableBundle);
     ctor public OnDeviceIntelligenceException(int, @NonNull String);
-    ctor public OnDeviceIntelligenceException(int, @NonNull String, @NonNull android.os.PersistableBundle);
+    ctor public OnDeviceIntelligenceException(int);
     method public int getErrorCode();
     method @NonNull public android.os.PersistableBundle getErrorParams();
     field public static final int ON_DEVICE_INTELLIGENCE_SERVICE_UNAVAILABLE = 100; // 0x64
@@ -112,8 +112,8 @@ package android.app.ondeviceintelligence {
   }
 
   public final class TokenInfo implements android.os.Parcelable {
-    ctor public TokenInfo(long);
     ctor public TokenInfo(long, @NonNull android.os.PersistableBundle);
+    ctor public TokenInfo(long);
     method public int describeContents();
     method public long getCount();
     method @NonNull public android.os.PersistableBundle getInfoParams();
@@ -136,6 +136,7 @@ package android.service.ondeviceintelligence {
     method public abstract void onInferenceServiceConnected();
     method public abstract void onInferenceServiceDisconnected();
     method public abstract void onListFeatures(int, @NonNull android.os.OutcomeReceiver<java.util.List<android.app.ondeviceintelligence.Feature>,android.app.ondeviceintelligence.OnDeviceIntelligenceException>);
+    method public void onReady();
     method public final void updateProcessingState(@NonNull android.os.Bundle, @NonNull java.util.concurrent.Executor, @NonNull android.os.OutcomeReceiver<android.os.PersistableBundle,android.app.ondeviceintelligence.OnDeviceIntelligenceException>);
     field public static final String SERVICE_INTERFACE = "android.service.ondeviceintelligence.OnDeviceIntelligenceService";
   }
@@ -155,3 +156,4 @@ package android.service.ondeviceintelligence {
   }
 
 }
+
