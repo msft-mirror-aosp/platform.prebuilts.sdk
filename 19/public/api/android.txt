@@ -8872,9 +8872,9 @@ package android.graphics {
     ctor @Deprecated public AvoidXfermode(int, int, android.graphics.AvoidXfermode.Mode);
   }
 
-  public enum AvoidXfermode.Mode {
-    enum_constant public static final android.graphics.AvoidXfermode.Mode AVOID;
-    enum_constant public static final android.graphics.AvoidXfermode.Mode TARGET;
+  @Deprecated public enum AvoidXfermode.Mode {
+    enum_constant @Deprecated public static final android.graphics.AvoidXfermode.Mode AVOID;
+    enum_constant @Deprecated public static final android.graphics.AvoidXfermode.Mode TARGET;
   }
 
   public final class Bitmap implements android.os.Parcelable {
@@ -25816,9 +25816,9 @@ package android.util {
     method @Deprecated public android.util.EventLogTags.Description get(int);
   }
 
-  public static class EventLogTags.Description {
-    field public final String mName;
-    field public final int mTag;
+  @Deprecated public static class EventLogTags.Description {
+    field @Deprecated public final String mName;
+    field @Deprecated public final int mTag;
   }
 
   public class FloatMath {
@@ -30520,13 +30520,13 @@ package android.widget {
     ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int);
   }
 
-  public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
-    ctor public AbsoluteLayout.LayoutParams(int, int, int, int);
-    ctor public AbsoluteLayout.LayoutParams(android.content.Context, android.util.AttributeSet);
-    ctor public AbsoluteLayout.LayoutParams(android.view.ViewGroup.LayoutParams);
-    method public String debug(String);
-    field public int x;
-    field public int y;
+  @Deprecated public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(int, int, int, int);
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(android.view.ViewGroup.LayoutParams);
+    method @Deprecated public String debug(String);
+    field @Deprecated public int x;
+    field @Deprecated public int y;
   }
 
   public interface Adapter {
@@ -31165,10 +31165,10 @@ package android.widget {
     method @Deprecated public void setUnselectedAlpha(float);
   }
 
-  public static class Gallery.LayoutParams extends android.view.ViewGroup.LayoutParams {
-    ctor public Gallery.LayoutParams(android.content.Context, android.util.AttributeSet);
-    ctor public Gallery.LayoutParams(int, int);
-    ctor public Gallery.LayoutParams(android.view.ViewGroup.LayoutParams);
+  @Deprecated public static class Gallery.LayoutParams extends android.view.ViewGroup.LayoutParams {
+    ctor @Deprecated public Gallery.LayoutParams(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public Gallery.LayoutParams(int, int);
+    ctor @Deprecated public Gallery.LayoutParams(android.view.ViewGroup.LayoutParams);
   }
 
   @android.widget.RemoteViews.RemoteView public class GridLayout extends android.view.ViewGroup {
@@ -32178,17 +32178,17 @@ package android.widget {
     field @Deprecated public static final int ORIENTATION_VERTICAL = 1; // 0x1
   }
 
-  public static interface SlidingDrawer.OnDrawerCloseListener {
-    method public void onDrawerClosed();
+  @Deprecated public static interface SlidingDrawer.OnDrawerCloseListener {
+    method @Deprecated public void onDrawerClosed();
   }
 
-  public static interface SlidingDrawer.OnDrawerOpenListener {
-    method public void onDrawerOpened();
+  @Deprecated public static interface SlidingDrawer.OnDrawerOpenListener {
+    method @Deprecated public void onDrawerOpened();
   }
 
-  public static interface SlidingDrawer.OnDrawerScrollListener {
-    method public void onScrollEnded();
-    method public void onScrollStarted();
+  @Deprecated public static interface SlidingDrawer.OnDrawerScrollListener {
+    method @Deprecated public void onScrollEnded();
+    method @Deprecated public void onScrollStarted();
   }
 
   public final class Space extends android.view.View {
@@ -32776,7 +32776,7 @@ package dalvik.annotation {
   @Deprecated @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.ANNOTATION_TYPE}) public @interface TestTarget {
     method @Deprecated public abstract String conceptName() default "";
     method @Deprecated public abstract Class<?>[] methodArgs() default {};
-    method public abstract String methodName() default "";
+    method @Deprecated public abstract String methodName() default "";
   }
 
   @Deprecated @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public @interface TestTargetClass {
