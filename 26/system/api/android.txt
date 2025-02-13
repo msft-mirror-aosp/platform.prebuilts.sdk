@@ -43788,8 +43788,8 @@ package android.test {
     method @Deprecated public static void assertEquals(double[], double[]);
     method @Deprecated public static void assertEquals(java.lang.String, java.lang.Object[], java.lang.Object[]);
     method @Deprecated public static void assertEquals(java.lang.Object[], java.lang.Object[]);
-    method @Deprecated public static void assertEquals(java.lang.String, java.util.Set<? extends java.lang.Object>, java.util.Set<? extends java.lang.Object>);
-    method @Deprecated public static void assertEquals(java.util.Set<? extends java.lang.Object>, java.util.Set<? extends java.lang.Object>);
+    method @Deprecated public static void assertEquals(java.lang.String, java.util.Set<?>, java.util.Set<?>);
+    method @Deprecated public static void assertEquals(java.util.Set<?>, java.util.Set<?>);
     method @Deprecated public static java.util.regex.MatchResult assertMatchesRegex(java.lang.String, java.lang.String, java.lang.String);
     method @Deprecated public static java.util.regex.MatchResult assertMatchesRegex(java.lang.String, java.lang.String);
     method @Deprecated public static void assertNotContainsRegex(java.lang.String, java.lang.String, java.lang.String);
@@ -62364,9 +62364,9 @@ package java.security {
 
   public abstract class Provider extends java.util.Properties {
     ctor protected Provider(java.lang.String, double, java.lang.String);
-    method public java.lang.Object compute(java.lang.Object, java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ? extends java.lang.Object>);
-    method public java.lang.Object computeIfAbsent(java.lang.Object, java.util.function.Function<? super java.lang.Object, ? extends java.lang.Object>);
-    method public java.lang.Object computeIfPresent(java.lang.Object, java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ? extends java.lang.Object>);
+    method public java.lang.Object compute(java.lang.Object, java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ?>);
+    method public java.lang.Object computeIfAbsent(java.lang.Object, java.util.function.Function<? super java.lang.Object, ?>);
+    method public java.lang.Object computeIfPresent(java.lang.Object, java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ?>);
     method public void forEach(java.util.function.BiConsumer<? super java.lang.Object, ? super java.lang.Object>);
     method public java.lang.String getInfo();
     method public java.lang.String getName();
@@ -62374,7 +62374,7 @@ package java.security {
     method public java.security.Provider.Service getService(java.lang.String, java.lang.String);
     method public java.util.Set<java.security.Provider.Service> getServices();
     method public double getVersion();
-    method public java.lang.Object merge(java.lang.Object, java.lang.Object, java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ? extends java.lang.Object>);
+    method public java.lang.Object merge(java.lang.Object, java.lang.Object, java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ?>);
     method public java.lang.Object put(java.lang.Object, java.lang.Object);
     method public void putAll(java.util.Map<?, ?>);
     method public java.lang.Object putIfAbsent(java.lang.Object, java.lang.Object);
@@ -62382,7 +62382,7 @@ package java.security {
     method protected void removeService(java.security.Provider.Service);
     method public boolean replace(java.lang.Object, java.lang.Object, java.lang.Object);
     method public java.lang.Object replace(java.lang.Object, java.lang.Object);
-    method public void replaceAll(java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ? extends java.lang.Object>);
+    method public void replaceAll(java.util.function.BiFunction<? super java.lang.Object, ? super java.lang.Object, ?>);
   }
 
   public static class Provider.Service {
