@@ -2983,7 +2983,7 @@ package android.animation {
   public abstract class BidirectionalTypeConverter extends android.animation.TypeConverter {
     ctor public BidirectionalTypeConverter(java.lang.Class<T>, java.lang.Class<V>);
     method public abstract T convertBack(V);
-    method public android.animation.BidirectionalTypeConverter<V, T> invert();
+    method public android.animation.BidirectionalTypeConverter<V,T> invert();
   }
 
   public class FloatArrayEvaluator implements android.animation.TypeEvaluator {
@@ -3072,26 +3072,26 @@ package android.animation {
     method public java.lang.String getPropertyName();
     method public java.lang.Object getTarget();
     method public static android.animation.ObjectAnimator ofArgb(java.lang.Object, java.lang.String, int...);
-    method public static android.animation.ObjectAnimator ofArgb(T, android.util.Property<T, java.lang.Integer>, int...);
+    method public static android.animation.ObjectAnimator ofArgb(T, android.util.Property<T,java.lang.Integer>, int...);
     method public static android.animation.ObjectAnimator ofFloat(java.lang.Object, java.lang.String, float...);
     method public static android.animation.ObjectAnimator ofFloat(java.lang.Object, java.lang.String, java.lang.String, android.graphics.Path);
-    method public static android.animation.ObjectAnimator ofFloat(T, android.util.Property<T, java.lang.Float>, float...);
-    method public static android.animation.ObjectAnimator ofFloat(T, android.util.Property<T, java.lang.Float>, android.util.Property<T, java.lang.Float>, android.graphics.Path);
+    method public static android.animation.ObjectAnimator ofFloat(T, android.util.Property<T,java.lang.Float>, float...);
+    method public static android.animation.ObjectAnimator ofFloat(T, android.util.Property<T,java.lang.Float>, android.util.Property<T,java.lang.Float>, android.graphics.Path);
     method public static android.animation.ObjectAnimator ofInt(java.lang.Object, java.lang.String, int...);
     method public static android.animation.ObjectAnimator ofInt(java.lang.Object, java.lang.String, java.lang.String, android.graphics.Path);
-    method public static android.animation.ObjectAnimator ofInt(T, android.util.Property<T, java.lang.Integer>, int...);
-    method public static android.animation.ObjectAnimator ofInt(T, android.util.Property<T, java.lang.Integer>, android.util.Property<T, java.lang.Integer>, android.graphics.Path);
+    method public static android.animation.ObjectAnimator ofInt(T, android.util.Property<T,java.lang.Integer>, int...);
+    method public static android.animation.ObjectAnimator ofInt(T, android.util.Property<T,java.lang.Integer>, android.util.Property<T,java.lang.Integer>, android.graphics.Path);
     method public static android.animation.ObjectAnimator ofMultiFloat(java.lang.Object, java.lang.String, float[][]);
     method public static android.animation.ObjectAnimator ofMultiFloat(java.lang.Object, java.lang.String, android.graphics.Path);
-    method public static android.animation.ObjectAnimator ofMultiFloat(java.lang.Object, java.lang.String, android.animation.TypeConverter<T, float[]>, android.animation.TypeEvaluator<T>, T...);
+    method public static android.animation.ObjectAnimator ofMultiFloat(java.lang.Object, java.lang.String, android.animation.TypeConverter<T,float[]>, android.animation.TypeEvaluator<T>, T...);
     method public static android.animation.ObjectAnimator ofMultiInt(java.lang.Object, java.lang.String, int[][]);
     method public static android.animation.ObjectAnimator ofMultiInt(java.lang.Object, java.lang.String, android.graphics.Path);
-    method public static android.animation.ObjectAnimator ofMultiInt(java.lang.Object, java.lang.String, android.animation.TypeConverter<T, int[]>, android.animation.TypeEvaluator<T>, T...);
+    method public static android.animation.ObjectAnimator ofMultiInt(java.lang.Object, java.lang.String, android.animation.TypeConverter<T,int[]>, android.animation.TypeEvaluator<T>, T...);
     method public static android.animation.ObjectAnimator ofObject(java.lang.Object, java.lang.String, android.animation.TypeEvaluator, java.lang.Object...);
-    method public static android.animation.ObjectAnimator ofObject(java.lang.Object, java.lang.String, android.animation.TypeConverter<android.graphics.PointF, ?>, android.graphics.Path);
-    method public static android.animation.ObjectAnimator ofObject(T, android.util.Property<T, V>, android.animation.TypeEvaluator<V>, V...);
-    method public static android.animation.ObjectAnimator ofObject(T, android.util.Property<T, P>, android.animation.TypeConverter<V, P>, android.animation.TypeEvaluator<V>, V...);
-    method public static android.animation.ObjectAnimator ofObject(T, android.util.Property<T, V>, android.animation.TypeConverter<android.graphics.PointF, V>, android.graphics.Path);
+    method public static android.animation.ObjectAnimator ofObject(java.lang.Object, java.lang.String, android.animation.TypeConverter<android.graphics.PointF,?>, android.graphics.Path);
+    method public static android.animation.ObjectAnimator ofObject(T, android.util.Property<T,V>, android.animation.TypeEvaluator<V>, V...);
+    method public static android.animation.ObjectAnimator ofObject(T, android.util.Property<T,P>, android.animation.TypeConverter<V,P>, android.animation.TypeEvaluator<V>, V...);
+    method public static android.animation.ObjectAnimator ofObject(T, android.util.Property<T,V>, android.animation.TypeConverter<android.graphics.PointF,V>, android.graphics.Path);
     method public static android.animation.ObjectAnimator ofPropertyValuesHolder(java.lang.Object, android.animation.PropertyValuesHolder...);
     method public void setAutoCancel(boolean);
     method public void setProperty(android.util.Property);
@@ -3108,24 +3108,24 @@ package android.animation {
     method public android.animation.PropertyValuesHolder clone();
     method public java.lang.String getPropertyName();
     method public static android.animation.PropertyValuesHolder ofFloat(java.lang.String, float...);
-    method public static android.animation.PropertyValuesHolder ofFloat(android.util.Property<?, java.lang.Float>, float...);
+    method public static android.animation.PropertyValuesHolder ofFloat(android.util.Property<?,java.lang.Float>, float...);
     method public static android.animation.PropertyValuesHolder ofInt(java.lang.String, int...);
-    method public static android.animation.PropertyValuesHolder ofInt(android.util.Property<?, java.lang.Integer>, int...);
+    method public static android.animation.PropertyValuesHolder ofInt(android.util.Property<?,java.lang.Integer>, int...);
     method public static android.animation.PropertyValuesHolder ofKeyframe(java.lang.String, android.animation.Keyframe...);
     method public static android.animation.PropertyValuesHolder ofKeyframe(android.util.Property, android.animation.Keyframe...);
     method public static android.animation.PropertyValuesHolder ofMultiFloat(java.lang.String, float[][]);
     method public static android.animation.PropertyValuesHolder ofMultiFloat(java.lang.String, android.graphics.Path);
-    method public static android.animation.PropertyValuesHolder ofMultiFloat(java.lang.String, android.animation.TypeConverter<V, float[]>, android.animation.TypeEvaluator<V>, V...);
-    method public static android.animation.PropertyValuesHolder ofMultiFloat(java.lang.String, android.animation.TypeConverter<T, float[]>, android.animation.TypeEvaluator<T>, android.animation.Keyframe...);
+    method public static android.animation.PropertyValuesHolder ofMultiFloat(java.lang.String, android.animation.TypeConverter<V,float[]>, android.animation.TypeEvaluator<V>, V...);
+    method public static android.animation.PropertyValuesHolder ofMultiFloat(java.lang.String, android.animation.TypeConverter<T,float[]>, android.animation.TypeEvaluator<T>, android.animation.Keyframe...);
     method public static android.animation.PropertyValuesHolder ofMultiInt(java.lang.String, int[][]);
     method public static android.animation.PropertyValuesHolder ofMultiInt(java.lang.String, android.graphics.Path);
-    method public static android.animation.PropertyValuesHolder ofMultiInt(java.lang.String, android.animation.TypeConverter<V, int[]>, android.animation.TypeEvaluator<V>, V...);
-    method public static android.animation.PropertyValuesHolder ofMultiInt(java.lang.String, android.animation.TypeConverter<T, int[]>, android.animation.TypeEvaluator<T>, android.animation.Keyframe...);
+    method public static android.animation.PropertyValuesHolder ofMultiInt(java.lang.String, android.animation.TypeConverter<V,int[]>, android.animation.TypeEvaluator<V>, V...);
+    method public static android.animation.PropertyValuesHolder ofMultiInt(java.lang.String, android.animation.TypeConverter<T,int[]>, android.animation.TypeEvaluator<T>, android.animation.Keyframe...);
     method public static android.animation.PropertyValuesHolder ofObject(java.lang.String, android.animation.TypeEvaluator, java.lang.Object...);
-    method public static android.animation.PropertyValuesHolder ofObject(java.lang.String, android.animation.TypeConverter<android.graphics.PointF, ?>, android.graphics.Path);
+    method public static android.animation.PropertyValuesHolder ofObject(java.lang.String, android.animation.TypeConverter<android.graphics.PointF,?>, android.graphics.Path);
     method public static android.animation.PropertyValuesHolder ofObject(android.util.Property, android.animation.TypeEvaluator<V>, V...);
-    method public static android.animation.PropertyValuesHolder ofObject(android.util.Property<?, V>, android.animation.TypeConverter<T, V>, android.animation.TypeEvaluator<T>, T...);
-    method public static android.animation.PropertyValuesHolder ofObject(android.util.Property<?, V>, android.animation.TypeConverter<android.graphics.PointF, V>, android.graphics.Path);
+    method public static android.animation.PropertyValuesHolder ofObject(android.util.Property<?,V>, android.animation.TypeConverter<T,V>, android.animation.TypeEvaluator<T>, T...);
+    method public static android.animation.PropertyValuesHolder ofObject(android.util.Property<?,V>, android.animation.TypeConverter<android.graphics.PointF,V>, android.graphics.Path);
     method public void setConverter(android.animation.TypeConverter);
     method public void setEvaluator(android.animation.TypeEvaluator);
     method public void setFloatValues(float...);
@@ -3760,7 +3760,7 @@ package android.app {
     method public static android.app.ActivityOptions makeCustomAnimation(android.content.Context, int, int);
     method public static android.app.ActivityOptions makeScaleUpAnimation(android.view.View, int, int, int, int);
     method public static android.app.ActivityOptions makeSceneTransitionAnimation(android.app.Activity, android.view.View, java.lang.String);
-    method public static android.app.ActivityOptions makeSceneTransitionAnimation(android.app.Activity, android.util.Pair<android.view.View, java.lang.String>...);
+    method public static android.app.ActivityOptions makeSceneTransitionAnimation(android.app.Activity, android.util.Pair<android.view.View,java.lang.String>...);
     method public static android.app.ActivityOptions makeTaskLaunchBehind();
     method public static android.app.ActivityOptions makeThumbnailScaleUpAnimation(android.view.View, android.graphics.Bitmap, int, int);
     method public android.os.Bundle toBundle();
@@ -5178,7 +5178,7 @@ package android.app {
     ctor public SharedElementCallback();
     method public android.os.Parcelable onCaptureSharedElementSnapshot(android.view.View, android.graphics.Matrix, android.graphics.RectF);
     method public android.view.View onCreateSnapshotView(android.content.Context, android.os.Parcelable);
-    method public void onMapSharedElements(java.util.List<java.lang.String>, java.util.Map<java.lang.String, android.view.View>);
+    method public void onMapSharedElements(java.util.List<java.lang.String>, java.util.Map<java.lang.String,android.view.View>);
     method public void onRejectSharedElements(java.util.List<android.view.View>);
     method public void onSharedElementEnd(java.util.List<java.lang.String>, java.util.List<android.view.View>, java.util.List<android.view.View>);
     method public void onSharedElementStart(java.util.List<java.lang.String>, java.util.List<android.view.View>, java.util.List<android.view.View>);
@@ -5862,7 +5862,7 @@ package android.app.usage {
   }
 
   public final class UsageStatsManager {
-    method public java.util.Map<java.lang.String, android.app.usage.UsageStats> queryAndAggregateUsageStats(long, long);
+    method public java.util.Map<java.lang.String,android.app.usage.UsageStats> queryAndAggregateUsageStats(long, long);
     method public java.util.List<android.app.usage.ConfigurationStats> queryConfigurations(int, long, long);
     method public android.app.usage.UsageEvents queryEvents(long, long);
     method public java.util.List<android.app.usage.UsageStats> queryUsageStats(int, long, long);
@@ -6744,7 +6744,7 @@ package android.bluetooth.le {
     method public boolean getIncludeDeviceName();
     method public boolean getIncludeTxPowerLevel();
     method public android.util.SparseArray<byte[]> getManufacturerSpecificData();
-    method public java.util.Map<android.os.ParcelUuid, byte[]> getServiceData();
+    method public java.util.Map<android.os.ParcelUuid,byte[]> getServiceData();
     method public java.util.List<android.os.ParcelUuid> getServiceUuids();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator<android.bluetooth.le.AdvertiseData> CREATOR;
@@ -6857,7 +6857,7 @@ package android.bluetooth.le {
     method public java.lang.String getDeviceName();
     method public android.util.SparseArray<byte[]> getManufacturerSpecificData();
     method public byte[] getManufacturerSpecificData(int);
-    method public java.util.Map<android.os.ParcelUuid, byte[]> getServiceData();
+    method public java.util.Map<android.os.ParcelUuid,byte[]> getServiceData();
     method public byte[] getServiceData(android.os.ParcelUuid);
     method public java.util.List<android.os.ParcelUuid> getServiceUuids();
     method public int getTxPowerLevel();
@@ -7219,7 +7219,7 @@ package android.content {
   public class ContentQueryMap extends java.util.Observable {
     ctor public ContentQueryMap(android.database.Cursor, java.lang.String, boolean, android.os.Handler);
     method public void close();
-    method public java.util.Map<java.lang.String, android.content.ContentValues> getRows();
+    method public java.util.Map<java.lang.String,android.content.ContentValues> getRows();
     method public android.content.ContentValues getValues(java.lang.String);
     method public void requery();
     method public void setKeepUpdated(boolean);
@@ -7344,7 +7344,7 @@ package android.content {
     method public void putNull(java.lang.String);
     method public void remove(java.lang.String);
     method public int size();
-    method public java.util.Set<java.util.Map.Entry<java.lang.String, java.lang.Object>> valueSet();
+    method public java.util.Set<java.util.Map.Entry<java.lang.String,java.lang.Object>> valueSet();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator<android.content.ContentValues> CREATOR;
     field public static final java.lang.String TAG = "ContentValues";
@@ -8372,7 +8372,7 @@ package android.content {
   public interface SharedPreferences {
     method public boolean contains(java.lang.String);
     method public android.content.SharedPreferences.Editor edit();
-    method public java.util.Map<java.lang.String, ?> getAll();
+    method public java.util.Map<java.lang.String,?> getAll();
     method public boolean getBoolean(java.lang.String, boolean);
     method public float getFloat(java.lang.String, float);
     method public int getInt(java.lang.String, int);
@@ -9666,7 +9666,7 @@ package android.database {
     field @Deprecated protected java.lang.Long mCurrentRowID;
     field protected int mPos;
     field @Deprecated protected int mRowIdColumnIndex;
-    field @Deprecated protected java.util.HashMap<java.lang.Long, java.util.Map<java.lang.String, java.lang.Object>> mUpdatedRows;
+    field @Deprecated protected java.util.HashMap<java.lang.Long,java.util.Map<java.lang.String,java.lang.Object>> mUpdatedRows;
   }
 
   protected static class AbstractCursor.SelfContentObserver extends android.database.ContentObserver {
@@ -10107,11 +10107,11 @@ package android.database.sqlite {
     method public void execSQL(java.lang.String) throws android.database.SQLException;
     method public void execSQL(java.lang.String, java.lang.Object[]) throws android.database.SQLException;
     method public static java.lang.String findEditTable(java.lang.String);
-    method public java.util.List<android.util.Pair<java.lang.String, java.lang.String>> getAttachedDbs();
+    method public java.util.List<android.util.Pair<java.lang.String,java.lang.String>> getAttachedDbs();
     method public long getMaximumSize();
     method public long getPageSize();
     method public java.lang.String getPath();
-    method @Deprecated public java.util.Map<java.lang.String, java.lang.String> getSyncedTables();
+    method @Deprecated public java.util.Map<java.lang.String,java.lang.String> getSyncedTables();
     method public int getVersion();
     method public boolean inTransaction();
     method public long insert(java.lang.String, java.lang.String, android.content.ContentValues);
@@ -10270,7 +10270,7 @@ package android.database.sqlite {
     method public android.database.Cursor query(android.database.sqlite.SQLiteDatabase, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, java.lang.String, java.lang.String, java.lang.String, android.os.CancellationSignal);
     method public void setCursorFactory(android.database.sqlite.SQLiteDatabase.CursorFactory);
     method public void setDistinct(boolean);
-    method public void setProjectionMap(java.util.Map<java.lang.String, java.lang.String>);
+    method public void setProjectionMap(java.util.Map<java.lang.String,java.lang.String>);
     method public void setStrict(boolean);
     method public void setTables(java.lang.String);
   }
@@ -10316,7 +10316,7 @@ package android.drm {
 
   public class DrmErrorEvent extends android.drm.DrmEvent {
     ctor public DrmErrorEvent(int, int, java.lang.String);
-    ctor public DrmErrorEvent(int, int, java.lang.String, java.util.HashMap<java.lang.String, java.lang.Object>);
+    ctor public DrmErrorEvent(int, int, java.lang.String, java.util.HashMap<java.lang.String,java.lang.Object>);
     field public static final int TYPE_ACQUIRE_DRM_INFO_FAILED = 2008; // 0x7d8
     field public static final int TYPE_NOT_SUPPORTED = 2003; // 0x7d3
     field public static final int TYPE_NO_INTERNET_CONNECTION = 2005; // 0x7d5
@@ -10328,7 +10328,7 @@ package android.drm {
   }
 
   public class DrmEvent {
-    ctor protected DrmEvent(int, int, java.lang.String, java.util.HashMap<java.lang.String, java.lang.Object>);
+    ctor protected DrmEvent(int, int, java.lang.String, java.util.HashMap<java.lang.String,java.lang.Object>);
     ctor protected DrmEvent(int, int, java.lang.String);
     method public java.lang.Object getAttribute(java.lang.String);
     method public java.lang.String getMessage();
@@ -10354,7 +10354,7 @@ package android.drm {
 
   public class DrmInfoEvent extends android.drm.DrmEvent {
     ctor public DrmInfoEvent(int, int, java.lang.String);
-    ctor public DrmInfoEvent(int, int, java.lang.String, java.util.HashMap<java.lang.String, java.lang.Object>);
+    ctor public DrmInfoEvent(int, int, java.lang.String, java.util.HashMap<java.lang.String,java.lang.Object>);
     field public static final int TYPE_ACCOUNT_ALREADY_REGISTERED = 5; // 0x5
     field public static final int TYPE_ALREADY_REGISTERED_BY_ANOTHER_ACCOUNT = 1; // 0x1
     field public static final int TYPE_REMOVE_RIGHTS = 2; // 0x2
@@ -13278,7 +13278,7 @@ package android.hardware.camera2 {
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Float> LENS_FILTER_DENSITY;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Float> LENS_FOCAL_LENGTH;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Float> LENS_FOCUS_DISTANCE;
-    field public static final android.hardware.camera2.CaptureResult.Key<android.util.Pair<java.lang.Float, java.lang.Float>> LENS_FOCUS_RANGE;
+    field public static final android.hardware.camera2.CaptureResult.Key<android.util.Pair<java.lang.Float,java.lang.Float>> LENS_FOCUS_RANGE;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Integer> LENS_OPTICAL_STABILIZATION_MODE;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Integer> LENS_STATE;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Integer> NOISE_REDUCTION_MODE;
@@ -13288,7 +13288,7 @@ package android.hardware.camera2 {
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Long> SENSOR_FRAME_DURATION;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Float> SENSOR_GREEN_SPLIT;
     field public static final android.hardware.camera2.CaptureResult.Key<android.util.Rational[]> SENSOR_NEUTRAL_COLOR_POINT;
-    field public static final android.hardware.camera2.CaptureResult.Key<android.util.Pair<java.lang.Double, java.lang.Double>[]> SENSOR_NOISE_PROFILE;
+    field public static final android.hardware.camera2.CaptureResult.Key<android.util.Pair<java.lang.Double,java.lang.Double>[]> SENSOR_NOISE_PROFILE;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Long> SENSOR_ROLLING_SHUTTER_SKEW;
     field public static final android.hardware.camera2.CaptureResult.Key<java.lang.Integer> SENSOR_SENSITIVITY;
     field public static final android.hardware.camera2.CaptureResult.Key<int[]> SENSOR_TEST_PATTERN_DATA;
@@ -14036,7 +14036,7 @@ package android.hardware.usb {
 
   public class UsbManager {
     method public android.hardware.usb.UsbAccessory[] getAccessoryList();
-    method public java.util.HashMap<java.lang.String, android.hardware.usb.UsbDevice> getDeviceList();
+    method public java.util.HashMap<java.lang.String,android.hardware.usb.UsbDevice> getDeviceList();
     method public boolean hasPermission(android.hardware.usb.UsbDevice);
     method public boolean hasPermission(android.hardware.usb.UsbAccessory);
     method public android.os.ParcelFileDescriptor openAccessory(android.hardware.usb.UsbAccessory);
@@ -15810,7 +15810,7 @@ package android.media {
     ctor public MediaDrm(java.util.UUID) throws android.media.UnsupportedSchemeException;
     method public void closeSession(byte[]);
     method public android.media.MediaDrm.CryptoSession getCryptoSession(byte[], java.lang.String, java.lang.String);
-    method public android.media.MediaDrm.KeyRequest getKeyRequest(byte[], byte[], java.lang.String, int, java.util.HashMap<java.lang.String, java.lang.String>) throws android.media.NotProvisionedException;
+    method public android.media.MediaDrm.KeyRequest getKeyRequest(byte[], byte[], java.lang.String, int, java.util.HashMap<java.lang.String,java.lang.String>) throws android.media.NotProvisionedException;
     method public byte[] getPropertyByteArray(java.lang.String);
     method public java.lang.String getPropertyString(java.lang.String);
     method public android.media.MediaDrm.ProvisionRequest getProvisionRequest();
@@ -15821,7 +15821,7 @@ package android.media {
     method public byte[] openSession() throws android.media.NotProvisionedException, android.media.ResourceBusyException;
     method public byte[] provideKeyResponse(byte[], byte[]) throws android.media.DeniedByServerException, android.media.NotProvisionedException;
     method public void provideProvisionResponse(byte[]) throws android.media.DeniedByServerException;
-    method public java.util.HashMap<java.lang.String, java.lang.String> queryKeyStatus(byte[]);
+    method public java.util.HashMap<java.lang.String,java.lang.String> queryKeyStatus(byte[]);
     method public void release();
     method public void releaseAllSecureStops();
     method public void releaseSecureStops(byte[]);
@@ -15878,7 +15878,7 @@ package android.media {
     ctor public MediaExtractor();
     method public boolean advance();
     method public long getCachedDuration();
-    method public java.util.Map<java.util.UUID, byte[]> getPsshInfo();
+    method public java.util.Map<java.util.UUID,byte[]> getPsshInfo();
     method public boolean getSampleCryptoInfo(android.media.MediaCodec.CryptoInfo);
     method public int getSampleFlags();
     method public long getSampleTime();
@@ -15890,8 +15890,8 @@ package android.media {
     method public void release();
     method public void seekTo(long, int);
     method public void selectTrack(int);
-    method public void setDataSource(android.content.Context, android.net.Uri, java.util.Map<java.lang.String, java.lang.String>) throws java.io.IOException;
-    method public void setDataSource(java.lang.String, java.util.Map<java.lang.String, java.lang.String>) throws java.io.IOException;
+    method public void setDataSource(android.content.Context, android.net.Uri, java.util.Map<java.lang.String,java.lang.String>) throws java.io.IOException;
+    method public void setDataSource(java.lang.String, java.util.Map<java.lang.String,java.lang.String>) throws java.io.IOException;
     method public void setDataSource(java.lang.String) throws java.io.IOException;
     method public void setDataSource(java.io.FileDescriptor) throws java.io.IOException;
     method public void setDataSource(java.io.FileDescriptor, long, long) throws java.io.IOException;
@@ -16063,7 +16063,7 @@ package android.media {
     method public android.graphics.Bitmap getFrameAtTime();
     method public void release();
     method public void setDataSource(java.lang.String) throws java.lang.IllegalArgumentException;
-    method public void setDataSource(java.lang.String, java.util.Map<java.lang.String, java.lang.String>) throws java.lang.IllegalArgumentException;
+    method public void setDataSource(java.lang.String, java.util.Map<java.lang.String,java.lang.String>) throws java.lang.IllegalArgumentException;
     method public void setDataSource(java.io.FileDescriptor, long, long) throws java.lang.IllegalArgumentException;
     method public void setDataSource(java.io.FileDescriptor) throws java.lang.IllegalArgumentException;
     method public void setDataSource(android.content.Context, android.net.Uri) throws java.lang.IllegalArgumentException, java.lang.SecurityException;
@@ -16146,7 +16146,7 @@ package android.media {
     method public void setAudioStreamType(int);
     method public void setAuxEffectSendLevel(float);
     method public void setDataSource(android.content.Context, android.net.Uri) throws java.io.IOException, java.lang.IllegalArgumentException, java.lang.IllegalStateException, java.lang.SecurityException;
-    method public void setDataSource(android.content.Context, android.net.Uri, java.util.Map<java.lang.String, java.lang.String>) throws java.io.IOException, java.lang.IllegalArgumentException, java.lang.IllegalStateException, java.lang.SecurityException;
+    method public void setDataSource(android.content.Context, android.net.Uri, java.util.Map<java.lang.String,java.lang.String>) throws java.io.IOException, java.lang.IllegalArgumentException, java.lang.IllegalStateException, java.lang.SecurityException;
     method public void setDataSource(java.lang.String) throws java.io.IOException, java.lang.IllegalArgumentException, java.lang.IllegalStateException, java.lang.SecurityException;
     method public void setDataSource(java.io.FileDescriptor) throws java.io.IOException, java.lang.IllegalArgumentException, java.lang.IllegalStateException;
     method public void setDataSource(java.io.FileDescriptor, long, long) throws java.io.IOException, java.lang.IllegalArgumentException, java.lang.IllegalStateException;
@@ -17749,9 +17749,9 @@ package android.media.tv {
   }
 
   public static final class TvInputInfo.TvInputSettings {
-    method public static java.util.Map<java.lang.String, java.lang.String> getCustomLabels(android.content.Context, int);
+    method public static java.util.Map<java.lang.String,java.lang.String> getCustomLabels(android.content.Context, int);
     method public static java.util.Set<java.lang.String> getHiddenTvInputIds(android.content.Context, int);
-    method public static void putCustomLabels(android.content.Context, java.util.Map<java.lang.String, java.lang.String>, int);
+    method public static void putCustomLabels(android.content.Context, java.util.Map<java.lang.String,java.lang.String>, int);
     method public static void putHiddenTvInputs(android.content.Context, java.util.Set<java.lang.String>, int);
   }
 
@@ -18294,7 +18294,7 @@ package android.net {
   public class MailTo {
     method public java.lang.String getBody();
     method public java.lang.String getCc();
-    method public java.util.Map<java.lang.String, java.lang.String> getHeaders();
+    method public java.util.Map<java.lang.String,java.lang.String> getHeaders();
     method public java.lang.String getSubject();
     method public java.lang.String getTo();
     method public static boolean isMailTo(java.lang.String);
@@ -18779,7 +18779,7 @@ package android.net.http {
     method public void close() throws java.io.IOException;
     method public void delete() throws java.io.IOException;
     method public void flush();
-    method public java.net.CacheResponse get(java.net.URI, java.lang.String, java.util.Map<java.lang.String, java.util.List<java.lang.String>>) throws java.io.IOException;
+    method public java.net.CacheResponse get(java.net.URI, java.lang.String, java.util.Map<java.lang.String,java.util.List<java.lang.String>>) throws java.io.IOException;
     method public int getHitCount();
     method public static android.net.http.HttpResponseCache getInstalled();
     method public int getNetworkCount();
@@ -18881,7 +18881,7 @@ package android.net.nsd {
   public final class NsdServiceInfo implements android.os.Parcelable {
     ctor public NsdServiceInfo();
     method public int describeContents();
-    method public java.util.Map<java.lang.String, byte[]> getAttributes();
+    method public java.util.Map<java.lang.String,byte[]> getAttributes();
     method public java.net.InetAddress getHost();
     method public int getPort();
     method public java.lang.String getServiceName();
@@ -19354,7 +19354,7 @@ package android.net.wifi {
     field public int numAutoJoinAttempt;
     field public int numAutoRoamAttempt;
     field public int numWifiManagerJoinAttempt;
-    field public java.util.HashMap<java.lang.String, android.net.wifi.WifiNetworkConnectionStatistics> untrustedNetworkHistory;
+    field public java.util.HashMap<java.lang.String,android.net.wifi.WifiNetworkConnectionStatistics> untrustedNetworkHistory;
   }
 
   public class WifiEnterpriseConfig implements android.os.Parcelable {
@@ -19781,7 +19781,7 @@ package android.net.wifi.p2p {
   }
 
   public static interface WifiP2pManager.DnsSdTxtRecordListener {
-    method public void onDnsSdTxtRecordAvailable(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, android.net.wifi.p2p.WifiP2pDevice);
+    method public void onDnsSdTxtRecordAvailable(java.lang.String, java.util.Map<java.lang.String,java.lang.String>, android.net.wifi.p2p.WifiP2pDevice);
   }
 
   public static interface WifiP2pManager.GroupInfoListener {
@@ -19805,7 +19805,7 @@ package android.net.wifi.p2p {
 package android.net.wifi.p2p.nsd {
 
   public class WifiP2pDnsSdServiceInfo extends android.net.wifi.p2p.nsd.WifiP2pServiceInfo {
-    method public static android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceInfo newInstance(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+    method public static android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceInfo newInstance(java.lang.String, java.lang.String, java.util.Map<java.lang.String,java.lang.String>);
   }
 
   public class WifiP2pDnsSdServiceRequest extends android.net.wifi.p2p.nsd.WifiP2pServiceRequest {
@@ -22808,9 +22808,9 @@ package android.os {
     ctor public AsyncTask();
     method public final boolean cancel(boolean);
     method protected abstract Result doInBackground(Params...);
-    method public final android.os.AsyncTask<Params, Progress, Result> execute(Params...);
+    method public final android.os.AsyncTask<Params,Progress,Result> execute(Params...);
     method public static void execute(java.lang.Runnable);
-    method public final android.os.AsyncTask<Params, Progress, Result> executeOnExecutor(java.util.concurrent.Executor, Params...);
+    method public final android.os.AsyncTask<Params,Progress,Result> executeOnExecutor(java.util.concurrent.Executor, Params...);
     method public final Result get() throws java.util.concurrent.ExecutionException, java.lang.InterruptedException;
     method public final Result get(long, java.util.concurrent.TimeUnit) throws java.util.concurrent.ExecutionException, java.lang.InterruptedException, java.util.concurrent.TimeoutException;
     method public final android.os.AsyncTask.Status getStatus();
@@ -26101,7 +26101,7 @@ package android.provider {
 
   public static final class ContactsContract.ProfileSyncState implements android.provider.SyncStateContract.Columns {
     method public static byte[] get(android.content.ContentProviderClient, android.accounts.Account) throws android.os.RemoteException;
-    method public static android.util.Pair<android.net.Uri, byte[]> getWithUri(android.content.ContentProviderClient, android.accounts.Account) throws android.os.RemoteException;
+    method public static android.util.Pair<android.net.Uri,byte[]> getWithUri(android.content.ContentProviderClient, android.accounts.Account) throws android.os.RemoteException;
     method public static android.content.ContentProviderOperation newSetOperation(android.accounts.Account, byte[]);
     method public static void set(android.content.ContentProviderClient, android.accounts.Account, byte[]) throws android.os.RemoteException;
     field public static final java.lang.String CONTENT_DIRECTORY = "syncstate";
@@ -26278,7 +26278,7 @@ package android.provider {
 
   public static final class ContactsContract.SyncState implements android.provider.SyncStateContract.Columns {
     method public static byte[] get(android.content.ContentProviderClient, android.accounts.Account) throws android.os.RemoteException;
-    method public static android.util.Pair<android.net.Uri, byte[]> getWithUri(android.content.ContentProviderClient, android.accounts.Account) throws android.os.RemoteException;
+    method public static android.util.Pair<android.net.Uri,byte[]> getWithUri(android.content.ContentProviderClient, android.accounts.Account) throws android.os.RemoteException;
     method public static android.content.ContentProviderOperation newSetOperation(android.accounts.Account, byte[]);
     method public static void set(android.content.ContentProviderClient, android.accounts.Account, byte[]) throws android.os.RemoteException;
     field public static final java.lang.String CONTENT_DIRECTORY = "syncstate";
@@ -27076,7 +27076,7 @@ package android.provider {
   public static final class SyncStateContract.Helpers {
     ctor public SyncStateContract.Helpers();
     method public static byte[] get(android.content.ContentProviderClient, android.net.Uri, android.accounts.Account) throws android.os.RemoteException;
-    method public static android.util.Pair<android.net.Uri, byte[]> getWithUri(android.content.ContentProviderClient, android.net.Uri, android.accounts.Account) throws android.os.RemoteException;
+    method public static android.util.Pair<android.net.Uri,byte[]> getWithUri(android.content.ContentProviderClient, android.net.Uri, android.accounts.Account) throws android.os.RemoteException;
     method public static android.net.Uri insert(android.content.ContentProviderClient, android.net.Uri, android.accounts.Account, byte[]) throws android.os.RemoteException;
     method public static android.content.ContentProviderOperation newSetOperation(android.net.Uri, android.accounts.Account, byte[]);
     method public static android.content.ContentProviderOperation newUpdateOperation(android.net.Uri, byte[]);
@@ -29037,8 +29037,8 @@ package android.speech.tts {
     method public int isLanguageAvailable(java.util.Locale);
     method public boolean isSpeaking();
     method public int playEarcon(java.lang.String, int, android.os.Bundle, java.lang.String);
-    method @Deprecated public int playEarcon(java.lang.String, int, java.util.HashMap<java.lang.String, java.lang.String>);
-    method @Deprecated public int playSilence(long, int, java.util.HashMap<java.lang.String, java.lang.String>);
+    method @Deprecated public int playEarcon(java.lang.String, int, java.util.HashMap<java.lang.String,java.lang.String>);
+    method @Deprecated public int playSilence(long, int, java.util.HashMap<java.lang.String,java.lang.String>);
     method public int playSilentUtterance(long, int, java.lang.String);
     method public int setAudioAttributes(android.media.AudioAttributes);
     method @Deprecated public int setEngineByPackageName(java.lang.String);
@@ -29050,10 +29050,10 @@ package android.speech.tts {
     method public int setVoice(android.speech.tts.Voice);
     method public void shutdown();
     method public int speak(java.lang.CharSequence, int, android.os.Bundle, java.lang.String);
-    method @Deprecated public int speak(java.lang.String, int, java.util.HashMap<java.lang.String, java.lang.String>);
+    method @Deprecated public int speak(java.lang.String, int, java.util.HashMap<java.lang.String,java.lang.String>);
     method public int stop();
     method public int synthesizeToFile(java.lang.CharSequence, android.os.Bundle, java.io.File, java.lang.String);
-    method @Deprecated public int synthesizeToFile(java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>, java.lang.String);
+    method @Deprecated public int synthesizeToFile(java.lang.String, java.util.HashMap<java.lang.String,java.lang.String>, java.lang.String);
     field public static final java.lang.String ACTION_TTS_QUEUE_PROCESSING_COMPLETED = "android.speech.tts.TTS_QUEUE_PROCESSING_COMPLETED";
     field public static final int ERROR = -1; // 0xffffffff
     field public static final int ERROR_INVALID_REQUEST = -8; // 0xfffffff8
@@ -31155,8 +31155,8 @@ package android.test {
     method public static void assertContentsInOrder(java.lang.Iterable<?>, java.lang.Object...);
     method public static void assertEmpty(java.lang.String, java.lang.Iterable<?>);
     method public static void assertEmpty(java.lang.Iterable<?>);
-    method public static void assertEmpty(java.lang.String, java.util.Map<?, ?>);
-    method public static void assertEmpty(java.util.Map<?, ?>);
+    method public static void assertEmpty(java.lang.String, java.util.Map<?,?>);
+    method public static void assertEmpty(java.util.Map<?,?>);
     method public static void assertEquals(java.lang.String, byte[], byte[]);
     method public static void assertEquals(byte[], byte[]);
     method public static void assertEquals(java.lang.String, int[], int[]);
@@ -31173,8 +31173,8 @@ package android.test {
     method public static void assertNotContainsRegex(java.lang.String, java.lang.String);
     method public static void assertNotEmpty(java.lang.String, java.lang.Iterable<?>);
     method public static void assertNotEmpty(java.lang.Iterable<?>);
-    method public static void assertNotEmpty(java.lang.String, java.util.Map<?, ?>);
-    method public static void assertNotEmpty(java.util.Map<?, ?>);
+    method public static void assertNotEmpty(java.lang.String, java.util.Map<?,?>);
+    method public static void assertNotEmpty(java.util.Map<?,?>);
     method public static void assertNotEqual(java.lang.String, java.lang.Object, java.lang.Object);
     method public static void assertNotEqual(java.lang.Object, java.lang.Object);
     method public static void assertNotMatchesRegex(java.lang.String, java.lang.String, java.lang.String);
@@ -33427,7 +33427,7 @@ package android.transition {
 
   public class TransitionValues {
     ctor public TransitionValues();
-    field public final java.util.Map<java.lang.String, java.lang.Object> values;
+    field public final java.util.Map<java.lang.String,java.lang.Object> values;
     field public android.view.View view;
   }
 
@@ -33483,15 +33483,15 @@ package android.util {
     method public boolean containsKey(java.lang.Object);
     method public boolean containsValue(java.lang.Object);
     method public void ensureCapacity(int);
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public V get(java.lang.Object);
     method public int indexOfKey(java.lang.Object);
     method public boolean isEmpty();
     method public K keyAt(int);
     method public java.util.Set<K> keySet();
     method public V put(K, V);
-    method public void putAll(android.util.ArrayMap<? extends K, ? extends V>);
-    method public void putAll(java.util.Map<? extends K, ? extends V>);
+    method public void putAll(android.util.ArrayMap<? extends K,? extends V>);
+    method public void putAll(java.util.Map<? extends K,? extends V>);
     method public V remove(java.lang.Object);
     method public boolean removeAll(java.util.Collection<?>);
     method public V removeAt(int);
@@ -33773,7 +33773,7 @@ package android.util {
     method public void resize(int);
     method public final int size();
     method protected int sizeOf(K, V);
-    method public final java.util.Map<K, V> snapshot();
+    method public final java.util.Map<K,V> snapshot();
     method public final java.lang.String toString();
     method public void trimToSize(int);
   }
@@ -33846,7 +33846,7 @@ package android.util {
 
   public class Pair {
     ctor public Pair(F, S);
-    method public static android.util.Pair<A, B> create(A, B);
+    method public static android.util.Pair<A,B> create(A, B);
     field public final F first;
     field public final S second;
   }
@@ -33885,7 +33885,7 @@ package android.util {
     method public java.lang.String getName();
     method public java.lang.Class<V> getType();
     method public boolean isReadOnly();
-    method public static android.util.Property<T, V> of(java.lang.Class<T>, java.lang.Class<V>, java.lang.String);
+    method public static android.util.Property<T,V> of(java.lang.Class<T>, java.lang.Class<V>, java.lang.String);
     method public void set(T, V);
   }
 
@@ -35909,7 +35909,7 @@ package android.view {
     field public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE = 2; // 0x2
     field public static final int ACCESSIBILITY_LIVE_REGION_NONE = 0; // 0x0
     field public static final int ACCESSIBILITY_LIVE_REGION_POLITE = 1; // 0x1
-    field public static final android.util.Property<android.view.View, java.lang.Float> ALPHA;
+    field public static final android.util.Property<android.view.View,java.lang.Float> ALPHA;
     field public static final int DRAWING_CACHE_QUALITY_AUTO = 0; // 0x0
     field public static final int DRAWING_CACHE_QUALITY_HIGH = 1048576; // 0x100000
     field public static final int DRAWING_CACHE_QUALITY_LOW = 524288; // 0x80000
@@ -35975,11 +35975,11 @@ package android.view {
     field protected static final int[] PRESSED_SELECTED_WINDOW_FOCUSED_STATE_SET;
     field protected static final int[] PRESSED_STATE_SET;
     field protected static final int[] PRESSED_WINDOW_FOCUSED_STATE_SET;
-    field public static final android.util.Property<android.view.View, java.lang.Float> ROTATION;
-    field public static final android.util.Property<android.view.View, java.lang.Float> ROTATION_X;
-    field public static final android.util.Property<android.view.View, java.lang.Float> ROTATION_Y;
-    field public static final android.util.Property<android.view.View, java.lang.Float> SCALE_X;
-    field public static final android.util.Property<android.view.View, java.lang.Float> SCALE_Y;
+    field public static final android.util.Property<android.view.View,java.lang.Float> ROTATION;
+    field public static final android.util.Property<android.view.View,java.lang.Float> ROTATION_X;
+    field public static final android.util.Property<android.view.View,java.lang.Float> ROTATION_Y;
+    field public static final android.util.Property<android.view.View,java.lang.Float> SCALE_X;
+    field public static final android.util.Property<android.view.View,java.lang.Float> SCALE_Y;
     field public static final int SCREEN_STATE_OFF = 0; // 0x0
     field public static final int SCREEN_STATE_ON = 1; // 0x1
     field public static final int SCROLLBARS_INSIDE_INSET = 16777216; // 0x1000000
@@ -36020,15 +36020,15 @@ package android.view {
     field public static final int TEXT_DIRECTION_LOCALE = 5; // 0x5
     field public static final int TEXT_DIRECTION_LTR = 3; // 0x3
     field public static final int TEXT_DIRECTION_RTL = 4; // 0x4
-    field public static final android.util.Property<android.view.View, java.lang.Float> TRANSLATION_X;
-    field public static final android.util.Property<android.view.View, java.lang.Float> TRANSLATION_Y;
-    field public static final android.util.Property<android.view.View, java.lang.Float> TRANSLATION_Z;
+    field public static final android.util.Property<android.view.View,java.lang.Float> TRANSLATION_X;
+    field public static final android.util.Property<android.view.View,java.lang.Float> TRANSLATION_Y;
+    field public static final android.util.Property<android.view.View,java.lang.Float> TRANSLATION_Z;
     field protected static final java.lang.String VIEW_LOG_TAG = "View";
     field public static final int VISIBLE = 0; // 0x0
     field protected static final int[] WINDOW_FOCUSED_STATE_SET;
-    field public static final android.util.Property<android.view.View, java.lang.Float> X;
-    field public static final android.util.Property<android.view.View, java.lang.Float> Y;
-    field public static final android.util.Property<android.view.View, java.lang.Float> Z;
+    field public static final android.util.Property<android.view.View,java.lang.Float> X;
+    field public static final android.util.Property<android.view.View,java.lang.Float> Y;
+    field public static final android.util.Property<android.view.View,java.lang.Float> Z;
   }
 
   public static class View.AccessibilityDelegate {
@@ -37918,7 +37918,7 @@ package android.view.inputmethod {
     method public java.util.List<android.view.inputmethod.InputMethodSubtype> getEnabledInputMethodSubtypeList(android.view.inputmethod.InputMethodInfo, boolean);
     method public java.util.List<android.view.inputmethod.InputMethodInfo> getInputMethodList();
     method public android.view.inputmethod.InputMethodSubtype getLastInputMethodSubtype();
-    method public java.util.Map<android.view.inputmethod.InputMethodInfo, java.util.List<android.view.inputmethod.InputMethodSubtype>> getShortcutInputMethodsAndSubtypes();
+    method public java.util.Map<android.view.inputmethod.InputMethodInfo,java.util.List<android.view.inputmethod.InputMethodSubtype>> getShortcutInputMethodsAndSubtypes();
     method public void hideSoftInputFromInputMethod(android.os.IBinder, int);
     method public boolean hideSoftInputFromWindow(android.os.IBinder, int);
     method public boolean hideSoftInputFromWindow(android.os.IBinder, int, android.os.ResultReceiver);
@@ -38408,7 +38408,7 @@ package android.webkit {
 
   public interface WebResourceRequest {
     method public java.lang.String getMethod();
-    method public java.util.Map<java.lang.String, java.lang.String> getRequestHeaders();
+    method public java.util.Map<java.lang.String,java.lang.String> getRequestHeaders();
     method public android.net.Uri getUrl();
     method public boolean hasGesture();
     method public boolean isForMainFrame();
@@ -38416,17 +38416,17 @@ package android.webkit {
 
   public class WebResourceResponse {
     ctor public WebResourceResponse(java.lang.String, java.lang.String, java.io.InputStream);
-    ctor public WebResourceResponse(java.lang.String, java.lang.String, int, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.io.InputStream);
+    ctor public WebResourceResponse(java.lang.String, java.lang.String, int, java.lang.String, java.util.Map<java.lang.String,java.lang.String>, java.io.InputStream);
     method public java.io.InputStream getData();
     method public java.lang.String getEncoding();
     method public java.lang.String getMimeType();
     method public java.lang.String getReasonPhrase();
-    method public java.util.Map<java.lang.String, java.lang.String> getResponseHeaders();
+    method public java.util.Map<java.lang.String,java.lang.String> getResponseHeaders();
     method public int getStatusCode();
     method public void setData(java.io.InputStream);
     method public void setEncoding(java.lang.String);
     method public void setMimeType(java.lang.String);
-    method public void setResponseHeaders(java.util.Map<java.lang.String, java.lang.String>);
+    method public void setResponseHeaders(java.util.Map<java.lang.String,java.lang.String>);
     method public void setStatusCodeAndReasonPhrase(int, java.lang.String);
   }
 
@@ -38666,7 +38666,7 @@ package android.webkit {
     method public boolean isPrivateBrowsingEnabled();
     method public void loadData(java.lang.String, java.lang.String, java.lang.String);
     method public void loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
-    method public void loadUrl(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+    method public void loadUrl(java.lang.String, java.util.Map<java.lang.String,java.lang.String>);
     method public void loadUrl(java.lang.String);
     method @Deprecated public void onChildViewAdded(android.view.View, android.view.View);
     method @Deprecated public void onChildViewRemoved(android.view.View, android.view.View);
@@ -38917,13 +38917,13 @@ package android.webkit {
     method public void goBack();
     method public void goBackOrForward(int);
     method public void goForward();
-    method public void init(java.util.Map<java.lang.String, java.lang.Object>, boolean);
+    method public void init(java.util.Map<java.lang.String,java.lang.Object>, boolean);
     method public void invokeZoomPicker();
     method public boolean isPaused();
     method public boolean isPrivateBrowsingEnabled();
     method public void loadData(java.lang.String, java.lang.String, java.lang.String);
     method public void loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
-    method public void loadUrl(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+    method public void loadUrl(java.lang.String, java.util.Map<java.lang.String,java.lang.String>);
     method public void loadUrl(java.lang.String);
     method public void notifyFindDialogDismissed();
     method public void onPause();
@@ -40846,7 +40846,7 @@ package android.widget {
   }
 
   public class SimpleAdapter extends android.widget.BaseAdapter implements android.widget.Filterable {
-    ctor public SimpleAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String, ?>>, int, java.lang.String[], int[]);
+    ctor public SimpleAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String,?>>, int, java.lang.String[], int[]);
     method public int getCount();
     method public android.widget.Filter getFilter();
     method public java.lang.Object getItem(int);
@@ -40904,9 +40904,9 @@ package android.widget {
   }
 
   public class SimpleExpandableListAdapter extends android.widget.BaseExpandableListAdapter {
-    ctor public SimpleExpandableListAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String, ?>>, int, java.lang.String[], int[], java.util.List<? extends java.util.List<? extends java.util.Map<java.lang.String, ?>>>, int, java.lang.String[], int[]);
-    ctor public SimpleExpandableListAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String, ?>>, int, int, java.lang.String[], int[], java.util.List<? extends java.util.List<? extends java.util.Map<java.lang.String, ?>>>, int, java.lang.String[], int[]);
-    ctor public SimpleExpandableListAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String, ?>>, int, int, java.lang.String[], int[], java.util.List<? extends java.util.List<? extends java.util.Map<java.lang.String, ?>>>, int, int, java.lang.String[], int[]);
+    ctor public SimpleExpandableListAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String,?>>, int, java.lang.String[], int[], java.util.List<? extends java.util.List<? extends java.util.Map<java.lang.String,?>>>, int, java.lang.String[], int[]);
+    ctor public SimpleExpandableListAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String,?>>, int, int, java.lang.String[], int[], java.util.List<? extends java.util.List<? extends java.util.Map<java.lang.String,?>>>, int, java.lang.String[], int[]);
+    ctor public SimpleExpandableListAdapter(android.content.Context, java.util.List<? extends java.util.Map<java.lang.String,?>>, int, int, java.lang.String[], int[], java.util.List<? extends java.util.List<? extends java.util.Map<java.lang.String,?>>>, int, int, java.lang.String[], int[]);
     method public java.lang.Object getChild(int, int);
     method public long getChildId(int, int);
     method public android.view.View getChildView(int, int, boolean, android.view.View, android.view.ViewGroup);
@@ -41519,7 +41519,7 @@ package android.widget {
     method public void setOnPreparedListener(android.media.MediaPlayer.OnPreparedListener);
     method public void setVideoPath(java.lang.String);
     method public void setVideoURI(android.net.Uri);
-    method public void setVideoURI(android.net.Uri, java.util.Map<java.lang.String, java.lang.String>);
+    method public void setVideoURI(android.net.Uri, java.util.Map<java.lang.String,java.lang.String>);
     method public void start();
     method public void stopPlayback();
     method public void suspend();
@@ -44070,7 +44070,7 @@ package java.lang {
     method public java.lang.ProcessBuilder command(java.util.List<java.lang.String>);
     method public java.io.File directory();
     method public java.lang.ProcessBuilder directory(java.io.File);
-    method public java.util.Map<java.lang.String, java.lang.String> environment();
+    method public java.util.Map<java.lang.String,java.lang.String> environment();
     method public boolean redirectErrorStream();
     method public java.lang.ProcessBuilder redirectErrorStream(boolean);
     method public java.lang.Process start() throws java.io.IOException;
@@ -44458,7 +44458,7 @@ package java.lang {
     method public static java.lang.String getProperty(java.lang.String, java.lang.String);
     method public static java.lang.SecurityManager getSecurityManager();
     method public static java.lang.String getenv(java.lang.String);
-    method public static java.util.Map<java.lang.String, java.lang.String> getenv();
+    method public static java.util.Map<java.lang.String,java.lang.String> getenv();
     method public static int identityHashCode(java.lang.Object);
     method public static java.nio.channels.Channel inheritedChannel() throws java.io.IOException;
     method public static java.lang.String lineSeparator();
@@ -44495,7 +44495,7 @@ package java.lang {
     method @Deprecated public void destroy();
     method public static void dumpStack();
     method public static int enumerate(java.lang.Thread[]);
-    method public static java.util.Map<java.lang.Thread, java.lang.StackTraceElement[]> getAllStackTraces();
+    method public static java.util.Map<java.lang.Thread,java.lang.StackTraceElement[]> getAllStackTraces();
     method public java.lang.ClassLoader getContextClassLoader();
     method public static java.lang.Thread.UncaughtExceptionHandler getDefaultUncaughtExceptionHandler();
     method public long getId();
@@ -45170,7 +45170,7 @@ package java.net {
   public abstract class CacheResponse {
     ctor public CacheResponse();
     method public abstract java.io.InputStream getBody() throws java.io.IOException;
-    method public abstract java.util.Map<java.lang.String, java.util.List<java.lang.String>> getHeaders() throws java.io.IOException;
+    method public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getHeaders() throws java.io.IOException;
   }
 
   public class ConnectException extends java.net.SocketException {
@@ -45190,18 +45190,18 @@ package java.net {
 
   public abstract class CookieHandler {
     ctor public CookieHandler();
-    method public abstract java.util.Map<java.lang.String, java.util.List<java.lang.String>> get(java.net.URI, java.util.Map<java.lang.String, java.util.List<java.lang.String>>) throws java.io.IOException;
+    method public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> get(java.net.URI, java.util.Map<java.lang.String,java.util.List<java.lang.String>>) throws java.io.IOException;
     method public static java.net.CookieHandler getDefault();
-    method public abstract void put(java.net.URI, java.util.Map<java.lang.String, java.util.List<java.lang.String>>) throws java.io.IOException;
+    method public abstract void put(java.net.URI, java.util.Map<java.lang.String,java.util.List<java.lang.String>>) throws java.io.IOException;
     method public static void setDefault(java.net.CookieHandler);
   }
 
   public class CookieManager extends java.net.CookieHandler {
     ctor public CookieManager();
     ctor public CookieManager(java.net.CookieStore, java.net.CookiePolicy);
-    method public java.util.Map<java.lang.String, java.util.List<java.lang.String>> get(java.net.URI, java.util.Map<java.lang.String, java.util.List<java.lang.String>>) throws java.io.IOException;
+    method public java.util.Map<java.lang.String,java.util.List<java.lang.String>> get(java.net.URI, java.util.Map<java.lang.String,java.util.List<java.lang.String>>) throws java.io.IOException;
     method public java.net.CookieStore getCookieStore();
-    method public void put(java.net.URI, java.util.Map<java.lang.String, java.util.List<java.lang.String>>) throws java.io.IOException;
+    method public void put(java.net.URI, java.util.Map<java.lang.String,java.util.List<java.lang.String>>) throws java.io.IOException;
     method public void setCookiePolicy(java.net.CookiePolicy);
   }
 
@@ -45587,7 +45587,7 @@ package java.net {
 
   public abstract class ResponseCache {
     ctor public ResponseCache();
-    method public abstract java.net.CacheResponse get(java.net.URI, java.lang.String, java.util.Map<java.lang.String, java.util.List<java.lang.String>>) throws java.io.IOException;
+    method public abstract java.net.CacheResponse get(java.net.URI, java.lang.String, java.util.Map<java.lang.String,java.util.List<java.lang.String>>) throws java.io.IOException;
     method public static java.net.ResponseCache getDefault();
     method public abstract java.net.CacheRequest put(java.net.URI, java.net.URLConnection) throws java.io.IOException;
     method public static void setDefault(java.net.ResponseCache);
@@ -45861,14 +45861,14 @@ package java.net {
     method public long getHeaderFieldDate(java.lang.String, long);
     method public int getHeaderFieldInt(java.lang.String, int);
     method public java.lang.String getHeaderFieldKey(int);
-    method public java.util.Map<java.lang.String, java.util.List<java.lang.String>> getHeaderFields();
+    method public java.util.Map<java.lang.String,java.util.List<java.lang.String>> getHeaderFields();
     method public long getIfModifiedSince();
     method public java.io.InputStream getInputStream() throws java.io.IOException;
     method public long getLastModified();
     method public java.io.OutputStream getOutputStream() throws java.io.IOException;
     method public java.security.Permission getPermission() throws java.io.IOException;
     method public int getReadTimeout();
-    method public java.util.Map<java.lang.String, java.util.List<java.lang.String>> getRequestProperties();
+    method public java.util.Map<java.lang.String,java.util.List<java.lang.String>> getRequestProperties();
     method public java.lang.String getRequestProperty(java.lang.String);
     method public java.net.URL getURL();
     method public boolean getUseCaches();
@@ -46544,7 +46544,7 @@ package java.nio.charset {
   public abstract class Charset implements java.lang.Comparable {
     ctor protected Charset(java.lang.String, java.lang.String[]);
     method public final java.util.Set<java.lang.String> aliases();
-    method public static java.util.SortedMap<java.lang.String, java.nio.charset.Charset> availableCharsets();
+    method public static java.util.SortedMap<java.lang.String,java.nio.charset.Charset> availableCharsets();
     method public boolean canEncode();
     method public final int compareTo(java.nio.charset.Charset);
     method public abstract boolean contains(java.nio.charset.Charset);
@@ -47227,13 +47227,13 @@ package java.security {
     method public java.util.Set<java.security.Provider.Service> getServices();
     method public double getVersion();
     method public java.lang.Object put(java.lang.Object, java.lang.Object);
-    method public void putAll(java.util.Map<?, ?>);
+    method public void putAll(java.util.Map<?,?>);
     method protected void putService(java.security.Provider.Service);
     method protected void removeService(java.security.Provider.Service);
   }
 
   public static class Provider.Service {
-    ctor public Provider.Service(java.security.Provider, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.lang.String>, java.util.Map<java.lang.String, java.lang.String>);
+    ctor public Provider.Service(java.security.Provider, java.lang.String, java.lang.String, java.lang.String, java.util.List<java.lang.String>, java.util.Map<java.lang.String,java.lang.String>);
     method public final java.lang.String getAlgorithm();
     method public final java.lang.String getAttribute(java.lang.String);
     method public final java.lang.String getClassName();
@@ -47292,7 +47292,7 @@ package java.security {
     method public static java.security.Provider getProvider(java.lang.String);
     method public static java.security.Provider[] getProviders();
     method public static java.security.Provider[] getProviders(java.lang.String);
-    method public static java.security.Provider[] getProviders(java.util.Map<java.lang.String, java.lang.String>);
+    method public static java.security.Provider[] getProviders(java.util.Map<java.lang.String,java.lang.String>);
     method public static int insertProviderAt(java.security.Provider, int);
     method public static void removeProvider(java.lang.String);
     method public static void setProperty(java.lang.String, java.lang.String);
@@ -48190,14 +48190,14 @@ package java.sql {
     method public void free() throws java.sql.SQLException;
     method public java.lang.Object getArray() throws java.sql.SQLException;
     method public java.lang.Object getArray(long, int) throws java.sql.SQLException;
-    method public java.lang.Object getArray(long, int, java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
-    method public java.lang.Object getArray(java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getArray(long, int, java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getArray(java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public int getBaseType() throws java.sql.SQLException;
     method public java.lang.String getBaseTypeName() throws java.sql.SQLException;
     method public java.sql.ResultSet getResultSet() throws java.sql.SQLException;
     method public java.sql.ResultSet getResultSet(long, int) throws java.sql.SQLException;
-    method public java.sql.ResultSet getResultSet(long, int, java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
-    method public java.sql.ResultSet getResultSet(java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.sql.ResultSet getResultSet(long, int, java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.sql.ResultSet getResultSet(java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
   }
 
   public class BatchUpdateException extends java.sql.SQLException implements java.io.Serializable {
@@ -48265,9 +48265,9 @@ package java.sql {
     method public java.lang.String getNString(int) throws java.sql.SQLException;
     method public java.lang.String getNString(java.lang.String) throws java.sql.SQLException;
     method public java.lang.Object getObject(int) throws java.sql.SQLException;
-    method public java.lang.Object getObject(int, java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getObject(int, java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public java.lang.Object getObject(java.lang.String) throws java.sql.SQLException;
-    method public java.lang.Object getObject(java.lang.String, java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getObject(java.lang.String, java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public java.sql.Ref getRef(int) throws java.sql.SQLException;
     method public java.sql.Ref getRef(java.lang.String) throws java.sql.SQLException;
     method public java.sql.RowId getRowId(int) throws java.sql.SQLException;
@@ -48385,7 +48385,7 @@ package java.sql {
     method public int getHoldability() throws java.sql.SQLException;
     method public java.sql.DatabaseMetaData getMetaData() throws java.sql.SQLException;
     method public int getTransactionIsolation() throws java.sql.SQLException;
-    method public java.util.Map<java.lang.String, java.lang.Class<?>> getTypeMap() throws java.sql.SQLException;
+    method public java.util.Map<java.lang.String,java.lang.Class<?>> getTypeMap() throws java.sql.SQLException;
     method public java.sql.SQLWarning getWarnings() throws java.sql.SQLException;
     method public boolean isClosed() throws java.sql.SQLException;
     method public boolean isReadOnly() throws java.sql.SQLException;
@@ -48412,7 +48412,7 @@ package java.sql {
     method public java.sql.Savepoint setSavepoint() throws java.sql.SQLException;
     method public java.sql.Savepoint setSavepoint(java.lang.String) throws java.sql.SQLException;
     method public void setTransactionIsolation(int) throws java.sql.SQLException;
-    method public void setTypeMap(java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public void setTypeMap(java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     field public static final int TRANSACTION_NONE = 0; // 0x0
     field public static final int TRANSACTION_READ_COMMITTED = 2; // 0x2
     field public static final int TRANSACTION_READ_UNCOMMITTED = 1; // 0x1
@@ -48790,7 +48790,7 @@ package java.sql {
   public interface Ref {
     method public java.lang.String getBaseTypeName() throws java.sql.SQLException;
     method public java.lang.Object getObject() throws java.sql.SQLException;
-    method public java.lang.Object getObject(java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getObject(java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public void setObject(java.lang.Object) throws java.sql.SQLException;
   }
 
@@ -48851,9 +48851,9 @@ package java.sql {
     method public java.lang.String getNString(int) throws java.sql.SQLException;
     method public java.lang.String getNString(java.lang.String) throws java.sql.SQLException;
     method public java.lang.Object getObject(int) throws java.sql.SQLException;
-    method public java.lang.Object getObject(int, java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getObject(int, java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public java.lang.Object getObject(java.lang.String) throws java.sql.SQLException;
-    method public java.lang.Object getObject(java.lang.String, java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object getObject(java.lang.String, java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public java.sql.Ref getRef(int) throws java.sql.SQLException;
     method public java.sql.Ref getRef(java.lang.String) throws java.sql.SQLException;
     method public int getRow() throws java.sql.SQLException;
@@ -49038,15 +49038,15 @@ package java.sql {
 
   public class SQLClientInfoException extends java.sql.SQLException {
     ctor public SQLClientInfoException();
-    ctor public SQLClientInfoException(java.util.Map<java.lang.String, java.sql.ClientInfoStatus>);
-    ctor public SQLClientInfoException(java.util.Map<java.lang.String, java.sql.ClientInfoStatus>, java.lang.Throwable);
-    ctor public SQLClientInfoException(java.lang.String, java.util.Map<java.lang.String, java.sql.ClientInfoStatus>);
-    ctor public SQLClientInfoException(java.lang.String, java.util.Map<java.lang.String, java.sql.ClientInfoStatus>, java.lang.Throwable);
-    ctor public SQLClientInfoException(java.lang.String, java.lang.String, int, java.util.Map<java.lang.String, java.sql.ClientInfoStatus>);
-    ctor public SQLClientInfoException(java.lang.String, java.lang.String, int, java.util.Map<java.lang.String, java.sql.ClientInfoStatus>, java.lang.Throwable);
-    ctor public SQLClientInfoException(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.sql.ClientInfoStatus>);
-    ctor public SQLClientInfoException(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.sql.ClientInfoStatus>, java.lang.Throwable);
-    method public java.util.Map<java.lang.String, java.sql.ClientInfoStatus> getFailedProperties();
+    ctor public SQLClientInfoException(java.util.Map<java.lang.String,java.sql.ClientInfoStatus>);
+    ctor public SQLClientInfoException(java.util.Map<java.lang.String,java.sql.ClientInfoStatus>, java.lang.Throwable);
+    ctor public SQLClientInfoException(java.lang.String, java.util.Map<java.lang.String,java.sql.ClientInfoStatus>);
+    ctor public SQLClientInfoException(java.lang.String, java.util.Map<java.lang.String,java.sql.ClientInfoStatus>, java.lang.Throwable);
+    ctor public SQLClientInfoException(java.lang.String, java.lang.String, int, java.util.Map<java.lang.String,java.sql.ClientInfoStatus>);
+    ctor public SQLClientInfoException(java.lang.String, java.lang.String, int, java.util.Map<java.lang.String,java.sql.ClientInfoStatus>, java.lang.Throwable);
+    ctor public SQLClientInfoException(java.lang.String, java.lang.String, java.util.Map<java.lang.String,java.sql.ClientInfoStatus>);
+    ctor public SQLClientInfoException(java.lang.String, java.lang.String, java.util.Map<java.lang.String,java.sql.ClientInfoStatus>, java.lang.Throwable);
+    method public java.util.Map<java.lang.String,java.sql.ClientInfoStatus> getFailedProperties();
   }
 
   public interface SQLData {
@@ -49350,7 +49350,7 @@ package java.sql {
 
   public interface Struct {
     method public java.lang.Object[] getAttributes() throws java.sql.SQLException;
-    method public java.lang.Object[] getAttributes(java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public java.lang.Object[] getAttributes(java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public java.lang.String getSQLTypeName() throws java.sql.SQLException;
   }
 
@@ -49428,7 +49428,7 @@ package java.text {
   public interface AttributedCharacterIterator extends java.text.CharacterIterator {
     method public java.util.Set<java.text.AttributedCharacterIterator.Attribute> getAllAttributeKeys();
     method public java.lang.Object getAttribute(java.text.AttributedCharacterIterator.Attribute);
-    method public java.util.Map<java.text.AttributedCharacterIterator.Attribute, java.lang.Object> getAttributes();
+    method public java.util.Map<java.text.AttributedCharacterIterator.Attribute,java.lang.Object> getAttributes();
     method public int getRunLimit();
     method public int getRunLimit(java.text.AttributedCharacterIterator.Attribute);
     method public int getRunLimit(java.util.Set<? extends java.text.AttributedCharacterIterator.Attribute>);
@@ -49453,10 +49453,10 @@ package java.text {
     ctor public AttributedString(java.text.AttributedCharacterIterator, int, int);
     ctor public AttributedString(java.text.AttributedCharacterIterator, int, int, java.text.AttributedCharacterIterator.Attribute[]);
     ctor public AttributedString(java.lang.String);
-    ctor public AttributedString(java.lang.String, java.util.Map<? extends java.text.AttributedCharacterIterator.Attribute, ?>);
+    ctor public AttributedString(java.lang.String, java.util.Map<? extends java.text.AttributedCharacterIterator.Attribute,?>);
     method public void addAttribute(java.text.AttributedCharacterIterator.Attribute, java.lang.Object);
     method public void addAttribute(java.text.AttributedCharacterIterator.Attribute, java.lang.Object, int, int);
-    method public void addAttributes(java.util.Map<? extends java.text.AttributedCharacterIterator.Attribute, ?>, int, int);
+    method public void addAttributes(java.util.Map<? extends java.text.AttributedCharacterIterator.Attribute,?>, int, int);
     method public java.text.AttributedCharacterIterator getIterator();
     method public java.text.AttributedCharacterIterator getIterator(java.text.AttributedCharacterIterator.Attribute[]);
     method public java.text.AttributedCharacterIterator getIterator(java.text.AttributedCharacterIterator.Attribute[], int, int);
@@ -49983,12 +49983,12 @@ package java.util {
     method public void clear();
     method public boolean containsKey(java.lang.Object);
     method public boolean containsValue(java.lang.Object);
-    method public abstract java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public abstract java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public V get(java.lang.Object);
     method public boolean isEmpty();
     method public java.util.Set<K> keySet();
     method public V put(K, V);
-    method public void putAll(java.util.Map<? extends K, ? extends V>);
+    method public void putAll(java.util.Map<? extends K,? extends V>);
     method public V remove(java.lang.Object);
     method public int size();
     method public java.util.Collection<V> values();
@@ -49996,7 +49996,7 @@ package java.util {
 
   public static class AbstractMap.SimpleEntry implements java.util.Map.Entry java.io.Serializable {
     ctor public AbstractMap.SimpleEntry(K, V);
-    ctor public AbstractMap.SimpleEntry(java.util.Map.Entry<? extends K, ? extends V>);
+    ctor public AbstractMap.SimpleEntry(java.util.Map.Entry<? extends K,? extends V>);
     method public K getKey();
     method public V getValue();
     method public V setValue(V);
@@ -50004,7 +50004,7 @@ package java.util {
 
   public static class AbstractMap.SimpleImmutableEntry implements java.util.Map.Entry java.io.Serializable {
     ctor public AbstractMap.SimpleImmutableEntry(K, V);
-    ctor public AbstractMap.SimpleImmutableEntry(java.util.Map.Entry<? extends K, ? extends V>);
+    ctor public AbstractMap.SimpleImmutableEntry(java.util.Map.Entry<? extends K,? extends V>);
     method public K getKey();
     method public V getValue();
     method public V setValue(V);
@@ -50230,7 +50230,7 @@ package java.util {
     method public int getActualMinimum(int);
     method public static java.util.Locale[] getAvailableLocales();
     method public java.lang.String getDisplayName(int, int, java.util.Locale);
-    method public java.util.Map<java.lang.String, java.lang.Integer> getDisplayNames(int, int, java.util.Locale);
+    method public java.util.Map<java.lang.String,java.lang.Integer> getDisplayNames(int, int, java.util.Locale);
     method public int getFirstDayOfWeek();
     method public abstract int getGreatestMinimum(int);
     method public static java.util.Calendar getInstance();
@@ -50335,9 +50335,9 @@ package java.util {
     method public static int binarySearch(java.util.List<? extends T>, T, java.util.Comparator<? super T>);
     method public static java.util.Collection<E> checkedCollection(java.util.Collection<E>, java.lang.Class<E>);
     method public static java.util.List<E> checkedList(java.util.List<E>, java.lang.Class<E>);
-    method public static java.util.Map<K, V> checkedMap(java.util.Map<K, V>, java.lang.Class<K>, java.lang.Class<V>);
+    method public static java.util.Map<K,V> checkedMap(java.util.Map<K,V>, java.lang.Class<K>, java.lang.Class<V>);
     method public static java.util.Set<E> checkedSet(java.util.Set<E>, java.lang.Class<E>);
-    method public static java.util.SortedMap<K, V> checkedSortedMap(java.util.SortedMap<K, V>, java.lang.Class<K>, java.lang.Class<V>);
+    method public static java.util.SortedMap<K,V> checkedSortedMap(java.util.SortedMap<K,V>, java.lang.Class<K>, java.lang.Class<V>);
     method public static java.util.SortedSet<E> checkedSortedSet(java.util.SortedSet<E>, java.lang.Class<E>);
     method public static void copy(java.util.List<? super T>, java.util.List<? extends T>);
     method public static boolean disjoint(java.util.Collection<?>, java.util.Collection<?>);
@@ -50345,7 +50345,7 @@ package java.util {
     method public static java.util.Iterator<T> emptyIterator();
     method public static final java.util.List<T> emptyList();
     method public static java.util.ListIterator<T> emptyListIterator();
-    method public static final java.util.Map<K, V> emptyMap();
+    method public static final java.util.Map<K,V> emptyMap();
     method public static final java.util.Set<T> emptySet();
     method public static java.util.Enumeration<T> enumeration(java.util.Collection<T>);
     method public static void fill(java.util.List<? super T>, T);
@@ -50358,7 +50358,7 @@ package java.util {
     method public static T min(java.util.Collection<? extends T>);
     method public static T min(java.util.Collection<? extends T>, java.util.Comparator<? super T>);
     method public static java.util.List<T> nCopies(int, T);
-    method public static java.util.Set<E> newSetFromMap(java.util.Map<E, java.lang.Boolean>);
+    method public static java.util.Set<E> newSetFromMap(java.util.Map<E,java.lang.Boolean>);
     method public static boolean replaceAll(java.util.List<T>, T, T);
     method public static void reverse(java.util.List<?>);
     method public static java.util.Comparator<T> reverseOrder();
@@ -50368,21 +50368,21 @@ package java.util {
     method public static void shuffle(java.util.List<?>, java.util.Random);
     method public static java.util.Set<E> singleton(E);
     method public static java.util.List<E> singletonList(E);
-    method public static java.util.Map<K, V> singletonMap(K, V);
+    method public static java.util.Map<K,V> singletonMap(K, V);
     method public static void sort(java.util.List<T>);
     method public static void sort(java.util.List<T>, java.util.Comparator<? super T>);
     method public static void swap(java.util.List<?>, int, int);
     method public static java.util.Collection<T> synchronizedCollection(java.util.Collection<T>);
     method public static java.util.List<T> synchronizedList(java.util.List<T>);
-    method public static java.util.Map<K, V> synchronizedMap(java.util.Map<K, V>);
+    method public static java.util.Map<K,V> synchronizedMap(java.util.Map<K,V>);
     method public static java.util.Set<E> synchronizedSet(java.util.Set<E>);
-    method public static java.util.SortedMap<K, V> synchronizedSortedMap(java.util.SortedMap<K, V>);
+    method public static java.util.SortedMap<K,V> synchronizedSortedMap(java.util.SortedMap<K,V>);
     method public static java.util.SortedSet<E> synchronizedSortedSet(java.util.SortedSet<E>);
     method public static java.util.Collection<E> unmodifiableCollection(java.util.Collection<? extends E>);
     method public static java.util.List<E> unmodifiableList(java.util.List<? extends E>);
-    method public static java.util.Map<K, V> unmodifiableMap(java.util.Map<? extends K, ? extends V>);
+    method public static java.util.Map<K,V> unmodifiableMap(java.util.Map<? extends K,? extends V>);
     method public static java.util.Set<E> unmodifiableSet(java.util.Set<? extends E>);
-    method public static java.util.SortedMap<K, V> unmodifiableSortedMap(java.util.SortedMap<K, ? extends V>);
+    method public static java.util.SortedMap<K,V> unmodifiableSortedMap(java.util.SortedMap<K,? extends V>);
     method public static java.util.SortedSet<E> unmodifiableSortedSet(java.util.SortedSet<E>);
     field public static final java.util.List EMPTY_LIST;
     field public static final java.util.Map EMPTY_MAP;
@@ -50498,10 +50498,10 @@ package java.util {
 
   public class EnumMap extends java.util.AbstractMap implements java.lang.Cloneable java.util.Map java.io.Serializable {
     ctor public EnumMap(java.lang.Class<K>);
-    ctor public EnumMap(java.util.EnumMap<K, ? extends V>);
-    ctor public EnumMap(java.util.Map<K, ? extends V>);
-    method public java.util.EnumMap<K, V> clone();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    ctor public EnumMap(java.util.EnumMap<K,? extends V>);
+    ctor public EnumMap(java.util.Map<K,? extends V>);
+    method public java.util.EnumMap<K,V> clone();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
   }
 
   public abstract class EnumSet extends java.util.AbstractSet implements java.lang.Cloneable java.io.Serializable {
@@ -50615,9 +50615,9 @@ package java.util {
     ctor public HashMap();
     ctor public HashMap(int);
     ctor public HashMap(int, float);
-    ctor public HashMap(java.util.Map<? extends K, ? extends V>);
+    ctor public HashMap(java.util.Map<? extends K,? extends V>);
     method public java.lang.Object clone();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
   }
 
   public class HashSet extends java.util.AbstractSet implements java.lang.Cloneable java.io.Serializable java.util.Set {
@@ -50634,20 +50634,20 @@ package java.util {
     ctor public Hashtable();
     ctor public Hashtable(int);
     ctor public Hashtable(int, float);
-    ctor public Hashtable(java.util.Map<? extends K, ? extends V>);
+    ctor public Hashtable(java.util.Map<? extends K,? extends V>);
     method public void clear();
     method public java.lang.Object clone();
     method public boolean contains(java.lang.Object);
     method public boolean containsKey(java.lang.Object);
     method public boolean containsValue(java.lang.Object);
     method public java.util.Enumeration<V> elements();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public V get(java.lang.Object);
     method public boolean isEmpty();
     method public java.util.Set<K> keySet();
     method public java.util.Enumeration<K> keys();
     method public V put(K, V);
-    method public void putAll(java.util.Map<? extends K, ? extends V>);
+    method public void putAll(java.util.Map<? extends K,? extends V>);
     method protected void rehash();
     method public V remove(java.lang.Object);
     method public int size();
@@ -50657,9 +50657,9 @@ package java.util {
   public class IdentityHashMap extends java.util.AbstractMap implements java.lang.Cloneable java.util.Map java.io.Serializable {
     ctor public IdentityHashMap();
     ctor public IdentityHashMap(int);
-    ctor public IdentityHashMap(java.util.Map<? extends K, ? extends V>);
+    ctor public IdentityHashMap(java.util.Map<? extends K,? extends V>);
     method public java.lang.Object clone();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
   }
 
   public class IllegalFormatCodePointException extends java.util.IllegalFormatException implements java.io.Serializable {
@@ -50719,8 +50719,8 @@ package java.util {
     ctor public LinkedHashMap(int);
     ctor public LinkedHashMap(int, float);
     ctor public LinkedHashMap(int, float, boolean);
-    ctor public LinkedHashMap(java.util.Map<? extends K, ? extends V>);
-    method protected boolean removeEldestEntry(java.util.Map.Entry<K, V>);
+    ctor public LinkedHashMap(java.util.Map<? extends K,? extends V>);
+    method protected boolean removeEldestEntry(java.util.Map.Entry<K,V>);
   }
 
   public class LinkedHashSet extends java.util.HashSet implements java.lang.Cloneable java.io.Serializable java.util.Set {
@@ -50888,14 +50888,14 @@ package java.util {
     method public void clear();
     method public boolean containsKey(java.lang.Object);
     method public boolean containsValue(java.lang.Object);
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public boolean equals(java.lang.Object);
     method public V get(java.lang.Object);
     method public int hashCode();
     method public boolean isEmpty();
     method public java.util.Set<K> keySet();
     method public V put(K, V);
-    method public void putAll(java.util.Map<? extends K, ? extends V>);
+    method public void putAll(java.util.Map<? extends K,? extends V>);
     method public V remove(java.lang.Object);
     method public int size();
     method public java.util.Collection<V> values();
@@ -50926,27 +50926,27 @@ package java.util {
   }
 
   public interface NavigableMap extends java.util.SortedMap {
-    method public java.util.Map.Entry<K, V> ceilingEntry(K);
+    method public java.util.Map.Entry<K,V> ceilingEntry(K);
     method public K ceilingKey(K);
     method public java.util.NavigableSet<K> descendingKeySet();
-    method public java.util.NavigableMap<K, V> descendingMap();
-    method public java.util.Map.Entry<K, V> firstEntry();
-    method public java.util.Map.Entry<K, V> floorEntry(K);
+    method public java.util.NavigableMap<K,V> descendingMap();
+    method public java.util.Map.Entry<K,V> firstEntry();
+    method public java.util.Map.Entry<K,V> floorEntry(K);
     method public K floorKey(K);
-    method public java.util.NavigableMap<K, V> headMap(K, boolean);
-    method public java.util.SortedMap<K, V> headMap(K);
-    method public java.util.Map.Entry<K, V> higherEntry(K);
+    method public java.util.NavigableMap<K,V> headMap(K, boolean);
+    method public java.util.SortedMap<K,V> headMap(K);
+    method public java.util.Map.Entry<K,V> higherEntry(K);
     method public K higherKey(K);
-    method public java.util.Map.Entry<K, V> lastEntry();
-    method public java.util.Map.Entry<K, V> lowerEntry(K);
+    method public java.util.Map.Entry<K,V> lastEntry();
+    method public java.util.Map.Entry<K,V> lowerEntry(K);
     method public K lowerKey(K);
     method public java.util.NavigableSet<K> navigableKeySet();
-    method public java.util.Map.Entry<K, V> pollFirstEntry();
-    method public java.util.Map.Entry<K, V> pollLastEntry();
-    method public java.util.NavigableMap<K, V> subMap(K, boolean, K, boolean);
-    method public java.util.SortedMap<K, V> subMap(K, K);
-    method public java.util.NavigableMap<K, V> tailMap(K, boolean);
-    method public java.util.SortedMap<K, V> tailMap(K);
+    method public java.util.Map.Entry<K,V> pollFirstEntry();
+    method public java.util.Map.Entry<K,V> pollLastEntry();
+    method public java.util.NavigableMap<K,V> subMap(K, boolean, K, boolean);
+    method public java.util.SortedMap<K,V> subMap(K, K);
+    method public java.util.NavigableMap<K,V> tailMap(K, boolean);
+    method public java.util.SortedMap<K,V> tailMap(K);
   }
 
   public interface NavigableSet extends java.util.SortedSet {
@@ -51239,10 +51239,10 @@ package java.util {
   public interface SortedMap extends java.util.Map {
     method public java.util.Comparator<? super K> comparator();
     method public K firstKey();
-    method public java.util.SortedMap<K, V> headMap(K);
+    method public java.util.SortedMap<K,V> headMap(K);
     method public K lastKey();
-    method public java.util.SortedMap<K, V> subMap(K, K);
-    method public java.util.SortedMap<K, V> tailMap(K);
+    method public java.util.SortedMap<K,V> subMap(K, K);
+    method public java.util.SortedMap<K,V> tailMap(K);
   }
 
   public interface SortedSet extends java.util.Set {
@@ -51330,35 +51330,35 @@ package java.util {
 
   public class TreeMap extends java.util.AbstractMap implements java.lang.Cloneable java.util.NavigableMap java.io.Serializable java.util.SortedMap {
     ctor public TreeMap();
-    ctor public TreeMap(java.util.Map<? extends K, ? extends V>);
+    ctor public TreeMap(java.util.Map<? extends K,? extends V>);
     ctor public TreeMap(java.util.Comparator<? super K>);
-    ctor public TreeMap(java.util.SortedMap<K, ? extends V>);
-    method public java.util.Map.Entry<K, V> ceilingEntry(K);
+    ctor public TreeMap(java.util.SortedMap<K,? extends V>);
+    method public java.util.Map.Entry<K,V> ceilingEntry(K);
     method public K ceilingKey(K);
     method public java.lang.Object clone();
     method public java.util.Comparator<? super K> comparator();
     method public java.util.NavigableSet<K> descendingKeySet();
-    method public java.util.NavigableMap<K, V> descendingMap();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
-    method public java.util.Map.Entry<K, V> firstEntry();
+    method public java.util.NavigableMap<K,V> descendingMap();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
+    method public java.util.Map.Entry<K,V> firstEntry();
     method public K firstKey();
-    method public java.util.Map.Entry<K, V> floorEntry(K);
+    method public java.util.Map.Entry<K,V> floorEntry(K);
     method public K floorKey(K);
-    method public java.util.NavigableMap<K, V> headMap(K, boolean);
-    method public java.util.SortedMap<K, V> headMap(K);
-    method public java.util.Map.Entry<K, V> higherEntry(K);
+    method public java.util.NavigableMap<K,V> headMap(K, boolean);
+    method public java.util.SortedMap<K,V> headMap(K);
+    method public java.util.Map.Entry<K,V> higherEntry(K);
     method public K higherKey(K);
-    method public java.util.Map.Entry<K, V> lastEntry();
+    method public java.util.Map.Entry<K,V> lastEntry();
     method public K lastKey();
-    method public java.util.Map.Entry<K, V> lowerEntry(K);
+    method public java.util.Map.Entry<K,V> lowerEntry(K);
     method public K lowerKey(K);
     method public java.util.NavigableSet<K> navigableKeySet();
-    method public java.util.Map.Entry<K, V> pollFirstEntry();
-    method public java.util.Map.Entry<K, V> pollLastEntry();
-    method public java.util.NavigableMap<K, V> subMap(K, boolean, K, boolean);
-    method public java.util.SortedMap<K, V> subMap(K, K);
-    method public java.util.NavigableMap<K, V> tailMap(K, boolean);
-    method public java.util.SortedMap<K, V> tailMap(K);
+    method public java.util.Map.Entry<K,V> pollFirstEntry();
+    method public java.util.Map.Entry<K,V> pollLastEntry();
+    method public java.util.NavigableMap<K,V> subMap(K, boolean, K, boolean);
+    method public java.util.SortedMap<K,V> subMap(K, K);
+    method public java.util.NavigableMap<K,V> tailMap(K, boolean);
+    method public java.util.SortedMap<K,V> tailMap(K);
   }
 
   public class TreeSet extends java.util.AbstractSet implements java.lang.Cloneable java.util.NavigableSet java.io.Serializable {
@@ -51447,8 +51447,8 @@ package java.util {
     ctor public WeakHashMap();
     ctor public WeakHashMap(int);
     ctor public WeakHashMap(int, float);
-    ctor public WeakHashMap(java.util.Map<? extends K, ? extends V>);
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    ctor public WeakHashMap(java.util.Map<? extends K,? extends V>);
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
   }
 
 }
@@ -51557,12 +51557,12 @@ package java.util.concurrent {
   public class ConcurrentHashMap extends java.util.AbstractMap implements java.util.concurrent.ConcurrentMap java.io.Serializable {
     ctor public ConcurrentHashMap();
     ctor public ConcurrentHashMap(int);
-    ctor public ConcurrentHashMap(java.util.Map<? extends K, ? extends V>);
+    ctor public ConcurrentHashMap(java.util.Map<? extends K,? extends V>);
     ctor public ConcurrentHashMap(int, float);
     ctor public ConcurrentHashMap(int, float, int);
     method public boolean contains(java.lang.Object);
     method public java.util.Enumeration<V> elements();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public java.util.Enumeration<K> keys();
     method public V putIfAbsent(K, V);
     method public boolean remove(java.lang.Object, java.lang.Object);
@@ -51618,52 +51618,52 @@ package java.util.concurrent {
 
   public interface ConcurrentNavigableMap extends java.util.concurrent.ConcurrentMap java.util.NavigableMap {
     method public java.util.NavigableSet<K> descendingKeySet();
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> descendingMap();
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> headMap(K, boolean);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> headMap(K);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> descendingMap();
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> headMap(K, boolean);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> headMap(K);
     method public java.util.NavigableSet<K> keySet();
     method public java.util.NavigableSet<K> navigableKeySet();
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> subMap(K, boolean, K, boolean);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> subMap(K, K);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> tailMap(K, boolean);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> tailMap(K);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> subMap(K, boolean, K, boolean);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> subMap(K, K);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> tailMap(K, boolean);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> tailMap(K);
   }
 
   public class ConcurrentSkipListMap extends java.util.AbstractMap implements java.lang.Cloneable java.util.concurrent.ConcurrentNavigableMap java.io.Serializable {
     ctor public ConcurrentSkipListMap();
     ctor public ConcurrentSkipListMap(java.util.Comparator<? super K>);
-    ctor public ConcurrentSkipListMap(java.util.Map<? extends K, ? extends V>);
-    ctor public ConcurrentSkipListMap(java.util.SortedMap<K, ? extends V>);
-    method public java.util.Map.Entry<K, V> ceilingEntry(K);
+    ctor public ConcurrentSkipListMap(java.util.Map<? extends K,? extends V>);
+    ctor public ConcurrentSkipListMap(java.util.SortedMap<K,? extends V>);
+    method public java.util.Map.Entry<K,V> ceilingEntry(K);
     method public K ceilingKey(K);
-    method public java.util.concurrent.ConcurrentSkipListMap<K, V> clone();
+    method public java.util.concurrent.ConcurrentSkipListMap<K,V> clone();
     method public java.util.Comparator<? super K> comparator();
     method public java.util.NavigableSet<K> descendingKeySet();
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> descendingMap();
-    method public java.util.Set<java.util.Map.Entry<K, V>> entrySet();
-    method public java.util.Map.Entry<K, V> firstEntry();
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> descendingMap();
+    method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
+    method public java.util.Map.Entry<K,V> firstEntry();
     method public K firstKey();
-    method public java.util.Map.Entry<K, V> floorEntry(K);
+    method public java.util.Map.Entry<K,V> floorEntry(K);
     method public K floorKey(K);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> headMap(K, boolean);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> headMap(K);
-    method public java.util.Map.Entry<K, V> higherEntry(K);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> headMap(K, boolean);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> headMap(K);
+    method public java.util.Map.Entry<K,V> higherEntry(K);
     method public K higherKey(K);
-    method public java.util.Map.Entry<K, V> lastEntry();
+    method public java.util.Map.Entry<K,V> lastEntry();
     method public K lastKey();
-    method public java.util.Map.Entry<K, V> lowerEntry(K);
+    method public java.util.Map.Entry<K,V> lowerEntry(K);
     method public K lowerKey(K);
     method public java.util.NavigableSet<K> navigableKeySet();
-    method public java.util.Map.Entry<K, V> pollFirstEntry();
-    method public java.util.Map.Entry<K, V> pollLastEntry();
+    method public java.util.Map.Entry<K,V> pollFirstEntry();
+    method public java.util.Map.Entry<K,V> pollLastEntry();
     method public V putIfAbsent(K, V);
     method public boolean remove(java.lang.Object, java.lang.Object);
     method public boolean replace(K, V, V);
     method public V replace(K, V);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> subMap(K, boolean, K, boolean);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> subMap(K, K);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> tailMap(K, boolean);
-    method public java.util.concurrent.ConcurrentNavigableMap<K, V> tailMap(K);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> subMap(K, boolean, K, boolean);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> subMap(K, K);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> tailMap(K, boolean);
+    method public java.util.concurrent.ConcurrentNavigableMap<K,V> tailMap(K);
   }
 
   public class ConcurrentSkipListSet extends java.util.AbstractSet implements java.lang.Cloneable java.util.NavigableSet java.io.Serializable {
@@ -52453,7 +52453,7 @@ package java.util.concurrent.atomic {
     method public abstract V get(T);
     method public V getAndSet(T, V);
     method public abstract void lazySet(T, V);
-    method public static java.util.concurrent.atomic.AtomicReferenceFieldUpdater<U, W> newUpdater(java.lang.Class<U>, java.lang.Class<W>, java.lang.String);
+    method public static java.util.concurrent.atomic.AtomicReferenceFieldUpdater<U,W> newUpdater(java.lang.Class<U>, java.lang.Class<W>, java.lang.String);
     method public abstract void set(T, V);
     method public abstract boolean weakCompareAndSet(T, V, V);
   }
@@ -52688,19 +52688,19 @@ package java.util.jar {
     method public java.lang.Object clone();
     method public boolean containsKey(java.lang.Object);
     method public boolean containsValue(java.lang.Object);
-    method public java.util.Set<java.util.Map.Entry<java.lang.Object, java.lang.Object>> entrySet();
+    method public java.util.Set<java.util.Map.Entry<java.lang.Object,java.lang.Object>> entrySet();
     method public java.lang.Object get(java.lang.Object);
     method public java.lang.String getValue(java.util.jar.Attributes.Name);
     method public java.lang.String getValue(java.lang.String);
     method public boolean isEmpty();
     method public java.util.Set<java.lang.Object> keySet();
     method public java.lang.Object put(java.lang.Object, java.lang.Object);
-    method public void putAll(java.util.Map<?, ?>);
+    method public void putAll(java.util.Map<?,?>);
     method public java.lang.String putValue(java.lang.String, java.lang.String);
     method public java.lang.Object remove(java.lang.Object);
     method public int size();
     method public java.util.Collection<java.lang.Object> values();
-    field protected java.util.Map<java.lang.Object, java.lang.Object> map;
+    field protected java.util.Map<java.lang.Object,java.lang.Object> map;
   }
 
   public static class Attributes.Name {
@@ -52768,7 +52768,7 @@ package java.util.jar {
     method public void clear();
     method public java.lang.Object clone();
     method public java.util.jar.Attributes getAttributes(java.lang.String);
-    method public java.util.Map<java.lang.String, java.util.jar.Attributes> getEntries();
+    method public java.util.Map<java.lang.String,java.util.jar.Attributes> getEntries();
     method public java.util.jar.Attributes getMainAttributes();
     method public void read(java.io.InputStream) throws java.io.IOException;
     method public void write(java.io.OutputStream) throws java.io.IOException;
@@ -52783,7 +52783,7 @@ package java.util.jar {
     method public void addPropertyChangeListener(java.beans.PropertyChangeListener);
     method public void pack(java.util.jar.JarFile, java.io.OutputStream) throws java.io.IOException;
     method public void pack(java.util.jar.JarInputStream, java.io.OutputStream) throws java.io.IOException;
-    method public java.util.SortedMap<java.lang.String, java.lang.String> properties();
+    method public java.util.SortedMap<java.lang.String,java.lang.String> properties();
     method public void removePropertyChangeListener(java.beans.PropertyChangeListener);
     field public static final java.lang.String CLASS_ATTRIBUTE_PFX = "pack.class.attribute.";
     field public static final java.lang.String CODE_ATTRIBUTE_PFX = "pack.code.attribute.";
@@ -52808,7 +52808,7 @@ package java.util.jar {
 
   public static interface Pack200.Unpacker {
     method public void addPropertyChangeListener(java.beans.PropertyChangeListener);
-    method public java.util.SortedMap<java.lang.String, java.lang.String> properties();
+    method public java.util.SortedMap<java.lang.String,java.lang.String> properties();
     method public void removePropertyChangeListener(java.beans.PropertyChangeListener);
     method public void unpack(java.io.InputStream, java.util.jar.JarOutputStream) throws java.io.IOException;
     method public void unpack(java.io.File, java.util.jar.JarOutputStream) throws java.io.IOException;
@@ -55424,11 +55424,11 @@ package javax.security.auth.x500 {
     ctor public X500Principal(byte[]);
     ctor public X500Principal(java.io.InputStream);
     ctor public X500Principal(java.lang.String);
-    ctor public X500Principal(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+    ctor public X500Principal(java.lang.String, java.util.Map<java.lang.String,java.lang.String>);
     method public byte[] getEncoded();
     method public java.lang.String getName();
     method public java.lang.String getName(java.lang.String);
-    method public java.lang.String getName(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+    method public java.lang.String getName(java.lang.String, java.util.Map<java.lang.String,java.lang.String>);
     field public static final java.lang.String CANONICAL = "CANONICAL";
     field public static final java.lang.String RFC1779 = "RFC1779";
     field public static final java.lang.String RFC2253 = "RFC2253";
@@ -55542,7 +55542,7 @@ package javax.sql {
     method public java.lang.String getPassword();
     method public int getQueryTimeout() throws java.sql.SQLException;
     method public int getTransactionIsolation();
-    method public java.util.Map<java.lang.String, java.lang.Class<?>> getTypeMap() throws java.sql.SQLException;
+    method public java.util.Map<java.lang.String,java.lang.Class<?>> getTypeMap() throws java.sql.SQLException;
     method public java.lang.String getUrl() throws java.sql.SQLException;
     method public java.lang.String getUsername();
     method public boolean isReadOnly();
@@ -55642,7 +55642,7 @@ package javax.sql {
     method public void setTimestamp(java.lang.String, java.sql.Timestamp, java.util.Calendar) throws java.sql.SQLException;
     method public void setTransactionIsolation(int) throws java.sql.SQLException;
     method public void setType(int) throws java.sql.SQLException;
-    method public void setTypeMap(java.util.Map<java.lang.String, java.lang.Class<?>>) throws java.sql.SQLException;
+    method public void setTypeMap(java.util.Map<java.lang.String,java.lang.Class<?>>) throws java.sql.SQLException;
     method public void setURL(int, java.net.URL) throws java.sql.SQLException;
     method public void setUrl(java.lang.String) throws java.sql.SQLException;
     method public void setUsername(java.lang.String) throws java.sql.SQLException;
@@ -56961,7 +56961,7 @@ package org.apache.http.auth {
     method @Deprecated public org.apache.http.auth.AuthScheme getAuthScheme(java.lang.String, org.apache.http.params.HttpParams) throws java.lang.IllegalStateException;
     method @Deprecated public java.util.List<java.lang.String> getSchemeNames();
     method @Deprecated public void register(java.lang.String, org.apache.http.auth.AuthSchemeFactory);
-    method @Deprecated public void setItems(java.util.Map<java.lang.String, org.apache.http.auth.AuthSchemeFactory>);
+    method @Deprecated public void setItems(java.util.Map<java.lang.String,org.apache.http.auth.AuthSchemeFactory>);
     method @Deprecated public void unregister(java.lang.String);
   }
 
@@ -57070,9 +57070,9 @@ package org.apache.http.auth.params {
 package org.apache.http.client {
 
   @Deprecated public interface AuthenticationHandler {
-    method @Deprecated public java.util.Map<java.lang.String, org.apache.http.Header> getChallenges(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.MalformedChallengeException;
+    method @Deprecated public java.util.Map<java.lang.String,org.apache.http.Header> getChallenges(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.MalformedChallengeException;
     method @Deprecated public boolean isAuthenticationRequested(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext);
-    method @Deprecated public org.apache.http.auth.AuthScheme selectScheme(java.util.Map<java.lang.String, org.apache.http.Header>, org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.AuthenticationException;
+    method @Deprecated public org.apache.http.auth.AuthScheme selectScheme(java.util.Map<java.lang.String,org.apache.http.Header>, org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.AuthenticationException;
   }
 
   @Deprecated public class CircularRedirectException extends org.apache.http.client.RedirectException {
@@ -57562,7 +57562,7 @@ package org.apache.http.conn.params {
     method @Deprecated public int getMaxForRoute(org.apache.http.conn.routing.HttpRoute);
     method @Deprecated public void setDefaultMaxPerRoute(int);
     method @Deprecated public void setMaxForRoute(org.apache.http.conn.routing.HttpRoute, int);
-    method @Deprecated public void setMaxForRoutes(java.util.Map<org.apache.http.conn.routing.HttpRoute, java.lang.Integer>);
+    method @Deprecated public void setMaxForRoutes(java.util.Map<org.apache.http.conn.routing.HttpRoute,java.lang.Integer>);
     field @Deprecated public static final int DEFAULT_MAX_CONNECTIONS_PER_ROUTE = 2; // 0x2
   }
 
@@ -57727,7 +57727,7 @@ package org.apache.http.conn.scheme {
     method @Deprecated public org.apache.http.conn.scheme.Scheme getScheme(org.apache.http.HttpHost);
     method @Deprecated public java.util.List<java.lang.String> getSchemeNames();
     method @Deprecated public org.apache.http.conn.scheme.Scheme register(org.apache.http.conn.scheme.Scheme);
-    method @Deprecated public void setItems(java.util.Map<java.lang.String, org.apache.http.conn.scheme.Scheme>);
+    method @Deprecated public void setItems(java.util.Map<java.lang.String,org.apache.http.conn.scheme.Scheme>);
     method @Deprecated public org.apache.http.conn.scheme.Scheme unregister(java.lang.String);
   }
 
@@ -57886,7 +57886,7 @@ package org.apache.http.cookie {
     method @Deprecated public org.apache.http.cookie.CookieSpec getCookieSpec(java.lang.String) throws java.lang.IllegalStateException;
     method @Deprecated public java.util.List<java.lang.String> getSpecNames();
     method @Deprecated public void register(java.lang.String, org.apache.http.cookie.CookieSpecFactory);
-    method @Deprecated public void setItems(java.util.Map<java.lang.String, org.apache.http.cookie.CookieSpecFactory>);
+    method @Deprecated public void setItems(java.util.Map<java.lang.String,org.apache.http.cookie.CookieSpecFactory>);
     method @Deprecated public void unregister(java.lang.String);
   }
 
@@ -58259,7 +58259,7 @@ package org.apache.http.impl.auth {
   @Deprecated public abstract class RFC2617Scheme extends org.apache.http.impl.auth.AuthSchemeBase {
     ctor @Deprecated public RFC2617Scheme();
     method @Deprecated public java.lang.String getParameter(java.lang.String);
-    method @Deprecated protected java.util.Map<java.lang.String, java.lang.String> getParameters();
+    method @Deprecated protected java.util.Map<java.lang.String,java.lang.String> getParameters();
     method @Deprecated public java.lang.String getRealm();
     method @Deprecated protected void parseChallenge(org.apache.http.util.CharArrayBuffer, int, int) throws org.apache.http.auth.MalformedChallengeException;
   }
@@ -58277,8 +58277,8 @@ package org.apache.http.impl.client {
   @Deprecated public abstract class AbstractAuthenticationHandler implements org.apache.http.client.AuthenticationHandler {
     ctor @Deprecated public AbstractAuthenticationHandler();
     method @Deprecated protected java.util.List<java.lang.String> getAuthPreferences();
-    method @Deprecated protected java.util.Map<java.lang.String, org.apache.http.Header> parseChallenges(org.apache.http.Header[]) throws org.apache.http.auth.MalformedChallengeException;
-    method @Deprecated public org.apache.http.auth.AuthScheme selectScheme(java.util.Map<java.lang.String, org.apache.http.Header>, org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.AuthenticationException;
+    method @Deprecated protected java.util.Map<java.lang.String,org.apache.http.Header> parseChallenges(org.apache.http.Header[]) throws org.apache.http.auth.MalformedChallengeException;
+    method @Deprecated public org.apache.http.auth.AuthScheme selectScheme(java.util.Map<java.lang.String,org.apache.http.Header>, org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.AuthenticationException;
   }
 
   @Deprecated public abstract class AbstractHttpClient implements org.apache.http.client.HttpClient {
@@ -58430,7 +58430,7 @@ package org.apache.http.impl.client {
 
   @Deprecated public class DefaultProxyAuthenticationHandler extends org.apache.http.impl.client.AbstractAuthenticationHandler {
     ctor @Deprecated public DefaultProxyAuthenticationHandler();
-    method @Deprecated public java.util.Map<java.lang.String, org.apache.http.Header> getChallenges(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.MalformedChallengeException;
+    method @Deprecated public java.util.Map<java.lang.String,org.apache.http.Header> getChallenges(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.MalformedChallengeException;
     method @Deprecated public boolean isAuthenticationRequested(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext);
   }
 
@@ -58465,7 +58465,7 @@ package org.apache.http.impl.client {
 
   @Deprecated public class DefaultTargetAuthenticationHandler extends org.apache.http.impl.client.AbstractAuthenticationHandler {
     ctor @Deprecated public DefaultTargetAuthenticationHandler();
-    method @Deprecated public java.util.Map<java.lang.String, org.apache.http.Header> getChallenges(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.MalformedChallengeException;
+    method @Deprecated public java.util.Map<java.lang.String,org.apache.http.Header> getChallenges(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext) throws org.apache.http.auth.MalformedChallengeException;
     method @Deprecated public boolean isAuthenticationRequested(org.apache.http.HttpResponse, org.apache.http.protocol.HttpContext);
   }
 
@@ -58753,7 +58753,7 @@ package org.apache.http.impl.conn.tsccm {
     ctor @Deprecated public ConnPoolByRoute(org.apache.http.conn.ClientConnectionOperator, org.apache.http.params.HttpParams);
     method @Deprecated protected org.apache.http.impl.conn.tsccm.BasicPoolEntry createEntry(org.apache.http.impl.conn.tsccm.RouteSpecificPool, org.apache.http.conn.ClientConnectionOperator);
     method @Deprecated protected java.util.Queue<org.apache.http.impl.conn.tsccm.BasicPoolEntry> createFreeConnQueue();
-    method @Deprecated protected java.util.Map<org.apache.http.conn.routing.HttpRoute, org.apache.http.impl.conn.tsccm.RouteSpecificPool> createRouteToPoolMap();
+    method @Deprecated protected java.util.Map<org.apache.http.conn.routing.HttpRoute,org.apache.http.impl.conn.tsccm.RouteSpecificPool> createRouteToPoolMap();
     method @Deprecated protected java.util.Queue<org.apache.http.impl.conn.tsccm.WaitingThread> createWaitingThreadQueue();
     method @Deprecated public void deleteClosedConnections();
     method @Deprecated protected void deleteEntry(org.apache.http.impl.conn.tsccm.BasicPoolEntry);
@@ -58771,7 +58771,7 @@ package org.apache.http.impl.conn.tsccm {
     field @Deprecated protected java.util.Queue<org.apache.http.impl.conn.tsccm.BasicPoolEntry> freeConnections;
     field @Deprecated protected final int maxTotalConnections;
     field @Deprecated protected final org.apache.http.conn.ClientConnectionOperator operator;
-    field @Deprecated protected final java.util.Map<org.apache.http.conn.routing.HttpRoute, org.apache.http.impl.conn.tsccm.RouteSpecificPool> routeToPool;
+    field @Deprecated protected final java.util.Map<org.apache.http.conn.routing.HttpRoute,org.apache.http.impl.conn.tsccm.RouteSpecificPool> routeToPool;
     field @Deprecated protected java.util.Queue<org.apache.http.impl.conn.tsccm.WaitingThread> waitingThreads;
   }
 
@@ -61105,7 +61105,7 @@ package org.xmlpull.v1 {
     method public void setValidating(boolean);
     field public static final java.lang.String PROPERTY_NAME = "org.xmlpull.v1.XmlPullParserFactory";
     field protected java.lang.String classNamesLocation;
-    field protected java.util.HashMap<java.lang.String, java.lang.Boolean> features;
+    field protected java.util.HashMap<java.lang.String,java.lang.Boolean> features;
     field protected java.util.ArrayList parserClasses;
     field protected java.util.ArrayList serializerClasses;
   }
