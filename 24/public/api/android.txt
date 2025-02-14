@@ -4516,8 +4516,8 @@ package android.app {
     method @Deprecated public void setTitle(CharSequence, CharSequence);
   }
 
-  public static interface FragmentBreadCrumbs.OnBreadCrumbClickListener {
-    method public boolean onBreadCrumbClick(android.app.FragmentManager.BackStackEntry, int);
+  @Deprecated public static interface FragmentBreadCrumbs.OnBreadCrumbClickListener {
+    method @Deprecated public boolean onBreadCrumbClick(android.app.FragmentManager.BackStackEntry, int);
   }
 
   public abstract class FragmentContainer {
@@ -21464,16 +21464,16 @@ package android.media {
     field @Deprecated public static final int BITMAP_KEY_ARTWORK = 100; // 0x64
   }
 
-  public static interface RemoteControlClient.OnGetPlaybackPositionListener {
-    method public long onGetPlaybackPosition();
+  @Deprecated public static interface RemoteControlClient.OnGetPlaybackPositionListener {
+    method @Deprecated public long onGetPlaybackPosition();
   }
 
-  public static interface RemoteControlClient.OnMetadataUpdateListener {
-    method public void onMetadataUpdate(int, Object);
+  @Deprecated public static interface RemoteControlClient.OnMetadataUpdateListener {
+    method @Deprecated public void onMetadataUpdate(int, Object);
   }
 
-  public static interface RemoteControlClient.OnPlaybackPositionUpdateListener {
-    method public void onPlaybackPositionUpdate(long);
+  @Deprecated public static interface RemoteControlClient.OnPlaybackPositionUpdateListener {
+    method @Deprecated public void onPlaybackPositionUpdate(long);
   }
 
   @Deprecated public final class RemoteController {
@@ -21490,16 +21490,16 @@ package android.media {
     field @Deprecated public static final int POSITION_SYNCHRONIZATION_NONE = 0; // 0x0
   }
 
-  public class RemoteController.MetadataEditor extends android.media.MediaMetadataEditor {
-    method public void apply();
+  @Deprecated public class RemoteController.MetadataEditor extends android.media.MediaMetadataEditor {
+    method @Deprecated public void apply();
   }
 
-  public static interface RemoteController.OnClientUpdateListener {
-    method public void onClientChange(boolean);
-    method public void onClientMetadataUpdate(android.media.RemoteController.MetadataEditor);
-    method public void onClientPlaybackStateUpdate(int);
-    method public void onClientPlaybackStateUpdate(int, long, long, float);
-    method public void onClientTransportControlUpdate(int);
+  @Deprecated public static interface RemoteController.OnClientUpdateListener {
+    method @Deprecated public void onClientChange(boolean);
+    method @Deprecated public void onClientMetadataUpdate(android.media.RemoteController.MetadataEditor);
+    method @Deprecated public void onClientPlaybackStateUpdate(int);
+    method @Deprecated public void onClientPlaybackStateUpdate(int, long, long, float);
+    method @Deprecated public void onClientTransportControlUpdate(int);
   }
 
   public final class ResourceBusyException extends android.media.MediaDrmException {
@@ -37503,12 +37503,12 @@ package android.test {
     method @Deprecated public int startPerformance(android.test.PerformanceTestCase.Intermediates);
   }
 
-  public static interface PerformanceTestCase.Intermediates {
-    method public void addIntermediate(String);
-    method public void addIntermediate(String, long);
-    method public void finishTiming(boolean);
-    method public void setInternalIterations(int);
-    method public void startTiming(boolean);
+  @Deprecated public static interface PerformanceTestCase.Intermediates {
+    method @Deprecated public void addIntermediate(String);
+    method @Deprecated public void addIntermediate(String, long);
+    method @Deprecated public void finishTiming(boolean);
+    method @Deprecated public void setInternalIterations(int);
+    method @Deprecated public void startTiming(boolean);
   }
 
   @Deprecated public abstract class ProviderTestCase<T extends android.content.ContentProvider> extends android.test.InstrumentationTestCase {
@@ -40063,9 +40063,9 @@ package android.util {
     method @Deprecated public android.util.EventLogTags.Description get(int);
   }
 
-  public static class EventLogTags.Description {
-    field public final String mName;
-    field public final int mTag;
+  @Deprecated public static class EventLogTags.Description {
+    field @Deprecated public final String mName;
+    field @Deprecated public final int mTag;
   }
 
   @Deprecated public class FloatMath {
@@ -45758,13 +45758,13 @@ package android.widget {
     ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int, int);
   }
 
-  public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
-    ctor public AbsoluteLayout.LayoutParams(int, int, int, int);
-    ctor public AbsoluteLayout.LayoutParams(android.content.Context, android.util.AttributeSet);
-    ctor public AbsoluteLayout.LayoutParams(android.view.ViewGroup.LayoutParams);
-    method public String debug(String);
-    field public int x;
-    field public int y;
+  @Deprecated public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(int, int, int, int);
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(android.view.ViewGroup.LayoutParams);
+    method @Deprecated public String debug(String);
+    field @Deprecated public int x;
+    field @Deprecated public int y;
   }
 
   public class ActionMenuView extends android.widget.LinearLayout {
@@ -46470,10 +46470,10 @@ package android.widget {
     method @Deprecated public void setUnselectedAlpha(float);
   }
 
-  public static class Gallery.LayoutParams extends android.view.ViewGroup.LayoutParams {
-    ctor public Gallery.LayoutParams(android.content.Context, android.util.AttributeSet);
-    ctor public Gallery.LayoutParams(int, int);
-    ctor public Gallery.LayoutParams(android.view.ViewGroup.LayoutParams);
+  @Deprecated public static class Gallery.LayoutParams extends android.view.ViewGroup.LayoutParams {
+    ctor @Deprecated public Gallery.LayoutParams(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public Gallery.LayoutParams(int, int);
+    ctor @Deprecated public Gallery.LayoutParams(android.view.ViewGroup.LayoutParams);
   }
 
   @android.widget.RemoteViews.RemoteView public class GridLayout extends android.view.ViewGroup {
@@ -47557,17 +47557,17 @@ package android.widget {
     field @Deprecated public static final int ORIENTATION_VERTICAL = 1; // 0x1
   }
 
-  public static interface SlidingDrawer.OnDrawerCloseListener {
-    method public void onDrawerClosed();
+  @Deprecated public static interface SlidingDrawer.OnDrawerCloseListener {
+    method @Deprecated public void onDrawerClosed();
   }
 
-  public static interface SlidingDrawer.OnDrawerOpenListener {
-    method public void onDrawerOpened();
+  @Deprecated public static interface SlidingDrawer.OnDrawerOpenListener {
+    method @Deprecated public void onDrawerOpened();
   }
 
-  public static interface SlidingDrawer.OnDrawerScrollListener {
-    method public void onScrollEnded();
-    method public void onScrollStarted();
+  @Deprecated public static interface SlidingDrawer.OnDrawerScrollListener {
+    method @Deprecated public void onScrollEnded();
+    method @Deprecated public void onScrollStarted();
   }
 
   public final class Space extends android.view.View {
@@ -48299,7 +48299,7 @@ package dalvik.annotation {
   @Deprecated @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.ANNOTATION_TYPE}) public @interface TestTarget {
     method @Deprecated public abstract String conceptName() default "";
     method @Deprecated public abstract Class<?>[] methodArgs() default {};
-    method public abstract String methodName() default "";
+    method @Deprecated public abstract String methodName() default "";
   }
 
   @Deprecated @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME) @java.lang.annotation.Target({java.lang.annotation.ElementType.TYPE}) public @interface TestTargetClass {
