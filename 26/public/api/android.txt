@@ -4965,7 +4965,6 @@ package android.app {
     ctor public IntentService(String);
     method public android.os.IBinder onBind(android.content.Intent);
     method protected abstract void onHandleIntent(android.content.Intent);
-    method @Deprecated public void onStart(android.content.Intent, int);
     method public void setIntentRedelivery(boolean);
   }
 
@@ -13763,7 +13762,6 @@ package android.graphics.drawable {
     method public void scheduleDrawable(android.graphics.drawable.Drawable, Runnable, long);
     method public void setAlpha(int);
     method public void setColorFilter(android.graphics.ColorFilter);
-    method @Deprecated public void setDither(boolean);
     method public void setOpacity(int);
     method public void unscheduleDrawable(android.graphics.drawable.Drawable, Runnable);
   }
@@ -13844,7 +13842,6 @@ package android.graphics.drawable {
     method public void setAlpha(int);
     method public void setAntiAlias(boolean);
     method public void setColorFilter(android.graphics.ColorFilter);
-    method @Deprecated public void setDither(boolean);
     method public void setGravity(int);
     method public void setMipMap(boolean);
     method public void setTargetDensity(android.graphics.Canvas);
@@ -13970,7 +13967,6 @@ package android.graphics.drawable {
     method public void setAlpha(int);
     method public void setColorFilter(android.graphics.ColorFilter);
     method protected void setConstantState(android.graphics.drawable.DrawableContainer.DrawableContainerState);
-    method @Deprecated public void setDither(boolean);
     method public void setEnterFadeDuration(int);
     method public void setExitFadeDuration(int);
     method public void unscheduleDrawable(android.graphics.drawable.Drawable, Runnable);
@@ -14037,7 +14033,6 @@ package android.graphics.drawable {
     method public void setColors(int[]);
     method public void setCornerRadii(float[]);
     method public void setCornerRadius(float);
-    method @Deprecated public void setDither(boolean);
     method public void setGradientCenter(float, float);
     method public void setGradientRadius(float);
     method public void setGradientType(int);
@@ -14130,7 +14125,6 @@ package android.graphics.drawable {
     method public void scheduleDrawable(android.graphics.drawable.Drawable, Runnable, long);
     method public void setAlpha(int);
     method public void setColorFilter(android.graphics.ColorFilter);
-    method @Deprecated public void setDither(boolean);
     method public void setDrawable(int, android.graphics.drawable.Drawable);
     method public boolean setDrawableByLayerId(int, android.graphics.drawable.Drawable);
     method public void setId(int, int);
@@ -14171,7 +14165,6 @@ package android.graphics.drawable {
     method public android.graphics.Paint getPaint();
     method public void setAlpha(int);
     method public void setColorFilter(android.graphics.ColorFilter);
-    method @Deprecated public void setDither(boolean);
     method public void setTargetDensity(android.graphics.Canvas);
     method public void setTargetDensity(android.util.DisplayMetrics);
     method public void setTargetDensity(int);
@@ -14234,7 +14227,6 @@ package android.graphics.drawable {
     method protected void onDraw(android.graphics.drawable.shapes.Shape, android.graphics.Canvas, android.graphics.Paint);
     method public void setAlpha(int);
     method public void setColorFilter(android.graphics.ColorFilter);
-    method @Deprecated public void setDither(boolean);
     method public void setIntrinsicHeight(int);
     method public void setIntrinsicWidth(int);
     method public void setPadding(int, int, int, int);
@@ -35481,7 +35473,6 @@ package android.renderscript {
     method public static android.renderscript.AllocationAdapter create1D(android.renderscript.RenderScript, android.renderscript.Allocation);
     method public static android.renderscript.AllocationAdapter create2D(android.renderscript.RenderScript, android.renderscript.Allocation);
     method public static android.renderscript.AllocationAdapter createTyped(android.renderscript.RenderScript, android.renderscript.Allocation, android.renderscript.Type);
-    method @Deprecated public void resize(int);
     method public void setFace(android.renderscript.Type.CubemapFace);
     method public void setLOD(int);
     method public void setX(int);
@@ -40742,10 +40733,6 @@ package android.test.mock {
 
   @Deprecated public class MockResources extends android.content.res.Resources {
     ctor @Deprecated public MockResources();
-    method @Deprecated public int getColor(int) throws android.content.res.Resources.NotFoundException;
-    method @Deprecated public android.content.res.ColorStateList getColorStateList(int) throws android.content.res.Resources.NotFoundException;
-    method @Deprecated public android.graphics.drawable.Drawable getDrawable(int) throws android.content.res.Resources.NotFoundException;
-    method @Deprecated public void updateConfiguration(android.content.res.Configuration, android.util.DisplayMetrics);
   }
 
 }
@@ -44970,7 +44957,6 @@ package android.view {
     method public android.graphics.Canvas lockCanvas();
     method public android.graphics.Canvas lockCanvas(android.graphics.Rect);
     method protected final void onDraw(android.graphics.Canvas);
-    method @Deprecated public void setBackgroundDrawable(android.graphics.drawable.Drawable);
     method public void setOpaque(boolean);
     method public void setSurfaceTexture(android.graphics.SurfaceTexture);
     method public void setSurfaceTextureListener(android.view.TextureView.SurfaceTextureListener);
@@ -51338,7 +51324,6 @@ package android.widget {
     ctor public ToggleButton(android.content.Context);
     method public CharSequence getTextOff();
     method public CharSequence getTextOn();
-    method @Deprecated public void setBackgroundDrawable(android.graphics.drawable.Drawable);
     method public void setTextOff(CharSequence);
     method public void setTextOn(CharSequence);
   }
@@ -62272,7 +62257,6 @@ package java.time.chrono {
     method public static java.time.chrono.HijrahDate of(int, int, int);
     method public java.time.chrono.HijrahDate plus(java.time.temporal.TemporalAmount);
     method public java.time.chrono.HijrahDate plus(long, java.time.temporal.TemporalUnit);
-    method public String toString();
     method public java.time.chrono.ChronoPeriod until(java.time.chrono.ChronoLocalDate);
     method public long until(java.time.temporal.Temporal, java.time.temporal.TemporalUnit);
     method public java.time.chrono.HijrahDate with(java.time.temporal.TemporalField, long);
@@ -62358,7 +62342,6 @@ package java.time.chrono {
     method public static java.time.chrono.JapaneseDate of(int, int, int);
     method public java.time.chrono.JapaneseDate plus(java.time.temporal.TemporalAmount);
     method public java.time.chrono.JapaneseDate plus(long, java.time.temporal.TemporalUnit);
-    method public String toString();
     method public java.time.chrono.ChronoPeriod until(java.time.chrono.ChronoLocalDate);
     method public long until(java.time.temporal.Temporal, java.time.temporal.TemporalUnit);
     method public java.time.chrono.JapaneseDate with(java.time.temporal.TemporalField, long);
@@ -62415,7 +62398,6 @@ package java.time.chrono {
     method public static java.time.chrono.MinguoDate of(int, int, int);
     method public java.time.chrono.MinguoDate plus(java.time.temporal.TemporalAmount);
     method public java.time.chrono.MinguoDate plus(long, java.time.temporal.TemporalUnit);
-    method public String toString();
     method public java.time.chrono.ChronoPeriod until(java.time.chrono.ChronoLocalDate);
     method public long until(java.time.temporal.Temporal, java.time.temporal.TemporalUnit);
     method public java.time.chrono.MinguoDate with(java.time.temporal.TemporalField, long);
@@ -62468,7 +62450,6 @@ package java.time.chrono {
     method public static java.time.chrono.ThaiBuddhistDate of(int, int, int);
     method public java.time.chrono.ThaiBuddhistDate plus(java.time.temporal.TemporalAmount);
     method public java.time.chrono.ThaiBuddhistDate plus(long, java.time.temporal.TemporalUnit);
-    method public String toString();
     method public java.time.chrono.ChronoPeriod until(java.time.chrono.ChronoLocalDate);
     method public long until(java.time.temporal.Temporal, java.time.temporal.TemporalUnit);
     method public java.time.chrono.ThaiBuddhistDate with(java.time.temporal.TemporalField, long);
