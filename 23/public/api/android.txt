@@ -3249,7 +3249,7 @@ package android.app {
     ctor public ActionBar.LayoutParams(int);
     ctor public ActionBar.LayoutParams(android.app.ActionBar.LayoutParams);
     ctor public ActionBar.LayoutParams(android.view.ViewGroup.LayoutParams);
-    field @android.view.ViewDebug.ExportedProperty(category="layout", mapping={@android.view.ViewDebug.IntToString(from=0xffffffff, to="NONE"), @android.view.ViewDebug.IntToString(from=0, to="NONE"), @android.view.ViewDebug.IntToString(from=48, to="TOP"), @android.view.ViewDebug.IntToString(from=80, to="BOTTOM"), @android.view.ViewDebug.IntToString(from=3, to="LEFT"), @android.view.ViewDebug.IntToString(from=5, to="RIGHT"), @android.view.ViewDebug.IntToString(from=8388611, to="START"), @android.view.ViewDebug.IntToString(from=8388613, to="END"), @android.view.ViewDebug.IntToString(from=16, to="CENTER_VERTICAL"), @android.view.ViewDebug.IntToString(from=112, to="FILL_VERTICAL"), @android.view.ViewDebug.IntToString(from=1, to="CENTER_HORIZONTAL"), @android.view.ViewDebug.IntToString(from=7, to="FILL_HORIZONTAL"), @android.view.ViewDebug.IntToString(from=17, to="CENTER"), @android.view.ViewDebug.IntToString(from=119, to="FILL")}) public int gravity;
+    field public int gravity;
   }
 
   public static interface ActionBar.OnMenuVisibilityListener {
@@ -7675,7 +7675,7 @@ package android.content {
     method public final <T> T getSystemService(Class<T>);
     method public abstract String getSystemServiceName(Class<?>);
     method public final CharSequence getText(int);
-    method @android.view.ViewDebug.ExportedProperty(deepExport=true) public abstract android.content.res.Resources.Theme getTheme();
+    method public abstract android.content.res.Resources.Theme getTheme();
     method @Deprecated public abstract android.graphics.drawable.Drawable getWallpaper();
     method @Deprecated public abstract int getWallpaperDesiredMinimumHeight();
     method @Deprecated public abstract int getWallpaperDesiredMinimumWidth();
@@ -35932,22 +35932,22 @@ package android.view {
     method public android.view.accessibility.AccessibilityNodeProvider getAccessibilityNodeProvider();
     method public int getAccessibilityTraversalAfter();
     method public int getAccessibilityTraversalBefore();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getAlpha();
+    method public float getAlpha();
     method public android.view.animation.Animation getAnimation();
     method public android.os.IBinder getApplicationWindowToken();
     method public android.graphics.drawable.Drawable getBackground();
     method public android.content.res.ColorStateList getBackgroundTintList();
     method public android.graphics.PorterDuff.Mode getBackgroundTintMode();
-    method @android.view.ViewDebug.ExportedProperty(category="layout") public int getBaseline();
-    method @android.view.ViewDebug.CapturedViewProperty public final int getBottom();
+    method public int getBaseline();
+    method public final int getBottom();
     method protected float getBottomFadingEdgeStrength();
     method protected int getBottomPaddingOffset();
     method public float getCameraDistance();
     method public android.graphics.Rect getClipBounds();
     method public boolean getClipBounds(android.graphics.Rect);
     method public final boolean getClipToOutline();
-    method @android.view.ViewDebug.ExportedProperty(category="accessibility") public CharSequence getContentDescription();
-    method @android.view.ViewDebug.CapturedViewProperty public final android.content.Context getContext();
+    method public CharSequence getContentDescription();
+    method public final android.content.Context getContext();
     method protected android.view.ContextMenu.ContextMenuInfo getContextMenuInfo();
     method public static int getDefaultSize(int, int);
     method public android.view.Display getDisplay();
@@ -35958,9 +35958,9 @@ package android.view {
     method public int getDrawingCacheQuality();
     method public void getDrawingRect(android.graphics.Rect);
     method public long getDrawingTime();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getElevation();
-    method @android.view.ViewDebug.ExportedProperty public boolean getFilterTouchesWhenObscured();
-    method @android.view.ViewDebug.ExportedProperty public boolean getFitsSystemWindows();
+    method public float getElevation();
+    method public boolean getFilterTouchesWhenObscured();
+    method public boolean getFitsSystemWindows();
     method public java.util.ArrayList<android.view.View> getFocusables(int);
     method public void getFocusedRect(android.graphics.Rect);
     method public android.graphics.drawable.Drawable getForeground();
@@ -35970,19 +35970,19 @@ package android.view {
     method public boolean getGlobalVisibleRect(android.graphics.Rect, android.graphics.Point);
     method public final boolean getGlobalVisibleRect(android.graphics.Rect);
     method public android.os.Handler getHandler();
-    method @android.view.ViewDebug.ExportedProperty(category="layout") public final int getHeight();
+    method public final int getHeight();
     method public void getHitRect(android.graphics.Rect);
     method public int getHorizontalFadingEdgeLength();
     method protected int getHorizontalScrollbarHeight();
-    method @android.view.ViewDebug.CapturedViewProperty public int getId();
-    method @android.view.ViewDebug.ExportedProperty(category="accessibility", mapping={@android.view.ViewDebug.IntToString(from=0, to="auto"), @android.view.ViewDebug.IntToString(from=1, to="yes"), @android.view.ViewDebug.IntToString(from=2, to="no"), @android.view.ViewDebug.IntToString(from=4, to="noHideDescendants")}) public int getImportantForAccessibility();
+    method public int getId();
+    method public int getImportantForAccessibility();
     method public boolean getKeepScreenOn();
     method public android.view.KeyEvent.DispatcherState getKeyDispatcherState();
-    method @android.view.ViewDebug.ExportedProperty(category="accessibility") public int getLabelFor();
+    method public int getLabelFor();
     method public int getLayerType();
-    method @android.view.ViewDebug.ExportedProperty(category="layout", mapping={@android.view.ViewDebug.IntToString(from=0, to="RESOLVED_DIRECTION_LTR"), @android.view.ViewDebug.IntToString(from=1, to="RESOLVED_DIRECTION_RTL")}) public int getLayoutDirection();
-    method @android.view.ViewDebug.ExportedProperty(deepExport=true, prefix="layout_") public android.view.ViewGroup.LayoutParams getLayoutParams();
-    method @android.view.ViewDebug.CapturedViewProperty public final int getLeft();
+    method public int getLayoutDirection();
+    method public android.view.ViewGroup.LayoutParams getLayoutParams();
+    method public final int getLeft();
     method protected float getLeftFadingEdgeStrength();
     method protected int getLeftPaddingOffset();
     method public final boolean getLocalVisibleRect(android.graphics.Rect);
@@ -35990,10 +35990,10 @@ package android.view {
     method public void getLocationOnScreen(int[]);
     method public android.graphics.Matrix getMatrix();
     method public final int getMeasuredHeight();
-    method @android.view.ViewDebug.ExportedProperty(category="measurement", flagMapping={@android.view.ViewDebug.FlagToString(mask=0xff000000, equals=16777216, name="MEASURED_STATE_TOO_SMALL")}) public final int getMeasuredHeightAndState();
+    method public final int getMeasuredHeightAndState();
     method public final int getMeasuredState();
     method public final int getMeasuredWidth();
-    method @android.view.ViewDebug.ExportedProperty(category="measurement", flagMapping={@android.view.ViewDebug.FlagToString(mask=0xff000000, equals=16777216, name="MEASURED_STATE_TOO_SMALL")}) public final int getMeasuredWidthAndState();
+    method public final int getMeasuredWidthAndState();
     method public int getMinimumHeight();
     method public int getMinimumWidth();
     method public int getNextFocusDownId();
@@ -36013,65 +36013,65 @@ package android.view {
     method public int getPaddingTop();
     method public final android.view.ViewParent getParent();
     method public android.view.ViewParent getParentForAccessibility();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getPivotX();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getPivotY();
+    method public float getPivotX();
+    method public float getPivotY();
     method public android.content.res.Resources getResources();
-    method @android.view.ViewDebug.CapturedViewProperty public final int getRight();
+    method public final int getRight();
     method protected float getRightFadingEdgeStrength();
     method protected int getRightPaddingOffset();
     method public android.view.View getRootView();
     method public android.view.WindowInsets getRootWindowInsets();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getRotation();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getRotationX();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getRotationY();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getScaleX();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getScaleY();
+    method public float getRotation();
+    method public float getRotationX();
+    method public float getRotationY();
+    method public float getScaleX();
+    method public float getScaleY();
     method public int getScrollBarDefaultDelayBeforeFade();
     method public int getScrollBarFadeDuration();
     method public int getScrollBarSize();
-    method @android.view.ViewDebug.ExportedProperty(mapping={@android.view.ViewDebug.IntToString(from=0, to="INSIDE_OVERLAY"), @android.view.ViewDebug.IntToString(from=16777216, to="INSIDE_INSET"), @android.view.ViewDebug.IntToString(from=33554432, to="OUTSIDE_OVERLAY"), @android.view.ViewDebug.IntToString(from=50331648, to="OUTSIDE_INSET")}) public int getScrollBarStyle();
+    method public int getScrollBarStyle();
     method public int getScrollIndicators();
     method public final int getScrollX();
     method public final int getScrollY();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public int getSolidColor();
+    method public int getSolidColor();
     method public android.animation.StateListAnimator getStateListAnimator();
     method protected int getSuggestedMinimumHeight();
     method protected int getSuggestedMinimumWidth();
     method public int getSystemUiVisibility();
-    method @android.view.ViewDebug.ExportedProperty public Object getTag();
+    method public Object getTag();
     method public Object getTag(int);
-    method @android.view.ViewDebug.ExportedProperty(category="text", mapping={@android.view.ViewDebug.IntToString(from=0, to="INHERIT"), @android.view.ViewDebug.IntToString(from=1, to="GRAVITY"), @android.view.ViewDebug.IntToString(from=2, to="TEXT_START"), @android.view.ViewDebug.IntToString(from=3, to="TEXT_END"), @android.view.ViewDebug.IntToString(from=4, to="CENTER"), @android.view.ViewDebug.IntToString(from=5, to="VIEW_START"), @android.view.ViewDebug.IntToString(from=6, to="VIEW_END")}) public int getTextAlignment();
-    method @android.view.ViewDebug.ExportedProperty(category="text", mapping={@android.view.ViewDebug.IntToString(from=0, to="INHERIT"), @android.view.ViewDebug.IntToString(from=1, to="FIRST_STRONG"), @android.view.ViewDebug.IntToString(from=2, to="ANY_RTL"), @android.view.ViewDebug.IntToString(from=3, to="LTR"), @android.view.ViewDebug.IntToString(from=4, to="RTL"), @android.view.ViewDebug.IntToString(from=5, to="LOCALE"), @android.view.ViewDebug.IntToString(from=6, to="FIRST_STRONG_LTR"), @android.view.ViewDebug.IntToString(from=7, to="FIRST_STRONG_RTL")}) public int getTextDirection();
-    method @android.view.ViewDebug.CapturedViewProperty public final int getTop();
+    method public int getTextAlignment();
+    method public int getTextDirection();
+    method public final int getTop();
     method protected float getTopFadingEdgeStrength();
     method protected int getTopPaddingOffset();
     method public android.view.TouchDelegate getTouchDelegate();
     method public java.util.ArrayList<android.view.View> getTouchables();
-    method @android.view.ViewDebug.ExportedProperty public String getTransitionName();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getTranslationX();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getTranslationY();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getTranslationZ();
+    method public String getTransitionName();
+    method public float getTranslationX();
+    method public float getTranslationY();
+    method public float getTranslationZ();
     method public int getVerticalFadingEdgeLength();
     method public int getVerticalScrollbarPosition();
     method public int getVerticalScrollbarWidth();
     method public android.view.ViewTreeObserver getViewTreeObserver();
-    method @android.view.ViewDebug.ExportedProperty(mapping={@android.view.ViewDebug.IntToString(from=0, to="VISIBLE"), @android.view.ViewDebug.IntToString(from=4, to="INVISIBLE"), @android.view.ViewDebug.IntToString(from=8, to="GONE")}) public int getVisibility();
-    method @android.view.ViewDebug.ExportedProperty(category="layout") public final int getWidth();
+    method public int getVisibility();
+    method public final int getWidth();
     method protected int getWindowAttachCount();
     method public android.view.WindowId getWindowId();
     method public int getWindowSystemUiVisibility();
     method public android.os.IBinder getWindowToken();
     method public int getWindowVisibility();
     method public void getWindowVisibleDisplayFrame(android.graphics.Rect);
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getX();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getY();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public float getZ();
-    method @android.view.ViewDebug.ExportedProperty(category="focus") public boolean hasFocus();
+    method public float getX();
+    method public float getY();
+    method public float getZ();
+    method public boolean hasFocus();
     method public boolean hasFocusable();
     method public boolean hasNestedScrollingParent();
     method public boolean hasOnClickListeners();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean hasOverlappingRendering();
-    method @android.view.ViewDebug.ExportedProperty(category="layout") public boolean hasTransientState();
+    method public boolean hasOverlappingRendering();
+    method public boolean hasTransientState();
     method public boolean hasWindowFocus();
     method public static android.view.View inflate(android.content.Context, int, android.view.ViewGroup);
     method public void invalidate(android.graphics.Rect);
@@ -36080,42 +36080,42 @@ package android.view {
     method public void invalidateDrawable(android.graphics.drawable.Drawable);
     method public void invalidateOutline();
     method public boolean isAccessibilityFocused();
-    method @android.view.ViewDebug.ExportedProperty public boolean isActivated();
+    method public boolean isActivated();
     method public boolean isAttachedToWindow();
-    method @android.view.ViewDebug.ExportedProperty public boolean isClickable();
+    method public boolean isClickable();
     method public boolean isContextClickable();
     method public boolean isDirty();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean isDrawingCacheEnabled();
+    method public boolean isDrawingCacheEnabled();
     method public boolean isDuplicateParentStateEnabled();
-    method @android.view.ViewDebug.ExportedProperty public boolean isEnabled();
-    method @android.view.ViewDebug.ExportedProperty(category="focus") public final boolean isFocusable();
-    method @android.view.ViewDebug.ExportedProperty public final boolean isFocusableInTouchMode();
-    method @android.view.ViewDebug.ExportedProperty(category="focus") public boolean isFocused();
-    method @android.view.ViewDebug.ExportedProperty public boolean isHapticFeedbackEnabled();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean isHardwareAccelerated();
+    method public boolean isEnabled();
+    method public final boolean isFocusable();
+    method public final boolean isFocusableInTouchMode();
+    method public boolean isFocused();
+    method public boolean isHapticFeedbackEnabled();
+    method public boolean isHardwareAccelerated();
     method public boolean isHorizontalFadingEdgeEnabled();
     method public boolean isHorizontalScrollBarEnabled();
-    method @android.view.ViewDebug.ExportedProperty public boolean isHovered();
+    method public boolean isHovered();
     method public boolean isImportantForAccessibility();
     method public boolean isInEditMode();
     method public boolean isInLayout();
-    method @android.view.ViewDebug.ExportedProperty public boolean isInTouchMode();
+    method public boolean isInTouchMode();
     method public boolean isLaidOut();
     method public boolean isLayoutDirectionResolved();
     method public boolean isLayoutRequested();
     method public boolean isLongClickable();
     method public boolean isNestedScrollingEnabled();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean isOpaque();
+    method public boolean isOpaque();
     method protected boolean isPaddingOffsetRequired();
     method public boolean isPaddingRelative();
-    method @android.view.ViewDebug.ExportedProperty public boolean isPressed();
+    method public boolean isPressed();
     method public boolean isSaveEnabled();
     method public boolean isSaveFromParentEnabled();
     method public boolean isScrollContainer();
     method public boolean isScrollbarFadingEnabled();
-    method @android.view.ViewDebug.ExportedProperty public boolean isSelected();
+    method public boolean isSelected();
     method public boolean isShown();
-    method @android.view.ViewDebug.ExportedProperty public boolean isSoundEffectsEnabled();
+    method public boolean isSoundEffectsEnabled();
     method public boolean isTextAlignmentResolved();
     method public boolean isTextDirectionResolved();
     method public boolean isVerticalFadingEdgeEnabled();
@@ -36348,8 +36348,8 @@ package android.view {
     method public void unscheduleDrawable(android.graphics.drawable.Drawable, Runnable);
     method public void unscheduleDrawable(android.graphics.drawable.Drawable);
     method protected boolean verifyDrawable(android.graphics.drawable.Drawable);
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean willNotCacheDrawing();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean willNotDraw();
+    method public boolean willNotCacheDrawing();
+    method public boolean willNotDraw();
     field public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE = 2; // 0x2
     field public static final int ACCESSIBILITY_LIVE_REGION_NONE = 0; // 0x0
     field public static final int ACCESSIBILITY_LIVE_REGION_POLITE = 1; // 0x1
@@ -36733,9 +36733,9 @@ package android.view {
     method public static int getChildMeasureSpec(int, int, int);
     method protected boolean getChildStaticTransformation(android.view.View, android.view.animation.Transformation);
     method public boolean getChildVisibleRect(android.view.View, android.graphics.Rect, android.graphics.Point);
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean getClipChildren();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public boolean getClipToPadding();
-    method @android.view.ViewDebug.ExportedProperty(category="focus", mapping={@android.view.ViewDebug.IntToString(from=131072, to="FOCUS_BEFORE_DESCENDANTS"), @android.view.ViewDebug.IntToString(from=262144, to="FOCUS_AFTER_DESCENDANTS"), @android.view.ViewDebug.IntToString(from=393216, to="FOCUS_BLOCK_DESCENDANTS")}) public int getDescendantFocusability();
+    method public boolean getClipChildren();
+    method public boolean getClipToPadding();
+    method public int getDescendantFocusability();
     method public android.view.View getFocusedChild();
     method public android.view.animation.LayoutAnimationController getLayoutAnimation();
     method public android.view.animation.Animation.AnimationListener getLayoutAnimationListener();
@@ -36743,14 +36743,14 @@ package android.view {
     method public android.animation.LayoutTransition getLayoutTransition();
     method public int getNestedScrollAxes();
     method public android.view.ViewGroupOverlay getOverlay();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing", mapping={@android.view.ViewDebug.IntToString(from=0, to="NONE"), @android.view.ViewDebug.IntToString(from=1, to="ANIMATION"), @android.view.ViewDebug.IntToString(from=2, to="SCROLLING"), @android.view.ViewDebug.IntToString(from=3, to="ALL")}) public int getPersistentDrawingCache();
+    method public int getPersistentDrawingCache();
     method public boolean getTouchscreenBlocksFocus();
     method public int indexOfChild(android.view.View);
     method public final void invalidateChild(android.view.View, android.graphics.Rect);
     method public android.view.ViewParent invalidateChildInParent(int[], android.graphics.Rect);
     method @Deprecated public boolean isAlwaysDrawnWithCacheEnabled();
     method @Deprecated public boolean isAnimationCacheEnabled();
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") protected boolean isChildrenDrawingOrderEnabled();
+    method protected boolean isChildrenDrawingOrderEnabled();
     method @Deprecated protected boolean isChildrenDrawnWithCacheEnabled();
     method public boolean isMotionEventSplittingEnabled();
     method public boolean isTransitionGroup();
@@ -36838,9 +36838,9 @@ package android.view {
     field @Deprecated public static final int FILL_PARENT = -1; // 0xffffffff
     field public static final int MATCH_PARENT = -1; // 0xffffffff
     field public static final int WRAP_CONTENT = -2; // 0xfffffffe
-    field @android.view.ViewDebug.ExportedProperty(category="layout", mapping={@android.view.ViewDebug.IntToString(from=0xffffffff, to="MATCH_PARENT"), @android.view.ViewDebug.IntToString(from=0xfffffffe, to="WRAP_CONTENT")}) public int height;
+    field public int height;
     field public android.view.animation.LayoutAnimationController.AnimationParameters layoutAnimationParameters;
-    field @android.view.ViewDebug.ExportedProperty(category="layout", mapping={@android.view.ViewDebug.IntToString(from=0xffffffff, to="MATCH_PARENT"), @android.view.ViewDebug.IntToString(from=0xfffffffe, to="WRAP_CONTENT")}) public int width;
+    field public int width;
   }
 
   public static class ViewGroup.MarginLayoutParams extends android.view.ViewGroup.LayoutParams {
@@ -36856,10 +36856,10 @@ package android.view {
     method public void setMarginEnd(int);
     method public void setMarginStart(int);
     method public void setMargins(int, int, int, int);
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public int bottomMargin;
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public int leftMargin;
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public int rightMargin;
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public int topMargin;
+    field public int bottomMargin;
+    field public int leftMargin;
+    field public int rightMargin;
+    field public int topMargin;
   }
 
   public static interface ViewGroup.OnHierarchyChangeListener {
@@ -37447,11 +37447,11 @@ package android.view {
     field public float alpha;
     field public float buttonBrightness;
     field public float dimAmount;
-    field @android.view.ViewDebug.ExportedProperty(flagMapping={@android.view.ViewDebug.FlagToString(mask=1, equals=1, name="FLAG_ALLOW_LOCK_WHILE_SCREEN_ON"), @android.view.ViewDebug.FlagToString(mask=2, equals=2, name="FLAG_DIM_BEHIND"), @android.view.ViewDebug.FlagToString(mask=4, equals=4, name="FLAG_BLUR_BEHIND"), @android.view.ViewDebug.FlagToString(mask=8, equals=8, name="FLAG_NOT_FOCUSABLE"), @android.view.ViewDebug.FlagToString(mask=16, equals=16, name="FLAG_NOT_TOUCHABLE"), @android.view.ViewDebug.FlagToString(mask=32, equals=32, name="FLAG_NOT_TOUCH_MODAL"), @android.view.ViewDebug.FlagToString(mask=64, equals=64, name="FLAG_TOUCHABLE_WHEN_WAKING"), @android.view.ViewDebug.FlagToString(mask=128, equals=128, name="FLAG_KEEP_SCREEN_ON"), @android.view.ViewDebug.FlagToString(mask=256, equals=256, name="FLAG_LAYOUT_IN_SCREEN"), @android.view.ViewDebug.FlagToString(mask=512, equals=512, name="FLAG_LAYOUT_NO_LIMITS"), @android.view.ViewDebug.FlagToString(mask=1024, equals=1024, name="FLAG_FULLSCREEN"), @android.view.ViewDebug.FlagToString(mask=2048, equals=2048, name="FLAG_FORCE_NOT_FULLSCREEN"), @android.view.ViewDebug.FlagToString(mask=4096, equals=4096, name="FLAG_DITHER"), @android.view.ViewDebug.FlagToString(mask=8192, equals=8192, name="FLAG_SECURE"), @android.view.ViewDebug.FlagToString(mask=16384, equals=16384, name="FLAG_SCALED"), @android.view.ViewDebug.FlagToString(mask=32768, equals=32768, name="FLAG_IGNORE_CHEEK_PRESSES"), @android.view.ViewDebug.FlagToString(mask=65536, equals=65536, name="FLAG_LAYOUT_INSET_DECOR"), @android.view.ViewDebug.FlagToString(mask=131072, equals=131072, name="FLAG_ALT_FOCUSABLE_IM"), @android.view.ViewDebug.FlagToString(mask=262144, equals=262144, name="FLAG_WATCH_OUTSIDE_TOUCH"), @android.view.ViewDebug.FlagToString(mask=524288, equals=524288, name="FLAG_SHOW_WHEN_LOCKED"), @android.view.ViewDebug.FlagToString(mask=1048576, equals=1048576, name="FLAG_SHOW_WALLPAPER"), @android.view.ViewDebug.FlagToString(mask=2097152, equals=2097152, name="FLAG_TURN_SCREEN_ON"), @android.view.ViewDebug.FlagToString(mask=4194304, equals=4194304, name="FLAG_DISMISS_KEYGUARD"), @android.view.ViewDebug.FlagToString(mask=8388608, equals=8388608, name="FLAG_SPLIT_TOUCH"), @android.view.ViewDebug.FlagToString(mask=16777216, equals=16777216, name="FLAG_HARDWARE_ACCELERATED"), @android.view.ViewDebug.FlagToString(mask=268435456, equals=268435456, name="FLAG_LOCAL_FOCUS_MODE"), @android.view.ViewDebug.FlagToString(mask=67108864, equals=67108864, name="FLAG_TRANSLUCENT_STATUS"), @android.view.ViewDebug.FlagToString(mask=134217728, equals=134217728, name="FLAG_TRANSLUCENT_NAVIGATION"), @android.view.ViewDebug.FlagToString(mask=0x80000000, equals=0x80000000, name="FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS")}, formatToHexString=true) public int flags;
+    field public int flags;
     field public int format;
     field public int gravity;
     field public float horizontalMargin;
-    field @android.view.ViewDebug.ExportedProperty public float horizontalWeight;
+    field public float horizontalWeight;
     field @Deprecated public int memoryType;
     field public String packageName;
     field public int preferredDisplayModeId;
@@ -37462,12 +37462,12 @@ package android.view {
     field public int softInputMode;
     field public int systemUiVisibility;
     field public android.os.IBinder token;
-    field @android.view.ViewDebug.ExportedProperty(mapping={@android.view.ViewDebug.IntToString(from=1, to="TYPE_BASE_APPLICATION"), @android.view.ViewDebug.IntToString(from=2, to="TYPE_APPLICATION"), @android.view.ViewDebug.IntToString(from=3, to="TYPE_APPLICATION_STARTING"), @android.view.ViewDebug.IntToString(from=1000, to="TYPE_APPLICATION_PANEL"), @android.view.ViewDebug.IntToString(from=1001, to="TYPE_APPLICATION_MEDIA"), @android.view.ViewDebug.IntToString(from=1002, to="TYPE_APPLICATION_SUB_PANEL"), @android.view.ViewDebug.IntToString(from=1005, to="TYPE_APPLICATION_ABOVE_SUB_PANEL"), @android.view.ViewDebug.IntToString(from=1003, to="TYPE_APPLICATION_ATTACHED_DIALOG"), @android.view.ViewDebug.IntToString(from=1004, to="TYPE_APPLICATION_MEDIA_OVERLAY"), @android.view.ViewDebug.IntToString(from=2000, to="TYPE_STATUS_BAR"), @android.view.ViewDebug.IntToString(from=2001, to="TYPE_SEARCH_BAR"), @android.view.ViewDebug.IntToString(from=2002, to="TYPE_PHONE"), @android.view.ViewDebug.IntToString(from=2003, to="TYPE_SYSTEM_ALERT"), @android.view.ViewDebug.IntToString(from=2005, to="TYPE_TOAST"), @android.view.ViewDebug.IntToString(from=2006, to="TYPE_SYSTEM_OVERLAY"), @android.view.ViewDebug.IntToString(from=2007, to="TYPE_PRIORITY_PHONE"), @android.view.ViewDebug.IntToString(from=2008, to="TYPE_SYSTEM_DIALOG"), @android.view.ViewDebug.IntToString(from=2009, to="TYPE_KEYGUARD_DIALOG"), @android.view.ViewDebug.IntToString(from=2010, to="TYPE_SYSTEM_ERROR"), @android.view.ViewDebug.IntToString(from=2011, to="TYPE_INPUT_METHOD"), @android.view.ViewDebug.IntToString(from=2012, to="TYPE_INPUT_METHOD_DIALOG"), @android.view.ViewDebug.IntToString(from=2013, to="TYPE_WALLPAPER"), @android.view.ViewDebug.IntToString(from=2014, to="TYPE_STATUS_BAR_PANEL"), @android.view.ViewDebug.IntToString(from=2015, to="TYPE_SECURE_SYSTEM_OVERLAY"), @android.view.ViewDebug.IntToString(from=2016, to="TYPE_DRAG"), @android.view.ViewDebug.IntToString(from=2017, to="TYPE_STATUS_BAR_SUB_PANEL"), @android.view.ViewDebug.IntToString(from=2018, to="TYPE_POINTER"), @android.view.ViewDebug.IntToString(from=2019, to="TYPE_NAVIGATION_BAR"), @android.view.ViewDebug.IntToString(from=2020, to="TYPE_VOLUME_OVERLAY"), @android.view.ViewDebug.IntToString(from=2021, to="TYPE_BOOT_PROGRESS"), @android.view.ViewDebug.IntToString(from=2022, to="TYPE_INPUT_CONSUMER"), @android.view.ViewDebug.IntToString(from=2023, to="TYPE_DREAM"), @android.view.ViewDebug.IntToString(from=2024, to="TYPE_NAVIGATION_BAR_PANEL"), @android.view.ViewDebug.IntToString(from=2026, to="TYPE_DISPLAY_OVERLAY"), @android.view.ViewDebug.IntToString(from=2027, to="TYPE_MAGNIFICATION_OVERLAY"), @android.view.ViewDebug.IntToString(from=2030, to="TYPE_PRIVATE_PRESENTATION"), @android.view.ViewDebug.IntToString(from=2031, to="TYPE_VOICE_INTERACTION"), @android.view.ViewDebug.IntToString(from=2033, to="TYPE_VOICE_INTERACTION_STARTING")}) public int type;
+    field public int type;
     field public float verticalMargin;
-    field @android.view.ViewDebug.ExportedProperty public float verticalWeight;
+    field public float verticalWeight;
     field public int windowAnimations;
-    field @android.view.ViewDebug.ExportedProperty public int x;
-    field @android.view.ViewDebug.ExportedProperty public int y;
+    field public int x;
+    field public int y;
   }
 
 }
@@ -39136,16 +39136,16 @@ package android.webkit {
     method public void flingScroll(int, int);
     method @Deprecated public void freeMemory();
     method public android.net.http.SslCertificate getCertificate();
-    method @android.view.ViewDebug.ExportedProperty(category="webview") public int getContentHeight();
+    method public int getContentHeight();
     method public android.graphics.Bitmap getFavicon();
     method public android.webkit.WebView.HitTestResult getHitTestResult();
     method public String[] getHttpAuthUsernamePassword(String, String);
-    method @android.view.ViewDebug.ExportedProperty(category="webview") public String getOriginalUrl();
+    method public String getOriginalUrl();
     method public int getProgress();
-    method @Deprecated @android.view.ViewDebug.ExportedProperty(category="webview") public float getScale();
+    method @Deprecated public float getScale();
     method public android.webkit.WebSettings getSettings();
-    method @android.view.ViewDebug.ExportedProperty(category="webview") public String getTitle();
-    method @android.view.ViewDebug.ExportedProperty(category="webview") public String getUrl();
+    method public String getTitle();
+    method public String getUrl();
     method public void goBack();
     method public void goBackOrForward(int);
     method public void goForward();
@@ -39309,7 +39309,7 @@ package android.widget {
     method public void deferNotifyDataSetChanged();
     method public void fling(int);
     method public android.widget.AbsListView.LayoutParams generateLayoutParams(android.util.AttributeSet);
-    method @android.view.ViewDebug.ExportedProperty(category="drawing") public int getCacheColorHint();
+    method public int getCacheColorHint();
     method public int getCheckedItemCount();
     method public long[] getCheckedItemIds();
     method public int getCheckedItemPosition();
@@ -39319,7 +39319,7 @@ package android.widget {
     method public int getListPaddingLeft();
     method public int getListPaddingRight();
     method public int getListPaddingTop();
-    method @android.view.ViewDebug.ExportedProperty public android.view.View getSelectedView();
+    method public android.view.View getSelectedView();
     method public android.graphics.drawable.Drawable getSelector();
     method public CharSequence getTextFilter();
     method public int getTranscriptMode();
@@ -39327,13 +39327,13 @@ package android.widget {
     method public boolean hasTextFilter();
     method public void invalidateViews();
     method public boolean isFastScrollAlwaysVisible();
-    method @android.view.ViewDebug.ExportedProperty public boolean isFastScrollEnabled();
+    method public boolean isFastScrollEnabled();
     method protected boolean isInFilterMode();
     method public boolean isItemChecked(int);
-    method @android.view.ViewDebug.ExportedProperty public boolean isScrollingCacheEnabled();
-    method @android.view.ViewDebug.ExportedProperty public boolean isSmoothScrollbarEnabled();
-    method @android.view.ViewDebug.ExportedProperty public boolean isStackFromBottom();
-    method @android.view.ViewDebug.ExportedProperty public boolean isTextFilterEnabled();
+    method public boolean isScrollingCacheEnabled();
+    method public boolean isSmoothScrollbarEnabled();
+    method public boolean isStackFromBottom();
+    method public boolean isTextFilterEnabled();
     method protected void layoutChildren();
     method public void onFilterComplete(int);
     method public void onGlobalLayout();
@@ -39516,7 +39516,7 @@ package android.widget {
     ctor public AdapterView(android.content.Context, android.util.AttributeSet, int);
     ctor public AdapterView(android.content.Context, android.util.AttributeSet, int, int);
     method public abstract T getAdapter();
-    method @android.view.ViewDebug.CapturedViewProperty public int getCount();
+    method public int getCount();
     method public android.view.View getEmptyView();
     method public int getFirstVisiblePosition();
     method public Object getItemAtPosition(int);
@@ -39527,8 +39527,8 @@ package android.widget {
     method public final android.widget.AdapterView.OnItemSelectedListener getOnItemSelectedListener();
     method public int getPositionForView(android.view.View);
     method public Object getSelectedItem();
-    method @android.view.ViewDebug.CapturedViewProperty public long getSelectedItemId();
-    method @android.view.ViewDebug.CapturedViewProperty public int getSelectedItemPosition();
+    method public long getSelectedItemId();
+    method public int getSelectedItemPosition();
     method public abstract android.view.View getSelectedView();
     method public boolean performItemClick(android.view.View, int, long);
     method public abstract void setAdapter(T);
@@ -39823,7 +39823,7 @@ package android.widget {
     method public android.graphics.drawable.Drawable getCheckMarkDrawable();
     method public android.content.res.ColorStateList getCheckMarkTintList();
     method public android.graphics.PorterDuff.Mode getCheckMarkTintMode();
-    method @android.view.ViewDebug.ExportedProperty public boolean isChecked();
+    method public boolean isChecked();
     method public void setCheckMarkDrawable(int);
     method public void setCheckMarkDrawable(android.graphics.drawable.Drawable);
     method public void setCheckMarkTintList(android.content.res.ColorStateList);
@@ -39859,7 +39859,7 @@ package android.widget {
     method public android.graphics.drawable.Drawable getButtonDrawable();
     method public android.content.res.ColorStateList getButtonTintList();
     method public android.graphics.PorterDuff.Mode getButtonTintMode();
-    method @android.view.ViewDebug.ExportedProperty public boolean isChecked();
+    method public boolean isChecked();
     method public void setButtonDrawable(int);
     method public void setButtonDrawable(android.graphics.drawable.Drawable);
     method public void setButtonTintList(android.content.res.ColorStateList);
@@ -40242,7 +40242,7 @@ package android.widget {
     method public int getColumnWidth();
     method public int getGravity();
     method public int getHorizontalSpacing();
-    method @android.view.ViewDebug.ExportedProperty public int getNumColumns();
+    method public int getNumColumns();
     method public int getRequestedColumnWidth();
     method public int getRequestedHorizontalSpacing();
     method public int getStretchMode();
@@ -40424,8 +40424,8 @@ package android.widget {
     ctor public LinearLayout.LayoutParams(android.view.ViewGroup.MarginLayoutParams);
     ctor public LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams);
     method public String debug(String);
-    field @android.view.ViewDebug.ExportedProperty(category="layout", mapping={@android.view.ViewDebug.IntToString(from=0xffffffff, to="NONE"), @android.view.ViewDebug.IntToString(from=0, to="NONE"), @android.view.ViewDebug.IntToString(from=48, to="TOP"), @android.view.ViewDebug.IntToString(from=80, to="BOTTOM"), @android.view.ViewDebug.IntToString(from=3, to="LEFT"), @android.view.ViewDebug.IntToString(from=5, to="RIGHT"), @android.view.ViewDebug.IntToString(from=8388611, to="START"), @android.view.ViewDebug.IntToString(from=8388613, to="END"), @android.view.ViewDebug.IntToString(from=16, to="CENTER_VERTICAL"), @android.view.ViewDebug.IntToString(from=112, to="FILL_VERTICAL"), @android.view.ViewDebug.IntToString(from=1, to="CENTER_HORIZONTAL"), @android.view.ViewDebug.IntToString(from=7, to="FILL_HORIZONTAL"), @android.view.ViewDebug.IntToString(from=17, to="CENTER"), @android.view.ViewDebug.IntToString(from=119, to="FILL")}) public int gravity;
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public float weight;
+    field public int gravity;
+    field public float weight;
   }
 
   public interface ListAdapter extends android.widget.Adapter {
@@ -40757,19 +40757,19 @@ package android.widget {
     method public android.content.res.ColorStateList getIndeterminateTintList();
     method public android.graphics.PorterDuff.Mode getIndeterminateTintMode();
     method public android.view.animation.Interpolator getInterpolator();
-    method @android.view.ViewDebug.ExportedProperty(category="progress") public int getMax();
-    method @android.view.ViewDebug.ExportedProperty(category="progress") public int getProgress();
+    method public int getMax();
+    method public int getProgress();
     method public android.content.res.ColorStateList getProgressBackgroundTintList();
     method public android.graphics.PorterDuff.Mode getProgressBackgroundTintMode();
     method public android.graphics.drawable.Drawable getProgressDrawable();
     method public android.content.res.ColorStateList getProgressTintList();
     method public android.graphics.PorterDuff.Mode getProgressTintMode();
-    method @android.view.ViewDebug.ExportedProperty(category="progress") public int getSecondaryProgress();
+    method public int getSecondaryProgress();
     method public android.content.res.ColorStateList getSecondaryProgressTintList();
     method public android.graphics.PorterDuff.Mode getSecondaryProgressTintMode();
     method public final void incrementProgressBy(int);
     method public final void incrementSecondaryProgressBy(int);
-    method @android.view.ViewDebug.ExportedProperty(category="progress") public boolean isIndeterminate();
+    method public boolean isIndeterminate();
     method public void onRestoreInstanceState(android.os.Parcelable);
     method public android.os.Parcelable onSaveInstanceState();
     method public void setIndeterminate(boolean);
@@ -40909,7 +40909,7 @@ package android.widget {
     method public int getRule(int);
     method public int[] getRules();
     method public void removeRule(int);
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public boolean alignWithParent;
+    field public boolean alignWithParent;
   }
 
   public class RemoteViews implements android.view.LayoutInflater.Filter android.os.Parcelable {
@@ -41443,8 +41443,8 @@ package android.widget {
     ctor public TableRow.LayoutParams(int);
     ctor public TableRow.LayoutParams(android.view.ViewGroup.LayoutParams);
     ctor public TableRow.LayoutParams(android.view.ViewGroup.MarginLayoutParams);
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public int column;
-    field @android.view.ViewDebug.ExportedProperty(category="layout") public int span;
+    field public int column;
+    field public int span;
   }
 
   @android.widget.RemoteViews.RemoteView public class TextClock extends android.widget.TextView {
@@ -41452,8 +41452,8 @@ package android.widget {
     ctor public TextClock(android.content.Context, android.util.AttributeSet);
     ctor public TextClock(android.content.Context, android.util.AttributeSet, int);
     ctor public TextClock(android.content.Context, android.util.AttributeSet, int, int);
-    method @android.view.ViewDebug.ExportedProperty public CharSequence getFormat12Hour();
-    method @android.view.ViewDebug.ExportedProperty public CharSequence getFormat24Hour();
+    method public CharSequence getFormat12Hour();
+    method public CharSequence getFormat24Hour();
     method public String getTimeZone();
     method public boolean is24HourModeEnabled();
     method public void setFormat12Hour(CharSequence);
@@ -41505,7 +41505,7 @@ package android.widget {
     method protected boolean getDefaultEditable();
     method protected android.text.method.MovementMethod getDefaultMovementMethod();
     method public android.text.Editable getEditableText();
-    method @android.view.ViewDebug.ExportedProperty public android.text.TextUtils.TruncateAt getEllipsize();
+    method public android.text.TextUtils.TruncateAt getEllipsize();
     method public CharSequence getError();
     method public int getExtendedPaddingBottom();
     method public int getExtendedPaddingTop();
@@ -41514,7 +41514,7 @@ package android.widget {
     method public boolean getFreezesText();
     method public int getGravity();
     method public int getHighlightColor();
-    method @android.view.ViewDebug.CapturedViewProperty public CharSequence getHint();
+    method public CharSequence getHint();
     method public final android.content.res.ColorStateList getHintTextColors();
     method public int getHyphenationFrequency();
     method public int getImeActionId();
@@ -41547,18 +41547,18 @@ package android.widget {
     method public android.text.TextPaint getPaint();
     method public int getPaintFlags();
     method public String getPrivateImeOptions();
-    method @android.view.ViewDebug.ExportedProperty(category="text") public int getSelectionEnd();
-    method @android.view.ViewDebug.ExportedProperty(category="text") public int getSelectionStart();
+    method public int getSelectionEnd();
+    method public int getSelectionStart();
     method public int getShadowColor();
     method public float getShadowDx();
     method public float getShadowDy();
     method public float getShadowRadius();
     method public final boolean getShowSoftInputOnFocus();
-    method @android.view.ViewDebug.CapturedViewProperty public CharSequence getText();
+    method public CharSequence getText();
     method public final android.content.res.ColorStateList getTextColors();
     method public java.util.Locale getTextLocale();
     method public float getTextScaleX();
-    method @android.view.ViewDebug.ExportedProperty(category="text") public float getTextSize();
+    method public float getTextSize();
     method public int getTotalPaddingBottom();
     method public int getTotalPaddingEnd();
     method public int getTotalPaddingLeft();
