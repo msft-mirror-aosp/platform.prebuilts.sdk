@@ -13,6 +13,7 @@ import subprocess
 import shlex
 import glob
 import shutil
+import unittest
 
 # Modules not in Android repo. Ok to ignore if they are not really used.
 try:
@@ -1053,7 +1054,7 @@ def update_makefile(build_id):
 
 
 def finalize_sdk(target, build_id, sdk_version, beyond_corp, local_mode):
-    target_finalize_dir = '%d' % sdk_version
+    target_finalize_dir = sdk_version
 
     for api_scope in ['public', 'system', 'test', 'module-lib', 'system-server']:
         artifact_to_path = {f'apistubs/android/{api_scope}/api/*.txt': os.path.join(
@@ -1128,6 +1129,19 @@ def has_uncommitted_changes():
         return True
 
 
+def check_platform_sdk_version_format(s):
+    # Verify that the string is using either of these formats:
+    #
+    #   - A single non-zero integer
+    #   - A non-zero integer followed by a dot followed by another integer
+    #
+    # Examples of allowed strings: 1, 1.0, 2.34
+    # Examples of disallowed strings: 0.1, 1.01
+    if not re.match(r'[1-9][0-9]*(\.(0|[1-9][0-9]*))?', s):
+        raise ValueError('bad platform SDK version format')
+    return s
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Update current prebuilts')
@@ -1147,8 +1161,9 @@ def main():
         '-p', '--platform', action='store_true',
         help='If specified, updates only the Android Platform')
     parser.add_argument(
-        '-f', '--finalize_sdk', type=int,
-        help='Finalize the build as the specified SDK version. Must be used together with -e')
+        '-f', '--finalize_sdk', type=check_platform_sdk_version_format,
+        help='Finalize the build as the specified SDK version. The version can be either a single integer '
+             'like 36, or a major.minor version like 36.1. Must be used together with -e')
     parser.add_argument(
         '-e', '--finalize_extension', type=int,
         help='Finalize the build as the specified extension SDK version. Must be used together with -f')
@@ -1374,3 +1389,23 @@ populate_maven_to_make(maven_to_make)
 
 if __name__ == '__main__':
     main()
+
+
+class Foo(unittest.TestCase):
+    def test_check_platform_sdk_version_format(self):
+        # valid input (single int)
+        check_platform_sdk_version_format("1")
+        check_platform_sdk_version_format("10")
+
+        # valid input (major.minor version)
+        check_platform_sdk_version_format("1.0")
+        check_platform_sdk_version_format("1.01")
+        check_platform_sdk_version_format("2.34")
+
+        # invalid input
+        with self.assertRaises(ValueError):
+            check_platform_sdk_version_format("")
+        with self.assertRaises(ValueError):
+            check_platform_sdk_version_format("0")
+        with self.assertRaises(ValueError):
+            check_platform_sdk_version_format("foo")
