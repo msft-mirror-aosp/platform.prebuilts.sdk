@@ -16359,12 +16359,10 @@ package android.renderscript {
 
   public class AllocationAdapter extends android.renderscript.Allocation {
     method public static android.renderscript.AllocationAdapter create2D(android.renderscript.RenderScript, android.renderscript.Allocation);
-    method public void destroy();
     method public void readData(int[]);
     method public void readData(float[]);
     method public void setFace(android.renderscript.Type.CubemapFace);
     method public void setLOD(int);
-    method public void setName(String);
     method public void setY(int);
     method public void setZ(int);
     method public void subData(int, android.renderscript.FieldPacker);
@@ -16784,8 +16782,6 @@ package android.renderscript {
   }
 
   public class ProgramFragment extends android.renderscript.Program {
-    method public void destroy();
-    method public void setName(String);
   }
 
   public static class ProgramFragment.Builder extends android.renderscript.Program.BaseProgramBuilder {
@@ -16794,8 +16790,6 @@ package android.renderscript {
   }
 
   public class ProgramFragmentFixedFunction extends android.renderscript.ProgramFragment {
-    method public void destroy();
-    method public void setName(String);
   }
 
   public static class ProgramFragmentFixedFunction.Builder {
@@ -16894,8 +16888,6 @@ package android.renderscript {
   }
 
   public class ProgramVertex extends android.renderscript.Program {
-    method public void destroy();
-    method public void setName(String);
   }
 
   public static class ProgramVertex.Builder extends android.renderscript.Program.BaseProgramBuilder {
@@ -16906,8 +16898,6 @@ package android.renderscript {
 
   public class ProgramVertexFixedFunction extends android.renderscript.ProgramVertex {
     method public void bindConstants(android.renderscript.ProgramVertexFixedFunction.Constants);
-    method public void destroy();
-    method public void setName(String);
   }
 
   public static class ProgramVertexFixedFunction.Builder {
@@ -17074,8 +17064,6 @@ package android.renderscript {
   public class ScriptC extends android.renderscript.Script {
     ctor protected ScriptC(int, android.renderscript.RenderScript);
     ctor protected ScriptC(android.renderscript.RenderScript, android.content.res.Resources, int);
-    method public void destroy();
-    method public void setName(String);
   }
 
   public class Short2 {
@@ -19766,9 +19754,9 @@ package android.util {
     method @Deprecated public android.util.EventLogTags.Description get(int);
   }
 
-  public static class EventLogTags.Description {
-    field public final String mName;
-    field public final int mTag;
+  @Deprecated public static class EventLogTags.Description {
+    field @Deprecated public final String mName;
+    field @Deprecated public final int mTag;
   }
 
   public class FloatMath {
@@ -23636,13 +23624,13 @@ package android.widget {
     ctor @Deprecated public AbsoluteLayout(android.content.Context, android.util.AttributeSet, int);
   }
 
-  public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
-    ctor public AbsoluteLayout.LayoutParams(int, int, int, int);
-    ctor public AbsoluteLayout.LayoutParams(android.content.Context, android.util.AttributeSet);
-    ctor public AbsoluteLayout.LayoutParams(android.view.ViewGroup.LayoutParams);
-    method public String debug(String);
-    field public int x;
-    field public int y;
+  @Deprecated public static class AbsoluteLayout.LayoutParams extends android.view.ViewGroup.LayoutParams {
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(int, int, int, int);
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(android.content.Context, android.util.AttributeSet);
+    ctor @Deprecated public AbsoluteLayout.LayoutParams(android.view.ViewGroup.LayoutParams);
+    method @Deprecated public String debug(String);
+    field @Deprecated public int x;
+    field @Deprecated public int y;
   }
 
   public interface Adapter {
