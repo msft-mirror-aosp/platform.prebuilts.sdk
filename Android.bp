@@ -63,6 +63,18 @@ filegroup {
     ],
 }
 
+// Allow aconfig to use finalized flag files to automatically include SDK level
+// checks for finalized API flags.
+filegroup {
+    name: "finalized-api-flags",
+    srcs: [
+        "*/finalized-flags.txt",
+    ],
+    visibility: [
+        "//build/make/tools/aconfig:__subpackages__",
+    ],
+}
+
 droiddoc_exported_dir {
     name: "sdk-dir",
     path: ".",
