@@ -1007,7 +1007,7 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
             if local_mode:
                 artifact = 'android-sdk*.zip'
             else:
-                artifact = f'sdk-repo-linux-platforms-{build_id.fs_id}.zip'
+                artifact = f'sdk-repo-linux-platforms-{build_id.url_id}.zip'
             artifact_path = fetch_artifact(target, build_id.url_id, artifact, beyond_corp, local_mode)
             if not artifact_path:
                 return False
