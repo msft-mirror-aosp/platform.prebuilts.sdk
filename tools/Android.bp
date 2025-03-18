@@ -37,7 +37,7 @@ cc_prebuilt_library_shared {
         // arch mutator should handle this.
         windows: {
             enabled: true,
-        }
+        },
     },
 }
 
@@ -65,7 +65,7 @@ cc_prebuilt_library_shared {
         // arch mutator should handle this.
         windows: {
             enabled: true,
-        }
+        },
     },
 }
 
@@ -86,12 +86,10 @@ cc_prebuilt_binary {
             srcs: ["windows/bin/aapt2.exe"],
         },
     },
-    enabled: false,
-    product_variables: {
-        always_use_prebuilt_sdks: {
-            enabled: true,
-        },
-    },
+    enabled: select(product_variable("always_use_prebuilt_sdks"), {
+        true: true,
+        default: false,
+    }),
 }
 
 java_import {
