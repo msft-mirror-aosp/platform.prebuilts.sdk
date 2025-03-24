@@ -4581,7 +4581,7 @@
 	<class name="android/adservices/adselection/AdSelectionOutcome" module="framework-adservices" since="34" sdks="1000000:4,0:34">
 		<extends name="java/lang/Object"/>
 		<method name="getAdSelectionId()J"/>
-		<method name="getComponentAdUris()Ljava/util/List;" since="36" sdks="1000000:16,36:16"/>
+		<method name="getComponentAdUris()Ljava/util/List;" since="36" sdks="1000000:16,0:36"/>
 		<method name="getRenderUri()Landroid/net/Uri;"/>
 		<method name="hasOutcome()Z" since="35" sdks="1000000:10,0:35"/>
 		<field name="NO_OUTCOME" since="35" sdks="1000000:10,0:35"/>
@@ -4591,7 +4591,7 @@
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/adservices/adselection/AdSelectionOutcome;"/>
 		<method name="setAdSelectionId(J)Landroid/adservices/adselection/AdSelectionOutcome$Builder;"/>
-		<method name="setComponentAdUris(Ljava/util/List;)Landroid/adservices/adselection/AdSelectionOutcome$Builder;" since="36" sdks="1000000:16,36:16"/>
+		<method name="setComponentAdUris(Ljava/util/List;)Landroid/adservices/adselection/AdSelectionOutcome$Builder;" since="36" sdks="1000000:16,0:36"/>
 		<method name="setRenderUri(Landroid/net/Uri;)Landroid/adservices/adselection/AdSelectionOutcome$Builder;"/>
 	</class>
 	<class name="android/adservices/adselection/AdWithBid" module="framework-adservices" since="35" sdks="1000000:12,0:35">
@@ -4635,7 +4635,7 @@
 		<extends name="java/lang/Object"/>
 		<method name="getCoordinatorOriginUri()Landroid/net/Uri;" sdks="1000000:12,0:35"/>
 		<method name="getSeller()Landroid/adservices/common/AdTechIdentifier;"/>
-		<method name="getSellerConfiguration()Landroid/adservices/adselection/SellerConfiguration;" since="36" sdks="1000000:14,36:14"/>
+		<method name="getSellerConfiguration()Landroid/adservices/adselection/SellerConfiguration;" since="36" sdks="1000000:14,0:36"/>
 	</class>
 	<class name="android/adservices/adselection/GetAdSelectionDataRequest$Builder" module="framework-adservices" since="35" sdks="1000000:10,0:35">
 		<extends name="java/lang/Object"/>
@@ -4643,16 +4643,16 @@
 		<method name="build()Landroid/adservices/adselection/GetAdSelectionDataRequest;"/>
 		<method name="setCoordinatorOriginUri(Landroid/net/Uri;)Landroid/adservices/adselection/GetAdSelectionDataRequest$Builder;" sdks="1000000:12,0:35"/>
 		<method name="setSeller(Landroid/adservices/common/AdTechIdentifier;)Landroid/adservices/adselection/GetAdSelectionDataRequest$Builder;"/>
-		<method name="setSellerConfiguration(Landroid/adservices/adselection/SellerConfiguration;)Landroid/adservices/adselection/GetAdSelectionDataRequest$Builder;" since="36" sdks="1000000:14,36:14"/>
+		<method name="setSellerConfiguration(Landroid/adservices/adselection/SellerConfiguration;)Landroid/adservices/adselection/GetAdSelectionDataRequest$Builder;" since="36" sdks="1000000:14,0:36"/>
 	</class>
-	<class name="android/adservices/adselection/PerBuyerConfiguration" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/adselection/PerBuyerConfiguration" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getBuyer()Landroid/adservices/common/AdTechIdentifier;"/>
 		<method name="getTargetInputSizeBytes()I"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/adservices/adselection/PerBuyerConfiguration$Builder" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/adselection/PerBuyerConfiguration$Builder" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/adservices/adselection/PerBuyerConfiguration;"/>
@@ -4720,14 +4720,14 @@
 		<method name="getAdSelectionConfig()Landroid/adservices/adselection/AdSelectionConfig;"/>
 		<method name="getAdSelectionId()J"/>
 	</class>
-	<class name="android/adservices/adselection/SellerConfiguration" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/adselection/SellerConfiguration" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getMaximumPayloadSizeBytes()I"/>
 		<method name="getPerBuyerConfigurations()Ljava/util/Set;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/adservices/adselection/SellerConfiguration$Builder" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/adselection/SellerConfiguration$Builder" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/adservices/adselection/SellerConfiguration;"/>
@@ -4870,28 +4870,28 @@
 		<method name="get(Landroid/content/Context;)Landroid/adservices/common/AdServicesCommonManager;" sdks="1000000:6,0:34"/>
 		<method name="isAdServicesEnabled(Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="35" sdks="1000000:11,0:35" deprecated="36"/>
 		<method name="isAdServicesEnabled(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
-		<method name="requestAdServicesModuleOverrides(Landroid/adservices/common/UpdateAdServicesModuleStatesParams;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="36" sdks="1000000:16,36:16"/>
-		<method name="requestAdServicesModuleUserChoices(Landroid/adservices/common/UpdateAdServicesUserChoicesParams;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="36" sdks="1000000:16,36:16"/>
+		<method name="requestAdServicesModuleOverrides(Landroid/adservices/common/UpdateAdServicesModuleStatesParams;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="36" sdks="1000000:16,0:36"/>
+		<method name="requestAdServicesModuleUserChoices(Landroid/adservices/common/UpdateAdServicesUserChoicesParams;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="36" sdks="1000000:16,0:36"/>
 		<method name="setAdServicesEnabled(ZZ)V"/>
 		<method name="updateAdId(Landroid/adservices/common/UpdateAdIdRequest;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="35" sdks="1000000:11,0:35" deprecated="36"/>
 		<method name="updateAdId(Landroid/adservices/common/UpdateAdIdRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="35" sdks="1000000:11,0:35"/>
-		<field name="ACTION_ADSERVICES_NOTIFICATION_DISPLAYED" since="36" sdks="1000000:16,36:16"/>
-		<field name="ACTION_VIEW_ADSERVICES_CONSENT_PAGE" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_ADID" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_MEASUREMENT" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_ON_DEVICE_PERSONALIZATION" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_PROTECTED_APP_SIGNALS" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_PROTECTED_AUDIENCE" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_STATE_DISABLED" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_STATE_ENABLED" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_STATE_UNKNOWN" since="36" sdks="1000000:16,36:16"/>
-		<field name="MODULE_TOPICS" since="36" sdks="1000000:16,36:16"/>
-		<field name="NOTIFICATION_NONE" since="36" sdks="1000000:16,36:16"/>
-		<field name="NOTIFICATION_ONGOING" since="36" sdks="1000000:16,36:16"/>
-		<field name="NOTIFICATION_REGULAR" since="36" sdks="1000000:16,36:16"/>
-		<field name="USER_CHOICE_OPTED_IN" since="36" sdks="1000000:16,36:16"/>
-		<field name="USER_CHOICE_OPTED_OUT" since="36" sdks="1000000:16,36:16"/>
-		<field name="USER_CHOICE_UNKNOWN" since="36" sdks="1000000:16,36:16"/>
+		<field name="ACTION_ADSERVICES_NOTIFICATION_DISPLAYED" since="36" sdks="1000000:16,0:36"/>
+		<field name="ACTION_VIEW_ADSERVICES_CONSENT_PAGE" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_ADID" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_MEASUREMENT" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_ON_DEVICE_PERSONALIZATION" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_PROTECTED_APP_SIGNALS" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_PROTECTED_AUDIENCE" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_STATE_DISABLED" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_STATE_ENABLED" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_STATE_UNKNOWN" since="36" sdks="1000000:16,0:36"/>
+		<field name="MODULE_TOPICS" since="36" sdks="1000000:16,0:36"/>
+		<field name="NOTIFICATION_NONE" since="36" sdks="1000000:16,0:36"/>
+		<field name="NOTIFICATION_ONGOING" since="36" sdks="1000000:16,0:36"/>
+		<field name="NOTIFICATION_REGULAR" since="36" sdks="1000000:16,0:36"/>
+		<field name="USER_CHOICE_OPTED_IN" since="36" sdks="1000000:16,0:36"/>
+		<field name="USER_CHOICE_OPTED_OUT" since="36" sdks="1000000:16,0:36"/>
+		<field name="USER_CHOICE_UNKNOWN" since="36" sdks="1000000:16,0:36"/>
 	</class>
 	<class name="android/adservices/common/AdServicesOutcomeReceiver" module="framework-adservices" since="35" sdks="1000000:10,0:35" deprecated="36">
 		<extends name="java/lang/Object"/>
@@ -4954,7 +4954,7 @@
 		<method name="build()Landroid/adservices/common/AppInstallFilters;"/>
 		<method name="setPackageNames(Ljava/util/Set;)Landroid/adservices/common/AppInstallFilters$Builder;"/>
 	</class>
-	<class name="android/adservices/common/ComponentAdData" module="framework-adservices" since="36" sdks="1000000:16,36:16">
+	<class name="android/adservices/common/ComponentAdData" module="framework-adservices" since="36" sdks="1000000:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Landroid/net/Uri;Ljava/lang/String;)V"/>
@@ -5020,27 +5020,27 @@
 		<method name="build()Landroid/adservices/common/UpdateAdIdRequest;"/>
 		<method name="setLimitAdTrackingEnabled(Z)Landroid/adservices/common/UpdateAdIdRequest$Builder;"/>
 	</class>
-	<class name="android/adservices/common/UpdateAdServicesModuleStatesParams" module="framework-adservices" since="36" sdks="1000000:16,36:16">
+	<class name="android/adservices/common/UpdateAdServicesModuleStatesParams" module="framework-adservices" since="36" sdks="1000000:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getModuleState(I)I"/>
 		<method name="getNotificationType()I"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/adservices/common/UpdateAdServicesModuleStatesParams$Builder" module="framework-adservices" since="36" sdks="1000000:16,36:16">
+	<class name="android/adservices/common/UpdateAdServicesModuleStatesParams$Builder" module="framework-adservices" since="36" sdks="1000000:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/adservices/common/UpdateAdServicesModuleStatesParams;"/>
 		<method name="setModuleState(II)Landroid/adservices/common/UpdateAdServicesModuleStatesParams$Builder;"/>
 		<method name="setNotificationType(I)Landroid/adservices/common/UpdateAdServicesModuleStatesParams$Builder;"/>
 	</class>
-	<class name="android/adservices/common/UpdateAdServicesUserChoicesParams" module="framework-adservices" since="36" sdks="1000000:16,36:16">
+	<class name="android/adservices/common/UpdateAdServicesUserChoicesParams" module="framework-adservices" since="36" sdks="1000000:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getUserChoice(I)I"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/adservices/common/UpdateAdServicesUserChoicesParams$Builder" module="framework-adservices" since="36" sdks="1000000:16,36:16">
+	<class name="android/adservices/common/UpdateAdServicesUserChoicesParams$Builder" module="framework-adservices" since="36" sdks="1000000:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/adservices/common/UpdateAdServicesUserChoicesParams;"/>
@@ -5073,11 +5073,11 @@
 		<method name="getAuctionServerRequestFlags()I" since="35" sdks="1000000:12,0:35"/>
 		<method name="getBiddingLogicUri()Landroid/net/Uri;"/>
 		<method name="getBuyer()Landroid/adservices/common/AdTechIdentifier;"/>
-		<method name="getComponentAds()Ljava/util/List;" since="36" sdks="1000000:16,36:16"/>
+		<method name="getComponentAds()Ljava/util/List;" since="36" sdks="1000000:16,0:36"/>
 		<method name="getDailyUpdateUri()Landroid/net/Uri;"/>
 		<method name="getExpirationTime()Ljava/time/Instant;"/>
 		<method name="getName()Ljava/lang/String;"/>
-		<method name="getPriority()D" since="36" sdks="1000000:14,36:14"/>
+		<method name="getPriority()D" since="36" sdks="1000000:14,0:36"/>
 		<method name="getTrustedBiddingData()Landroid/adservices/customaudience/TrustedBiddingData;"/>
 		<method name="getUserBiddingSignals()Landroid/adservices/common/AdSelectionSignals;"/>
 		<field name="CREATOR"/>
@@ -5092,11 +5092,11 @@
 		<method name="setAuctionServerRequestFlags(I)Landroid/adservices/customaudience/CustomAudience$Builder;" since="35" sdks="1000000:12,0:35"/>
 		<method name="setBiddingLogicUri(Landroid/net/Uri;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
 		<method name="setBuyer(Landroid/adservices/common/AdTechIdentifier;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
-		<method name="setComponentAds(Ljava/util/List;)Landroid/adservices/customaudience/CustomAudience$Builder;" since="36" sdks="1000000:16,36:16"/>
+		<method name="setComponentAds(Ljava/util/List;)Landroid/adservices/customaudience/CustomAudience$Builder;" since="36" sdks="1000000:16,0:36"/>
 		<method name="setDailyUpdateUri(Landroid/net/Uri;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
 		<method name="setExpirationTime(Ljava/time/Instant;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
 		<method name="setName(Ljava/lang/String;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
-		<method name="setPriority(D)Landroid/adservices/customaudience/CustomAudience$Builder;" since="36" sdks="1000000:14,36:14"/>
+		<method name="setPriority(D)Landroid/adservices/customaudience/CustomAudience$Builder;" since="36" sdks="1000000:14,0:36"/>
 		<method name="setTrustedBiddingData(Landroid/adservices/customaudience/TrustedBiddingData;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
 		<method name="setUserBiddingSignals(Landroid/adservices/common/AdSelectionSignals;)Landroid/adservices/customaudience/CustomAudience$Builder;"/>
 	</class>
@@ -5107,7 +5107,7 @@
 		<method name="getTestCustomAudienceManager()Landroid/adservices/customaudience/TestCustomAudienceManager;"/>
 		<method name="joinCustomAudience(Landroid/adservices/customaudience/JoinCustomAudienceRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="leaveCustomAudience(Landroid/adservices/customaudience/LeaveCustomAudienceRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
-		<method name="scheduleCustomAudienceUpdate(Landroid/adservices/customaudience/ScheduleCustomAudienceUpdateRequest;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="36" sdks="1000000:14,36:14"/>
+		<method name="scheduleCustomAudienceUpdate(Landroid/adservices/customaudience/ScheduleCustomAudienceUpdateRequest;Ljava/util/concurrent/Executor;Landroid/adservices/common/AdServicesOutcomeReceiver;)V" since="36" sdks="1000000:14,0:36"/>
 	</class>
 	<class name="android/adservices/customaudience/FetchAndJoinCustomAudienceRequest" module="framework-adservices" since="35" sdks="1000000:10,0:35">
 		<extends name="java/lang/Object"/>
@@ -5149,7 +5149,7 @@
 		<method name="setBuyer(Landroid/adservices/common/AdTechIdentifier;)Landroid/adservices/customaudience/LeaveCustomAudienceRequest$Builder;"/>
 		<method name="setName(Ljava/lang/String;)Landroid/adservices/customaudience/LeaveCustomAudienceRequest$Builder;"/>
 	</class>
-	<class name="android/adservices/customaudience/PartialCustomAudience" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/customaudience/PartialCustomAudience" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getActivationTime()Ljava/time/Instant;"/>
@@ -5158,7 +5158,7 @@
 		<method name="getUserBiddingSignals()Landroid/adservices/common/AdSelectionSignals;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/adservices/customaudience/PartialCustomAudience$Builder" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/customaudience/PartialCustomAudience$Builder" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="build()Landroid/adservices/customaudience/PartialCustomAudience;"/>
@@ -5179,16 +5179,16 @@
 		<method name="setBuyer(Landroid/adservices/common/AdTechIdentifier;)Landroid/adservices/customaudience/RemoveCustomAudienceOverrideRequest$Builder;"/>
 		<method name="setName(Ljava/lang/String;)Landroid/adservices/customaudience/RemoveCustomAudienceOverrideRequest$Builder;"/>
 	</class>
-	<class name="android/adservices/customaudience/ScheduleCustomAudienceUpdateRequest" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/customaudience/ScheduleCustomAudienceUpdateRequest" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="getMinDelay()Ljava/time/Duration;"/>
 		<method name="getPartialCustomAudienceList()Ljava/util/List;"/>
 		<method name="getUpdateUri()Landroid/net/Uri;"/>
 		<method name="shouldReplacePendingUpdates()Z"/>
 	</class>
-	<class name="android/adservices/customaudience/ScheduleCustomAudienceUpdateRequest$Builder" module="framework-adservices" since="36" sdks="1000000:14,36:14">
+	<class name="android/adservices/customaudience/ScheduleCustomAudienceUpdateRequest$Builder" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Landroid/net/Uri;Ljava/time/Duration;)V" sdks="1000000:16,36:16"/>
+		<method name="&lt;init>(Landroid/net/Uri;Ljava/time/Duration;)V" sdks="1000000:16"/>
 		<method name="&lt;init>(Landroid/net/Uri;Ljava/time/Duration;Ljava/util/List;)V" deprecated="36"/>
 		<method name="build()Landroid/adservices/customaudience/ScheduleCustomAudienceUpdateRequest;"/>
 		<method name="setMinDelay(Ljava/time/Duration;)Landroid/adservices/customaudience/ScheduleCustomAudienceUpdateRequest$Builder;"/>
@@ -11794,13 +11794,13 @@
 	<class name="android/app/appsearch/AppSearchBatchResult$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
-		<method name="&lt;init>(Landroid/app/appsearch/AppSearchBatchResult;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="&lt;init>(Landroid/app/appsearch/AppSearchBatchResult;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="build()Landroid/app/appsearch/AppSearchBatchResult;"/>
 		<method name="setFailure(Ljava/lang/Object;ILjava/lang/String;)Landroid/app/appsearch/AppSearchBatchResult$Builder;"/>
 		<method name="setResult(Ljava/lang/Object;Landroid/app/appsearch/AppSearchResult;)Landroid/app/appsearch/AppSearchBatchResult$Builder;"/>
 		<method name="setSuccess(Ljava/lang/Object;Ljava/lang/Object;)Landroid/app/appsearch/AppSearchBatchResult$Builder;"/>
 	</class>
-	<class name="android/app/appsearch/AppSearchBlobHandle" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/AppSearchBlobHandle" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="createWithSha256([BLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/app/appsearch/AppSearchBlobHandle;"/>
@@ -11837,8 +11837,8 @@
 		<method name="isSuccess()Z"/>
 		<method name="newFailedResult(ILjava/lang/String;)Landroid/app/appsearch/AppSearchResult;"/>
 		<method name="newSuccessfulResult(Ljava/lang/Object;)Landroid/app/appsearch/AppSearchResult;"/>
-		<field name="RESULT_ALREADY_EXISTS" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<field name="RESULT_DENIED" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<field name="RESULT_ALREADY_EXISTS" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<field name="RESULT_DENIED" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<field name="RESULT_INTERNAL_ERROR"/>
 		<field name="RESULT_INVALID_ARGUMENT"/>
 		<field name="RESULT_INVALID_SCHEMA"/>
@@ -11846,7 +11846,7 @@
 		<field name="RESULT_NOT_FOUND"/>
 		<field name="RESULT_OK"/>
 		<field name="RESULT_OUT_OF_SPACE"/>
-		<field name="RESULT_RATE_LIMITED" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<field name="RESULT_RATE_LIMITED" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<field name="RESULT_SECURITY_ERROR"/>
 		<field name="RESULT_UNKNOWN_ERROR"/>
 	</class>
@@ -11858,10 +11858,10 @@
 		<method name="getSchemaType()Ljava/lang/String;"/>
 		<field name="CREATOR" since="35" sdks="33:13,34:13,35:13,0:35"/>
 	</class>
-	<class name="android/app/appsearch/AppSearchSchema$BlobHandlePropertyConfig" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/AppSearchSchema$BlobHandlePropertyConfig" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
 	</class>
-	<class name="android/app/appsearch/AppSearchSchema$BlobHandlePropertyConfig$Builder" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/AppSearchSchema$BlobHandlePropertyConfig$Builder" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$BlobHandlePropertyConfig;"/>
@@ -11869,25 +11869,25 @@
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$BooleanPropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
-		<method name="isScoringEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="isScoringEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$BooleanPropertyConfig$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$BooleanPropertyConfig;"/>
 		<method name="setCardinality(I)Landroid/app/appsearch/AppSearchSchema$BooleanPropertyConfig$Builder;"/>
-		<method name="setScoringEnabled(Z)Landroid/app/appsearch/AppSearchSchema$BooleanPropertyConfig$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setScoringEnabled(Z)Landroid/app/appsearch/AppSearchSchema$BooleanPropertyConfig$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$Builder" since="31">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Landroid/app/appsearch/AppSearchSchema;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="&lt;init>(Landroid/app/appsearch/AppSearchSchema;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="addParentType(Ljava/lang/String;)Landroid/app/appsearch/AppSearchSchema$Builder;" since="35" sdks="33:10,34:10,35:10,0:35"/>
 		<method name="addProperty(Landroid/app/appsearch/AppSearchSchema$PropertyConfig;)Landroid/app/appsearch/AppSearchSchema$Builder;"/>
 		<method name="build()Landroid/app/appsearch/AppSearchSchema;"/>
-		<method name="clearParentTypes()Landroid/app/appsearch/AppSearchSchema$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearProperties()Landroid/app/appsearch/AppSearchSchema$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="setSchemaType(Ljava/lang/String;)Landroid/app/appsearch/AppSearchSchema$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="clearParentTypes()Landroid/app/appsearch/AppSearchSchema$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearProperties()Landroid/app/appsearch/AppSearchSchema$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="setSchemaType(Ljava/lang/String;)Landroid/app/appsearch/AppSearchSchema$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$BytesPropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
@@ -11917,16 +11917,16 @@
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$DoublePropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
-		<method name="isScoringEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="isScoringEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$DoublePropertyConfig$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$DoublePropertyConfig;"/>
 		<method name="setCardinality(I)Landroid/app/appsearch/AppSearchSchema$DoublePropertyConfig$Builder;"/>
-		<method name="setScoringEnabled(Z)Landroid/app/appsearch/AppSearchSchema$DoublePropertyConfig$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setScoringEnabled(Z)Landroid/app/appsearch/AppSearchSchema$DoublePropertyConfig$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
-	<class name="android/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16">
+	<class name="android/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16,0:36">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
 		<method name="getIndexingType()I"/>
 		<method name="getQuantizationType()I" sdks="33:17,34:17,35:17,36:17"/>
@@ -11935,7 +11935,7 @@
 		<field name="QUANTIZATION_TYPE_8_BIT"/>
 		<field name="QUANTIZATION_TYPE_NONE"/>
 	</class>
-	<class name="android/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig$Builder" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16">
+	<class name="android/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig$Builder" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig;"/>
@@ -11946,7 +11946,7 @@
 	<class name="android/app/appsearch/AppSearchSchema$LongPropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
 		<method name="getIndexingType()I" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="isScoringEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="isScoringEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<field name="INDEXING_TYPE_NONE" since="34" sdks="33:7,34:7,0:34"/>
 		<field name="INDEXING_TYPE_RANGE" since="34" sdks="33:7,34:7,0:34"/>
 	</class>
@@ -11956,7 +11956,7 @@
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$LongPropertyConfig;"/>
 		<method name="setCardinality(I)Landroid/app/appsearch/AppSearchSchema$LongPropertyConfig$Builder;"/>
 		<method name="setIndexingType(I)Landroid/app/appsearch/AppSearchSchema$LongPropertyConfig$Builder;" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="setScoringEnabled(Z)Landroid/app/appsearch/AppSearchSchema$LongPropertyConfig$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setScoringEnabled(Z)Landroid/app/appsearch/AppSearchSchema$LongPropertyConfig$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$PropertyConfig" since="31">
 		<extends name="java/lang/Object"/>
@@ -11993,21 +11993,21 @@
 	<class name="android/app/appsearch/AppSearchSession" since="31">
 		<extends name="java/lang/Object"/>
 		<implements name="java/io/Closeable"/>
-		<method name="commitBlob(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="commitBlob(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="getByDocumentId(Landroid/app/appsearch/GetByDocumentIdRequest;Ljava/util/concurrent/Executor;Landroid/app/appsearch/BatchResultCallback;)V"/>
 		<method name="getNamespaces(Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 		<method name="getSchema(Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 		<method name="getStorageInfo(Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
-		<method name="openBlobForRead(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="openBlobForWrite(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="openBlobForRead(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="openBlobForWrite(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="put(Landroid/app/appsearch/PutDocumentsRequest;Ljava/util/concurrent/Executor;Landroid/app/appsearch/BatchResultCallback;)V"/>
 		<method name="remove(Landroid/app/appsearch/RemoveByDocumentIdRequest;Ljava/util/concurrent/Executor;Landroid/app/appsearch/BatchResultCallback;)V"/>
 		<method name="remove(Ljava/lang/String;Landroid/app/appsearch/SearchSpec;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
-		<method name="removeBlob(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="removeBlob(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="reportUsage(Landroid/app/appsearch/ReportUsageRequest;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 		<method name="search(Ljava/lang/String;Landroid/app/appsearch/SearchSpec;)Landroid/app/appsearch/SearchResults;"/>
 		<method name="searchSuggestion(Ljava/lang/String;Landroid/app/appsearch/SearchSuggestionSpec;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="setBlobVisibility(Landroid/app/appsearch/SetBlobVisibilityRequest;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setBlobVisibility(Landroid/app/appsearch/SetBlobVisibilityRequest;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setSchema(Landroid/app/appsearch/SetSchemaRequest;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 	</class>
 	<class name="android/app/appsearch/BatchResultCallback" since="31">
@@ -12015,14 +12015,14 @@
 		<method name="onResult(Landroid/app/appsearch/AppSearchBatchResult;)V"/>
 		<method name="onSystemError(Ljava/lang/Throwable;)V"/>
 	</class>
-	<class name="android/app/appsearch/CommitBlobResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/CommitBlobResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Landroid/app/appsearch/AppSearchBatchResult;)V"/>
 		<method name="getResult()Landroid/app/appsearch/AppSearchBatchResult;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/app/appsearch/EmbeddingVector" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16">
+	<class name="android/app/appsearch/EmbeddingVector" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>([FLjava/lang/String;)V"/>
@@ -12034,7 +12034,7 @@
 		<extends name="java/lang/Object"/>
 		<method name="getByDocumentId(Ljava/lang/String;Ljava/lang/String;Landroid/app/appsearch/GetByDocumentIdRequest;Ljava/util/concurrent/Executor;Landroid/app/appsearch/BatchResultCallback;)V"/>
 		<method name="getSchema(Ljava/lang/String;Ljava/lang/String;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
-		<method name="openBlobForRead(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="openBlobForRead(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="search(Ljava/lang/String;Landroid/app/appsearch/SearchSpec;)Landroid/app/appsearch/SearchResults;"/>
 	</class>
 	<class name="android/app/appsearch/GenericDocument" since="31">
@@ -12045,8 +12045,8 @@
 		<method name="getMaxIndexedProperties()I"/>
 		<method name="getNamespace()Ljava/lang/String;"/>
 		<method name="getProperty(Ljava/lang/String;)Ljava/lang/Object;"/>
-		<method name="getPropertyBlobHandle(Ljava/lang/String;)Landroid/app/appsearch/AppSearchBlobHandle;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="getPropertyBlobHandleArray(Ljava/lang/String;)[Landroid/app/appsearch/AppSearchBlobHandle;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="getPropertyBlobHandle(Ljava/lang/String;)Landroid/app/appsearch/AppSearchBlobHandle;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="getPropertyBlobHandleArray(Ljava/lang/String;)[Landroid/app/appsearch/AppSearchBlobHandle;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="getPropertyBoolean(Ljava/lang/String;)Z"/>
 		<method name="getPropertyBooleanArray(Ljava/lang/String;)[Z"/>
 		<method name="getPropertyBytes(Ljava/lang/String;)[B"/>
@@ -12055,8 +12055,8 @@
 		<method name="getPropertyDocumentArray(Ljava/lang/String;)[Landroid/app/appsearch/GenericDocument;"/>
 		<method name="getPropertyDouble(Ljava/lang/String;)D"/>
 		<method name="getPropertyDoubleArray(Ljava/lang/String;)[D"/>
-		<method name="getPropertyEmbedding(Ljava/lang/String;)Landroid/app/appsearch/EmbeddingVector;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="getPropertyEmbeddingArray(Ljava/lang/String;)[Landroid/app/appsearch/EmbeddingVector;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="getPropertyEmbedding(Ljava/lang/String;)Landroid/app/appsearch/EmbeddingVector;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="getPropertyEmbeddingArray(Ljava/lang/String;)[Landroid/app/appsearch/EmbeddingVector;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="getPropertyLong(Ljava/lang/String;)J"/>
 		<method name="getPropertyLongArray(Ljava/lang/String;)[J"/>
 		<method name="getPropertyNames()Ljava/util/Set;"/>
@@ -12075,12 +12075,12 @@
 		<method name="setCreationTimestampMillis(J)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setId(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="setNamespace(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
-		<method name="setPropertyBlobHandle(Ljava/lang/String;[Landroid/app/appsearch/AppSearchBlobHandle;)Landroid/app/appsearch/GenericDocument$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setPropertyBlobHandle(Ljava/lang/String;[Landroid/app/appsearch/AppSearchBlobHandle;)Landroid/app/appsearch/GenericDocument$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setPropertyBoolean(Ljava/lang/String;[Z)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyBytes(Ljava/lang/String;[[B)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyDocument(Ljava/lang/String;[Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyDouble(Ljava/lang/String;[D)Landroid/app/appsearch/GenericDocument$Builder;"/>
-		<method name="setPropertyEmbedding(Ljava/lang/String;[Landroid/app/appsearch/EmbeddingVector;)Landroid/app/appsearch/GenericDocument$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="setPropertyEmbedding(Ljava/lang/String;[Landroid/app/appsearch/EmbeddingVector;)Landroid/app/appsearch/GenericDocument$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="setPropertyLong(Ljava/lang/String;[J)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setPropertyString(Ljava/lang/String;[Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;"/>
 		<method name="setSchemaType(Ljava/lang/String;)Landroid/app/appsearch/GenericDocument$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
@@ -12121,16 +12121,16 @@
 	<class name="android/app/appsearch/GetSchemaResponse$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
-		<method name="&lt;init>(Landroid/app/appsearch/GetSchemaResponse;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="&lt;init>(Landroid/app/appsearch/GetSchemaResponse;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="addSchema(Landroid/app/appsearch/AppSearchSchema;)Landroid/app/appsearch/GetSchemaResponse$Builder;"/>
 		<method name="addSchemaTypeNotDisplayedBySystem(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="33" sdks="33:3,0:33"/>
 		<method name="build()Landroid/app/appsearch/GetSchemaResponse;"/>
-		<method name="clearPubliclyVisibleSchema(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearSchemaTypeNotDisplayedBySystem(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearSchemaTypeVisibleToConfigs(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearSchemaTypeVisibleToPackages(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearSchemas()Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="clearPubliclyVisibleSchema(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearSchemaTypeNotDisplayedBySystem(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearSchemaTypeVisibleToConfigs(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearSchemaTypeVisibleToPackages(Ljava/lang/String;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearSchemas()Landroid/app/appsearch/GetSchemaResponse$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setPubliclyVisibleSchema(Ljava/lang/String;Landroid/app/appsearch/PackageIdentifier;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="setRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="33" sdks="33:3,0:33"/>
 		<method name="setSchemaTypeVisibleToConfigs(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/GetSchemaResponse$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
@@ -12142,7 +12142,7 @@
 		<implements name="java/io/Closeable"/>
 		<method name="getByDocumentId(Ljava/lang/String;Ljava/lang/String;Landroid/app/appsearch/GetByDocumentIdRequest;Ljava/util/concurrent/Executor;Landroid/app/appsearch/BatchResultCallback;)V" since="33" sdks="33:3,0:33"/>
 		<method name="getSchema(Ljava/lang/String;Ljava/lang/String;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="33" sdks="33:3,0:33"/>
-		<method name="openBlobForRead(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="openBlobForRead(Ljava/util/Set;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="registerObserverCallback(Ljava/lang/String;Landroid/app/appsearch/observer/ObserverSpec;Ljava/util/concurrent/Executor;Landroid/app/appsearch/observer/ObserverCallback;)V" since="33" sdks="33:3,0:33"/>
 		<method name="reportSystemUsage(Landroid/app/appsearch/ReportSystemUsageRequest;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V"/>
 		<method name="search(Ljava/lang/String;Landroid/app/appsearch/SearchSpec;)Landroid/app/appsearch/SearchResults;"/>
@@ -12166,11 +12166,11 @@
 	</class>
 	<class name="android/app/appsearch/JoinSpec$Builder" module="framework-appsearch" since="34" sdks="33:7,34:7,0:34">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Landroid/app/appsearch/JoinSpec;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="&lt;init>(Landroid/app/appsearch/JoinSpec;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="&lt;init>(Ljava/lang/String;)V"/>
 		<method name="build()Landroid/app/appsearch/JoinSpec;"/>
 		<method name="setAggregationScoringStrategy(I)Landroid/app/appsearch/JoinSpec$Builder;"/>
-		<method name="setChildPropertyExpression(Ljava/lang/String;)Landroid/app/appsearch/JoinSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setChildPropertyExpression(Ljava/lang/String;)Landroid/app/appsearch/JoinSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setMaxJoinedResultCount(I)Landroid/app/appsearch/JoinSpec$Builder;"/>
 		<method name="setNestedSearch(Ljava/lang/String;Landroid/app/appsearch/SearchSpec;)Landroid/app/appsearch/JoinSpec$Builder;"/>
 	</class>
@@ -12181,7 +12181,7 @@
 		<method name="onUpgrade(IILandroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/GenericDocument;"/>
 		<method name="shouldMigrate(II)Z"/>
 	</class>
-	<class name="android/app/appsearch/OpenBlobForReadResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/OpenBlobForReadResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<implements name="java/io/Closeable"/>
@@ -12189,7 +12189,7 @@
 		<method name="getResult()Landroid/app/appsearch/AppSearchBatchResult;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/app/appsearch/OpenBlobForWriteResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/OpenBlobForWriteResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<implements name="java/io/Closeable"/>
@@ -12233,7 +12233,7 @@
 		<method name="addTakenActionGenericDocuments([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="build()Landroid/app/appsearch/PutDocumentsRequest;"/>
 	</class>
-	<class name="android/app/appsearch/RemoveBlobResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/RemoveBlobResponse" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Landroid/app/appsearch/AppSearchBatchResult;)V"/>
@@ -12305,23 +12305,23 @@
 		<implements name="android/os/Parcelable" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="getDatabaseName()Ljava/lang/String;"/>
 		<method name="getGenericDocument()Landroid/app/appsearch/GenericDocument;"/>
-		<method name="getInformationalRankingSignals()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="getInformationalRankingSignals()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="getJoinedResults()Ljava/util/List;" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="getMatchInfos()Ljava/util/List;"/>
 		<method name="getPackageName()Ljava/lang/String;"/>
-		<method name="getParentTypeMap()Ljava/util/Map;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="getParentTypeMap()Ljava/util/Map;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="getRankingSignal()D"/>
 		<field name="CREATOR" since="35" sdks="33:13,34:13,35:13,0:35"/>
 	</class>
 	<class name="android/app/appsearch/SearchResult$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Ljava/lang/String;Ljava/lang/String;)V"/>
-		<method name="addInformationalRankingSignal(D)Landroid/app/appsearch/SearchResult$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="addInformationalRankingSignal(D)Landroid/app/appsearch/SearchResult$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="addJoinedResult(Landroid/app/appsearch/SearchResult;)Landroid/app/appsearch/SearchResult$Builder;" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="addMatchInfo(Landroid/app/appsearch/SearchResult$MatchInfo;)Landroid/app/appsearch/SearchResult$Builder;"/>
 		<method name="build()Landroid/app/appsearch/SearchResult;"/>
 		<method name="setGenericDocument(Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/SearchResult$Builder;"/>
-		<method name="setParentTypeMap(Ljava/util/Map;)Landroid/app/appsearch/SearchResult$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setParentTypeMap(Ljava/util/Map;)Landroid/app/appsearch/SearchResult$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setRankingSignal(D)Landroid/app/appsearch/SearchResult$Builder;"/>
 	</class>
 	<class name="android/app/appsearch/SearchResult$MatchInfo" since="31">
@@ -12361,14 +12361,14 @@
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="getAdvancedRankingExpression()Ljava/lang/String;" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="getDefaultEmbeddingSearchMetricType()I" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="getEmbeddingParameters()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="getFilterDocumentIds()Ljava/util/List;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="getDefaultEmbeddingSearchMetricType()I" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="getEmbeddingParameters()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="getFilterDocumentIds()Ljava/util/List;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="getFilterNamespaces()Ljava/util/List;"/>
 		<method name="getFilterPackageNames()Ljava/util/List;"/>
 		<method name="getFilterProperties()Ljava/util/Map;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="getFilterSchemas()Ljava/util/List;"/>
-		<method name="getInformationalRankingExpressions()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="getInformationalRankingExpressions()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="getJoinSpec()Landroid/app/appsearch/JoinSpec;" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="getMaxSnippetSize()I"/>
 		<method name="getOrder()I"/>
@@ -12381,21 +12381,21 @@
 		<method name="getResultGroupingLimit()I"/>
 		<method name="getResultGroupingTypeFlags()I"/>
 		<method name="getSearchSourceLogTag()Ljava/lang/String;" since="35" sdks="33:13,34:13,35:13,0:35"/>
-		<method name="getSearchStringParameters()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="getSearchStringParameters()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="getSnippetCount()I"/>
 		<method name="getSnippetCountPerProperty()I"/>
 		<method name="getTermMatch()I"/>
 		<method name="isListFilterHasPropertyFunctionEnabled()Z" since="35" sdks="33:13,34:13,35:13,0:35"/>
-		<method name="isListFilterMatchScoreExpressionFunctionEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="isListFilterMatchScoreExpressionFunctionEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="isListFilterQueryLanguageEnabled()Z" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="isNumericSearchEnabled()Z" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="isScorablePropertyRankingEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="isScorablePropertyRankingEnabled()Z" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="isVerbatimSearchEnabled()Z" since="34" sdks="33:7,34:7,0:34"/>
 		<field name="CREATOR" since="35" sdks="33:13,34:13,35:13,0:35"/>
-		<field name="EMBEDDING_SEARCH_METRIC_TYPE_COSINE" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<field name="EMBEDDING_SEARCH_METRIC_TYPE_DEFAULT" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<field name="EMBEDDING_SEARCH_METRIC_TYPE_DOT_PRODUCT" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<field name="EMBEDDING_SEARCH_METRIC_TYPE_EUCLIDEAN" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<field name="EMBEDDING_SEARCH_METRIC_TYPE_COSINE" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<field name="EMBEDDING_SEARCH_METRIC_TYPE_DEFAULT" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<field name="EMBEDDING_SEARCH_METRIC_TYPE_DOT_PRODUCT" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<field name="EMBEDDING_SEARCH_METRIC_TYPE_EUCLIDEAN" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<field name="GROUPING_TYPE_PER_NAMESPACE"/>
 		<field name="GROUPING_TYPE_PER_PACKAGE"/>
 		<field name="GROUPING_TYPE_PER_SCHEMA" since="35" sdks="33:13,34:13,35:13,0:35"/>
@@ -12419,11 +12419,11 @@
 	<class name="android/app/appsearch/SearchSpec$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
-		<method name="&lt;init>(Landroid/app/appsearch/SearchSpec;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="addEmbeddingParameters(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="addEmbeddingParameters([Landroid/app/appsearch/EmbeddingVector;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="addFilterDocumentIds(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="addFilterDocumentIds([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="&lt;init>(Landroid/app/appsearch/SearchSpec;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="addEmbeddingParameters(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="addEmbeddingParameters([Landroid/app/appsearch/EmbeddingVector;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="addFilterDocumentIds(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="addFilterDocumentIds([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="addFilterNamespaces(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addFilterNamespaces([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addFilterPackageNames(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
@@ -12432,30 +12432,30 @@
 		<method name="addFilterPropertyPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="addFilterSchemas(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addFilterSchemas([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;"/>
-		<method name="addInformationalRankingExpressions(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="addInformationalRankingExpressions([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="addInformationalRankingExpressions(Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="addInformationalRankingExpressions([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="addProjection(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="addProjectionPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSpec$Builder;" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="addSearchStringParameters(Ljava/util/List;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="addSearchStringParameters([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="addSearchStringParameters(Ljava/util/List;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="addSearchStringParameters([Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="build()Landroid/app/appsearch/SearchSpec;"/>
-		<method name="clearEmbeddingParameters()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearFilterDocumentIds()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearFilterNamespaces()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearFilterPackageNames()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearFilterProperties()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearFilterSchemas()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearInformationalRankingExpressions()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearJoinSpec()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearProjections()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearPropertyWeights()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearResultGrouping()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearSearchSourceLogTag()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="clearSearchStringParameters()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="setDefaultEmbeddingSearchMetricType(I)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="clearEmbeddingParameters()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearFilterDocumentIds()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearFilterNamespaces()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearFilterPackageNames()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearFilterProperties()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearFilterSchemas()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearInformationalRankingExpressions()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearJoinSpec()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearProjections()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearPropertyWeights()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearResultGrouping()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearSearchSourceLogTag()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="clearSearchStringParameters()Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="setDefaultEmbeddingSearchMetricType(I)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="setJoinSpec(Landroid/app/appsearch/JoinSpec;)Landroid/app/appsearch/SearchSpec$Builder;" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="setListFilterHasPropertyFunctionEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
-		<method name="setListFilterMatchScoreExpressionFunctionEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setListFilterMatchScoreExpressionFunctionEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setListFilterQueryLanguageEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="setMaxSnippetSize(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setNumericSearchEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="34" sdks="33:7,34:7,0:34"/>
@@ -12466,7 +12466,7 @@
 		<method name="setRankingStrategy(Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="34" sdks="33:7,34:7,0:34"/>
 		<method name="setResultCountPerPage(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setResultGrouping(II)Landroid/app/appsearch/SearchSpec$Builder;"/>
-		<method name="setScorablePropertyRankingEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setScorablePropertyRankingEnabled(Z)Landroid/app/appsearch/SearchSpec$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setSearchSourceLogTag(Ljava/lang/String;)Landroid/app/appsearch/SearchSpec$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="setSnippetCount(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
 		<method name="setSnippetCountPerProperty(I)Landroid/app/appsearch/SearchSpec$Builder;"/>
@@ -12494,7 +12494,7 @@
 		<method name="getFilterSchemas()Ljava/util/List;"/>
 		<method name="getMaximumResultCount()I"/>
 		<method name="getRankingStrategy()I"/>
-		<method name="getSearchStringParameters()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="getSearchStringParameters()Ljava/util/List;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<field name="CREATOR" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<field name="SUGGESTION_RANKING_STRATEGY_DOCUMENT_COUNT"/>
 		<field name="SUGGESTION_RANKING_STRATEGY_NONE"/>
@@ -12511,17 +12511,17 @@
 		<method name="addFilterPropertyPaths(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="addFilterSchemas(Ljava/util/Collection;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
 		<method name="addFilterSchemas([Ljava/lang/String;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
-		<method name="addSearchStringParameters(Ljava/util/List;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
-		<method name="addSearchStringParameters([Ljava/lang/String;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16"/>
+		<method name="addSearchStringParameters(Ljava/util/List;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
+		<method name="addSearchStringParameters([Ljava/lang/String;)Landroid/app/appsearch/SearchSuggestionSpec$Builder;" since="36" sdks="33:16,34:16,35:16,36:16,0:36"/>
 		<method name="build()Landroid/app/appsearch/SearchSuggestionSpec;"/>
 		<method name="setRankingStrategy(I)Landroid/app/appsearch/SearchSuggestionSpec$Builder;"/>
 	</class>
-	<class name="android/app/appsearch/SetBlobVisibilityRequest" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/SetBlobVisibilityRequest" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="getNamespacesNotDisplayedBySystem()Ljava/util/Set;"/>
 		<method name="getNamespacesVisibleToConfigs()Ljava/util/Map;"/>
 	</class>
-	<class name="android/app/appsearch/SetBlobVisibilityRequest$Builder" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/app/appsearch/SetBlobVisibilityRequest$Builder" module="framework-appsearch" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="addNamespaceVisibleToConfig(Ljava/lang/String;Landroid/app/appsearch/SchemaVisibilityConfig;)Landroid/app/appsearch/SetBlobVisibilityRequest$Builder;"/>
@@ -12550,16 +12550,16 @@
 	<class name="android/app/appsearch/SetSchemaRequest$Builder" since="31">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
-		<method name="&lt;init>(Landroid/app/appsearch/SetSchemaRequest;)V" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="&lt;init>(Landroid/app/appsearch/SetSchemaRequest;)V" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="addRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;Ljava/util/Set;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="33" sdks="33:3,0:33"/>
 		<method name="addSchemaTypeVisibleToConfig(Ljava/lang/String;Landroid/app/appsearch/SchemaVisibilityConfig;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="addSchemas(Ljava/util/Collection;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="addSchemas([Landroid/app/appsearch/AppSearchSchema;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="build()Landroid/app/appsearch/SetSchemaRequest;"/>
-		<method name="clearMigrators()Landroid/app/appsearch/SetSchemaRequest$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="clearMigrators()Landroid/app/appsearch/SetSchemaRequest$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="clearRequiredPermissionsForSchemaTypeVisibility(Ljava/lang/String;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="33" sdks="33:3,0:33"/>
 		<method name="clearSchemaTypeVisibleToConfigs(Ljava/lang/String;)Landroid/app/appsearch/SetSchemaRequest$Builder;" since="35" sdks="33:13,34:13,35:13,0:35"/>
-		<method name="clearSchemas()Landroid/app/appsearch/SetSchemaRequest$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="clearSchemas()Landroid/app/appsearch/SetSchemaRequest$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setForceOverride(Z)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="setMigrator(Ljava/lang/String;Landroid/app/appsearch/Migrator;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
 		<method name="setMigrators(Ljava/util/Map;)Landroid/app/appsearch/SetSchemaRequest$Builder;"/>
@@ -12605,8 +12605,8 @@
 		<implements name="android/os/Parcelable" since="35" sdks="33:13,34:13,35:13,0:35"/>
 		<method name="getAliveDocumentsCount()I"/>
 		<method name="getAliveNamespacesCount()I"/>
-		<method name="getBlobsCount()I" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="getBlobsSizeBytes()J" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="getBlobsCount()I" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="getBlobsSizeBytes()J" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="getSizeBytes()J"/>
 		<field name="CREATOR" since="35" sdks="33:13,34:13,35:13,0:35"/>
 	</class>
@@ -12616,8 +12616,8 @@
 		<method name="build()Landroid/app/appsearch/StorageInfo;"/>
 		<method name="setAliveDocumentsCount(I)Landroid/app/appsearch/StorageInfo$Builder;"/>
 		<method name="setAliveNamespacesCount(I)Landroid/app/appsearch/StorageInfo$Builder;"/>
-		<method name="setBlobsCount(I)Landroid/app/appsearch/StorageInfo$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
-		<method name="setBlobsSizeBytes(J)Landroid/app/appsearch/StorageInfo$Builder;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setBlobsCount(I)Landroid/app/appsearch/StorageInfo$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
+		<method name="setBlobsSizeBytes(J)Landroid/app/appsearch/StorageInfo$Builder;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="setSizeBytes(J)Landroid/app/appsearch/StorageInfo$Builder;"/>
 	</class>
 	<class name="android/app/appsearch/exceptions/AppSearchException" since="31">
@@ -14028,7 +14028,7 @@
 		<extends name="java/lang/Object"/>
 		<method name="onActivityCreated(Landroid/app/Activity;)V"/>
 	</class>
-	<class name="android/app/sdksandbox/sdkprovider/SdkSandboxClientImportanceListener" module="framework-sdksandbox" since="36" sdks="1000000:14,36:14">
+	<class name="android/app/sdksandbox/sdkprovider/SdkSandboxClientImportanceListener" module="framework-sdksandbox" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="onForegroundImportanceChanged(Z)V"/>
 	</class>
@@ -14040,9 +14040,9 @@
 		<method name="getSandboxedSdks()Ljava/util/List;"/>
 		<method name="loadSdk(Ljava/lang/String;Landroid/os/Bundle;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="35" sdks="1000000:10,0:35"/>
 		<method name="registerSdkSandboxActivityHandler(Landroid/app/sdksandbox/sdkprovider/SdkSandboxActivityHandler;)Landroid/os/IBinder;" sdks="1000000:7,0:34"/>
-		<method name="registerSdkSandboxClientImportanceListener(Ljava/util/concurrent/Executor;Landroid/app/sdksandbox/sdkprovider/SdkSandboxClientImportanceListener;)V" since="36" sdks="1000000:14,36:14"/>
+		<method name="registerSdkSandboxClientImportanceListener(Ljava/util/concurrent/Executor;Landroid/app/sdksandbox/sdkprovider/SdkSandboxClientImportanceListener;)V" since="36" sdks="1000000:14,0:36"/>
 		<method name="unregisterSdkSandboxActivityHandler(Landroid/app/sdksandbox/sdkprovider/SdkSandboxActivityHandler;)V" sdks="1000000:7,0:34"/>
-		<method name="unregisterSdkSandboxClientImportanceListener(Landroid/app/sdksandbox/sdkprovider/SdkSandboxClientImportanceListener;)V" since="36" sdks="1000000:14,36:14"/>
+		<method name="unregisterSdkSandboxClientImportanceListener(Landroid/app/sdksandbox/sdkprovider/SdkSandboxClientImportanceListener;)V" since="36" sdks="1000000:14,0:36"/>
 		<field name="SDK_SANDBOX_CONTROLLER_SERVICE"/>
 	</class>
 	<class name="android/app/search/Query" since="31">
@@ -33227,7 +33227,7 @@
 		<extends name="java/lang/Object"/>
 		<method name="getApplicationInfoList()Ljava/util/List;"/>
 	</class>
-	<class name="android/health/connect/CreateMedicalDataSourceRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/CreateMedicalDataSourceRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getDisplayName()Ljava/lang/String;"/>
@@ -33235,7 +33235,7 @@
 		<method name="getFhirVersion()Landroid/health/connect/datatypes/FhirVersion;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/health/connect/CreateMedicalDataSourceRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/CreateMedicalDataSourceRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/health/connect/CreateMedicalDataSourceRequest$Builder;)V"/>
 		<method name="&lt;init>(Landroid/health/connect/CreateMedicalDataSourceRequest;)V"/>
@@ -33245,14 +33245,14 @@
 		<method name="setFhirBaseUri(Landroid/net/Uri;)Landroid/health/connect/CreateMedicalDataSourceRequest$Builder;"/>
 		<method name="setFhirVersion(Landroid/health/connect/datatypes/FhirVersion;)Landroid/health/connect/CreateMedicalDataSourceRequest$Builder;"/>
 	</class>
-	<class name="android/health/connect/DeleteMedicalResourcesRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/DeleteMedicalResourcesRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getDataSourceIds()Ljava/util/Set;"/>
 		<method name="getMedicalResourceTypes()Ljava/util/Set;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/health/connect/DeleteMedicalResourcesRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/DeleteMedicalResourcesRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="&lt;init>(Landroid/health/connect/DeleteMedicalResourcesRequest$Builder;)V"/>
@@ -33283,13 +33283,13 @@
 		<extends name="java/lang/Object"/>
 		<method name="getDataOriginsPriorityOrder()Ljava/util/List;"/>
 	</class>
-	<class name="android/health/connect/GetMedicalDataSourcesRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/GetMedicalDataSourcesRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getPackageNames()Ljava/util/Set;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/health/connect/GetMedicalDataSourcesRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/GetMedicalDataSourcesRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="&lt;init>(Landroid/health/connect/GetMedicalDataSourcesRequest$Builder;)V"/>
@@ -33337,10 +33337,10 @@
 		<method name="aggregate(Landroid/health/connect/AggregateRecordsRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="aggregateGroupByDuration(Landroid/health/connect/AggregateRecordsRequest;Ljava/time/Duration;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="aggregateGroupByPeriod(Landroid/health/connect/AggregateRecordsRequest;Ljava/time/Period;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
-		<method name="createMedicalDataSource(Landroid/health/connect/CreateMedicalDataSourceRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
-		<method name="deleteMedicalDataSourceWithData(Ljava/lang/String;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
-		<method name="deleteMedicalResources(Landroid/health/connect/DeleteMedicalResourcesRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
-		<method name="deleteMedicalResources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
+		<method name="createMedicalDataSource(Landroid/health/connect/CreateMedicalDataSourceRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<method name="deleteMedicalDataSourceWithData(Ljava/lang/String;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<method name="deleteMedicalResources(Landroid/health/connect/DeleteMedicalResourcesRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<method name="deleteMedicalResources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<method name="deleteRecords(Landroid/health/connect/DeleteUsingFiltersRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="deleteRecords(Ljava/lang/Class;Landroid/health/connect/TimeRangeFilter;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="deleteRecords(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
@@ -33351,8 +33351,8 @@
 		<method name="getContributorApplicationsInfo(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="getHealthConnectDataState(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="getHealthPermissions(Landroid/content/Context;)Ljava/util/Set;"/>
-		<method name="getMedicalDataSources(Landroid/health/connect/GetMedicalDataSourcesRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
-		<method name="getMedicalDataSources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
+		<method name="getMedicalDataSources(Landroid/health/connect/GetMedicalDataSourcesRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<method name="getMedicalDataSources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<method name="getRecordRetentionPeriodInDays()I"/>
 		<method name="insertMinDataMigrationSdkExtensionVersion(ILjava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="insertRecords(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
@@ -33361,8 +33361,8 @@
 		<method name="queryActivityDates(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="queryAllMedicalResourceTypeInfos(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36"/>
 		<method name="queryAllRecordTypesInfo(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
-		<method name="readMedicalResources(Landroid/health/connect/ReadMedicalResourcesRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
-		<method name="readMedicalResources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
+		<method name="readMedicalResources(Landroid/health/connect/ReadMedicalResourcesRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<method name="readMedicalResources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<method name="readRecords(Landroid/health/connect/ReadRecordsRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="setRecordRetentionPeriodInDays(ILjava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="stageAllHealthConnectRemoteData(Ljava/util/Map;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
@@ -33370,7 +33370,7 @@
 		<method name="updateDataDownloadState(I)V"/>
 		<method name="updateDataOriginPriorityOrder(Landroid/health/connect/UpdateDataOriginPriorityOrderRequest;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<method name="updateRecords(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
-		<method name="upsertMedicalResources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16"/>
+		<method name="upsertMedicalResources(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<method name="writeMigrationData(Ljava/util/List;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<field name="ACTION_HEALTH_CONNECT_MIGRATION_READY"/>
 		<field name="ACTION_HEALTH_HOME_SETTINGS"/>
@@ -33448,7 +33448,7 @@
 		<field name="MANAGE_HEALTH_DATA_PERMISSION"/>
 		<field name="MANAGE_HEALTH_PERMISSIONS"/>
 		<field name="READ_ACTIVE_CALORIES_BURNED"/>
-		<field name="READ_ACTIVITY_INTENSITY" since="36" sdks="34:16,35:16,36:16"/>
+		<field name="READ_ACTIVITY_INTENSITY" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<field name="READ_BASAL_BODY_TEMPERATURE"/>
 		<field name="READ_BASAL_METABOLIC_RATE"/>
 		<field name="READ_BLOOD_GLUCOSE"/>
@@ -33471,20 +33471,20 @@
 		<field name="READ_HYDRATION"/>
 		<field name="READ_INTERMENSTRUAL_BLEEDING"/>
 		<field name="READ_LEAN_BODY_MASS"/>
-		<field name="READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_CONDITIONS" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_LABORATORY_RESULTS" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_MEDICATIONS" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_PERSONAL_DETAILS" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_PRACTITIONER_DETAILS" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_PREGNANCY" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_PROCEDURES" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_SOCIAL_HISTORY" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_VACCINES" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_VISITS" since="36" sdks="34:16,35:16,36:16"/>
-		<field name="READ_MEDICAL_DATA_VITAL_SIGNS" since="36" sdks="34:16,35:16,36:16"/>
+		<field name="READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_CONDITIONS" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_LABORATORY_RESULTS" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_MEDICATIONS" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_PERSONAL_DETAILS" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_PRACTITIONER_DETAILS" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_PREGNANCY" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_PROCEDURES" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_SOCIAL_HISTORY" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_VACCINES" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_VISITS" since="36" sdks="34:16,35:16,36:16,0:36"/>
+		<field name="READ_MEDICAL_DATA_VITAL_SIGNS" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<field name="READ_MENSTRUATION"/>
-		<field name="READ_MINDFULNESS" since="36" sdks="34:15,35:15,36:15"/>
+		<field name="READ_MINDFULNESS" since="36" sdks="34:15,35:15,36:15,0:36"/>
 		<field name="READ_NUTRITION"/>
 		<field name="READ_OVULATION_TEST"/>
 		<field name="READ_OXYGEN_SATURATION"/>
@@ -33502,7 +33502,7 @@
 		<field name="READ_WEIGHT"/>
 		<field name="READ_WHEELCHAIR_PUSHES"/>
 		<field name="WRITE_ACTIVE_CALORIES_BURNED"/>
-		<field name="WRITE_ACTIVITY_INTENSITY" since="36" sdks="34:16,35:16,36:16"/>
+		<field name="WRITE_ACTIVITY_INTENSITY" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<field name="WRITE_BASAL_BODY_TEMPERATURE"/>
 		<field name="WRITE_BASAL_METABOLIC_RATE"/>
 		<field name="WRITE_BLOOD_GLUCOSE"/>
@@ -33523,9 +33523,9 @@
 		<field name="WRITE_HYDRATION"/>
 		<field name="WRITE_INTERMENSTRUAL_BLEEDING"/>
 		<field name="WRITE_LEAN_BODY_MASS"/>
-		<field name="WRITE_MEDICAL_DATA" since="36" sdks="34:16,35:16,36:16"/>
+		<field name="WRITE_MEDICAL_DATA" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<field name="WRITE_MENSTRUATION"/>
-		<field name="WRITE_MINDFULNESS" since="36" sdks="34:15,35:15,36:15"/>
+		<field name="WRITE_MINDFULNESS" since="36" sdks="34:15,35:15,36:15,0:36"/>
 		<field name="WRITE_NUTRITION"/>
 		<field name="WRITE_OVULATION_TEST"/>
 		<field name="WRITE_OXYGEN_SATURATION"/>
@@ -33561,7 +33561,7 @@
 		<method name="setEndTime(Ljava/time/LocalDateTime;)Landroid/health/connect/LocalTimeRangeFilter$Builder;"/>
 		<method name="setStartTime(Ljava/time/LocalDateTime;)Landroid/health/connect/LocalTimeRangeFilter$Builder;"/>
 	</class>
-	<class name="android/health/connect/MedicalResourceId" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/MedicalResourceId" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/lang/String;ILjava/lang/String;)V"/>
@@ -33579,12 +33579,12 @@
 		<method name="getMedicalResourceType()I"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/health/connect/ReadMedicalResourcesInitialRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/ReadMedicalResourcesInitialRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="android/health/connect/ReadMedicalResourcesRequest"/>
 		<method name="getDataSourceIds()Ljava/util/Set;"/>
 		<method name="getMedicalResourceType()I"/>
 	</class>
-	<class name="android/health/connect/ReadMedicalResourcesInitialRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/ReadMedicalResourcesInitialRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(I)V"/>
 		<method name="&lt;init>(Landroid/health/connect/ReadMedicalResourcesInitialRequest$Builder;)V"/>
@@ -33596,11 +33596,11 @@
 		<method name="setMedicalResourceType(I)Landroid/health/connect/ReadMedicalResourcesInitialRequest$Builder;"/>
 		<method name="setPageSize(I)Landroid/health/connect/ReadMedicalResourcesInitialRequest$Builder;"/>
 	</class>
-	<class name="android/health/connect/ReadMedicalResourcesPageRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/ReadMedicalResourcesPageRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="android/health/connect/ReadMedicalResourcesRequest"/>
 		<method name="getPageToken()Ljava/lang/String;"/>
 	</class>
-	<class name="android/health/connect/ReadMedicalResourcesPageRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/ReadMedicalResourcesPageRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/health/connect/ReadMedicalResourcesPageRequest$Builder;)V"/>
 		<method name="&lt;init>(Landroid/health/connect/ReadMedicalResourcesPageRequest;)V"/>
@@ -33609,11 +33609,11 @@
 		<method name="setPageSize(I)Landroid/health/connect/ReadMedicalResourcesPageRequest$Builder;"/>
 		<method name="setPageToken(Ljava/lang/String;)Landroid/health/connect/ReadMedicalResourcesPageRequest$Builder;"/>
 	</class>
-	<class name="android/health/connect/ReadMedicalResourcesRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/ReadMedicalResourcesRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="getPageSize()I"/>
 	</class>
-	<class name="android/health/connect/ReadMedicalResourcesResponse" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/ReadMedicalResourcesResponse" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="&lt;init>(Ljava/util/List;Ljava/lang/String;I)V"/>
@@ -33697,7 +33697,7 @@
 		<method name="getDataCategory()I"/>
 		<method name="getDataOriginInOrder()Ljava/util/List;"/>
 	</class>
-	<class name="android/health/connect/UpsertMedicalResourceRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/UpsertMedicalResourceRequest" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getData()Ljava/lang/String;"/>
@@ -33705,7 +33705,7 @@
 		<method name="getFhirVersion()Landroid/health/connect/datatypes/FhirVersion;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/health/connect/UpsertMedicalResourceRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/UpsertMedicalResourceRequest$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/health/connect/UpsertMedicalResourceRequest$Builder;)V"/>
 		<method name="&lt;init>(Landroid/health/connect/UpsertMedicalResourceRequest;)V"/>
@@ -33794,7 +33794,7 @@
 		<method name="setEndZoneOffset(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/ActiveCaloriesBurnedRecord$Builder;"/>
 		<method name="setStartZoneOffset(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/ActiveCaloriesBurnedRecord$Builder;"/>
 	</class>
-	<class name="android/health/connect/datatypes/ActivityIntensityRecord" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/ActivityIntensityRecord" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="android/health/connect/datatypes/IntervalRecord"/>
 		<method name="getActivityIntensityType()I"/>
 		<field name="ACTIVITY_INTENSITY_TYPE_MODERATE"/>
@@ -33804,7 +33804,7 @@
 		<field name="MODERATE_DURATION_TOTAL"/>
 		<field name="VIGOROUS_DURATION_TOTAL"/>
 	</class>
-	<class name="android/health/connect/datatypes/ActivityIntensityRecord$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/ActivityIntensityRecord$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/health/connect/datatypes/Metadata;Ljava/time/Instant;Ljava/time/Instant;I)V"/>
 		<method name="build()Landroid/health/connect/datatypes/ActivityIntensityRecord;"/>
@@ -34389,7 +34389,7 @@
 		<field name="EXERCISE_SESSION_TYPE_WHEELCHAIR"/>
 		<field name="EXERCISE_SESSION_TYPE_YOGA"/>
 	</class>
-	<class name="android/health/connect/datatypes/FhirResource" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/FhirResource" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getData()Ljava/lang/String;"/>
@@ -34411,7 +34411,7 @@
 		<field name="FHIR_RESOURCE_TYPE_PRACTITIONER_ROLE"/>
 		<field name="FHIR_RESOURCE_TYPE_PROCEDURE"/>
 	</class>
-	<class name="android/health/connect/datatypes/FhirResource$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/FhirResource$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(ILjava/lang/String;Ljava/lang/String;)V"/>
 		<method name="&lt;init>(Landroid/health/connect/datatypes/FhirResource$Builder;)V"/>
@@ -34421,7 +34421,7 @@
 		<method name="setId(Ljava/lang/String;)Landroid/health/connect/datatypes/FhirResource$Builder;"/>
 		<method name="setType(I)Landroid/health/connect/datatypes/FhirResource$Builder;"/>
 	</class>
-	<class name="android/health/connect/datatypes/FhirVersion" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/FhirVersion" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getMajor()I"/>
@@ -34548,7 +34548,7 @@
 		<field name="MEAL_TYPE_SNACK"/>
 		<field name="MEAL_TYPE_UNKNOWN"/>
 	</class>
-	<class name="android/health/connect/datatypes/MedicalDataSource" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/MedicalDataSource" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getDisplayName()Ljava/lang/String;"/>
@@ -34559,7 +34559,7 @@
 		<method name="getPackageName()Ljava/lang/String;"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/health/connect/datatypes/MedicalDataSource$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/MedicalDataSource$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/health/connect/datatypes/MedicalDataSource$Builder;)V"/>
 		<method name="&lt;init>(Landroid/health/connect/datatypes/MedicalDataSource;)V"/>
@@ -34572,7 +34572,7 @@
 		<method name="setLastDataUpdateTime(Ljava/time/Instant;)Landroid/health/connect/datatypes/MedicalDataSource$Builder;"/>
 		<method name="setPackageName(Ljava/lang/String;)Landroid/health/connect/datatypes/MedicalDataSource$Builder;"/>
 	</class>
-	<class name="android/health/connect/datatypes/MedicalResource" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/MedicalResource" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getDataSourceId()Ljava/lang/String;"/>
@@ -34594,7 +34594,7 @@
 		<field name="MEDICAL_RESOURCE_TYPE_VISITS"/>
 		<field name="MEDICAL_RESOURCE_TYPE_VITAL_SIGNS"/>
 	</class>
-	<class name="android/health/connect/datatypes/MedicalResource$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16">
+	<class name="android/health/connect/datatypes/MedicalResource$Builder" module="framework-healthfitness" since="36" sdks="34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(ILjava/lang/String;Landroid/health/connect/datatypes/FhirVersion;Landroid/health/connect/datatypes/FhirResource;)V"/>
 		<method name="&lt;init>(Landroid/health/connect/datatypes/MedicalResource$Builder;)V"/>
@@ -34661,7 +34661,7 @@
 		<method name="setLastModifiedTime(Ljava/time/Instant;)Landroid/health/connect/datatypes/Metadata$Builder;"/>
 		<method name="setRecordingMethod(I)Landroid/health/connect/datatypes/Metadata$Builder;"/>
 	</class>
-	<class name="android/health/connect/datatypes/MindfulnessSessionRecord" module="framework-healthfitness" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/health/connect/datatypes/MindfulnessSessionRecord" module="framework-healthfitness" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="android/health/connect/datatypes/IntervalRecord"/>
 		<method name="getMindfulnessSessionType()I"/>
 		<method name="getNotes()Ljava/lang/CharSequence;"/>
@@ -34675,7 +34675,7 @@
 		<field name="MINDFULNESS_SESSION_TYPE_UNGUIDED"/>
 		<field name="MINDFULNESS_SESSION_TYPE_UNKNOWN"/>
 	</class>
-	<class name="android/health/connect/datatypes/MindfulnessSessionRecord$Builder" module="framework-healthfitness" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/health/connect/datatypes/MindfulnessSessionRecord$Builder" module="framework-healthfitness" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/health/connect/datatypes/Metadata;Ljava/time/Instant;Ljava/time/Instant;I)V"/>
 		<method name="build()Landroid/health/connect/datatypes/MindfulnessSessionRecord;"/>
@@ -53503,7 +53503,7 @@
 		<method name="requestNetwork(Landroid/net/NetworkRequest;Landroid/net/ConnectivityManager$NetworkCallback;Landroid/os/Handler;)V" since="26"/>
 		<method name="requestNetwork(Landroid/net/NetworkRequest;Landroid/net/ConnectivityManager$NetworkCallback;Landroid/os/Handler;I)V" since="26"/>
 		<method name="requestRouteToHost(II)Z" deprecated="21" removed="26"/>
-		<method name="reserveNetwork(Landroid/net/NetworkRequest;Landroid/os/Handler;Landroid/net/ConnectivityManager$NetworkCallback;)V" since="36" sdks="34:17,35:17,36:17"/>
+		<method name="reserveNetwork(Landroid/net/NetworkRequest;Landroid/os/Handler;Landroid/net/ConnectivityManager$NetworkCallback;)V" since="36" sdks="34:17,35:17,36:17,0:36"/>
 		<method name="setAirplaneMode(Z)V" since="29"/>
 		<method name="setNetworkPreference(I)V" deprecated="21"/>
 		<method name="setOemNetworkPreference(Landroid/net/OemNetworkPreferences;Ljava/util/concurrent/Executor;Ljava/lang/Runnable;)V" since="31"/>
@@ -53575,7 +53575,7 @@
 		<method name="onLinkPropertiesChanged(Landroid/net/Network;Landroid/net/LinkProperties;)V"/>
 		<method name="onLosing(Landroid/net/Network;I)V"/>
 		<method name="onLost(Landroid/net/Network;)V"/>
-		<method name="onReserved(Landroid/net/NetworkCapabilities;)V" since="36" sdks="34:17,35:17,36:17"/>
+		<method name="onReserved(Landroid/net/NetworkCapabilities;)V" since="36" sdks="34:17,35:17,36:17,0:36"/>
 		<method name="onUnavailable()V" since="26"/>
 		<field name="FLAG_INCLUDE_LOCATION_INFO" since="31"/>
 	</class>
@@ -53961,7 +53961,7 @@
 		<method name="getSrcAddress()Ljava/net/InetAddress;"/>
 		<method name="getSrcPort()I"/>
 	</class>
-	<class name="android/net/L2capNetworkSpecifier" module="framework-connectivity" since="36" sdks="34:17,35:17,36:17">
+	<class name="android/net/L2capNetworkSpecifier" module="framework-connectivity" since="36" sdks="34:17,35:17,36:17,0:36">
 		<extends name="android/net/NetworkSpecifier"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getHeaderCompression()I"/>
@@ -53977,7 +53977,7 @@
 		<field name="ROLE_CLIENT"/>
 		<field name="ROLE_SERVER"/>
 	</class>
-	<class name="android/net/L2capNetworkSpecifier$Builder" module="framework-connectivity" since="36" sdks="34:17,35:17,36:17">
+	<class name="android/net/L2capNetworkSpecifier$Builder" module="framework-connectivity" since="36" sdks="34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/net/L2capNetworkSpecifier;"/>
@@ -54301,7 +54301,7 @@
 		<field name="NET_CAPABILITY_MCX" since="29"/>
 		<field name="NET_CAPABILITY_MMS"/>
 		<field name="NET_CAPABILITY_MMTEL" since="33"/>
-		<field name="NET_CAPABILITY_NOT_BANDWIDTH_CONSTRAINED" since="36" sdks="34:16,35:16,36:16"/>
+		<field name="NET_CAPABILITY_NOT_BANDWIDTH_CONSTRAINED" since="36" sdks="34:16,35:16,36:16,0:36"/>
 		<field name="NET_CAPABILITY_NOT_CONGESTED" since="28"/>
 		<field name="NET_CAPABILITY_NOT_METERED"/>
 		<field name="NET_CAPABILITY_NOT_RESTRICTED"/>
@@ -54545,7 +54545,7 @@
 		<implements name="java/lang/Iterable" since="33" sdks="33:3,0:33"/>
 		<method name="&lt;init>(JI)V"/>
 		<method name="add(Landroid/net/NetworkStats;)Landroid/net/NetworkStats;"/>
-		<method name="addEntries(Ljava/util/List;)Landroid/net/NetworkStats;" since="36" sdks="33:15,34:15,35:15,36:15"/>
+		<method name="addEntries(Ljava/util/List;)Landroid/net/NetworkStats;" since="36" sdks="33:15,34:15,35:15,36:15,0:36"/>
 		<method name="addEntry(Landroid/net/NetworkStats$Entry;)Landroid/net/NetworkStats;"/>
 		<method name="clone()Landroid/net/NetworkStats;"/>
 		<method name="subtract(Landroid/net/NetworkStats;)Landroid/net/NetworkStats;"/>
@@ -56474,7 +56474,7 @@
 		<method name="onSetWarningAndLimit(Ljava/lang/String;JJ)V" since="31"/>
 		<field name="QUOTA_UNLIMITED"/>
 	</class>
-	<class name="android/net/nsd/AdvertisingRequest" module="framework-connectivity-t" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/net/nsd/AdvertisingRequest" module="framework-connectivity-t" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getFlags()J"/>
@@ -56483,7 +56483,7 @@
 		<field name="CREATOR"/>
 		<field name="FLAG_SKIP_PROBING"/>
 	</class>
-	<class name="android/net/nsd/AdvertisingRequest$Builder" module="framework-connectivity-t" since="36" sdks="33:17,34:17,35:17,36:17">
+	<class name="android/net/nsd/AdvertisingRequest$Builder" module="framework-connectivity-t" since="36" sdks="33:17,34:17,35:17,36:17,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>(Landroid/net/nsd/NsdServiceInfo;)V"/>
 		<method name="build()Landroid/net/nsd/AdvertisingRequest;"/>
@@ -56570,7 +56570,7 @@
 		<method name="getAttributes()Ljava/util/Map;" since="21"/>
 		<method name="getHost()Ljava/net/InetAddress;" deprecated="36"/>
 		<method name="getHostAddresses()Ljava/util/List;" since="34" sdks="33:7,34:7,0:34"/>
-		<method name="getHostname()Ljava/lang/String;" since="36" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="getHostname()Ljava/lang/String;" since="36" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<method name="getNetwork()Landroid/net/Network;" since="33" sdks="33:3,0:33"/>
 		<method name="getPort()I"/>
 		<method name="getServiceName()Ljava/lang/String;"/>
@@ -70011,19 +70011,19 @@
 		<extends name="android/content/ContentProvider"/>
 		<method name="&lt;init>()V"/>
 		<method name="onCreateCloudMediaSurfaceController(Landroid/os/Bundle;Landroid/provider/CloudMediaProvider$CloudMediaSurfaceStateChangedCallback;)Landroid/provider/CloudMediaProvider$CloudMediaSurfaceController;"/>
-		<method name="onGetCapabilities()Landroid/provider/CloudMediaProviderContract$Capabilities;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
+		<method name="onGetCapabilities()Landroid/provider/CloudMediaProviderContract$Capabilities;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
 		<method name="onGetMediaCollectionInfo(Landroid/os/Bundle;)Landroid/os/Bundle;"/>
 		<method name="onOpenMedia(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/os/ParcelFileDescriptor;"/>
 		<method name="onOpenPreview(Ljava/lang/String;Landroid/graphics/Point;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/content/res/AssetFileDescriptor;"/>
 		<method name="onQueryAlbums(Landroid/os/Bundle;)Landroid/database/Cursor;"/>
 		<method name="onQueryDeletedMedia(Landroid/os/Bundle;)Landroid/database/Cursor;"/>
 		<method name="onQueryMedia(Landroid/os/Bundle;)Landroid/database/Cursor;"/>
-		<method name="onQueryMediaCategories(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<method name="onQueryMediaInMediaSet(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<method name="onQueryMediaSets(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<method name="onQuerySearchSuggestions(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<method name="onSearchMedia(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<method name="onSearchMedia(Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
+		<method name="onQueryMediaCategories(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<method name="onQueryMediaInMediaSet(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<method name="onQueryMediaSets(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<method name="onQuerySearchSuggestions(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<method name="onSearchMedia(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<method name="onSearchMedia(Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/database/Cursor;" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
 	</class>
 	<class name="android/provider/CloudMediaProvider$CloudMediaSurfaceController" module="framework-mediaprovider" since="33" sdks="30:3,31:3,33:3,0:33">
 		<extends name="java/lang/Object"/>
@@ -70059,18 +70059,18 @@
 		<field name="EXTRA_PAGE_SIZE" since="35" sdks="30:8,31:8,33:8,34:8,35:8,0:35"/>
 		<field name="EXTRA_PAGE_TOKEN"/>
 		<field name="EXTRA_PREVIEW_THUMBNAIL"/>
-		<field name="EXTRA_SORT_ORDER" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
+		<field name="EXTRA_SORT_ORDER" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
 		<field name="EXTRA_SURFACE_CONTROLLER_AUDIO_MUTE_ENABLED"/>
 		<field name="EXTRA_SYNC_GENERATION"/>
 		<field name="MANAGE_CLOUD_MEDIA_PROVIDERS_PERMISSION"/>
-		<field name="MEDIA_CATEGORY_TYPE_PEOPLE_AND_PETS" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
+		<field name="MEDIA_CATEGORY_TYPE_PEOPLE_AND_PETS" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
 		<field name="PROVIDER_INTERFACE"/>
-		<field name="SEARCH_SUGGESTION_ALBUM" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<field name="SEARCH_SUGGESTION_DATE" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<field name="SEARCH_SUGGESTION_FACE" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<field name="SEARCH_SUGGESTION_LOCATION" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<field name="SEARCH_SUGGESTION_TEXT" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
-		<field name="SORT_ORDER_DESC_DATE_TAKEN" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
+		<field name="SEARCH_SUGGESTION_ALBUM" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<field name="SEARCH_SUGGESTION_DATE" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<field name="SEARCH_SUGGESTION_FACE" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<field name="SEARCH_SUGGESTION_LOCATION" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<field name="SEARCH_SUGGESTION_TEXT" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
+		<field name="SORT_ORDER_DESC_DATE_TAKEN" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
 	</class>
 	<class name="android/provider/CloudMediaProviderContract$AlbumColumns" module="framework-mediaprovider" since="33" sdks="30:3,31:3,33:3,0:33">
 		<extends name="java/lang/Object"/>
@@ -70080,21 +70080,21 @@
 		<field name="MEDIA_COUNT"/>
 		<field name="MEDIA_COVER_ID"/>
 	</class>
-	<class name="android/provider/CloudMediaProviderContract$Capabilities" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16">
+	<class name="android/provider/CloudMediaProviderContract$Capabilities" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="isMediaCategoriesEnabled()Z"/>
 		<method name="isSearchEnabled()Z"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/provider/CloudMediaProviderContract$Capabilities$Builder" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16">
+	<class name="android/provider/CloudMediaProviderContract$Capabilities$Builder" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/provider/CloudMediaProviderContract$Capabilities;"/>
 		<method name="setMediaCategoriesEnabled(Z)Landroid/provider/CloudMediaProviderContract$Capabilities$Builder;"/>
 		<method name="setSearchEnabled(Z)Landroid/provider/CloudMediaProviderContract$Capabilities$Builder;"/>
 	</class>
-	<class name="android/provider/CloudMediaProviderContract$MediaCategoryColumns" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16">
+	<class name="android/provider/CloudMediaProviderContract$MediaCategoryColumns" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<field name="DISPLAY_NAME"/>
 		<field name="ID"/>
@@ -70130,14 +70130,14 @@
 		<field name="SYNC_GENERATION"/>
 		<field name="WIDTH" since="34" sdks="30:5,31:5,33:5,34:5,0:34"/>
 	</class>
-	<class name="android/provider/CloudMediaProviderContract$MediaSetColumns" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16">
+	<class name="android/provider/CloudMediaProviderContract$MediaSetColumns" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<field name="DISPLAY_NAME"/>
 		<field name="ID"/>
 		<field name="MEDIA_COUNT"/>
 		<field name="MEDIA_COVER_ID"/>
 	</class>
-	<class name="android/provider/CloudMediaProviderContract$SearchSuggestionColumns" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16">
+	<class name="android/provider/CloudMediaProviderContract$SearchSuggestionColumns" module="framework-mediaprovider" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36">
 		<extends name="java/lang/Object"/>
 		<field name="DISPLAY_TEXT"/>
 		<field name="MEDIA_COVER_ID"/>
@@ -72048,11 +72048,11 @@
 		<method name="isCurrentCloudMediaProviderAuthority(Landroid/content/ContentResolver;Ljava/lang/String;)Z" since="33" sdks="30:3,31:3,33:3,0:33"/>
 		<method name="isCurrentSystemGallery(Landroid/content/ContentResolver;ILjava/lang/String;)Z" since="31"/>
 		<method name="isSupportedCloudMediaProviderAuthority(Landroid/content/ContentResolver;Ljava/lang/String;)Z" since="33" sdks="30:3,31:3,33:3,0:33"/>
-		<method name="markIsFavoriteStatus(Landroid/content/ContentResolver;Ljava/util/Collection;Z)V" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16"/>
+		<method name="markIsFavoriteStatus(Landroid/content/ContentResolver;Ljava/util/Collection;Z)V" since="36" sdks="30:16,31:16,33:16,34:16,35:16,36:16,0:36"/>
 		<method name="notifyCloudMediaChangedEvent(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)V" since="33" sdks="30:3,31:3,33:3,0:33"/>
-		<method name="openAssetFileDescriptor(Landroid/content/ContentResolver;Landroid/net/Uri;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/content/res/AssetFileDescriptor;" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15"/>
-		<method name="openFileDescriptor(Landroid/content/ContentResolver;Landroid/net/Uri;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/os/ParcelFileDescriptor;" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15"/>
-		<method name="openTypedAssetFileDescriptor(Landroid/content/ContentResolver;Landroid/net/Uri;Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/content/res/AssetFileDescriptor;" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15"/>
+		<method name="openAssetFileDescriptor(Landroid/content/ContentResolver;Landroid/net/Uri;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/content/res/AssetFileDescriptor;" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15,0:36"/>
+		<method name="openFileDescriptor(Landroid/content/ContentResolver;Landroid/net/Uri;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/os/ParcelFileDescriptor;" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15,0:36"/>
+		<method name="openTypedAssetFileDescriptor(Landroid/content/ContentResolver;Landroid/net/Uri;Ljava/lang/String;Landroid/os/Bundle;Landroid/os/CancellationSignal;)Landroid/content/res/AssetFileDescriptor;" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15,0:36"/>
 		<method name="rewriteToLegacy(Landroid/net/Uri;)Landroid/net/Uri;" since="30"/>
 		<method name="scanFile(Landroid/content/ContentResolver;Ljava/io/File;)Landroid/net/Uri;" since="30"/>
 		<method name="scanVolume(Landroid/content/ContentResolver;Ljava/lang/String;)V" since="30"/>
@@ -72060,7 +72060,7 @@
 		<method name="setRequireOriginal(Landroid/net/Uri;)Landroid/net/Uri;" since="29"/>
 		<method name="waitForIdle(Landroid/content/ContentResolver;)V" since="30"/>
 		<field name="ACCESS_MEDIA_OWNER_PACKAGE_NAME_PERMISSION" since="35"/>
-		<field name="ACCESS_OEM_METADATA_PERMISSION" since="36" sdks="33:15,34:15,35:15,36:15"/>
+		<field name="ACCESS_OEM_METADATA_PERMISSION" since="36" sdks="33:15,34:15,35:15,36:15,0:36"/>
 		<field name="ACTION_IMAGE_CAPTURE" since="3"/>
 		<field name="ACTION_IMAGE_CAPTURE_SECURE" since="17"/>
 		<field name="ACTION_MOTION_PHOTO_CAPTURE" since="36"/>
@@ -72090,7 +72090,7 @@
 		<field name="EXTRA_MEDIA_RADIO_CHANNEL" since="21"/>
 		<field name="EXTRA_MEDIA_TITLE" since="3"/>
 		<field name="EXTRA_OUTPUT" since="3"/>
-		<field name="EXTRA_PICKER_PRE_SELECTION_URIS" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15"/>
+		<field name="EXTRA_PICKER_PRE_SELECTION_URIS" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15,0:36"/>
 		<field name="EXTRA_PICK_IMAGES_ACCENT_COLOR" since="35" sdks="30:12,31:12,33:12,34:12,35:12,0:35"/>
 		<field name="EXTRA_PICK_IMAGES_IN_ORDER" since="35" sdks="30:12,31:12,33:12,34:12,35:12,0:35"/>
 		<field name="EXTRA_PICK_IMAGES_LAUNCH_TAB" since="35" sdks="30:12,31:12,33:12,34:12,35:12,0:35"/>
@@ -72123,7 +72123,7 @@
 		<field name="QUERY_ARG_MATCH_FAVORITE" since="30"/>
 		<field name="QUERY_ARG_MATCH_PENDING" since="30"/>
 		<field name="QUERY_ARG_MATCH_TRASHED" since="30"/>
-		<field name="QUERY_ARG_MEDIA_STANDARD_SORT_ORDER" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15"/>
+		<field name="QUERY_ARG_MEDIA_STANDARD_SORT_ORDER" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15,0:36"/>
 		<field name="QUERY_ARG_RELATED_URI" since="30"/>
 		<field name="UNKNOWN_STRING" since="8"/>
 		<field name="VOLUME_EXTERNAL" since="29"/>
@@ -72197,7 +72197,7 @@
 		<field name="ARTIST" removed="30"/>
 		<field name="ARTIST_ID"/>
 		<field name="ARTIST_KEY" deprecated="30"/>
-		<field name="BITS_PER_SAMPLE" since="36" sdks="33:15,34:15,35:15,36:15"/>
+		<field name="BITS_PER_SAMPLE" since="36" sdks="33:15,34:15,35:15,36:15,0:36"/>
 		<field name="BOOKMARK" since="8"/>
 		<field name="COMPOSER" removed="30"/>
 		<field name="DURATION" removed="29"/>
@@ -72211,7 +72211,7 @@
 		<field name="IS_PODCAST" since="8"/>
 		<field name="IS_RECORDING" since="31"/>
 		<field name="IS_RINGTONE"/>
-		<field name="SAMPLERATE" since="36" sdks="33:15,34:15,35:15,36:15"/>
+		<field name="SAMPLERATE" since="36" sdks="33:15,34:15,35:15,36:15,0:36"/>
 		<field name="TITLE_KEY" deprecated="30"/>
 		<field name="TITLE_RESOURCE_URI" since="30"/>
 		<field name="TRACK"/>
@@ -72424,7 +72424,7 @@
 		<field name="GENERATION_MODIFIED" since="30"/>
 		<field name="GENRE" since="30"/>
 		<field name="HEIGHT" since="16"/>
-		<field name="INFERRED_DATE" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15"/>
+		<field name="INFERRED_DATE" since="36" sdks="30:15,31:15,33:15,34:15,35:15,36:15,0:36"/>
 		<field name="INSTANCE_ID" since="29"/>
 		<field name="IS_DOWNLOAD" since="30"/>
 		<field name="IS_DRM" since="30"/>
@@ -72433,7 +72433,7 @@
 		<field name="IS_TRASHED" since="30"/>
 		<field name="MIME_TYPE"/>
 		<field name="NUM_TRACKS" since="30"/>
-		<field name="OEM_METADATA" since="36" sdks="33:15,34:15,35:15,36:15"/>
+		<field name="OEM_METADATA" since="36" sdks="33:15,34:15,35:15,36:15,0:36"/>
 		<field name="ORIENTATION" since="29"/>
 		<field name="ORIGINAL_DOCUMENT_ID" since="29"/>
 		<field name="OWNER_PACKAGE_NAME" since="29"/>
@@ -72521,7 +72521,7 @@
 		<field name="RESOLUTION" removed="30"/>
 		<field name="TAGS"/>
 	</class>
-	<class name="android/provider/OemMetadataService" module="framework-mediaprovider" since="36" sdks="33:15,34:15,35:15,36:15">
+	<class name="android/provider/OemMetadataService" module="framework-mediaprovider" since="36" sdks="33:15,34:15,35:15,36:15,0:36">
 		<extends name="android/app/Service"/>
 		<method name="&lt;init>()V"/>
 		<method name="onGetOemCustomData(Landroid/os/ParcelFileDescriptor;)Ljava/util/Map;"/>
@@ -98581,7 +98581,6 @@
 		<method name="isFitInsetsIgnoringVisibility()Z" since="30"/>
 		<method name="isFrameRatePowerSavingsBalanced()Z" since="35"/>
 		<method name="isHdrConversionEnabled()Z" since="34"/>
-		<method name="isReceivePowerKeyDoublePressEnabled()Z" since="36"/>
 		<method name="isSystemApplicationOverlay()Z" since="31"/>
 		<method name="mayUseInputMethod(I)Z" since="3"/>
 		<method name="setBlurBehindRadius(I)V" since="31"/>
@@ -98595,7 +98594,6 @@
 		<method name="setFrameRatePowerSavingsBalanced(Z)V" since="35"/>
 		<method name="setHdrConversionEnabled(Z)V" since="34"/>
 		<method name="setInsetsParams(Ljava/util/List;)V" since="36"/>
-		<method name="setReceivePowerKeyDoublePressEnabled(Z)V" since="36"/>
 		<method name="setSystemApplicationOverlay(Z)V" since="31"/>
 		<method name="setTitle(Ljava/lang/CharSequence;)V"/>
 		<method name="setUserActivityTimeout(J)V" since="23"/>
@@ -105929,7 +105927,7 @@
 		<method name="build()Landroid/widget/inline/InlinePresentationSpec;"/>
 		<method name="setStyle(Landroid/os/Bundle;)Landroid/widget/inline/InlinePresentationSpec$Builder;"/>
 	</class>
-	<class name="android/widget/photopicker/EmbeddedPhotoPickerClient" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/widget/photopicker/EmbeddedPhotoPickerClient" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="onSelectionComplete()V"/>
 		<method name="onSessionError(Ljava/lang/Throwable;)V"/>
@@ -105937,7 +105935,7 @@
 		<method name="onUriPermissionGranted(Ljava/util/List;)V"/>
 		<method name="onUriPermissionRevoked(Ljava/util/List;)V"/>
 	</class>
-	<class name="android/widget/photopicker/EmbeddedPhotoPickerFeatureInfo" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/widget/photopicker/EmbeddedPhotoPickerFeatureInfo" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<implements name="android/os/Parcelable"/>
 		<method name="getAccentColor()J"/>
@@ -105948,7 +105946,7 @@
 		<method name="isOrderedSelection()Z"/>
 		<field name="CREATOR"/>
 	</class>
-	<class name="android/widget/photopicker/EmbeddedPhotoPickerFeatureInfo$Builder" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/widget/photopicker/EmbeddedPhotoPickerFeatureInfo$Builder" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="&lt;init>()V"/>
 		<method name="build()Landroid/widget/photopicker/EmbeddedPhotoPickerFeatureInfo;"/>
@@ -105959,15 +105957,15 @@
 		<method name="setPreSelectedUris(Ljava/util/List;)Landroid/widget/photopicker/EmbeddedPhotoPickerFeatureInfo$Builder;"/>
 		<method name="setThemeNightMode(I)Landroid/widget/photopicker/EmbeddedPhotoPickerFeatureInfo$Builder;"/>
 	</class>
-	<class name="android/widget/photopicker/EmbeddedPhotoPickerProvider" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/widget/photopicker/EmbeddedPhotoPickerProvider" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="openSession(Landroid/os/IBinder;IIILandroid/widget/photopicker/EmbeddedPhotoPickerFeatureInfo;Ljava/util/concurrent/Executor;Landroid/widget/photopicker/EmbeddedPhotoPickerClient;)V"/>
 	</class>
-	<class name="android/widget/photopicker/EmbeddedPhotoPickerProviderFactory" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/widget/photopicker/EmbeddedPhotoPickerProviderFactory" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="create(Landroid/content/Context;)Landroid/widget/photopicker/EmbeddedPhotoPickerProvider;"/>
 	</class>
-	<class name="android/widget/photopicker/EmbeddedPhotoPickerSession" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15">
+	<class name="android/widget/photopicker/EmbeddedPhotoPickerSession" module="framework-photopicker" since="36" sdks="34:15,35:15,36:15,0:36">
 		<extends name="java/lang/Object"/>
 		<method name="close()V"/>
 		<method name="getSurfacePackage()Landroid/view/SurfaceControlViewHost$SurfacePackage;"/>
