@@ -9,7 +9,7 @@ dependency_list {
   dependency {
     group_id: "androidx.compose.runtime"
     artifact_id: "runtime"
-    version: "1.6.0"
+    version: "1.7.8"
     is_tip_of_tree: false
   }
   dependency {
@@ -32,21 +32,27 @@ dependency_list {
   }
   dependency {
     group_id: "androidx.lifecycle"
-    artifact_id: "lifecycle-viewmodel-compose-desktop"
+    artifact_id: "lifecycle-viewmodel-compose-jvmstubs"
+    version: "2.9.0-alpha13"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-viewmodel-compose-linuxx64stubs"
     version: "2.9.0-alpha13"
     is_tip_of_tree: true
   }
 }
 release_checklist {
 }
-build_id: "13230537"
+build_id: "13291458"
 group_id: "androidx.lifecycle"
 artifact_id: "lifecycle-viewmodel-compose"
 path: "/lifecycle/lifecycle-viewmodel-compose"
-sha: "10c9fbca13188630ccc3bd49bce48dd83d600ca5"
+sha: "f7310b9889c3082fc00034dbf282c09da8a6d1c5"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.lifecycle-lifecycle-viewmodel-compose-all-13230537-2.9.0-alpha13.zip"
-kotlin_version: "2.1.10"
+project_zip_path: "per-project-zips/androidx.lifecycle-lifecycle-viewmodel-compose-all-13291458-2.9.0-alpha13.zip"
+kotlin_version: "2.1.20"
 dependency_constraint_list {
   dependency {
     group_id: "androidx.lifecycle"
@@ -167,7 +173,9 @@ should_publish_docs: true
 is_kmp: true
 target: "androidx"
 kmp_children: "android"
-kmp_children: "desktop"
-test_module_names: ":lifecycle:lifecycle-viewmodel-compose:desktopTest"
+kmp_children: "jvmstubs"
+kmp_children: "linuxx64stubs"
+test_module_names: ":lifecycle:lifecycle-viewmodel-compose:jvmStubsTest"
+test_module_names: ":lifecycle:lifecycle-viewmodel-compose:linuxx64StubsTest"
 test_module_names: "lifecycle-lifecycle-viewmodel-composereleaseAndroidTest.xml"
 test_module_names: ":lifecycle:lifecycle-viewmodel-compose:testReleaseUnitTest"
