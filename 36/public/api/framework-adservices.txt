@@ -89,6 +89,7 @@ package android.adservices.adselection {
     method @NonNull public long getAdSelectionId();
     method @NonNull public java.util.List<android.net.Uri> getComponentAdUris();
     method @NonNull public android.net.Uri getRenderUri();
+    method @NonNull public android.adservices.common.AdTechIdentifier getWinningSeller();
     method public boolean hasOutcome();
     field @NonNull public static final android.adservices.adselection.AdSelectionOutcome NO_OUTCOME;
   }
@@ -211,6 +212,7 @@ package android.adservices.adselection {
     method @NonNull public String getKey();
     method public int getReportingDestinations();
     field public static final int FLAG_REPORTING_DESTINATION_BUYER = 2; // 0x2
+    field public static final int FLAG_REPORTING_DESTINATION_COMPONENT_SELLER = 4; // 0x4
     field public static final int FLAG_REPORTING_DESTINATION_SELLER = 1; // 0x1
   }
 
