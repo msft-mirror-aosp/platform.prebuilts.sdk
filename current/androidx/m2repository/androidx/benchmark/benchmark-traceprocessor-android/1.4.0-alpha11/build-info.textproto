@@ -1,0 +1,76 @@
+version: "1.4.0-alpha11"
+dependency_list {
+  dependency {
+    group_id: "androidx.annotation"
+    artifact_id: "annotation"
+    version: "1.8.1"
+    is_tip_of_tree: false
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-traceprocessor-android"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-traceprocessor-jvm"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+}
+release_checklist {
+}
+build_id: "13318856"
+group_id: "androidx.benchmark"
+artifact_id: "benchmark-traceprocessor"
+path: "/benchmark/benchmark-traceprocessor"
+sha: "52ffd6b72fa725a568d36bf139aa94156bd03fa3"
+require_same_version_group_build: true
+project_zip_path: "per-project-zips/androidx.benchmark-benchmark-traceprocessor-all-13318856-1.4.0-alpha11.zip"
+kotlin_version: "2.1.20"
+dependency_constraint_list {
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-baseline-profile-gradle-plugin"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-common"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-gradle-plugin"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-junit4"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-macro"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.benchmark"
+    artifact_id: "benchmark-macro-junit4"
+    version: "1.4.0-alpha11"
+    is_tip_of_tree: true
+  }
+}
+should_publish_docs: true
+is_kmp: true
+target: "androidx"
+kmp_children: "jvm"
+kmp_children: "android"
+test_module_names: ":benchmark:benchmark-traceprocessor:jvmTest"
+test_module_names: "benchmark-benchmark-traceprocessorandroidInstrumentedTest.xml"
