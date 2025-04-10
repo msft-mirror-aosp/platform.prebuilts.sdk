@@ -24,3 +24,4 @@ latest finalized version for each API surface.
 - 15: Finalized in September 2024 between V and B (HealthFitness, AdServices, Media Provider, AppSearch, Connectivity, ODP)
 - 16: M-2024-02: Finalized in December 2024 between V and B (HealthFitness, MediaProvider, Tethering, AppSearch, AdServices, ODP)
 - 17: Finalized together with Android 36 (all modules)
+- 18: M-2025-06: AD_SERVICES, APPSEARCH, MEDIA_PROVIDER, ON_DEVICE_PERSONALIZATION
