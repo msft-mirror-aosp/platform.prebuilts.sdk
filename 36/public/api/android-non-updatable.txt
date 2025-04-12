@@ -23217,12 +23217,12 @@ package android.media {
   public static final class MediaCodecInfo.CodecCapabilities {
     ctor public MediaCodecInfo.CodecCapabilities();
     method public static android.media.MediaCodecInfo.CodecCapabilities createFromProfileLevel(String, int, int);
-    method public android.media.MediaCodecInfo.AudioCapabilities getAudioCapabilities();
+    method @Nullable public android.media.MediaCodecInfo.AudioCapabilities getAudioCapabilities();
     method public android.media.MediaFormat getDefaultFormat();
-    method public android.media.MediaCodecInfo.EncoderCapabilities getEncoderCapabilities();
+    method @Nullable public android.media.MediaCodecInfo.EncoderCapabilities getEncoderCapabilities();
     method public int getMaxSupportedInstances();
     method public String getMimeType();
-    method public android.media.MediaCodecInfo.VideoCapabilities getVideoCapabilities();
+    method @Nullable public android.media.MediaCodecInfo.VideoCapabilities getVideoCapabilities();
     method public boolean isFeatureRequired(String);
     method public boolean isFeatureSupported(String);
     method public boolean isFormatSupported(android.media.MediaFormat);
@@ -24704,7 +24704,7 @@ package android.media {
     method public android.view.Surface getSurface();
     method public boolean isPrivacySensitive();
     method public void pause() throws java.lang.IllegalStateException;
-    method public void prepare() throws java.io.IOException, java.lang.IllegalStateException;
+    method @RequiresPermission(value=android.Manifest.permission.RECORD_AUDIO, conditional=true) public void prepare() throws java.io.IOException, java.lang.IllegalStateException;
     method public void registerAudioRecordingCallback(@NonNull java.util.concurrent.Executor, @NonNull android.media.AudioManager.AudioRecordingCallback);
     method public void release();
     method public void removeOnRoutingChangedListener(android.media.AudioRouting.OnRoutingChangedListener);
@@ -24745,7 +24745,7 @@ package android.media {
     method public void setVideoProfile(@NonNull android.media.EncoderProfiles.VideoProfile);
     method public void setVideoSize(int, int) throws java.lang.IllegalStateException;
     method public void setVideoSource(int) throws java.lang.IllegalStateException;
-    method public void start() throws java.lang.IllegalStateException;
+    method @RequiresPermission(value=android.Manifest.permission.RECORD_AUDIO, conditional=true) public void start() throws java.lang.IllegalStateException;
     method public void stop() throws java.lang.IllegalStateException;
     method public void unregisterAudioRecordingCallback(@NonNull android.media.AudioManager.AudioRecordingCallback);
     field public static final int MEDIA_ERROR_SERVER_DIED = 100; // 0x64
