@@ -4109,7 +4109,7 @@ package android.bluetooth {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean cancelBondProcess();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED, android.Manifest.permission.MODIFY_PHONE_STATE}) public int connect();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean createBond(int);
-    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean createBondOutOfBand(int, @Nullable android.bluetooth.OobData, @Nullable android.bluetooth.OobData);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean createBondOutOfBand(int, @Nullable android.bluetooth.OobData, @Nullable android.bluetooth.OobData);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int disconnect();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}, conditional=true) public boolean fetchUuidsWithSdp(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getActiveAudioDevicePolicy();
@@ -22081,6 +22081,7 @@ package android.service.wearable {
 package android.system.virtualmachine {
 
   public class VirtualMachine implements java.lang.AutoCloseable {
+    method @NonNull @WorkerThread public static android.os.IBinder binderFromPreconnectedClient(@NonNull android.system.virtualmachine.VirtualMachine.VsockConnectionProvider) throws android.system.virtualmachine.VirtualMachineException;
     method public void clearCallback();
     method @WorkerThread public void close();
     method @NonNull @WorkerThread public android.os.IBinder connectToVsockServer(@IntRange(from=android.system.virtualmachine.VirtualMachine.MIN_VSOCK_PORT, to=android.system.virtualmachine.VirtualMachine.MAX_VSOCK_PORT) long) throws android.system.virtualmachine.VirtualMachineException;
@@ -22102,6 +22103,10 @@ package android.system.virtualmachine {
     field public static final int STATUS_RUNNING = 1; // 0x1
     field public static final int STATUS_STOPPED = 0; // 0x0
     field public static final String USE_CUSTOM_VIRTUAL_MACHINE_PERMISSION = "android.permission.USE_CUSTOM_VIRTUAL_MACHINE";
+  }
+
+  public static interface VirtualMachine.VsockConnectionProvider {
+    method @NonNull public android.os.ParcelFileDescriptor addConnection() throws android.system.virtualmachine.VirtualMachineException;
   }
 
   public interface VirtualMachineCallback {

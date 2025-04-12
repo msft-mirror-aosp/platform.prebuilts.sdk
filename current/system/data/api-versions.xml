@@ -4583,6 +4583,7 @@
 		<method name="getAdSelectionId()J"/>
 		<method name="getComponentAdUris()Ljava/util/List;" since="36" sdks="1000000:16,0:36"/>
 		<method name="getRenderUri()Landroid/net/Uri;"/>
+		<method name="getWinningSeller()Landroid/adservices/common/AdTechIdentifier;" since="36"/>
 		<method name="hasOutcome()Z" since="35" sdks="1000000:10,0:35"/>
 		<field name="NO_OUTCOME" since="35" sdks="1000000:10,0:35"/>
 	</class>
@@ -4701,6 +4702,7 @@
 		<method name="getKey()Ljava/lang/String;"/>
 		<method name="getReportingDestinations()I"/>
 		<field name="FLAG_REPORTING_DESTINATION_BUYER"/>
+		<field name="FLAG_REPORTING_DESTINATION_COMPONENT_SELLER" since="36"/>
 		<field name="FLAG_REPORTING_DESTINATION_SELLER"/>
 	</class>
 	<class name="android/adservices/adselection/ReportEventRequest$Builder" module="framework-adservices" since="35" sdks="1000000:8,0:35">
@@ -5188,7 +5190,7 @@
 	</class>
 	<class name="android/adservices/customaudience/ScheduleCustomAudienceUpdateRequest$Builder" module="framework-adservices" since="36" sdks="1000000:14,0:36">
 		<extends name="java/lang/Object"/>
-		<method name="&lt;init>(Landroid/net/Uri;Ljava/time/Duration;)V" sdks="1000000:16"/>
+		<method name="&lt;init>(Landroid/net/Uri;Ljava/time/Duration;)V" sdks="1000000:16,0:36"/>
 		<method name="&lt;init>(Landroid/net/Uri;Ljava/time/Duration;Ljava/util/List;)V" deprecated="36"/>
 		<method name="build()Landroid/adservices/customaudience/ScheduleCustomAudienceUpdateRequest;"/>
 		<method name="setMinDelay(Ljava/time/Duration;)Landroid/adservices/customaudience/ScheduleCustomAudienceUpdateRequest$Builder;"/>
@@ -11929,7 +11931,7 @@
 	<class name="android/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig" module="framework-appsearch" since="36" sdks="33:16,34:16,35:16,36:16,0:36">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
 		<method name="getIndexingType()I"/>
-		<method name="getQuantizationType()I" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="getQuantizationType()I" sdks="33:17,34:17,35:17,36:17,0:36"/>
 		<field name="INDEXING_TYPE_NONE"/>
 		<field name="INDEXING_TYPE_SIMILARITY"/>
 		<field name="QUANTIZATION_TYPE_8_BIT"/>
@@ -11941,7 +11943,7 @@
 		<method name="build()Landroid/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig;"/>
 		<method name="setCardinality(I)Landroid/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig$Builder;"/>
 		<method name="setIndexingType(I)Landroid/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig$Builder;"/>
-		<method name="setQuantizationType(I)Landroid/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig$Builder;" sdks="33:17,34:17,35:17,36:17"/>
+		<method name="setQuantizationType(I)Landroid/app/appsearch/AppSearchSchema$EmbeddingPropertyConfig$Builder;" sdks="33:17,34:17,35:17,36:17,0:36"/>
 	</class>
 	<class name="android/app/appsearch/AppSearchSchema$LongPropertyConfig" since="31">
 		<extends name="android/app/appsearch/AppSearchSchema$PropertyConfig"/>
@@ -81580,6 +81582,7 @@
 	<class name="android/system/virtualmachine/VirtualMachine" since="34">
 		<extends name="java/lang/Object"/>
 		<implements name="java/lang/AutoCloseable"/>
+		<method name="binderFromPreconnectedClient(Landroid/system/virtualmachine/VirtualMachine$VsockConnectionProvider;)Landroid/os/IBinder;" since="36"/>
 		<method name="clearCallback()V"/>
 		<method name="connectToVsockServer(J)Landroid/os/IBinder;"/>
 		<method name="connectVsock(J)Landroid/os/ParcelFileDescriptor;"/>
@@ -81600,6 +81603,10 @@
 		<field name="STATUS_RUNNING"/>
 		<field name="STATUS_STOPPED"/>
 		<field name="USE_CUSTOM_VIRTUAL_MACHINE_PERMISSION"/>
+	</class>
+	<class name="android/system/virtualmachine/VirtualMachine$VsockConnectionProvider" since="36">
+		<extends name="java/lang/Object"/>
+		<method name="addConnection()Landroid/os/ParcelFileDescriptor;"/>
 	</class>
 	<class name="android/system/virtualmachine/VirtualMachineCallback" since="34">
 		<extends name="java/lang/Object"/>
