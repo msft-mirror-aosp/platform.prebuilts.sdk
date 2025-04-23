@@ -2,7 +2,7 @@
 
 # Output the list of files to cat to a file to avoid command line limitations.
 FILE_LIST=$(mktemp)
-trap 'rm $FILE_LIST'
+trap 'rm $FILE_LIST' EXIT
 find $1/frameworks/support/ -name current.txt | grep /api/ | grep -v /ktx/ | sort > $FILE_LIST
 
 # Combine the contents of all the files into a single signature file.
