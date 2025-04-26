@@ -7,12 +7,6 @@ dependency_list {
     is_tip_of_tree: false
   }
   dependency {
-    group_id: "androidx.collection"
-    artifact_id: "collection"
-    version: "1.4.2"
-    is_tip_of_tree: false
-  }
-  dependency {
     group_id: "androidx.lifecycle"
     artifact_id: "lifecycle-common"
     version: "2.9.0-rc01"
@@ -44,49 +38,13 @@ dependency_list {
   }
   dependency {
     group_id: "androidx.navigation"
-    artifact_id: "navigation-common-desktop"
+    artifact_id: "navigation-common-jvmstubs"
     version: "2.9.0-rc01"
     is_tip_of_tree: true
   }
   dependency {
     group_id: "androidx.navigation"
-    artifact_id: "navigation-common-iosarm64"
-    version: "2.9.0-rc01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.navigation"
-    artifact_id: "navigation-common-iossimulatorarm64"
-    version: "2.9.0-rc01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.navigation"
-    artifact_id: "navigation-common-iosx64"
-    version: "2.9.0-rc01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.navigation"
-    artifact_id: "navigation-common-linuxarm64"
-    version: "2.9.0-rc01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.navigation"
-    artifact_id: "navigation-common-linuxx64"
-    version: "2.9.0-rc01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.navigation"
-    artifact_id: "navigation-common-macosarm64"
-    version: "2.9.0-rc01"
-    is_tip_of_tree: true
-  }
-  dependency {
-    group_id: "androidx.navigation"
-    artifact_id: "navigation-common-macosx64"
+    artifact_id: "navigation-common-linuxx64stubs"
     version: "2.9.0-rc01"
     is_tip_of_tree: true
   }
@@ -99,13 +57,13 @@ dependency_list {
 }
 release_checklist {
 }
-build_id: "13381033"
+build_id: "13398994"
 group_id: "androidx.navigation"
 artifact_id: "navigation-common"
 path: "/navigation/navigation-common"
-sha: "d6e65d0748f5d3b973186159372c53e3dd966f00"
+sha: "959d3d6ff971bc2e0dd5fedab0ad33c1d8f859ff"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.navigation-navigation-common-all-13381033-2.9.0-rc01.zip"
+project_zip_path: "per-project-zips/androidx.navigation-navigation-common-all-13398994-2.9.0-rc01.zip"
 kotlin_version: "2.1.20"
 dependency_constraint_list {
   dependency {
@@ -195,21 +153,11 @@ dependency_constraint_list {
 }
 should_publish_docs: true
 is_kmp: true
-target: "androidx_multiplatform_mac"
+target: "androidx"
 kmp_children: "android"
-kmp_children: "desktop"
-kmp_children: "macosx64"
-kmp_children: "macosarm64"
-kmp_children: "linuxarm64"
-kmp_children: "linuxx64"
-kmp_children: "iosx64"
-kmp_children: "iosarm64"
-kmp_children: "iossimulatorarm64"
-test_module_names: ":navigation:navigation-common:desktopTest"
-test_module_names: ":navigation:navigation-common:macosX64Test"
-test_module_names: ":navigation:navigation-common:macosArm64Test"
-test_module_names: ":navigation:navigation-common:linuxX64Test"
-test_module_names: ":navigation:navigation-common:iosX64Test"
-test_module_names: ":navigation:navigation-common:iosSimulatorArm64Test"
+kmp_children: "jvmstubs"
+kmp_children: "linuxx64stubs"
+test_module_names: ":navigation:navigation-common:jvmStubsTest"
+test_module_names: ":navigation:navigation-common:linuxx64StubsTest"
 test_module_names: "navigation-navigation-commonreleaseAndroidTest.xml"
 test_module_names: ":navigation:navigation-common:testReleaseUnitTest"
