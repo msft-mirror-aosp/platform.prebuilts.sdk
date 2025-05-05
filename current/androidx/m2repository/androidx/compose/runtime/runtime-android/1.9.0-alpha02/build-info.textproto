@@ -24,16 +24,22 @@ dependency_list {
     version: "1.9.0-alpha02"
     is_tip_of_tree: true
   }
+  dependency {
+    group_id: "androidx.compose.runtime"
+    artifact_id: "runtime-wasm-js"
+    version: "1.9.0-alpha02"
+    is_tip_of_tree: true
+  }
 }
 release_checklist {
 }
-build_id: "13412782"
+build_id: "13433013"
 group_id: "androidx.compose.runtime"
 artifact_id: "runtime"
 path: "/compose/runtime/runtime"
-sha: "0fbdce2530fad7d34ac65ef453b17d9ccc68e4c2"
+sha: "424043e3cc17dada5fc6b2e30b418ff59d318560"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.compose.runtime-runtime-all-13412782-1.9.0-alpha02.zip"
+project_zip_path: "per-project-zips/androidx.compose.runtime-runtime-all-13433013-1.9.0-alpha02.zip"
 kotlin_version: "2.1.20"
 dependency_constraint_list {
   dependency {
@@ -91,7 +97,9 @@ target: "androidx"
 kmp_children: "android"
 kmp_children: "jvmstubs"
 kmp_children: "linuxx64stubs"
+kmp_children: "wasm-js"
 test_module_names: ":compose:runtime:runtime:jvmStubsTest"
 test_module_names: ":compose:runtime:runtime:linuxx64StubsTest"
+test_module_names: ":compose:runtime:runtime:wasmJsBrowserTest"
 test_module_names: "compose-runtime-runtimereleaseAndroidTest.xml"
 test_module_names: ":compose:runtime:runtime:testReleaseUnitTest"
