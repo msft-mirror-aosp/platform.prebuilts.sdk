@@ -8,11 +8,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>androidx.test.uiautomator</groupId>
   <artifactId>uiautomator</artifactId>
-  <version>2.4.0-alpha01</version>
+  <version>2.4.0-alpha03</version>
   <packaging>aar</packaging>
   <name>UIAutomator</name>
   <description>UI testing framework suitable for cross-app functional UI testing</description>
-  <url>https://developer.android.com/jetpack/androidx/releases/test-uiautomator#2.4.0-alpha01</url>
+  <url>https://developer.android.com/jetpack/androidx/releases/test-uiautomator#2.4.0-alpha03</url>
   <inceptionYear>2012</inceptionYear>
   <organization>
     <name>The Android Open Source Project</name>
@@ -33,6 +33,15 @@
     <connection>scm:git:https://android.googlesource.com/platform/frameworks/support</connection>
     <url>https://cs.android.com/androidx/platform/frameworks/support</url>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>androidx.test.uiautomator</groupId>
+        <artifactId>uiautomator-shell</artifactId>
+        <version>2.4.0-alpha03</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>androidx.tracing</groupId>
@@ -47,15 +56,21 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>org.jspecify</groupId>
       <artifactId>jspecify</artifactId>
       <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
+      <groupId>androidx.test</groupId>
+      <artifactId>core</artifactId>
+      <version>1.7.0-alpha03</version>
       <scope>runtime</scope>
     </dependency>
   </dependencies>
