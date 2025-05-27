@@ -1,0 +1,47 @@
+version: "1.0.0-alpha01"
+dependency_list {
+  dependency {
+    group_id: "androidx.tracing"
+    artifact_id: "tracing-driver"
+    version: "1.0.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.tracing"
+    artifact_id: "tracing-driver-wire-android"
+    version: "1.0.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.tracing"
+    artifact_id: "tracing-driver-wire-jvm"
+    version: "1.0.0-alpha01"
+    is_tip_of_tree: true
+  }
+}
+release_checklist {
+}
+build_id: "13552626"
+group_id: "androidx.tracing"
+artifact_id: "tracing-driver-wire"
+path: "/tracing/tracing-driver-wire"
+sha: "de219c8c3eeeab06b16a4a2be76a7ceaa65b44b8"
+require_same_version_group_build: true
+project_zip_path: "per-project-zips/androidx.tracing-tracing-driver-wire-all-13552626-1.0.0-alpha01.zip"
+kotlin_version: "2.1.21"
+dependency_constraint_list {
+  dependency {
+    group_id: "androidx.tracing"
+    artifact_id: "tracing-driver"
+    version: "1.0.0-alpha01"
+    is_tip_of_tree: true
+  }
+}
+should_publish_docs: true
+is_kmp: true
+target: "androidx"
+kmp_children: "jvm"
+kmp_children: "android"
+test_module_names: ":tracing:tracing-driver-wire:jvmTest"
+test_module_names: "tracing-tracing-driver-wirereleaseAndroidTest.xml"
+test_module_names: ":tracing:tracing-driver-wire:testReleaseUnitTest"
