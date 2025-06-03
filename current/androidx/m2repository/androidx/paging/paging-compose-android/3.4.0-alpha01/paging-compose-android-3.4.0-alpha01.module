@@ -12,17 +12,18 @@
   "createdBy": {
     "gradle": {
       "version": "8.14",
-      "buildId:": "13552626"
+      "buildId:": "13588622"
     }
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "androidApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -123,23 +124,24 @@
       ],
       "files": [
         {
-          "name": "paging-compose-release.aar",
+          "name": "paging-compose.aar",
           "url": "paging-compose-android-3.4.0-alpha01.aar",
-          "size": 28183,
-          "sha512": "f01da4c8c246282135723d3bde9b6e112f24f153fed9ac233029d3b15343d079df0e55b499e093e04f3e5542948da09f30a293a25db44d4f8b843a29be032aa5",
-          "sha256": "768ee0d04592f29380e312f573b3fb45018dc1472f295b11fdff08780255d819",
-          "sha1": "874c9bec4d58dfabc10ab9506b6592be7fb19ee9",
-          "md5": "3a67142d43d402beb2933a2ba82e9def"
+          "size": 27147,
+          "sha512": "155f0ff2836d7c113bfacad4510e7cc3e6da047506ce2d7ef0600c8ef1316e6fc9fa4ce0c056dd321ed7224c5ea3c8acbbe2a061d4130ba6d12c9d001d987e60",
+          "sha256": "c52d10b93a85864e8ac2f514bc7edf8f255914e9f9f49a04256c5885cbfddab6",
+          "sha1": "68e58a658671dcf1182cfb9a24259585baa3d416",
+          "md5": "9b7e7741fe365e6561291bd1b98de4d6"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "androidRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -147,81 +149,25 @@
           "module": "foundation",
           "version": {
             "requires": "1.5.0"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "androidx.compose.runtime",
           "module": "runtime",
           "version": {
             "requires": "1.5.0"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "androidx.paging",
           "module": "paging-common",
           "version": {
             "requires": "3.4.0-alpha01"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          "module": "kotlin-stdlib"
         }
       ],
       "dependencyConstraints": [
@@ -307,26 +253,26 @@
       ],
       "files": [
         {
-          "name": "paging-compose-release.aar",
+          "name": "paging-compose.aar",
           "url": "paging-compose-android-3.4.0-alpha01.aar",
-          "size": 28183,
-          "sha512": "f01da4c8c246282135723d3bde9b6e112f24f153fed9ac233029d3b15343d079df0e55b499e093e04f3e5542948da09f30a293a25db44d4f8b843a29be032aa5",
-          "sha256": "768ee0d04592f29380e312f573b3fb45018dc1472f295b11fdff08780255d819",
-          "sha1": "874c9bec4d58dfabc10ab9506b6592be7fb19ee9",
-          "md5": "3a67142d43d402beb2933a2ba82e9def"
+          "size": 27147,
+          "sha512": "155f0ff2836d7c113bfacad4510e7cc3e6da047506ce2d7ef0600c8ef1316e6fc9fa4ce0c056dd321ed7224c5ea3c8acbbe2a061d4130ba6d12c9d001d987e60",
+          "sha256": "c52d10b93a85864e8ac2f514bc7edf8f255914e9f9f49a04256c5885cbfddab6",
+          "sha1": "68e58a658671dcf1182cfb9a24259585baa3d416",
+          "md5": "9b7e7741fe365e6561291bd1b98de4d6"
         }
       ]
     },
     {
-      "name": "releaseSourcesElements-published",
+      "name": "androidSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "fake-sources",
+        "org.gradle.docstype": "sources",
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencyConstraints": [
         {
@@ -404,15 +350,6 @@
       ],
       "files": [
         {
-          "name": "paging-compose-3.4.0-alpha01-samples-sources.jar",
-          "url": "paging-compose-android-3.4.0-alpha01-samples-sources.jar",
-          "size": 10343,
-          "sha512": "799d05e945f4a99440b41c20bc3e8a0fd5496e81945dea3e3c8aba2ee3055604a5272e5f0159ec5bc36b91615ecca44d91cde83298fd5d249c0816b5cba8c5aa",
-          "sha256": "04dae2fcceeb32a48d41d9db3c7895ddd0497b25e55d23cce4c215a2cfe68a83",
-          "sha1": "9f605971897e5a35501e60536a3f483611b1b7fa",
-          "md5": "d752e0088ff6688804d7a77f45d305aa"
-        },
-        {
           "name": "paging-compose-android-3.4.0-alpha01-sources.jar",
           "url": "paging-compose-android-3.4.0-alpha01-sources.jar",
           "size": 11230,
@@ -420,6 +357,15 @@
           "sha256": "a2dc4153d822dd9b78287e1c3b3131af2ebcc25a8bdd046c7995fa3bf7f2698a",
           "sha1": "b521d3e5f2c36ac898dd386c67a1a1cbede75ed5",
           "md5": "e23cb0ce7c9d75163843ef4a44d57374"
+        },
+        {
+          "name": "paging-compose-3.4.0-alpha01-samples-sources.jar",
+          "url": "paging-compose-android-3.4.0-alpha01-samples-sources.jar",
+          "size": 10343,
+          "sha512": "799d05e945f4a99440b41c20bc3e8a0fd5496e81945dea3e3c8aba2ee3055604a5272e5f0159ec5bc36b91615ecca44d91cde83298fd5d249c0816b5cba8c5aa",
+          "sha256": "04dae2fcceeb32a48d41d9db3c7895ddd0497b25e55d23cce4c215a2cfe68a83",
+          "sha1": "9f605971897e5a35501e60536a3f483611b1b7fa",
+          "md5": "d752e0088ff6688804d7a77f45d305aa"
         }
       ]
     }
