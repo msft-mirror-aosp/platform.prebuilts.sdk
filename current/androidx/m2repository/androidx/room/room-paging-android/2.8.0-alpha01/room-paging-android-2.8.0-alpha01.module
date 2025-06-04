@@ -12,17 +12,18 @@
   "createdBy": {
     "gradle": {
       "version": "8.14",
-      "buildId:": "13552626"
+      "buildId:": "13588622"
     }
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "androidApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -191,23 +192,24 @@
       ],
       "files": [
         {
-          "name": "room-paging-release.aar",
+          "name": "room-paging.aar",
           "url": "room-paging-android-2.8.0-alpha01.aar",
-          "size": 45842,
-          "sha512": "94b449975cff65be08e6ae97cff218aaf6ddda8805a2dfb516c3430acfdb7b480dc929d964278ba3b293c05c71fcd3df07ca169319ec19520babe51e60f7f48e",
-          "sha256": "4f977ff2f6646885b8eb521cfbb2bf267ad9030af9d0f9d68ca8e61eb83d16a9",
-          "sha1": "8c415ba83179b7c894961d7ed6c5619938953125",
-          "md5": "4546b401f937cdb159531311f6055ecf"
+          "size": 43518,
+          "sha512": "1cf51899ac0a9edd2366136163fb2ffa4c39871a3cbfc7e08c01b0989359add8c425a5024211b08574761d69fd940d1a1acf8328fcecaac0ae8153a70f1ff758",
+          "sha256": "9e910099fa5c3cf3addf7b402b3e7414d9fc6e3894047a7e97a11855ef983bee",
+          "sha1": "d48fe737c8538e093c2022684c0f18699e53efd1",
+          "md5": "f814f297c69a38b31c249d285a38dcd0"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "androidRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -215,60 +217,18 @@
           "module": "paging-common",
           "version": {
             "requires": "3.3.2"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "androidx.room",
           "module": "room-runtime",
           "version": {
             "requires": "2.8.0-alpha01"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          "module": "kotlin-stdlib"
         }
       ],
       "dependencyConstraints": [
@@ -418,26 +378,26 @@
       ],
       "files": [
         {
-          "name": "room-paging-release.aar",
+          "name": "room-paging.aar",
           "url": "room-paging-android-2.8.0-alpha01.aar",
-          "size": 45842,
-          "sha512": "94b449975cff65be08e6ae97cff218aaf6ddda8805a2dfb516c3430acfdb7b480dc929d964278ba3b293c05c71fcd3df07ca169319ec19520babe51e60f7f48e",
-          "sha256": "4f977ff2f6646885b8eb521cfbb2bf267ad9030af9d0f9d68ca8e61eb83d16a9",
-          "sha1": "8c415ba83179b7c894961d7ed6c5619938953125",
-          "md5": "4546b401f937cdb159531311f6055ecf"
+          "size": 43518,
+          "sha512": "1cf51899ac0a9edd2366136163fb2ffa4c39871a3cbfc7e08c01b0989359add8c425a5024211b08574761d69fd940d1a1acf8328fcecaac0ae8153a70f1ff758",
+          "sha256": "9e910099fa5c3cf3addf7b402b3e7414d9fc6e3894047a7e97a11855ef983bee",
+          "sha1": "d48fe737c8538e093c2022684c0f18699e53efd1",
+          "md5": "f814f297c69a38b31c249d285a38dcd0"
         }
       ]
     },
     {
-      "name": "releaseSourcesElements-published",
+      "name": "androidSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "fake-sources",
+        "org.gradle.docstype": "sources",
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencyConstraints": [
         {

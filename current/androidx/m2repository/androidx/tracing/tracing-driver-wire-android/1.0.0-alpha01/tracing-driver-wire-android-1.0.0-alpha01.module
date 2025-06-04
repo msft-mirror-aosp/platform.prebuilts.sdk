@@ -12,17 +12,18 @@
   "createdBy": {
     "gradle": {
       "version": "8.14",
-      "buildId:": "13552626"
+      "buildId:": "13588622"
     }
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "androidApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -52,23 +53,24 @@
       ],
       "files": [
         {
-          "name": "tracing-driver-wire-release.aar",
+          "name": "tracing-driver-wire.aar",
           "url": "tracing-driver-wire-android-1.0.0-alpha01.aar",
-          "size": 117712,
-          "sha512": "6032610f5245eddd229851fb914119c5ecf867b1176bc3667b51a3913164bfdf044b253fe325a0cf4cb620a5046ae8cbd10e7337d7cc3488f3917d8a40fe457c",
-          "sha256": "f31d8a3464b7af89fedb38bbfd6cecd36d3e79753aae382680058837f5992719",
-          "sha1": "7828389e87ddf581036bd3e74d733f3d39696535",
-          "md5": "543f87f8b7ac9f9dbe6417cf3cdcb54b"
+          "size": 112765,
+          "sha512": "d1695a29371117fcd67876fe846b43f8bc82efb426c5a869f5b2f56c80a0608bf915d86609a3613c26ae7299fb1ab63260c440ef0e535be766d7817247b54d01",
+          "sha256": "ce3816b0c6dbe2a1ecc9540e8916e12b0a2876aea723e746a6920af93d838882",
+          "sha1": "9e6682da10127988d677deb56f5a60e8e609409a",
+          "md5": "522a7ced57d143fd1b00ddaba0ea7be6"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "androidRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -76,63 +78,21 @@
           "module": "tracing-driver",
           "version": {
             "requires": "1.0.0-alpha01"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "com.squareup.okio",
           "module": "okio",
           "version": {
             "requires": "3.9.1"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "com.squareup.wire",
           "module": "wire-runtime",
           "version": {
             "requires": "5.2.1"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         }
       ],
       "dependencyConstraints": [
@@ -147,26 +107,26 @@
       ],
       "files": [
         {
-          "name": "tracing-driver-wire-release.aar",
+          "name": "tracing-driver-wire.aar",
           "url": "tracing-driver-wire-android-1.0.0-alpha01.aar",
-          "size": 117712,
-          "sha512": "6032610f5245eddd229851fb914119c5ecf867b1176bc3667b51a3913164bfdf044b253fe325a0cf4cb620a5046ae8cbd10e7337d7cc3488f3917d8a40fe457c",
-          "sha256": "f31d8a3464b7af89fedb38bbfd6cecd36d3e79753aae382680058837f5992719",
-          "sha1": "7828389e87ddf581036bd3e74d733f3d39696535",
-          "md5": "543f87f8b7ac9f9dbe6417cf3cdcb54b"
+          "size": 112765,
+          "sha512": "d1695a29371117fcd67876fe846b43f8bc82efb426c5a869f5b2f56c80a0608bf915d86609a3613c26ae7299fb1ab63260c440ef0e535be766d7817247b54d01",
+          "sha256": "ce3816b0c6dbe2a1ecc9540e8916e12b0a2876aea723e746a6920af93d838882",
+          "sha1": "9e6682da10127988d677deb56f5a60e8e609409a",
+          "md5": "522a7ced57d143fd1b00ddaba0ea7be6"
         }
       ]
     },
     {
-      "name": "releaseSourcesElements-published",
+      "name": "androidSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "fake-sources",
+        "org.gradle.docstype": "sources",
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencyConstraints": [
         {
