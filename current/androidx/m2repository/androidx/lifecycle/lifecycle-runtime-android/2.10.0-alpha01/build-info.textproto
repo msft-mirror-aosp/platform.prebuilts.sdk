@@ -7,12 +7,6 @@ dependency_list {
     is_tip_of_tree: false
   }
   dependency {
-    group_id: "androidx.arch.core"
-    artifact_id: "core-common"
-    version: "2.2.0"
-    is_tip_of_tree: false
-  }
-  dependency {
     group_id: "androidx.lifecycle"
     artifact_id: "lifecycle-common"
     version: "2.10.0-alpha01"
@@ -50,6 +44,12 @@ dependency_list {
   }
   dependency {
     group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-js"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
     artifact_id: "lifecycle-runtime-linuxarm64"
     version: "2.10.0-alpha01"
     is_tip_of_tree: true
@@ -72,16 +72,76 @@ dependency_list {
     version: "2.10.0-alpha01"
     is_tip_of_tree: true
   }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-mingwx64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-tvosarm64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-tvossimulatorarm64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-tvosx64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-wasm-js"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-watchosarm32"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-watchosarm64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-watchosdevicearm64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-watchossimulatorarm64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
+  dependency {
+    group_id: "androidx.lifecycle"
+    artifact_id: "lifecycle-runtime-watchosx64"
+    version: "2.10.0-alpha01"
+    is_tip_of_tree: true
+  }
 }
 release_checklist {
 }
-build_id: "13588622"
+build_id: "13621151"
 group_id: "androidx.lifecycle"
 artifact_id: "lifecycle-runtime"
 path: "/lifecycle/lifecycle-runtime"
-sha: "834daf76168133eab40c20ef1a4577e6e3ca804a"
+sha: "01c729916ecab8a9b289a8f1dfb87680841cee41"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.lifecycle-lifecycle-runtime-all-13588622-2.10.0-alpha01.zip"
+project_zip_path: "per-project-zips/androidx.lifecycle-lifecycle-runtime-all-13621151-2.10.0-alpha01.zip"
 kotlin_version: "2.1.21"
 dependency_constraint_list {
   dependency {
@@ -211,11 +271,29 @@ kmp_children: "linuxx64"
 kmp_children: "iosx64"
 kmp_children: "iosarm64"
 kmp_children: "iossimulatorarm64"
+kmp_children: "watchosx64"
+kmp_children: "watchosarm32"
+kmp_children: "watchosarm64"
+kmp_children: "watchosdevicearm64"
+kmp_children: "watchossimulatorarm64"
+kmp_children: "tvosx64"
+kmp_children: "tvosarm64"
+kmp_children: "tvossimulatorarm64"
+kmp_children: "mingwx64"
+kmp_children: "js"
+kmp_children: "wasm-js"
 test_module_names: ":lifecycle:lifecycle-runtime:desktopTest"
 test_module_names: ":lifecycle:lifecycle-runtime:macosX64Test"
 test_module_names: ":lifecycle:lifecycle-runtime:macosArm64Test"
 test_module_names: ":lifecycle:lifecycle-runtime:linuxX64Test"
 test_module_names: ":lifecycle:lifecycle-runtime:iosX64Test"
 test_module_names: ":lifecycle:lifecycle-runtime:iosSimulatorArm64Test"
-test_module_names: "lifecycle-lifecycle-runtimereleaseAndroidTest.xml"
-test_module_names: ":lifecycle:lifecycle-runtime:testReleaseUnitTest"
+test_module_names: ":lifecycle:lifecycle-runtime:watchosX64Test"
+test_module_names: ":lifecycle:lifecycle-runtime:watchosSimulatorArm64Test"
+test_module_names: ":lifecycle:lifecycle-runtime:tvosX64Test"
+test_module_names: ":lifecycle:lifecycle-runtime:tvosSimulatorArm64Test"
+test_module_names: ":lifecycle:lifecycle-runtime:mingwX64Test"
+test_module_names: ":lifecycle:lifecycle-runtime:jsBrowserTest"
+test_module_names: ":lifecycle:lifecycle-runtime:wasmJsBrowserTest"
+test_module_names: "lifecycle-lifecycle-runtimeandroidInstrumentedTest.xml"
+test_module_names: ":lifecycle:lifecycle-runtime:testAndroidHostTest"
