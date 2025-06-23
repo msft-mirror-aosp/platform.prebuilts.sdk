@@ -1327,6 +1327,8 @@ def main():
                 build_id=build_id.url_id,
                 local_mode='--local_mode' if args.local_mode else '')
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
+            os.symlink(args.finalize_sdk, "temp_latest")
+            os.rename("temp_latest", "latest")
         if args.buildtools:
             if update_buildtools('sdk-sdk_mac', 'darwin', build_id, args.beyond_corp) \
                     and update_buildtools('sdk', 'linux', build_id, args.beyond_corp) \
