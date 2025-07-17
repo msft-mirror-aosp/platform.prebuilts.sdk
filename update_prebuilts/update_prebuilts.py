@@ -23,7 +23,6 @@ except ImportError:
 
 from urllib import request
 from shutil import which
-from distutils.version import LooseVersion
 from pathlib import Path
 from io import StringIO
 from typing import Iterable, Optional
