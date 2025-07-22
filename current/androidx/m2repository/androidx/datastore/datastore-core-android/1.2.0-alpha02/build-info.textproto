@@ -111,13 +111,13 @@ dependency_list {
 }
 release_checklist {
 }
-build_id: "13740253"
+build_id: "13808536"
 group_id: "androidx.datastore"
 artifact_id: "datastore-core"
 path: "/datastore/datastore-core"
-sha: "50823057bff756367f94902b9f2de0aac14375cc"
+sha: "0f68348566b1ec6d869afcc8b151cddf0b7409be"
 require_same_version_group_build: true
-project_zip_path: "per-project-zips/androidx.datastore-datastore-core-all-13740253-1.2.0-alpha02.zip"
+project_zip_path: "per-project-zips/androidx.datastore-datastore-core-all-13808536-1.2.0-alpha02.zip"
 kotlin_version: "2.1.21"
 dependency_constraint_list {
   dependency {
@@ -190,6 +190,7 @@ dependency_constraint_list {
 should_publish_docs: true
 is_kmp: true
 target: "androidx_multiplatform_mac"
+kmp_children: "android"
 kmp_children: "jvm"
 kmp_children: "macosx64"
 kmp_children: "macosarm64"
@@ -206,7 +207,6 @@ kmp_children: "watchossimulatorarm64"
 kmp_children: "tvosx64"
 kmp_children: "tvosarm64"
 kmp_children: "tvossimulatorarm64"
-kmp_children: "android"
 test_module_names: ":datastore:datastore-core:jvmTest"
 test_module_names: ":datastore:datastore-core:macosX64Test"
 test_module_names: ":datastore:datastore-core:macosArm64Test"
@@ -217,5 +217,5 @@ test_module_names: ":datastore:datastore-core:watchosX64Test"
 test_module_names: ":datastore:datastore-core:watchosSimulatorArm64Test"
 test_module_names: ":datastore:datastore-core:tvosX64Test"
 test_module_names: ":datastore:datastore-core:tvosSimulatorArm64Test"
-test_module_names: "datastore-datastore-corereleaseAndroidTest.xml"
-test_module_names: ":datastore:datastore-core:testReleaseUnitTest"
+test_module_names: "datastore-datastore-coreandroidInstrumentedTest.xml"
+test_module_names: ":datastore:datastore-core:testAndroidHostTest"
