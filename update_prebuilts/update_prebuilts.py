@@ -1196,6 +1196,9 @@ def main():
     parser.add_argument(
         '--local_mode', action="store_true",
         help='Local mode: use locally built artifacts and don\'t upload the result to Gerrit.')
+    parser.add_argument(
+        '--ext_build_id', type=int,
+        help='Custom build id to use for ext finalization.')
     rm(temp_dir)
 
     args = parser.parse_args()
@@ -1219,6 +1222,9 @@ def main():
         sys.exit(1)
     if args.finalize_sdk and not args.bug:
         parser.error('Specifying a bug ID with --bug is required when finalizing an SDK.')
+        sys.exit(1)
+    if args.ext_build_id and (args.finalize_extension is None):
+        parser.error('Can\'t specify custom build id for ext finalization without finalizing extensions')
         sys.exit(1)
 
     # Validate the build environment for POM-dependent targets.
@@ -1323,7 +1329,7 @@ def main():
                 readme=readme,
                 bug=args.bug,
                 extension_version=args.finalize_extension,
-                build_id=build_id.url_id,
+                build_id=args.ext_build_id if args.ext_build_id else build_id.url_id,
                 local_mode='--local_mode' if args.local_mode else '')
             subprocess.check_call(shlex.split(cmd), cwd=repo_root_dir.resolve())
             os.symlink(args.finalize_sdk, "temp_latest")
