@@ -1039,16 +1039,16 @@ def update_framework(target, build_id, sdk_dir, beyond_corp, local_mode):
     return True
 
 
-def update_makefile(build_id):
-    template = '"%s",\n\
-        "current"'
+def update_makefile_if_needed(build_id):
+    replacement = '"%s",\n\
+        "current"' % build_id
     makefile = os.path.join(git_dir, 'Android.bp')
-
     with open(makefile, 'r+') as f:
-        contents = f.read().replace('"current"', template % build_id)
+        contents = f.read()
+        if contents.find(replacement) >= 0:
+            return True
         f.seek(0)
-        f.write(contents)
-
+        f.write(contents.replace('"current"', replacement))
     return True
 
 
@@ -1062,7 +1062,7 @@ def finalize_sdk(target, build_id, sdk_version, beyond_corp, local_mode):
         if not fetch_artifacts(target, build_id, artifact_to_path, beyond_corp, local_mode):
             return False
 
-    return update_framework(target, build_id, target_finalize_dir, beyond_corp, local_mode) and update_makefile(
+    return update_framework(target, build_id, target_finalize_dir, beyond_corp, local_mode) and update_makefile_if_needed(
         target_finalize_dir)
 
 
