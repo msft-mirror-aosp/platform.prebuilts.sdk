@@ -26,12 +26,12 @@ package android.app {
   }
 
   public class ActivityManager {
-    method @RequiresPermission(android.Manifest.permission.SET_ACTIVITY_WATCHER) public void addHomeVisibilityListener(@NonNull java.util.concurrent.Executor, @NonNull android.app.HomeVisibilityListener);
-    method @NonNull @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) public int[] getUidFrozenState(@NonNull int[]);
-    method @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) public void registerUidFrozenStateChangedCallback(@NonNull java.util.concurrent.Executor, @NonNull android.app.ActivityManager.UidFrozenStateChangedCallback);
-    method @RequiresPermission(android.Manifest.permission.SET_ACTIVITY_WATCHER) public void removeHomeVisibilityListener(@NonNull android.app.HomeVisibilityListener);
-    method @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) public void unregisterUidFrozenStateChangedCallback(@NonNull android.app.ActivityManager.UidFrozenStateChangedCallback);
-    method @RequiresPermission(android.Manifest.permission.CHANGE_CONFIGURATION) public boolean updateMccMncConfiguration(@NonNull String, @NonNull String);
+    method @RequiresPermission("android.permission.SET_ACTIVITY_WATCHER") public void addHomeVisibilityListener(@NonNull java.util.concurrent.Executor, @NonNull android.app.HomeVisibilityListener);
+    method @NonNull @RequiresPermission("android.permission.PACKAGE_USAGE_STATS") public int[] getUidFrozenState(@NonNull int[]);
+    method @RequiresPermission("android.permission.PACKAGE_USAGE_STATS") public void registerUidFrozenStateChangedCallback(@NonNull java.util.concurrent.Executor, @NonNull android.app.ActivityManager.UidFrozenStateChangedCallback);
+    method @RequiresPermission("android.permission.SET_ACTIVITY_WATCHER") public void removeHomeVisibilityListener(@NonNull android.app.HomeVisibilityListener);
+    method @RequiresPermission("android.permission.PACKAGE_USAGE_STATS") public void unregisterUidFrozenStateChangedCallback(@NonNull android.app.ActivityManager.UidFrozenStateChangedCallback);
+    method @RequiresPermission("android.permission.CHANGE_CONFIGURATION") public boolean updateMccMncConfiguration(@NonNull String, @NonNull String);
   }
 
   public static interface ActivityManager.UidFrozenStateChangedCallback {
@@ -71,19 +71,19 @@ package android.app {
   }
 
   public class StatusBarManager {
-    method @RequiresPermission(android.Manifest.permission.STATUS_BAR) public void setExpansionDisabledForSimNetworkLock(boolean);
+    method @RequiresPermission("android.permission.STATUS_BAR") public void setExpansionDisabledForSimNetworkLock(boolean);
   }
 
 }
 
 package android.app.admin {
 
-  public class DevicePolicyManager {
-    method @RequiresPermission(anyOf={android.Manifest.permission.MANAGE_USERS, android.Manifest.permission.INTERACT_ACROSS_USERS}) public void acknowledgeNewUserDisclaimer();
-    method @Nullable @RequiresPermission(anyOf={android.Manifest.permission.MANAGE_USERS, android.Manifest.permission.INTERACT_ACROSS_USERS}) public android.os.UserHandle getLogoutUser();
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) public class DevicePolicyManager {
+    method @RequiresPermission(anyOf={"android.permission.MANAGE_USERS", "android.permission.INTERACT_ACROSS_USERS"}) public void acknowledgeNewUserDisclaimer();
+    method @Nullable @RequiresPermission(anyOf={"android.permission.MANAGE_USERS", "android.permission.INTERACT_ACROSS_USERS"}) public android.os.UserHandle getLogoutUser();
     method public boolean hasManagedProfileCallerIdAccess(@NonNull android.os.UserHandle, @NonNull String);
     method public boolean hasManagedProfileContactsAccess(@NonNull android.os.UserHandle, @NonNull String);
-    method @RequiresPermission(anyOf={android.Manifest.permission.MANAGE_USERS, android.Manifest.permission.INTERACT_ACROSS_USERS}) public int logoutUser();
+    method @RequiresPermission(anyOf={"android.permission.MANAGE_USERS", "android.permission.INTERACT_ACROSS_USERS"}) public int logoutUser();
     field public static final String ACTION_SHOW_NEW_USER_DISCLAIMER = "android.app.action.SHOW_NEW_USER_DISCLAIMER";
   }
 
@@ -234,7 +234,7 @@ package android.content {
   }
 
   public abstract class ContentResolver {
-    method @RequiresPermission(value=android.Manifest.permission.INTERACT_ACROSS_USERS_FULL, conditional=true) public final void registerContentObserverAsUser(@NonNull android.net.Uri, boolean, @NonNull android.database.ContentObserver, @NonNull android.os.UserHandle);
+    method @RequiresPermission(value="android.permission.INTERACT_ACROSS_USERS_FULL", conditional=true) public final void registerContentObserverAsUser(@NonNull android.net.Uri, boolean, @NonNull android.database.ContentObserver, @NonNull android.os.UserHandle);
   }
 
   public abstract class Context {
@@ -290,9 +290,9 @@ package android.devicelock {
 
 package android.hardware.usb {
 
-  public class UsbManager {
-    method @RequiresPermission(android.Manifest.permission.MANAGE_USB) public int getGadgetHalVersion();
-    method @RequiresPermission(android.Manifest.permission.MANAGE_USB) public int getUsbHalVersion();
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) public class UsbManager {
+    method @RequiresPermission("android.permission.MANAGE_USB") public int getGadgetHalVersion();
+    method @RequiresPermission("android.permission.MANAGE_USB") public int getUsbHalVersion();
     field public static final int GADGET_HAL_NOT_SUPPORTED = -1; // 0xffffffff
     field public static final int GADGET_HAL_V1_0 = 10; // 0xa
     field public static final int GADGET_HAL_V1_1 = 11; // 0xb
@@ -329,6 +329,16 @@ package android.location {
 
 package android.media {
 
+  public class AudioDeviceVolumeManager {
+    method @RequiresPermission(anyOf={"android.permission.MODIFY_AUDIO_ROUTING", "android.permission.MODIFY_AUDIO_SETTINGS_PRIVILEGED", "android.permission.BLUETOOTH_PRIVILEGED", android.Manifest.permission.BLUETOOTH_STACK}) public void setDeviceAbsoluteMultiVolumeBehavior(@NonNull android.media.AudioDeviceAttributes, @NonNull java.util.List<android.media.VolumeInfo>, @NonNull java.util.concurrent.Executor, @NonNull android.media.AudioDeviceVolumeManager.OnAudioDeviceVolumeChangedListener);
+    method @RequiresPermission(anyOf={"android.permission.MODIFY_AUDIO_ROUTING", "android.permission.MODIFY_AUDIO_SETTINGS_PRIVILEGED", "android.permission.BLUETOOTH_PRIVILEGED", android.Manifest.permission.BLUETOOTH_STACK}) public void setDeviceAbsoluteVolumeBehavior(@NonNull android.media.AudioDeviceAttributes, @NonNull android.media.VolumeInfo, @NonNull java.util.concurrent.Executor, @NonNull android.media.AudioDeviceVolumeManager.OnAudioDeviceVolumeChangedListener);
+  }
+
+  public static interface AudioDeviceVolumeManager.OnAudioDeviceVolumeChangedListener {
+    method public void onAudioDeviceVolumeAdjusted(@NonNull android.media.AudioDeviceAttributes, @NonNull android.media.VolumeInfo, int, int);
+    method public void onAudioDeviceVolumeChanged(@NonNull android.media.AudioDeviceAttributes, @NonNull android.media.VolumeInfo);
+  }
+
   public class AudioManager {
     method public void adjustStreamVolumeForUid(int, int, int, @NonNull String, int, int, int);
     method public void adjustSuggestedStreamVolumeForUid(int, int, int, @NonNull String, int, int, int);
@@ -350,6 +360,7 @@ package android.media {
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createA2dpInfo(boolean, int);
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createA2dpSinkInfo(int);
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createHearingAidInfo(boolean);
+    method @NonNull public static android.media.BluetoothProfileConnectionInfo createHfpInfo();
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createLeAudioInfo(boolean, boolean);
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createLeAudioOutputInfo(boolean, int);
     method public int describeContents();
@@ -545,7 +556,8 @@ package android.net {
     method @NonNull public static java.time.Duration getMobileDataActivityTimeout(@NonNull android.content.Context, @NonNull java.time.Duration);
     method public static boolean getMobileDataAlwaysOn(@NonNull android.content.Context, boolean);
     method @NonNull public static java.util.Set<java.lang.Integer> getMobileDataPreferredUids(@NonNull android.content.Context);
-    method public static int getNetworkAvoidBadWifi(@NonNull android.content.Context);
+    method @Deprecated public static int getNetworkAvoidBadWifi(@NonNull android.content.Context);
+    method public static boolean getNetworkAvoidBadWifi(@NonNull android.content.Context, int);
     method @Nullable public static String getNetworkMeteredMultipathPreference(@NonNull android.content.Context);
     method public static int getNetworkSwitchNotificationMaximumDailyCount(@NonNull android.content.Context, int);
     method @NonNull public static java.time.Duration getNetworkSwitchNotificationRateDuration(@NonNull android.content.Context, @NonNull java.time.Duration);
@@ -566,7 +578,8 @@ package android.net {
     method public static void setMobileDataActivityTimeout(@NonNull android.content.Context, @NonNull java.time.Duration);
     method public static void setMobileDataAlwaysOn(@NonNull android.content.Context, boolean);
     method public static void setMobileDataPreferredUids(@NonNull android.content.Context, @NonNull java.util.Set<java.lang.Integer>);
-    method public static void setNetworkAvoidBadWifi(@NonNull android.content.Context, int);
+    method @Deprecated public static void setNetworkAvoidBadWifi(@NonNull android.content.Context, int);
+    method public static void setNetworkAvoidBadWifi(@NonNull android.content.Context, int, int);
     method public static void setNetworkMeteredMultipathPreference(@NonNull android.content.Context, @NonNull String);
     method public static void setNetworkSwitchNotificationMaximumDailyCount(@NonNull android.content.Context, @IntRange(from=0) int);
     method public static void setNetworkSwitchNotificationRateDuration(@NonNull android.content.Context, @NonNull java.time.Duration);
@@ -576,6 +589,7 @@ package android.net {
     method public static void setUidsAllowedOnRestrictedNetworks(@NonNull android.content.Context, @NonNull java.util.Set<java.lang.Integer>);
     method public static void setWifiAlwaysRequested(@NonNull android.content.Context, boolean);
     method public static void setWifiDataActivityTimeout(@NonNull android.content.Context, @NonNull java.time.Duration);
+    method public static boolean shouldShowAvoidBadWifiToggle(@NonNull android.content.Context, int);
     field public static final int CAPTIVE_PORTAL_MODE_AVOID = 2; // 0x2
     field public static final int CAPTIVE_PORTAL_MODE_IGNORE = 0; // 0x0
     field public static final int CAPTIVE_PORTAL_MODE_PROMPT = 1; // 0x1
@@ -691,13 +705,13 @@ package android.net {
   public class NetworkPolicyManager {
     method @RequiresPermission(android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK) public int getMultipathPreference(@NonNull android.net.Network);
     method @RequiresPermission(android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK) public int getRestrictBackgroundStatus(int);
-    method @Nullable @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_STACK}) public android.telephony.SubscriptionPlan getSubscriptionPlan(@NonNull android.net.NetworkTemplate);
-    method @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public boolean isUidNetworkingBlocked(int, boolean);
-    method @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public boolean isUidRestrictedOnMeteredNetworks(int);
-    method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_STACK}) public void notifyStatsProviderLimitReached();
-    method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_STACK}) public void notifyStatsProviderWarningReached();
-    method @Deprecated @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public void registerNetworkPolicyCallback(@Nullable java.util.concurrent.Executor, @NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
-    method @Deprecated @RequiresPermission(android.Manifest.permission.OBSERVE_NETWORK_POLICY) public void unregisterNetworkPolicyCallback(@NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
+    method @Nullable @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_STACK"}) public android.telephony.SubscriptionPlan getSubscriptionPlan(@NonNull android.net.NetworkTemplate);
+    method @RequiresPermission("android.permission.OBSERVE_NETWORK_POLICY") public boolean isUidNetworkingBlocked(int, boolean);
+    method @RequiresPermission("android.permission.OBSERVE_NETWORK_POLICY") public boolean isUidRestrictedOnMeteredNetworks(int);
+    method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_STACK"}) public void notifyStatsProviderLimitReached();
+    method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_STACK"}) public void notifyStatsProviderWarningReached();
+    method @Deprecated @RequiresPermission("android.permission.OBSERVE_NETWORK_POLICY") public void registerNetworkPolicyCallback(@Nullable java.util.concurrent.Executor, @NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
+    method @Deprecated @RequiresPermission("android.permission.OBSERVE_NETWORK_POLICY") public void unregisterNetworkPolicyCallback(@NonNull android.net.NetworkPolicyManager.NetworkPolicyCallback);
   }
 
   @Deprecated public static interface NetworkPolicyManager.NetworkPolicyCallback {
@@ -777,6 +791,7 @@ package android.net {
     method public int getRatType();
     method public int getRoaming();
     method @NonNull public java.util.Set<java.lang.String> getSubscriberIds();
+    method public int getTransportType();
     method @NonNull public java.util.Set<java.lang.String> getWifiNetworkKeys();
     method public boolean matches(@NonNull android.net.NetworkIdentity);
     method public void writeToParcel(@NonNull android.os.Parcel, int);
@@ -796,6 +811,7 @@ package android.net {
   }
 
   public static final class NetworkTemplate.Builder {
+    ctor public NetworkTemplate.Builder();
     ctor public NetworkTemplate.Builder(int);
     method @NonNull public android.net.NetworkTemplate build();
     method @NonNull public android.net.NetworkTemplate.Builder setDefaultNetworkStatus(int);
@@ -804,6 +820,7 @@ package android.net {
     method @NonNull public android.net.NetworkTemplate.Builder setRatType(int);
     method @NonNull public android.net.NetworkTemplate.Builder setRoaming(int);
     method @NonNull public android.net.NetworkTemplate.Builder setSubscriberIds(@NonNull java.util.Set<java.lang.String>);
+    method @NonNull public android.net.NetworkTemplate.Builder setTransportType(int);
     method @NonNull public android.net.NetworkTemplate.Builder setWifiNetworkKeys(@NonNull java.util.Set<java.lang.String>);
   }
 
@@ -812,9 +829,9 @@ package android.net {
   }
 
   public class PacProxyManager {
-    method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_STACK, android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_SETTINGS}) public void addPacProxyInstalledListener(@NonNull java.util.concurrent.Executor, @NonNull android.net.PacProxyManager.PacProxyInstalledListener);
-    method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_STACK, android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_SETTINGS}) public void removePacProxyInstalledListener(@NonNull android.net.PacProxyManager.PacProxyInstalledListener);
-    method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_STACK, android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_SETTINGS}) public void setCurrentProxyScriptUrl(@Nullable android.net.ProxyInfo);
+    method @RequiresPermission(anyOf={"android.permission.NETWORK_STACK", android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_SETTINGS"}) public void addPacProxyInstalledListener(@NonNull java.util.concurrent.Executor, @NonNull android.net.PacProxyManager.PacProxyInstalledListener);
+    method @RequiresPermission(anyOf={"android.permission.NETWORK_STACK", android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_SETTINGS"}) public void removePacProxyInstalledListener(@NonNull android.net.PacProxyManager.PacProxyInstalledListener);
+    method @RequiresPermission(anyOf={"android.permission.NETWORK_STACK", android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_SETTINGS"}) public void setCurrentProxyScriptUrl(@Nullable android.net.ProxyInfo);
   }
 
   public static interface PacProxyManager.PacProxyInstalledListener {
@@ -947,7 +964,7 @@ package android.net {
     field @NonNull public static final android.os.Parcelable.Creator<android.net.UnderlyingNetworkInfo> CREATOR;
   }
 
-  public class VpnManager {
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) public class VpnManager {
     field public static final int TYPE_VPN_LEGACY = 3; // 0x3
     field public static final int TYPE_VPN_NONE = -1; // 0xffffffff
     field public static final int TYPE_VPN_OEM = 4; // 0x4
@@ -1030,7 +1047,7 @@ package android.net.vcn {
 
 package android.net.wifi {
 
-  public class WifiManager {
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) public class WifiManager {
     method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_SETTINGS, android.Manifest.permission.OVERRIDE_WIFI_CONFIG}) public void addCustomDhcpOptions(@NonNull android.net.wifi.WifiSsid, @NonNull byte[], @NonNull java.util.List<android.net.DhcpOption>);
     method @RequiresPermission(anyOf={android.Manifest.permission.NETWORK_SETTINGS, android.Manifest.permission.OVERRIDE_WIFI_CONFIG}) public void removeCustomDhcpOptions(@NonNull android.net.wifi.WifiSsid, @NonNull byte[]);
   }
@@ -1089,7 +1106,7 @@ package android.os {
   }
 
   public final class BatteryStatsManager {
-    method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, android.Manifest.permission.NETWORK_STACK}) public void reportNetworkInterfaceForTransports(@NonNull String, @NonNull int[]) throws java.lang.RuntimeException;
+    method @RequiresPermission(anyOf={android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK, "android.permission.NETWORK_STACK"}) public void reportNetworkInterfaceForTransports(@NonNull String, @NonNull int[]) throws java.lang.RuntimeException;
   }
 
   public class BluetoothServiceManager {
@@ -1128,6 +1145,8 @@ package android.os {
     method public void invalidateCache();
     method public static void invalidateCache(@NonNull String, @NonNull String);
     method @Nullable public Result query(@NonNull Query);
+    method public static void setCacheTestMode(boolean);
+    field public static final String MODULE_ADSERVICES = "adservices";
     field public static final String MODULE_BLUETOOTH = "bluetooth";
   }
 
@@ -1198,8 +1217,17 @@ package android.os {
 
   public class SystemConfigManager {
     method @NonNull public java.util.List<android.content.ComponentName> getEnabledComponentOverrides(@NonNull String);
-    method @NonNull @RequiresPermission(android.Manifest.permission.MANAGE_ENHANCED_CONFIRMATION_STATES) public java.util.Set<android.content.pm.SignedPackage> getEnhancedConfirmationTrustedInstallers();
-    method @NonNull @RequiresPermission(android.Manifest.permission.MANAGE_ENHANCED_CONFIRMATION_STATES) public java.util.Set<android.content.pm.SignedPackage> getEnhancedConfirmationTrustedPackages();
+    method @NonNull @RequiresPermission("android.permission.MANAGE_ENHANCED_CONFIRMATION_STATES") public java.util.Set<android.content.pm.SignedPackage> getEnhancedConfirmationTrustedInstallers();
+    method @NonNull @RequiresPermission("android.permission.MANAGE_ENHANCED_CONFIRMATION_STATES") public java.util.Set<android.content.pm.SignedPackage> getEnhancedConfirmationTrustedPackages();
+  }
+
+  public final class TelephonyServiceManager {
+    method @NonNull public android.os.TelephonyServiceManager.ServiceRegisterer getPhoneNumberServiceRegisterer();
+  }
+
+  public static final class TelephonyServiceManager.ServiceRegisterer {
+    method @Nullable public android.os.IBinder get();
+    method public void publishBinderService(@NonNull android.os.IBinder);
   }
 
   public final class Trace {
@@ -1243,7 +1271,7 @@ package android.os.storage {
 package android.provider {
 
   public static final class ContactsContract.RawContactsEntity implements android.provider.BaseColumns android.provider.ContactsContract.DataColumns android.provider.ContactsContract.RawContactsColumns {
-    method @NonNull @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS) public static java.util.Map<java.lang.String,java.util.List<android.content.ContentValues>> queryRawContactEntity(@NonNull android.content.ContentResolver, long);
+    method @NonNull @RequiresPermission("android.permission.INTERACT_ACROSS_USERS") public static java.util.Map<java.lang.String,java.util.List<android.content.ContentValues>> queryRawContactEntity(@NonNull android.content.ContentResolver, long);
   }
 
   public final class DeviceConfig {
@@ -1315,18 +1343,18 @@ package android.provider {
   }
 
   public static final class Settings.Config extends android.provider.Settings.NameValueTable {
-    method @RequiresPermission(android.Manifest.permission.MONITOR_DEVICE_CONFIG_ACCESS) public static void clearMonitorCallback(@NonNull android.content.ContentResolver);
-    method @RequiresPermission(android.Manifest.permission.WRITE_DEVICE_CONFIG) public static boolean deleteString(@NonNull String, @NonNull String);
+    method @RequiresPermission("android.permission.MONITOR_DEVICE_CONFIG_ACCESS") public static void clearMonitorCallback(@NonNull android.content.ContentResolver);
+    method @RequiresPermission("android.permission.WRITE_DEVICE_CONFIG") public static boolean deleteString(@NonNull String, @NonNull String);
     method @NonNull public static java.util.Map<java.lang.String,java.lang.String> getAllStrings();
-    method @Nullable @RequiresPermission(android.Manifest.permission.READ_DEVICE_CONFIG) public static String getString(@NonNull String);
-    method @NonNull @RequiresPermission(android.Manifest.permission.READ_DEVICE_CONFIG) public static java.util.Map<java.lang.String,java.lang.String> getStrings(@NonNull String, @NonNull java.util.List<java.lang.String>);
-    method @RequiresPermission(android.Manifest.permission.WRITE_DEVICE_CONFIG) public static int getSyncDisabledMode();
-    method @RequiresPermission(android.Manifest.permission.WRITE_DEVICE_CONFIG) public static boolean putString(@NonNull String, @NonNull String, @Nullable String, boolean);
+    method @Nullable @RequiresPermission("android.permission.READ_DEVICE_CONFIG") public static String getString(@NonNull String);
+    method @NonNull @RequiresPermission("android.permission.READ_DEVICE_CONFIG") public static java.util.Map<java.lang.String,java.lang.String> getStrings(@NonNull String, @NonNull java.util.List<java.lang.String>);
+    method @RequiresPermission("android.permission.WRITE_DEVICE_CONFIG") public static int getSyncDisabledMode();
+    method @RequiresPermission("android.permission.WRITE_DEVICE_CONFIG") public static boolean putString(@NonNull String, @NonNull String, @Nullable String, boolean);
     method public static void registerContentObserver(@Nullable String, boolean, @NonNull android.database.ContentObserver);
-    method @RequiresPermission(android.Manifest.permission.WRITE_DEVICE_CONFIG) public static void resetToDefaults(int, @Nullable String);
-    method @RequiresPermission(android.Manifest.permission.MONITOR_DEVICE_CONFIG_ACCESS) public static void setMonitorCallback(@NonNull android.content.ContentResolver, @NonNull java.util.concurrent.Executor, @NonNull android.provider.DeviceConfig.MonitorCallback);
-    method @RequiresPermission(android.Manifest.permission.WRITE_DEVICE_CONFIG) public static boolean setStrings(@NonNull String, @NonNull java.util.Map<java.lang.String,java.lang.String>) throws android.provider.DeviceConfig.BadConfigException;
-    method @RequiresPermission(android.Manifest.permission.WRITE_DEVICE_CONFIG) public static void setSyncDisabledMode(int);
+    method @RequiresPermission("android.permission.WRITE_DEVICE_CONFIG") public static void resetToDefaults(int, @Nullable String);
+    method @RequiresPermission("android.permission.MONITOR_DEVICE_CONFIG_ACCESS") public static void setMonitorCallback(@NonNull android.content.ContentResolver, @NonNull java.util.concurrent.Executor, @NonNull android.provider.DeviceConfig.MonitorCallback);
+    method @RequiresPermission("android.permission.WRITE_DEVICE_CONFIG") public static boolean setStrings(@NonNull String, @NonNull java.util.Map<java.lang.String,java.lang.String>) throws android.provider.DeviceConfig.BadConfigException;
+    method @RequiresPermission("android.permission.WRITE_DEVICE_CONFIG") public static void setSyncDisabledMode(int);
     method public static void unregisterContentObserver(@NonNull android.database.ContentObserver);
   }
 
@@ -1491,7 +1519,7 @@ package android.system.virtualmachine {
 package android.telecom {
 
   public abstract class ConnectionService extends android.app.Service {
-    method @Nullable @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE) public android.telecom.Connection onCreateUnknownConnection(@NonNull android.telecom.PhoneAccountHandle, @NonNull android.telecom.ConnectionRequest);
+    method @Nullable @RequiresPermission("android.permission.MODIFY_PHONE_STATE") public android.telecom.Connection onCreateUnknownConnection(@NonNull android.telecom.PhoneAccountHandle, @NonNull android.telecom.ConnectionRequest);
   }
 
 }
@@ -1511,9 +1539,18 @@ package android.telephony {
     method public void removeSubscriptionInfoRecord(@NonNull String, int);
   }
 
+  public class TelephonyFrameworkInitializer {
+    method @Nullable public static android.os.TelephonyServiceManager getTelephonyServiceManager();
+  }
+
   public class TelephonyManager {
     method @NonNull public static int[] getAllNetworkTypes();
-    method @NonNull @RequiresPermission(android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE) public java.util.Set<java.lang.String> getPackagesWithCarrierPrivileges();
+    method @NonNull @RequiresPermission("android.permission.READ_PRIVILEGED_PHONE_STATE") public java.util.Set<java.lang.String> getPackagesWithCarrierPrivileges();
+  }
+
+  public final class TelephonyServicesInitializer {
+    method public static void initialize();
+    method public static void registerServiceWrappers();
   }
 
 }
@@ -1728,6 +1765,7 @@ package dalvik.system {
   }
 
   public final class VMDebug {
+    method public static void addApplication(@NonNull String);
     method public static void attachAgent(String, ClassLoader) throws java.io.IOException;
     method public static long countInstancesOfClass(Class, boolean);
     method public static long[] countInstancesOfClasses(Class[], boolean);
@@ -1746,8 +1784,12 @@ package dalvik.system {
     method public static boolean isDebuggingEnabled();
     method public static long lastDebuggerActivity();
     method public static void printLoadedClasses(int);
+    method public static void removeApplication(@NonNull String);
     method public static void resetAllocCount(int);
     method public static void setAllocTrackerStackDepth(int);
+    method public static void setCurrentProcessName(@NonNull String);
+    method public static void setUserId(int);
+    method public static void setWaitingForDebugger(boolean);
     method public static void startAllocCounting();
     method public static void startMethodTracing(String, int, int, boolean, int);
     method public static void startMethodTracing(String, java.io.FileDescriptor, int, int, boolean, int, boolean);
@@ -1786,6 +1828,7 @@ package dalvik.system {
     method public static String getInstructionSet(String);
     method public static dalvik.system.VMRuntime getRuntime();
     method public int getTargetSdkVersion();
+    method public int getThreadNiceness(Thread);
     method public boolean is64Bit();
     method public static boolean is64BitAbi(String);
     method public static boolean is64BitInstructionSet(String);
@@ -1814,6 +1857,7 @@ package dalvik.system {
     method public static void setProcessDataDirectory(String);
     method public static void setProcessPackageName(String);
     method public void setTargetSdkVersion(int);
+    method public boolean setThreadNiceness(Thread, int);
     method public void updateProcessState(int);
     method public String vmInstructionSet();
     method public String vmLibrary();

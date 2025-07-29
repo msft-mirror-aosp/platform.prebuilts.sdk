@@ -1,0 +1,53 @@
+// Signature format: 2.0
+package com.android.server {
+
+  public class PackageWatchdog {
+    method public void dump(@NonNull java.io.PrintWriter);
+    method @NonNull public static com.android.server.PackageWatchdog getInstance(@NonNull android.content.Context);
+    method public static boolean isRecoveryTriggeredReboot();
+    method public void notifyPackageFailure(@NonNull java.util.List<android.content.pm.VersionedPackage>, int);
+    method public void registerHealthObserver(@NonNull java.util.concurrent.Executor, @NonNull com.android.server.PackageWatchdog.PackageHealthObserver);
+    method public void startExplicitHealthCheck(@NonNull java.util.List<java.lang.String>, long, @NonNull com.android.server.PackageWatchdog.PackageHealthObserver);
+    method public void unregisterHealthObserver(@NonNull com.android.server.PackageWatchdog.PackageHealthObserver);
+    field public static final int FAILURE_REASON_APP_CRASH = 3; // 0x3
+    field public static final int FAILURE_REASON_APP_NOT_RESPONDING = 4; // 0x4
+    field public static final int FAILURE_REASON_BOOT_LOOP = 5; // 0x5
+    field public static final int FAILURE_REASON_EXPLICIT_HEALTH_CHECK = 2; // 0x2
+    field public static final int FAILURE_REASON_NATIVE_CRASH = 1; // 0x1
+    field public static final int FAILURE_REASON_UNKNOWN = 0; // 0x0
+    field public static final int MITIGATION_RESULT_SKIPPED = 2; // 0x2
+    field public static final int MITIGATION_RESULT_SUCCESS = 1; // 0x1
+    field public static final int USER_IMPACT_THRESHOLD_HIGH = 71; // 0x47
+    field public static final int USER_IMPACT_THRESHOLD_MEDIUM = 20; // 0x14
+    field public static final int USER_IMPACT_THRESHOLD_NONE = 0; // 0x0
+  }
+
+  public static interface PackageWatchdog.PackageHealthObserver {
+    method @NonNull public String getUniqueIdentifier();
+    method public default boolean isPersistent();
+    method public default boolean mayObservePackage(@NonNull String);
+    method public default int onBootLoop(int);
+    method public default int onExecuteBootLoopMitigation(int);
+    method public int onExecuteHealthCheckMitigation(@Nullable android.content.pm.VersionedPackage, int, int);
+    method public int onHealthCheckFailed(@Nullable android.content.pm.VersionedPackage, int, int);
+  }
+
+}
+
+package com.android.server.rollback {
+
+  public final class RollbackPackageHealthObserver implements com.android.server.PackageWatchdog.PackageHealthObserver {
+    ctor public RollbackPackageHealthObserver(@NonNull android.content.Context);
+    method @NonNull public String getUniqueIdentifier();
+    method public boolean isPersistent();
+    method public boolean mayObservePackage(@NonNull String);
+    method @AnyThread @NonNull public void notifyRollbackAvailable(@NonNull android.content.rollback.RollbackInfo);
+    method @AnyThread public void onBootCompletedAsync();
+    method public int onBootLoop(int);
+    method public int onExecuteBootLoopMitigation(int);
+    method public int onExecuteHealthCheckMitigation(@Nullable android.content.pm.VersionedPackage, int, int);
+    method public int onHealthCheckFailed(@Nullable android.content.pm.VersionedPackage, int, int);
+  }
+
+}
+
