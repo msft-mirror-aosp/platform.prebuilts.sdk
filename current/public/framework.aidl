@@ -18,7 +18,9 @@
 @JavaOnlyStableParcelable parcelable android.adservices.common.AdSelectionSignals;
 @JavaOnlyStableParcelable parcelable android.adservices.common.AdServicesCommonStates;
 @JavaOnlyStableParcelable parcelable android.adservices.common.AdServicesCommonStatesResponse;
+@JavaOnlyStableParcelable parcelable android.adservices.common.AdServicesModuleStatesResponse;
 @JavaOnlyStableParcelable parcelable android.adservices.common.AdServicesStates;
+@JavaOnlyStableParcelable parcelable android.adservices.common.AdServicesUserChoicesResponse;
 @JavaOnlyStableParcelable parcelable android.adservices.common.AdTechIdentifier;
 @JavaOnlyStableParcelable parcelable android.adservices.common.AppInstallFilters;
 @JavaOnlyStableParcelable parcelable android.adservices.common.ComponentAdData;
@@ -74,6 +76,7 @@
 @JavaOnlyStableParcelable parcelable android.app.GameModeConfiguration;
 @JavaOnlyStableParcelable parcelable android.app.GameModeInfo;
 @JavaOnlyStableParcelable parcelable android.app.GameState;
+@JavaOnlyStableParcelable parcelable android.app.HandoffActivityData;
 @JavaOnlyStableParcelable parcelable android.app.InvalidForegroundServiceTypeException;
 @JavaOnlyStableParcelable parcelable android.app.LocaleConfig;
 @JavaOnlyStableParcelable parcelable android.app.MissingForegroundServiceTypeException;
@@ -144,7 +147,9 @@
 @JavaOnlyStableParcelable parcelable android.app.admin.WifiSsidPolicy;
 @JavaOnlyStableParcelable parcelable android.app.ambientcontext.AmbientContextEvent;
 @JavaOnlyStableParcelable parcelable android.app.ambientcontext.AmbientContextEventRequest;
+@JavaOnlyStableParcelable parcelable android.app.appfunctions.AppFunctionAttribution;
 @JavaOnlyStableParcelable parcelable android.app.appfunctions.AppFunctionException;
+@JavaOnlyStableParcelable parcelable android.app.appfunctions.AppFunctionUriGrant;
 @JavaOnlyStableParcelable parcelable android.app.appfunctions.ExecuteAppFunctionRequest;
 @JavaOnlyStableParcelable parcelable android.app.appfunctions.ExecuteAppFunctionResponse;
 @JavaOnlyStableParcelable parcelable android.app.appsearch.AppSearchBlobHandle;
@@ -162,6 +167,7 @@
 @JavaOnlyStableParcelable parcelable android.app.appsearch.SchemaVisibilityConfig;
 @JavaOnlyStableParcelable parcelable android.app.appsearch.SearchResult.EmbeddingMatchInfo;
 @JavaOnlyStableParcelable parcelable android.app.appsearch.SearchResult.MatchInfo;
+@JavaOnlyStableParcelable parcelable android.app.appsearch.SearchResult.MatchRange;
 @JavaOnlyStableParcelable parcelable android.app.appsearch.SearchResult.TextMatchInfo;
 @JavaOnlyStableParcelable parcelable android.app.appsearch.SearchResult;
 @JavaOnlyStableParcelable parcelable android.app.appsearch.SearchSpec;
@@ -194,6 +200,7 @@
 @JavaOnlyStableParcelable parcelable android.app.job.JobParameters;
 @JavaOnlyStableParcelable parcelable android.app.job.JobWorkItem;
 @JavaOnlyStableParcelable parcelable android.app.job.PendingJobReasonsInfo;
+@JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.DmaBufEntry;
 @JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.Feature;
 @JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.FeatureDetails;
 @JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.InferenceInfo;
@@ -235,6 +242,7 @@
 @JavaOnlyStableParcelable parcelable android.app.smartspace.uitemplatedata.SubListTemplateData;
 @JavaOnlyStableParcelable parcelable android.app.smartspace.uitemplatedata.TapAction;
 @JavaOnlyStableParcelable parcelable android.app.smartspace.uitemplatedata.Text;
+@JavaOnlyStableParcelable parcelable android.app.supervision.SupervisionRecoveryInfo;
 @JavaOnlyStableParcelable parcelable android.app.time.ExternalTimeSuggestion;
 @JavaOnlyStableParcelable parcelable android.app.time.TimeCapabilities;
 @JavaOnlyStableParcelable parcelable android.app.time.TimeCapabilitiesAndConfig;
@@ -262,6 +270,7 @@
 @JavaOnlyStableParcelable parcelable android.app.wallpapereffectsgeneration.TexturedMesh;
 @JavaOnlyStableParcelable parcelable android.app.wearable.WearableSensingDataRequest;
 @JavaOnlyStableParcelable parcelable android.apphibernation.HibernationStats;
+@JavaOnlyStableParcelable parcelable android.appwidget.AppWidgetEvent;
 @JavaOnlyStableParcelable parcelable android.appwidget.AppWidgetProviderInfo;
 @JavaOnlyStableParcelable parcelable android.bluetooth.BluetoothActivityEnergyInfo;
 @JavaOnlyStableParcelable parcelable android.bluetooth.BluetoothClass;
@@ -327,10 +336,13 @@
 @JavaOnlyStableParcelable parcelable android.companion.DevicePresenceEvent;
 @JavaOnlyStableParcelable parcelable android.companion.ObservingDevicePresenceRequest;
 @JavaOnlyStableParcelable parcelable android.companion.WifiDeviceFilter;
+@JavaOnlyStableParcelable parcelable android.companion.datatransfer.continuity.RemoteTask;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.ActivityPolicyExemption;
+@JavaOnlyStableParcelable parcelable android.companion.virtual.ViewConfigurationParams;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.VirtualDevice;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.VirtualDeviceParams;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.camera.VirtualCameraConfig;
+@JavaOnlyStableParcelable parcelable android.companion.virtual.camera.VirtualCameraSessionConfig;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.camera.VirtualCameraStreamConfig;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.sensor.VirtualSensor;
 @JavaOnlyStableParcelable parcelable android.companion.virtual.sensor.VirtualSensorAdditionalInfo;
@@ -387,6 +399,7 @@
 @JavaOnlyStableParcelable parcelable android.content.pm.LauncherUserInfo;
 @JavaOnlyStableParcelable parcelable android.content.pm.ModuleInfo;
 @JavaOnlyStableParcelable parcelable android.content.pm.PackageInfo;
+@JavaOnlyStableParcelable parcelable android.content.pm.PackageInstaller.DeveloperVerificationUserConfirmationInfo;
 @JavaOnlyStableParcelable parcelable android.content.pm.PackageInstaller.InstallConstraints;
 @JavaOnlyStableParcelable parcelable android.content.pm.PackageInstaller.InstallConstraintsResult;
 @JavaOnlyStableParcelable parcelable android.content.pm.PackageInstaller.PreapprovalDetails;
@@ -414,6 +427,8 @@
 @JavaOnlyStableParcelable parcelable android.content.pm.VersionedPackage;
 @JavaOnlyStableParcelable parcelable android.content.pm.dependencyinstaller.DependencyInstallerCallback;
 @JavaOnlyStableParcelable parcelable android.content.pm.permission.RuntimePermissionPresentationInfo;
+@JavaOnlyStableParcelable parcelable android.content.pm.verify.developer.DeveloperVerificationSession;
+@JavaOnlyStableParcelable parcelable android.content.pm.verify.developer.DeveloperVerificationStatus;
 @JavaOnlyStableParcelable parcelable android.content.pm.verify.domain.DomainOwner;
 @JavaOnlyStableParcelable parcelable android.content.pm.verify.domain.DomainVerificationInfo;
 @JavaOnlyStableParcelable parcelable android.content.pm.verify.domain.DomainVerificationRequest;
@@ -474,6 +489,8 @@
 @JavaOnlyStableParcelable parcelable android.hardware.HardwareBuffer;
 @JavaOnlyStableParcelable parcelable android.hardware.OverlayProperties;
 @JavaOnlyStableParcelable parcelable android.hardware.SyncFence;
+@JavaOnlyStableParcelable parcelable android.hardware.biometrics.FallbackOption;
+@JavaOnlyStableParcelable parcelable android.hardware.biometrics.IdentityCheckStatus;
 @JavaOnlyStableParcelable parcelable android.hardware.biometrics.PromptContentItemBulletedText;
 @JavaOnlyStableParcelable parcelable android.hardware.biometrics.PromptContentItemPlainText;
 @JavaOnlyStableParcelable parcelable android.hardware.biometrics.PromptContentViewWithMoreOptionsButton;
@@ -700,6 +717,7 @@
 @JavaOnlyStableParcelable parcelable android.media.Session2Command;
 @JavaOnlyStableParcelable parcelable android.media.Session2CommandGroup;
 @JavaOnlyStableParcelable parcelable android.media.Session2Token;
+@JavaOnlyStableParcelable parcelable android.media.SuggestedDeviceInfo;
 @JavaOnlyStableParcelable parcelable android.media.VolumeInfo;
 @JavaOnlyStableParcelable parcelable android.media.VolumePolicy;
 @JavaOnlyStableParcelable parcelable android.media.VolumeShaper.Configuration;
@@ -845,6 +863,7 @@
 @JavaOnlyStableParcelable parcelable android.net.thread.ActiveOperationalDataset;
 @JavaOnlyStableParcelable parcelable android.net.thread.PendingOperationalDataset;
 @JavaOnlyStableParcelable parcelable android.net.thread.ThreadConfiguration;
+@JavaOnlyStableParcelable parcelable android.net.thread.ThreadNetworkSpecifier;
 @JavaOnlyStableParcelable parcelable android.net.vcn.VcnConfig;
 @JavaOnlyStableParcelable parcelable android.net.vcn.VcnNetworkPolicyResult;
 @JavaOnlyStableParcelable parcelable android.net.wifi.BlockingOption;
@@ -1062,6 +1081,7 @@
 @JavaOnlyStableParcelable parcelable android.ranging.uwb.UwbRangingParams;
 @JavaOnlyStableParcelable parcelable android.ranging.wifi.rtt.RttRangingCapabilities;
 @JavaOnlyStableParcelable parcelable android.ranging.wifi.rtt.RttRangingParams;
+@JavaOnlyStableParcelable parcelable android.ranging.wifi.rtt.RttStationRangingParams;
 @JavaOnlyStableParcelable parcelable android.safetycenter.SafetyCenterData;
 @JavaOnlyStableParcelable parcelable android.safetycenter.SafetyCenterEntry.IconAction;
 @JavaOnlyStableParcelable parcelable android.safetycenter.SafetyCenterEntry;
@@ -1129,6 +1149,7 @@
 @JavaOnlyStableParcelable parcelable android.service.carrier.MessagePdu;
 @JavaOnlyStableParcelable parcelable android.service.chooser.ChooserAction;
 @JavaOnlyStableParcelable parcelable android.service.chooser.ChooserResult;
+@JavaOnlyStableParcelable parcelable android.service.chooser.ChooserSessionToken;
 @JavaOnlyStableParcelable parcelable android.service.chooser.ChooserTarget;
 @JavaOnlyStableParcelable parcelable android.service.contentcapture.ActivityEvent;
 @JavaOnlyStableParcelable parcelable android.service.contentcapture.SnapshotData;
@@ -1268,6 +1289,7 @@
 @JavaOnlyStableParcelable parcelable android.telephony.NetworkRegistrationInfo;
 @JavaOnlyStableParcelable parcelable android.telephony.NetworkScanRequest;
 @JavaOnlyStableParcelable parcelable android.telephony.NrVopsSupportInfo;
+@JavaOnlyStableParcelable parcelable android.telephony.ParsedPhoneNumber;
 @JavaOnlyStableParcelable parcelable android.telephony.PhoneCapability;
 @JavaOnlyStableParcelable parcelable android.telephony.PhoneNumberRange;
 @JavaOnlyStableParcelable parcelable android.telephony.PhysicalChannelConfig;
@@ -1403,6 +1425,9 @@
 @JavaOnlyStableParcelable parcelable android.uwb.AngleMeasurement;
 @JavaOnlyStableParcelable parcelable android.uwb.AngleOfArrivalMeasurement;
 @JavaOnlyStableParcelable parcelable android.uwb.DistanceMeasurement;
+@JavaOnlyStableParcelable parcelable android.uwb.LogicalLinkConnectionParams;
+@JavaOnlyStableParcelable parcelable android.uwb.LogicalLinkConnectionRequest;
+@JavaOnlyStableParcelable parcelable android.uwb.LogicalLinkCreationParams;
 @JavaOnlyStableParcelable parcelable android.uwb.RangingMeasurement;
 @JavaOnlyStableParcelable parcelable android.uwb.RangingReport;
 @JavaOnlyStableParcelable parcelable android.uwb.UwbActivityEnergyInfo;
@@ -1526,6 +1551,8 @@
 @JavaOnlyStableParcelable parcelable android.window.DisplayAreaAppearedInfo;
 @JavaOnlyStableParcelable parcelable android.window.DisplayAreaInfo;
 @JavaOnlyStableParcelable parcelable android.window.InputTransferToken;
+@JavaOnlyStableParcelable parcelable android.window.ScreenCapture.ScreenCaptureParams;
+@JavaOnlyStableParcelable parcelable android.window.ScreenCapture.ScreenCaptureResult;
 @JavaOnlyStableParcelable parcelable android.window.TaskAppearedInfo;
 @JavaOnlyStableParcelable parcelable android.window.TaskFragmentCreationParams;
 @JavaOnlyStableParcelable parcelable android.window.TaskFragmentInfo;
