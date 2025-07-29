@@ -26,3 +26,4 @@ latest finalized version for each API surface.
 - 17: Finalized together with Android 36 (all modules)
 - 18: M-2025-06: AD_SERVICES, APPSEARCH, MEDIA_PROVIDER, ON_DEVICE_PERSONALIZATION
 - 19: M-2025-08: HEALTH_FITNESS, MEDIA_PROVIDER, TETHERING
+- 20: Finalized together with Android 36.1 (all modules)
