@@ -12,17 +12,18 @@
   "createdBy": {
     "gradle": {
       "version": "8.14",
-      "buildId:": "13570810"
+      "buildId:": "13583881"
     }
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "androidApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -189,23 +190,24 @@
       ],
       "files": [
         {
-          "name": "ui-util-release.aar",
+          "name": "ui-util.aar",
           "url": "ui-util-android-1.9.0-alpha04.aar",
-          "size": 23230,
-          "sha512": "d54305f776636218ffdfb0a0f2b2599e97507b0425dd9fd8ec3853ae8565985edf4559cdc46fca7ebe1136d4e0ba1fc06eff0403ad730a5b03ded6613fb75d73",
-          "sha256": "c23f6e12a33abe296abe1224669cd5434c553e69107acc8e42c8ea75271b62aa",
-          "sha1": "9366e15c5ad568d398bdbd10260de7ebdf6d913a",
-          "md5": "a19eacf1b03e02043d8f4e0a6ce525cd"
+          "size": 22098,
+          "sha512": "ac0fecb79d32b7a0d3f35533c324118a536949aac082d1f1f63fe94a1de58a1aad150bcb274f18cadc6694d9bd84322b3ccd965650c8740149a4961e76e2e86b",
+          "sha256": "321e46b3e692559ebba5d6574f36a2c6d3914724f1a92adb6154d8909c34cd1d",
+          "sha1": "4fa79ee18d078340daea21ece4496fbf6a7acbcb",
+          "md5": "668abce4c15e2559c5c6e72b9e230a72"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "androidRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
@@ -213,60 +215,18 @@
           "module": "annotation-experimental",
           "version": {
             "requires": "1.4.1"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "androidx.collection",
           "module": "collection",
           "version": {
             "requires": "1.4.3"
-          },
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          }
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
-          "excludes": [
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-stdlib-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-common"
-            },
-            {
-              "group": "org.jetbrains.kotlin",
-              "module": "kotlin-test-annotations-common"
-            }
-          ]
+          "module": "kotlin-stdlib"
         }
       ],
       "dependencyConstraints": [
@@ -432,26 +392,26 @@
       ],
       "files": [
         {
-          "name": "ui-util-release.aar",
+          "name": "ui-util.aar",
           "url": "ui-util-android-1.9.0-alpha04.aar",
-          "size": 23230,
-          "sha512": "d54305f776636218ffdfb0a0f2b2599e97507b0425dd9fd8ec3853ae8565985edf4559cdc46fca7ebe1136d4e0ba1fc06eff0403ad730a5b03ded6613fb75d73",
-          "sha256": "c23f6e12a33abe296abe1224669cd5434c553e69107acc8e42c8ea75271b62aa",
-          "sha1": "9366e15c5ad568d398bdbd10260de7ebdf6d913a",
-          "md5": "a19eacf1b03e02043d8f4e0a6ce525cd"
+          "size": 22098,
+          "sha512": "ac0fecb79d32b7a0d3f35533c324118a536949aac082d1f1f63fe94a1de58a1aad150bcb274f18cadc6694d9bd84322b3ccd965650c8740149a4961e76e2e86b",
+          "sha256": "321e46b3e692559ebba5d6574f36a2c6d3914724f1a92adb6154d8909c34cd1d",
+          "sha1": "4fa79ee18d078340daea21ece4496fbf6a7acbcb",
+          "md5": "668abce4c15e2559c5c6e72b9e230a72"
         }
       ]
     },
     {
-      "name": "releaseSourcesElements-published",
+      "name": "androidSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "fake-sources",
+        "org.gradle.docstype": "sources",
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencyConstraints": [
         {
