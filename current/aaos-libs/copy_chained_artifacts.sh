@@ -1,6 +1,21 @@
 #!/bin/bash
 set -e # Exit on error
 
+echo "ls"
+ls .
+
+echo "ls ./out"
+ls ./out
+
+echo "ls ./out/prebuilt_cached"
+ls ./out/prebuilt_cached
+
+echo "ls ./out/prebuilt_cached/artifacts"
+ls ./out/prebuilt_cached/artifacts
+
+echo "ls ./out/prebuilt_cached/artifacts/car_apps_gradle"
+ls ./out/prebuilt_cached/artifacts/car_apps_gradle
+
 cp out/prebuilt_cached/artifacts/car_apps_gradle/car-apps-common/outputs/aar/car-apps-common-release.aar prebuilts/sdk/current/aaos-libs/car-apps-common.aar
 cp out/prebuilt_cached/artifacts/car_apps_gradle/car-broadcastradio-support/outputs/aar/car-broadcastradio-support-release.aar prebuilts/sdk/current/aaos-libs/car-broadcastradio-support.aar
 cp out/prebuilt_cached/artifacts/car_apps_gradle/car-media-extensions/outputs/aar/car-media-extensions-release.aar prebuilts/sdk/current/aaos-libs/car-media-extensions.aar
