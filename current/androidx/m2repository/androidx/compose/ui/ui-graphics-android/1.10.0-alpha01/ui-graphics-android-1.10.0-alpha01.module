@@ -12,18 +12,17 @@
   "createdBy": {
     "gradle": {
       "version": "8.14",
-      "buildId:": "13770307"
+      "buildId:": "13737533"
     }
   },
   "variants": [
     {
-      "name": "androidApiElements-published",
+      "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
-        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "jvm"
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
       "dependencies": [
         {
@@ -204,24 +203,23 @@
       ],
       "files": [
         {
-          "name": "ui-graphics.aar",
+          "name": "ui-graphics-release.aar",
           "url": "ui-graphics-android-1.10.0-alpha01.aar",
-          "size": 1648273,
-          "sha512": "8804e4bcb32197a94fad5d5ebc9627b80463a39163ca5e9f03e54dcfca3c5652dc86fbab6d751997ab2675c58d0b7a769625e55342a8d4bc57ca5c460e7e6d57",
-          "sha256": "3b448e2e23d1362345cb18f33a784dee9cba2e40e04ca2f08b9c4f0211a7088d",
-          "sha1": "adb95debe58a87b9f96dfa2eb6409073c3acbc8e",
-          "md5": "b2b51810a2f0fd6b9b1a8d863f070daa"
+          "size": 1675706,
+          "sha512": "011a29d95cfa9e8cb7d5b6c5f222b0c5d8f3f644c860c16253503ad0605bb5dd40a20a36b53f656206fc96cc24d5d257fd97881b105ae3ffc04363956ada8a7d",
+          "sha256": "db6a17f893d4f4d789c08621f5860e2a7f0ac7c350d31eac0c2e3c60cb8fad89",
+          "sha1": "238894b9f9efcbbb631f886b23ddab1194bfd79d",
+          "md5": "76b076a25a3e55b9fdf6e6b2da975e84"
         }
       ]
     },
     {
-      "name": "androidRuntimeElements-published",
+      "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.jvm.environment": "android",
-        "org.gradle.libraryelements": "aar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "jvm"
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
       "dependencies": [
         {
@@ -229,60 +227,186 @@
           "module": "annotation",
           "version": {
             "requires": "1.7.0"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.annotation",
           "module": "annotation-experimental",
           "version": {
             "requires": "1.4.1"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.collection",
           "module": "collection",
           "version": {
             "requires": "1.4.2"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.compose.runtime",
           "module": "runtime",
           "version": {
             "requires": "1.10.0-alpha01"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.compose.ui",
           "module": "ui-unit",
           "version": {
             "requires": "1.10.0-alpha01"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.compose.ui",
           "module": "ui-util",
           "version": {
             "requires": "1.10.0-alpha01"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.core",
           "module": "core",
           "version": {
             "requires": "1.12.0"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "androidx.graphics",
           "module": "graphics-path",
           "version": {
             "requires": "1.0.1"
-          }
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib"
+          "module": "kotlin-stdlib",
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
         }
       ],
       "dependencyConstraints": [
@@ -448,18 +572,18 @@
       ],
       "files": [
         {
-          "name": "ui-graphics.aar",
+          "name": "ui-graphics-release.aar",
           "url": "ui-graphics-android-1.10.0-alpha01.aar",
-          "size": 1648273,
-          "sha512": "8804e4bcb32197a94fad5d5ebc9627b80463a39163ca5e9f03e54dcfca3c5652dc86fbab6d751997ab2675c58d0b7a769625e55342a8d4bc57ca5c460e7e6d57",
-          "sha256": "3b448e2e23d1362345cb18f33a784dee9cba2e40e04ca2f08b9c4f0211a7088d",
-          "sha1": "adb95debe58a87b9f96dfa2eb6409073c3acbc8e",
-          "md5": "b2b51810a2f0fd6b9b1a8d863f070daa"
+          "size": 1675706,
+          "sha512": "011a29d95cfa9e8cb7d5b6c5f222b0c5d8f3f644c860c16253503ad0605bb5dd40a20a36b53f656206fc96cc24d5d257fd97881b105ae3ffc04363956ada8a7d",
+          "sha256": "db6a17f893d4f4d789c08621f5860e2a7f0ac7c350d31eac0c2e3c60cb8fad89",
+          "sha1": "238894b9f9efcbbb631f886b23ddab1194bfd79d",
+          "md5": "76b076a25a3e55b9fdf6e6b2da975e84"
         }
       ]
     },
     {
-      "name": "androidSourcesElements-published",
+      "name": "releaseSourcesElements-published",
       "attributes": {
         "org.gradle.category": "documentation",
         "org.gradle.dependency.bundling": "external",
@@ -467,7 +591,7 @@
         "org.gradle.jvm.environment": "android",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "jvm"
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
       "dependencyConstraints": [
         {
@@ -625,15 +749,6 @@
       ],
       "files": [
         {
-          "name": "ui-graphics-android-1.10.0-alpha01-sources.jar",
-          "url": "ui-graphics-android-1.10.0-alpha01-sources.jar",
-          "size": 275455,
-          "sha512": "ca5cd18bc4847c44ccd8b63a4ec0846f56a8840dd7161c7df39bdca68051d672702dcff80acec8d36eb47088282263fcc23bfd308ba595c75c61a17f8707d231",
-          "sha256": "7ab11253b45fb529c63d1f4ca952a1c0d10594be41c2702f529e3fbac30ab438",
-          "sha1": "e3516870ec1d2e0de8ca456961552d59f0ea44f3",
-          "md5": "f373b090206d7c686a49e6410fa21705"
-        },
-        {
           "name": "ui-graphics-1.10.0-alpha01-samples-sources.jar",
           "url": "ui-graphics-android-1.10.0-alpha01-samples-sources.jar",
           "size": 13982,
@@ -641,6 +756,15 @@
           "sha256": "1065b28a74543f305ddbd5c7018c719d894dd60c974b14f8ef76702af72f3343",
           "sha1": "c3ceafbd101db24642260ba6097ae11885384b23",
           "md5": "bc378540d0b347bdc34fed3ea3026542"
+        },
+        {
+          "name": "ui-graphics-android-1.10.0-alpha01-sources.jar",
+          "url": "ui-graphics-android-1.10.0-alpha01-sources.jar",
+          "size": 272278,
+          "sha512": "2c45861169b7045d881e519709d9d8657b831a9552e65e914ca88df9b4cccb03143dfe237700b38a978d2fe74ad851d3bc7acea650b4f811922dd36b8b6e4bac",
+          "sha256": "bd1354a724466b3219fff7b8b6612d665f10479223e375b09b8028030fa99fd8",
+          "sha1": "ba8d35919aea3e981e86b195ec886782c57ceaa8",
+          "md5": "32852304a4a46a0132657bfdefcff1e8"
         }
       ]
     }
