@@ -45,6 +45,7 @@
 @JavaOnlyStableParcelable parcelable android.adservices.ondevicepersonalization.RequestLogRecord;
 @JavaOnlyStableParcelable parcelable android.adservices.ondevicepersonalization.TrainingExampleRecord;
 @JavaOnlyStableParcelable parcelable android.adservices.ondevicepersonalization.UserData;
+@JavaOnlyStableParcelable parcelable android.app.ActivityManager.ConnectionInfo;
 @JavaOnlyStableParcelable parcelable android.app.ActivityManager.MemoryInfo;
 @JavaOnlyStableParcelable parcelable android.app.ActivityManager.ProcessErrorStateInfo;
 @JavaOnlyStableParcelable parcelable android.app.ActivityManager.RecentTaskInfo;
@@ -194,13 +195,13 @@
 @JavaOnlyStableParcelable parcelable android.app.contentsuggestions.ContentSelection;
 @JavaOnlyStableParcelable parcelable android.app.contentsuggestions.SelectionsRequest;
 @JavaOnlyStableParcelable parcelable android.app.contextualsearch.CallbackToken;
+@JavaOnlyStableParcelable parcelable android.app.contextualsearch.ContextualSearchConfig;
 @JavaOnlyStableParcelable parcelable android.app.contextualsearch.ContextualSearchState;
 @JavaOnlyStableParcelable parcelable android.app.job.JobInfo.TriggerContentUri;
 @JavaOnlyStableParcelable parcelable android.app.job.JobInfo;
 @JavaOnlyStableParcelable parcelable android.app.job.JobParameters;
 @JavaOnlyStableParcelable parcelable android.app.job.JobWorkItem;
 @JavaOnlyStableParcelable parcelable android.app.job.PendingJobReasonsInfo;
-@JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.DmaBufEntry;
 @JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.Feature;
 @JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.FeatureDetails;
 @JavaOnlyStableParcelable parcelable android.app.ondeviceintelligence.InferenceInfo;
@@ -326,6 +327,8 @@
 @JavaOnlyStableParcelable parcelable android.bluetooth.le.TransportBlock;
 @JavaOnlyStableParcelable parcelable android.bluetooth.le.TransportBlockFilter;
 @JavaOnlyStableParcelable parcelable android.bluetooth.le.TransportDiscoveryData;
+@JavaOnlyStableParcelable parcelable android.companion.ActionRequest;
+@JavaOnlyStableParcelable parcelable android.companion.ActionResult;
 @JavaOnlyStableParcelable parcelable android.companion.AssociatedDevice;
 @JavaOnlyStableParcelable parcelable android.companion.AssociationInfo;
 @JavaOnlyStableParcelable parcelable android.companion.AssociationRequest;
@@ -434,6 +437,7 @@
 @JavaOnlyStableParcelable parcelable android.content.pm.verify.domain.DomainVerificationRequest;
 @JavaOnlyStableParcelable parcelable android.content.pm.verify.domain.DomainVerificationUserState;
 @JavaOnlyStableParcelable parcelable android.content.res.AssetFileDescriptor;
+@JavaOnlyStableParcelable parcelable android.content.res.CameraCompatibilityInfo;
 @JavaOnlyStableParcelable parcelable android.content.res.ColorStateList;
 @JavaOnlyStableParcelable parcelable android.content.res.Configuration;
 @JavaOnlyStableParcelable parcelable android.content.res.ObbInfo;
@@ -506,6 +510,7 @@
 @JavaOnlyStableParcelable parcelable android.hardware.display.BrightnessChangeEvent;
 @JavaOnlyStableParcelable parcelable android.hardware.display.BrightnessConfiguration;
 @JavaOnlyStableParcelable parcelable android.hardware.display.BrightnessCorrection;
+@JavaOnlyStableParcelable parcelable android.hardware.display.DeviceProductInfo.EdidStructureMetadata;
 @JavaOnlyStableParcelable parcelable android.hardware.display.DeviceProductInfo;
 @JavaOnlyStableParcelable parcelable android.hardware.display.DisplayTopology;
 @JavaOnlyStableParcelable parcelable android.hardware.display.HdrConversionMode;
@@ -666,6 +671,11 @@
 @JavaOnlyStableParcelable parcelable android.location.GpsSatelliteEphemeris.GpsSatelliteClockModel;
 @JavaOnlyStableParcelable parcelable android.location.GpsSatelliteEphemeris.GpsSatelliteHealth;
 @JavaOnlyStableParcelable parcelable android.location.GpsSatelliteEphemeris;
+@JavaOnlyStableParcelable parcelable android.location.IonexAssistance.Axes;
+@JavaOnlyStableParcelable parcelable android.location.IonexAssistance.Axis;
+@JavaOnlyStableParcelable parcelable android.location.IonexAssistance.Header;
+@JavaOnlyStableParcelable parcelable android.location.IonexAssistance.TecMapSnapshot;
+@JavaOnlyStableParcelable parcelable android.location.IonexAssistance;
 @JavaOnlyStableParcelable parcelable android.location.IonosphericCorrection;
 @JavaOnlyStableParcelable parcelable android.location.KeplerianOrbitModel.SecondOrderHarmonicPerturbation;
 @JavaOnlyStableParcelable parcelable android.location.KeplerianOrbitModel;

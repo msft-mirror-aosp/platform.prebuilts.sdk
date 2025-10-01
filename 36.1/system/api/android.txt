@@ -1298,6 +1298,7 @@ package android.app {
     field public static final String CATEGORY_CAR_WARNING = "car_warning";
     field @RequiresPermission(android.Manifest.permission.NOTIFICATION_DURING_SETUP) public static final String EXTRA_ALLOW_DURING_SETUP = "android.allowDuringSetup";
     field @RequiresPermission("android.Manifest.permission.HIDE_STATUS_BAR_NOTIFICATION") public static final String EXTRA_HIDE_STATUS_BAR_NOTIFICATION = "android.hideStatusBarNotification";
+    field @RequiresPermission(android.Manifest.permission.PACKAGE_VERIFICATION_AGENT) public static final String EXTRA_PREFER_SMALL_ICON = "android.app.preferSmallIcon";
     field @RequiresPermission(android.Manifest.permission.SUBSTITUTE_NOTIFICATION_APP_NAME) public static final String EXTRA_SUBSTITUTE_APP_NAME = "android.substName";
     field public static final int FLAG_AUTOGROUP_SUMMARY = 1024; // 0x400
   }
@@ -2575,8 +2576,29 @@ package android.app.contextualsearch {
     field @NonNull public static final android.os.Parcelable.Creator<android.app.contextualsearch.CallbackToken> CREATOR;
   }
 
+  public final class ContextualSearchConfig implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getDisplayId();
+    method @NonNull public android.os.Bundle getIntentExtras();
+    method @Nullable public android.graphics.Rect getSourceBounds();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.app.contextualsearch.ContextualSearchConfig> CREATOR;
+  }
+
+  public static final class ContextualSearchConfig.Builder {
+    ctor public ContextualSearchConfig.Builder();
+    ctor public ContextualSearchConfig.Builder(@NonNull android.app.contextualsearch.ContextualSearchConfig);
+    method @NonNull public android.app.contextualsearch.ContextualSearchConfig build();
+    method @NonNull public android.app.contextualsearch.ContextualSearchConfig.Builder setDisplayId(int);
+    method @NonNull public android.app.contextualsearch.ContextualSearchConfig.Builder setIntentExtras(@Nullable android.os.Bundle);
+    method @NonNull public android.app.contextualsearch.ContextualSearchConfig.Builder setSourceBounds(@Nullable android.graphics.Rect);
+  }
+
   public final class ContextualSearchManager {
+    method public boolean isContextualSearchAvailable();
+    method public void startContextualSearch(@NonNull android.app.Activity, @Nullable android.app.contextualsearch.ContextualSearchConfig);
     method @RequiresPermission(android.Manifest.permission.ACCESS_CONTEXTUAL_SEARCH) public void startContextualSearch(int);
+    method @RequiresPermission(android.Manifest.permission.ACCESS_CONTEXTUAL_SEARCH) public void startContextualSearch(int, @Nullable android.app.contextualsearch.ContextualSearchConfig);
     field public static final String ACTION_LAUNCH_CONTEXTUAL_SEARCH = "android.app.contextualsearch.action.LAUNCH_CONTEXTUAL_SEARCH";
     field public static final int ENTRYPOINT_LONG_PRESS_HOME = 2; // 0x2
     field public static final int ENTRYPOINT_LONG_PRESS_META = 10; // 0xa
@@ -2899,7 +2921,7 @@ package android.app.role {
     field @Deprecated public static final String SERVICE_INTERFACE = "android.app.role.RoleControllerService";
   }
 
-  public final class RoleManager {
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) public final class RoleManager {
     method @RequiresPermission(android.Manifest.permission.OBSERVE_ROLE_HOLDERS) public void addOnRoleHoldersChangedListenerAsUser(@NonNull java.util.concurrent.Executor, @NonNull android.app.role.OnRoleHoldersChangedListener, @NonNull android.os.UserHandle);
     method @RequiresPermission(android.Manifest.permission.MANAGE_ROLE_HOLDERS) public void addRoleHolderAsUser(@NonNull String, @NonNull String, int, @NonNull android.os.UserHandle, @NonNull java.util.concurrent.Executor, @NonNull java.util.function.Consumer<java.lang.Boolean>);
     method @Deprecated @RequiresPermission("com.android.permissioncontroller.permission.MANAGE_ROLES_FROM_CONTROLLER") public boolean addRoleHolderFromController(@NonNull String, @NonNull String);
@@ -22699,7 +22721,7 @@ package android.service.ondeviceintelligence {
 
 package android.service.persistentdata {
 
-  public class PersistentDataBlockManager {
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.VANILLA_ICE_CREAM) public class PersistentDataBlockManager {
     method @RequiresPermission(android.Manifest.permission.CONFIGURE_FACTORY_RESET_PROTECTION) public boolean deactivateFactoryResetProtection(@NonNull byte[]);
     method @RequiresPermission(android.Manifest.permission.ACCESS_PDB_STATE) public int getDataBlockSize();
     method @RequiresPermission(anyOf={android.Manifest.permission.READ_OEM_UNLOCK_STATE, "android.permission.OEM_UNLOCK_STATE"}) public int getFlashLockState();
