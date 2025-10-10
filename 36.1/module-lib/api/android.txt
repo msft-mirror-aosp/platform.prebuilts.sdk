@@ -120,7 +120,7 @@ package android.app.role {
     method public static void registerServiceWrappers();
   }
 
-  public final class RoleManager {
+  @RestrictedForEnvironment(environments=android.annotation.RestrictedForEnvironment.ENVIRONMENT_SDK_RUNTIME, from=android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) public final class RoleManager {
     method @Nullable public String getBrowserRoleHolder(int);
     method @Nullable @RequiresPermission(android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE) public String getEmergencyRoleHolder(int);
     method @Nullable public String getSmsRoleHolder(int);
@@ -360,7 +360,6 @@ package android.media {
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createA2dpInfo(boolean, int);
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createA2dpSinkInfo(int);
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createHearingAidInfo(boolean);
-    method @NonNull public static android.media.BluetoothProfileConnectionInfo createHfpInfo();
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createLeAudioInfo(boolean, boolean);
     method @NonNull public static android.media.BluetoothProfileConnectionInfo createLeAudioOutputInfo(boolean, int);
     method public int describeContents();

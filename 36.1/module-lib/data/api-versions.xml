@@ -7479,6 +7479,7 @@
 		<field name="EXTRA_PICTURE" since="19"/>
 		<field name="EXTRA_PICTURE_CONTENT_DESCRIPTION" since="31"/>
 		<field name="EXTRA_PICTURE_ICON" since="31"/>
+		<field name="EXTRA_PREFER_SMALL_ICON" since="36.1"/>
 		<field name="EXTRA_PROGRESS" since="19"/>
 		<field name="EXTRA_PROGRESS_INDETERMINATE" since="19"/>
 		<field name="EXTRA_PROGRESS_MAX" since="19"/>
@@ -11164,9 +11165,29 @@
 		<method name="getContextualSearchState(Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V"/>
 		<field name="CREATOR"/>
 	</class>
+	<class name="android/app/contextualsearch/ContextualSearchConfig" since="36.1">
+		<extends name="java/lang/Object"/>
+		<implements name="android/os/Parcelable"/>
+		<method name="getDisplayId()I"/>
+		<method name="getIntentExtras()Landroid/os/Bundle;"/>
+		<method name="getSourceBounds()Landroid/graphics/Rect;"/>
+		<field name="CREATOR"/>
+	</class>
+	<class name="android/app/contextualsearch/ContextualSearchConfig$Builder" since="36.1">
+		<extends name="java/lang/Object"/>
+		<method name="&lt;init>()V"/>
+		<method name="&lt;init>(Landroid/app/contextualsearch/ContextualSearchConfig;)V"/>
+		<method name="build()Landroid/app/contextualsearch/ContextualSearchConfig;"/>
+		<method name="setDisplayId(I)Landroid/app/contextualsearch/ContextualSearchConfig$Builder;"/>
+		<method name="setIntentExtras(Landroid/os/Bundle;)Landroid/app/contextualsearch/ContextualSearchConfig$Builder;"/>
+		<method name="setSourceBounds(Landroid/graphics/Rect;)Landroid/app/contextualsearch/ContextualSearchConfig$Builder;"/>
+	</class>
 	<class name="android/app/contextualsearch/ContextualSearchManager" since="35">
 		<extends name="java/lang/Object"/>
+		<method name="isContextualSearchAvailable()Z" since="36.1"/>
 		<method name="startContextualSearch(I)V"/>
+		<method name="startContextualSearch(ILandroid/app/contextualsearch/ContextualSearchConfig;)V" since="36.1"/>
+		<method name="startContextualSearch(Landroid/app/Activity;Landroid/app/contextualsearch/ContextualSearchConfig;)V" since="36.1"/>
 		<field name="ACTION_LAUNCH_CONTEXTUAL_SEARCH"/>
 		<field name="ENTRYPOINT_LONG_PRESS_HOME"/>
 		<field name="ENTRYPOINT_LONG_PRESS_META"/>
@@ -36880,7 +36901,6 @@
 		<method name="isOffloadedPlaybackSupported(Landroid/media/AudioFormat;Landroid/media/AudioAttributes;)Z" since="29"/>
 		<method name="isPstnCallAudioInterceptable()Z" since="33"/>
 		<method name="isRampingRingerEnabled()Z" since="33"/>
-		<method name="isScoManagedByAudio()Z" since="36.1"/>
 		<method name="isSpeakerphoneOn()Z" deprecated="34"/>
 		<method name="isStreamMute(I)Z" since="23"/>
 		<method name="isSurroundFormatEnabled(I)Z" since="31"/>
@@ -37652,7 +37672,6 @@
 		<method name="createA2dpInfo(ZI)Landroid/media/BluetoothProfileConnectionInfo;"/>
 		<method name="createA2dpSinkInfo(I)Landroid/media/BluetoothProfileConnectionInfo;"/>
 		<method name="createHearingAidInfo(Z)Landroid/media/BluetoothProfileConnectionInfo;"/>
-		<method name="createHfpInfo()Landroid/media/BluetoothProfileConnectionInfo;" since="36.1"/>
 		<method name="createLeAudioInfo(ZZ)Landroid/media/BluetoothProfileConnectionInfo;"/>
 		<method name="createLeAudioOutputInfo(ZI)Landroid/media/BluetoothProfileConnectionInfo;" since="34"/>
 		<method name="getProfile()I"/>
